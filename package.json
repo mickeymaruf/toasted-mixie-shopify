@@ -1,0 +1,26 @@
+{
+  "name": "toasted-mixie",
+  "version": "1.0.0",
+  "description": "Shopify theme based on the Skeleton Theme",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --watch",
+    "build": "npm run build:css",
+    "dev": "concurrently -n css,theme -c blue,green \"npm:watch:css\" \"shopify theme dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mickeymaruf/toasted-mixie-shopify.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mickeymaruf/toasted-mixie-shopify/issues"
+  },
+  "homepage": "https://github.com/mickeymaruf/toasted-mixie-shopify#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "concurrently": "^9.2.4",
+    "tailwindcss": "^4.3.3"
+  }
+}

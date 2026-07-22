@@ -1,7 +1,4 @@
 <h1 align="center" style="position: relative;">
-  <br>
-    <img src="./assets/shoppy-x-ray.svg" alt="logo" width="200">
-  <br>
   Shopify Skeleton Theme
 </h1>
 
@@ -34,6 +31,14 @@ git clone git@github.com:Shopify/skeleton-theme.git
 shopify theme init
 ```
 
+### Install dependencies
+
+This theme uses [Tailwind CSS](https://tailwindcss.com) to generate `assets/tailwind.css`. Install the dev dependencies with:
+
+```bash
+npm install
+```
+
 ### Preview
 
 Preview this theme using Shopify CLI:
@@ -41,6 +46,22 @@ Preview this theme using Shopify CLI:
 ```bash
 shopify theme dev
 ```
+
+To also rebuild Tailwind CSS on file changes while previewing, run instead:
+
+```bash
+npm run dev
+```
+
+### Tailwind CSS
+
+Tailwind's source file lives at `src/tailwind.css` and scans `layout/`, `sections/`, `blocks/`, `snippets/`, and `templates/` for class names. It compiles to `assets/tailwind.css`, which is loaded in `layout/theme.liquid`.
+
+Available scripts:
+
+- `npm run watch:css` – rebuild on change while developing
+- `npm run build:css` – one-off minified build
+- `npm run dev` – runs `watch:css` and `shopify theme dev` together
 
 ## Theme architecture
 
