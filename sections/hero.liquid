@@ -1,0 +1,303 @@
+{% liquid
+  assign overlay_alpha = section.settings.overlay_opacity | times: 0.01
+  assign overlay_color_rgba = section.settings.overlay_color | color_modify: 'alpha', overlay_alpha
+  assign texture_opacity = section.settings.texture_opacity | times: 0.01
+%}
+
+<div
+  class="hero full-width"
+  style="
+    --hero-height: {{ section.settings.height }}px;
+    --hero-heading-color: {{ section.settings.heading_color }};
+    --hero-overlay-color: {{ overlay_color_rgba }};
+    --hero-texture-opacity: {{ texture_opacity }};
+    --hero-button-background: {{ section.settings.button_background_color }};
+    --hero-button-text: {{ section.settings.button_text_color }};
+  "
+>
+  <div class="hero__media" aria-hidden="true">
+    {% if section.settings.background_image %}
+      {{
+        section.settings.background_image
+        | image_url: width: 3200
+        | image_tag:
+          class: 'hero__image',
+          loading: 'eager',
+          fetchpriority: 'high',
+          sizes: '100vw',
+          widths: '750, 1100, 1500, 2000, 2600, 3200',
+          alt: ''
+      }}
+    {% endif %}
+
+    {% if section.settings.texture_image %}
+      <div
+        class="hero__texture"
+        style="background-image: url({{ section.settings.texture_image | image_url: width: 500 }});"
+      ></div>
+    {% endif %}
+
+    <div class="hero__gradient"></div>
+  </div>
+
+  <div class="hero__content">
+    {% if section.settings.heading != blank or section.settings.subheading != blank %}
+      <div class="hero__text">
+        {% if section.settings.heading != blank %}
+          <h2 class="hero__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <p class="hero__subheading">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_button and section.settings.button_label != blank %}
+      {% if section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="hero__button">
+          {{ section.settings.button_label }}
+        </a>
+      {% else %}
+        <span class="hero__button">{{ section.settings.button_label }}</span>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .hero {
+    position: relative;
+    display: flex;
+    min-height: clamp(25rem, 100vh, var(--hero-height));
+    overflow: hidden;
+  }
+
+  .hero__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__texture {
+    position: absolute;
+    inset: 0;
+    background-repeat: repeat;
+    background-position: top left;
+    background-size: 31.25rem 20.859375rem;
+    mix-blend-mode: soft-light;
+    opacity: var(--hero-texture-opacity);
+  }
+
+  .hero__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 12.87%, var(--hero-overlay-color) 72.265%);
+  }
+
+  .hero__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.875rem;
+    width: 100%;
+    padding: 1.5rem 0.625rem 6.25rem;
+    text-align: center;
+  }
+
+  .hero__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--hero-heading-color);
+    text-shadow: 0.25rem 0.25rem 0.375rem rgba(0, 0, 0, 0.4);
+  }
+
+  .hero__heading {
+    margin: 0;
+    font-size: clamp(2.25rem, 1rem + 5.35vw, 5.8125rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.174375rem;
+  }
+
+  .hero__subheading {
+    margin: 0;
+    font-size: clamp(1.125rem, 0.75rem + 1vw, 1.5rem);
+    line-height: 1.5;
+  }
+
+  .hero__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 4rem;
+    border-radius: 1.875rem;
+    background-color: var(--hero-button-background);
+    color: var(--hero-button-text);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+    box-shadow: 0 0 0.366rem rgba(0, 0, 0, 0.4);
+    transition: opacity 0.15s ease;
+  }
+
+  .hero__button:hover {
+    opacity: 0.85;
+  }
+
+  .hero__button:focus-visible {
+    outline: 2px solid var(--hero-button-text);
+    outline-offset: 2px;
+  }
+
+  @media screen and (max-width: 47.9375rem) {
+    .hero__content {
+      gap: 1.25rem;
+      padding: 1.25rem 0.625rem 3rem;
+    }
+
+    .hero__button {
+      padding: 0.875rem 2.5rem;
+      font-size: 1.0625rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "The Chill Drink"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:labels.subheading",
+      "default": "Present in the moment."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "min": 400,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "label": "t:labels.height",
+      "default": 780
+    },
+    {
+      "type": "header",
+      "content": "t:general.texture_overlay"
+    },
+    {
+      "type": "image_picker",
+      "id": "texture_image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "range",
+      "id": "texture_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "t:labels.opacity",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "t:general.overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "t:labels.overlay_color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "t:labels.overlay_opacity",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Subscribe & Save",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#F9D5C0",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#212323",
+      "visible_if": "{{ section.settings.show_button }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.hero"
+    }
+  ]
+}
+{% endschema %}

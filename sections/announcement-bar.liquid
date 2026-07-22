@@ -1,0 +1,148 @@
+<div
+  class="announcement-bar full-width"
+  style="
+    --announcement-bar-background: {{ section.settings.background_color }};
+    --announcement-bar-text: {{ section.settings.text_color }};
+    --announcement-bar-button-background: {{ section.settings.button_background_color }};
+    --announcement-bar-button-text: {{ section.settings.button_text_color }};
+  "
+>
+  <div class="announcement-bar__content">
+    {% if section.settings.text != blank %}
+      <div class="announcement-bar__text">{{ section.settings.text }}</div>
+    {% endif %}
+
+    {% if section.settings.show_button and section.settings.button_label != blank %}
+      {% if section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="announcement-bar__button">
+          {{ section.settings.button_label }}
+        </a>
+      {% else %}
+        <span class="announcement-bar__button">
+          {{ section.settings.button_label }}
+        </span>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .announcement-bar {
+    width: 100%;
+    background-color: var(--announcement-bar-background);
+    color: var(--announcement-bar-text);
+  }
+
+  .announcement-bar__content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding-block: 1rem;
+    padding-inline: var(--page-margin);
+    text-align: center;
+  }
+
+  .announcement-bar__text {
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+
+  .announcement-bar__text p {
+    margin: 0;
+  }
+
+  .announcement-bar__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    background-color: var(--announcement-bar-button-background);
+    color: var(--announcement-bar-button-text);
+    font-size: 0.875rem;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .announcement-bar__button:hover {
+    opacity: 0.85;
+  }
+
+  .announcement-bar__button:focus-visible {
+    outline: 2px solid var(--announcement-bar-button-text);
+    outline-offset: 2px;
+  }
+
+  @media screen and (max-width: 47.9375rem) {
+    .announcement-bar__content {
+      gap: 0.5rem;
+      padding-block: 0.75rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.announcement_bar",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:labels.text",
+      "default": "<p>Free 3-flavor trial pack. Just pay shipping.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Claim Your Trial",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.foreground",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC",
+      "visible_if": "{{ section.settings.show_button }}"
+    }
+  ]
+}
+{% endschema %}
