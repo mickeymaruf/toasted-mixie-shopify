@@ -27,11 +27,15 @@
     "custom_section": "Custom section",
     "fonts": "Fonts",
     "footer": "Footer",
+    "gallery_image": "Gallery image",
     "group": "Group",
+    "gruns_gallery": "Gruns gallery",
     "gruns_hero": "Gruns hero",
     "header": "Header",
     "hero": "Hero",
     "image": "Image",
+    "info_card": "Info card",
+    "info_grid": "Info grid",
     "layout": "Layout",
     "main": "Main",
     "overlay": "Overlay",
@@ -55,6 +59,7 @@
     "alignment": "Alignment",
     "alt_text": "Alt text",
     "background": "Background",
+    "card_background": "Card background",
     "button_background": "Button background",
     "button_label": "Button label",
     "button_link": "Button link",
@@ -91,7 +96,8 @@
     "subheading": "Subheading",
     "text_color": "Text color",
     "text_style": "Text style",
-    "text": "Text"
+    "text": "Text",
+    "title": "Title"
   },
   "options": {
     "alignment": {

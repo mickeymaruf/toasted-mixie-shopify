@@ -1,0 +1,46 @@
+{% doc %}
+  Renders a single square, rounded-corner image used as a slide inside the
+  Gruns Gallery section's scrolling carousel.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'gallery-image' %}
+{% enddoc %}
+
+<div
+  class="gruns-gallery__slide w-[160px] shrink-0 snap-start sm:w-[200px] md:w-[220px] lg:w-[252px]"
+  {{ block.shopify_attributes }}
+>
+  <div class="aspect-square w-full overflow-hidden rounded-[25px]">
+    {% if block.settings.image %}
+      {{
+        block.settings.image
+        | image_url: width: 600
+        | image_tag:
+          class: 'size-full object-cover',
+          widths: '160, 200, 220, 252, 400, 600',
+          sizes: '(min-width: 64rem) 252px, (min-width: 48rem) 220px, (min-width: 40rem) 200px, 160px',
+          alt: block.settings.alt_text
+        | default: block.settings.image.alt
+      }}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:general.gallery_image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "t:labels.alt_text"
+    }
+  ],
+  "presets": [{ "name": "t:general.gallery_image" }]
+}
+{% endschema %}

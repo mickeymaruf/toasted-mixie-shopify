@@ -1,0 +1,133 @@
+{% doc %}
+  Renders "First Drops. Good Moments." — a heading and a horizontally
+  scrolling carousel of gallery-image blocks, with previous/next controls.
+  Add gallery-image blocks to populate the carousel with images.
+{% enddoc %}
+
+<section
+  class="gruns-gallery full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 px-5 py-14 sm:px-8 md:px-12 lg:gap-[60px] lg:px-[80px] lg:py-[100px] xl:px-[120px] xl:py-[200px]">
+    {% if section.settings.heading != blank %}
+      <div
+        class="max-w-4xl text-center text-[36px] leading-[0.95] font-bold tracking-[-1.1px] text-[color:var(--gruns-gallery-heading-color)] sm:text-[44px] sm:tracking-[-1.3px] md:text-[56px] md:tracking-[-1.7px] lg:text-[64px] lg:tracking-[-1.9px] xl:text-[72px] xl:tracking-[-2.16px]"
+        style="--gruns-gallery-heading-color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading }}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <gruns-gallery-carousel class="flex w-full items-center gap-1 sm:gap-4">
+        <button
+          type="button"
+          class="flex size-[48px] shrink-0 items-center justify-center text-[#212323] disabled:opacity-30"
+          data-gallery-prev
+          aria-label="{{ 'general.accessibility.previous_slide' | t }}"
+        >
+          <span class="block size-[28px]">{{ 'icon-chevron-left.svg' | inline_asset_content }}</span>
+        </button>
+
+        <div
+          class="gruns-gallery__track flex min-w-0 flex-1 snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth"
+          data-gallery-track
+        >
+          {% content_for 'blocks' %}
+        </div>
+
+        <button
+          type="button"
+          class="flex size-[48px] shrink-0 items-center justify-center text-[#212323] disabled:opacity-30"
+          data-gallery-next
+          aria-label="{{ 'general.accessibility.next_slide' | t }}"
+        >
+          <span class="block size-[28px]">{{ 'icon-chevron-right.svg' | inline_asset_content }}</span>
+        </button>
+      </gruns-gallery-carousel>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .gruns-gallery__track {
+    scrollbar-width: none;
+  }
+  .gruns-gallery__track::-webkit-scrollbar {
+    display: none;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  class GrunsGalleryCarousel extends HTMLElement {
+    connectedCallback() {
+      this.track = this.querySelector('[data-gallery-track]');
+      this.prevButton = this.querySelector('[data-gallery-prev]');
+      this.nextButton = this.querySelector('[data-gallery-next]');
+
+      this.prevButton?.addEventListener('click', () => this.scrollByDirection(-1));
+      this.nextButton?.addEventListener('click', () => this.scrollByDirection(1));
+
+      this.track?.addEventListener('scroll', () => this.updateButtons());
+      window.addEventListener('resize', () => this.updateButtons());
+      this.updateButtons();
+    }
+
+    scrollByDirection(direction) {
+      if (!this.track) return;
+      const slide = this.track.querySelector('.gruns-gallery__slide');
+      const gap = parseFloat(getComputedStyle(this.track).columnGap || 0);
+      const amount = slide ? slide.getBoundingClientRect().width + gap : this.track.clientWidth;
+      this.track.scrollBy({ left: amount * direction, behavior: 'smooth' });
+    }
+
+    updateButtons() {
+      if (!this.track) return;
+      const maxScrollLeft = this.track.scrollWidth - this.track.clientWidth - 1;
+      if (this.prevButton) this.prevButton.disabled = this.track.scrollLeft <= 0;
+      if (this.nextButton) this.nextButton.disabled = this.track.scrollLeft >= maxScrollLeft;
+    }
+  }
+
+  customElements.define('gruns-gallery-carousel', GrunsGalleryCarousel);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.gruns_gallery",
+  "blocks": [{ "type": "gallery-image" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "<p>First drops. Good moments. <em>@drinktoasted</em></p>"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.gruns_gallery"
+    }
+  ]
+}
+{% endschema %}

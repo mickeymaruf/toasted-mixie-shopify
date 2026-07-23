@@ -1,0 +1,144 @@
+{% doc %}
+  Renders "Everything You Should Know" — a heading, a responsive grid of
+  info-card blocks (compliance, dosing, usage guidance, etc.) and an
+  optional call-to-action button.
+{% enddoc %}
+
+<section
+  class="gruns-info-grid full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 px-5 py-14 sm:px-8 md:px-12 lg:gap-[50px] lg:px-[80px] lg:py-[100px] xl:px-[120px]">
+    {% if section.settings.heading != blank %}
+      <h2
+        class="max-w-4xl text-center text-[36px] leading-[0.95] font-bold tracking-[-1.1px] text-[color:var(--gruns-info-grid-heading-color)] sm:text-[44px] sm:tracking-[-1.3px] md:text-[56px] md:tracking-[-1.7px] lg:text-[64px] lg:tracking-[-1.9px] xl:text-[72px] xl:tracking-[-2.16px]"
+        style="--gruns-info-grid-heading-color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="grid w-full grid-cols-1 gap-[15px] sm:grid-cols-2">
+        {% content_for 'blocks' %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_button and section.settings.button_label != blank %}
+      {% render 'button',
+        label: section.settings.button_label,
+        url: section.settings.button_link,
+        background_color: section.settings.button_background_color,
+        text_color: section.settings.button_text_color,
+        class: 'w-auto whitespace-nowrap'
+      %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.info_grid",
+  "blocks": [{ "type": "info-card" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Everything You Should Know"
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Try All 3 Flavors",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.info_grid",
+      "blocks": [
+        {
+          "type": "info-card",
+          "settings": {
+            "title": "Federally Compliant",
+            "text": "Made with hemp-derived Delta-9 THC and compliant under the 2018 Farm Bill."
+          }
+        },
+        {
+          "type": "info-card",
+          "settings": {
+            "title": "Micro-Dosed for Balance",
+            "text": "0.4mg is designed for a light, social experience that helps you stay present."
+          }
+        },
+        {
+          "type": "info-card",
+          "settings": {
+            "title": "Made for Everyday Moments",
+            "text": "Enjoy responsibly. Start with one. Never drive or mix with alcohol on your first can."
+          }
+        },
+        {
+          "type": "info-card",
+          "settings": {
+            "title": "Crafted With Purpose",
+            "text": "Made with real fruit juice, L-theanine, rhodiola, and 0.4mg hemp-derived THC for a balanced social ritual."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

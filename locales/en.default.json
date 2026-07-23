@@ -12,7 +12,9 @@
     "accessibility": {
       "navigation": "Navigation",
       "search": "Search",
-      "cart": "Cart"
+      "cart": "Cart",
+      "previous_slide": "Previous slide",
+      "next_slide": "Next slide"
     }
   },
   "404": {

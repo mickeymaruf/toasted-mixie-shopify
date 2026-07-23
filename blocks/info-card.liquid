@@ -1,0 +1,81 @@
+{% doc %}
+  Renders a rounded info card with an icon, title and description, used to
+  call out a piece of information a merchant wants shoppers to know (e.g.
+  compliance, dosing, usage guidance).
+
+  Falls back to the bundled `icon-trust.svg` icon when no custom `icon`
+  image is uploaded. Intended to be nested inside the Gruns Info Grid
+  section.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'info-card' %}
+{% enddoc %}
+
+<div
+  class="flex flex-col items-center justify-center gap-[10px] rounded-[20px] px-8 py-5 text-center sm:px-[50px]"
+  style="background-color: {{ block.settings.background_color }};"
+  {{ block.shopify_attributes }}
+>
+  <div class="size-[48px] shrink-0">
+    {% if block.settings.icon %}
+      {{
+        block.settings.icon
+        | image_url: width: 96
+        | image_tag: width: 96, height: 96, class: 'size-full object-contain', alt: block.settings.title
+      }}
+    {% else %}
+      <img
+        src="{{ 'icon-trust.svg' | asset_url }}"
+        width="48"
+        height="48"
+        loading="lazy"
+        class="size-full object-contain"
+        alt="{{ block.settings.title | escape }}"
+      >
+    {% endif %}
+  </div>
+
+  {% if block.settings.title != blank %}
+    <p class="text-[24px] leading-[1.5] font-bold text-[#212323] sm:text-[32px]">
+      {{ block.settings.title }}
+    </p>
+  {% endif %}
+
+  {% if block.settings.text != blank %}
+    <p class="text-[16px] leading-[1.5] text-[#212323] sm:text-[20px]">
+      {{ block.settings.text }}
+    </p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.info_card",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "t:labels.custom_icon"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:labels.title",
+      "default": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "t:labels.text",
+      "default": "Description text."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.card_background",
+      "default": "#9AB2D5"
+    }
+  ],
+  "presets": [{ "name": "t:general.info_card" }]
+}
+{% endschema %}
