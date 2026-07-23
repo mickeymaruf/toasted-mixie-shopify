@@ -90,6 +90,163 @@
         "product_image_alt": ""
       }
     },
+    "gruns_product_list_qGkdqc": {
+      "type": "gruns-product-list",
+      "name": "t:general.product_list",
+      "blocks": {
+        "product_card_bloodorange": {
+          "type": "product-card",
+          "settings": {
+            "flavor_name": "Blood Orange",
+            "flavor_name_color": "#B70141",
+            "description": "Bright. Smooth. Golden-hour ready.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Blood Orange",
+            "button_background_color": "#212323",
+            "button_text_color": "#F6F1EC"
+          },
+          "blocks": {}
+        },
+        "product_card_berryacai": {
+          "type": "product-card",
+          "settings": {
+            "flavor_name": "Berry Acai",
+            "flavor_name_color": "#5E1A79",
+            "description": "Deep. Juicy. Easy to enjoy.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Berry Acai",
+            "button_background_color": "#212323",
+            "button_text_color": "#F6F1EC"
+          },
+          "blocks": {}
+        },
+        "product_card_gingerlime": {
+          "type": "product-card",
+          "settings": {
+            "flavor_name": "Ginger Lime",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Ginger Lime",
+            "button_background_color": "#212323",
+            "button_text_color": "#F6F1EC"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "product_card_bloodorange",
+        "product_card_berryacai",
+        "product_card_gingerlime"
+      ],
+      "settings": {
+        "heading": "Choose your flavor.",
+        "background_color": "#F6F1EC",
+        "heading_color": "#212323",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "gruns_feature_grid_qYc4BG": {
+      "type": "gruns-feature-grid",
+      "blocks": {
+        "feature_card_izcQPa": {
+          "type": "feature-card",
+          "settings": {
+            "image": "shopify://shop_images/supports-clarity.png",
+            "alt_text": "",
+            "title": "Supports Clarity",
+            "subtitle": "smooth, present focus",
+            "background_color": "#c2cbd4"
+          },
+          "blocks": {}
+        },
+        "feature_card_kUnCTr": {
+          "type": "feature-card",
+          "settings": {
+            "image": "shopify://shop_images/balances-mood.png",
+            "alt_text": "",
+            "title": "Balances Mood",
+            "subtitle": "light, feel-good lift",
+            "background_color": "#c2cbd4"
+          },
+          "blocks": {}
+        },
+        "feature_card_Bz6MJx": {
+          "type": "feature-card",
+          "settings": {
+            "image": "shopify://shop_images/promotes-calm.png",
+            "alt_text": "",
+            "title": "Promotes Calm",
+            "subtitle": "easy, steady unwind",
+            "background_color": "#c2cbd4"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "feature_card_izcQPa",
+        "feature_card_kUnCTr",
+        "feature_card_Bz6MJx"
+      ],
+      "name": "t:general.feature_grid",
+      "settings": {
+        "heading": "Made for moments that matter.",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323",
+        "padding_top": 100,
+        "padding_bottom": 40
+      }
+    },
+    "gruns_collage_callout_BeYC7N": {
+      "type": "gruns-collage-callout",
+      "name": "t:general.collage_callout",
+      "settings": {
+        "heading": "Find Toasted",
+        "subtext": "Coming to select venues and retailers.",
+        "show_button": true,
+        "button_label": "Find near you",
+        "button_link": "",
+        "button_background_color": "#212323",
+        "button_text_color": "#f6f1ec",
+        "photo_1": "shopify://shop_images/12_1.png",
+        "photo_1_alt": "",
+        "photo_2": "shopify://shop_images/10_1.png",
+        "photo_2_alt": "",
+        "photo_3": "shopify://shop_images/11_1.png",
+        "photo_3_alt": "",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "gruns_media_testimonials_VWVBLr": {
+      "type": "gruns-media-testimonials",
+      "blocks": {
+        "media_testimonial_wbXrdh": {
+          "type": "media-testimonial",
+          "settings": {
+            "thumbnail": "shopify://shop_images/testimonial-video-thumb.png",
+            "quote": "The only THC drink I've had that actually feels social, not stoned.",
+            "attribution": "Jenna, Miami",
+            "background_color": "#f9d5c0"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "media_testimonial_wbXrdh"
+      ],
+      "name": "t:general.media_testimonials",
+      "settings": {
+        "heading": "",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323",
+        "padding_top": 0,
+        "padding_bottom": 100
+      }
+    },
     "gruns_info_grid_gPbYKk": {
       "type": "gruns-info-grid",
       "blocks": {
@@ -98,7 +255,7 @@
           "settings": {
             "title": "Federally Compliant",
             "text": "Made with hemp-derived Delta-9 THC and compliant under the 2018 Farm Bill.",
-            "background_color": "#9AB2D5"
+            "background_color": "#9ab2d5"
           },
           "blocks": {}
         },
@@ -107,7 +264,7 @@
           "settings": {
             "title": "Micro-Dosed for Balance",
             "text": "0.4mg is designed for a light, social experience that helps you stay present.",
-            "background_color": "#9AB2D5"
+            "background_color": "#9ab2d5"
           },
           "blocks": {}
         },
@@ -116,7 +273,7 @@
           "settings": {
             "title": "Made for Everyday Moments",
             "text": "Enjoy responsibly. Start with one. Never drive or mix with alcohol on your first can.",
-            "background_color": "#9AB2D5"
+            "background_color": "#9ab2d5"
           },
           "blocks": {}
         },
@@ -125,7 +282,7 @@
           "settings": {
             "title": "Crafted With Purpose",
             "text": "Made with real fruit juice, L-theanine, rhodiola, and 0.4mg hemp-derived THC for a balanced social ritual.",
-            "background_color": "#9AB2D5"
+            "background_color": "#9ab2d5"
           },
           "blocks": {}
         }
@@ -143,8 +300,8 @@
         "button_label": "Try All 3 Flavors",
         "button_link": "",
         "button_background_color": "#212323",
-        "button_text_color": "#F6F1EC",
-        "background_color": "#F6F1EC",
+        "button_text_color": "#f6f1ec",
+        "background_color": "#f6f1ec",
         "heading_color": "#212323"
       }
     },
@@ -207,7 +364,7 @@
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>First drops. Good moments. <em>@drinktoasted</em></p>",
-        "background_color": "#F6F1EC",
+        "background_color": "#f6f1ec",
         "heading_color": "#212323"
       }
     }
@@ -216,6 +373,10 @@
     "main",
     "hero_cXrPe9",
     "gruns_hero_KLipt8",
+    "gruns_product_list_qGkdqc",
+    "gruns_feature_grid_qYc4BG",
+    "gruns_collage_callout_BeYC7N",
+    "gruns_media_testimonials_VWVBLr",
     "gruns_info_grid_gPbYKk",
     "gruns_gallery_AAGdfP"
   ]

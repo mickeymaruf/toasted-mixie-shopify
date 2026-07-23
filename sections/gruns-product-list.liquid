@@ -1,0 +1,126 @@
+{% comment %}
+  Renders "Choose your flavor." — an editable heading followed by a
+  responsive grid of product-card blocks. Add product-card blocks and
+  select a product on each to populate the grid.
+{% endcomment %}
+
+<section
+  class="gruns-product-list full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div
+    class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 px-5 sm:px-8 md:px-12 lg:gap-[50px] lg:px-[80px] xl:px-[120px]"
+    style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+  >
+    {% if section.settings.heading != blank %}
+      <h2
+        class="w-full text-center text-[36px] leading-[0.95] font-bold tracking-[-1.1px] text-[color:var(--gruns-product-list-heading-color)] sm:text-[44px] sm:tracking-[-1.3px] md:text-[56px] md:tracking-[-1.7px] lg:text-[64px] lg:tracking-[-1.9px] xl:text-[72px] xl:tracking-[-2.16px]"
+        style="--gruns-product-list-heading-color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="grid w-full grid-cols-1 items-start gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-[20px]">
+        {% content_for 'blocks' %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.product_list",
+  "blocks": [{ "type": "product-card" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Choose your flavor."
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "t:general.layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.product_list",
+      "blocks": [
+        {
+          "type": "product-card",
+          "settings": {
+            "flavor_name": "Blood Orange",
+            "flavor_name_color": "#B70141",
+            "description": "Bright. Smooth. Golden-hour ready.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Blood Orange"
+          }
+        },
+        {
+          "type": "product-card",
+          "settings": {
+            "flavor_name": "Berry Acai",
+            "flavor_name_color": "#5E1A79",
+            "description": "Deep. Juicy. Easy to enjoy.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Berry Acai"
+          }
+        },
+        {
+          "type": "product-card",
+          "settings": {
+            "flavor_name": "Ginger Lime",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Ginger Lime"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

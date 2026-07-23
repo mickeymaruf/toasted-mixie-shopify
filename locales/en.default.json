@@ -75,5 +75,13 @@
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
+  },
+  "products": {
+    "list": {
+      "available_in": "Available in:",
+      "pack_12": "12 Pack",
+      "pack_24": "24 Pack",
+      "pack_36": "36 Pack"
+    }
   }
 }
