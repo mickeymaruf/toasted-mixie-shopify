@@ -90,15 +90,15 @@
         "product_image_alt": ""
       }
     },
-    "gruns_product_list_qGkdqc": {
+    "gruns_product_list_BKNPjX": {
       "type": "gruns-product-list",
-      "name": "t:general.product_list",
       "blocks": {
-        "product_card_bloodorange": {
+        "product_card_kPnEQx": {
           "type": "product-card",
           "settings": {
+            "product": "blood-orange",
             "flavor_name": "Blood Orange",
-            "flavor_name_color": "#B70141",
+            "flavor_name_color": "#b70141",
             "description": "Bright. Smooth. Golden-hour ready.",
             "price_text": "From $9.99",
             "button_label": "Shop Blood Orange",
@@ -107,11 +107,12 @@
           },
           "blocks": {}
         },
-        "product_card_berryacai": {
+        "product_card_CEY8Xa": {
           "type": "product-card",
           "settings": {
+            "product": "berry-acai",
             "flavor_name": "Berry Acai",
-            "flavor_name_color": "#5E1A79",
+            "flavor_name_color": "#5e1a79",
             "description": "Deep. Juicy. Easy to enjoy.",
             "price_text": "From $9.99",
             "button_label": "Shop Berry Acai",
@@ -120,9 +121,10 @@
           },
           "blocks": {}
         },
-        "product_card_gingerlime": {
+        "product_card_PVhUHH": {
           "type": "product-card",
           "settings": {
+            "product": "ginger-lime",
             "flavor_name": "Ginger Lime",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
@@ -135,10 +137,11 @@
         }
       },
       "block_order": [
-        "product_card_bloodorange",
-        "product_card_berryacai",
-        "product_card_gingerlime"
+        "product_card_kPnEQx",
+        "product_card_CEY8Xa",
+        "product_card_PVhUHH"
       ],
+      "name": "t:general.product_list",
       "settings": {
         "heading": "Choose your flavor.",
         "background_color": "#F6F1EC",
@@ -373,7 +376,7 @@
     "main",
     "hero_cXrPe9",
     "gruns_hero_KLipt8",
-    "gruns_product_list_qGkdqc",
+    "gruns_product_list_BKNPjX",
     "gruns_feature_grid_qYc4BG",
     "gruns_collage_callout_BeYC7N",
     "gruns_media_testimonials_VWVBLr",
