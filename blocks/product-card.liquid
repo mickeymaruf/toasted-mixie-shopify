@@ -1,0 +1,207 @@
+{% doc %}
+  Renders a single flavor card with a gradient/texture backdrop, product
+  image, flavor name, description, price, pack-size options and a "Shop"
+  button linking out to the product page. Intended to be nested inside the
+  Gruns Product List section.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'product-card' %}
+{% enddoc %}
+
+<div class="flex w-full max-w-[386.667px] flex-col items-center gap-[30px]" {{ block.shopify_attributes }}>
+  <div
+    class="relative flex h-[434px] w-full items-center justify-center overflow-hidden rounded-[30px] px-5 py-[30px]"
+    style="background-image: linear-gradient(to bottom, {{ block.settings.gradient_start }}, {{ block.settings.gradient_end }});"
+  >
+    {% if block.settings.texture_image %}
+      {{
+        block.settings.texture_image
+        | image_url: width: 800
+        | image_tag: class: 'absolute inset-0 size-full object-cover opacity-20', loading: 'lazy'
+      }}
+    {% endif %}
+
+    {% if block.settings.product_image %}
+      {{
+        block.settings.product_image
+        | image_url: width: 500
+        | image_tag:
+          class: 'relative h-full max-h-[380px] w-auto object-contain',
+          widths: '250, 350, 500',
+          alt: block.settings.product_image_alt
+        | default: block.settings.product_image.alt
+      }}
+    {% endif %}
+  </div>
+
+  <div class="flex w-full max-w-[360px] flex-col items-center gap-5">
+    {% if block.settings.flavor_name != blank or block.settings.description != blank %}
+      <div class="flex flex-col items-center gap-[5px] text-center">
+        {% if block.settings.flavor_name != blank %}
+          <p class="text-[32px] leading-[1.2] font-medium" style="color: {{ block.settings.flavor_name_color }};">
+            {{ block.settings.flavor_name }}
+          </p>
+        {% endif %}
+
+        {% if block.settings.description != blank %}
+          <p class="text-[16px] leading-[1.3] text-[#212323]">{{ block.settings.description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.price_text != blank %}
+      <p class="text-[18px] leading-[1.3] font-medium text-[#212323]">{{ block.settings.price_text }}</p>
+    {% endif %}
+
+    {% if block.settings.pack_1 != blank or block.settings.pack_2 != blank or block.settings.pack_3 != blank %}
+      <div class="flex w-full flex-col items-center gap-[10px]">
+        <p class="text-[16px] leading-[1.3] text-[#212323]">{{ 'labels.available_in' | t }}</p>
+        <div class="flex h-[27px] w-full items-center justify-center gap-[10px]">
+          {% if block.settings.pack_1 != blank %}
+            <div class="flex h-full flex-1 items-center justify-center rounded-full border border-[#212323] py-[5px]">
+              <p class="text-[16px] leading-[1.3] whitespace-nowrap text-[#212323]">{{ block.settings.pack_1 }}</p>
+            </div>
+          {% endif %}
+
+          {% if block.settings.pack_2 != blank %}
+            <div class="flex h-full flex-1 items-center justify-center rounded-full border border-[#212323] py-[5px]">
+              <p class="text-[16px] leading-[1.3] whitespace-nowrap text-[#212323]">{{ block.settings.pack_2 }}</p>
+            </div>
+          {% endif %}
+
+          {% if block.settings.pack_3 != blank %}
+            <div class="flex h-full flex-1 items-center justify-center rounded-full border border-[#212323] py-[5px]">
+              <p class="text-[16px] leading-[1.3] whitespace-nowrap text-[#212323]">{{ block.settings.pack_3 }}</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if block.settings.button_label != blank %}
+      {% render 'button',
+        label: block.settings.button_label,
+        url: block.settings.button_link,
+        background_color: block.settings.button_background_color,
+        text_color: block.settings.button_text_color
+      %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:general.product_card",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "t:labels.card_image"
+    },
+    {
+      "type": "text",
+      "id": "product_image_alt",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "image_picker",
+      "id": "texture_image",
+      "label": "t:labels.overlay_image"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "gradient_start",
+      "label": "t:labels.gradient_start",
+      "default": "#98002B"
+    },
+    {
+      "type": "color",
+      "id": "gradient_end",
+      "label": "t:labels.gradient_end",
+      "default": "#F47B2F"
+    },
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "flavor_name",
+      "label": "t:labels.flavor_name",
+      "default": "Blood Orange"
+    },
+    {
+      "type": "color",
+      "id": "flavor_name_color",
+      "label": "t:labels.flavor_name_color",
+      "default": "#B70141"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "t:labels.description",
+      "default": "Bright. Smooth. Golden-hour ready."
+    },
+    {
+      "type": "text",
+      "id": "price_text",
+      "label": "t:labels.price_text",
+      "default": "From $9.99"
+    },
+    {
+      "type": "text",
+      "id": "pack_1",
+      "label": "t:labels.pack_1",
+      "default": "12 Pack"
+    },
+    {
+      "type": "text",
+      "id": "pack_2",
+      "label": "t:labels.pack_2",
+      "default": "24 Pack"
+    },
+    {
+      "type": "text",
+      "id": "pack_3",
+      "label": "t:labels.pack_3",
+      "default": "36 Pack"
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Shop Blood Orange"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC"
+    }
+  ],
+  "presets": [{ "name": "t:general.product_card" }]
+}
+{% endschema %}

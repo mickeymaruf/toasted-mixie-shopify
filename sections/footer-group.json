@@ -13,7 +13,30 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "settings": {}
+      "settings": {
+        "heading": "Be first to know.",
+        "subheading": "Get launch updates, first drops, and new flavor news.",
+        "email_placeholder": "Email Address",
+        "newsletter_button_label": "Join the list",
+        "newsletter_background_color": "#f6f1ec",
+        "newsletter_button_background_color": "#212323",
+        "newsletter_button_text_color": "#f6f1ec",
+        "logo_width": 280,
+        "shop_title": "Shop",
+        "shop_menu": "footer-shop",
+        "help_title": "Help",
+        "help_menu": "footer-help",
+        "about_title": "About",
+        "about_menu": "footer-about",
+        "show_social_icons": true,
+        "social_facebook_link": "#",
+        "social_instagram_link": "#",
+        "social_tiktok_link": "#",
+        "copyright_text": "The Toasted Company, Inc. All Rights Reserved.",
+        "legal_menu": "footer-legal-menu",
+        "background_color": "#c2cbd4",
+        "text_color": "#212323"
+      }
     }
   },
   "order": [

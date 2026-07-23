@@ -81,19 +81,142 @@
         "button_label": "Get My Trial Pack",
         "button_link": "",
         "button_background_color": "#212323",
-        "button_text_color": "#F6F1EC",
+        "button_text_color": "#f6f1ec",
         "feature_1_text": "Free 3-flavor trial pack.",
         "feature_2_text": "Just Pay Shipping",
-        "background_color": "#F6F1EC",
+        "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "product_image": "shopify://shop_images/Frame_2147235887.png",
         "product_image_alt": ""
+      }
+    },
+    "gruns_info_grid_gPbYKk": {
+      "type": "gruns-info-grid",
+      "blocks": {
+        "info_card_n8bHqY": {
+          "type": "info-card",
+          "settings": {
+            "title": "Federally Compliant",
+            "text": "Made with hemp-derived Delta-9 THC and compliant under the 2018 Farm Bill.",
+            "background_color": "#9AB2D5"
+          },
+          "blocks": {}
+        },
+        "info_card_ejDqcB": {
+          "type": "info-card",
+          "settings": {
+            "title": "Micro-Dosed for Balance",
+            "text": "0.4mg is designed for a light, social experience that helps you stay present.",
+            "background_color": "#9AB2D5"
+          },
+          "blocks": {}
+        },
+        "info_card_rWACwp": {
+          "type": "info-card",
+          "settings": {
+            "title": "Made for Everyday Moments",
+            "text": "Enjoy responsibly. Start with one. Never drive or mix with alcohol on your first can.",
+            "background_color": "#9AB2D5"
+          },
+          "blocks": {}
+        },
+        "info_card_dxDrEc": {
+          "type": "info-card",
+          "settings": {
+            "title": "Crafted With Purpose",
+            "text": "Made with real fruit juice, L-theanine, rhodiola, and 0.4mg hemp-derived THC for a balanced social ritual.",
+            "background_color": "#9AB2D5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "info_card_n8bHqY",
+        "info_card_ejDqcB",
+        "info_card_rWACwp",
+        "info_card_dxDrEc"
+      ],
+      "name": "t:general.info_grid",
+      "settings": {
+        "heading": "Everything You Should Know",
+        "show_button": true,
+        "button_label": "Try All 3 Flavors",
+        "button_link": "",
+        "button_background_color": "#212323",
+        "button_text_color": "#F6F1EC",
+        "background_color": "#F6F1EC",
+        "heading_color": "#212323"
+      }
+    },
+    "gruns_gallery_AAGdfP": {
+      "type": "gruns-gallery",
+      "blocks": {
+        "gallery_image_qNTVh6": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Component_14.png",
+            "alt_text": ""
+          },
+          "blocks": {}
+        },
+        "gallery_image_WQtMAb": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Component_18.png",
+            "alt_text": ""
+          },
+          "blocks": {}
+        },
+        "gallery_image_bbfa6t": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Component_15.png",
+            "alt_text": ""
+          },
+          "blocks": {}
+        },
+        "gallery_image_mjU4pp": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Component_16.png",
+            "alt_text": ""
+          },
+          "blocks": {}
+        },
+        "gallery_image_HhNxLJ": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Component_17.png",
+            "alt_text": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "gallery_image_qNTVh6",
+        "gallery_image_WQtMAb",
+        "gallery_image_bbfa6t",
+        "gallery_image_mjU4pp",
+        "gallery_image_HhNxLJ"
+      ],
+      "name": "t:general.gruns_gallery",
+      "settings": {
+        "heading": "<p>First drops. Good moments. <em>@drinktoasted</em></p>",
+        "background_color": "#F6F1EC",
+        "heading_color": "#212323"
       }
     }
   },
   "order": [
     "main",
     "hero_cXrPe9",
-    "gruns_hero_KLipt8"
+    "gruns_hero_KLipt8",
+    "gruns_info_grid_gPbYKk",
+    "gruns_gallery_AAGdfP"
   ]
 }

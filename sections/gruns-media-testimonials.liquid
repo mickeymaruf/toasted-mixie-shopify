@@ -1,0 +1,102 @@
+{% doc %}
+  Renders a stack of media-testimonial blocks — each a pill-shaped card
+  pairing a playable video with a customer quote. Add media-testimonial
+  blocks to populate the list.
+{% enddoc %}
+
+<section
+  class="gruns-media-testimonials full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div
+    class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 px-5 sm:px-8 md:px-12 lg:gap-[40px] lg:px-[80px] xl:px-[120px]"
+    style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+  >
+    {% if section.settings.heading != blank %}
+      <h2
+        class="w-full text-center text-[36px] leading-[0.95] font-bold tracking-[-1.1px] text-[color:var(--gruns-media-testimonials-heading-color)] sm:text-[44px] sm:tracking-[-1.3px] md:text-[56px] md:tracking-[-1.7px] lg:text-[64px] lg:tracking-[-1.9px] xl:text-[72px] xl:tracking-[-2.16px]"
+        style="--gruns-media-testimonials-heading-color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="flex w-full flex-col gap-8 lg:gap-[40px]">
+        {% content_for 'blocks' %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.media_testimonials",
+  "blocks": [{ "type": "media-testimonial" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "t:general.layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.media_testimonials",
+      "blocks": [
+        {
+          "type": "media-testimonial",
+          "settings": {
+            "quote": "The only THC drink I've had that actually feels social, not stoned.",
+            "attribution": "Jenna, Miami"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

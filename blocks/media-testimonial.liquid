@@ -1,0 +1,149 @@
+{% doc %}
+  Renders a rounded pill-shaped testimonial card with a playable video
+  thumbnail on one side and a quote on the other. Intended to be nested
+  inside a section that lists customer testimonials.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'media-testimonial' %}
+{% enddoc %}
+
+<div
+  class="relative flex w-full flex-col items-center gap-8 overflow-hidden rounded-[40px] p-5 sm:p-8 lg:flex-row lg:items-center lg:gap-[50px] lg:py-[20px] lg:pr-[50px] lg:pl-[20px]"
+  style="background-color: {{ block.settings.background_color }};"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.background_image %}
+    <div class="pointer-events-none absolute inset-0 opacity-5" aria-hidden="true">
+      {{
+        block.settings.background_image
+        | image_url: width: 2000
+        | image_tag: class: 'size-full object-cover', alt: ''
+      }}
+    </div>
+  {% endif %}
+
+  <media-testimonial-video
+    class="relative aspect-[576/394] w-full shrink-0 overflow-hidden rounded-[25px] lg:w-[576px]"
+  >
+    {% if block.settings.video %}
+      <video
+        class="absolute inset-0 size-full object-cover"
+        playsinline
+        preload="metadata"
+        {% if block.settings.thumbnail %}
+          poster="{{ block.settings.thumbnail | image_url: width: 1200 }}"
+        {% endif %}
+        data-testimonial-video
+      >
+        {% for source in block.settings.video.sources %}
+          <source src="{{ source.url }}" type="{{ source.mime_type }}">
+        {% endfor %}
+      </video>
+    {% elsif block.settings.thumbnail %}
+      {{
+        block.settings.thumbnail
+        | image_url: width: 1200
+        | image_tag: class: 'absolute inset-0 size-full object-cover', alt: block.settings.attribution
+      }}
+    {% endif %}
+
+    {% if block.settings.thumbnail %}
+      <button
+        type="button"
+        class="absolute top-1/2 left-1/2 flex size-[80px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(33,35,35,0.2)] backdrop-blur-[8px]"
+        data-testimonial-play
+        aria-label="{{ 'general.accessibility.play_video' | t }}"
+      >
+        <span class="ml-[3px] block size-[28px]">{{ 'icon-play.svg' | inline_asset_content }}</span>
+      </button>
+    {% endif %}
+  </media-testimonial-video>
+
+  <div class="flex w-full flex-col items-start gap-8 lg:max-w-[477px] lg:gap-[40px]">
+    <span class="block size-[50px] rotate-180 sm:size-[64px]">
+      {{ 'icon-quote.svg' | inline_asset_content }}
+    </span>
+
+    <div class="flex flex-col gap-[1.5em] text-[20px] leading-[1.5] break-words text-[#212323] sm:text-[24px]">
+      {% if block.settings.quote != blank %}
+        <p class="m-0">{{ block.settings.quote }}</p>
+      {% endif %}
+
+      {% if block.settings.attribution != blank %}
+        <p class="m-0 italic">- {{ block.settings.attribution }}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% javascript %}
+  class MediaTestimonialVideo extends HTMLElement {
+    connectedCallback() {
+      this.video = this.querySelector('[data-testimonial-video]');
+      this.playButton = this.querySelector('[data-testimonial-play]');
+
+      this.playButton?.addEventListener('click', () => {
+        if (!this.video) return;
+        this.video.setAttribute('controls', '');
+        this.video.play();
+        this.playButton.hidden = true;
+      });
+    }
+  }
+
+  customElements.define('media-testimonial-video', MediaTestimonialVideo);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.media_testimonial",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:labels.video"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumbnail",
+      "label": "t:labels.thumbnail_image"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "t:labels.quote",
+      "default": "The only THC drink I've had that actually feels social, not stoned."
+    },
+    {
+      "type": "text",
+      "id": "attribution",
+      "label": "t:labels.attribution",
+      "default": "Jenna, Miami"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.card_background",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "header",
+      "content": "t:general.texture_overlay"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.image"
+    }
+  ],
+  "presets": [{ "name": "t:general.media_testimonial" }]
+}
+{% endschema %}
