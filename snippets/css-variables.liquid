@@ -1,14 +1,108 @@
 {% style %}
-  {% # Loads all font variantions with display: swap %}
-  {{ settings.type_primary_font | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+  {% # Loads all Degular Display font variations with display: swap %}
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-Thin.otf' | asset_url }}) format('opentype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-ThinItalic.otf' | asset_url }}) format('opentype');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-Light.otf' | asset_url }}) format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-LightItalic.otf' | asset_url }}) format('opentype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-Regular.otf' | asset_url }}) format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-RegularItalic.otf' | asset_url }}) format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-Medium.otf' | asset_url }}) format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-MediumItalic.otf' | asset_url }}) format('opentype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-Semibold.otf' | asset_url }}) format('opentype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-SemiboldItalic.otf' | asset_url }}) format('opentype');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-Bold.otf' | asset_url }}) format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-BoldItalic.otf' | asset_url }}) format('opentype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-Black.otf' | asset_url }}) format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Degular Display';
+    src: url({{ 'DegularDisplay-BlackItalic.otf' | asset_url }}) format('opentype');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+  }
 
   :root {
-    --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
-    --font-primary--style: {{ settings.type_primary_font.style }};
-    --font-primary--weight: {{ settings.type_primary_font.weight }};
+    --font-primary--family: 'Degular Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-primary--style: normal;
+    --font-primary--weight: 400;
     --page-width: {{ settings.max_page_width }};
     --page-margin: {{ settings.min_page_margin }}px;
     --color-background: {{ settings.background_color }};
