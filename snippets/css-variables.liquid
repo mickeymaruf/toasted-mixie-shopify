@@ -1,5 +1,119 @@
 {% style %}
-  {% # Loads all Degular Display font variations with display: swap %}
+  {% # Loads all Neue Haas Display font variations (primary/body font) with display: swap %}
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayXXThin.ttf' | asset_url }}) format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayXXThinItalic.ttf' | asset_url }}) format('truetype');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayXThin.ttf' | asset_url }}) format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayXThinItalic.ttf' | asset_url }}) format('truetype');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayThin.ttf' | asset_url }}) format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayThinItalic.ttf' | asset_url }}) format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayLight.ttf' | asset_url }}) format('truetype');
+    font-weight: 350;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayLightItalic.ttf' | asset_url }}) format('truetype');
+    font-weight: 350;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayRoman.ttf' | asset_url }}) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayRomanItalic.ttf' | asset_url }}) format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayMediu.ttf' | asset_url }}) format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayMediumItalic.ttf' | asset_url }}) format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayBold.ttf' | asset_url }}) format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayBoldItalic.ttf' | asset_url }}) format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayBlack.ttf' | asset_url }}) format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Haas Display';
+    src: url({{ 'NeueHaasDisplayBlackItalic.ttf' | asset_url }}) format('truetype');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  {% # Loads all Degular Display font variations (heading font) with display: swap %}
   @font-face {
     font-family: 'Degular Display';
     src: url({{ 'DegularDisplay-Thin.otf' | asset_url }}) format('opentype');
@@ -100,9 +214,10 @@
   }
 
   :root {
-    --font-primary--family: 'Degular Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-primary--family: 'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --font-primary--style: normal;
     --font-primary--weight: 400;
+    --font-heading--family: 'Degular Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --page-width: {{ settings.max_page_width }};
     --page-margin: {{ settings.min_page_margin }}px;
     --color-background: {{ settings.background_color }};
