@@ -13,15 +13,34 @@
   "sections": {
     "announcement-bar": {
       "type": "announcement-bar",
-      "settings": {}
+      "settings": {
+        "text": "<p>Free 3-flavor trial pack. Just pay shipping.</p>",
+        "show_button": true,
+        "button_label": "Claim Your Trial",
+        "button_link": "",
+        "background_color": "#f9d5c0",
+        "text_color": "#212323",
+        "button_background_color": "#212323",
+        "button_text_color": "#f6f1ec"
+      }
     },
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "logo": "shopify://shop_images/toaster-logo.svg",
+        "logo_width": 184,
+        "menu": "main-menu",
+        "secondary_link_text": "Find Toasted",
+        "secondary_link_url": "",
+        "show_search": true,
+        "show_cart": true,
+        "background_color": "#f6f1ec",
+        "text_color": "#212323"
+      }
     }
   },
   "order": [
     "announcement-bar",
     "header"
-  ],
+  ]
 }

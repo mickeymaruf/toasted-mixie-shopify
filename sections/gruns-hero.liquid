@@ -1,0 +1,184 @@
+<section
+  class="gruns-hero full-width overflow-hidden"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div
+    class="mx-auto flex w-full max-w-[1920px] flex-col gap-12 px-5 py-14 sm:px-8 md:px-12 lg:grid lg:grid-cols-2 lg:items-center lg:gap-x-16 lg:px-[80px] lg:py-[100px] xl:px-[120px] xl:pt-[200px] xl:pb-[100px]"
+  >
+    <div class="flex w-full flex-col items-center gap-8 text-center lg:col-start-1 lg:items-start lg:gap-[50px] lg:text-left">
+      {% if section.settings.heading != blank %}
+        <div
+          class="font-bold text-[36px] leading-[0.95] tracking-[-1.1px] text-[color:var(--gruns-hero-heading-color)] sm:text-[44px] sm:tracking-[-1.3px] md:text-[56px] md:tracking-[-1.7px] lg:text-[64px] lg:tracking-[-1.9px] xl:text-[72px] xl:tracking-[-2.16px]"
+          style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
+        >
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_button and section.settings.button_label != blank %}
+        <div class="flex w-full max-w-[278px] flex-col items-center gap-[10px]">
+          {% render 'button',
+            label: section.settings.button_label,
+            url: section.settings.button_link,
+            background_color: section.settings.button_background_color,
+            text_color: section.settings.button_text_color,
+            class: 'whitespace-nowrap'
+          %}
+
+          {% if section.settings.feature_1_text != blank or section.settings.feature_2_text != blank %}
+            <div
+              class="flex items-center justify-center gap-x-[15px] gap-y-2 text-[color:var(--gruns-hero-heading-color)]"
+              style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
+            >
+              {% if section.settings.feature_1_text != blank %}
+                <div class="flex items-center gap-[5px]">
+                  <span class="block size-[15px] shrink-0">{{ 'icon-package.svg' | inline_asset_content }}</span>
+                  <span class="text-[12px] leading-[1.5] whitespace-nowrap">{{ section.settings.feature_1_text }}</span>
+                </div>
+              {% endif %}
+
+              {% if section.settings.feature_2_text != blank %}
+                <div class="flex items-center gap-[5px]">
+                  <span class="block h-[13px] w-[17px] shrink-0">{{ 'icon-shipping.svg' | inline_asset_content }}</span>
+                  <span class="text-[12px] leading-[1.5] whitespace-nowrap">{{ section.settings.feature_2_text }}</span>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% content_for 'blocks' %}
+    </div>
+
+    {% if section.settings.product_image %}
+      <div class="relative w-full max-w-[533px] shrink-0 lg:col-start-2 lg:max-w-none lg:self-stretch">
+        {{
+          section.settings.product_image
+          | image_url: width: 1200
+          | image_tag:
+            class: 'size-full object-contain',
+            widths: '400, 600, 900, 1200',
+            sizes: '(min-width: 64rem) 40rem, 90vw',
+            alt: section.settings.product_image_alt
+          | default: section.settings.product_image.alt
+        }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.gruns_hero",
+  "blocks": [{ "type": "badge-row" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "<p><em>The Chill Drink</em> For Moments Worth Remembering.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Get My Trial Pack",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "text",
+      "id": "feature_1_text",
+      "label": "t:labels.feature_1_text",
+      "default": "Free 3-flavor trial pack.",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "text",
+      "id": "feature_2_text",
+      "label": "t:labels.feature_2_text",
+      "default": "Just Pay Shipping",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "text",
+      "id": "product_image_alt",
+      "label": "t:labels.alt_text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.gruns_hero",
+      "blocks": [
+        {
+          "type": "badge-row",
+          "blocks": [
+            { "type": "trust-badge", "settings": { "label": "0.4mg THC", "icon_style": "thc" } },
+            { "type": "trust-badge", "settings": { "label": "Non-Carbonated", "icon_style": "carbonation" } },
+            { "type": "trust-badge", "settings": { "label": "Lab Tested", "icon_style": "lab" } }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

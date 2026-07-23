@@ -1,0 +1,33 @@
+{% doc %}
+  Groups trust-badge blocks into a single wrapping row. Renders as the last
+  row of the Gruns Hero section's content column, below the button; add,
+  remove, and reorder the nested trust-badge blocks to control which trust
+  signals are shown.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'badge-row' %}
+{% enddoc %}
+
+<div
+  class="flex w-full flex-wrap items-center justify-center gap-[30px] lg:justify-start"
+  {{ block.shopify_attributes }}
+>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.badge_row",
+  "blocks": [{ "type": "trust-badge" }],
+  "presets": [
+    {
+      "name": "t:general.badge_row",
+      "blocks": [
+        { "type": "trust-badge", "settings": { "label": "0.4mg THC", "icon_style": "thc" } },
+        { "type": "trust-badge", "settings": { "label": "Non-Carbonated", "icon_style": "carbonation" } },
+        { "type": "trust-badge", "settings": { "label": "Lab Tested", "icon_style": "lab" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

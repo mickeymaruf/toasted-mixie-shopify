@@ -1,0 +1,80 @@
+{% doc %}
+  Renders a small circular icon with a label underneath, used to call out a
+  product trust signal (e.g. potency, carbonation, lab testing).
+
+  Falls back to a bundled default icon per `icon_style` when no custom
+  `icon` image is uploaded. Intended to be nested inside a badge-row block
+  (e.g. the Gruns Hero section).
+
+  @example
+  {% content_for 'block', id: block.id, type: 'trust-badge' %}
+{% enddoc %}
+
+{% liquid
+  case block.settings.icon_style
+    when 'carbonation'
+      assign default_icon = 'icon-badge-carbonation.png'
+    when 'lab'
+      assign default_icon = 'icon-badge-lab-tested.png'
+    else
+      assign default_icon = 'icon-badge-thc.png'
+  endcase
+%}
+
+<div class="flex w-[95px] flex-col items-center gap-[5px]" {{ block.shopify_attributes }}>
+  <div class="size-[77px] shrink-0">
+    {% if block.settings.icon %}
+      {{
+        block.settings.icon
+        | image_url: width: 154
+        | image_tag: width: 154, height: 154, class: 'size-full object-contain', alt: block.settings.label
+      }}
+    {% else %}
+      <img
+        src="{{ default_icon | asset_url }}"
+        width="154"
+        height="154"
+        loading="lazy"
+        class="size-full object-contain"
+        alt="{{ block.settings.label | escape }}"
+      >
+    {% endif %}
+  </div>
+
+  {% if block.settings.label != blank %}
+    <p class="text-center text-[14px] leading-[1.5] font-medium whitespace-nowrap text-[#212323]">
+      {{ block.settings.label }}
+    </p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.trust_badge",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:labels.label",
+      "default": "0.4mg THC"
+    },
+    {
+      "type": "select",
+      "id": "icon_style",
+      "label": "t:labels.icon_style",
+      "options": [
+        { "value": "thc", "label": "t:options.icon_style.thc" },
+        { "value": "carbonation", "label": "t:options.icon_style.carbonation" },
+        { "value": "lab", "label": "t:options.icon_style.lab" }
+      ],
+      "default": "thc"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "t:labels.custom_icon"
+    }
+  ],
+  "presets": [{ "name": "t:general.trust_badge" }]
+}
+{% endschema %}

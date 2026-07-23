@@ -12,9 +12,88 @@
     "main": {
       "type": "custom-section",
       "settings": {}
+    },
+    "hero_cXrPe9": {
+      "type": "hero",
+      "name": "t:general.hero",
+      "settings": {
+        "heading": "The Chill Drink",
+        "subheading": "Present in the moment.",
+        "heading_color": "#f6f1ec",
+        "background_image": "shopify://shop_images/Slide_1.png",
+        "height": 780,
+        "texture_opacity": 30,
+        "overlay_color": "#000000",
+        "overlay_opacity": 60,
+        "show_button": true,
+        "button_label": "Subscribe & Save",
+        "button_link": "",
+        "button_background_color": "#f9d5c0",
+        "button_text_color": "#212323"
+      }
+    },
+    "gruns_hero_KLipt8": {
+      "type": "gruns-hero",
+      "blocks": {
+        "badge_row_kbqFF9": {
+          "type": "badge-row",
+          "settings": {},
+          "blocks": {
+            "trust_badge_jJqbNt": {
+              "type": "trust-badge",
+              "settings": {
+                "label": "0.4mg THC",
+                "icon_style": "thc"
+              },
+              "blocks": {}
+            },
+            "trust_badge_KDBAwP": {
+              "type": "trust-badge",
+              "settings": {
+                "label": "Non-Carbonated",
+                "icon_style": "carbonation"
+              },
+              "blocks": {}
+            },
+            "trust_badge_hjpmUU": {
+              "type": "trust-badge",
+              "settings": {
+                "label": "Lab Tested",
+                "icon_style": "lab"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "trust_badge_jJqbNt",
+            "trust_badge_KDBAwP",
+            "trust_badge_hjpmUU"
+          ]
+        }
+      },
+      "block_order": [
+        "badge_row_kbqFF9"
+      ],
+      "name": "t:general.gruns_hero",
+      "settings": {
+        "heading": "<p><em>The Chill Drink</em> For Moments Worth Remembering.</p>",
+        "show_button": true,
+        "button_label": "Get My Trial Pack",
+        "button_link": "",
+        "button_background_color": "#212323",
+        "button_text_color": "#F6F1EC",
+        "feature_1_text": "Free 3-flavor trial pack.",
+        "feature_2_text": "Just Pay Shipping",
+        "background_color": "#F6F1EC",
+        "heading_color": "#212323",
+        "product_image": "shopify://shop_images/Frame_2147235887.png",
+        "product_image_alt": ""
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "hero_cXrPe9",
+    "gruns_hero_KLipt8"
   ]
 }

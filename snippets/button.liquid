@@ -1,0 +1,42 @@
+{% doc %}
+  Renders a reusable pill-shaped call-to-action button or link.
+
+  Renders an `<a>` when `url` is present, otherwise a non-interactive `<span>`
+  so the same markup can be used for real destinations as well as decorative
+  or JS-controlled buttons.
+
+  @param {string} label - The button text
+  @param {string} [url] - Optional destination URL
+  @param {string} [background_color] - Button background color, any valid CSS color
+  @param {string} [text_color] - Button text color, any valid CSS color
+  @param {string} [class] - Additional classes appended to the button
+
+  @example
+  {% render 'button', label: 'Get My Trial Pack', url: '/products/trial-pack' %}
+
+  {% render 'button',
+    label: section.settings.button_label,
+    url: section.settings.button_link,
+    background_color: section.settings.button_background_color,
+    text_color: section.settings.button_text_color,
+  %}
+{% enddoc %}
+
+{% liquid
+  assign background_color = background_color | default: '#212323'
+  assign text_color = text_color | default: '#F6F1EC'
+  assign tag = 'span'
+  if url != blank
+    assign tag = 'a'
+  endif
+%}
+
+<{{ tag }}
+  {% if url != blank %}
+    href="{{ url }}"
+  {% endif %}
+  class="button inline-flex w-full items-center justify-center rounded-[30px] bg-[var(--button-background)] px-16 py-4 text-center text-[20px] leading-[1.5] font-medium text-[var(--button-text)] transition-opacity duration-150 hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-text)] {{ class }}"
+  style="--button-background: {{ background_color }}; --button-text: {{ text_color }};"
+>
+  {{ label }}
+</{{ tag }}>
