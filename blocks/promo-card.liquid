@@ -1,0 +1,82 @@
+{% doc %}
+  Renders a promo card with a full-bleed background image, a black gradient
+  overlay, a title and a description pinned to the bottom-left. Intended to
+  be nested inside the Promo Cards section.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'promo-card' %}
+{% enddoc %}
+
+<div
+  class="relative flex aspect-square w-full flex-col justify-end overflow-hidden rounded-[40px] p-8 sm:p-10 lg:p-[52px]"
+  {{ block.shopify_attributes }}
+>
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    {% if block.settings.image %}
+      {{
+        block.settings.image
+        | image_url: width: 1600
+        | image_tag:
+          class: 'absolute inset-0 size-full object-cover',
+          loading: 'lazy',
+          sizes: '(min-width: 64rem) 40vw, 100vw',
+          widths: '400, 600, 900, 1200, 1600',
+          alt: block.settings.alt_text
+        | default: block.settings.image.alt
+      }}
+    {% endif %}
+
+    <div class="absolute inset-0 bg-gradient-to-b from-black/0 from-[19.79%] to-black/90"></div>
+  </div>
+
+  <div class="relative z-10 flex flex-col gap-5 [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)]" style="color: {{ block.settings.text_color }};">
+    {% if block.settings.title != blank %}
+      <h3 class="text-[32px] leading-[0.95] font-bold tracking-[-0.96px] sm:text-[40px] sm:tracking-[-1.2px] lg:text-[48px] lg:tracking-[-1.44px]">
+        {{ block.settings.title }}
+      </h3>
+    {% endif %}
+
+    {% if block.settings.description != blank %}
+      <p class="text-[18px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
+        {{ block.settings.description }}
+      </p>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:general.promo_card",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.card_image"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:labels.title",
+      "default": "Partner with us"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:labels.description",
+      "default": "Ready to serve | No prep | Premium option | COA available | Adults 21+ only"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.text_color",
+      "default": "#F6F1EC"
+    }
+  ],
+  "presets": [{ "name": "t:general.promo_card" }]
+}
+{% endschema %}

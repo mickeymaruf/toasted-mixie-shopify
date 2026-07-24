@@ -1,0 +1,85 @@
+{% doc %}
+  Renders "Promo Cards" — a responsive row of promo-card blocks, each a
+  full-bleed background image with a black gradient overlay, title and
+  description. Add promo-card blocks to populate the row.
+{% enddoc %}
+
+<section
+  class="promo-cards full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div
+    class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px]"
+    style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+  >
+    {% if section.blocks.size > 0 %}
+      <div class="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-[30px]">
+        {% content_for 'blocks' %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.promo_cards",
+  "blocks": [{ "type": "promo-card" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "header",
+      "content": "t:general.layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.promo_cards",
+      "blocks": [
+        {
+          "type": "promo-card",
+          "settings": {
+            "title": "Partner with us",
+            "description": "Ready to serve | No prep | Premium option | COA available | Adults 21+ only"
+          }
+        },
+        {
+          "type": "promo-card",
+          "settings": {
+            "title": "Partner with us",
+            "description": "Ready to serve | No prep | Premium option | COA available | Adults 21+ only"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

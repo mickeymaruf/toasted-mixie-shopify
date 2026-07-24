@@ -301,7 +301,7 @@
       "name": "t:general.faq_pills_grid",
       "settings": {
         "heading": "Frequently asked questions",
-        "background_color": "#ffffff",
+        "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "columns_desktop": "3",
         "padding_top": 100,
@@ -310,7 +310,7 @@
         "padding_bottom_mobile": 48
       }
     },
-    "ingredient_highlights_VcBbpt": {
+    "ingredient_highlights_wcTznK": {
       "type": "ingredient-highlights",
       "blocks": {
         "feature-column-left": {
@@ -318,45 +318,43 @@
           "static": true,
           "settings": {},
           "blocks": {
-            "feature_highlight_WJL6NK": {
+            "feature_highlight_VwWtE8": {
               "type": "feature-highlight",
               "settings": {
-                "title": "L-Theanine",
-                "icon_style": "l_theanine",
-                "icon": "shopify://shop_images/icon-leaf.svg"
+                "title": "L-Theanine"
               },
               "blocks": {}
             },
-            "feature_highlight_F97FFF": {
+            "feature_highlight_4miYN3": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Low Dose THC",
-                "icon_style": "l_theanine"
+                "icon": "shopify://shop_images/icon-ingredient-thc.svg"
               },
               "blocks": {}
             },
-            "feature_highlight_hjYRnp": {
+            "feature_highlight_7pcgjg": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Rhodiola",
-                "icon_style": "rhodiola"
+                "icon": "shopify://shop_images/Group_88.svg"
               },
               "blocks": {}
             },
-            "feature_highlight_E8Jjwx": {
+            "feature_highlight_iR7VFz": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Lab Tested",
-                "icon_style": "lab_tested"
+                "icon": "shopify://shop_images/Group_89.svg"
               },
               "blocks": {}
             }
           },
           "block_order": [
-            "feature_highlight_WJL6NK",
-            "feature_highlight_F97FFF",
-            "feature_highlight_hjYRnp",
-            "feature_highlight_E8Jjwx"
+            "feature_highlight_VwWtE8",
+            "feature_highlight_4miYN3",
+            "feature_highlight_7pcgjg",
+            "feature_highlight_iR7VFz"
           ]
         },
         "feature-column-right": {
@@ -364,44 +362,44 @@
           "static": true,
           "settings": {},
           "blocks": {
-            "feature_highlight_Nqw3CH": {
+            "feature_highlight_HyR9Ln": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Real Fruit Juice",
-                "icon_style": "fruit_juice"
+                "icon": "shopify://shop_images/Group_91.svg"
               },
               "blocks": {}
             },
-            "feature_highlight_Bnxxaj": {
+            "feature_highlight_gnHG89": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Drinking Age",
-                "icon_style": "drinking_age"
+                "icon": "shopify://shop_images/Group_92.svg"
               },
               "blocks": {}
             },
-            "feature_highlight_EWkDFx": {
+            "feature_highlight_PyjK8n": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Low Calorie",
-                "icon_style": "l_theanine"
+                "icon": "shopify://shop_images/Group_94.svg"
               },
               "blocks": {}
             },
-            "feature_highlight_ndkzFy": {
+            "feature_highlight_Fg8fxt": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Non-carbonated",
-                "icon_style": "non_carbonated"
+                "icon": "shopify://shop_images/Group_95.svg"
               },
               "blocks": {}
             }
           },
           "block_order": [
-            "feature_highlight_Nqw3CH",
-            "feature_highlight_Bnxxaj",
-            "feature_highlight_EWkDFx",
-            "feature_highlight_ndkzFy"
+            "feature_highlight_HyR9Ln",
+            "feature_highlight_gnHG89",
+            "feature_highlight_PyjK8n",
+            "feature_highlight_Fg8fxt"
           ]
         }
       },
@@ -411,8 +409,7 @@
         "description": "Crafted with L-theanine, rhodiola, and 0.4mg hemp-derived THC in a non-carbonated drink made for a lighter social experience.",
         "center_image": "shopify://shop_images/Group_84.png",
         "center_image_alt": "",
-        "enable_overlay": false,
-        "overlay_opacity": 40
+        "background_image": "shopify://shop_images/ingredient-highlights-background.png"
       }
     },
     "gruns_find_toasted_EFQ7iF": {
@@ -437,7 +434,7 @@
   "order": [
     "main",
     "faq_pills_grid_8Wfzf6",
-    "ingredient_highlights_VcBbpt",
+    "ingredient_highlights_wcTznK",
     "gruns_find_toasted_EFQ7iF"
   ]
 }

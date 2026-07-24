@@ -9,12 +9,27 @@
  */
 {
   "sections": {
+    "hero_banner_PWbhtc": {
+      "type": "hero-banner",
+      "name": "t:general.hero_banner",
+      "settings": {
+        "heading": "Choose your Flavor.",
+        "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
+        "heading_color": "#f6f1ec",
+        "background_image": "shopify://shop_images/Frame_2147230792.png",
+        "background_color": "#f6f1ec"
+      }
+    },
     "main": {
       "type": "collections",
-      "settings": {}
+      "settings": {
+        "grid_item_width": "collections--full",
+        "grid_gap": 10
+      }
     }
   },
   "order": [
+    "hero_banner_PWbhtc",
     "main"
   ]
 }

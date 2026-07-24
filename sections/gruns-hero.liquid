@@ -5,18 +5,27 @@
   <div
     class="mx-auto flex w-full max-w-[1920px] flex-col gap-12 px-5 py-14 sm:px-8 md:px-12 lg:grid lg:grid-cols-2 lg:items-center lg:gap-x-16 lg:px-[80px] lg:py-[100px] xl:px-[120px] xl:pt-[200px] xl:pb-[100px]"
   >
-    <div class="flex w-full flex-col items-center gap-8 text-center lg:col-start-1 lg:items-start lg:gap-[50px] lg:text-left">
+    <div class="flex w-full flex-col items-center text-center lg:col-start-1 lg:items-start lg:text-left">
       {% if section.settings.heading != blank %}
         <div
-          class="font-bold text-[36px] leading-[0.95] text-[color:var(--gruns-hero-heading-color)] sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] "
+          class="font-bold text-[36px] leading-[1.1] text-[color:var(--gruns-hero-heading-color)] sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] "
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.heading }}
         </div>
       {% endif %}
 
+      {% if section.settings.description != blank %}
+        <div
+          class="mt-4 max-w-[520px] text-[16px] leading-[1.5] text-[color:var(--gruns-hero-heading-color)] md:mt-5 md:text-[18px]"
+          style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
+        >
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
       {% if section.settings.show_button and section.settings.button_label != blank %}
-        <div class="flex w-full max-w-[278px] flex-col items-center gap-[10px]">
+        <div class="mt-8 flex w-full max-w-[278px] flex-col items-center gap-[10px] lg:mt-[50px]">
           {% render 'button',
             label: section.settings.button_label,
             url: section.settings.button_link,
@@ -48,7 +57,9 @@
         </div>
       {% endif %}
 
-      {% content_for 'blocks' %}
+      <div class="mt-8 lg:mt-[50px]">
+        {% content_for 'blocks' %}
+      </div>
     </div>
 
     {% if section.settings.product_image %}
@@ -82,6 +93,11 @@
       "id": "heading",
       "label": "t:labels.heading",
       "default": "<p><em>The Chill Drink</em> For Moments Worth Remembering.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:labels.description"
     },
     {
       "type": "header",
