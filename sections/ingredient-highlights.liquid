@@ -5,11 +5,6 @@
   of features (left column / right column).
 {% enddoc %}
 
-{% liquid
-  assign overlay_alpha = section.settings.overlay_opacity | times: 0.01
-  assign overlay_color_rgba = '#212323' | color_modify: 'alpha', overlay_alpha
-%}
-
 <section class="ingredient-highlights relative w-full overflow-hidden bg-[#F6F1EC]">
   <div class="hidden lg:block pointer-events-none absolute inset-0" aria-hidden="true">
     {% if section.settings.background_image %}
@@ -36,9 +31,7 @@
 
     <div class="absolute inset-0 bg-gradient-to-b from-[#F8F1EA] to-[rgba(248,241,234,0)]"></div>
 
-    {% if section.settings.enable_overlay %}
-      <div class="absolute inset-0" style="background-color: {{ overlay_color_rgba }};"></div>
-    {% endif %}
+    <div class="absolute inset-0 bg-[#F6F1EC]/40"></div>
   </div>
 
   <div class="relative mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 px-5 py-14 sm:px-8 md:px-12 lg:gap-[60px] lg:px-[80px] lg:pt-[80px] lg:pb-[100px] xl:px-[120px]">
@@ -64,7 +57,7 @@
       </div>
 
       <div class="order-1 col-span-2 flex justify-center lg:order-none lg:col-span-1">
-        <div class="relative w-[160px] sm:w-[200px] lg:w-[300px] flex items-center">
+        <div class="relative w-[190px] sm:w-[240px] lg:w-[340px] flex items-center">
           {% if section.settings.center_image %}
             {{
               section.settings.center_image
@@ -72,7 +65,7 @@
               | image_tag:
                 class: 'relative size-full object-contain',
                 widths: '160, 267, 400, 534, 700',
-                sizes: '(min-width: 64rem) 267px, (min-width: 40rem) 200px, 160px',
+                sizes: '(min-width: 64rem) 340px, (min-width: 40rem) 240px, 190px',
                 alt: section.settings.center_image_alt
               | default: section.settings.center_image.alt
             }}
@@ -125,27 +118,6 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "t:labels.background"
-    },
-    {
-      "type": "header",
-      "content": "t:general.overlay"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_overlay",
-      "label": "t:labels.enable_overlay",
-      "default": false
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "label": "t:labels.overlay_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "%",
-      "default": 40,
-      "visible_if": "{{ section.settings.enable_overlay }}"
     }
   ],
   "blocks": [{ "type": "feature-column" }],
@@ -158,10 +130,10 @@
           "static": true,
           "id": "feature-column-left",
           "blocks": [
-            { "type": "feature-highlight", "settings": { "title": "L-Theanine", "icon_style": "l_theanine" } },
-            { "type": "feature-highlight", "settings": { "title": "Low Dose THC", "icon_style": "thc" } },
-            { "type": "feature-highlight", "settings": { "title": "Rhodiola", "icon_style": "rhodiola" } },
-            { "type": "feature-highlight", "settings": { "title": "Lab Tested", "icon_style": "lab_tested" } }
+            { "type": "feature-highlight" },
+            { "type": "feature-highlight" },
+            { "type": "feature-highlight" },
+            { "type": "feature-highlight" }
           ]
         },
         {
@@ -169,10 +141,10 @@
           "static": true,
           "id": "feature-column-right",
           "blocks": [
-            { "type": "feature-highlight", "settings": { "title": "Real Fruit Juice", "icon_style": "fruit_juice" } },
-            { "type": "feature-highlight", "settings": { "title": "Drinking Age", "icon_style": "drinking_age" } },
-            { "type": "feature-highlight", "settings": { "title": "Low Calorie", "icon_style": "low_calorie" } },
-            { "type": "feature-highlight", "settings": { "title": "Non-carbonated", "icon_style": "non_carbonated" } }
+            { "type": "feature-highlight" },
+            { "type": "feature-highlight" },
+            { "type": "feature-highlight" },
+            { "type": "feature-highlight" }
           ]
         }
       ]
