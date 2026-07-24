@@ -1,0 +1,130 @@
+{% doc %}
+  Renders a single collapsible FAQ pill for the FAQ pills grid section.
+  Clicking the pill toggles its own answer open/closed independently of the
+  other pills in the grid.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'faq-item' %}
+{% enddoc %}
+
+{% liquid
+  assign answer_id = 'FaqAnswer-' | append: block.id
+  if block.settings.initially_open
+    assign is_open = true
+  else
+    assign is_open = false
+  endif
+%}
+
+<faq-pill-item
+  class="faq-item block w-full{% if is_open %} is-open{% endif %}"
+  style="--faq-item-bg: {{ block.settings.background_color }}; --faq-item-color: {{ block.settings.text_color }};"
+  {{ block.shopify_attributes }}
+>
+  <button
+    type="button"
+    class="faq-item__trigger flex min-h-[48px] w-full items-center justify-between gap-4 rounded-full px-[18px] py-[10px] text-left transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#212323]"
+    aria-expanded="{{ is_open }}"
+    aria-controls="{{ answer_id }}"
+  >
+    <span class="text-[20px] leading-[1.3] font-normal">{{ block.settings.question }}</span>
+    <span class="faq-item__icon block size-4 shrink-0 transition-transform duration-250 ease-out" aria-hidden="true">
+      {{ 'icon-chevron-down.svg' | inline_asset_content }}
+    </span>
+  </button>
+
+  <div class="faq-item__answer-wrap" id="{{ answer_id }}" role="region">
+    <div class="faq-item__answer-inner overflow-hidden">
+      {% if block.settings.answer != blank %}
+        <div class="px-[18px] pt-2 pb-4 text-[16px] leading-[1.5]">
+          {{ block.settings.answer }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</faq-pill-item>
+
+{% stylesheet %}
+  .faq-item__trigger {
+    background-color: var(--faq-item-bg, #f9d5c0);
+    color: var(--faq-item-color, #212323);
+    cursor: pointer;
+  }
+
+  .faq-item__trigger:hover {
+    background-color: color-mix(in srgb, var(--faq-item-bg, #f9d5c0) 85%, #212323 15%);
+  }
+
+  .faq-item.is-open .faq-item__icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-item__answer-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    color: var(--faq-item-color, #212323);
+    transition: grid-template-rows 250ms ease;
+  }
+
+  .faq-item.is-open .faq-item__answer-wrap {
+    grid-template-rows: 1fr;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  class FaqPillItem extends HTMLElement {
+    connectedCallback() {
+      this.trigger = this.querySelector('.faq-item__trigger');
+      this.trigger?.addEventListener('click', () => this.toggle());
+    }
+
+    toggle() {
+      const isOpen = this.classList.toggle('is-open');
+      this.trigger?.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+  }
+
+  customElements.define('faq-pill-item', FaqPillItem);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.faq_item",
+  "settings": [
+    {
+      "type": "text",
+      "id": "question",
+      "label": "t:labels.question",
+      "default": "What is Toasted?"
+    },
+    {
+      "type": "richtext",
+      "id": "answer",
+      "label": "t:labels.answer"
+    },
+    {
+      "type": "checkbox",
+      "id": "initially_open",
+      "label": "t:labels.initially_open",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.question_background",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.question_color",
+      "default": "#212323"
+    }
+  ],
+  "presets": [{ "name": "t:general.faq_item" }]
+}
+{% endschema %}

@@ -1,0 +1,188 @@
+{% doc %}
+  Renders "Find Toasted" — a heading, description, and CTA button next to a
+  billboard image, set inside a rounded color panel that the billboard image
+  bleeds out of on larger screens.
+{% enddoc %}
+
+<section
+  class="gruns-find-toasted full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="mx-auto flex w-full max-w-[1920px] flex-col px-5 py-14 sm:px-8 md:px-12 lg:px-[80px] lg:py-[100px] xl:px-[120px]">
+    <div
+      class="relative flex flex-col items-center gap-8 overflow-hidden rounded-[40px] px-6 py-10 text-center sm:px-10 sm:py-14 lg:flex-row lg:items-center lg:overflow-visible lg:px-[60px] lg:py-[70px] lg:text-left"
+      style="background-color: {{ section.settings.panel_background_color }};"
+    >
+      <div class="pointer-events-none absolute inset-0 hidden overflow-hidden rounded-[40px] lg:block" aria-hidden="true">
+        <img
+          src="{{ 'find-toasted-pattern.svg' | asset_url }}"
+          alt=""
+          class="absolute top-[-48.66%] right-0 h-[149%] w-[66%] max-w-none"
+          loading="lazy"
+          width="797"
+          height="498"
+        >
+      </div>
+
+      <div class="relative z-20 mx-auto w-[85%] max-w-[560px] sm:w-[70%] lg:absolute lg:bottom-0 lg:right-0 lg:mx-0 lg:w-[60%] lg:max-w-[719px]">
+        <div class="aspect-[719/430] w-full">
+          {% if section.settings.billboard_image %}
+            {{
+              section.settings.billboard_image
+              | image_url: width: 1440
+              | image_tag:
+                class: 'size-full object-contain',
+                widths: '400, 700, 1000, 1440',
+                sizes: '(min-width: 64rem) 40rem, 90vw',
+                alt: section.settings.billboard_image_alt
+              | default: section.settings.billboard_image.alt
+            }}
+          {% else %}
+            <img
+              src="{{ 'find-toasted-billboard.png' | asset_url }}"
+              alt="{{ section.settings.billboard_image_alt }}"
+              class="size-full object-contain"
+              loading="lazy"
+              width="719"
+              height="430"
+            >
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="relative z-10 flex w-full flex-col items-center gap-8 lg:w-[40%] lg:max-w-[477px] lg:shrink-0 lg:items-start lg:gap-[50px]">
+        <div class="flex flex-col items-center gap-5 lg:items-start lg:gap-5">
+          {% if section.settings.heading != blank %}
+            <h2
+              class="w-full text-[36px] leading-[0.95] font-bold [text-shadow:4px_4px_6px_rgba(0,0,0,0.1)] sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] xl:tracking-[-2.16px]"
+              style="color: {{ section.settings.heading_color }};"
+            >
+              {{ section.settings.heading }}
+            </h2>
+          {% endif %}
+
+          {% if section.settings.description != blank %}
+            <p
+              class="w-full text-[16px] leading-[1.5] sm:text-[18px] xl:text-[24px]"
+              style="color: {{ section.settings.heading_color }};"
+            >
+              {{ section.settings.description }}
+            </p>
+          {% endif %}
+        </div>
+
+        {% if section.settings.show_button and section.settings.button_label != blank %}
+          {% render 'button',
+            label: section.settings.button_label,
+            url: section.settings.button_link,
+            background_color: section.settings.button_background_color,
+            text_color: section.settings.button_text_color,
+            class: 'w-auto whitespace-nowrap'
+          %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.gruns_find_toasted",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Find Toasted"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "t:labels.description",
+      "default": "Coming to select venues and retailers."
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Find near you",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "panel_background_color",
+      "label": "t:labels.card_background",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "billboard_image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "text",
+      "id": "billboard_image_alt",
+      "label": "t:labels.alt_text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.gruns_find_toasted"
+    }
+  ]
+}
+{% endschema %}

@@ -13,7 +13,7 @@
   assign rating_rounded = section.settings.rating | round
 %}
 
-<section class="product-main full-width">
+<section class="product-main full-width bg-[#F6F1EC]">
   <div class="mx-auto flex w-full max-w-[1920px] flex-col gap-8 px-5 py-8 sm:px-8 md:px-12 lg:flex-row lg:items-start lg:gap-[60px] lg:px-[80px] lg:py-[70px] xl:px-[120px]">
     {% if product.media.size > 0 %}
       <product-gallery class="flex w-full shrink-0 gap-5 lg:sticky lg:top-8 lg:w-[585px]">
@@ -37,7 +37,11 @@
 
         <div class="relative order-1 aspect-[464/642] w-full flex-1 overflow-hidden rounded-[40px] lg:order-2">
           {% for media in product.media %}
-            <div class="{% unless forloop.first %}hidden{% endunless %} absolute inset-0" data-gallery-panel data-index="{{ forloop.index0 }}">
+            <div
+              class="{% unless forloop.first %}hidden{% endunless %} absolute inset-0"
+              data-gallery-panel
+              data-index="{{ forloop.index0 }}"
+            >
               {% case media.media_type %}
                 {% when 'video', 'external_video' %}
                   {{ media | media_tag: image_size: '800x', controls: true, class: 'size-full object-cover' }}
@@ -80,9 +84,16 @@
         {% if section.settings.rating > 0 or section.settings.show_badge %}
           <div class="flex items-center gap-2">
             {% if section.settings.rating > 0 %}
-              <div class="flex items-center gap-[2px] text-[#212323]" role="img" aria-label="{{ 'products.main.rating_label' | t: rating: section.settings.rating }}">
+              <div
+                class="flex items-center gap-[2px] text-[#212323]"
+                role="img"
+                aria-label="{{ 'products.main.rating_label' | t: rating: section.settings.rating }}"
+              >
                 {% for i in (1..5) %}
-                  <span class="block size-4 {% unless i <= rating_rounded %}opacity-20{% endunless %}" aria-hidden="true">
+                  <span
+                    class="block size-4 {% unless i <= rating_rounded %}opacity-20{% endunless %}"
+                    aria-hidden="true"
+                  >
                     {{ 'icon-star.svg' | inline_asset_content }}
                   </span>
                 {% endfor %}
@@ -220,7 +231,11 @@
                 endif
               endif
             %}
-            <div class="flex w-full flex-col gap-[10px]" role="radiogroup" aria-label="{{ 'products.main.purchase_option_group_label' | t }}">
+            <div
+              class="flex w-full flex-col gap-[10px]"
+              role="radiogroup"
+              aria-label="{{ 'products.main.purchase_option_group_label' | t }}"
+            >
               <label
                 class="flex w-full flex-col gap-4 rounded-2xl p-[18px]"
                 style="background-color: {{ section.settings.subscribe_card_background_color }};"
@@ -236,14 +251,19 @@
                           class="peer absolute inset-0 size-full cursor-pointer opacity-0"
                           checked
                         >
-                        <span class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"></span>
+                        <span
+                          class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"
+                        ></span>
                       </span>
                       <span class="text-[16px] font-medium whitespace-nowrap text-[#212323]">
                         {{ 'products.main.subscribe_save' | t }}
                       </span>
                     </div>
                     {% if selected_allocation %}
-                      <span class="rounded-full bg-[#636D90] px-3 py-1 text-[16px] font-medium whitespace-nowrap text-[#F6F1EC]" data-subscribe-percent-pill>
+                      <span
+                        class="rounded-full bg-[#636D90] px-3 py-1 text-[16px] font-medium whitespace-nowrap text-[#F6F1EC]"
+                        data-subscribe-percent-pill
+                      >
                         {{ 'products.main.save_percent' | t: percent: initial_percent }}
                       </span>
                     {% endif %}
@@ -293,14 +313,20 @@
                       value=""
                       class="peer absolute inset-0 size-full cursor-pointer opacity-0"
                     >
-                    <span class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"></span>
+                    <span
+                      class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"
+                    ></span>
                   </span>
                   <span class="text-[16px] font-medium text-[#212323]">{{ 'products.main.one_time_order' | t }}</span>
                 </div>
 
                 <div class="flex flex-1 flex-col items-end gap-1 text-right">
-                  <p class="text-[16px] font-medium text-[#212323]" data-one-time-price>{{ current_variant.price | money }}</p>
-                  <p class="text-[12px] whitespace-nowrap text-[#212323]">{{ 'products.main.standard_purchase' | t }}</p>
+                  <p class="text-[16px] font-medium text-[#212323]" data-one-time-price>
+                    {{ current_variant.price | money }}
+                  </p>
+                  <p class="text-[12px] whitespace-nowrap text-[#212323]">
+                    {{ 'products.main.standard_purchase' | t }}
+                  </p>
                 </div>
               </label>
             </div>
@@ -370,7 +396,11 @@
               {{
                 section.settings.promo_image
                 | image_url: width: 400
-                | image_tag: width: 400, height: 362, class: 'size-full object-cover', alt: section.settings.promo_heading
+                | image_tag:
+                  width: 400,
+                  height: 362,
+                  class: 'size-full object-cover',
+                  alt: section.settings.promo_heading
               }}
             </div>
           {% endif %}
@@ -391,14 +421,20 @@
                 {% if section.settings.promo_feature_1_text != blank %}
                   <div class="flex items-center gap-[5px]">
                     <span class="block size-[15px] shrink-0">{{ 'icon-package.svg' | inline_asset_content }}</span>
-                    <span class="text-[12px] leading-[1.5] whitespace-nowrap">{{ section.settings.promo_feature_1_text }}</span>
+                    <span class="text-[12px] leading-[1.5] whitespace-nowrap">
+                      {{- section.settings.promo_feature_1_text -}}
+                    </span>
                   </div>
                 {% endif %}
 
                 {% if section.settings.promo_feature_2_text != blank %}
                   <div class="flex items-center gap-[5px]">
-                    <span class="block h-[13px] w-[17px] shrink-0">{{ 'icon-shipping.svg' | inline_asset_content }}</span>
-                    <span class="text-[12px] leading-[1.5] whitespace-nowrap">{{ section.settings.promo_feature_2_text }}</span>
+                    <span class="block h-[13px] w-[17px] shrink-0">
+                      {{- 'icon-shipping.svg' | inline_asset_content -}}
+                    </span>
+                    <span class="text-[12px] leading-[1.5] whitespace-nowrap">
+                      {{- section.settings.promo_feature_2_text -}}
+                    </span>
                   </div>
                 {% endif %}
               </div>

@@ -1,0 +1,160 @@
+{% doc %}
+  Renders a centered heading followed by a responsive grid of collapsible
+  faq-item pills (3 columns desktop by default, 2 columns tablet, 1 column
+  mobile). Add faq-item blocks to populate the grid.
+{% enddoc %}
+
+{% liquid
+  case section.settings.columns_desktop
+    when '2'
+      assign columns_class = 'lg:grid-cols-2'
+    else
+      assign columns_class = 'lg:grid-cols-3'
+  endcase
+%}
+
+<section
+  class="faq-pills-grid full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div
+    class="faq-pills-grid__inner mx-auto flex w-full max-w-[1440px] flex-col items-center gap-8 px-5 sm:px-8 md:px-12 lg:gap-[60px] lg:px-[80px] xl:px-[120px]"
+    style="
+      --faq-pills-grid-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+      --faq-pills-grid-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+      --faq-pills-grid-pt-desktop: {{ section.settings.padding_top }}px;
+      --faq-pills-grid-pb-desktop: {{ section.settings.padding_bottom }}px;
+    "
+  >
+    {% if section.settings.heading != blank %}
+      <h2
+        class="w-full text-center text-[36px] leading-[0.95] font-bold text-[color:var(--faq-pills-grid-heading-color)] sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] xl:tracking-[-2.16px]"
+        style="--faq-pills-grid-heading-color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 {{ columns_class }}">
+        {% content_for 'blocks' %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .faq-pills-grid__inner {
+    padding-top: var(--faq-pills-grid-pt-mobile);
+    padding-bottom: var(--faq-pills-grid-pb-mobile);
+  }
+
+  @media (min-width: 1024px) {
+    .faq-pills-grid__inner {
+      padding-top: var(--faq-pills-grid-pt-desktop);
+      padding-bottom: var(--faq-pills-grid-pb-desktop);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.faq_pills_grid",
+  "blocks": [{ "type": "faq-item" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Frequently asked questions"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "t:general.layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "t:labels.columns_desktop",
+      "default": "3",
+      "options": [
+        { "value": "2", "label": "t:options.columns.two" },
+        { "value": "3", "label": "t:options.columns.three" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "t:labels.padding_top_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "t:labels.padding_bottom_mobile",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.faq_pills_grid",
+      "blocks": [
+        { "type": "faq-item", "settings": { "question": "What is Toasted?" } },
+        { "type": "faq-item", "settings": { "question": "Ingredients & Allergies" } },
+        { "type": "faq-item", "settings": { "question": "What to Expect" } },
+        { "type": "faq-item", "settings": { "question": "How is it dosed?" } },
+        { "type": "faq-item", "settings": { "question": "Is it legal to ship?" } },
+        { "type": "faq-item", "settings": { "question": "Lab Results" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

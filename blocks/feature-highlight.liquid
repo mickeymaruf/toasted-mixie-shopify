@@ -1,0 +1,86 @@
+{% doc %}
+  Renders a single icon + title feature. Falls back to a bundled icon per
+  `icon_style` when no custom `icon` image is uploaded. Intended to be
+  nested inside a `feature-column` block in the Ingredient Highlights
+  section.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'feature-highlight' %}
+{% enddoc %}
+
+{% liquid
+  case block.settings.icon_style
+    when 'thc'
+      assign default_icon = 'icon-ingredient-thc.svg'
+    when 'rhodiola'
+      assign default_icon = 'icon-ingredient-rhodiola.svg'
+    when 'lab_tested'
+      assign default_icon = 'icon-ingredient-lab-tested.svg'
+    when 'fruit_juice'
+      assign default_icon = 'icon-ingredient-fruit-juice.svg'
+    when 'drinking_age'
+      assign default_icon = 'icon-ingredient-drinking-age.svg'
+    when 'low_calorie'
+      assign default_icon = 'icon-ingredient-low-calorie.svg'
+    when 'non_carbonated'
+      assign default_icon = 'icon-ingredient-non-carbonated.svg'
+    else
+      assign default_icon = 'icon-leaf.svg'
+  endcase
+%}
+
+<div class="flex w-full flex-col items-center gap-[10px]" {{ block.shopify_attributes }}>
+  <div class="size-[60px] shrink-0 text-[#D4941F] sm:size-[72px] lg:size-[85px]">
+    {% if block.settings.icon %}
+      {{
+        block.settings.icon
+        | image_url: width: 170
+        | image_tag: width: 170, height: 170, class: 'size-full object-contain', alt: block.settings.title
+      }}
+    {% else %}
+      <span class="block size-full">{{ default_icon | inline_asset_content }}</span>
+    {% endif %}
+  </div>
+
+  {% if block.settings.title != blank %}
+    <p class="w-full text-center text-[18px] leading-[1.5] font-medium text-[#212323] sm:text-[20px] lg:text-[24px]">
+      {{ block.settings.title }}
+    </p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.feature_highlight",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:labels.title",
+      "default": "L-Theanine"
+    },
+    {
+      "type": "select",
+      "id": "icon_style",
+      "label": "t:labels.icon_style",
+      "options": [
+        { "value": "l_theanine", "label": "t:options.icon_style.l_theanine" },
+        { "value": "thc", "label": "t:options.icon_style.thc" },
+        { "value": "rhodiola", "label": "t:options.icon_style.rhodiola" },
+        { "value": "lab_tested", "label": "t:options.icon_style.lab_tested" },
+        { "value": "fruit_juice", "label": "t:options.icon_style.fruit_juice" },
+        { "value": "drinking_age", "label": "t:options.icon_style.drinking_age" },
+        { "value": "low_calorie", "label": "t:options.icon_style.low_calorie" },
+        { "value": "non_carbonated", "label": "t:options.icon_style.non_carbonated" }
+      ],
+      "default": "l_theanine"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "t:labels.custom_icon"
+    }
+  ],
+  "presets": [{ "name": "t:general.feature_highlight" }]
+}
+{% endschema %}

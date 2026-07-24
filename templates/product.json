@@ -165,7 +165,7 @@
               "name": "t:general.accordion_item",
               "settings": {
                 "title": "What is Toasted?",
-                "content": ""
+                "content": "<p>What is Toasted?</p>"
               },
               "blocks": {}
             },
@@ -219,9 +219,225 @@
         "promo_image": "shopify://shop_images/pdp-promo-banner-image.png",
         "promo_background_color": "#9ab2d5"
       }
+    },
+    "faq_pills_grid_8Wfzf6": {
+      "type": "faq-pills-grid",
+      "blocks": {
+        "faq_item_YPAGzA": {
+          "type": "faq-item",
+          "settings": {
+            "question": "What is Toasted?",
+            "answer": "<p>What is Toasted?</p>",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "faq_item_GehJNf": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Ingredients & Allergies",
+            "answer": "",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "faq_item_QChKnG": {
+          "type": "faq-item",
+          "settings": {
+            "question": "What to Expect",
+            "answer": "",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "faq_item_dr6wdx": {
+          "type": "faq-item",
+          "settings": {
+            "question": "How is it dosed?",
+            "answer": "",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "faq_item_bz9Q7P": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Is it legal to ship?",
+            "answer": "",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "faq_item_mDPWP9": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Lab Results",
+            "answer": "",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "faq_item_YPAGzA",
+        "faq_item_GehJNf",
+        "faq_item_QChKnG",
+        "faq_item_dr6wdx",
+        "faq_item_bz9Q7P",
+        "faq_item_mDPWP9"
+      ],
+      "name": "t:general.faq_pills_grid",
+      "settings": {
+        "heading": "Frequently asked questions",
+        "background_color": "#ffffff",
+        "heading_color": "#212323",
+        "columns_desktop": "3",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      }
+    },
+    "ingredient_highlights_VcBbpt": {
+      "type": "ingredient-highlights",
+      "blocks": {
+        "feature-column-left": {
+          "type": "feature-column",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "feature_highlight_WJL6NK": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "L-Theanine",
+                "icon_style": "l_theanine",
+                "icon": "shopify://shop_images/icon-leaf.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_F97FFF": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Low Dose THC",
+                "icon_style": "l_theanine"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_hjYRnp": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Rhodiola",
+                "icon_style": "rhodiola"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_E8Jjwx": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Lab Tested",
+                "icon_style": "lab_tested"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "feature_highlight_WJL6NK",
+            "feature_highlight_F97FFF",
+            "feature_highlight_hjYRnp",
+            "feature_highlight_E8Jjwx"
+          ]
+        },
+        "feature-column-right": {
+          "type": "feature-column",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "feature_highlight_Nqw3CH": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Real Fruit Juice",
+                "icon_style": "fruit_juice"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_Bnxxaj": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Drinking Age",
+                "icon_style": "drinking_age"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_EWkDFx": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Low Calorie",
+                "icon_style": "l_theanine"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_ndkzFy": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Non-carbonated",
+                "icon_style": "non_carbonated"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "feature_highlight_Nqw3CH",
+            "feature_highlight_Bnxxaj",
+            "feature_highlight_EWkDFx",
+            "feature_highlight_ndkzFy"
+          ]
+        }
+      },
+      "name": "t:general.ingredient_highlights",
+      "settings": {
+        "heading": "Functional by Design.",
+        "description": "Crafted with L-theanine, rhodiola, and 0.4mg hemp-derived THC in a non-carbonated drink made for a lighter social experience.",
+        "center_image": "shopify://shop_images/Group_84.png",
+        "center_image_alt": "",
+        "enable_overlay": false,
+        "overlay_opacity": 40
+      }
+    },
+    "gruns_find_toasted_EFQ7iF": {
+      "type": "gruns-find-toasted",
+      "name": "t:general.gruns_find_toasted",
+      "settings": {
+        "heading": "Find Toasted",
+        "description": "Coming to select venues and retailers.",
+        "show_button": true,
+        "button_label": "Find near you",
+        "button_link": "",
+        "button_background_color": "#212323",
+        "button_text_color": "#f6f1ec",
+        "background_color": "#f6f1ec",
+        "panel_background_color": "#f9d5c0",
+        "heading_color": "#212323",
+        "billboard_image": "shopify://shop_images/find-toasted-billboard.png",
+        "billboard_image_alt": ""
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "faq_pills_grid_8Wfzf6",
+    "ingredient_highlights_VcBbpt",
+    "gruns_find_toasted_EFQ7iF"
   ]
 }

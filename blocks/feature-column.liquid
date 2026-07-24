@@ -1,0 +1,21 @@
+{% doc %}
+  Groups feature-highlight blocks into a vertical column. Rendered as one of
+  two fixed regions (left/right) flanking the center product image in the
+  Ingredient Highlights section; add, remove, and reorder the nested
+  feature-highlight blocks to control which features are shown.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'feature-column' %}
+{% enddoc %}
+
+<div class="flex w-full flex-col items-center gap-[30px] lg:w-[160px]" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.feature_column",
+  "blocks": [{ "type": "feature-highlight" }],
+  "presets": [{ "name": "t:general.feature_column" }]
+}
+{% endschema %}

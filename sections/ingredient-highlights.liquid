@@ -1,0 +1,182 @@
+{% doc %}
+  Renders "Functional by Design" — a centered heading and description above a
+  center product image flanked by two columns of icon + title feature
+  blocks. On smaller screens the product image moves above a 2-column grid
+  of features (left column / right column).
+{% enddoc %}
+
+{% liquid
+  assign overlay_alpha = section.settings.overlay_opacity | times: 0.01
+  assign overlay_color_rgba = '#212323' | color_modify: 'alpha', overlay_alpha
+%}
+
+<section class="ingredient-highlights relative w-full overflow-hidden bg-[#F6F1EC]">
+  <div class="hidden lg:block pointer-events-none absolute inset-0" aria-hidden="true">
+    {% if section.settings.background_image %}
+      {{
+        section.settings.background_image
+        | image_url: width: 2000
+        | image_tag:
+          class: 'absolute size-full bottom-0 object-cover opacity-10 saturate-0',
+          widths: '750, 1100, 1500, 2000',
+          sizes: '100vw',
+          loading: 'lazy',
+          alt: ''
+      }}
+    {% else %}
+      <img
+        src="{{ 'ingredient-highlights-background.png' | asset_url }}"
+        alt=""
+        class="absolute size-full bottom-0 object-cover opacity-10 saturate-0"
+        loading="lazy"
+        width="1600"
+        height="1044"
+      >
+    {% endif %}
+
+    <div class="absolute inset-0 bg-gradient-to-b from-[#F8F1EA] to-[rgba(248,241,234,0)]"></div>
+
+    {% if section.settings.enable_overlay %}
+      <div class="absolute inset-0" style="background-color: {{ overlay_color_rgba }};"></div>
+    {% endif %}
+  </div>
+
+  <div class="relative mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 px-5 py-14 sm:px-8 md:px-12 lg:gap-[60px] lg:px-[80px] lg:pt-[80px] lg:pb-[100px] xl:px-[120px]">
+    {% if section.settings.heading != blank or section.settings.description != blank %}
+      <div class="flex w-full flex-col items-center gap-5 text-center text-[#212323] lg:gap-[20px]">
+        {% if section.settings.heading != blank %}
+          <h2 class="w-full text-[36px] leading-[0.95] font-bold [text-shadow:4px_4px_6px_rgba(0,0,0,0.1)] sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] xl:tracking-[-2.16px]">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <p class="w-full max-w-[820px] text-[16px] leading-[1.5] sm:text-[18px] xl:text-[24px] xl:leading-[1.3]">
+            {{ section.settings.description }}
+          </p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="grid w-full max-w-[600px] grid-cols-2 items-start gap-x-6 gap-y-10 sm:max-w-[700px] lg:flex lg:w-auto lg:max-w-none lg:flex-row lg:items-center lg:justify-center lg:gap-[70px]">
+      <div class="order-2 lg:order-none">
+        {% content_for 'block', type: 'feature-column', id: 'feature-column-left' %}
+      </div>
+
+      <div class="order-1 col-span-2 flex justify-center lg:order-none lg:col-span-1">
+        <div class="relative w-[160px] sm:w-[200px] lg:w-[300px] flex items-center">
+          {% if section.settings.center_image %}
+            {{
+              section.settings.center_image
+              | image_url: width: 700
+              | image_tag:
+                class: 'relative size-full object-contain',
+                widths: '160, 267, 400, 534, 700',
+                sizes: '(min-width: 64rem) 267px, (min-width: 40rem) 200px, 160px',
+                alt: section.settings.center_image_alt
+              | default: section.settings.center_image.alt
+            }}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="order-3 lg:order-none">
+        {% content_for 'block', type: 'feature-column', id: 'feature-column-right' %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.ingredient_highlights",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Functional by Design."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:labels.description",
+      "default": "Crafted with L-theanine, rhodiola, and 0.4mg hemp-derived THC in a non-carbonated drink made for a lighter social experience."
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "center_image",
+      "label": "t:labels.center_product_image"
+    },
+    {
+      "type": "text",
+      "id": "center_image_alt",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background"
+    },
+    {
+      "type": "header",
+      "content": "t:general.overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_overlay",
+      "label": "t:labels.enable_overlay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "t:labels.overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 40,
+      "visible_if": "{{ section.settings.enable_overlay }}"
+    }
+  ],
+  "blocks": [{ "type": "feature-column" }],
+  "presets": [
+    {
+      "name": "t:general.ingredient_highlights",
+      "blocks": [
+        {
+          "type": "feature-column",
+          "static": true,
+          "id": "feature-column-left",
+          "blocks": [
+            { "type": "feature-highlight", "settings": { "title": "L-Theanine", "icon_style": "l_theanine" } },
+            { "type": "feature-highlight", "settings": { "title": "Low Dose THC", "icon_style": "thc" } },
+            { "type": "feature-highlight", "settings": { "title": "Rhodiola", "icon_style": "rhodiola" } },
+            { "type": "feature-highlight", "settings": { "title": "Lab Tested", "icon_style": "lab_tested" } }
+          ]
+        },
+        {
+          "type": "feature-column",
+          "static": true,
+          "id": "feature-column-right",
+          "blocks": [
+            { "type": "feature-highlight", "settings": { "title": "Real Fruit Juice", "icon_style": "fruit_juice" } },
+            { "type": "feature-highlight", "settings": { "title": "Drinking Age", "icon_style": "drinking_age" } },
+            { "type": "feature-highlight", "settings": { "title": "Low Calorie", "icon_style": "low_calorie" } },
+            { "type": "feature-highlight", "settings": { "title": "Non-carbonated", "icon_style": "non_carbonated" } }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
