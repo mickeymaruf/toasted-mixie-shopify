@@ -1,0 +1,73 @@
+{% doc %}
+  Renders an outlined circular icon with a label underneath, used for the
+  main product section's guarantee/trust row (e.g. 30-day guarantee, lab
+  testing, age requirement). Visually distinct from `trust-badge` (filled
+  icon, no border) — falls back to a bundled default icon per `icon_style`
+  when no custom `icon` image is uploaded. Intended to be nested inside a
+  badge-row block.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'guarantee-badge' %}
+{% enddoc %}
+
+{% liquid
+  case block.settings.icon_style
+    when 'lab'
+      assign default_icon = 'icon-lab-target.svg'
+    when 'payment'
+      assign default_icon = 'icon-payment-card.svg'
+    else
+      assign default_icon = 'icon-guarantee.svg'
+  endcase
+%}
+
+<div class="flex flex-1 flex-col items-center gap-4" {{ block.shopify_attributes }}>
+  <div class="flex items-center justify-center rounded-full border border-[#212323] p-4 text-[#212323]">
+    <div class="size-[30px] shrink-0">
+      {% if block.settings.icon %}
+        {{
+          block.settings.icon
+          | image_url: width: 60
+          | image_tag: width: 60, height: 60, class: 'size-full object-contain', alt: block.settings.label
+        }}
+      {% else %}
+        {{ default_icon | inline_asset_content }}
+      {% endif %}
+    </div>
+  </div>
+
+  {% if block.settings.label != blank %}
+    <p class="text-center text-[14px] leading-[1.3] text-[#212323]">{{ block.settings.label }}</p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.guarantee_badge",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:labels.label",
+      "default": "30-Day Guarantee"
+    },
+    {
+      "type": "select",
+      "id": "icon_style",
+      "label": "t:labels.icon_style",
+      "options": [
+        { "value": "guarantee", "label": "t:options.icon_style.guarantee" },
+        { "value": "lab", "label": "t:options.icon_style.lab" },
+        { "value": "payment", "label": "t:options.icon_style.payment" }
+      ],
+      "default": "guarantee"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "t:labels.custom_icon"
+    }
+  ],
+  "presets": [{ "name": "t:general.guarantee_badge" }]
+}
+{% endschema %}

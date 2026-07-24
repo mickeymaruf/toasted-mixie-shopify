@@ -1,0 +1,31 @@
+{% doc %}
+  Groups accordion-item blocks into a bordered list (e.g. "What is Toasted?",
+  "Ingredients & Allergies"). Rendered as a fixed region in the main product
+  section, after the guarantee badge row; add, remove, and reorder the
+  nested accordion-item blocks to control which rows are shown.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'accordion-list' %}
+{% enddoc %}
+
+<div class="flex w-full flex-col" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.accordion_list",
+  "blocks": [{ "type": "accordion-item" }],
+  "presets": [
+    {
+      "name": "t:general.accordion_list",
+      "blocks": [
+        { "type": "accordion-item", "settings": { "title": "What is Toasted?" } },
+        { "type": "accordion-item", "settings": { "title": "Ingredients & Allergies" } },
+        { "type": "accordion-item", "settings": { "title": "What to Expect" } },
+        { "type": "accordion-item", "settings": { "title": "Lab Results" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

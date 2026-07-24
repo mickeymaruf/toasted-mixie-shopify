@@ -1,0 +1,43 @@
+{% doc %}
+  Renders a single collapsible row (native <details>/<summary>, no JS) for
+  the main product section's accordion list — e.g. "What is Toasted?",
+  "Ingredients & Allergies", "What to Expect", "Lab Results".
+
+  @example
+  {% content_for 'block', id: block.id, type: 'accordion-item' %}
+{% enddoc %}
+
+<details class="group w-full border-b border-[#212323]/15 last:border-b-0" {{ block.shopify_attributes }}>
+  <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[20px] font-medium text-[#212323]">
+    {{ block.settings.title }}
+    <span class="block size-4 shrink-0 transition-transform duration-150 group-open:rotate-45">
+      {{ 'icon-plus.svg' | inline_asset_content }}
+    </span>
+  </summary>
+
+  {% if block.settings.content != blank %}
+    <div class="pb-4 text-[16px] leading-[1.5] text-[#212323]">
+      {{ block.settings.content }}
+    </div>
+  {% endif %}
+</details>
+
+{% schema %}
+{
+  "name": "t:general.accordion_item",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:labels.title",
+      "default": "What is Toasted?"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:labels.content"
+    }
+  ],
+  "presets": [{ "name": "t:general.accordion_item" }]
+}
+{% endschema %}

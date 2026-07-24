@@ -1,50 +1,639 @@
 {% comment %}
-  This section is used in the product template to render product page with
-  media, content, and add-to-cart form.
+  Main product section: sticky media gallery on the left, purchase panel
+  (highlights, flavor swatches, pack size + subscription picker, buy button,
+  guarantee badges, accordions, promo banner) on the right.
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/product
 {% endcomment %}
 
-<div class="product-images">
-  {% for image in product.images %}
-    {% render 'image', class: 'product-image', image: image %}
-  {% endfor %}
-</div>
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign selling_plan_group = product.selling_plan_groups.first
+  assign selling_plan = selling_plan_group.selling_plans.first
+  assign rating_rounded = section.settings.rating | round
+%}
 
-<div class="product-info">
-  <h1>{{ product.title }}</h1>
-  <p>{{ product.price | money }}</p>
-  <p>{{ product.description }}</p>
-</div>
+<section class="product-main full-width">
+  <div class="mx-auto flex w-full max-w-[1920px] flex-col gap-8 px-5 py-8 sm:px-8 md:px-12 lg:flex-row lg:items-start lg:gap-[60px] lg:px-[80px] lg:py-[70px] xl:px-[120px]">
+    {% if product.media.size > 0 %}
+      <product-gallery class="flex w-full shrink-0 gap-5 lg:sticky lg:top-8 lg:w-[585px]">
+        <div class="order-2 flex gap-3 overflow-x-auto lg:order-1 lg:w-[101px] lg:shrink-0 lg:flex-col lg:overflow-visible">
+          {% for media in product.media %}
+            <button
+              type="button"
+              class="aspect-square w-[101px] shrink-0 overflow-hidden rounded-lg lg:w-full {% if forloop.first %}outline-2 outline-offset-2 outline-[#212323]{% endif %}"
+              data-gallery-thumb
+              data-index="{{ forloop.index0 }}"
+              aria-label="{{ 'general.accessibility.view_media' | t: index: forloop.index }}"
+            >
+              {{
+                media.preview_image
+                | image_url: width: 200
+                | image_tag: width: 200, height: 200, class: 'size-full object-cover', alt: media.alt
+              }}
+            </button>
+          {% endfor %}
+        </div>
 
-<div class="product-form">
-  {% form 'product', product %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
+        <div class="relative order-1 aspect-[464/642] w-full flex-1 overflow-hidden rounded-[40px] lg:order-2">
+          {% for media in product.media %}
+            <div class="{% unless forloop.first %}hidden{% endunless %} absolute inset-0" data-gallery-panel data-index="{{ forloop.index0 }}">
+              {% case media.media_type %}
+                {% when 'video', 'external_video' %}
+                  {{ media | media_tag: image_size: '800x', controls: true, class: 'size-full object-cover' }}
+                {% when 'model' %}
+                  {{ media | media_tag: image_size: '800x', class: 'size-full object-cover' }}
+                {% else %}
+                  {{
+                    media
+                    | image_url: width: 800
+                    | image_tag: width: 800, height: 1108, class: 'size-full object-cover', alt: media.alt
+                  }}
+              {% endcase %}
+            </div>
+          {% endfor %}
 
-    <select name="id">
-      {% for variant in product.variants %}
-        <option
-          value="{{ variant.id }}"
-          {% if variant == current_variant %}
-            selected="selected"
+          {% if product.media.size > 1 %}
+            <button
+              type="button"
+              class="absolute bottom-[10px] left-[29%] flex size-8 items-center justify-center"
+              data-gallery-prev
+              aria-label="{{ 'general.accessibility.previous_slide' | t }}"
+            >
+              <span class="block size-4 rotate-90">{{ 'icon-chevron-down.svg' | inline_asset_content }}</span>
+            </button>
+            <button
+              type="button"
+              class="absolute right-[29%] bottom-[10px] flex size-8 items-center justify-center"
+              data-gallery-next
+              aria-label="{{ 'general.accessibility.next_slide' | t }}"
+            >
+              <span class="block size-4 -rotate-90">{{ 'icon-chevron-down.svg' | inline_asset_content }}</span>
+            </button>
           {% endif %}
+        </div>
+      </product-gallery>
+    {% endif %}
+
+    <div class="flex w-full flex-1 flex-col gap-10">
+      <div class="flex w-full flex-col gap-5">
+        {% if section.settings.rating > 0 or section.settings.show_badge %}
+          <div class="flex items-center gap-2">
+            {% if section.settings.rating > 0 %}
+              <div class="flex items-center gap-[2px] text-[#212323]" role="img" aria-label="{{ 'products.main.rating_label' | t: rating: section.settings.rating }}">
+                {% for i in (1..5) %}
+                  <span class="block size-4 {% unless i <= rating_rounded %}opacity-20{% endunless %}" aria-hidden="true">
+                    {{ 'icon-star.svg' | inline_asset_content }}
+                  </span>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% if section.settings.show_badge and section.settings.badge_text != blank %}
+              <p class="text-[12px] leading-[1.3] text-[#212323]">{{ section.settings.badge_text }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <h1 class="text-[32px] leading-[1.2] font-bold text-[#212323]">{{ product.title }}</h1>
+
+        {% if product.description != blank %}
+          <div class="text-[16px] leading-[1.3] text-[#212323]">{{ product.description }}</div>
+        {% endif %}
+      </div>
+
+      {% content_for 'block', type: 'highlight-grid', id: 'highlight-grid' %}
+
+      {% content_for 'block', type: 'flavor-swatch-row', id: 'flavor-swatch-row' %}
+
+      <script type="application/json" data-product-purchase-data>
+        {
+          "sellingPlanId": {{ selling_plan.id | default: 'null' }},
+          "variants": {
+            {% for variant in product.variants %}
+              {% liquid
+                assign allocation = blank
+                if selling_plan
+                  for a in variant.selling_plan_allocations
+                    if a.selling_plan.id == selling_plan.id
+                      assign allocation = a
+                    endif
+                  endfor
+                endif
+
+                assign savings_amount = 0
+                assign savings_percent = 0
+                if allocation
+                  assign savings_amount = variant.price | minus: allocation.price
+                  if variant.price > 0
+                    assign savings_percent = savings_amount | times: 100 | divided_by: variant.price
+                  endif
+                endif
+              %}
+              "{{ variant.id }}": {
+                "available": {{ variant.available | json }},
+                "priceHtml": {{ variant.price | money | json }}
+                {% if allocation %}
+                  ,"hasSubscription": true,
+                  "subscribePriceHtml": {{ allocation.price | money | json }},
+                  "subscribeSavingsHtml": {{ savings_amount | money | json }},
+                  "subscribePercent": {{ savings_percent }}
+                {% else %}
+                  ,"hasSubscription": false
+                {% endif %}
+              }{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+          }
+        }
+      </script>
+
+      <product-purchase class="flex w-full flex-col gap-10">
+        {% form 'product', product %}
+          {% if product.has_only_default_variant == false %}
+            <div class="flex w-full flex-col gap-4">
+              <p id="pack-size-heading-{{ section.id }}" class="text-[16px] leading-[1.3] font-medium text-[#212323]">
+                {{ 'products.main.quantity' | t }}
+              </p>
+
+              <div class="flex flex-wrap gap-2" role="radiogroup" aria-labelledby="pack-size-heading-{{ section.id }}">
+                {% for variant in product.variants %}
+                  {% liquid
+                    assign pack_count = variant.title | split: ' ' | first | plus: 0
+                    if pack_count == 0
+                      assign pack_count = 1
+                    endif
+                    assign per_can_price = variant.price | divided_by: pack_count
+                    assign per_can_money = per_can_price | money
+
+                    assign pill_percent = 0
+                    if variant.compare_at_price > variant.price
+                      assign pill_percent = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price
+                    endif
+                  %}
+                  <div class="relative flex flex-1 basis-[150px] flex-col items-center gap-2">
+                    {% if pill_percent > 0 %}
+                      <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-[5px] bg-[#F9D5C0] px-3 py-1 text-[10px] font-medium whitespace-nowrap text-[#212323]">
+                        {{ 'products.main.save_percent' | t: percent: pill_percent }}
+                      </span>
+                    {% endif %}
+
+                    <label class="flex h-11 w-full cursor-pointer items-center justify-center rounded-lg border border-[#212323] bg-[#F6F1EC] px-4 text-center text-[14px] font-medium whitespace-nowrap text-[#212323] has-[:checked]:bg-[#212323] has-[:checked]:text-[#F6F1EC] has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-30">
+                      <input
+                        type="radio"
+                        name="id"
+                        value="{{ variant.id }}"
+                        class="sr-only"
+                        {% if variant == current_variant %}
+                          checked
+                        {% endif %}
+                        {% unless variant.available %}
+                          disabled
+                        {% endunless %}
+                      >
+                      {{ variant.title }}
+                    </label>
+
+                    <p class="text-center text-[14px] leading-[1.3] text-[#212323]">
+                      {{ 'products.main.per_can' | t: price: per_can_money }}
+                    </p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+
+          {% if selling_plan %}
+            {% liquid
+              assign selected_allocation = blank
+              for a in current_variant.selling_plan_allocations
+                if a.selling_plan.id == selling_plan.id
+                  assign selected_allocation = a
+                endif
+              endfor
+
+              assign initial_savings = 0
+              assign initial_percent = 0
+              if selected_allocation
+                assign initial_savings = current_variant.price | minus: selected_allocation.price
+                if current_variant.price > 0
+                  assign initial_percent = initial_savings | times: 100 | divided_by: current_variant.price
+                endif
+              endif
+            %}
+            <div class="flex w-full flex-col gap-[10px]" role="radiogroup" aria-label="{{ 'products.main.purchase_option_group_label' | t }}">
+              <label
+                class="flex w-full flex-col gap-4 rounded-2xl p-[18px]"
+                style="background-color: {{ section.settings.subscribe_card_background_color }};"
+              >
+                <div class="flex w-full items-center justify-between">
+                  <div class="flex items-center gap-[3px]">
+                    <div class="flex items-center gap-2">
+                      <span class="relative flex size-5 shrink-0 items-center justify-center rounded-full border border-[#212323] p-1">
+                        <input
+                          type="radio"
+                          name="selling_plan"
+                          value="{{ selling_plan.id }}"
+                          class="peer absolute inset-0 size-full cursor-pointer opacity-0"
+                          checked
+                        >
+                        <span class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"></span>
+                      </span>
+                      <span class="text-[16px] font-medium whitespace-nowrap text-[#212323]">
+                        {{ 'products.main.subscribe_save' | t }}
+                      </span>
+                    </div>
+                    {% if selected_allocation %}
+                      <span class="rounded-full bg-[#636D90] px-3 py-1 text-[16px] font-medium whitespace-nowrap text-[#F6F1EC]" data-subscribe-percent-pill>
+                        {{ 'products.main.save_percent' | t: percent: initial_percent }}
+                      </span>
+                    {% endif %}
+                  </div>
+
+                  <div class="flex flex-1 flex-col items-end gap-1 text-right">
+                    <p class="text-[16px] font-medium text-[#212323]" data-subscribe-price>
+                      {{ selected_allocation.price | default: current_variant.price | money }}
+                    </p>
+                    <p class="text-[12px] text-[#212323]">
+                      {{ 'products.main.save_percent_every_order' | t: percent: initial_percent }}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex w-full items-start justify-between">
+                  <div class="flex flex-1 flex-col items-center gap-4">
+                    <span class="block size-6 text-[#212323]">{{ 'icon-package.svg' | inline_asset_content }}</span>
+                    <p class="text-center text-[14px] text-[#212323]">
+                      {{ 'products.main.delivered_every' | t: interval: section.settings.delivery_interval }}
+                    </p>
+                  </div>
+
+                  <div class="flex flex-1 flex-col items-center gap-4">
+                    <span class="block size-6 text-[#212323]">{{ 'icon-shipping.svg' | inline_asset_content }}</span>
+                    <p class="text-center text-[14px] text-[#212323]">
+                      {% capture savings_pill %}<span class="rounded-full bg-[#636D90] px-3 py-[2px] text-[#F6F1EC]" data-subscribe-savings>{{ initial_savings | money }}</span>{% endcapture %}
+                      {{ 'products.main.save_each_delivery_html' | t: amount: savings_pill }}
+                    </p>
+                  </div>
+
+                  <div class="flex flex-1 flex-col items-center gap-4">
+                    <span class="block size-6 text-[#212323]">{{ 'icon-trust.svg' | inline_asset_content }}</span>
+                    <p class="text-center text-[14px] text-[#212323]">{{ 'products.main.pause_skip_cancel' | t }}</p>
+                  </div>
+                </div>
+              </label>
+
+              <label
+                class="flex w-full items-center justify-between rounded-2xl border border-[#212323] bg-[#F6F1EC] p-4 has-[:checked]:border-2"
+              >
+                <div class="flex flex-1 items-center gap-2">
+                  <span class="relative flex size-5 shrink-0 items-center justify-center rounded-full border border-[#212323] bg-[#F6F1EC] p-1">
+                    <input
+                      type="radio"
+                      name="selling_plan"
+                      value=""
+                      class="peer absolute inset-0 size-full cursor-pointer opacity-0"
+                    >
+                    <span class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"></span>
+                  </span>
+                  <span class="text-[16px] font-medium text-[#212323]">{{ 'products.main.one_time_order' | t }}</span>
+                </div>
+
+                <div class="flex flex-1 flex-col items-end gap-1 text-right">
+                  <p class="text-[16px] font-medium text-[#212323]" data-one-time-price>{{ current_variant.price | money }}</p>
+                  <p class="text-[12px] whitespace-nowrap text-[#212323]">{{ 'products.main.standard_purchase' | t }}</p>
+                </div>
+              </label>
+            </div>
+          {% endif %}
+
+          <button
+            type="submit"
+            name="add"
+            class="flex h-[58px] w-full items-center justify-center gap-[5px] rounded-[30px] bg-[#212323] px-8 py-4 text-center text-[20px] text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85 disabled:opacity-30"
+            data-buy-button
+            {% unless current_variant.available %}
+              disabled
+            {% endunless %}
+          >
+            <span
+              data-buy-button-label
+              data-subscribe-label="{{ 'products.main.buy_button_subscribe' | t }}"
+              data-one-time-label="{{ 'products.main.buy_button_one_time' | t }}"
+              data-sold-out-label="{{ 'products.main.sold_out' | t }}"
+            >
+              {% if current_variant.available == false %}
+                {{ 'products.main.sold_out' | t }}
+              {% elsif selling_plan %}
+                {{ 'products.main.buy_button_subscribe' | t }}
+              {% else %}
+                {{ 'products.main.buy_button_one_time' | t }}
+              {% endif %}
+            </span>
+            <span
+              class="font-medium"
+              data-buy-button-price
+              {% unless current_variant.available %}
+                hidden
+              {% endunless %}
+            >
+              {% if selected_allocation %}
+                {{ selected_allocation.price | money }}
+              {% else %}
+                {{ current_variant.price | money }}
+              {% endif %}
+            </span>
+          </button>
+        {% endform %}
+      </product-purchase>
+
+      {% content_for 'block', type: 'badge-row', id: 'badge-row' %}
+
+      {% content_for 'block', type: 'accordion-list', id: 'accordion-list' %}
+
+      {% if section.settings.promo_heading != blank %}
+        <div
+          class="relative flex w-full items-center gap-8 overflow-hidden rounded-2xl p-4"
+          style="background-color: {{ section.settings.promo_background_color }};"
         >
-          {{ variant.title }} - {{ variant.price | money }}
-        </option>
-      {% endfor %}
-    </select>
+          {% if section.settings.promo_texture %}
+            <div class="pointer-events-none absolute inset-0 opacity-5" aria-hidden="true">
+              {{
+                section.settings.promo_texture
+                | image_url: width: 1600
+                | image_tag: class: 'size-full object-cover', alt: ''
+              }}
+            </div>
+          {% endif %}
 
-    <input type="text" name="quantity" min="1" value="1">
+          {% if section.settings.promo_image %}
+            <div class="relative aspect-[166/150] w-[140px] shrink-0 overflow-hidden rounded-xl sm:w-[166px]">
+              {{
+                section.settings.promo_image
+                | image_url: width: 400
+                | image_tag: width: 400, height: 362, class: 'size-full object-cover', alt: section.settings.promo_heading
+              }}
+            </div>
+          {% endif %}
 
-    <input type="submit" value="Add to cart">
-    {{ form | payment_button }}
-  {% endform %}
-</div>
+          <div class="relative flex flex-1 flex-col items-start gap-[10px]">
+            <p class="text-[20px] font-medium text-[#212323]">{{ section.settings.promo_heading }}</p>
+
+            {% if section.settings.promo_button_label != blank %}
+              {% render 'button',
+                label: section.settings.promo_button_label,
+                url: section.settings.promo_button_link,
+                class: 'w-full whitespace-nowrap'
+              %}
+            {% endif %}
+
+            {% if section.settings.promo_feature_1_text != blank or section.settings.promo_feature_2_text != blank %}
+              <div class="flex flex-wrap items-center gap-x-[15px] gap-y-2 text-[#212323]">
+                {% if section.settings.promo_feature_1_text != blank %}
+                  <div class="flex items-center gap-[5px]">
+                    <span class="block size-[15px] shrink-0">{{ 'icon-package.svg' | inline_asset_content }}</span>
+                    <span class="text-[12px] leading-[1.5] whitespace-nowrap">{{ section.settings.promo_feature_1_text }}</span>
+                  </div>
+                {% endif %}
+
+                {% if section.settings.promo_feature_2_text != blank %}
+                  <div class="flex items-center gap-[5px]">
+                    <span class="block h-[13px] w-[17px] shrink-0">{{ 'icon-shipping.svg' | inline_asset_content }}</span>
+                    <span class="text-[12px] leading-[1.5] whitespace-nowrap">{{ section.settings.promo_feature_2_text }}</span>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% javascript %}
+  class ProductGallery extends HTMLElement {
+    connectedCallback() {
+      this.thumbs = Array.from(this.querySelectorAll('[data-gallery-thumb]'));
+      this.panels = Array.from(this.querySelectorAll('[data-gallery-panel]'));
+      this.prevButton = this.querySelector('[data-gallery-prev]');
+      this.nextButton = this.querySelector('[data-gallery-next]');
+      this.index = 0;
+
+      this.thumbs.forEach((thumb) => {
+        thumb.addEventListener('click', () => this.show(Number(thumb.dataset.index)));
+      });
+      this.prevButton?.addEventListener('click', () => this.show(this.index - 1));
+      this.nextButton?.addEventListener('click', () => this.show(this.index + 1));
+    }
+
+    show(index) {
+      const count = this.panels.length;
+      if (!count) return;
+      this.index = (index + count) % count;
+
+      this.panels.forEach((panel, i) => panel.classList.toggle('hidden', i !== this.index));
+      this.thumbs.forEach((thumb, i) => thumb.classList.toggle('outline-2', i === this.index));
+      this.thumbs.forEach((thumb, i) => thumb.classList.toggle('outline-offset-2', i === this.index));
+      this.thumbs.forEach((thumb, i) => thumb.classList.toggle('outline-[#212323]', i === this.index));
+    }
+  }
+
+  customElements.define('product-gallery', ProductGallery);
+
+  class ProductPurchase extends HTMLElement {
+    connectedCallback() {
+      const dataScript = this.querySelector('[data-product-purchase-data]');
+      this.data = dataScript ? JSON.parse(dataScript.textContent) : { variants: {} };
+
+      this.buyButton = this.querySelector('[data-buy-button]');
+      this.buyButtonLabel = this.querySelector('[data-buy-button-label]');
+      this.buyButtonPrice = this.querySelector('[data-buy-button-price]');
+      this.subscribePrice = this.querySelector('[data-subscribe-price]');
+      this.subscribeSavings = this.querySelector('[data-subscribe-savings]');
+      this.subscribePercentPill = this.querySelector('[data-subscribe-percent-pill]');
+      this.oneTimePrice = this.querySelector('[data-one-time-price]');
+
+      this.addEventListener('change', (event) => {
+        if (event.target.matches('[name="id"], [name="selling_plan"]')) this.update();
+      });
+    }
+
+    get currentVariant() {
+      const id = this.querySelector('[name="id"]:checked')?.value;
+      return id ? this.data.variants[id] : null;
+    }
+
+    get isSubscribing() {
+      return Boolean(this.querySelector('[name="selling_plan"]:checked')?.value);
+    }
+
+    update() {
+      const variant = this.currentVariant;
+      if (!variant) return;
+
+      if (this.oneTimePrice) this.oneTimePrice.textContent = variant.priceHtml;
+
+      if (variant.hasSubscription) {
+        if (this.subscribePrice) this.subscribePrice.textContent = variant.subscribePriceHtml;
+        if (this.subscribeSavings) this.subscribeSavings.textContent = variant.subscribeSavingsHtml;
+        if (this.subscribePercentPill) this.subscribePercentPill.textContent = `${variant.subscribePercent}%`;
+      }
+
+      const subscribing = variant.hasSubscription && this.isSubscribing;
+
+      if (this.buyButtonPrice) {
+        this.buyButtonPrice.hidden = !variant.available;
+        this.buyButtonPrice.textContent = subscribing ? variant.subscribePriceHtml : variant.priceHtml;
+      }
+
+      if (this.buyButtonLabel) {
+        if (!variant.available) {
+          this.buyButtonLabel.textContent = this.buyButtonLabel.dataset.soldOutLabel;
+        } else {
+          this.buyButtonLabel.textContent = subscribing
+            ? this.buyButtonLabel.dataset.subscribeLabel
+            : this.buyButtonLabel.dataset.oneTimeLabel;
+        }
+      }
+
+      if (this.buyButton) this.buyButton.disabled = !variant.available;
+    }
+  }
+
+  customElements.define('product-purchase', ProductPurchase);
+{% endjavascript %}
 
 {% schema %}
 {
   "name": "t:general.product",
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "range",
+      "id": "rating",
+      "label": "t:labels.rating",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "t:labels.show_badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "t:labels.badge_text",
+      "default": "Launching Soon"
+    },
+    {
+      "type": "header",
+      "content": "t:general.purchase"
+    },
+    {
+      "type": "text",
+      "id": "delivery_interval",
+      "label": "t:labels.delivery_interval",
+      "default": "1 month"
+    },
+    {
+      "type": "color",
+      "id": "subscribe_card_background_color",
+      "label": "t:labels.card_background",
+      "default": "#C2CBD4"
+    },
+    {
+      "type": "header",
+      "content": "t:general.promo_banner"
+    },
+    {
+      "type": "text",
+      "id": "promo_heading",
+      "label": "t:labels.heading",
+      "default": "Can't Pick Just One?"
+    },
+    {
+      "type": "text",
+      "id": "promo_button_label",
+      "label": "t:labels.button_label",
+      "default": "Get My Trial Pack"
+    },
+    {
+      "type": "url",
+      "id": "promo_button_link",
+      "label": "t:labels.button_link"
+    },
+    {
+      "type": "text",
+      "id": "promo_feature_1_text",
+      "label": "t:labels.feature_1_text",
+      "default": "Free 3-flavor trial pack."
+    },
+    {
+      "type": "text",
+      "id": "promo_feature_2_text",
+      "label": "t:labels.feature_2_text",
+      "default": "Just Pay Shipping"
+    },
+    {
+      "type": "image_picker",
+      "id": "promo_image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "color",
+      "id": "promo_background_color",
+      "label": "t:labels.card_background",
+      "default": "#9AB2D5"
+    },
+    {
+      "type": "header",
+      "content": "t:general.texture_overlay"
+    },
+    {
+      "type": "image_picker",
+      "id": "promo_texture",
+      "label": "t:labels.image"
+    }
+  ],
+  "blocks": [
+    { "type": "highlight-grid" },
+    { "type": "flavor-swatch-row" },
+    { "type": "badge-row" },
+    { "type": "accordion-list" }
+  ],
+  "presets": [
+    {
+      "name": "t:general.product",
+      "blocks": [
+        { "type": "highlight-grid", "static": true, "id": "highlight-grid" },
+        { "type": "flavor-swatch-row", "static": true, "id": "flavor-swatch-row" },
+        {
+          "type": "badge-row",
+          "static": true,
+          "id": "badge-row",
+          "blocks": [
+            { "type": "guarantee-badge", "settings": { "label": "30-Day Guarantee", "icon_style": "guarantee" } },
+            {
+              "type": "guarantee-badge",
+              "settings": { "label": "COA available. 3rd party tested.", "icon_style": "lab" }
+            },
+            {
+              "type": "guarantee-badge",
+              "settings": { "label": "Adults 21+ only. Use responsibly.", "icon_style": "payment" }
+            }
+          ]
+        },
+        { "type": "accordion-list", "static": true, "id": "accordion-list" }
+      ]
+    }
+  ],
   "disabled_on": {
     "groups": ["header", "footer"]
   }

@@ -1,0 +1,31 @@
+{% doc %}
+  Groups product-highlight blocks into a responsive 2-column grid. Rendered
+  as a fixed region in the main product section, between the description and
+  the "Choose your Flavor" row; add, remove, and reorder the nested
+  product-highlight blocks to control which highlights are shown.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'highlight-grid' %}
+{% enddoc %}
+
+<div class="grid w-full grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.highlight_grid",
+  "blocks": [{ "type": "product-highlight" }],
+  "presets": [
+    {
+      "name": "t:general.highlight_grid",
+      "blocks": [
+        { "type": "product-highlight", "settings": { "label": "0.4mg hemp-derived THC", "icon_style": "thc" } },
+        { "type": "product-highlight", "settings": { "label": "L-theanine + Rhodiola", "icon_style": "adaptogen" } },
+        { "type": "product-highlight", "settings": { "label": "Non-carbonated", "icon_style": "non_carbonated" } },
+        { "type": "product-highlight", "settings": { "label": "COA available", "icon_style": "usa_hemp" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

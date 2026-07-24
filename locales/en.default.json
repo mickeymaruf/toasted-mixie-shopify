@@ -18,7 +18,8 @@
       "play_video": "Play video",
       "facebook": "Facebook",
       "instagram": "Instagram",
-      "tiktok": "TikTok"
+      "tiktok": "TikTok",
+      "view_media": "View image {{ index }}"
     }
   },
   "footer": {
@@ -82,6 +83,24 @@
       "pack_12": "12 Pack",
       "pack_24": "24 Pack",
       "pack_36": "36 Pack"
+    },
+    "main": {
+      "rating_label": "Rated {{ rating }} out of 5",
+      "choose_flavor": "Choose your Flavor",
+      "quantity": "Quantity",
+      "save_percent": "Save {{ percent }}%",
+      "per_can": "{{ price }} per can",
+      "purchase_option_group_label": "Purchase options",
+      "subscribe_save": "Subscribe & Save",
+      "save_percent_every_order": "Save {{ percent }}% on every order",
+      "delivered_every": "Delivered to your door every {{ interval }}",
+      "save_each_delivery_html": "Save {{ amount }} with each delivery",
+      "pause_skip_cancel": "Pause, skip, or cancel anytime",
+      "one_time_order": "One-Time Order",
+      "standard_purchase": "Standard one-time purchase",
+      "buy_button_subscribe": "Try Now",
+      "buy_button_one_time": "Add to cart",
+      "sold_out": "Sold out"
     }
   }
 }

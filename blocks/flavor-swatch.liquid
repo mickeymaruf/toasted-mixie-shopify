@@ -1,0 +1,78 @@
+{% doc %}
+  Renders a single flavor swatch — a small card with a product render and
+  the flavor name, linking to that flavor's own product page. Intended to
+  populate the main product section's "Choose your Flavor" row.
+
+  Shows an active border when its linked product is the product currently
+  being viewed.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'flavor-swatch' %}
+{% enddoc %}
+
+{% liquid
+  assign is_active = false
+  if block.settings.product != blank and block.settings.product.id == product.id
+    assign is_active = true
+  endif
+
+  assign swatch_image = block.settings.swatch_image | default: block.settings.product.featured_image
+%}
+
+<a
+  href="{{ block.settings.product.url | default: '#' }}"
+  class="flex shrink-0 flex-col items-center gap-[10px] rounded-[10px] border px-[5px] pt-[5px] pb-[10px] {% if is_active %}border-[#212323]{% else %}border-[#C2CBD4]{% endif %}"
+  {% if is_active %}
+    aria-current="page"
+  {% endif %}
+  {{ block.shopify_attributes }}
+>
+  <div class="relative flex h-[122px] w-[109px] items-center justify-center overflow-hidden rounded-[8px] bg-[#F0F0F0]">
+    {% if swatch_image %}
+      {{
+        swatch_image
+        | image_url: width: 220
+        | image_tag: width: 220, height: 248, class: 'h-full w-auto object-contain', alt: block.settings.flavor_name
+      }}
+    {% endif %}
+  </div>
+
+  {% if block.settings.flavor_name != blank %}
+    <p class="text-[14px] leading-none font-medium whitespace-nowrap text-[#212323]">
+      {{ block.settings.flavor_name }}
+    </p>
+  {% endif %}
+</a>
+
+{% schema %}
+{
+  "name": "t:general.flavor_swatch",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:labels.product"
+    },
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "flavor_name",
+      "label": "t:labels.flavor_name",
+      "default": "Blood Orange"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_image",
+      "label": "t:labels.swatch_image"
+    }
+  ],
+  "presets": [{ "name": "t:general.flavor_swatch" }]
+}
+{% endschema %}

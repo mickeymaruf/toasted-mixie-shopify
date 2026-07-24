@@ -1,0 +1,74 @@
+{% doc %}
+  Renders a single icon + label highlight, used in the main product
+  section's 2x2 highlight grid (e.g. THC content, adaptogens, carbonation,
+  lab testing).
+
+  Falls back to a bundled icon per `icon_style` when no custom `icon` image
+  is uploaded.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'product-highlight' %}
+{% enddoc %}
+
+{% liquid
+  case block.settings.icon_style
+    when 'adaptogen'
+      assign default_icon = 'icon-adaptogen.svg'
+    when 'non_carbonated'
+      assign default_icon = 'icon-non-carbonated.svg'
+    when 'usa_hemp'
+      assign default_icon = 'icon-usa-hemp.svg'
+    else
+      assign default_icon = 'icon-thc-highlight.svg'
+  endcase
+%}
+
+<div class="flex flex-1 items-center gap-[11px]" {{ block.shopify_attributes }}>
+  <div class="size-[30px] shrink-0 text-[#212323]">
+    {% if block.settings.icon %}
+      {{
+        block.settings.icon
+        | image_url: width: 60
+        | image_tag: width: 60, height: 60, class: 'size-full object-contain', alt: block.settings.label
+      }}
+    {% else %}
+      <span class="block size-full">{{ default_icon | inline_asset_content }}</span>
+    {% endif %}
+  </div>
+
+  {% if block.settings.label != blank %}
+    <p class="flex-1 text-[14px] leading-[1.3] text-[#212323]">{{ block.settings.label }}</p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.product_highlight",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:labels.label",
+      "default": "0.4mg hemp-derived THC"
+    },
+    {
+      "type": "select",
+      "id": "icon_style",
+      "label": "t:labels.icon_style",
+      "options": [
+        { "value": "thc", "label": "t:options.icon_style.thc" },
+        { "value": "adaptogen", "label": "t:options.icon_style.adaptogen" },
+        { "value": "non_carbonated", "label": "t:options.icon_style.non_carbonated" },
+        { "value": "usa_hemp", "label": "t:options.icon_style.usa_hemp" }
+      ],
+      "default": "thc"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "t:labels.custom_icon"
+    }
+  ],
+  "presets": [{ "name": "t:general.product_highlight" }]
+}
+{% endschema %}
