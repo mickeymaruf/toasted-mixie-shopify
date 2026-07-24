@@ -1,0 +1,102 @@
+{% doc %}
+  Renders an image tile cell with an optional grain texture overlay.
+  Intended to be nested inside a story-tile-row block in the Story Tiles
+  section.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'story-tile-image' %}
+{% enddoc %}
+
+{% liquid
+  assign texture_opacity = block.settings.texture_opacity | times: 0.01
+%}
+
+<div
+  class="story-tile-cell bg-[#F0F0F0]"
+  style="--story-tile-span: {{ block.settings.width }};"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.image %}
+    {{
+      block.settings.image
+      | image_url: width: 1200
+      | image_tag:
+        class: 'absolute inset-0 size-full object-cover',
+        loading: 'lazy',
+        sizes: '(min-width: 64rem) 33vw, 100vw',
+        widths: '400, 600, 900, 1200',
+        alt: block.settings.alt_text
+      | default: block.settings.image.alt
+    }}
+  {% endif %}
+
+  {% if block.settings.show_grain %}
+    <div
+      class="story-tile-cell__grain pointer-events-none absolute inset-0"
+      style="background-image: url({{ 'texture-grain.jpg' | asset_url }}); opacity: {{ texture_opacity }};"
+      aria-hidden="true"
+    ></div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .story-tile-cell__grain {
+    background-repeat: repeat;
+    background-position: top left;
+    background-size: 31.25rem 20.859375rem;
+    mix-blend-mode: soft-light;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.story_tile_image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "header",
+      "content": "t:general.texture_overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_grain",
+      "label": "t:labels.show_grain",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "texture_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "t:labels.opacity",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "t:general.layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "t:labels.width",
+      "options": [
+        { "value": "1", "label": "t:options.width.one_third" },
+        { "value": "2", "label": "t:options.width.two_thirds" }
+      ],
+      "default": "1"
+    }
+  ],
+  "presets": [{ "name": "t:general.story_tile_image" }]
+}
+{% endschema %}

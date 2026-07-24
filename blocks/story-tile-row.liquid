@@ -1,0 +1,71 @@
+{% doc %}
+  Renders one full-width row of the Story Tiles section as a 3-unit grid.
+  Nest story-tile-text and story-tile-image blocks inside; each cell's
+  "width" setting (1 or 2 units) controls how much of the row it spans, so
+  a row's cells should add up to 3 units in total (e.g. 1+1+1 or 1+2).
+
+  @example
+  {% content_for 'block', id: block.id, type: 'story-tile-row' %}
+{% enddoc %}
+
+<div class="story-tile-row" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% stylesheet %}
+  .story-tile-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #212323;
+  }
+
+  @media (min-width: 64rem) {
+    .story-tile-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      aspect-ratio: 3 / 1;
+    }
+  }
+
+  .story-tile-row > .shopify-block {
+    display: contents;
+  }
+
+  .story-tile-cell {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .shopify-block + .shopify-block > .story-tile-cell {
+    border-top: 1px solid #212323;
+  }
+
+  @media (min-width: 64rem) {
+    .story-tile-cell {
+      aspect-ratio: auto;
+      height: 100%;
+      grid-column: span var(--story-tile-span, 1);
+    }
+
+    .shopify-block + .shopify-block > .story-tile-cell {
+      border-top: none;
+      border-left: 1px solid #212323;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.story_tile_row",
+  "blocks": [{ "type": "story-tile-text" }, { "type": "story-tile-image" }],
+  "presets": [
+    {
+      "name": "t:general.story_tile_row",
+      "blocks": [{ "type": "story-tile-text" }, { "type": "story-tile-image" }]
+    }
+  ]
+}
+{% endschema %}

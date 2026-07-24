@@ -1,0 +1,93 @@
+{% doc %}
+  Renders "Story Tiles" — a stack of full-width rows, each combining text
+  and image cells into a 3-unit grid. Add story-tile-row blocks to build
+  the stack, then nest story-tile-text and story-tile-image blocks inside
+  each row to populate it.
+{% enddoc %}
+
+<section class="story-tiles full-width">
+  {% if section.blocks.size > 0 %}
+    <div class="mx-auto flex w-full max-w-[1920px] flex-col">
+      {% content_for 'blocks' %}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "t:general.story_tiles",
+  "blocks": [{ "type": "story-tile-row" }],
+  "presets": [
+    {
+      "name": "t:general.story_tiles",
+      "blocks": [
+        {
+          "type": "story-tile-row",
+          "blocks": [
+            {
+              "type": "story-tile-text",
+              "settings": {
+                "heading": "<p>More open. More present. More here.</p>",
+                "background_color": "#F9D5C0",
+                "text_color": "#212323",
+                "width": "1"
+              }
+            },
+            {
+              "type": "story-tile-image",
+              "settings": { "width": "1" }
+            },
+            {
+              "type": "story-tile-text",
+              "settings": {
+                "body": "<p>A lighter ritual for being present in the moment.</p>",
+                "background_color": "#C2CBD4",
+                "text_color": "#212323",
+                "width": "1"
+              }
+            }
+          ]
+        },
+        {
+          "type": "story-tile-row",
+          "blocks": [
+            {
+              "type": "story-tile-image",
+              "settings": { "width": "1" }
+            },
+            {
+              "type": "story-tile-text",
+              "settings": {
+                "heading": "<p>Good rooms deserve better options.</p>",
+                "body": "<p>Toasted belongs here. For premium venues, retailers, and partners who want a better option for the social moment.</p>",
+                "background_color": "#212323",
+                "text_color": "#F6F1EC",
+                "width": "2"
+              }
+            }
+          ]
+        },
+        {
+          "type": "story-tile-row",
+          "blocks": [
+            {
+              "type": "story-tile-text",
+              "settings": {
+                "heading": "<p>A note from Danny.</p>",
+                "body": "<p>We wanted a drink that helped you feel relaxed without checking out. Something light, tasteful, and made to be enjoyed any time of day.</p><p>This was built for those of us who ran out of options in today's social world.</p><p>Stay Toasted, my friends.<br/><em>Danny</em></p>",
+                "background_color": "#9AB2D5",
+                "text_color": "#212323",
+                "width": "2"
+              }
+            },
+            {
+              "type": "story-tile-image",
+              "settings": { "width": "1" }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

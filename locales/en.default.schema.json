@@ -54,6 +54,7 @@
     "info_grid": "Info grid",
     "layout": "Layout",
     "legal": "Legal",
+    "legal_page": "Legal page",
     "main": "Main",
     "media_testimonial": "Media testimonial",
     "media_testimonials": "Media testimonials",
@@ -78,6 +79,10 @@
     "section": "Section",
     "settings": "Settings",
     "sidebar": "Sidebar",
+    "story_tiles": "Story tiles",
+    "story_tile_row": "Story tile row",
+    "story_tile_text": "Story tile text",
+    "story_tile_image": "Story tile image",
     "text": "Text",
     "texture_overlay": "Texture overlay",
     "theme": "Theme",
@@ -91,6 +96,7 @@
     "attribution": "Attribution",
     "background": "Background",
     "badge_text": "Badge text",
+    "body": "Body text",
     "card_background": "Card background",
     "button_background": "Button background",
     "button_label": "Button label",
@@ -151,6 +157,7 @@
     "secondary_link_url": "Secondary link URL",
     "show_button": "Show button",
     "show_badge": "Show badge",
+    "show_grain": "Show grain texture",
     "show_cart": "Show cart icon",
     "show_payment_icons": "Show payment icons",
     "show_search": "Show search icon",
@@ -165,7 +172,8 @@
     "thumbnail_image": "Thumbnail image",
     "tiktok_link": "TikTok link",
     "title": "Title",
-    "video": "Video"
+    "video": "Video",
+    "width": "Width"
   },
   "options": {
     "columns": {
@@ -203,6 +211,10 @@
       "title": "Title",
       "subtitle": "Subtitle",
       "normal": "Normal text"
+    },
+    "width": {
+      "one_third": "One-third (square)",
+      "two_thirds": "Two-thirds (wide)"
     }
   }
 }

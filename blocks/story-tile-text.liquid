@@ -1,0 +1,95 @@
+{% doc %}
+  Renders a text tile cell with a heading, optional body copy, and
+  configurable background/text colors. Intended to be nested inside a
+  story-tile-row block in the Story Tiles section.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'story-tile-text' %}
+{% enddoc %}
+
+<div
+  class="story-tile-cell flex flex-col items-center justify-center gap-5 p-8 text-center sm:p-10 lg:p-[60px] xl:p-[100px]"
+  style="
+    --story-tile-span: {{ block.settings.width }};
+    background-color: {{ block.settings.background_color }};
+    color: {{ block.settings.text_color }};
+  "
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.heading != blank %}
+    <div class="story-tile-cell__heading w-full font-bold text-[28px] leading-[0.95] tracking-[-0.84px] sm:text-[36px] sm:tracking-[-1.08px] lg:text-[48px] lg:tracking-[-1.44px] xl:text-[72px] xl:tracking-[-2.16px]">
+      {{ block.settings.heading }}
+    </div>
+  {% endif %}
+
+  {% if block.settings.body != blank %}
+    <div class="story-tile-cell__body w-full text-[16px] leading-[1.5] sm:text-[18px] lg:text-[20px] xl:text-[24px]">
+      {{ block.settings.body }}
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .story-tile-cell__heading {
+    font-family: var(--font-heading--family);
+  }
+
+  .story-tile-cell__heading :where(p),
+  .story-tile-cell__body :where(p) {
+    margin: 0;
+  }
+
+  .story-tile-cell__body :where(p) + p {
+    margin-top: 1em;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.story_tile_text",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "<p>More open. More present. More here.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "t:labels.body"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "t:general.layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "t:labels.width",
+      "options": [
+        { "value": "1", "label": "t:options.width.one_third" },
+        { "value": "2", "label": "t:options.width.two_thirds" }
+      ],
+      "default": "1"
+    }
+  ],
+  "presets": [{ "name": "t:general.story_tile_text" }]
+}
+{% endschema %}
