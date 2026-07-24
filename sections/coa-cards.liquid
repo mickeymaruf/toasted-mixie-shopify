@@ -1,0 +1,213 @@
+{% doc %}
+  Renders a responsive grid of COA (Certificate of Analysis) card blocks.
+  Each card displays a product/batch title with a "View Batches" link and icon.
+  Fully customizable with dynamic content and soft peach background styling.
+
+  @example
+  {% section 'coa-cards' %}
+{% enddoc %}
+
+<section
+  class="coa-cards full-width"
+  style="background-color: {{ section.settings.background_color }};"
+  {{ section.shopify_attributes }}
+>
+  <div
+    class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px]"
+    style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+  >
+    {% if section.blocks.size > 0 %}
+      <div class="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-[20px]">
+        {% for block in section.blocks %}
+          {% capture card_content %}
+            <div class="flex flex-col items-center gap-5">
+              <!-- Title -->
+              <h3 class="text-center text-[32px] font-medium leading-[1.2] text-[#212323]">
+                {{ block.settings.title }}
+              </h3>
+
+              <!-- Link with Icon -->
+              <div class="flex flex-col items-center gap-[15px]">
+                <p class="text-center text-[24px] font-normal leading-[1.2] text-[#212323] underline decoration-from-font">
+                  {{ block.settings.link_text }}
+                </p>
+                <!-- Dropdown Icon -->
+                <div class="flex h-[20px] w-[20px] items-center justify-center">
+                  <svg
+                    class="h-[20px] w-[20px] text-[#212323]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          {% endcapture %}
+
+          {% if block.settings.link %}
+            <a
+              href="{{ block.settings.link }}"
+              class="coa-cards__card flex flex-col items-center justify-center gap-5 rounded-[16px] px-[37px] py-[30px] transition-all duration-200 hover:shadow-lg hover:scale-105 cursor-pointer no-underline"
+              style="background-color: {{ block.settings.card_background_color }}"
+              {{ block.shopify_attributes }}
+            >
+              {{ card_content }}
+            </a>
+          {% else %}
+            <div
+              class="coa-cards__card flex flex-col items-center justify-center gap-5 rounded-[16px] px-[37px] py-[30px] transition-all duration-200 hover:shadow-lg hover:scale-105"
+              style="background-color: {{ block.settings.card_background_color }}"
+              {{ block.shopify_attributes }}
+            >
+              {{ card_content }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .coa-cards {
+    position: relative;
+    width: 100%;
+  }
+
+  .coa-cards__card {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-decoration: none;
+    border: none;
+    font-family: inherit;
+  }
+
+  .coa-cards__card:hover {
+    transform: translateY(-4px);
+  }
+
+  @media (max-width: 768px) {
+    .coa-cards__card {
+      min-height: 250px;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.coa_cards",
+  "blocks": [
+    {
+      "type": "coa-card",
+      "name": "t:general.coa_card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:labels.title",
+          "default": "Blood Orange COA"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "t:labels.link_text",
+          "default": "View Batches"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:labels.link"
+        },
+        {
+          "type": "color",
+          "id": "card_background_color",
+          "label": "t:labels.card_background",
+          "default": "#F9D5C0"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "t:general.layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.coa_cards",
+      "blocks": [
+        {
+          "type": "coa-card",
+          "settings": {
+            "title": "Blood Orange COA",
+            "link_text": "View Batches",
+            "card_background_color": "#F9D5C0"
+          }
+        },
+        {
+          "type": "coa-card",
+          "settings": {
+            "title": "Ginger Lime COA",
+            "link_text": "View Batches",
+            "card_background_color": "#F9D5C0"
+          }
+        },
+        {
+          "type": "coa-card",
+          "settings": {
+            "title": "Berry Acai COA",
+            "link_text": "View Batches",
+            "card_background_color": "#F9D5C0"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
