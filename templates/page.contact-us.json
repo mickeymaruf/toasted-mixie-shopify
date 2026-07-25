@@ -66,15 +66,15 @@
       ],
       "name": "t:sections.contact_form.name",
       "settings": {
-        "heading": "Partner with us",
-        "subheading": "Tell us about your venue, store, or event.",
+        "heading": "Say hello.",
+        "subheading": "Questions, partnerships, press, wholesale, or venue inquiries. Send us a note.",
         "form_type": "shopify_contact",
         "form_endpoint": "",
-        "button_text": "Submit inquiry",
-        "background_color": "#F6F1EC",
+        "button_text": "Send message",
+        "background_color": "#f6f1ec",
         "text_color": "#212323",
         "button_background_color": "#212323",
-        "button_text_color": "#F6F1EC"
+        "button_text_color": "#f6f1ec"
       }
     }
   },

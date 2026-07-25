@@ -14,14 +14,14 @@
 %}
 
 <section class="product-main full-width bg-[#F6F1EC]">
-  <div class="mx-auto flex w-full max-w-[1920px] flex-col gap-8 px-5 py-8 sm:px-8 md:px-12 lg:flex-row lg:items-start lg:gap-[60px] lg:px-[80px] lg:py-[70px] xl:px-[120px]">
+  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-start gap-8 px-5 py-8 sm:px-8 md:flex-row md:gap-6 md:px-12 lg:gap-[60px] lg:px-[80px] lg:py-[70px] xl:px-[120px]">
     {% if product.media.size > 0 %}
-      <product-gallery class="flex w-full shrink-0 gap-5 lg:sticky lg:top-8 lg:w-[585px]">
-        <div class="order-2 flex gap-3 overflow-x-auto lg:order-1 lg:w-[101px] lg:shrink-0 lg:flex-col lg:overflow-visible">
+      <product-gallery class="flex w-full flex-col gap-3 sm:gap-5 md:min-w-[300px] md:w-[350px] lg:sticky lg:top-8 lg:w-[585px] lg:flex-row lg:shrink-0">
+        <div class="order-2 flex gap-2 overflow-x-auto sm:gap-3 lg:order-1 lg:w-[101px] lg:shrink-0 lg:flex-col lg:overflow-visible">
           {% for media in product.media %}
             <button
               type="button"
-              class="aspect-square w-[101px] shrink-0 overflow-hidden rounded-lg lg:w-full {% if forloop.first %}outline-2 outline-offset-2 outline-[#212323]{% endif %}"
+              class="aspect-square w-[80px] shrink-0 overflow-hidden rounded-lg sm:w-[101px] lg:w-full {% if forloop.first %}outline-2 outline-offset-2 outline-[#212323]{% endif %}"
               data-gallery-thumb
               data-index="{{ forloop.index0 }}"
               aria-label="{{ 'general.accessibility.view_media' | t: index: forloop.index }}"
@@ -35,7 +35,7 @@
           {% endfor %}
         </div>
 
-        <div class="relative order-1 aspect-[464/642] w-full flex-1 overflow-hidden rounded-[40px] lg:order-2">
+        <div class="relative order-1 aspect-[3/4] w-full flex-1 overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[40px] lg:order-2">
           {% for media in product.media %}
             <div
               class="{% unless forloop.first %}hidden{% endunless %} absolute inset-0"
@@ -85,7 +85,7 @@
           <div class="flex items-center gap-2">
             {% if section.settings.rating > 0 %}
               <div
-                class="flex items-center gap-[2px] text-[#212323]"
+                class="flex items-center gap-[1px] text-[#212323]"
                 role="img"
                 aria-label="{{ 'products.main.rating_label' | t: rating: section.settings.rating }}"
               >
@@ -93,8 +93,9 @@
                   <span
                     class="block size-4 {% unless i <= rating_rounded %}opacity-20{% endunless %}"
                     aria-hidden="true"
+                    style="color: currentColor;"
                   >
-                    {{ 'icon-star.svg' | inline_asset_content }}
+                    {{ 'icon-star-thin-filled.svg' | inline_asset_content }}
                   </span>
                 {% endfor %}
               </div>
@@ -161,7 +162,7 @@
       <product-purchase class="flex w-full flex-col gap-10">
         {% form 'product', product %}
           {% if product.has_only_default_variant == false %}
-            <div class="flex w-full flex-col gap-4">
+            <div class="flex w-full flex-col gap-4 mb-10">
               <p id="pack-size-heading-{{ section.id }}" class="text-[16px] leading-[1.3] font-medium text-[#212323]">
                 {{ 'products.main.quantity' | t }}
               </p>
@@ -232,7 +233,7 @@
               endif
             %}
             <div
-              class="flex w-full flex-col gap-[10px]"
+              class="flex w-full flex-col gap-5 sm:gap-5"
               role="radiogroup"
               aria-label="{{ 'products.main.purchase_option_group_label' | t }}"
             >
@@ -335,7 +336,7 @@
           <button
             type="submit"
             name="add"
-            class="flex h-[58px] w-full items-center justify-center gap-[5px] rounded-[30px] bg-[#212323] px-8 py-4 text-center text-[20px] text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85 disabled:opacity-30"
+            class="flex h-[58px] w-full items-center justify-center gap-[5px] rounded-[30px] bg-[#212323] px-8 py-4 text-center text-[20px] text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85 disabled:opacity-30 mt-5"
             data-buy-button
             {% unless current_variant.available %}
               disabled
@@ -412,7 +413,7 @@
               {% render 'button',
                 label: section.settings.promo_button_label,
                 url: section.settings.promo_button_link,
-                class: 'w-full whitespace-nowrap'
+                class: '!w-auto whitespace-nowrap'
               %}
             {% endif %}
 

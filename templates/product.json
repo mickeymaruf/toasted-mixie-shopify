@@ -174,7 +174,7 @@
               "name": "t:general.accordion_item",
               "settings": {
                 "title": "Ingredients & Allergies",
-                "content": ""
+                "content": "<p>What is Toasted?</p>"
               },
               "blocks": {}
             },
@@ -183,7 +183,7 @@
               "name": "t:general.accordion_item",
               "settings": {
                 "title": "What to Expect",
-                "content": ""
+                "content": "<p>What is Toasted?</p>"
               },
               "blocks": {}
             },
@@ -192,7 +192,7 @@
               "name": "t:general.accordion_item",
               "settings": {
                 "title": "Lab Results",
-                "content": ""
+                "content": "<p>What is Toasted?</p>"
               },
               "blocks": {}
             }
@@ -238,7 +238,7 @@
           "type": "faq-item",
           "settings": {
             "question": "Ingredients & Allergies",
-            "answer": "",
+            "answer": "<p>What is Toasted?</p>",
             "initially_open": false,
             "background_color": "#f9d5c0",
             "text_color": "#212323"
@@ -249,7 +249,7 @@
           "type": "faq-item",
           "settings": {
             "question": "What to Expect",
-            "answer": "",
+            "answer": "<p>What is Toasted?</p>",
             "initially_open": false,
             "background_color": "#f9d5c0",
             "text_color": "#212323"
@@ -260,7 +260,7 @@
           "type": "faq-item",
           "settings": {
             "question": "How is it dosed?",
-            "answer": "",
+            "answer": "<p>What is Toasted?</p>",
             "initially_open": false,
             "background_color": "#f9d5c0",
             "text_color": "#212323"
@@ -271,7 +271,7 @@
           "type": "faq-item",
           "settings": {
             "question": "Is it legal to ship?",
-            "answer": "",
+            "answer": "<p>What is Toasted?</p>",
             "initially_open": false,
             "background_color": "#f9d5c0",
             "text_color": "#212323"
@@ -282,7 +282,7 @@
           "type": "faq-item",
           "settings": {
             "question": "Lab Results",
-            "answer": "",
+            "answer": "<p>What is Toasted?</p>",
             "initially_open": false,
             "background_color": "#f9d5c0",
             "text_color": "#212323"
@@ -412,6 +412,66 @@
         "background_image": "shopify://shop_images/ingredient-highlights-background.png"
       }
     },
+    "gruns_product_list_Bh6NTx": {
+      "type": "gruns-product-list",
+      "blocks": {
+        "product_card_Nt6AWc": {
+          "type": "product-card",
+          "settings": {
+            "product": "blood-orange",
+            "flavor_name": "Blood Orange",
+            "flavor_name_color": "#b70141",
+            "description": "Bright. Smooth. Golden-hour ready.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Blood Orange",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        },
+        "product_card_9ReCdi": {
+          "type": "product-card",
+          "settings": {
+            "product": "berry-acai",
+            "flavor_name": "Berry Acai",
+            "flavor_name_color": "#5e1a79",
+            "description": "Deep. Juicy. Easy to enjoy.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Berry Acai",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        },
+        "product_card_VcLzPR": {
+          "type": "product-card",
+          "settings": {
+            "product": "ginger-lime",
+            "flavor_name": "Ginger Lime",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Ginger Lime",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "product_card_Nt6AWc",
+        "product_card_9ReCdi",
+        "product_card_VcLzPR"
+      ],
+      "name": "t:general.product_list",
+      "settings": {
+        "heading": "Choose your flavor.",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323",
+        "padding_top": 100,
+        "padding_bottom": 0
+      }
+    },
     "gruns_find_toasted_EFQ7iF": {
       "type": "gruns-find-toasted",
       "name": "t:general.gruns_find_toasted",
@@ -435,6 +495,7 @@
     "main",
     "faq_pills_grid_8Wfzf6",
     "ingredient_highlights_wcTznK",
+    "gruns_product_list_Bh6NTx",
     "gruns_find_toasted_EFQ7iF"
   ]
 }
