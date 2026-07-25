@@ -1,0 +1,394 @@
+{% comment %}
+  Global cart drawer, rendered once from layout/theme.liquid (not tied to a
+  template). Opens via any [data-cart-drawer-open] trigger (see the cart
+  icon in sections/header.liquid) or by calling the `<cart-drawer>` custom
+  element's `addItem()`/`changeLine()` methods directly (see the product
+  form submit handler added in sections/product.liquid).
+{% endcomment %}
+
+{% liquid
+  assign cart_total = cart.total_price
+  assign discount_threshold_cents = section.settings.discount_threshold | times: 100
+  assign free_shipping_threshold_cents = section.settings.free_shipping_threshold | times: 100
+  assign free_gift_threshold_cents = section.settings.free_gift_threshold | times: 100
+  assign max_threshold_cents = free_gift_threshold_cents | at_least: 1
+
+  assign discount_dot_percent = discount_threshold_cents | times: 100 | divided_by: max_threshold_cents
+  assign shipping_dot_percent = free_shipping_threshold_cents | times: 100 | divided_by: max_threshold_cents
+
+  assign progress_percent = cart_total | times: 100 | divided_by: max_threshold_cents | at_most: 100
+
+  if cart_total >= free_gift_threshold_cents
+    assign progress_message = 'cart_drawer.progress.all_unlocked' | t
+  elsif cart_total >= free_shipping_threshold_cents
+    assign remaining_money = free_gift_threshold_cents | minus: cart_total | money
+    assign progress_message = 'cart_drawer.progress.below_gift_html' | t: amount: remaining_money
+  elsif cart_total >= discount_threshold_cents
+    assign remaining_money = free_shipping_threshold_cents | minus: cart_total | money
+    assign progress_message = 'cart_drawer.progress.below_shipping_html' | t: amount: remaining_money
+  else
+    assign remaining_money = discount_threshold_cents | minus: cart_total | money
+    assign progress_message = 'cart_drawer.progress.below_discount_html' | t: amount: remaining_money
+  endif
+%}
+
+<cart-drawer class="group pointer-events-none fixed inset-0 z-50" data-cart-drawer>
+  <div
+    class="pointer-events-none absolute inset-0 bg-[#212323]/40 opacity-0 transition-opacity duration-[400ms] ease-out group-open:pointer-events-auto group-open:opacity-100"
+    data-cart-drawer-close
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="pointer-events-auto absolute inset-y-0 right-0 flex h-full w-full max-w-full translate-x-full flex-col overflow-y-auto bg-[#F6F1EC] p-6 transition-transform duration-[400ms] ease-out will-change-transform sm:max-w-[480px] sm:p-8 group-open:translate-x-0"
+    role="dialog"
+    aria-modal="true"
+    aria-label="{{ section.settings.heading }}"
+    data-cart-drawer-panel
+  >
+    <div class="flex w-full flex-col gap-6" data-cart-drawer-content>
+      <div class="flex w-full items-center justify-between">
+        <h2 class="flex-1 text-[28px] leading-[1.2] font-medium text-[#212323] sm:text-[32px]">
+          {{ section.settings.heading }}
+        </h2>
+        <button
+          type="button"
+          class="flex size-8 shrink-0 cursor-pointer items-center justify-center text-[#212323]"
+          data-cart-drawer-close
+          aria-label="{{ 'general.accessibility.close' | t }}"
+        >
+          {{ 'icon-close.svg' | inline_asset_content }}
+        </button>
+      </div>
+
+      <div class="flex w-full flex-col items-center justify-center gap-3 rounded-lg bg-[#F9D5C0] p-2">
+        <p class="w-full text-center text-[14px] leading-[1.3] font-medium text-[#212323]">{{ progress_message }}</p>
+
+        <div class="relative w-full rounded-full bg-[#F6F1EC] p-1">
+          <div class="h-2 rounded-full bg-[#212323]" style="width: {{ progress_percent }}%"></div>
+
+          <div
+            class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full p-[6px] {% if cart_total >= discount_threshold_cents %}bg-[#212323]{% else %}bg-[#212323]/30{% endif %}"
+            style="left: {{ discount_dot_percent }}%"
+          >
+            <span class="block size-4 text-[#F6F1EC]">{{ 'icon-percent.svg' | inline_asset_content }}</span>
+          </div>
+
+          <div
+            class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full p-[6px] {% if cart_total >= free_shipping_threshold_cents %}bg-[#212323]{% else %}bg-[#212323]/30{% endif %}"
+            style="left: {{ shipping_dot_percent }}%"
+          >
+            <span class="block size-4 text-[#F6F1EC]">{{ 'icon-shipping.svg' | inline_asset_content }}</span>
+          </div>
+
+          <div
+            class="absolute top-1/2 right-0 -translate-y-1/2 rounded-full p-[6px] {% if cart_total >= free_gift_threshold_cents %}bg-[#212323]{% else %}bg-[#212323]/30{% endif %}"
+          >
+            <span class="block size-4 text-[#F6F1EC]">{{ 'icon-gift.svg' | inline_asset_content }}</span>
+          </div>
+        </div>
+
+        <div class="flex w-full items-center justify-between text-[12px] leading-[1.3] font-medium text-[#212323]">
+          <p>{{ 'cart_drawer.milestone_discount' | t }}</p>
+          <p>{{ 'cart_drawer.milestone_shipping' | t }}</p>
+          <p>{{ 'cart_drawer.milestone_gift' | t }}</p>
+        </div>
+      </div>
+
+      {% if cart.item_count > 0 %}
+        <div class="flex w-full flex-col items-center justify-center gap-6">
+          {% for item in cart.items %}
+            {% render 'cart-drawer-item', item: item, line: forloop.index %}
+            {% unless forloop.last %}
+              <div class="h-px w-full bg-[#212323]/10"></div>
+            {% endunless %}
+          {% endfor %}
+
+          {% liquid
+            assign upgrade_tag = 'span'
+            if section.settings.upgrade_url != blank
+              assign upgrade_tag = 'a'
+            endif
+          %}
+          <{{ upgrade_tag }}
+            {% if section.settings.upgrade_url != blank %}
+              href="{{ section.settings.upgrade_url }}"
+            {% endif %}
+            class="flex w-full items-center justify-center rounded-full border border-[#212323] px-6 py-[14px] text-center text-[14px] leading-[1.3] text-[#212323]"
+          >
+            {{ section.settings.upgrade_label }}
+          </{{ upgrade_tag }}>
+        </div>
+
+        <div class="h-px w-full bg-[#212323]/10"></div>
+      {% else %}
+        <div class="flex w-full flex-col items-center gap-4 py-8 text-center">
+          <p class="text-[20px] font-medium text-[#212323]">{{ 'cart_drawer.empty_heading' | t }}</p>
+          <p class="text-[14px] text-[#212323]">{{ 'cart_drawer.empty_body' | t }}</p>
+        </div>
+
+        <div class="h-px w-full bg-[#212323]/10"></div>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="flex w-full flex-col items-center">
+          <p class="w-full text-center text-[16px] leading-[1.3] font-medium text-[#212323]">
+            {{ section.settings.recommendations_heading }}
+          </p>
+        </div>
+
+        <div class="h-px w-full bg-[#212323]/10"></div>
+
+        <cart-recommendations class="relative flex w-full items-center justify-center">
+          <div class="flex w-full items-center gap-4 overflow-x-auto scroll-smooth pb-1" data-recommendations-track>
+            {% content_for 'blocks' %}
+          </div>
+
+          <button
+            type="button"
+            class="absolute left-0 flex size-10 -translate-x-1 cursor-pointer items-center justify-center rounded-lg bg-[#212323] text-[#F6F1EC] disabled:cursor-not-allowed disabled:opacity-30"
+            data-recommendations-prev
+            aria-label="{{ 'general.accessibility.previous_slide' | t }}"
+          >
+            <span class="block size-6">{{ 'icon-arrow-left.svg' | inline_asset_content }}</span>
+          </button>
+
+          <button
+            type="button"
+            class="absolute right-0 flex size-10 translate-x-1 cursor-pointer items-center justify-center rounded-lg bg-[#212323] text-[#F6F1EC] disabled:cursor-not-allowed disabled:opacity-30"
+            data-recommendations-next
+            aria-label="{{ 'general.accessibility.next_slide' | t }}"
+          >
+            <span class="block size-6 rotate-180">{{ 'icon-arrow-left.svg' | inline_asset_content }}</span>
+          </button>
+        </cart-recommendations>
+      {% endif %}
+
+      {% if cart.item_count > 0 %}
+        <div class="flex w-full flex-col items-start gap-1">
+          <div class="flex w-full items-center justify-between">
+            <p class="text-[16px] leading-[1.3] font-medium text-[#626262]">
+              {{ 'cart_drawer.item_count' | t: count: cart.item_count }}
+            </p>
+            <div class="flex items-center justify-end gap-[6px]">
+              <p class="text-[18px] leading-[1.3] text-[#626262]">{{ 'cart_drawer.subtotal' | t }}</p>
+              <p class="text-[28px] leading-[1.2] font-medium text-[#212323]">{{ cart.total_price | money }}</p>
+            </div>
+          </div>
+          <p class="w-full text-right text-[12px] leading-[1.3] text-[#626262]">
+            {{ 'cart_drawer.shipping_note' | t }}
+          </p>
+        </div>
+
+        {% form 'cart', cart, class: 'flex w-full flex-col items-center gap-6' %}
+          <button
+            type="submit"
+            name="checkout"
+            class="flex w-full items-center justify-center gap-3 rounded-full bg-[#212323] px-8 py-4 text-[18px] font-medium text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85"
+          >
+            <span class="block size-5">{{ 'icon-lock.svg' | inline_asset_content }}</span>
+            {{ 'cart_drawer.checkout' | t }}
+          </button>
+
+          <button
+            type="button"
+            class="w-full text-center text-[18px] font-medium text-[#212323]"
+            data-cart-drawer-close
+          >
+            {{ 'cart_drawer.continue_shopping' | t }}
+          </button>
+        {% endform %}
+      {% else %}
+        <button
+          type="button"
+          class="w-full text-center text-[18px] font-medium text-[#212323]"
+          data-cart-drawer-close
+        >
+          {{ 'cart_drawer.continue_shopping' | t }}
+        </button>
+      {% endif %}
+    </div>
+  </div>
+</cart-drawer>
+
+{% javascript %}
+  class CartDrawer extends HTMLElement {
+    connectedCallback() {
+      this.content = this.querySelector('[data-cart-drawer-content]');
+      this.lastTrigger = null;
+
+      document.addEventListener('click', (event) => {
+        const opener = event.target.closest('[data-cart-drawer-open]');
+        if (opener) {
+          event.preventDefault();
+          this.lastTrigger = opener;
+          this.open();
+          return;
+        }
+
+        if (event.target.closest('[data-cart-drawer-close]')) {
+          this.close();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && this.hasAttribute('open')) this.close();
+      });
+
+      this.addEventListener('click', (event) => {
+        const removeLink = event.target.closest('[data-cart-remove]');
+        if (removeLink) {
+          event.preventDefault();
+          const line = removeLink.closest('[data-line]')?.dataset.line;
+          if (line) this.changeLine(line, 0);
+        }
+
+        const addButton = event.target.closest('[data-cart-add]');
+        if (addButton) {
+          event.preventDefault();
+          this.addItem({ id: addButton.dataset.variantId, quantity: 1 });
+        }
+      });
+
+      this.addEventListener('quantity-change', (event) => {
+        const line = event.target.closest('[data-line]')?.dataset.line;
+        if (line) this.changeLine(line, event.detail.value);
+      });
+    }
+
+    open() {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      this.setAttribute('open', '');
+      document.body.style.overflow = 'hidden';
+      if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
+      this.querySelector('[data-cart-drawer-close]:not([aria-hidden])')?.focus({ preventScroll: true });
+    }
+
+    close() {
+      this.removeAttribute('open');
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+      this.lastTrigger?.focus({ preventScroll: true });
+    }
+
+    async addItem(data) {
+      const isFormData = data instanceof FormData;
+
+      const response = await fetch('/cart/add.js', {
+        method: 'POST',
+        headers: isFormData
+          ? { Accept: 'application/json' }
+          : { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: isFormData ? data : JSON.stringify(data),
+      });
+
+      if (!response.ok) throw new Error('Failed to add item to cart');
+
+      await this.refresh();
+      this.open();
+    }
+
+    async changeLine(line, quantity) {
+      const response = await fetch('/cart/change.js', {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ line: Number(line), quantity: Number(quantity) }),
+      });
+
+      if (!response.ok) throw new Error('Failed to update cart');
+
+      await this.refresh();
+    }
+
+    async refresh() {
+      const response = await fetch(`${window.location.pathname}?sections=cart-drawer`);
+      if (!response.ok) return;
+
+      const data = await response.json();
+      const html = data['cart-drawer'];
+      if (!html) return;
+
+      const parsed = new DOMParser().parseFromString(html, 'text/html');
+      const nextContent = parsed.querySelector('[data-cart-drawer-content]');
+      if (nextContent && this.content) this.content.innerHTML = nextContent.innerHTML;
+
+      document.dispatchEvent(new CustomEvent('cart:updated'));
+    }
+  }
+
+  customElements.define('cart-drawer', CartDrawer);
+
+  class CartRecommendations extends HTMLElement {
+    connectedCallback() {
+      this.track = this.querySelector('[data-recommendations-track]');
+      this.querySelector('[data-recommendations-prev]')?.addEventListener('click', () => this.scroll(-1));
+      this.querySelector('[data-recommendations-next]')?.addEventListener('click', () => this.scroll(1));
+    }
+
+    scroll(direction) {
+      const amount = this.track.clientWidth * 0.8 * direction;
+      this.track?.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+  }
+
+  customElements.define('cart-recommendations', CartRecommendations);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.cart_drawer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Your Toasted bag"
+    },
+    {
+      "type": "header",
+      "content": "t:general.purchase"
+    },
+    {
+      "type": "number",
+      "id": "discount_threshold",
+      "label": "t:labels.discount_threshold",
+      "default": 50
+    },
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "label": "t:labels.free_shipping_threshold",
+      "default": 75
+    },
+    {
+      "type": "number",
+      "id": "free_gift_threshold",
+      "label": "t:labels.free_gift_threshold",
+      "default": 120
+    },
+    {
+      "type": "text",
+      "id": "upgrade_label",
+      "label": "t:labels.button_label",
+      "default": "Upgrade to Subscription & Save 20%"
+    },
+    {
+      "type": "url",
+      "id": "upgrade_url",
+      "label": "t:labels.button_link"
+    },
+    {
+      "type": "header",
+      "content": "t:general.recommended_product"
+    },
+    {
+      "type": "text",
+      "id": "recommendations_heading",
+      "label": "t:labels.recommendations_heading",
+      "default": "Try our best sellers and get free shipping"
+    }
+  ],
+  "blocks": [{ "type": "recommended-product" }],
+  "presets": [{ "name": "t:general.cart_drawer" }]
+}
+{% endschema %}

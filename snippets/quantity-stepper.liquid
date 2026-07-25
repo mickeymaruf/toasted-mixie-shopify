@@ -1,0 +1,96 @@
+{% doc %}
+  Renders a minus / number / plus quantity stepper.
+
+  Dispatches a bubbling `quantity-change` CustomEvent (`detail: { value }`)
+  on the host element whenever the value changes via the buttons or direct
+  input, so a parent listener can react without this snippet knowing what
+  it's attached to (a cart line, a product form, etc).
+
+  @param {number} quantity - The current quantity
+  @param {number} [min] - The minimum allowed quantity, default 0
+  @param {string} [name] - The name attribute for the underlying number input
+  @param {string} [aria_label] - Accessible label for the number input, already translated
+
+  @example
+  {% render 'quantity-stepper', quantity: item.quantity, min: 0 %}
+{% enddoc %}
+
+{% liquid
+  assign quantity = quantity | default: 1
+  assign min = min | default: 0
+  assign name = name | default: 'quantity'
+  if aria_label == blank
+    assign aria_label = 'cart_drawer.quantity' | t
+  endif
+%}
+
+<quantity-stepper class="inline-flex h-[31px] w-[105px] shrink-0 items-center justify-between rounded-full bg-[#F6F1EC] px-[20px] py-[14px]">
+  <button
+    type="button"
+    class="flex size-6 shrink-0 cursor-pointer items-center justify-center text-[#212323] disabled:cursor-not-allowed disabled:opacity-30"
+    data-quantity-decrease
+    {% if quantity <= min %}
+      disabled
+    {% endif %}
+    aria-label="{{ 'cart_drawer.decrease_quantity' | t }}"
+  >
+    {{ 'icon-minus.svg' | inline_asset_content }}
+  </button>
+
+  <input
+    type="number"
+    inputmode="numeric"
+    name="{{ name }}"
+    value="{{ quantity }}"
+    min="{{ min }}"
+    class="w-6 shrink-0 border-0 bg-transparent p-0 text-center text-[14px] text-[#212323] [appearance:textfield] focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+    data-quantity-input
+    aria-label="{{ aria_label }}"
+  >
+
+  <button
+    type="button"
+    class="flex size-6 shrink-0 cursor-pointer items-center justify-center text-[#212323]"
+    data-quantity-increase
+    aria-label="{{ 'cart_drawer.increase_quantity' | t }}"
+  >
+    {{ 'icon-plus.svg' | inline_asset_content }}
+  </button>
+</quantity-stepper>
+
+{% javascript %}
+  if (!customElements.get('quantity-stepper')) {
+    class QuantityStepper extends HTMLElement {
+      connectedCallback() {
+        this.input = this.querySelector('[data-quantity-input]');
+        this.decreaseButton = this.querySelector('[data-quantity-decrease]');
+        this.increaseButton = this.querySelector('[data-quantity-increase]');
+
+        this.decreaseButton?.addEventListener('click', () => this.step(-1));
+        this.increaseButton?.addEventListener('click', () => this.step(1));
+        this.input?.addEventListener('change', () => this.setValue(this.input.valueAsNumber));
+      }
+
+      get min() {
+        return Number(this.input?.min || 0);
+      }
+
+      step(delta) {
+        const current = this.input?.valueAsNumber || 0;
+        this.setValue(current + delta);
+      }
+
+      setValue(value) {
+        const min = this.min;
+        const next = Number.isFinite(value) ? Math.max(min, Math.round(value)) : min;
+
+        if (this.input) this.input.value = next;
+        if (this.decreaseButton) this.decreaseButton.disabled = next <= min;
+
+        this.dispatchEvent(new CustomEvent('quantity-change', { bubbles: true, detail: { value: next } }));
+      }
+    }
+
+    customElements.define('quantity-stepper', QuantityStepper);
+  }
+{% endjavascript %}

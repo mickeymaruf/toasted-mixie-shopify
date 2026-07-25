@@ -9,12 +9,100 @@
   <div class="navbar__bar">
     <nav class="navbar__menu" aria-label="{{ 'general.accessibility.navigation' | t }}">
       {% for link in section.settings.menu.links %}
-        <a href="{{ link.url }}" class="navbar__menu-item">
-          <span>{{ link.title }}</span>
-          {% if link.links.size > 0 %}
-            {{ 'icon-chevron-down.svg' | inline_asset_content }}
+        {% assign has_mega_menu = false %}
+        {% if section.settings.mega_menu_link_title != blank and link.title == section.settings.mega_menu_link_title %}
+          {% assign has_mega_menu = true %}
+        {% endif %}
+
+        <div class="navbar__menu-item-wrapper {% if has_mega_menu %}navbar__menu-item-wrapper--has-mega-menu{% endif %}">
+          <a href="{{ link.url }}" class="navbar__menu-item" {% if has_mega_menu %}data-mega-menu-trigger{% endif %}>
+            <span>{{ link.title }}</span>
+            {% if link.links.size > 0 or has_mega_menu %}
+              {{ 'icon-chevron-down.svg' | inline_asset_content }}
+            {% endif %}
+          </a>
+
+          {% if has_mega_menu %}
+            <!-- Mega Menu Drawer -->
+            <div class="navbar__mega-menu-drawer" data-mega-menu-drawer>
+              <div class="navbar__mega-menu-content">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 lg:gap-6 px-4 md:px-6 lg:px-[60px] py-6 sm:py-8">
+                  <!-- Mega Menu Button/Trigger - First Column Full Width -->
+                  <div class="col-span-1">
+                    <button
+                      class="navbar__mega-menu-button flex w-full items-center justify-between gap-4 rounded-full px-8 py-4 font-medium transition-all duration-200 hover:shadow-lg"
+                      style="background-color: {{ section.settings.mega_menu_button_background }}; color: {{ section.settings.mega_menu_button_text_color }};"
+                      aria-label="{{ section.settings.mega_menu_button_text }}"
+                    >
+                      <span class="text-base sm:text-lg">{{ section.settings.mega_menu_button_text }}</span>
+                      <svg class="h-6 w-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <!-- Mega Menu Cards - Remaining 3 Columns -->
+                  {% if section.blocks.size > 0 %}
+                    {% for block in section.blocks %}
+                      <div
+                        class="navbar__mega-menu-card flex gap-4 rounded-2xl p-4 transition-all duration-200 hover:shadow-md"
+                        style="background-color: {{ block.settings.card_background_color }}"
+                        {{ block.shopify_attributes }}
+                      >
+                        <!-- Product Image -->
+                        <div class="shrink-0 overflow-hidden rounded-lg" style="width: {{ block.settings.image_width }}px; height: {{ block.settings.image_height }}px;">
+                          {% if block.settings.product_image %}
+                            {{
+                              block.settings.product_image
+                              | image_url: width: 200, height: 200
+                              | image_tag:
+                                class: 'h-full w-full object-cover',
+                                alt: block.settings.product_name
+                            }}
+                          {% else %}
+                            <div class="flex h-full w-full items-center justify-center bg-gray-200">
+                              <span class="text-xs text-gray-400">No image</span>
+                            </div>
+                          {% endif %}
+                        </div>
+
+                        <!-- Product Info -->
+                        <div class="flex flex-1 flex-col justify-start gap-2">
+                          <!-- Rating and Reviews -->
+                          {% if block.settings.show_rating %}
+                            <div class="flex items-center gap-2">
+                              <div class="flex items-center gap-1">
+                                {% for i in (1..5) %}
+                                  {% if i <= block.settings.rating %}
+                                    <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" style="color: {{ block.settings.star_color }};">
+                                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                  {% else %}
+                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 20 20" style="color: {{ block.settings.star_color }}; stroke-width: 1.5;">
+                                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                  {% endif %}
+                                {% endfor %}
+                              </div>
+                              <span class="text-xs sm:text-sm" style="color: {{ block.settings.review_text_color }};">
+                                {{ block.settings.review_count }}
+                              </span>
+                            </div>
+                          {% endif %}
+
+                          <!-- Product Name -->
+                          <h3 class="text-sm font-semibold sm:text-base" style="color: {{ block.settings.product_name_color }};">
+                            {{ block.settings.product_name }}
+                          </h3>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
           {% endif %}
-        </a>
+        </div>
       {% endfor %}
     </nav>
 
@@ -49,13 +137,17 @@
       {% endif %}
 
       {% if section.settings.show_cart %}
-        <a
-          href="{{ routes.cart_url }}"
+        <button
+          type="button"
           class="navbar__icon-link navbar__icon-link--cart"
           aria-label="{{ 'general.accessibility.cart' | t }}"
+          data-cart-drawer-open
         >
           {{ 'icon-cart.svg' | inline_asset_content }}
-        </a>
+          <span class="navbar__cart-count" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>
+            {{ cart.item_count }}
+          </span>
+        </button>
       {% endif %}
     </div>
   </div>
@@ -66,6 +158,7 @@
     width: 100%;
     background-color: var(--navbar-background);
     color: var(--navbar-text);
+    position: relative;
   }
 
   .navbar__bar {
@@ -75,6 +168,7 @@
     gap: 1rem;
     padding-block: 1.375rem;
     padding-inline: clamp(var(--page-margin), 6vw, 6.25rem);
+    position: relative;
   }
 
   .navbar__menu {
@@ -83,6 +177,10 @@
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-self: start;
+  }
+
+  .navbar__menu-item-wrapper {
+    display: contents;
   }
 
   .navbar__menu-item {
@@ -100,6 +198,69 @@
     width: 0.75rem;
     height: auto;
     flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .navbar__menu-item-wrapper--has-mega-menu .navbar__menu-item svg {
+    transition: transform 0.3s ease;
+  }
+
+  .navbar__menu-item-wrapper--has-mega-menu:hover .navbar__menu-item svg,
+  .navbar__menu-item-wrapper--has-mega-menu.active .navbar__menu-item svg {
+    transform: rotate(180deg);
+  }
+
+  /* Mega Menu Drawer */
+  .navbar__mega-menu-drawer {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #F9D5C0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  .navbar__menu-item-wrapper--has-mega-menu:hover .navbar__mega-menu-drawer,
+  .navbar__menu-item-wrapper--has-mega-menu.active .navbar__mega-menu-drawer {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .navbar__mega-menu-content {
+    padding: 1.5rem 0;
+  }
+
+  .navbar__mega-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .navbar__mega-menu-button:hover {
+    opacity: 0.9;
+  }
+
+  .navbar__mega-menu-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all 0.2s ease;
+  }
+
+  .navbar__mega-menu-card:hover {
+    transform: translateY(-2px);
   }
 
   .navbar__logo {
@@ -153,6 +314,7 @@
   }
 
   .navbar__icon-link--cart {
+    position: relative;
     width: 2rem;
     height: 2rem;
   }
@@ -160,6 +322,24 @@
   .navbar__icon-link--cart svg {
     width: 100%;
     height: 100%;
+  }
+
+  .navbar__cart-count {
+    position: absolute;
+    top: -0.25rem;
+    right: -0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1rem;
+    height: 1rem;
+    padding-inline: 0.1875rem;
+    border-radius: 999px;
+    background-color: #FFFFFF;
+    color: #212323;
+    font-size: 0.625rem;
+    line-height: 1;
+    font-weight: 500;
   }
 
   .navbar__menu-item:hover,
@@ -175,11 +355,161 @@
     outline: 2px solid currentColor;
     outline-offset: 2px;
   }
+
+  @media (max-width: 1024px) {
+    .navbar__mega-menu-drawer {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      pointer-events: none;
+    }
+
+    .navbar__menu-item-wrapper--has-mega-menu.active .navbar__mega-menu-drawer {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+  }
 {% endstylesheet %}
+
+{% javascript %}
+  // Mega Menu functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const megaMenuWrappers = document.querySelectorAll('[data-mega-menu-trigger]');
+
+    megaMenuWrappers.forEach((trigger) => {
+      const wrapper = trigger.closest('.navbar__menu-item-wrapper');
+
+      // Close mega menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+          wrapper.classList.remove('active');
+        }
+      });
+
+      // Toggle on click (mobile support)
+      trigger.addEventListener('click', (e) => {
+        const isActive = wrapper.classList.contains('active');
+        document.querySelectorAll('.navbar__menu-item-wrapper.active').forEach((el) => {
+          el.classList.remove('active');
+        });
+        if (!isActive) {
+          wrapper.classList.add('active');
+        }
+        e.preventDefault();
+      });
+    });
+  });
+
+  // Cart update listener
+  document.addEventListener('cart:updated', async () => {
+    const response = await fetch('/cart.js');
+    if (!response.ok) return;
+
+    const cart = await response.json();
+    document.querySelectorAll('[data-cart-count]').forEach((el) => {
+      el.textContent = cart.item_count;
+      el.hidden = cart.item_count === 0;
+    });
+  });
+{% endjavascript %}
 
 {% schema %}
 {
   "name": "t:general.header",
+  "blocks": [
+    {
+      "type": "mega-menu-product",
+      "name": "t:general.product_card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "t:labels.product_image"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "t:labels.product_name",
+          "default": "Product Name"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "t:labels.star_rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "review_count",
+          "label": "t:labels.review_count",
+          "default": "9,176 Reviews"
+        },
+        {
+          "type": "header",
+          "content": "t:general.colors"
+        },
+        {
+          "type": "color",
+          "id": "card_background_color",
+          "label": "t:labels.card_background",
+          "default": "#F6F1EC"
+        },
+        {
+          "type": "color",
+          "id": "product_name_color",
+          "label": "t:labels.product_name_color",
+          "default": "#212323"
+        },
+        {
+          "type": "color",
+          "id": "review_text_color",
+          "label": "t:labels.review_text_color",
+          "default": "#212323"
+        },
+        {
+          "type": "color",
+          "id": "star_color",
+          "label": "t:labels.star_color",
+          "default": "#D4941F"
+        },
+        {
+          "type": "header",
+          "content": "t:general.image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "label": "t:labels.image_width",
+          "min": 20,
+          "max": 150,
+          "step": 5,
+          "default": 75,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "image_height",
+          "label": "t:labels.image_height",
+          "min": 20,
+          "max": 150,
+          "step": 5,
+          "default": 75,
+          "unit": "px"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "t:labels.show_rating",
+          "default": true
+        }
+      ]
+    }
+  ],
   "settings": [
     {
       "type": "image_picker",
@@ -224,6 +554,36 @@
       "id": "show_cart",
       "label": "t:labels.show_cart",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:general.mega_menu"
+    },
+    {
+      "type": "text",
+      "id": "mega_menu_link_title",
+      "label": "t:labels.menu_item_title",
+      "info": "t:labels.mega_menu_link_info",
+      "placeholder": "Shop",
+      "default": "Shop"
+    },
+    {
+      "type": "text",
+      "id": "mega_menu_button_text",
+      "label": "t:labels.button_text",
+      "default": "Shop Drinks"
+    },
+    {
+      "type": "color",
+      "id": "mega_menu_button_background",
+      "label": "t:labels.button_background",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "mega_menu_button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC"
     },
     {
       "type": "header",

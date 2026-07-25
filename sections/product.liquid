@@ -488,10 +488,26 @@
       this.subscribeSavings = this.querySelector('[data-subscribe-savings]');
       this.subscribePercentPill = this.querySelector('[data-subscribe-percent-pill]');
       this.oneTimePrice = this.querySelector('[data-one-time-price]');
+      this.form = this.querySelector('form');
 
       this.addEventListener('change', (event) => {
         if (event.target.matches('[name="id"], [name="selling_plan"]')) this.update();
       });
+
+      this.form?.addEventListener('submit', (event) => this.handleSubmit(event));
+    }
+
+    async handleSubmit(event) {
+      const drawer = document.querySelector('cart-drawer');
+      if (!drawer) return;
+
+      event.preventDefault();
+
+      try {
+        await drawer.addItem(new FormData(this.form));
+      } catch (error) {
+        this.form.submit();
+      }
     }
 
     get currentVariant() {

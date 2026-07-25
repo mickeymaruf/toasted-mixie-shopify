@@ -19,8 +19,87 @@
       "facebook": "Facebook",
       "instagram": "Instagram",
       "tiktok": "TikTok",
-      "view_media": "View image {{ index }}"
-    }
+      "view_media": "View image {{ index }}",
+      "close": "Close"
+    },
+    "mega_menu": "Mega Menu",
+    "product_card": "Product Card",
+    "button": "Button",
+    "colors": "Colors",
+    "image": "Image",
+    "layout": "Layout",
+    "content": "Content",
+    "hero_banner": "Hero Banner",
+    "coa_cards": "COA Cards",
+    "coa_card": "COA Card",
+    "text": "Text",
+    "group": "Group",
+    "column": "Column",
+    "row": "Row",
+    "custom_section": "Custom Section"
+  },
+  "labels": {
+    "heading": "Heading",
+    "subheading": "Subheading",
+    "text_color": "Text color",
+    "background": "Background",
+    "image": "Image",
+    "button_text": "Button text",
+    "product_image": "Product image",
+    "product_name": "Product name",
+    "product_name_color": "Product name color",
+    "review_text_color": "Review text color",
+    "review_count": "Review count",
+    "star_rating": "Star rating",
+    "star_color": "Star color",
+    "button_background": "Button background",
+    "button_text_color": "Button text color",
+    "card_background": "Card background",
+    "image_width": "Image width",
+    "image_height": "Image height",
+    "show_rating": "Show rating",
+    "padding_top": "Padding top",
+    "padding_bottom": "Padding bottom",
+    "title": "Title",
+    "link_text": "Link text",
+    "link": "Link",
+    "text_style": "Text style",
+    "alignment": "Alignment",
+    "layout_direction": "Layout direction",
+    "button_style": "Button style",
+    "button_label": "Button label",
+    "arrow_label": "Arrow label",
+    "button_link": "Button link",
+    "show_button": "Show button",
+    "foreground": "Foreground",
+    "logo": "Logo",
+    "logo_width": "Logo width",
+    "menu": "Menu",
+    "secondary_link_text": "Secondary link text",
+    "secondary_link_url": "Secondary link URL",
+    "show_search": "Show search",
+    "show_cart": "Show cart",
+    "menu_item_title": "Menu item title for mega menu",
+    "mega_menu_link_info": "Enter the exact title of the menu item that should have a mega menu dropdown (e.g., 'Shop')"
+  },
+  "options": {
+    "text_style": {
+      "title": "Title",
+      "subtitle": "Subtitle",
+      "normal": "Normal"
+    },
+    "alignment": {
+      "left": "Left",
+      "center": "Center",
+      "right": "Right"
+    },
+    "direction": {
+      "horizontal": "Horizontal",
+      "vertical": "Vertical"
+    },
+    "full": "Full width",
+    "button": "Button",
+    "arrow_icon": "Arrow icon"
   },
   "sections": {
     "contact_form": {
@@ -52,6 +131,33 @@
     "title": "Cart",
     "update": "Update",
     "remove": "Remove"
+  },
+  "cart_drawer": {
+    "one_time": "One Time",
+    "add": "Add",
+    "quantity": "Quantity",
+    "decrease_quantity": "Decrease quantity",
+    "increase_quantity": "Increase quantity",
+    "remove_item": "Remove {{ title }}",
+    "subtotal": "Subtotal:",
+    "shipping_note": "Shipping, taxes, and discounts calculated at checkout.",
+    "checkout": "Checkout",
+    "continue_shopping": "Continue shopping",
+    "empty_heading": "Your bag is empty",
+    "empty_body": "Looks like you haven't added anything yet.",
+    "item_count": {
+      "one": "{{ count }} item",
+      "other": "{{ count }} items"
+    },
+    "milestone_discount": "20% off",
+    "milestone_shipping": "Free Shipping",
+    "milestone_gift": "Free Gift",
+    "progress": {
+      "below_discount_html": "Spend {{ amount }} more to unlock 20% off",
+      "below_shipping_html": "Spend {{ amount }} more to unlock free shipping",
+      "below_gift_html": "Spend {{ amount }} more to unlock a free gift",
+      "all_unlocked": "You've unlocked a free gift"
+    }
   },
   "customers": {
     "login": {

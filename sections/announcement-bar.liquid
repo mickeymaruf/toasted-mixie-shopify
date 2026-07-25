@@ -12,15 +12,28 @@
       <div class="announcement-bar__text">{{ section.settings.text }}</div>
     {% endif %}
 
-    {% if section.settings.show_button and section.settings.button_label != blank %}
-      {% if section.settings.button_link != blank %}
-        <a href="{{ section.settings.button_link }}" class="announcement-bar__button">
-          {{ section.settings.button_label }}
-        </a>
-      {% else %}
-        <span class="announcement-bar__button">
-          {{ section.settings.button_label }}
-        </span>
+    {% if section.settings.show_button %}
+      {% if section.settings.button_style == 'button' %}
+        {% if section.settings.button_label != blank %}
+          {% if section.settings.button_link != blank %}
+            <a href="{{ section.settings.button_link }}" class="announcement-bar__button">
+              {{ section.settings.button_label }}
+            </a>
+          {% else %}
+            <span class="announcement-bar__button">
+              {{ section.settings.button_label }}
+            </span>
+          {% endif %}
+        {% endif %}
+      {% elsif section.settings.button_style == 'arrow' %}
+        {% if section.settings.button_link != blank %}
+          <a href="{{ section.settings.button_link }}" class="announcement-bar__arrow-link" aria-label="{{ section.settings.arrow_label | default: 'View more' }}">
+            <svg class="announcement-bar__arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        {% endif %}
       {% endif %}
     {% endif %}
   </div>
@@ -76,6 +89,33 @@
     outline-offset: 2px;
   }
 
+  .announcement-bar__arrow-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--announcement-bar-button-text);
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .announcement-bar__arrow-link:hover {
+    opacity: 0.7;
+  }
+
+  .announcement-bar__arrow-link:focus-visible {
+    outline: 2px solid var(--announcement-bar-button-text);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .announcement-bar__arrow-icon {
+    width: 100%;
+    height: 100%;
+  }
+
   @media screen and (max-width: 47.9375rem) {
     .announcement-bar__content {
       gap: 0.5rem;
@@ -101,11 +141,29 @@
       "default": true
     },
     {
+      "type": "select",
+      "id": "button_style",
+      "label": "t:labels.button_style",
+      "options": [
+        { "value": "button", "label": "t:options.button" },
+        { "value": "arrow", "label": "t:options.arrow_icon" }
+      ],
+      "default": "button",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
       "type": "text",
       "id": "button_label",
       "label": "t:labels.button_label",
       "default": "Claim Your Trial",
-      "visible_if": "{{ section.settings.show_button }}"
+      "visible_if": "{{ section.settings.show_button and section.settings.button_style == 'button' }}"
+    },
+    {
+      "type": "text",
+      "id": "arrow_label",
+      "label": "t:labels.arrow_label",
+      "default": "View more",
+      "visible_if": "{{ section.settings.show_button and section.settings.button_style == 'arrow' }}"
     },
     {
       "type": "url",

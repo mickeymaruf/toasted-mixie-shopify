@@ -1,0 +1,348 @@
+{% doc %}
+  Renders a mega menu with a trigger button and dynamic product cards.
+  Displays products with images, star ratings, review counts, and product names.
+  Fully responsive and customizable with Tailwind CSS.
+
+  @example
+  {% section 'mega-menu' %}
+{% enddoc %}
+
+<section
+  class="mega-menu full-width"
+  style="background-color: {{ section.settings.background_color }};"
+  {{ section.shopify_attributes }}
+>
+  <div class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px]">
+    <div
+      class="flex flex-col gap-6 py-6 sm:gap-8 sm:py-8 lg:flex-row lg:items-center lg:gap-6 lg:py-6"
+      style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+    >
+      <!-- Trigger Button -->
+      <div class="shrink-0 lg:w-auto">
+        <button
+          class="mega-menu__trigger flex w-full items-center justify-between gap-4 rounded-full px-8 py-4 font-medium transition-all duration-200 hover:shadow-lg sm:w-auto"
+          style="background-color: {{ section.settings.button_background_color }}; color: {{ section.settings.button_text_color }};"
+          aria-label="{{ section.settings.button_text }}"
+        >
+          <span class="text-base sm:text-lg">{{ section.settings.button_text }}</span>
+          <svg
+            class="mega-menu__trigger-icon h-6 w-6 shrink-0 transition-transform duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 7l5 5m0 0l-5 5m5-5H6"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Product Cards Container -->
+      {% if section.blocks.size > 0 %}
+        <div class="flex flex-1 flex-col gap-3 sm:gap-4 lg:flex-row">
+          {% for block in section.blocks %}
+            <div
+              class="mega-menu__card flex flex-1 gap-4 rounded-2xl p-4 transition-all duration-200 hover:shadow-md sm:gap-4 sm:p-4"
+              style="background-color: {{ block.settings.card_background_color }}"
+              {{ block.shopify_attributes }}
+            >
+              <!-- Product Image -->
+              <div class="shrink-0 overflow-hidden rounded-lg" style="width: {{ block.settings.image_width }}px; height: {{ block.settings.image_height }}px;">
+                {% if block.settings.product_image %}
+                  {{
+                    block.settings.product_image
+                    | image_url: width: 200, height: 200
+                    | image_tag:
+                      class: 'h-full w-full object-cover',
+                      alt: block.settings.product_name
+                  }}
+                {% else %}
+                  <div class="flex h-full w-full items-center justify-center bg-gray-200">
+                    <span class="text-xs text-gray-400">No image</span>
+                  </div>
+                {% endif %}
+              </div>
+
+              <!-- Product Info -->
+              <div class="flex flex-1 flex-col justify-start gap-2 sm:gap-2">
+                <!-- Rating and Reviews -->
+                {% if block.settings.show_rating %}
+                  <div class="flex items-center gap-2">
+                    <!-- Stars -->
+                    <div class="flex items-center gap-1">
+                      {% for i in (1..5) %}
+                        {% if i <= block.settings.rating %}
+                          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" style="color: {{ block.settings.star_color }};">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        {% else %}
+                          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 20 20" style="color: {{ block.settings.star_color }}; stroke-width: 1.5;">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                    <!-- Review Count -->
+                    <span class="text-xs sm:text-sm" style="color: {{ block.settings.review_text_color }};">
+                      {{ block.settings.review_count }}
+                    </span>
+                  </div>
+                {% endif %}
+
+                <!-- Product Name -->
+                <h3 class="text-sm font-semibold sm:text-base" style="color: {{ block.settings.product_name_color }};">
+                  {{ block.settings.product_name }}
+                </h3>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .mega-menu {
+    position: relative;
+    width: 100%;
+  }
+
+  .mega-menu__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .mega-menu__trigger:hover {
+    opacity: 0.9;
+  }
+
+  .mega-menu__trigger-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .mega-menu__card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all 0.2s ease;
+  }
+
+  .mega-menu__card:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 640px) {
+    .mega-menu__trigger {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.mega_menu",
+  "blocks": [
+    {
+      "type": "product-card",
+      "name": "t:general.product_card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "t:labels.product_image"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "t:labels.product_name",
+          "default": "Product Name"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "t:labels.star_rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "review_count",
+          "label": "t:labels.review_count",
+          "default": "9,176 Reviews"
+        },
+        {
+          "type": "header",
+          "content": "t:general.colors"
+        },
+        {
+          "type": "color",
+          "id": "card_background_color",
+          "label": "t:labels.card_background",
+          "default": "#F6F1EC"
+        },
+        {
+          "type": "color",
+          "id": "product_name_color",
+          "label": "t:labels.product_name_color",
+          "default": "#212323"
+        },
+        {
+          "type": "color",
+          "id": "review_text_color",
+          "label": "t:labels.review_text_color",
+          "default": "#212323"
+        },
+        {
+          "type": "color",
+          "id": "star_color",
+          "label": "t:labels.star_color",
+          "default": "#D4941F"
+        },
+        {
+          "type": "header",
+          "content": "t:general.image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "label": "t:labels.image_width",
+          "min": 20,
+          "max": 150,
+          "step": 5,
+          "default": 75,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "image_height",
+          "label": "t:labels.image_height",
+          "min": 20,
+          "max": 150,
+          "step": 5,
+          "default": 75,
+          "unit": "px"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "t:labels.show_rating",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "t:labels.button_text",
+      "default": "Shop Drinks"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "header",
+      "content": "t:general.layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.mega_menu",
+      "blocks": [
+        {
+          "type": "product-card",
+          "settings": {
+            "product_name": "Blood Orange",
+            "rating": 4,
+            "review_count": "9,176 Reviews",
+            "card_background_color": "#F6F1EC",
+            "image_width": 75,
+            "image_height": 75
+          }
+        },
+        {
+          "type": "product-card",
+          "settings": {
+            "product_name": "Ginger Lime",
+            "rating": 4,
+            "review_count": "9,176 Reviews",
+            "card_background_color": "#F6F1EC",
+            "image_width": 75,
+            "image_height": 75
+          }
+        },
+        {
+          "type": "product-card",
+          "settings": {
+            "product_name": "Berry Acai",
+            "rating": 4,
+            "review_count": "9,176 Reviews",
+            "card_background_color": "#F6F1EC",
+            "image_width": 75,
+            "image_height": 75
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
