@@ -12,15 +12,21 @@
   style="background-color: {{ block.settings.background_color }};"
   {{ block.shopify_attributes }}
 >
-  {% if block.settings.background_image %}
-    <div class="pointer-events-none absolute inset-0 opacity-5" aria-hidden="true">
+  <div class="pointer-events-none absolute inset-0 opacity-5" aria-hidden="true">
+    {% if block.settings.background_image %}
       {{
         block.settings.background_image
         | image_url: width: 2000
         | image_tag: class: 'size-full object-cover', alt: ''
       }}
-    </div>
-  {% endif %}
+    {% else %}
+      <img
+        src="{{ 'media-testimonial-bg.png' | asset_url }}"
+        alt=""
+        class="size-full object-cover"
+      >
+    {% endif %}
+  </div>
 
   <media-testimonial-video
     class="relative aspect-[576/394] w-full shrink-0 overflow-hidden rounded-[25px] lg:w-[576px]"

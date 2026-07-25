@@ -32,30 +32,44 @@
         "mega_menu_product_BhbVq7": {
           "type": "mega-menu-product",
           "settings": {
-            "product_name": "Product Name",
+            "product": "blood-orange",
             "rating": 5,
             "review_count": "9,176 Reviews",
             "card_background_color": "#f6f1ec",
-            "product_name_color": "#212323",
-            "review_text_color": "#212323",
-            "star_color": "#d4941f",
-            "image_width": 75,
-            "image_height": 75,
-            "show_rating": true
+            "star_color": "#d4941f"
+          }
+        },
+        "mega_menu_product_UEH99n": {
+          "type": "mega-menu-product",
+          "settings": {
+            "product": "berry-acai",
+            "rating": 5,
+            "review_count": "9,176 Reviews",
+            "card_background_color": "#f6f1ec",
+            "star_color": "#d4941f"
+          }
+        },
+        "mega_menu_product_XqzCjY": {
+          "type": "mega-menu-product",
+          "settings": {
+            "product": "berry-acai",
+            "rating": 5,
+            "review_count": "9,176 Reviews",
+            "card_background_color": "#f6f1ec",
+            "star_color": "#d4941f"
           }
         }
       },
       "block_order": [
-        "mega_menu_product_BhbVq7"
+        "mega_menu_product_BhbVq7",
+        "mega_menu_product_UEH99n",
+        "mega_menu_product_XqzCjY"
       ],
       "settings": {
         "logo": "shopify://shop_images/toaster-logo.svg",
         "logo_width": 184,
         "menu": "shop",
-        "secondary_link_text": "Find Toasted",
-        "secondary_link_url": "",
-        "show_search": true,
-        "show_cart": true,
+        "search_button_text": "Find Toasted",
         "mega_menu_link_title": "Shop",
         "mega_menu_button_text": "Shop Drinks",
         "mega_menu_button_background": "#212323",

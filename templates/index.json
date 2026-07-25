@@ -230,7 +230,8 @@
             "thumbnail": "shopify://shop_images/testimonial-video-thumb.png",
             "quote": "The only THC drink I've had that actually feels social, not stoned.",
             "attribution": "Jenna, Miami",
-            "background_color": "#f9d5c0"
+            "background_color": "#f9d5c0",
+            "background_image": "shopify://shop_images/Frame_2147235900.png"
           },
           "blocks": {}
         }
@@ -253,6 +254,7 @@
         "info_card_n8bHqY": {
           "type": "info-card",
           "settings": {
+            "icon": "shopify://shop_images/icon-trust_eb6927ef-1ac8-4d63-9a15-c4fdea6846a5.svg",
             "title": "Federally Compliant",
             "text": "Made with hemp-derived Delta-9 THC and compliant under the 2018 Farm Bill.",
             "background_color": "#9ab2d5"
@@ -262,6 +264,7 @@
         "info_card_ejDqcB": {
           "type": "info-card",
           "settings": {
+            "icon": "shopify://shop_images/icon-trust_eb6927ef-1ac8-4d63-9a15-c4fdea6846a5.svg",
             "title": "Micro-Dosed for Balance",
             "text": "0.4mg is designed for a light, social experience that helps you stay present.",
             "background_color": "#9ab2d5"
@@ -271,6 +274,7 @@
         "info_card_rWACwp": {
           "type": "info-card",
           "settings": {
+            "icon": "shopify://shop_images/icon-trust_eb6927ef-1ac8-4d63-9a15-c4fdea6846a5.svg",
             "title": "Made for Everyday Moments",
             "text": "Enjoy responsibly. Start with one. Never drive or mix with alcohol on your first can.",
             "background_color": "#9ab2d5"
@@ -280,6 +284,7 @@
         "info_card_dxDrEc": {
           "type": "info-card",
           "settings": {
+            "icon": "shopify://shop_images/icon-trust_eb6927ef-1ac8-4d63-9a15-c4fdea6846a5.svg",
             "title": "Crafted With Purpose",
             "text": "Made with real fruit juice, L-theanine, rhodiola, and 0.4mg hemp-derived THC for a balanced social ritual.",
             "background_color": "#9ab2d5"

@@ -78,6 +78,8 @@
     "secondary_link_text": "Secondary link text",
     "secondary_link_url": "Secondary link URL",
     "show_search": "Show search",
+    "search_button_text": "Search button text",
+    "search_button_text_info": "Text to display next to search icon on desktop",
     "show_cart": "Show cart",
     "menu_item_title": "Menu item title for mega menu",
     "mega_menu_link_info": "Enter the exact title of the menu item that should have a mega menu dropdown (e.g., 'Shop')"

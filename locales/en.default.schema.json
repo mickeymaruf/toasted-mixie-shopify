@@ -195,6 +195,8 @@
     "show_cart": "Show cart icon",
     "show_payment_icons": "Show payment icons",
     "show_search": "Show search icon",
+    "search_button_text": "Search button text",
+    "search_button_text_info": "Text to display next to search icon on desktop",
     "show_social_icons": "Show social icons",
     "subheading": "Subheading",
     "subtext": "Subtext",
