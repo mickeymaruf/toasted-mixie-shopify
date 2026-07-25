@@ -104,6 +104,7 @@
     "background_image": "Background image",
     "badge_text": "Badge text",
     "body": "Body text",
+    "button_text": "Button text",
     "card_background": "Card background",
     "button_background": "Button background",
     "button_label": "Button label",
@@ -123,6 +124,8 @@
     "facebook_link": "Facebook link",
     "feature_1_text": "Feature 1 text",
     "feature_2_text": "Feature 2 text",
+    "field_label": "Field label",
+    "field_type": "Field type",
     "flavor_name": "Flavor name",
     "flavor_name_color": "Flavor name color",
     "foreground": "Foreground",
@@ -225,6 +228,26 @@
     "width": {
       "one_third": "One-third (square)",
       "two_thirds": "Two-thirds (wide)"
+    }
+  },
+  "sections": {
+    "contact_form": {
+      "name": "Contact form",
+      "form_type": "Form type",
+      "shopify_form": "Shopify contact form",
+      "custom_form": "Custom form (requires external handler)",
+      "form_endpoint": "Form submission endpoint",
+      "form_endpoint_info": "URL where form data will be submitted",
+      "field": "Form field",
+      "field_name": "Field name (for form data)",
+      "field_name_info": "Use lowercase with underscores, e.g., 'phone_number'",
+      "field_type_text": "Text",
+      "field_type_email": "Email",
+      "field_type_phone": "Phone",
+      "field_required": "Required field",
+      "column_span": "Width",
+      "column_span_half": "Half width (2 columns on desktop)",
+      "column_span_full": "Full width"
     }
   }
 }

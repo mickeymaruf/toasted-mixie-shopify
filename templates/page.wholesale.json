@@ -80,12 +80,153 @@
         "padding_top": 100,
         "padding_bottom": 100
       }
+    },
+    "contact_form_chM34h": {
+      "type": "contact-form",
+      "blocks": {
+        "field_Q8r3gQ": {
+          "type": "field",
+          "settings": {
+            "field_label": "Name",
+            "field_name": "name",
+            "field_type": "text",
+            "field_required": true,
+            "column_span": "1"
+          }
+        },
+        "field_zjejqq": {
+          "type": "field",
+          "settings": {
+            "field_label": "Email",
+            "field_name": "email",
+            "field_type": "email",
+            "field_required": true,
+            "column_span": "1"
+          }
+        },
+        "field_yeRcBT": {
+          "type": "field",
+          "settings": {
+            "field_label": "Business name",
+            "field_name": "business_name",
+            "field_type": "text",
+            "field_required": false,
+            "column_span": "1"
+          }
+        },
+        "field_fMAxHf": {
+          "type": "field",
+          "settings": {
+            "field_label": "Phone number",
+            "field_name": "phone",
+            "field_type": "phone",
+            "field_required": false,
+            "column_span": "1"
+          }
+        },
+        "field_KLdPet": {
+          "type": "field",
+          "settings": {
+            "field_label": "Business type",
+            "field_name": "business_type",
+            "field_type": "text",
+            "field_required": false,
+            "column_span": "2"
+          }
+        },
+        "field_cERnBi": {
+          "type": "field",
+          "settings": {
+            "field_label": "City",
+            "field_name": "city",
+            "field_type": "text",
+            "field_required": false,
+            "column_span": "1"
+          }
+        },
+        "field_NkJQbY": {
+          "type": "field",
+          "settings": {
+            "field_label": "Message",
+            "field_name": "message",
+            "field_type": "text",
+            "field_required": false,
+            "column_span": "1"
+          }
+        },
+        "field_UTzMVr": {
+          "type": "field",
+          "settings": {
+            "field_label": "Country",
+            "field_name": "country",
+            "field_type": "text",
+            "field_required": false,
+            "column_span": "1"
+          }
+        },
+        "field_h3akyV": {
+          "type": "field",
+          "settings": {
+            "field_label": "Website (Leave Blank If N/A)",
+            "field_name": "website",
+            "field_type": "text",
+            "field_required": false,
+            "column_span": "1"
+          }
+        },
+        "field_bEEdGF": {
+          "type": "field",
+          "settings": {
+            "field_label": "Number of locations",
+            "field_name": "locations",
+            "field_type": "text",
+            "field_required": false,
+            "column_span": "1"
+          }
+        },
+        "field_8TVnDV": {
+          "type": "field",
+          "settings": {
+            "field_label": "EIN",
+            "field_name": "ein",
+            "field_type": "text",
+            "field_required": false,
+            "column_span": "1"
+          }
+        }
+      },
+      "block_order": [
+        "field_Q8r3gQ",
+        "field_zjejqq",
+        "field_yeRcBT",
+        "field_fMAxHf",
+        "field_KLdPet",
+        "field_cERnBi",
+        "field_NkJQbY",
+        "field_UTzMVr",
+        "field_h3akyV",
+        "field_bEEdGF",
+        "field_8TVnDV"
+      ],
+      "name": "t:sections.contact_form.name",
+      "settings": {
+        "heading": "Partner with us",
+        "subheading": "Tell us about your venue, store, or event.",
+        "form_type": "shopify_contact",
+        "form_endpoint": "",
+        "button_text": "Submit inquiry",
+        "background_color": "#F6F1EC",
+        "text_color": "#212323",
+        "button_background_color": "#212323",
+        "button_text_color": "#F6F1EC"
+      }
     }
   },
   "order": [
     "main",
     "hero_banner_TVLmyk",
     "gruns_hero_LTibNz",
-    "promo_cards_tdzKYC"
+    "promo_cards_tdzKYC",
+    "contact_form_chM34h"
   ]
 }

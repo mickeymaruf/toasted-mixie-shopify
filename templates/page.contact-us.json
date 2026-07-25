@@ -1,0 +1,85 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "contact_form_EGJVcd": {
+      "type": "contact-form",
+      "blocks": {
+        "field_PfMXBi": {
+          "type": "field",
+          "settings": {
+            "field_label": "Name",
+            "field_name": "name",
+            "field_type": "text",
+            "field_required": true,
+            "column_span": "1"
+          }
+        },
+        "field_t9zEDU": {
+          "type": "field",
+          "settings": {
+            "field_label": "Email",
+            "field_name": "email",
+            "field_type": "email",
+            "field_required": true,
+            "column_span": "1"
+          }
+        },
+        "field_GqTQRV": {
+          "type": "field",
+          "settings": {
+            "field_label": "Subject",
+            "field_name": "subject",
+            "field_type": "text",
+            "field_required": true,
+            "column_span": "2"
+          }
+        },
+        "field_pbVDQi": {
+          "type": "field",
+          "settings": {
+            "field_label": "Message",
+            "field_name": "message",
+            "field_type": "text",
+            "field_required": true,
+            "column_span": "2"
+          }
+        }
+      },
+      "block_order": [
+        "field_PfMXBi",
+        "field_t9zEDU",
+        "field_GqTQRV",
+        "field_pbVDQi"
+      ],
+      "name": "t:sections.contact_form.name",
+      "settings": {
+        "heading": "Partner with us",
+        "subheading": "Tell us about your venue, store, or event.",
+        "form_type": "shopify_contact",
+        "form_endpoint": "",
+        "button_text": "Submit inquiry",
+        "background_color": "#F6F1EC",
+        "text_color": "#212323",
+        "button_background_color": "#212323",
+        "button_text_color": "#F6F1EC"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "contact_form_EGJVcd"
+  ]
+}

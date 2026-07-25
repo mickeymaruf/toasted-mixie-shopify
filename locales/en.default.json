@@ -22,6 +22,12 @@
       "view_media": "View image {{ index }}"
     }
   },
+  "sections": {
+    "contact_form": {
+      "success_message": "Thank you! Your inquiry has been received.",
+      "error_message": "There was an error submitting the form. Please try again."
+    }
+  },
   "footer": {
     "email_label": "Email address",
     "newsletter_success": "Thanks for subscribing!",
