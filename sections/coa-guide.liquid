@@ -1,0 +1,157 @@
+{% doc %}
+  Renders a "How to Read a COA" guide with a heading and a list of
+  label/description rows separated by dividers. Each row is a block so
+  merchants can add, remove, and reorder items. Responsive: rows stack on
+  mobile and align side-by-side with a vertical divider from tablet up.
+{% enddoc %}
+
+<section
+  class="coa-guide full-width"
+  style="background-color: {{ section.settings.background_color }};"
+  {{ section.shopify_attributes }}
+>
+  <div
+    class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px]"
+    style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+  >
+    {% if section.settings.heading != blank %}
+      <h2 class="coa-guide__heading mb-10 text-center text-[40px] font-bold leading-[0.95] tracking-[-1.2px] text-[#212323] sm:text-[56px] sm:tracking-[-1.68px] md:mb-[50px] md:text-[72px] md:tracking-[-2.16px]">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="coa-guide__list mx-auto w-full max-w-[988px]">
+        {% for block in section.blocks %}
+          <div
+            class="coa-guide__row flex flex-col gap-2 py-6 sm:flex-row sm:items-start sm:gap-0 md:py-8 {% unless forloop.last %}border-b border-[#212323]/15{% endunless %}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="coa-guide__label shrink-0 sm:w-[220px] sm:border-r sm:border-[#212323]/15 sm:pr-8 md:w-[280px] md:pr-10 lg:w-[368px]">
+              {% if block.settings.title != blank %}
+                <p class="text-[18px] font-medium leading-[1.5] text-[#212323] md:text-[24px]">
+                  {{ block.settings.title }}
+                </p>
+              {% endif %}
+            </div>
+
+            <div class="coa-guide__description sm:flex-1 sm:pl-8 md:pl-10">
+              {% if block.settings.description != blank %}
+                <p class="text-[16px] font-normal leading-[1.5] text-[#212323] md:text-[24px]">
+                  {{ block.settings.description }}
+                </p>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.coa_guide",
+  "blocks": [
+    {
+      "type": "row",
+      "name": "t:general.row",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:labels.title",
+          "default": "Summary Page"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "t:labels.description",
+          "default": "CBD content, THC detection*, total cannabinoids, and terpene content."
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "How to Read a COA"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "header",
+      "content": "t:general.layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.coa_guide",
+      "blocks": [
+        {
+          "type": "row",
+          "settings": {
+            "title": "Summary Page",
+            "description": "CBD content, THC detection*, total cannabinoids, and terpene content."
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "title": "Safety Standards",
+            "description": "Tested for residual solvents, pesticides, heavy metals, and biological impurities."
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "title": "Detailed Reports",
+            "description": "Full cannabinoid profile and terpene analysis are provided on the following pages."
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "title": "Reference Guide",
+            "description": "A glossary of abbreviations and acronyms is included for easy understanding."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

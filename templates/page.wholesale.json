@@ -9,6 +9,22 @@
  */
 {
   "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "hero_banner_TVLmyk": {
+      "type": "hero-banner",
+      "name": "t:general.hero_banner",
+      "settings": {
+        "heading": "Choose your Flavor.",
+        "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
+        "heading_color": "#f6f1ec",
+        "background_image": "shopify://shop_images/wholesale-banner.png",
+        "background_color": "#e5e5e5"
+      }
+    },
     "gruns_hero_LTibNz": {
       "type": "gruns-hero",
       "name": "t:general.gruns_hero",
@@ -28,14 +44,10 @@
         "product_image_alt": ""
       }
     },
-    "main": {
-      "type": "page",
-      "settings": {}
-    },
-    "promo_cards_7Gxqne": {
+    "promo_cards_tdzKYC": {
       "type": "promo-cards",
       "blocks": {
-        "promo_card_f6rznR": {
+        "promo_card_EtJc98": {
           "type": "promo-card",
           "settings": {
             "image": "shopify://shop_images/partner-1.png",
@@ -46,7 +58,7 @@
           },
           "blocks": {}
         },
-        "promo_card_6rVbCP": {
+        "promo_card_AcJAHb": {
           "type": "promo-card",
           "settings": {
             "image": "shopify://shop_images/partner-2.png",
@@ -59,8 +71,8 @@
         }
       },
       "block_order": [
-        "promo_card_f6rznR",
-        "promo_card_6rVbCP"
+        "promo_card_EtJc98",
+        "promo_card_AcJAHb"
       ],
       "name": "t:general.promo_cards",
       "settings": {
@@ -71,8 +83,9 @@
     }
   },
   "order": [
-    "gruns_hero_LTibNz",
     "main",
-    "promo_cards_7Gxqne"
+    "hero_banner_TVLmyk",
+    "gruns_hero_LTibNz",
+    "promo_cards_tdzKYC"
   ]
 }

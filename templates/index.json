@@ -371,126 +371,6 @@
         "background_color": "#f6f1ec",
         "heading_color": "#212323"
       }
-    },
-    "story_tiles_QDAa9d": {
-      "type": "story-tiles",
-      "blocks": {
-        "story_tile_row_3iEKMK": {
-          "type": "story-tile-row",
-          "settings": {},
-          "blocks": {
-            "story_tile_text_P8HFRy": {
-              "type": "story-tile-text",
-              "settings": {
-                "heading": "<p>More open. More present. More here.</p>",
-                "body": "",
-                "background_color": "#f9d5c0",
-                "text_color": "#212323",
-                "width": "1"
-              },
-              "blocks": {}
-            },
-            "story_tile_image_wxVqXr": {
-              "type": "story-tile-image",
-              "settings": {
-                "image": "shopify://shop_images/Frame_2147235830.png",
-                "alt_text": "",
-                "show_grain": true,
-                "texture_opacity": 20,
-                "width": "1"
-              },
-              "blocks": {}
-            },
-            "story_tile_text_AcbfpR": {
-              "type": "story-tile-text",
-              "settings": {
-                "heading": "<p>More open. More present. More here.</p>",
-                "body": "<p>A lighter ritual for being present in the moment.</p>",
-                "background_color": "#c2cbd4",
-                "text_color": "#212323",
-                "width": "1"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "story_tile_text_P8HFRy",
-            "story_tile_image_wxVqXr",
-            "story_tile_text_AcbfpR"
-          ]
-        },
-        "story_tile_row_cRjwNa": {
-          "type": "story-tile-row",
-          "settings": {},
-          "blocks": {
-            "story_tile_image_9K9qww": {
-              "type": "story-tile-image",
-              "settings": {
-                "image": "shopify://shop_images/Frame_2147235832.png",
-                "alt_text": "",
-                "show_grain": true,
-                "texture_opacity": 20,
-                "width": "1"
-              },
-              "blocks": {}
-            },
-            "story_tile_text_9FXjLn": {
-              "type": "story-tile-text",
-              "settings": {
-                "heading": "<p>Good rooms deserve better options.</p>",
-                "body": "<p>Toasted belongs here. For premium venues, retailers, and partners who want a better option for the social moment.</p>",
-                "background_color": "#212323",
-                "text_color": "#f6f1ec",
-                "width": "2"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "story_tile_image_9K9qww",
-            "story_tile_text_9FXjLn"
-          ]
-        },
-        "story_tile_row_Q8gF9E": {
-          "type": "story-tile-row",
-          "settings": {},
-          "blocks": {
-            "story_tile_text_Tc9xwg": {
-              "type": "story-tile-text",
-              "settings": {
-                "heading": "<p>A note from Danny.</p>",
-                "body": "<p>We wanted a drink that helped you feel relaxed without checking out. Something light, tasteful, and made to be enjoyed any time of day.</p><p>This was built for those of us who ran out of options in today's social world.</p><p>Stay Toasted, my friends.<br/><em>Danny</em></p>",
-                "background_color": "#9ab2d5",
-                "text_color": "#212323",
-                "width": "2"
-              },
-              "blocks": {}
-            },
-            "story_tile_image_VAYaNF": {
-              "type": "story-tile-image",
-              "settings": {
-                "image": "shopify://shop_images/Frame_2147235832_1.png",
-                "alt_text": "",
-                "show_grain": true,
-                "texture_opacity": 20,
-                "width": "1"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "story_tile_text_Tc9xwg",
-            "story_tile_image_VAYaNF"
-          ]
-        }
-      },
-      "block_order": [
-        "story_tile_row_3iEKMK",
-        "story_tile_row_cRjwNa",
-        "story_tile_row_Q8gF9E"
-      ],
-      "name": "t:general.story_tiles",
-      "settings": {}
     }
   },
   "order": [
@@ -502,7 +382,6 @@
     "gruns_collage_callout_BeYC7N",
     "gruns_media_testimonials_VWVBLr",
     "gruns_info_grid_gPbYKk",
-    "gruns_gallery_AAGdfP",
-    "story_tiles_QDAa9d"
+    "gruns_gallery_AAGdfP"
   ]
 }

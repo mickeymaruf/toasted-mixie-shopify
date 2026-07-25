@@ -1,0 +1,166 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "content_banner_BDzrWf": {
+      "type": "content-banner",
+      "name": "t:general.content_banner",
+      "settings": {
+        "heading": "Certificate of Analysis",
+        "subheading": "All Toasted products are third-party lab tested. COAs are available on the site. Adults 21+ only. Use responsibly.",
+        "heading_color": "#212323",
+        "container_background_color": "#9ab2d5"
+      }
+    },
+    "lab_results_HmgaWd": {
+      "type": "lab-results",
+      "blocks": {
+        "step_Y3bXP4": {
+          "type": "step",
+          "settings": {
+            "step_number": "01",
+            "title": "SCAN THE CODE",
+            "description": "Scan the code on your can or packaging to open the latest lab results."
+          }
+        },
+        "step_PFNLFJ": {
+          "type": "step",
+          "settings": {
+            "step_number": "02",
+            "title": "FIND YOUR BATCH NUMBER",
+            "description": "Your batch number is printed on the bottom of the can."
+          }
+        },
+        "step_y4RKcc": {
+          "type": "step",
+          "settings": {
+            "step_number": "03",
+            "title": "REVIEW THE COA",
+            "description": "Check potency, ingredients, and testing details before you sip."
+          }
+        }
+      },
+      "block_order": [
+        "step_Y3bXP4",
+        "step_PFNLFJ",
+        "step_y4RKcc"
+      ],
+      "name": "Lab results",
+      "settings": {
+        "title": "Find your Lab Results",
+        "description": "Every Toasted batch is tested. Use your batch number to find the Certificate of Analysis for your can.",
+        "background_color": "#f6f1ec",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "coa_cards_EjEN6L": {
+      "type": "coa-cards",
+      "blocks": {
+        "coa_card_qR9k9P": {
+          "type": "coa-card",
+          "settings": {
+            "title": "Blood Orange COA",
+            "link_text": "View Batches",
+            "link": "",
+            "card_background_color": "#f9d5c0"
+          }
+        },
+        "coa_card_qbbx9W": {
+          "type": "coa-card",
+          "settings": {
+            "title": "Ginger Lime COA",
+            "link_text": "View Batches",
+            "link": "",
+            "card_background_color": "#f9d5c0"
+          }
+        },
+        "coa_card_Ap8UEx": {
+          "type": "coa-card",
+          "settings": {
+            "title": "Berry Acai COA",
+            "link_text": "View Batches",
+            "link": "",
+            "card_background_color": "#f9d5c0"
+          }
+        }
+      },
+      "block_order": [
+        "coa_card_qR9k9P",
+        "coa_card_qbbx9W",
+        "coa_card_Ap8UEx"
+      ],
+      "name": "t:general.coa_cards",
+      "settings": {
+        "background_color": "#ffffff",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "coa_guide_bpiRwk": {
+      "type": "coa-guide",
+      "blocks": {
+        "row_g9MtgK": {
+          "type": "row",
+          "settings": {
+            "title": "Summary Page",
+            "description": "CBD content, THC detection*, total cannabinoids, and terpene content."
+          }
+        },
+        "row_k7AfR7": {
+          "type": "row",
+          "settings": {
+            "title": "Safety Standards",
+            "description": "Tested for residual solvents, pesticides, heavy metals, and biological impurities."
+          }
+        },
+        "row_UyLTxp": {
+          "type": "row",
+          "settings": {
+            "title": "Detailed Reports",
+            "description": "Full cannabinoid profile and terpene analysis are provided on the following pages."
+          }
+        },
+        "row_LVmikA": {
+          "type": "row",
+          "settings": {
+            "title": "Reference Guide",
+            "description": "A glossary of abbreviations and acronyms is included for easy understanding."
+          }
+        }
+      },
+      "block_order": [
+        "row_g9MtgK",
+        "row_k7AfR7",
+        "row_UyLTxp",
+        "row_LVmikA"
+      ],
+      "name": "t:general.coa_guide",
+      "settings": {
+        "heading": "How to Read a COA",
+        "background_color": "#F6F1EC",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    }
+  },
+  "order": [
+    "main",
+    "content_banner_BDzrWf",
+    "lab_results_HmgaWd",
+    "coa_cards_EjEN6L",
+    "coa_guide_bpiRwk"
+  ]
+}

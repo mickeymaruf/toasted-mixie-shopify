@@ -1,0 +1,225 @@
+{% doc %}
+  Renders a "Find your Lab Results" section with three-step process layout.
+  Each step displays a numbered badge, title, and description with vertical
+  separator lines between steps. Responsive and fully customizable.
+{% enddoc %}
+
+<section
+  class="lab-results full-width"
+  style="background-color: {{ section.settings.background_color }};"
+  {{ section.shopify_attributes }}
+>
+  <div
+    class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px]"
+    style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+  >
+    <!-- Header -->
+    <div class="mb-[60px] flex flex-col items-center justify-center gap-5 text-center">
+      <h2 class="text-[48px] font-bold leading-[0.95] tracking-[-2.16px] text-[#212323] md:text-[72px]">
+        {{ section.settings.title }}
+      </h2>
+      <p class="w-full max-w-[843px] text-[18px] font-normal leading-[1.5] text-[#212323] md:text-[24px]">
+        {{ section.settings.description }}
+      </p>
+    </div>
+
+    <!-- Steps Container -->
+    {% if section.blocks.size > 0 %}
+      <div class="lab-results__steps flex w-full items-stretch gap-6">
+        {% for block in section.blocks %}
+          <!-- Step -->
+          <div class="lab-results__step flex flex-1 flex-col gap-4 text-start">
+            <!-- Number Badge -->
+            <div class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-[#d4941f]">
+              <div class="text-[28px] font-medium leading-[1.2] text-[#f6f1ec]">
+                {{ block.settings.step_number }}
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="flex flex-col gap-4">
+              <h3 class="text-[18px] font-medium leading-[1.5] text-[#212323] md:text-[24px]">
+                {{ block.settings.title }}
+              </h3>
+              <p class="text-[16px] font-normal leading-[1.5] text-[#212323] md:text-[24px]">
+                {{ block.settings.description }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Separator (except last) -->
+          {% unless forloop.last %}
+            <div class="lab-results__separator flex items-center">
+              <div class="h-[272px] w-px bg-[#212323]"></div>
+            </div>
+          {% endunless %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .lab-results {
+    position: relative;
+    width: 100%;
+  }
+
+  .lab-results__steps {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+
+  .lab-results__step {
+    flex: 1 0 0;
+    min-width: 0;
+  }
+
+  .lab-results__separator {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .lab-results__steps {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .lab-results__separator {
+      display: none;
+    }
+
+    .lab-results__step:not(:last-child) {
+      position: relative;
+      padding-bottom: 2rem;
+    }
+
+    .lab-results__step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #212323;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Lab results",
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "SCAN THE CODE"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Scan the code on your can or packaging to open the latest lab results."
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Find your Lab Results"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Every Toasted batch is tested. Use your batch number to find the Certificate of Analysis for your can."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lab results",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "01",
+            "title": "SCAN THE CODE",
+            "description": "Scan the code on your can or packaging to open the latest lab results."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "02",
+            "title": "FIND YOUR BATCH NUMBER",
+            "description": "Your batch number is printed on the bottom of the can."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_number": "03",
+            "title": "REVIEW THE COA",
+            "description": "Check potency, ingredients, and testing details before you sip."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -19,7 +19,12 @@
     {% if section.blocks.size > 0 %}
       <div class="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-[20px]">
         {% for block in section.blocks %}
-          {% capture card_content %}
+          <button
+            class="coa-cards__card flex flex-col items-center justify-center gap-5 rounded-[16px] px-[37px] py-[30px] transition-all duration-200 hover:shadow-lg hover:scale-105 cursor-pointer"
+            style="background-color: {{ block.settings.card_background_color }}"
+            {{ block.shopify_attributes }}
+            onclick="{% if block.settings.link %}window.location.href='{{ block.settings.link }}'{% endif %}"
+          >
             <div class="flex flex-col items-center gap-5">
               <!-- Title -->
               <h3 class="text-center text-[32px] font-medium leading-[1.2] text-[#212323]">
@@ -50,26 +55,7 @@
                 </div>
               </div>
             </div>
-          {% endcapture %}
-
-          {% if block.settings.link %}
-            <a
-              href="{{ block.settings.link }}"
-              class="coa-cards__card flex flex-col items-center justify-center gap-5 rounded-[16px] px-[37px] py-[30px] transition-all duration-200 hover:shadow-lg hover:scale-105 cursor-pointer no-underline"
-              style="background-color: {{ block.settings.card_background_color }}"
-              {{ block.shopify_attributes }}
-            >
-              {{ card_content }}
-            </a>
-          {% else %}
-            <div
-              class="coa-cards__card flex flex-col items-center justify-center gap-5 rounded-[16px] px-[37px] py-[30px] transition-all duration-200 hover:shadow-lg hover:scale-105"
-              style="background-color: {{ block.settings.card_background_color }}"
-              {{ block.shopify_attributes }}
-            >
-              {{ card_content }}
-            </div>
-          {% endif %}
+          </button>
         {% endfor %}
       </div>
     {% endif %}
@@ -100,10 +86,8 @@
   @media (max-width: 768px) {
     .coa-cards__card {
       min-height: 250px;
-      padding-left: 24px;
-      padding-right: 24px;
-      padding-top: 24px;
-      padding-bottom: 24px;
+      px: 24px;
+      py: 24px;
     }
   }
 {% endstylesheet %}

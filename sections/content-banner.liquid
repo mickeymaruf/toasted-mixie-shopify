@@ -1,0 +1,98 @@
+<section class="content-banner full-width">
+  <div class="mx-auto w-full max-w-[1920px] px-5 pt-6 sm:pt-10 md:pt-14 lg:pt-[70px]">
+    <div
+      class="relative flex flex-col items-center justify-center gap-5 overflow-hidden rounded-[40px] px-6 py-10 text-center sm:px-10 sm:py-14 md:px-16 md:py-16 lg:px-[124px] lg:py-[50px]"
+      style="background-color: {{ section.settings.container_background_color }};"
+    >
+      {%- if section.settings.background_image -%}
+        <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[40px]" aria-hidden="true">
+          {{
+            section.settings.background_image
+            | image_url: width: 3200
+            | image_tag:
+              class: 'absolute inset-0 size-full object-cover opacity-5',
+              loading: 'lazy',
+              fetchpriority: 'low',
+              sizes: '100vw',
+              widths: '750, 1100, 1500, 2000, 2600, 3200',
+              alt: ''
+          }}
+        </div>
+      {%- endif -%}
+
+      <div class="relative z-10 flex w-full flex-col items-center justify-center gap-5">
+        {%- if section.settings.heading != blank -%}
+          <h2
+            class="w-full text-[32px] font-bold leading-[0.95] sm:text-[48px] md:text-[56px] lg:text-[72px] lg:tracking-[-2.16px]"
+            style="color: {{ section.settings.heading_color }};"
+          >
+            {{ section.settings.heading }}
+          </h2>
+        {%- endif -%}
+
+        {%- if section.settings.subheading != blank -%}
+          <p
+            class="w-full text-[16px] leading-[1.5] sm:text-[18px] lg:text-[24px]"
+            style="color: {{ section.settings.heading_color }};"
+          >
+            {{ section.settings.subheading }}
+          </p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.content_banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Certificate of Analysis"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:labels.subheading",
+      "default": "All Toasted products are third-party lab tested. COAs are available on the site. Adults 21+ only. Use responsibly."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "t:general.style"
+    },
+    {
+      "type": "color",
+      "id": "container_background_color",
+      "label": "t:labels.container_background",
+      "default": "#9ab2d5"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background_image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.content_banner"
+    }
+  ]
+}
+{% endschema %}

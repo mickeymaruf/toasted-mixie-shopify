@@ -1,0 +1,67 @@
+<div
+  class="content-block full-width flex w-full flex-col items-center justify-center gap-2 px-5 py-12 text-center sm:px-10 sm:py-16 md:px-16 md:py-20 xl:px-[120px] xl:py-[100px]"
+  style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};"
+>
+  {% if section.settings.heading != blank %}
+    <div class="content-block__heading w-full font-bold text-[40px] leading-[0.95] tracking-[-1.2px] sm:text-[56px] sm:tracking-[-1.68px] md:text-[72px] md:tracking-[-2.16px] xl:text-[93px] xl:tracking-[-2.79px]">
+      {{ section.settings.heading }}
+    </div>
+  {% endif %}
+
+  {% if section.settings.subheading != blank %}
+    <p class="content-block__subheading w-full text-[18px] leading-[0.95] font-medium tracking-[-0.54px] sm:text-[22px] sm:tracking-[-0.66px] md:text-[26px] md:tracking-[-0.78px] xl:text-[32px] xl:tracking-[-0.96px]">
+      {{ section.settings.subheading }}
+    </p>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .content-block__heading {
+    font-family: var(--font-heading--family);
+  }
+
+  .content-block__heading :where(p) {
+    margin: 0;
+  }
+
+  .content-block__heading em {
+    font-style: italic;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.content_block",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "<p>The <em>Chill</em> Drink.</p>"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:labels.subheading",
+      "default": "Relax, connect, and stay present."
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    }
+  ],
+  "presets": [{ "name": "t:general.content_block" }]
+}
+{% endschema %}

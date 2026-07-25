@@ -1,0 +1,226 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "hero_banner_AFPte7": {
+      "type": "hero-banner",
+      "name": "t:general.hero_banner",
+      "settings": {
+        "heading": "Choose your Flavor.",
+        "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
+        "heading_color": "#f6f1ec",
+        "background_image": "shopify://shop_images/Frame_2147230792_1_2c36f923-1247-452f-a22a-03389584c8ed.png",
+        "background_color": "#e5e5e5"
+      }
+    },
+    "content_block_cb4Hiy": {
+      "type": "content-block",
+      "name": "t:general.content_block",
+      "settings": {
+        "heading": "<p>The <em>Chill</em> Drink.</p>",
+        "subheading": "Relax, connect, and stay present.",
+        "background_color": "#F6F1EC",
+        "text_color": "#212323"
+      }
+    },
+    "story_tiles_gg9aqG": {
+      "type": "story-tiles",
+      "blocks": {
+        "story_tile_row_yFgqN8": {
+          "type": "story-tile-row",
+          "settings": {},
+          "blocks": {
+            "story_tile_text_QF4xmb": {
+              "type": "story-tile-text",
+              "settings": {
+                "heading": "<p>More open. More present. More here.</p>",
+                "body": "",
+                "background_color": "#f9d5c0",
+                "text_color": "#212323",
+                "width": "1"
+              },
+              "blocks": {}
+            },
+            "story_tile_image_rGGD3Q": {
+              "type": "story-tile-image",
+              "settings": {
+                "image": "shopify://shop_images/Frame_2147235830.png",
+                "alt_text": "",
+                "show_grain": true,
+                "texture_opacity": 20,
+                "width": "1"
+              },
+              "blocks": {}
+            },
+            "story_tile_text_xzb4xt": {
+              "type": "story-tile-text",
+              "settings": {
+                "heading": "<p>More open. More present. More here.</p>",
+                "body": "<p>A lighter ritual for being present in the moment.</p>",
+                "background_color": "#c2cbd4",
+                "text_color": "#212323",
+                "width": "1"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "story_tile_text_QF4xmb",
+            "story_tile_image_rGGD3Q",
+            "story_tile_text_xzb4xt"
+          ]
+        },
+        "story_tile_row_pzeFBq": {
+          "type": "story-tile-row",
+          "settings": {},
+          "blocks": {
+            "story_tile_image_8e7reC": {
+              "type": "story-tile-image",
+              "settings": {
+                "image": "shopify://shop_images/Frame_2147235832.png",
+                "alt_text": "",
+                "show_grain": true,
+                "texture_opacity": 20,
+                "width": "1"
+              },
+              "blocks": {}
+            },
+            "story_tile_text_peDFB3": {
+              "type": "story-tile-text",
+              "settings": {
+                "heading": "<p>Good rooms deserve better options.</p>",
+                "body": "<p>Toasted belongs here. For premium venues, retailers, and partners who want a better option for the social moment.</p>",
+                "background_color": "#212323",
+                "text_color": "#f6f1ec",
+                "width": "2"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "story_tile_image_8e7reC",
+            "story_tile_text_peDFB3"
+          ]
+        },
+        "story_tile_row_gTwVN8": {
+          "type": "story-tile-row",
+          "settings": {},
+          "blocks": {
+            "story_tile_text_MpDhDY": {
+              "type": "story-tile-text",
+              "settings": {
+                "heading": "<p>A note from Danny.</p>",
+                "body": "<p>We wanted a drink that helped you feel relaxed without checking out. Something light, tasteful, and made to be enjoyed any time of day.</p><p>This was built for those of us who ran out of options in today's social world.</p><p>Stay Toasted, my friends.<br/><em>Danny</em></p>",
+                "background_color": "#9ab2d5",
+                "text_color": "#212323",
+                "width": "2"
+              },
+              "blocks": {}
+            },
+            "story_tile_image_Yx6iqP": {
+              "type": "story-tile-image",
+              "settings": {
+                "image": "shopify://shop_images/Frame_2147235832_1.png",
+                "alt_text": "",
+                "show_grain": true,
+                "texture_opacity": 20,
+                "width": "1"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "story_tile_text_MpDhDY",
+            "story_tile_image_Yx6iqP"
+          ]
+        }
+      },
+      "block_order": [
+        "story_tile_row_yFgqN8",
+        "story_tile_row_pzeFBq",
+        "story_tile_row_gTwVN8"
+      ],
+      "name": "t:general.story_tiles",
+      "settings": {}
+    },
+    "gruns_product_list_34kMDM": {
+      "type": "gruns-product-list",
+      "blocks": {
+        "product_card_gHELhK": {
+          "type": "product-card",
+          "settings": {
+            "product": "blood-orange",
+            "flavor_name": "Blood Orange",
+            "flavor_name_color": "#b70141",
+            "description": "Bright. Smooth. Golden-hour ready.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Blood Orange",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        },
+        "product_card_bLcPFb": {
+          "type": "product-card",
+          "settings": {
+            "product": "berry-acai",
+            "flavor_name": "Berry Acai",
+            "flavor_name_color": "#5e1a79",
+            "description": "Deep. Juicy. Easy to enjoy.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Berry Acai",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        },
+        "product_card_DrUxGk": {
+          "type": "product-card",
+          "settings": {
+            "product": "ginger-lime",
+            "flavor_name": "Ginger Lime",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Ginger Lime",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "product_card_gHELhK",
+        "product_card_bLcPFb",
+        "product_card_DrUxGk"
+      ],
+      "name": "t:general.product_list",
+      "settings": {
+        "heading": "Three ways to stay present.",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero_banner_AFPte7",
+    "content_block_cb4Hiy",
+    "story_tiles_gg9aqG",
+    "gruns_product_list_34kMDM"
+  ]
+}
