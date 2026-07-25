@@ -16,7 +16,9 @@
       "settings": {
         "text": "<p>Free 3-flavor trial pack. Just pay shipping.</p>",
         "show_button": true,
+        "button_style": "button",
         "button_label": "Claim Your Trial",
+        "arrow_label": "View more",
         "button_link": "",
         "background_color": "#f9d5c0",
         "text_color": "#212323",
@@ -26,14 +28,38 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "mega_menu_product_BhbVq7": {
+          "type": "mega-menu-product",
+          "settings": {
+            "product_name": "Product Name",
+            "rating": 5,
+            "review_count": "9,176 Reviews",
+            "card_background_color": "#f6f1ec",
+            "product_name_color": "#212323",
+            "review_text_color": "#212323",
+            "star_color": "#d4941f",
+            "image_width": 75,
+            "image_height": 75,
+            "show_rating": true
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_product_BhbVq7"
+      ],
       "settings": {
         "logo": "shopify://shop_images/toaster-logo.svg",
         "logo_width": 184,
-        "menu": "main-menu",
+        "menu": "shop",
         "secondary_link_text": "Find Toasted",
         "secondary_link_url": "",
         "show_search": true,
         "show_cart": true,
+        "mega_menu_link_title": "Shop",
+        "mega_menu_button_text": "Shop Drinks",
+        "mega_menu_button_background": "#212323",
+        "mega_menu_button_text_color": "#f6f1ec",
         "background_color": "#f6f1ec",
         "text_color": "#212323"
       }

@@ -8,5 +8,47 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {}
+  "current": {
+    "sections": {
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "blocks": {
+          "recommended_product_wRFTAz": {
+            "type": "recommended-product",
+            "name": "t:general.recommended_product",
+            "settings": {
+              "product": "berry-acai",
+              "rating": 5,
+              "review_count": "555"
+            },
+            "blocks": {}
+          },
+          "recommended_product_Wjy4Xa": {
+            "type": "recommended-product",
+            "name": "t:general.recommended_product",
+            "settings": {
+              "product": "ginger-lime",
+              "rating": 5,
+              "review_count": "654"
+            },
+            "blocks": {}
+          }
+        },
+        "block_order": [
+          "recommended_product_wRFTAz",
+          "recommended_product_Wjy4Xa"
+        ],
+        "settings": {
+          "heading": "Your Toasted bag",
+          "discount_threshold": 50,
+          "free_shipping_threshold": 75,
+          "free_gift_threshold": 120,
+          "upgrade_label": "Upgrade to Subscription & Save 20%",
+          "upgrade_url": "",
+          "recommendations_heading": "Try our best sellers and get free shipping"
+        }
+      }
+    },
+    "content_for_index": []
+  }
 }

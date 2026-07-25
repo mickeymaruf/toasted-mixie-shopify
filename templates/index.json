@@ -9,10 +9,6 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "custom-section",
-      "settings": {}
-    },
     "hero_cXrPe9": {
       "type": "hero",
       "name": "t:general.hero",
@@ -374,7 +370,6 @@
     }
   },
   "order": [
-    "main",
     "hero_cXrPe9",
     "gruns_hero_KLipt8",
     "gruns_product_list_BKNPjX",
