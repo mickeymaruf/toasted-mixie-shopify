@@ -20,38 +20,25 @@
       <div class="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-[20px]">
         {% for block in section.blocks %}
           <button
-            class="coa-cards__card flex flex-col items-center justify-center gap-5 rounded-[16px] px-[37px] py-[30px] transition-all duration-200 hover:shadow-lg hover:scale-105 cursor-pointer"
+            class="coa-cards__card flex flex-col items-center justify-center gap-5 rounded-[16px] px-[37px] py-[30px] transition-all duration-200 cursor-pointer"
             style="background-color: {{ block.settings.card_background_color }}"
             {{ block.shopify_attributes }}
             onclick="{% if block.settings.link %}window.location.href='{{ block.settings.link }}'{% endif %}"
           >
             <div class="flex flex-col items-center gap-5">
               <!-- Title -->
-              <h3 class="text-center text-[32px] font-medium leading-[1.2] text-[#212323]">
+              <h3 class="text-center text-[32px] font-semibold leading-[1.2] text-[#212323]">
                 {{ block.settings.title }}
               </h3>
 
               <!-- Link with Icon -->
               <div class="flex flex-col items-center gap-[15px]">
-                <p class="text-center text-[24px] font-normal leading-[1.2] text-[#212323] underline decoration-from-font">
+                <p class="text-center text-xl font-normal leading-[1.2] text-[#212323] underline decoration-from-font">
                   {{ block.settings.link_text }}
                 </p>
                 <!-- Dropdown Icon -->
-                <div class="flex h-[20px] w-[20px] items-center justify-center">
-                  <svg
-                    class="h-[20px] w-[20px] text-[#212323]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                    ></path>
-                  </svg>
+                <div class="flex h-[22px] w-[22px] items-center justify-center">
+                  {{ 'icon-arrow-down-1.svg' | asset_url | image_tag: alt: '', class: 'h-full w-full' }}
                 </div>
               </div>
             </div>
@@ -61,36 +48,6 @@
     {% endif %}
   </div>
 </section>
-
-{% stylesheet %}
-  .coa-cards {
-    position: relative;
-    width: 100%;
-  }
-
-  .coa-cards__card {
-    min-height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-decoration: none;
-    border: none;
-    font-family: inherit;
-  }
-
-  .coa-cards__card:hover {
-    transform: translateY(-4px);
-  }
-
-  @media (max-width: 768px) {
-    .coa-cards__card {
-      min-height: 250px;
-      px: 24px;
-      py: 24px;
-    }
-  }
-{% endstylesheet %}
 
 {% schema %}
 {
