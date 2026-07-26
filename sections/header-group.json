@@ -68,6 +68,7 @@
       "settings": {
         "logo": "shopify://shop_images/toaster-logo.svg",
         "logo_width": 184,
+        "logo_width_mobile": 116,
         "menu": "shop",
         "search_button_text": "Find Toasted",
         "mega_menu_link_title": "Shop",

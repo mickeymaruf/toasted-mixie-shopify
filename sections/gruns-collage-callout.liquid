@@ -10,8 +10,7 @@
   style="background-color: {{ section.settings.background_color }};"
 >
   <div
-    class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px]"
-    style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+    class="mx-auto w-full max-w-[1920px] px-5 py-0 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px]"
   >
     <div class="relative hidden w-full lg:block" style="aspect-ratio: 1120.47 / 683.49;">
       {% if section.settings.photo_1 %}
@@ -253,30 +252,6 @@
       "label": "t:labels.text_color",
       "default": "#212323"
     },
-    {
-      "type": "header",
-      "content": "t:general.layout"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "label": "t:labels.padding_top",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "unit": "px",
-      "default": 100
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "t:labels.padding_bottom",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "unit": "px",
-      "default": 100
-    }
   ],
   "presets": [
     {

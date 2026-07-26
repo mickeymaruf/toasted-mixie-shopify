@@ -1,17 +1,19 @@
 {% doc %}
-  Renders "First Drops. Good Moments." — a heading and a horizontally
-  scrolling carousel of gallery-image blocks, with previous/next controls.
-  Add gallery-image blocks to populate the carousel with images.
+  Renders "First Drops. Good Moments." — a heading and an infinite scrolling 
+  Swiper carousel of gallery-image blocks, with previous/next controls 
+  and 2 items per view on mobile.
 {% enddoc %}
+
+{{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' | stylesheet_tag }}
 
 <section
   class="gruns-gallery full-width"
   style="background-color: {{ section.settings.background_color }};"
 >
-  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 px-5 py-14 sm:px-8 md:px-12 lg:gap-[60px] lg:px-[80px] lg:py-[100px] xl:px-[120px] xl:py-[200px]">
+  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 pt-[40px] pb-[60px] sm:py-[60px] lg:gap-[60px] lg:py-[100px] xl:pb-[150px] lg:px-[120px]">
     {% if section.settings.heading != blank %}
       <div
-        class="max-w-4xl text-center text-[36px] leading-[0.95] font-bold text-[color:var(--gruns-gallery-heading-color)] sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] "
+        class="max-w-4xl text-center text-[36px] leading-[0.95] font-bold text-[color:var(--gruns-gallery-heading-color)] px-5 sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px]"
         style="--gruns-gallery-heading-color: {{ section.settings.heading_color }};"
       >
         {{ section.settings.heading }}
@@ -19,78 +21,95 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <gruns-gallery-carousel class="flex w-full items-center gap-1 sm:gap-4">
-        <button
-          type="button"
-          class="flex size-[48px] shrink-0 items-center justify-center text-[#212323] disabled:opacity-30"
-          data-gallery-prev
-          aria-label="{{ 'general.accessibility.previous_slide' | t }}"
-        >
-          <span class="block size-[28px]">{{ 'icon-chevron-left.svg' | inline_asset_content }}</span>
-        </button>
+      <gruns-gallery-carousel class="relative flex w-full items-center gap-1 sm:gap-4">
+        {% comment %}
+          <button
+            type="button"
+            class="hidden sm:flex size-[48px] shrink-0 items-center justify-center text-[#212323] disabled:opacity-30 z-10 cursor-pointer"
+            data-gallery-prev
+            aria-label="{{ 'general.accessibility.previous_slide' | t }}"
+          >
+            <span class="block size-[28px]">{{ 'icon-chevron-left.svg' | inline_asset_content }}</span>
+          </button>
+        {% endcomment %}
 
-        <div
-          class="gruns-gallery__track flex min-w-0 flex-1 snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth"
-          data-gallery-track
-        >
-          {% content_for 'blocks' %}
+        <div class="swiper gruns-gallery__swiper flex-1 overflow-hidden min-w-0">
+          <div class="swiper-wrapper gruns-gallery__track">
+            {%- for block in section.blocks -%}
+              <div class="swiper-slide h-auto" {{ block.shopify_attributes }}>
+                {% render block %}
+              </div>
+            {%- endfor -%}
+          </div>
         </div>
 
-        <button
-          type="button"
-          class="flex size-[48px] shrink-0 items-center justify-center text-[#212323] disabled:opacity-30"
-          data-gallery-next
-          aria-label="{{ 'general.accessibility.next_slide' | t }}"
-        >
-          <span class="block size-[28px]">{{ 'icon-chevron-right.svg' | inline_asset_content }}</span>
-        </button>
+        {% comment %}
+          <button
+            type="button"
+            class="hidden sm:flex size-[48px] shrink-0 items-center justify-center text-[#212323] disabled:opacity-30 z-10 cursor-pointer"
+            data-gallery-next
+            aria-label="{{ 'general.accessibility.next_slide' | t }}"
+          >
+            <span class="block size-[28px]">{{ 'icon-chevron-right.svg' | inline_asset_content }}</span>
+          </button>
+        {% endcomment %}
       </gruns-gallery-carousel>
     {% endif %}
   </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer="defer"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const initSwiper = () => {
+      const carouselEl = document.querySelector('gruns-gallery-carousel');
+      if (!carouselEl || typeof Swiper === 'undefined') return;
+
+      const prevEl = carouselEl.querySelector('[data-gallery-prev]');
+      const nextEl = carouselEl.querySelector('[data-gallery-next]');
+
+      new Swiper(carouselEl.querySelector('.swiper'), {
+        slidesPerView: 1.8,
+        loop: true,
+        grabCursor: true,
+        {% comment %} navigation: {
+          prevEl: prevEl,
+          nextEl: nextEl,
+        }, {% endcomment %}
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        breakpoints: {
+          425: {
+            slidesPerView: 2.5,
+          },
+          640: {
+            slidesPerView: 4,
+          },
+          1024: {
+            slidesPerView: 4,
+          },
+          1280: {
+            slidesPerView: 5,
+          },
+        },
+      });
+    };
+
+    initSwiper();
+
+    // Support Shopify Theme Editor re-initialization
+    document.addEventListener('shopify:section:load', initSwiper);
+  });
+</script>
+
 {% stylesheet %}
   .gruns-gallery__track {
-    scrollbar-width: none;
-  }
-  .gruns-gallery__track::-webkit-scrollbar {
-    display: none;
+    box-sizing: border-box;
   }
 {% endstylesheet %}
-
-{% javascript %}
-  class GrunsGalleryCarousel extends HTMLElement {
-    connectedCallback() {
-      this.track = this.querySelector('[data-gallery-track]');
-      this.prevButton = this.querySelector('[data-gallery-prev]');
-      this.nextButton = this.querySelector('[data-gallery-next]');
-
-      this.prevButton?.addEventListener('click', () => this.scrollByDirection(-1));
-      this.nextButton?.addEventListener('click', () => this.scrollByDirection(1));
-
-      this.track?.addEventListener('scroll', () => this.updateButtons());
-      window.addEventListener('resize', () => this.updateButtons());
-      this.updateButtons();
-    }
-
-    scrollByDirection(direction) {
-      if (!this.track) return;
-      const slide = this.track.querySelector('.gruns-gallery__slide');
-      const gap = parseFloat(getComputedStyle(this.track).columnGap || 0);
-      const amount = slide ? slide.getBoundingClientRect().width + gap : this.track.clientWidth;
-      this.track.scrollBy({ left: amount * direction, behavior: 'smooth' });
-    }
-
-    updateButtons() {
-      if (!this.track) return;
-      const maxScrollLeft = this.track.scrollWidth - this.track.clientWidth - 1;
-      if (this.prevButton) this.prevButton.disabled = this.track.scrollLeft <= 0;
-      if (this.nextButton) this.nextButton.disabled = this.track.scrollLeft >= maxScrollLeft;
-    }
-  }
-
-  customElements.define('gruns-gallery-carousel', GrunsGalleryCarousel);
-{% endjavascript %}
 
 {% schema %}
 {

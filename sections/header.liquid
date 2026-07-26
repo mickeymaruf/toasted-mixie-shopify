@@ -3,7 +3,8 @@
   style="
     --navbar-background: {{ section.settings.background_color }};
     --navbar-text: {{ section.settings.text_color }};
-    --navbar-logo-width: {{ section.settings.logo_width }}px;
+    --navbar-height: 80px;
+    --navbar-height-mobile: 64px;
   "
 >
   <div class="navbar__bar">
@@ -15,7 +16,13 @@
         {% endif %}
 
         <div class="navbar__menu-item-wrapper {% if has_mega_menu %}navbar__menu-item-wrapper--has-mega-menu{% endif %}">
-          <a href="{{ link.url }}" class="navbar__menu-item" {% if has_mega_menu %}data-mega-menu-trigger{% endif %}>
+          <a
+            href="{{ link.url }}"
+            class="navbar__menu-item"
+            {% if has_mega_menu %}
+              data-mega-menu-trigger
+            {% endif %}
+          >
             <span>{{ link.title }}</span>
             {% if link.links.size > 0 or has_mega_menu %}
               {{ 'icon-chevron-down.svg' | inline_asset_content }}
@@ -56,9 +63,7 @@
                               {{
                                 block.settings.product.featured_image
                                 | image_url: width: 200, height: 200
-                                | image_tag:
-                                  class: 'h-full w-full object-cover',
-                                  alt: block.settings.product.title
+                                | image_tag: class: 'h-full w-full object-cover', alt: block.settings.product.title
                               }}
                             {% else %}
                               <div class="flex h-full w-full items-center justify-center bg-gray-200">
@@ -74,11 +79,22 @@
                               <div class="flex items-center">
                                 {% for i in (1..5) %}
                                   {% if i <= block.settings.rating %}
-                                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" style="color: {{ block.settings.star_color }};">
+                                    <svg
+                                      class="h-5 w-5"
+                                      fill="currentColor"
+                                      viewBox="0 0 20 20"
+                                      style="color: {{ block.settings.star_color }};"
+                                    >
                                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                     </svg>
                                   {% else %}
-                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 20 20" style="color: {{ block.settings.star_color }}; stroke-width: 1.5;">
+                                    <svg
+                                      class="h-5 w-5"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 20 20"
+                                      style="color: {{ block.settings.star_color }}; stroke-width: 1.5;"
+                                    >
                                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                     </svg>
                                   {% endif %}
@@ -108,7 +124,11 @@
 
     <a href="{{ routes.root_url }}" class="navbar__logo">
       {% if section.settings.logo %}
-        {{ section.settings.logo | image_url: width: section.settings.logo_width | image_tag: loading: 'eager', alt: shop.name }}
+        {{
+          section.settings.logo
+          | image_url: width: section.settings.logo_width
+          | image_tag: loading: 'eager', alt: shop.name
+        }}
       {% else %}
         {{ 'logo-toasted.svg' | inline_asset_content }}
       {% endif %}
@@ -132,7 +152,13 @@
         data-cart-drawer-open
       >
         {{ 'icon-cart.svg' | inline_asset_content }}
-        <span class="navbar__cart-count" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>
+        <span
+          class="navbar__cart-count"
+          data-cart-count
+          {% if cart.item_count == 0 %}
+            hidden
+          {% endif %}
+        >
           {{ cart.item_count }}
         </span>
       </button>
@@ -203,7 +229,7 @@
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #F9D5C0;
+    background-color: #f9d5c0;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -246,6 +272,19 @@
     transition: all 0.2s ease;
   }
 
+  a[data-mega-menu-trigger] {
+    position: relative;
+  }
+
+  a[data-mega-menu-trigger]:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 300%;
+    height: 200%;
+  }
+
   .navbar__logo {
     display: block;
     justify-self: center;
@@ -255,17 +294,31 @@
   .navbar__logo img,
   .navbar__logo svg {
     display: block;
-    width: var(--navbar-logo-width);
+    width: 184px;
     height: auto;
     max-width: 100%;
+  }
+
+  @media (max-width: 47.9375rem) {
+    .navbar__logo img,
+    .navbar__logo svg {
+      width: 116px;
+    }
+  }
+
+  @media (max-width: 25rem) {
+    .navbar__logo img,
+    .navbar__logo svg {
+      width: 100px;
+    }
   }
 
   .navbar__actions {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: flex-end;
-    gap: clamp(0.75rem, 0.4rem + 1.5vw, 1.5rem);
+    gap: clamp(1.25rem, 0.4rem + 2.5vw, 2.5rem);
     justify-self: end;
   }
 
@@ -317,8 +370,39 @@
     }
 
     .navbar__search-button svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .navbar__icon-link--cart {
       width: 1.5rem;
       height: 1.5rem;
+    }
+
+    .navbar__icon-link--cart svg {
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+    }
+  }
+
+  @media (max-width: 25rem) {
+    .navbar__actions {
+      gap: clamp(0.75rem, 0.4rem + 1.5vw, 1rem);
+    }
+
+    .navbar__search-button svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .navbar__icon-link--cart {
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+
+    .navbar__icon-link--cart svg {
+      width: 1.125rem !important;
+      height: 1.125rem !important;
     }
   }
 
@@ -344,7 +428,7 @@
     height: 1rem;
     padding-inline: 0.1875rem;
     border-radius: 999px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     color: #212323;
     font-size: 0.625rem;
     line-height: 1;
@@ -476,16 +560,6 @@
       "type": "image_picker",
       "id": "logo",
       "label": "t:labels.logo"
-    },
-    {
-      "type": "range",
-      "id": "logo_width",
-      "min": 80,
-      "max": 300,
-      "step": 4,
-      "unit": "px",
-      "label": "t:labels.logo_width",
-      "default": 184
     },
     {
       "type": "link_list",
