@@ -22,7 +22,7 @@
         "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/wholesale-banner.png",
-        "background_color": "#e5e5e5"
+        "background_color": "#f6f1ec"
       }
     },
     "gruns_hero_LTibNz": {
@@ -30,7 +30,7 @@
       "name": "t:general.gruns_hero",
       "settings": {
         "heading": "<p>Better options. Better moments. Better margins.</p>",
-        "description": "<p>Toasted gives guests a light, premium option they</p><p>can order, enjoy, and remember.</p>",
+        "description": "<p>Toasted gives guests a light, premium option they can order, enjoy, and remember.</p>",
         "show_button": false,
         "button_label": "Get My Trial Pack",
         "button_link": "",
@@ -76,9 +76,7 @@
       ],
       "name": "t:general.promo_cards",
       "settings": {
-        "background_color": "#f6f1ec",
-        "padding_top": 100,
-        "padding_bottom": 100
+        "background_color": "#f6f1ec"
       }
     },
     "contact_form_chM34h": {
@@ -215,10 +213,10 @@
         "form_type": "shopify_contact",
         "form_endpoint": "",
         "button_text": "Submit inquiry",
-        "background_color": "#F6F1EC",
+        "background_color": "#f6f1ec",
         "text_color": "#212323",
         "button_background_color": "#212323",
-        "button_text_color": "#F6F1EC"
+        "button_text_color": "#f6f1ec"
       }
     }
   },

@@ -1,8 +1,9 @@
 {% doc %}
-  Renders a "How to Read a COA" guide with a heading and a list of
-  label/description rows separated by dividers. Each row is a block so
-  merchants can add, remove, and reorder items. Responsive: rows stack on
-  mobile and align side-by-side with a vertical divider from tablet up.
+  Renders a "How to Read a COA" guide with a heading and a two-column table
+  of label/description rows, styled to match the legal-page rich-text
+  table (row dividers, vertical divider between columns, horizontal scroll
+  on narrow viewports). Each row is a block so merchants can add, remove,
+  and reorder items.
 {% enddoc %}
 
 <section
@@ -21,33 +22,84 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <div class="coa-guide__list mx-auto w-full max-w-[988px]">
-        {% for block in section.blocks %}
-          <div
-            class="coa-guide__row flex flex-col gap-2 py-6 sm:flex-row sm:items-start sm:gap-0 md:py-8 {% unless forloop.last %}border-b border-[#212323]/15{% endunless %}"
-            {{ block.shopify_attributes }}
-          >
-            <div class="coa-guide__label shrink-0 sm:w-[220px] sm:border-r sm:border-[#212323]/15 sm:pr-8 md:w-[280px] md:pr-10 lg:w-[368px]">
-              {% if block.settings.title != blank %}
-                <p class="text-[18px] font-medium leading-[1.5] text-[#212323] md:text-[24px]">
-                  {{ block.settings.title }}
-                </p>
-              {% endif %}
-            </div>
-
-            <div class="coa-guide__description sm:flex-1 sm:pl-8 md:pl-10">
-              {% if block.settings.description != blank %}
-                <p class="text-[16px] font-normal leading-[1.5] text-[#212323] md:text-[24px]">
-                  {{ block.settings.description }}
-                </p>
-              {% endif %}
-            </div>
-          </div>
-        {% endfor %}
+      <div class="coa-guide__table-wrap mx-auto w-full max-w-[988px]">
+        <table class="coa-guide__table">
+          <tbody>
+            {% for block in section.blocks %}
+              <tr {{ block.shopify_attributes }}>
+                <th scope="row">{{ block.settings.title }}</th>
+                <td>{{ block.settings.description }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     {% endif %}
   </div>
 </section>
+
+{% stylesheet %}
+  .coa-guide__table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-collapse: collapse;
+  }
+
+  .coa-guide__table th {
+    width: 220px;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: bottom;
+  }
+
+  .coa-guide__table td {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .coa-guide__table tr + tr > * {
+    border-top: 1px solid #212323;
+  }
+
+  .coa-guide__table th:first-child,
+  .coa-guide__table td:first-child {
+    border-right: 1px solid #212323;
+  }
+
+  @media (min-width: 48rem) {
+    .coa-guide__table th {
+      width: 280px;
+      font-size: 24px;
+    }
+
+    .coa-guide__table td {
+      font-size: 24px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .coa-guide__table th {
+      width: 368px;
+      padding: 16px;
+      white-space: normal;
+    }
+
+    .coa-guide__table td {
+      padding: 16px;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

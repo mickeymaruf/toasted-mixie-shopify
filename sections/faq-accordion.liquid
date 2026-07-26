@@ -1,0 +1,191 @@
+{% doc %}
+  Renders an FAQ section with grouped accordion items. Merchants can add custom
+  FAQ items and organize them by category. Toggle functionality is provided
+  via JavaScript.
+{% enddoc %}
+
+<section class="faq-accordion full-width" style="background-color: {{ section.settings.background_color }};" {{ section.shopify_attributes }}>
+  <div class="mx-auto w-full max-w-[1920px] px-5 pt-[60px] pb-[100px] sm:px-8 sm:py-[100px] md:px-12 lg:px-[80px] lg:py-[120px] xl:px-[180px]">
+    <div class="flex flex-col gap-[16px] w-full">
+      {% if section.blocks.size > 0 %}
+        {% assign current_group = blank %}
+        {% assign groups_shown = false %}
+
+        {% for block in section.blocks %}
+          {% if block.type == 'faq_item' %}
+            {% if block.settings.category != current_group %}
+              {% if groups_shown %}
+                </div>
+              </div>
+              {% endif %}
+              {% assign current_group = block.settings.category %}
+              {% assign groups_shown = true %}
+              <div class="faq-group">
+                {% if current_group != blank %}
+                  <h2 class="font-bold text-[48px] leading-[0.95] tracking-[-1.44px] text-[#212323] text-center w-full mb-[16px]">
+                    {{ current_group }}
+                  </h2>
+                {% endif %}
+                <div class="flex flex-col gap-[16px]">
+            {% endif %}
+
+            <div
+              class="faq-item bg-[#f6f1ec] border border-[rgba(33,35,35,0.15)] rounded-lg overflow-hidden"
+              data-faq-item
+              {{ block.shopify_attributes }}
+            >
+              <button
+                class="faq-item-toggle w-full flex items-center justify-between px-[24px] py-[18px] text-left hover:bg-[rgba(33,35,35,0.05)] transition-colors"
+                aria-expanded="false"
+                aria-controls="faq-answer-{{ block.id }}"
+              >
+                <span class="font-medium text-[24px] leading-[1.5] text-[#212323] flex-1">
+                  {{ block.settings.question }}
+                </span>
+                <div class="faq-chevron ml-4 flex-shrink-0 transition-transform duration-300">
+                  <svg
+                    class="w-[24px] h-[24px] text-[#212323]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 14 8"
+                    fill="none"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M1 1L7 7L13 1" />
+                  </svg>
+                </div>
+              </button>
+
+              <div
+                id="faq-answer-{{ block.id }}"
+                class="faq-item-answer hidden"
+                role="region"
+                aria-labelledby="faq-question-{{ block.id }}"
+              >
+                <div class="px-[24px] py-[18px] border-t border-[rgba(33,35,35,0.15)] text-[16px] leading-[1.6] text-[#212323]">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        {% if groups_shown %}
+          </div>
+        </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .faq-item-toggle:focus-visible {
+    outline: 2px solid #212323;
+    outline-offset: 2px;
+  }
+
+  .faq-item-toggle[aria-expanded="true"] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-item-answer.show {
+    display: block;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  document.querySelectorAll('.faq-item-toggle').forEach(button => {
+    button.addEventListener('click', function() {
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      const answerId = this.getAttribute('aria-controls');
+      const answerElement = document.getElementById(answerId);
+
+      this.setAttribute('aria-expanded', !isExpanded);
+      answerElement.classList.toggle('show', !isExpanded);
+    });
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.faq_accordion",
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category",
+          "label": "t:labels.category",
+          "default": "General"
+        },
+        {
+          "type": "text",
+          "id": "question",
+          "label": "t:labels.question",
+          "default": "Question?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "t:labels.answer",
+          "default": "Answer goes here."
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.faq_accordion",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "category": "The Drink",
+            "question": "What is Toasted?",
+            "answer": "Toasted is a premium, light cannabis beverage designed for adults 21+. It combines carefully selected ingredients with a smooth, balanced effect for social moments and personal relaxation."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "category": "The Drink",
+            "question": "Is Toasted carbonated?",
+            "answer": "Yes, Toasted is lightly carbonated for a refreshing drinking experience. The carbonation level has been carefully calibrated to complement the flavor profile."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "category": "Ingredients",
+            "question": "What is in Toasted?",
+            "answer": "Toasted contains a blend of fruit juice, cannabis extract, carbonated water, and natural flavoring. All ingredients are carefully selected for quality and compatibility."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "category": "Ingredients",
+            "question": "How should I try Toasted?",
+            "answer": "Toasted is best enjoyed chilled, straight from the can or over ice. Start with a small amount to understand how it affects you personally."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -22,7 +22,7 @@
         "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_1_2c36f923-1247-452f-a22a-03389584c8ed.png",
-        "background_color": "#e5e5e5"
+        "background_color": "#F6F1EC"
       }
     },
     "content_block_cb4Hiy": {
@@ -31,7 +31,7 @@
       "settings": {
         "heading": "<p>The <em>Chill</em> Drink.</p>",
         "subheading": "Relax, connect, and stay present.",
-        "background_color": "#F6F1EC",
+        "background_color": "#f6f1ec",
         "text_color": "#212323"
       }
     },
@@ -210,9 +210,7 @@
       "settings": {
         "heading": "Three ways to stay present.",
         "background_color": "#f6f1ec",
-        "heading_color": "#212323",
-        "padding_top": 100,
-        "padding_bottom": 100
+        "heading_color": "#212323"
       }
     }
   },

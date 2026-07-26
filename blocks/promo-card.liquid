@@ -8,7 +8,7 @@
 {% enddoc %}
 
 <div
-  class="relative flex aspect-square w-full flex-col justify-end overflow-hidden rounded-[40px] p-8 sm:p-10 lg:p-[52px]"
+  class="relative flex aspect-square w-full flex-col justify-end overflow-hidden rounded-2xl p-5 sm:rounded-[40px] sm:p-10 lg:p-[52px]"
   {{ block.shopify_attributes }}
 >
   <div class="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -29,15 +29,15 @@
     <div class="absolute inset-0 bg-gradient-to-b from-black/0 from-[19.79%] to-black/90"></div>
   </div>
 
-  <div class="relative z-10 flex flex-col gap-5 [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)]" style="color: {{ block.settings.text_color }};">
+  <div class="relative z-10 flex flex-col gap-3 [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)] sm:gap-5" style="color: {{ block.settings.text_color }};">
     {% if block.settings.title != blank %}
-      <h3 class="text-[32px] leading-[0.95] font-bold tracking-[-0.96px] sm:text-[40px] sm:tracking-[-1.2px] lg:text-[48px] lg:tracking-[-1.44px]">
+      <h3 class="text-[24px] leading-[0.95] font-bold tracking-[-0.72px] sm:text-[40px] sm:tracking-[-1.2px] lg:text-[48px] lg:tracking-[-1.44px]">
         {{ block.settings.title }}
       </h3>
     {% endif %}
 
     {% if block.settings.description != blank %}
-      <p class="text-[18px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
+      <p class="text-[14px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
         {{ block.settings.description }}
       </p>
     {% endif %}

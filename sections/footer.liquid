@@ -67,7 +67,11 @@
 
       <div class="order-1 flex w-full max-w-[504px] flex-col items-center gap-10 text-center lg:order-2 lg:shrink-0">
         <div class="flex w-full flex-col items-center gap-[30px] lg:flex-1 lg:justify-center">
-          <a href="{{ routes.root_url }}" class="block max-w-full" style="width: {{ section.settings.logo_width }}px;">
+          <a
+            href="{{ routes.root_url }}"
+            class="block max-w-full"
+            style="width: clamp(140px, 45vw, {{ section.settings.logo_width }}px);"
+          >
             {% if section.settings.logo %}
               {{
                 section.settings.logo

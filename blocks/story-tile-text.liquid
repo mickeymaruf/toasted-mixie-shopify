@@ -8,7 +8,8 @@
 {% enddoc %}
 
 <div
-  class="story-tile-cell flex flex-col items-center justify-center gap-5 p-8 text-center sm:p-10 lg:p-[60px] xl:p-[100px]"
+  class="story-tile-cell flex flex-col items-center justify-center gap-4 p-8 text-center sm:gap-5 sm:p-10 md:p-8 lg:gap-5 lg:p-[60px] xl:p-[100px]"
+  data-tile-width="{{ block.settings.width }}"
   style="
     --story-tile-span: {{ block.settings.width }};
     background-color: {{ block.settings.background_color }};
@@ -17,13 +18,13 @@
   {{ block.shopify_attributes }}
 >
   {% if block.settings.heading != blank %}
-    <div class="story-tile-cell__heading w-full font-bold text-[28px] leading-[0.95] tracking-[-0.84px] sm:text-[36px] sm:tracking-[-1.08px] lg:text-[48px] lg:tracking-[-1.44px] xl:text-[72px] xl:tracking-[-2.16px]">
+    <div class="story-tile-cell__heading w-full font-bold text-[28px] leading-[0.95] tracking-[-0.84px] sm:text-[36px] sm:tracking-[-1.08px] md:text-[26px] md:tracking-[-0.78px] lg:text-[42px] lg:tracking-[-1.26px] xl:text-[60px] xl:tracking-[-1.8px]">
       {{ block.settings.heading }}
     </div>
   {% endif %}
 
   {% if block.settings.body != blank %}
-    <div class="story-tile-cell__body w-full text-[16px] leading-[1.5] sm:text-[18px] lg:text-[20px] xl:text-[24px]">
+    <div class="story-tile-cell__body w-full text-[16px] leading-[1.5] sm:text-[18px] md:text-[15px] lg:text-[18px] xl:text-[20px]">
       {{ block.settings.body }}
     </div>
   {% endif %}
@@ -41,6 +42,61 @@
 
   .story-tile-cell__body :where(p) + p {
     margin-top: 1em;
+  }
+
+  /*
+    A "one-third" width cell shares the same row height as a "two-thirds"
+    cell but gets a third of the horizontal space, so it needs its own,
+    smaller type scale at lg/xl to avoid the heading/body overflowing and
+    getting clipped by the cell's overflow:hidden.
+  */
+  @media (min-width: 64rem) {
+    .story-tile-cell[data-tile-width="1"] .story-tile-cell__heading {
+      font-size: 38px;
+      letter-spacing: -1.14px;
+    }
+
+    .story-tile-cell[data-tile-width="1"] .story-tile-cell__body {
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .story-tile-cell[data-tile-width="1"] .story-tile-cell__heading {
+      font-size: 54px;
+      letter-spacing: -1.62px;
+    }
+
+    .story-tile-cell[data-tile-width="1"] .story-tile-cell__body {
+      font-size: 18px;
+    }
+  }
+
+  /*
+    A "two-thirds" cell gets more width than a one-third cell, but when it
+    carries both a heading and a body it can still overflow the row's fixed
+    height at lg/xl, so it gets its own slightly reduced scale too.
+  */
+  @media (min-width: 64rem) {
+    .story-tile-cell[data-tile-width="2"] .story-tile-cell__heading {
+      font-size: 40px;
+      letter-spacing: -1.2px;
+    }
+
+    .story-tile-cell[data-tile-width="2"] .story-tile-cell__body {
+      font-size: 14px;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .story-tile-cell[data-tile-width="2"] .story-tile-cell__heading {
+      font-size: 56px;
+      letter-spacing: -1.68px;
+    }
+
+    .story-tile-cell[data-tile-width="2"] .story-tile-cell__body {
+      font-size: 18px;
+    }
   }
 {% endstylesheet %}
 

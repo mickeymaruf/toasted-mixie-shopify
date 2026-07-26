@@ -70,23 +70,30 @@
   }
 
   .legal-page__content table {
+    display: block;
     width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border-collapse: collapse;
   }
 
   .legal-page__content th {
-    padding-bottom: 16px;
-    font-size: 16px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.3;
     text-align: left;
+    white-space: nowrap;
     vertical-align: bottom;
   }
 
   .legal-page__content td {
     border-top: 1px solid #212323;
-    padding: 16px;
-    font-size: 14px;
+    padding: 12px;
+    font-size: 13px;
     line-height: 1.3;
     text-align: left;
     vertical-align: top;
@@ -114,6 +121,18 @@
     .legal-page__content p,
     .legal-page__content li {
       font-size: 20px;
+    }
+
+    .legal-page__content th {
+      padding-bottom: 16px;
+      padding-left: 16px;
+      font-size: 16px;
+      white-space: normal;
+    }
+
+    .legal-page__content td {
+      padding: 16px;
+      font-size: 14px;
     }
   }
 
