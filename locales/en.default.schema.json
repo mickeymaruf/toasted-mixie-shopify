@@ -119,6 +119,7 @@
     "button_link": "Button link",
     "button_text_color": "Button text color",
     "card_image": "Card image",
+    "category": "Category",
     "center_product_image": "Center product image",
     "columns_desktop": "Columns (desktop)",
     "content": "Content",
@@ -276,6 +277,10 @@
       "column_span": "Width",
       "column_span_half": "Half width (2 columns on desktop)",
       "column_span_full": "Full width"
+    },
+    "faq_accordion": {
+      "name": "FAQ Accordion",
+      "faq_item": "FAQ Item"
     }
   }
 }
