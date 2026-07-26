@@ -19,6 +19,10 @@
     {% # Load the Tailwind CSS build %}
     {{ 'tailwind.css' | asset_url | stylesheet_tag }}
 
+    {% # Swiper carousel vendor library, shared by any section/snippet that renders a carousel %}
+    {{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' | stylesheet_tag }}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer="defer"></script>
+
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
 

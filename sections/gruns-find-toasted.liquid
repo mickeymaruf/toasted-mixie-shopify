@@ -8,12 +8,15 @@
   class="gruns-find-toasted full-width"
   style="background-color: {{ section.settings.background_color }};"
 >
-  <div class="mx-auto flex w-full max-w-[1920px] flex-col px-5 py-14 sm:px-8 md:px-12 lg:px-[80px] lg:py-[100px] xl:px-[120px]">
+  <div class="mx-auto flex w-full max-w-[1920px] flex-col px-5 p-14 sm:px-8 md:px-12 lg:px-[80px] lg:pb-[100px] xl:px-[120px]">
     <div
-      class="relative flex flex-col items-center gap-8 overflow-hidden rounded-[40px] px-6 py-10 text-center sm:px-10 sm:py-14 lg:flex-row lg:items-center lg:overflow-visible lg:px-[60px] lg:py-[70px] lg:text-left"
+      class="relative flex flex-col items-center gap-5 md:gap-8 overflow-hidden rounded-[40px] px-6 py-10 text-center sm:px-10 sm:py-14 lg:flex-row lg:items-center lg:overflow-visible lg:px-[60px] lg:py-[70px] lg:text-left"
       style="background-color: {{ section.settings.panel_background_color }};"
     >
-      <div class="pointer-events-none absolute inset-0 hidden overflow-hidden rounded-[40px] lg:block" aria-hidden="true">
+      <div
+        class="pointer-events-none absolute inset-0 hidden overflow-hidden rounded-[40px] lg:block"
+        aria-hidden="true"
+      >
         <img
           src="{{ 'find-toasted-pattern.svg' | asset_url }}"
           alt=""
@@ -50,8 +53,8 @@
         </div>
       </div>
 
-      <div class="relative z-10 flex w-full flex-col items-center gap-8 lg:w-[40%] lg:max-w-[477px] lg:shrink-0 lg:items-start lg:gap-[50px]">
-        <div class="flex flex-col items-center gap-5 lg:items-start lg:gap-5">
+      <div class="relative z-10 flex w-full flex-col items-center gap-5 lg:w-[40%] lg:max-w-[477px] lg:shrink-0 lg:items-start lg:gap-[50px]">
+        <div class="flex flex-col items-center gap-2 lg:items-start lg:gap-5">
           {% if section.settings.heading != blank %}
             <h2
               class="w-full text-[36px] leading-[0.95] font-bold [text-shadow:4px_4px_6px_rgba(0,0,0,0.1)] sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] xl:tracking-[-2.16px]"

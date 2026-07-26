@@ -14,14 +14,14 @@
 %}
 
 <section class="product-main full-width bg-[#F6F1EC]">
-  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-start gap-8 px-5 py-8 sm:px-8 md:flex-row md:gap-6 md:px-12 lg:gap-[60px] lg:px-[80px] lg:py-[70px] xl:px-[120px]">
+  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-start gap-8 px-5 pb-8 pt-5 sm:px-8 md:flex-row md:gap-6 md:px-12 lg:gap-[60px] lg:px-[80px] lg:py-[70px] xl:px-[120px]">
     {% if product.media.size > 0 %}
       <product-gallery class="flex w-full flex-col gap-3 sm:gap-5 md:min-w-[300px] md:w-[350px] lg:sticky lg:top-8 lg:w-[585px] lg:flex-row lg:shrink-0">
-        <div class="order-2 flex gap-2 overflow-x-auto sm:gap-3 lg:order-1 lg:w-[101px] lg:shrink-0 lg:flex-col lg:overflow-visible">
+        <div class="order-2 flex gap-1 overflow-x-auto sm:gap-3 lg:order-1 lg:w-[101px] lg:shrink-0 lg:flex-col lg:overflow-visible">
           {% for media in product.media %}
             <button
               type="button"
-              class="aspect-square w-[80px] shrink-0 overflow-hidden rounded-lg sm:w-[101px] lg:w-full {% if forloop.first %}outline-2 outline-offset-2 outline-[#212323]{% endif %}"
+              class="product-gallery__thumb aspect-square w-[80px] shrink-0 overflow-hidden rounded-lg outline-offset-2 outline-[#212323] sm:w-[101px] lg:w-full m-1 {% if forloop.first %}outline-2{% endif %}"
               data-gallery-thumb
               data-index="{{ forloop.index0 }}"
               aria-label="{{ 'general.accessibility.view_media' | t: index: forloop.index }}"
@@ -36,31 +36,31 @@
         </div>
 
         <div class="relative order-1 aspect-[3/4] w-full flex-1 overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[40px] lg:order-2">
-          {% for media in product.media %}
-            <div
-              class="{% unless forloop.first %}hidden{% endunless %} absolute inset-0"
-              data-gallery-panel
-              data-index="{{ forloop.index0 }}"
-            >
-              {% case media.media_type %}
-                {% when 'video', 'external_video' %}
-                  {{ media | media_tag: image_size: '800x', controls: true, class: 'size-full object-cover' }}
-                {% when 'model' %}
-                  {{ media | media_tag: image_size: '800x', class: 'size-full object-cover' }}
-                {% else %}
-                  {{
-                    media
-                    | image_url: width: 800
-                    | image_tag: width: 800, height: 1108, class: 'size-full object-cover', alt: media.alt
-                  }}
-              {% endcase %}
+          <div class="swiper product-gallery__swiper size-full">
+            <div class="swiper-wrapper">
+              {% for media in product.media %}
+                <div class="swiper-slide h-full" data-index="{{ forloop.index0 }}">
+                  {% case media.media_type %}
+                    {% when 'video', 'external_video' %}
+                      {{ media | media_tag: image_size: '800x', controls: true, class: 'size-full object-cover' }}
+                    {% when 'model' %}
+                      {{ media | media_tag: image_size: '800x', class: 'size-full object-cover' }}
+                    {% else %}
+                      {{
+                        media
+                        | image_url: width: 800
+                        | image_tag: width: 800, height: 1108, class: 'size-full object-cover', alt: media.alt
+                      }}
+                  {% endcase %}
+                </div>
+              {% endfor %}
             </div>
-          {% endfor %}
+          </div>
 
           {% if product.media.size > 1 %}
             <button
               type="button"
-              class="absolute bottom-[10px] left-[29%] flex size-8 items-center justify-center"
+              class="absolute bottom-[10px] left-[29%] z-10 flex size-8 items-center justify-center"
               data-gallery-prev
               aria-label="{{ 'general.accessibility.previous_slide' | t }}"
             >
@@ -68,7 +68,7 @@
             </button>
             <button
               type="button"
-              class="absolute right-[29%] bottom-[10px] flex size-8 items-center justify-center"
+              class="absolute right-[29%] bottom-[10px] z-10 flex size-8 items-center justify-center"
               data-gallery-next
               aria-label="{{ 'general.accessibility.next_slide' | t }}"
             >
@@ -167,7 +167,11 @@
                 {{ 'products.main.quantity' | t }}
               </p>
 
-              <div class="flex flex-wrap gap-2" role="radiogroup" aria-labelledby="pack-size-heading-{{ section.id }}">
+              <div
+                class="flex flex-wrap gap-5 sm:gap-2"
+                role="radiogroup"
+                aria-labelledby="pack-size-heading-{{ section.id }}"
+              >
                 {% for variant in product.variants %}
                   {% liquid
                     assign pack_count = variant.title | split: ' ' | first | plus: 0
@@ -233,16 +237,16 @@
               endif
             %}
             <div
-              class="flex w-full flex-col gap-5 sm:gap-5"
+              class="flex w-full flex-col gap-3 sm:gap-5"
               role="radiogroup"
               aria-label="{{ 'products.main.purchase_option_group_label' | t }}"
             >
               <label
-                class="flex w-full flex-col gap-4 rounded-2xl p-[18px]"
+                class="flex w-full flex-col gap-3 sm:gap-4 rounded-2xl px-3 py-3 sm:p-[18px]"
                 style="background-color: {{ section.settings.subscribe_card_background_color }};"
               >
-                <div class="flex w-full items-center justify-between">
-                  <div class="flex items-center gap-[3px]">
+                <div class="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
+                  <div class="flex items-center gap-2 sm:gap-[3px]">
                     <div class="flex items-center gap-2">
                       <span class="relative flex size-5 shrink-0 items-center justify-center rounded-full border border-[#212323] p-1">
                         <input
@@ -262,7 +266,7 @@
                     </div>
                     {% if selected_allocation %}
                       <span
-                        class="rounded-full bg-[#636D90] px-3 py-1 text-[16px] font-medium whitespace-nowrap text-[#F6F1EC]"
+                        class="rounded-full bg-[#636D90] px-2 py-1 sm:px-3 text-[12px] sm:text-[16px] font-medium whitespace-nowrap text-[#F6F1EC]"
                         data-subscribe-percent-pill
                       >
                         {{ 'products.main.save_percent' | t: percent: initial_percent }}
@@ -270,43 +274,51 @@
                     {% endif %}
                   </div>
 
-                  <div class="flex flex-1 flex-col items-end gap-1 text-right">
-                    <p class="text-[16px] font-medium text-[#212323]" data-subscribe-price>
+                  <div class="flex flex-col items-start gap-1 sm:items-end sm:text-right">
+                    <p class="text-[14px] sm:text-[16px] font-medium text-[#212323]" data-subscribe-price>
                       {{ selected_allocation.price | default: current_variant.price | money }}
                     </p>
-                    <p class="text-[12px] text-[#212323]">
+                    <p class="text-[11px] sm:text-[12px] text-[#212323]">
                       {{ 'products.main.save_percent_every_order' | t: percent: initial_percent }}
                     </p>
                   </div>
                 </div>
 
-                <div class="flex w-full items-start justify-between">
-                  <div class="flex flex-1 flex-col items-center gap-4">
-                    <span class="block size-6 text-[#212323]">{{ 'icon-package.svg' | inline_asset_content }}</span>
-                    <p class="text-center text-[14px] text-[#212323]">
+                <div class="flex w-full items-start justify-between gap-2 sm:gap-4">
+                  <div class="flex flex-1 flex-col items-center gap-2 sm:gap-4">
+                    <span class="block size-5 sm:size-6 text-[#212323]">
+                      {{- 'icon-package.svg' | inline_asset_content -}}
+                    </span>
+                    <p class="text-center text-[12px] sm:text-[14px] text-[#212323]">
                       {{ 'products.main.delivered_every' | t: interval: section.settings.delivery_interval }}
                     </p>
                   </div>
 
-                  <div class="flex flex-1 flex-col items-center gap-4">
-                    <span class="block size-6 text-[#212323]">{{ 'icon-shipping.svg' | inline_asset_content }}</span>
-                    <p class="text-center text-[14px] text-[#212323]">
-                      {% capture savings_pill %}<span class="rounded-full bg-[#636D90] px-3 py-[2px] text-[#F6F1EC]" data-subscribe-savings>{{ initial_savings | money }}</span>{% endcapture %}
+                  <div class="flex flex-1 flex-col items-center gap-2 sm:gap-4">
+                    <span class="block size-5 sm:size-6 text-[#212323]">
+                      {{- 'icon-shipping.svg' | inline_asset_content -}}
+                    </span>
+                    <p class="text-center text-[12px] sm:text-[14px] text-[#212323]">
+                      {% capture savings_pill %}<span class="rounded-full bg-[#636D90] px-2 sm:px-3 py-[2px] text-[10px] sm:text-[inherit] text-[#F6F1EC]" data-subscribe-savings>{{ initial_savings | money }}</span>{% endcapture %}
                       {{ 'products.main.save_each_delivery_html' | t: amount: savings_pill }}
                     </p>
                   </div>
 
-                  <div class="flex flex-1 flex-col items-center gap-4">
-                    <span class="block size-6 text-[#212323]">{{ 'icon-trust.svg' | inline_asset_content }}</span>
-                    <p class="text-center text-[14px] text-[#212323]">{{ 'products.main.pause_skip_cancel' | t }}</p>
+                  <div class="flex flex-1 flex-col items-center gap-2 sm:gap-4">
+                    <span class="block size-5 sm:size-6 text-[#212323]">
+                      {{- 'icon-trust.svg' | inline_asset_content -}}
+                    </span>
+                    <p class="text-center text-[12px] sm:text-[14px] text-[#212323]">
+                      {{ 'products.main.pause_skip_cancel' | t }}
+                    </p>
                   </div>
                 </div>
               </label>
 
               <label
-                class="flex w-full items-center justify-between rounded-2xl border border-[#212323] bg-[#F6F1EC] p-4 has-[:checked]:border-2"
+                class="flex w-full items-center justify-between rounded-2xl border border-[#212323] bg-[#F6F1EC] px-3 py-3 sm:p-4 has-[:checked]:border-2"
               >
-                <div class="flex flex-1 items-center gap-2">
+                <div class="flex items-center gap-2">
                   <span class="relative flex size-5 shrink-0 items-center justify-center rounded-full border border-[#212323] bg-[#F6F1EC] p-1">
                     <input
                       type="radio"
@@ -379,7 +391,7 @@
 
       {% if section.settings.promo_heading != blank %}
         <div
-          class="relative flex w-full items-center gap-8 overflow-hidden rounded-2xl p-4"
+          class="relative flex w-full flex-col items-center gap-3 overflow-hidden rounded-2xl p-3 sm:flex-row sm:gap-6 sm:p-4"
           style="background-color: {{ section.settings.promo_background_color }};"
         >
           {% if section.settings.promo_texture %}
@@ -393,7 +405,7 @@
           {% endif %}
 
           {% if section.settings.promo_image %}
-            <div class="relative aspect-[166/150] w-[140px] shrink-0 overflow-hidden rounded-xl sm:w-[166px]">
+            <div class="relative aspect-[166/150] w-[100px] shrink-0 overflow-hidden rounded-xl sm:w-[140px] lg:w-[166px]">
               {{
                 section.settings.promo_image
                 | image_url: width: 400
@@ -406,8 +418,8 @@
             </div>
           {% endif %}
 
-          <div class="relative flex flex-1 flex-col items-start gap-[10px]">
-            <p class="text-[20px] font-medium text-[#212323]">{{ section.settings.promo_heading }}</p>
+          <div class="relative flex flex-1 flex-col items-center md:items-start gap-[10px]">
+            <p class="text-[16px] sm:text-[20px] font-medium text-[#212323]">{{ section.settings.promo_heading }}</p>
 
             {% if section.settings.promo_button_label != blank %}
               {% render 'button',
@@ -418,7 +430,7 @@
             {% endif %}
 
             {% if section.settings.promo_feature_1_text != blank or section.settings.promo_feature_2_text != blank %}
-              <div class="flex flex-wrap items-center gap-x-[15px] gap-y-2 text-[#212323]">
+              <div class="flex flex-wrap items-center gap-x-[10px] gap-y-2 sm:gap-x-[15px] text-[#212323]">
                 {% if section.settings.promo_feature_1_text != blank %}
                   <div class="flex items-center gap-[5px]">
                     <span class="block size-[15px] shrink-0">{{ 'icon-package.svg' | inline_asset_content }}</span>
@@ -447,36 +459,58 @@
   </div>
 </section>
 
-{% javascript %}
-  class ProductGallery extends HTMLElement {
-    connectedCallback() {
-      this.thumbs = Array.from(this.querySelectorAll('[data-gallery-thumb]'));
-      this.panels = Array.from(this.querySelectorAll('[data-gallery-panel]'));
-      this.prevButton = this.querySelector('[data-gallery-prev]');
-      this.nextButton = this.querySelector('[data-gallery-next]');
-      this.index = 0;
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const initProductGallery = () => {
+      const galleryEl = document.querySelector('product-gallery');
+      const swiperEl = galleryEl?.querySelector('.product-gallery__swiper');
+      if (!galleryEl || !swiperEl || typeof Swiper === 'undefined') return;
 
-      this.thumbs.forEach((thumb) => {
-        thumb.addEventListener('click', () => this.show(Number(thumb.dataset.index)));
+      const prevEl = galleryEl.querySelector('[data-gallery-prev]');
+      const nextEl = galleryEl.querySelector('[data-gallery-next]');
+      const thumbs = Array.from(galleryEl.querySelectorAll('[data-gallery-thumb]'));
+
+      const setActiveThumb = (realIndex) => {
+        thumbs.forEach((thumb, index) => {
+          thumb.classList.toggle('outline-2', index === realIndex);
+        });
+      };
+
+      const gallerySwiper = new Swiper(swiperEl, {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        grabCursor: true,
+        navigation: {
+          prevEl: prevEl,
+          nextEl: nextEl,
+        },
+        on: {
+          realIndexChange: (swiper) => setActiveThumb(swiper.realIndex),
+        },
       });
-      this.prevButton?.addEventListener('click', () => this.show(this.index - 1));
-      this.nextButton?.addEventListener('click', () => this.show(this.index + 1));
-    }
 
-    show(index) {
-      const count = this.panels.length;
-      if (!count) return;
-      this.index = (index + count) % count;
+      thumbs.forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+          gallerySwiper.slideToLoop(Number(thumb.dataset.index));
+        });
+      });
+    };
 
-      this.panels.forEach((panel, i) => panel.classList.toggle('hidden', i !== this.index));
-      this.thumbs.forEach((thumb, i) => thumb.classList.toggle('outline-2', i === this.index));
-      this.thumbs.forEach((thumb, i) => thumb.classList.toggle('outline-offset-2', i === this.index));
-      this.thumbs.forEach((thumb, i) => thumb.classList.toggle('outline-[#212323]', i === this.index));
-    }
+    initProductGallery();
+
+    // Support Shopify Theme Editor re-initialization
+    document.addEventListener('shopify:section:load', initProductGallery);
+  });
+</script>
+
+{% stylesheet %}
+  .product-gallery__swiper .swiper-slide {
+    box-sizing: border-box;
   }
+{% endstylesheet %}
 
-  customElements.define('product-gallery', ProductGallery);
-
+{% javascript %}
   class ProductPurchase extends HTMLElement {
     connectedCallback() {
       const dataScript = this.querySelector('[data-product-purchase-data]');
