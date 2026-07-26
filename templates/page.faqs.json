@@ -22,12 +22,60 @@
         "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_2.png",
-        "background_color": "#F6F1EC"
+        "background_color": "#f6f1ec"
+      }
+    },
+    "faq_accordion_hXei8P": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_item_C4M6hM": {
+          "type": "faq_item",
+          "settings": {
+            "category": "The Drink",
+            "question": "What is Toasted?",
+            "answer": "Toasted is a premium, light cannabis beverage designed for adults 21+. It combines carefully selected ingredients with a smooth, balanced effect for social moments and personal relaxation."
+          }
+        },
+        "faq_item_zJJDxn": {
+          "type": "faq_item",
+          "settings": {
+            "category": "The Drink",
+            "question": "Is Toasted carbonated?",
+            "answer": "Yes, Toasted is lightly carbonated for a refreshing drinking experience. The carbonation level has been carefully calibrated to complement the flavor profile."
+          }
+        },
+        "faq_item_eTXy4X": {
+          "type": "faq_item",
+          "settings": {
+            "category": "Ingredients",
+            "question": "What is in Toasted?",
+            "answer": "Toasted contains a blend of fruit juice, cannabis extract, carbonated water, and natural flavoring. All ingredients are carefully selected for quality and compatibility."
+          }
+        },
+        "faq_item_zUXTTW": {
+          "type": "faq_item",
+          "settings": {
+            "category": "Ingredients",
+            "question": "How should I try Toasted?",
+            "answer": "Toasted is best enjoyed chilled, straight from the can or over ice. Start with a small amount to understand how it affects you personally."
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_C4M6hM",
+        "faq_item_zJJDxn",
+        "faq_item_eTXy4X",
+        "faq_item_zUXTTW"
+      ],
+      "name": "t:general.faq_accordion",
+      "settings": {
+        "background_color": "#ffffff"
       }
     }
   },
   "order": [
     "main",
-    "hero_banner_AFPte7"
+    "hero_banner_AFPte7",
+    "faq_accordion_hXei8P"
   ]
 }

@@ -22,13 +22,13 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <div class="coa-guide__table-wrap mx-auto w-full max-w-[988px]">
-        <table class="coa-guide__table">
+      <div class="coa-guide__table-wrap mx-auto w-full max-w-[988px] overflow-x-auto">
+        <table class="block w-full max-w-full border-collapse">
           <tbody>
             {% for block in section.blocks %}
-              <tr {{ block.shopify_attributes }}>
-                <th scope="row">{{ block.settings.title }}</th>
-                <td>{{ block.settings.description }}</td>
+              <tr {{ block.shopify_attributes }} class="coa-guide__row">
+                <th scope="row" class="w-[220px] p-3 text-[18px] font-medium leading-[1.5] text-left whitespace-nowrap align-bottom border-r border-[#212323] md:w-[280px] md:text-[24px] lg:w-[368px] lg:p-4 lg:whitespace-normal">{{ block.settings.title }}</th>
+                <td class="p-3 text-[16px] font-normal leading-[1.5] text-left align-top md:text-[24px] lg:p-4">{{ block.settings.description }}</td>
               </tr>
             {% endfor %}
           </tbody>
@@ -39,65 +39,12 @@
 </section>
 
 {% stylesheet %}
-  .coa-guide__table {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
+  .coa-guide__table-wrap {
     -webkit-overflow-scrolling: touch;
-    border-collapse: collapse;
   }
 
-  .coa-guide__table th {
-    width: 220px;
-    padding: 12px;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1.5;
-    text-align: left;
-    white-space: nowrap;
-    vertical-align: bottom;
-  }
-
-  .coa-guide__table td {
-    padding: 12px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: left;
-    vertical-align: top;
-  }
-
-  .coa-guide__table tr + tr > * {
+  .coa-guide__row + .coa-guide__row > * {
     border-top: 1px solid #212323;
-  }
-
-  .coa-guide__table th:first-child,
-  .coa-guide__table td:first-child {
-    border-right: 1px solid #212323;
-  }
-
-  @media (min-width: 48rem) {
-    .coa-guide__table th {
-      width: 280px;
-      font-size: 24px;
-    }
-
-    .coa-guide__table td {
-      font-size: 24px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .coa-guide__table th {
-      width: 368px;
-      padding: 16px;
-      white-space: normal;
-    }
-
-    .coa-guide__table td {
-      padding: 16px;
-    }
   }
 {% endstylesheet %}
 
