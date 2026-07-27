@@ -1505,6 +1505,9 @@
     --tw-tracking: 0.6px;
     letter-spacing: 0.6px;
   }
+  .text-wrap {
+    text-wrap: wrap;
+  }
   .break-words {
     overflow-wrap: break-word;
   }

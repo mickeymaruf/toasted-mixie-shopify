@@ -65,45 +65,72 @@
         "background_color": "#f6f1ec"
       }
     },
-    "coa_cards_EjEN6L": {
+    "coa_cards_b8tKV7": {
       "type": "coa-cards",
       "blocks": {
-        "coa_card_qR9k9P": {
+        "coa_card_8w7UNr": {
           "type": "coa-card",
           "settings": {
             "title": "Blood Orange COA",
             "link_text": "View Batches",
             "link": "",
-            "card_background_color": "#f9d5c0"
+            "card_background_color": "#f9d5c0",
+            "batch_1_number": "12345678",
+            "batch_1_date": "09/15/2024",
+            "batch_1_url": "https://example.com/coa1.pdf",
+            "batch_2_number": "87654321",
+            "batch_2_date": "08/20/2024",
+            "batch_2_url": "https://example.com/coa2.pdf",
+            "batch_3_number": "11223344",
+            "batch_3_date": "07/10/2024",
+            "batch_3_url": "https://example.com/coa3.pdf"
           }
         },
-        "coa_card_qbbx9W": {
+        "coa_card_i7yzXc": {
           "type": "coa-card",
           "settings": {
             "title": "Ginger Lime COA",
             "link_text": "View Batches",
             "link": "",
-            "card_background_color": "#f9d5c0"
+            "card_background_color": "#f9d5c0",
+            "batch_1_number": "55667788",
+            "batch_1_date": "09/12/2024",
+            "batch_1_url": "https://example.com/coa4.pdf",
+            "batch_2_number": "99001122",
+            "batch_2_date": "08/18/2024",
+            "batch_2_url": "https://example.com/coa5.pdf",
+            "batch_3_number": "33445566",
+            "batch_3_date": "07/05/2024",
+            "batch_3_url": "https://example.com/coa6.pdf"
           }
         },
-        "coa_card_Ap8UEx": {
+        "coa_card_69gdwJ": {
           "type": "coa-card",
           "settings": {
             "title": "Berry Acai COA",
             "link_text": "View Batches",
             "link": "",
-            "card_background_color": "#f9d5c0"
+            "card_background_color": "#f9d5c0",
+            "batch_1_number": "77889900",
+            "batch_1_date": "09/10/2024",
+            "batch_1_url": "https://example.com/coa7.pdf",
+            "batch_2_number": "22334455",
+            "batch_2_date": "08/15/2024",
+            "batch_2_url": "https://example.com/coa8.pdf",
+            "batch_3_number": "66778899",
+            "batch_3_date": "07/08/2024",
+            "batch_3_url": "https://example.com/coa9.pdf"
           }
         }
       },
       "block_order": [
-        "coa_card_qR9k9P",
-        "coa_card_qbbx9W",
-        "coa_card_Ap8UEx"
+        "coa_card_8w7UNr",
+        "coa_card_i7yzXc",
+        "coa_card_69gdwJ"
       ],
       "name": "t:general.coa_cards",
       "settings": {
-        "background_color": "#f6f1ec"
+        "background_color": "#FFFFFF"
       }
     },
     "coa_guide_bpiRwk": {
@@ -155,7 +182,7 @@
     "main",
     "content_banner_BDzrWf",
     "lab_results_HmgaWd",
-    "coa_cards_EjEN6L",
+    "coa_cards_b8tKV7",
     "coa_guide_bpiRwk"
   ]
 }
