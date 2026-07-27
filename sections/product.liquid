@@ -163,6 +163,10 @@
 
       <product-purchase class="flex w-full flex-col gap-10">
         {% form 'product', product %}
+          {% if product.has_only_default_variant == true %}
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+          {% endif %}
+
           {% if product.has_only_default_variant == false %}
             <div class="flex w-full flex-col gap-4 mb-10">
               <p id="pack-size-heading-{{ section.id }}" class="text-[16px] leading-[1.3] font-medium text-[#212323]">
