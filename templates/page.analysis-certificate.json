@@ -21,7 +21,8 @@
         "heading": "Certificate of Analysis",
         "subheading": "All Toasted products are third-party lab tested. COAs are available on the site. Adults 21+ only. Use responsibly.",
         "heading_color": "#212323",
-        "container_background_color": "#9ab2d5"
+        "container_background_color": "#9ab2d5",
+        "background_image": "shopify://shop_images/Frame_2147235873_2.png"
       }
     },
     "lab_results_HmgaWd": {
@@ -61,9 +62,7 @@
       "settings": {
         "title": "Find your Lab Results",
         "description": "Every Toasted batch is tested. Use your batch number to find the Certificate of Analysis for your can.",
-        "background_color": "#f6f1ec",
-        "padding_top": 100,
-        "padding_bottom": 100
+        "background_color": "#f6f1ec"
       }
     },
     "coa_cards_EjEN6L": {
@@ -104,9 +103,7 @@
       ],
       "name": "t:general.coa_cards",
       "settings": {
-        "background_color": "#F6F1EC",
-        "padding_top": 100,
-        "padding_bottom": 100
+        "background_color": "#f6f1ec"
       }
     },
     "coa_guide_bpiRwk": {
@@ -150,9 +147,7 @@
       "name": "t:general.coa_guide",
       "settings": {
         "heading": "How to Read a COA",
-        "background_color": "#f6f1ec",
-        "padding_top": 100,
-        "padding_bottom": 100
+        "background_color": "#f6f1ec"
       }
     }
   },

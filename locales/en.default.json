@@ -37,7 +37,12 @@
     "column": "Column",
     "row": "Row",
     "custom_section": "Custom Section",
-    "faq_accordion": "FAQ Accordion"
+    "faq_accordion": "FAQ Accordion",
+    "combo_offer": "Combo Offer",
+    "pricing": "Pricing",
+    "badge": "Badge",
+    "texture_overlay": "Texture overlay",
+    "promo_banner": "Promo Banner"
   },
   "labels": {
     "heading": "Heading",
@@ -86,7 +91,12 @@
     "mega_menu_link_info": "Enter the exact title of the menu item that should have a mega menu dropdown (e.g., 'Shop')",
     "category": "Category",
     "question": "Question",
-    "answer": "Answer"
+    "answer": "Answer",
+    "sale_price": "Sale price",
+    "original_price": "Original price",
+    "badge_text": "Badge text",
+    "feature_1_text": "Feature 1 text",
+    "feature_2_text": "Feature 2 text"
   },
   "options": {
     "text_style": {

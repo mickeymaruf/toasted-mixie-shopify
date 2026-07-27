@@ -1,0 +1,67 @@
+{% doc %}
+  Renders a combo/trial pack pricing offer with sale price, original price, and promotional badge.
+  Ideal for displaying special bundle offers or trial pack pricing.
+
+  @example
+  {% content_for 'block', type: 'combo-offer', id: 'combo-offer' %}
+{% enddoc %}
+
+<div
+  class="flex gap-5 items-center -my-3"
+  {{ block.shopify_attributes }}
+>
+  <!-- Price Display -->
+  <div class="flex flex-col justify-center leading-none">
+    <p class="text-[40px] font-bold leading-[1.2] text-[#212323]">
+      <span>{{ block.settings.sale_price }}</span>
+      <span class="ml-1 font-medium text-[40px] line-through text-[#999]">
+        {{ block.settings.original_price }}
+      </span>
+    </p>
+  </div>
+
+  <!-- Badge -->
+  {% if block.settings.badge_text != blank %}
+    <div
+      class="bg-gradient-to-r from-[rgba(133,0,44,0.06)] to-[rgba(133,0,44,0)] border border-[rgba(133,0,44,0.2)] flex items-center justify-center px-4 py-[6px] rounded-lg shrink-0"
+    >
+      <p class="text-[16px] font-normal leading-[1.2] text-[#474747] whitespace-nowrap">
+        {{ block.settings.badge_text }}
+      </p>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.combo_offer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.pricing"
+    },
+    {
+      "type": "text",
+      "id": "sale_price",
+      "label": "t:labels.sale_price",
+      "default": "$0"
+    },
+    {
+      "type": "text",
+      "id": "original_price",
+      "label": "t:labels.original_price",
+      "default": "$30"
+    },
+    {
+      "type": "header",
+      "content": "t:general.badge"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "t:labels.badge_text",
+      "default": "Just Pay Shipping"
+    }
+  ]
+}
+{% endschema %}

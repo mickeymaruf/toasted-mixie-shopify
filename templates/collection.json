@@ -15,18 +15,78 @@
       "settings": {
         "heading": "Choose your Flavor.",
         "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
-        "heading_color": "#F6F1EC",
+        "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792.png",
-        "background_color": "#F6F1EC"
+        "background_color": "#f6f1ec"
       }
     },
     "main": {
       "type": "collection",
+      "disabled": true,
       "settings": {}
+    },
+    "gruns_product_list_WNTnfV": {
+      "type": "gruns-product-list",
+      "blocks": {
+        "product_card_LKPRkx": {
+          "type": "product-card",
+          "settings": {
+            "product": "blood-orange",
+            "flavor_name": "Blood Orange",
+            "flavor_name_color": "#b70141",
+            "description": "Bright. Smooth. Golden-hour ready.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Blood Orange",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        },
+        "product_card_KdTXFV": {
+          "type": "product-card",
+          "settings": {
+            "product": "berry-acai",
+            "flavor_name": "Berry Acai",
+            "flavor_name_color": "#5e1a79",
+            "description": "Deep. Juicy. Easy to enjoy.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Berry Acai",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        },
+        "product_card_JGG6Ew": {
+          "type": "product-card",
+          "settings": {
+            "product": "ginger-lime",
+            "flavor_name": "Ginger Lime",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Ginger Lime",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "product_card_LKPRkx",
+        "product_card_KdTXFV",
+        "product_card_JGG6Ew"
+      ],
+      "name": "t:general.product_list",
+      "settings": {
+        "heading": "",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323"
+      }
     }
   },
   "order": [
+    "main",
     "hero_banner_FcDRLr",
-    "main"
+    "gruns_product_list_WNTnfV"
   ]
 }

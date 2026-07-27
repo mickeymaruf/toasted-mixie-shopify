@@ -29,6 +29,9 @@
     "coa_cards": "COA cards",
     "coa_guide": "COA guide",
     "colors": "Colors",
+    "combo_offer": "Combo offer",
+    "pricing": "Pricing",
+    "badge": "Badge",
     "column": "Column",
     "content": "Content",
     "content_banner": "Content banner",
@@ -121,6 +124,8 @@
     "card_image": "Card image",
     "category": "Category",
     "center_product_image": "Center product image",
+    "sale_price": "Sale price",
+    "original_price": "Original price",
     "columns_desktop": "Columns (desktop)",
     "content": "Content",
     "copyright_text": "Copyright text",
@@ -281,6 +286,9 @@
     "faq_accordion": {
       "name": "FAQ Accordion",
       "faq_item": "FAQ Item"
+    },
+    "combo_offer": {
+      "name": "Combo Offer"
     }
   }
 }

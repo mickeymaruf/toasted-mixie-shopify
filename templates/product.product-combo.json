@@ -1,0 +1,517 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product",
+      "blocks": {
+        "highlight-grid": {
+          "type": "highlight-grid",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "product_highlight_Yb3Qtq": {
+              "type": "product-highlight",
+              "name": "t:general.product_highlight",
+              "settings": {
+                "label": "0.4mg hemp-derived THC",
+                "icon_style": "thc",
+                "icon": "shopify://shop_images/icon-thc-highlight.svg"
+              },
+              "blocks": {}
+            },
+            "product_highlight_FKtUBM": {
+              "type": "product-highlight",
+              "name": "t:general.product_highlight",
+              "settings": {
+                "label": "L-theanine + Rhodiola",
+                "icon_style": "thc",
+                "icon": "shopify://shop_images/icon-adaptogen.svg"
+              },
+              "blocks": {}
+            },
+            "product_highlight_aiaE68": {
+              "type": "product-highlight",
+              "name": "t:general.product_highlight",
+              "settings": {
+                "label": "Non-carbonated",
+                "icon_style": "thc",
+                "icon": "shopify://shop_images/icon-non-carbonated.svg"
+              },
+              "blocks": {}
+            },
+            "product_highlight_ibJiag": {
+              "type": "product-highlight",
+              "name": "t:general.product_highlight",
+              "settings": {
+                "label": "COA available",
+                "icon_style": "thc",
+                "icon": "shopify://shop_images/icon-usa-hemp.svg"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_highlight_Yb3Qtq",
+            "product_highlight_FKtUBM",
+            "product_highlight_aiaE68",
+            "product_highlight_ibJiag"
+          ]
+        },
+        "flavor-swatch-row": {
+          "type": "flavor-swatch-row",
+          "static": true,
+          "settings": {
+            "heading": "Choose your Flavor"
+          },
+          "blocks": {
+            "flavor_swatch_ayHRVG": {
+              "type": "flavor-swatch",
+              "name": "t:general.flavor_swatch",
+              "settings": {
+                "product": "blood-orange",
+                "flavor_name": "Blood Orange"
+              },
+              "blocks": {}
+            },
+            "flavor_swatch_HhRbV9": {
+              "type": "flavor-swatch",
+              "name": "t:general.flavor_swatch",
+              "settings": {
+                "product": "berry-acai",
+                "flavor_name": "Blood Orange"
+              },
+              "blocks": {}
+            },
+            "flavor_swatch_ktfVwb": {
+              "type": "flavor-swatch",
+              "name": "t:general.flavor_swatch",
+              "settings": {
+                "product": "ginger-lime",
+                "flavor_name": "Blood Orange"
+              },
+              "blocks": {}
+            },
+            "flavor_swatch_zDTPKU": {
+              "type": "flavor-swatch",
+              "name": "t:general.flavor_swatch",
+              "settings": {
+                "product": "ginger-lime",
+                "flavor_name": "Blood Orange"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "flavor_swatch_ayHRVG",
+            "flavor_swatch_HhRbV9",
+            "flavor_swatch_ktfVwb",
+            "flavor_swatch_zDTPKU"
+          ]
+        },
+        "combo-offer": {
+          "type": "combo-offer",
+          "static": true,
+          "settings": {
+            "sale_price": "$0",
+            "original_price": "$30",
+            "badge_text": "Just Pay Shipping"
+          },
+          "blocks": {}
+        },
+        "badge-row": {
+          "type": "badge-row",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "guarantee_badge_Hq6aKN": {
+              "type": "guarantee-badge",
+              "name": "t:general.guarantee_badge",
+              "settings": {
+                "label": "30-Day Guarantee",
+                "icon_style": "guarantee"
+              },
+              "blocks": {}
+            },
+            "guarantee_badge_9QWTJQ": {
+              "type": "guarantee-badge",
+              "name": "t:general.guarantee_badge",
+              "settings": {
+                "label": "COA available. 3rd party tested.",
+                "icon_style": "lab"
+              },
+              "blocks": {}
+            },
+            "guarantee_badge_aFfJrj": {
+              "type": "guarantee-badge",
+              "name": "t:general.guarantee_badge",
+              "settings": {
+                "label": "Adults 21+ only. Use responsibly.",
+                "icon_style": "payment"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "guarantee_badge_Hq6aKN",
+            "guarantee_badge_9QWTJQ",
+            "guarantee_badge_aFfJrj"
+          ]
+        },
+        "accordion-list": {
+          "type": "accordion-list",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "accordion_item_CzALCE": {
+              "type": "accordion-item",
+              "name": "t:general.accordion_item",
+              "settings": {
+                "title": "What is Toasted?",
+                "content": "<p>What is Toasted?</p>"
+              },
+              "blocks": {}
+            },
+            "accordion_item_A3dHUA": {
+              "type": "accordion-item",
+              "name": "t:general.accordion_item",
+              "settings": {
+                "title": "Ingredients & Allergies",
+                "content": "<p>What is Toasted?</p>"
+              },
+              "blocks": {}
+            },
+            "accordion_item_CmFcQt": {
+              "type": "accordion-item",
+              "name": "t:general.accordion_item",
+              "settings": {
+                "title": "What to Expect",
+                "content": "<p>What is Toasted?</p>"
+              },
+              "blocks": {}
+            },
+            "accordion_item_kiGMEB": {
+              "type": "accordion-item",
+              "name": "t:general.accordion_item",
+              "settings": {
+                "title": "Lab Results",
+                "content": "<p>What is Toasted?</p>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "accordion_item_CzALCE",
+            "accordion_item_A3dHUA",
+            "accordion_item_CmFcQt",
+            "accordion_item_kiGMEB"
+          ]
+        },
+        "promo-banner": {
+          "type": "promo-banner",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "heading": "Can't Pick Just One?",
+            "button_label": "Get My Trial Pack",
+            "button_link": "",
+            "feature_1_text": "Free 3-flavor trial pack.",
+            "feature_2_text": "Just Pay Shipping",
+            "background_color": "#9ab2d5"
+          },
+          "blocks": {}
+        }
+      },
+      "settings": {
+        "rating": 5,
+        "show_badge": true,
+        "badge_text": "Launching Soon",
+        "delivery_interval": "1 month",
+        "subscribe_card_background_color": "#c2cbd4",
+        "custom_button_text": "Claim Your Trial Pack\n<strong class=\"font-medium\">FREE</strong>"
+      }
+    },
+    "faq_pills_grid_8Wfzf6": {
+      "type": "faq-pills-grid",
+      "blocks": {
+        "faq_item_YPAGzA": {
+          "type": "faq-item",
+          "settings": {
+            "question": "What is Toasted?",
+            "answer": "<p>What is Toasted?</p>",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "faq_item_GehJNf": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Ingredients & Allergies",
+            "answer": "<p>What is Toasted?</p>",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "faq_item_QChKnG": {
+          "type": "faq-item",
+          "settings": {
+            "question": "What to Expect",
+            "answer": "<p>What is Toasted?</p>",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "faq_item_dr6wdx": {
+          "type": "faq-item",
+          "settings": {
+            "question": "How is it dosed?",
+            "answer": "<p>What is Toasted?</p>",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "faq_item_bz9Q7P": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Is it legal to ship?",
+            "answer": "<p>What is Toasted?</p>",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "faq_item_mDPWP9": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Lab Results",
+            "answer": "<p>What is Toasted?</p>",
+            "initially_open": false,
+            "background_color": "#f9d5c0",
+            "text_color": "#212323"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "faq_item_YPAGzA",
+        "faq_item_GehJNf",
+        "faq_item_QChKnG",
+        "faq_item_dr6wdx",
+        "faq_item_bz9Q7P",
+        "faq_item_mDPWP9"
+      ],
+      "name": "t:general.faq_pills_grid",
+      "settings": {
+        "heading": "Frequently asked questions",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323",
+        "columns_desktop": "3",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      }
+    },
+    "ingredient_highlights_wcTznK": {
+      "type": "ingredient-highlights",
+      "blocks": {
+        "feature-column-left": {
+          "type": "feature-column",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "feature_highlight_VwWtE8": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "L-Theanine"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_4miYN3": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Low Dose THC",
+                "icon": "shopify://shop_images/icon-ingredient-thc.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_7pcgjg": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Rhodiola",
+                "icon": "shopify://shop_images/Group_88.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_iR7VFz": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Lab Tested",
+                "icon": "shopify://shop_images/Group_89.svg"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "feature_highlight_VwWtE8",
+            "feature_highlight_4miYN3",
+            "feature_highlight_7pcgjg",
+            "feature_highlight_iR7VFz"
+          ]
+        },
+        "feature-column-right": {
+          "type": "feature-column",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "feature_highlight_HyR9Ln": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Real Fruit Juice",
+                "icon": "shopify://shop_images/Group_91.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_gnHG89": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Drinking Age",
+                "icon": "shopify://shop_images/Group_92.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_PyjK8n": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Low Calorie",
+                "icon": "shopify://shop_images/Group_94.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_Fg8fxt": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Non-carbonated",
+                "icon": "shopify://shop_images/Group_95.svg"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "feature_highlight_HyR9Ln",
+            "feature_highlight_gnHG89",
+            "feature_highlight_PyjK8n",
+            "feature_highlight_Fg8fxt"
+          ]
+        }
+      },
+      "name": "t:general.ingredient_highlights",
+      "settings": {
+        "heading": "Functional by Design.",
+        "description": "Crafted with L-theanine, rhodiola, and 0.4mg hemp-derived THC in a non-carbonated drink made for a lighter social experience.",
+        "center_image": "shopify://shop_images/Group_84.png",
+        "center_image_alt": "",
+        "background_image": "shopify://shop_images/ingredient-highlights-background.png"
+      }
+    },
+    "gruns_product_list_Bh6NTx": {
+      "type": "gruns-product-list",
+      "blocks": {
+        "product_card_Nt6AWc": {
+          "type": "product-card",
+          "settings": {
+            "product": "blood-orange",
+            "flavor_name": "Blood Orange",
+            "flavor_name_color": "#b70141",
+            "description": "Bright. Smooth. Golden-hour ready.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Blood Orange",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        },
+        "product_card_9ReCdi": {
+          "type": "product-card",
+          "settings": {
+            "product": "berry-acai",
+            "flavor_name": "Berry Acai",
+            "flavor_name_color": "#5e1a79",
+            "description": "Deep. Juicy. Easy to enjoy.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Berry Acai",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        },
+        "product_card_VcLzPR": {
+          "type": "product-card",
+          "settings": {
+            "product": "ginger-lime",
+            "flavor_name": "Ginger Lime",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "From $9.99",
+            "button_label": "Shop Ginger Lime",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "product_card_Nt6AWc",
+        "product_card_9ReCdi",
+        "product_card_VcLzPR"
+      ],
+      "name": "t:general.product_list",
+      "settings": {
+        "heading": "Choose your flavor.",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323"
+      }
+    },
+    "gruns_find_toasted_EFQ7iF": {
+      "type": "gruns-find-toasted",
+      "name": "t:general.gruns_find_toasted",
+      "settings": {
+        "heading": "Find Toasted",
+        "description": "Coming to select venues and retailers.",
+        "show_button": true,
+        "button_label": "Find near you",
+        "button_link": "",
+        "button_background_color": "#212323",
+        "button_text_color": "#f6f1ec",
+        "background_color": "#f6f1ec",
+        "panel_background_color": "#f9d5c0",
+        "heading_color": "#212323",
+        "billboard_image": "shopify://shop_images/find-toasted-billboard.png",
+        "billboard_image_alt": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq_pills_grid_8Wfzf6",
+    "ingredient_highlights_wcTznK",
+    "gruns_product_list_Bh6NTx",
+    "gruns_find_toasted_EFQ7iF"
+  ]
+}

@@ -5,15 +5,44 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/404
 {% endcomment %}
 
-<h1>{{ '404.title' | t }}</h1>
+<section class="not-found full-width" style="background-color: #f6f1ec;" {{ section.shopify_attributes }}>
+  <div class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px] py-[80px] md:py-[120px] lg:py-[160px]">
+    <div class="flex flex-col items-center justify-center gap-8 text-center">
+      <!-- 404 Number -->
+      <div class="relative">
+        <div class="text-[120px] md:text-[180px] lg:text-[240px] font-bold leading-[1] tracking-[-4px] md:tracking-[-6px] lg:tracking-[-8px] text-[#212323] opacity-10">
+          404
+        </div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="text-[60px] md:text-[80px] lg:text-[100px] font-bold text-[#212323]">
+            {{ '404.title' | t }}
+          </div>
+        </div>
+      </div>
 
-<p>
-  {{ '404.not_found' | t }}
-</p>
+      <!-- Message -->
+      <div class="flex flex-col gap-4 max-w-[600px]">
+        <h1 class="text-[32px] md:text-[44px] lg:text-[56px] font-bold leading-[0.95] tracking-[-1.2px] md:tracking-[-1.68px] lg:tracking-[-2.16px] text-[#212323]">
+          Page Not Found
+        </h1>
+        <p class="text-[16px] md:text-[18px] lg:text-[20px] leading-[1.6] text-[#212323] font-normal">
+          {{ '404.not_found' | t }}
+        </p>
+      </div>
 
-<a href="{{ routes.all_products_collection_url }}">
-  {{ '404.back_to_shopping' | t }}
-</a>
+      <!-- CTA Button -->
+      <div class="pt-4">
+        <a
+          href="{{ routes.root_url }}"
+          class="inline-flex items-center justify-center px-8 py-4 md:px-10 md:py-5 bg-[#212323] text-[#f6f1ec] text-[16px] md:text-[18px] font-semibold leading-[1.2] rounded-lg transition-all duration-200 hover:bg-[#212323] hover:opacity-90 active:scale-95"
+        >
+          {{ '404.back_to_shopping' | t }}
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 {% schema %}
 {

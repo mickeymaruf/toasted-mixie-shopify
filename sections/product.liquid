@@ -118,6 +118,8 @@
 
       {% content_for 'block', type: 'flavor-swatch-row', id: 'flavor-swatch-row' %}
 
+      {% content_for 'block', type: 'combo-offer', id: 'combo-offer' %}
+
       <script type="application/json" data-product-purchase-data>
         {
           "sellingPlanId": {{ selling_plan.id | default: 'null' }},
@@ -237,7 +239,7 @@
               endif
             %}
             <div
-              class="flex w-full flex-col gap-3 sm:gap-5"
+              class="flex w-full flex-col gap-3 sm:gap-5 mb-5"
               role="radiogroup"
               aria-label="{{ 'products.main.purchase_option_group_label' | t }}"
             >
@@ -348,7 +350,7 @@
           <button
             type="submit"
             name="add"
-            class="flex h-[58px] w-full items-center justify-center gap-[5px] rounded-[30px] bg-[#212323] px-8 py-4 text-center text-[20px] text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85 disabled:opacity-30 mt-5"
+            class="flex h-[58px] w-full items-center justify-center gap-[5px] rounded-[30px] bg-[#212323] px-8 py-4 text-center text-[20px] text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85 disabled:opacity-30"
             data-buy-button
             {% unless current_variant.available %}
               disabled
@@ -359,8 +361,11 @@
               data-subscribe-label="{{ 'products.main.buy_button_subscribe' | t }}"
               data-one-time-label="{{ 'products.main.buy_button_one_time' | t }}"
               data-sold-out-label="{{ 'products.main.sold_out' | t }}"
+              data-has-custom-label="{% if section.settings.custom_button_text != blank %}true{% else %}false{% endif %}"
             >
-              {% if current_variant.available == false %}
+              {% if section.settings.custom_button_text != blank %}
+                {{ section.settings.custom_button_text }}
+              {% elsif current_variant.available == false %}
                 {{ 'products.main.sold_out' | t }}
               {% elsif selling_plan %}
                 {{ 'products.main.buy_button_subscribe' | t }}
@@ -374,6 +379,9 @@
               {% unless current_variant.available %}
                 hidden
               {% endunless %}
+              {% if section.settings.custom_button_text != blank %}
+                hidden
+              {% endif %}
             >
               {% if selected_allocation %}
                 {{ selected_allocation.price | money }}
@@ -389,72 +397,7 @@
 
       {% content_for 'block', type: 'accordion-list', id: 'accordion-list' %}
 
-      {% if section.settings.promo_heading != blank %}
-        <div
-          class="relative flex w-full flex-col items-center gap-3 overflow-hidden rounded-2xl p-3 sm:flex-row sm:gap-6 sm:p-4"
-          style="background-color: {{ section.settings.promo_background_color }};"
-        >
-          {% if section.settings.promo_texture %}
-            <div class="pointer-events-none absolute inset-0 opacity-5" aria-hidden="true">
-              {{
-                section.settings.promo_texture
-                | image_url: width: 1600
-                | image_tag: class: 'size-full object-cover', alt: ''
-              }}
-            </div>
-          {% endif %}
-
-          {% if section.settings.promo_image %}
-            <div class="relative aspect-[166/150] w-[100px] shrink-0 overflow-hidden rounded-xl sm:w-[140px] lg:w-[166px]">
-              {{
-                section.settings.promo_image
-                | image_url: width: 400
-                | image_tag:
-                  width: 400,
-                  height: 362,
-                  class: 'size-full object-cover',
-                  alt: section.settings.promo_heading
-              }}
-            </div>
-          {% endif %}
-
-          <div class="relative flex flex-1 flex-col items-center md:items-start gap-[10px]">
-            <p class="text-[16px] sm:text-[20px] font-medium text-[#212323]">{{ section.settings.promo_heading }}</p>
-
-            {% if section.settings.promo_button_label != blank %}
-              {% render 'button',
-                label: section.settings.promo_button_label,
-                url: section.settings.promo_button_link,
-                class: '!w-auto whitespace-nowrap'
-              %}
-            {% endif %}
-
-            {% if section.settings.promo_feature_1_text != blank or section.settings.promo_feature_2_text != blank %}
-              <div class="flex flex-wrap items-center gap-x-[10px] gap-y-2 sm:gap-x-[15px] text-[#212323]">
-                {% if section.settings.promo_feature_1_text != blank %}
-                  <div class="flex items-center gap-[5px]">
-                    <span class="block size-[15px] shrink-0">{{ 'icon-package.svg' | inline_asset_content }}</span>
-                    <span class="text-[12px] leading-[1.5] whitespace-nowrap">
-                      {{- section.settings.promo_feature_1_text -}}
-                    </span>
-                  </div>
-                {% endif %}
-
-                {% if section.settings.promo_feature_2_text != blank %}
-                  <div class="flex items-center gap-[5px]">
-                    <span class="block h-[13px] w-[17px] shrink-0">
-                      {{- 'icon-shipping.svg' | inline_asset_content -}}
-                    </span>
-                    <span class="text-[12px] leading-[1.5] whitespace-nowrap">
-                      {{- section.settings.promo_feature_2_text -}}
-                    </span>
-                  </div>
-                {% endif %}
-              </div>
-            {% endif %}
-          </div>
-        </div>
-      {% endif %}
+      {% content_for 'block', type: 'promo-banner', id: 'promo-banner' %}
     </div>
   </div>
 </section>
@@ -569,17 +512,21 @@
       const subscribing = variant.hasSubscription && this.isSubscribing;
 
       if (this.buyButtonPrice) {
-        this.buyButtonPrice.hidden = !variant.available;
+        const hasCustomLabel = this.buyButtonLabel?.dataset.hasCustomLabel === 'true';
+        this.buyButtonPrice.hidden = !variant.available || hasCustomLabel;
         this.buyButtonPrice.textContent = subscribing ? variant.subscribePriceHtml : variant.priceHtml;
       }
 
       if (this.buyButtonLabel) {
-        if (!variant.available) {
-          this.buyButtonLabel.textContent = this.buyButtonLabel.dataset.soldOutLabel;
-        } else {
-          this.buyButtonLabel.textContent = subscribing
-            ? this.buyButtonLabel.dataset.subscribeLabel
-            : this.buyButtonLabel.dataset.oneTimeLabel;
+        const hasCustomLabel = this.buyButtonLabel.dataset.hasCustomLabel === 'true';
+        if (!hasCustomLabel) {
+          if (!variant.available) {
+            this.buyButtonLabel.textContent = this.buyButtonLabel.dataset.soldOutLabel;
+          } else {
+            this.buyButtonLabel.textContent = subscribing
+              ? this.buyButtonLabel.dataset.subscribeLabel
+              : this.buyButtonLabel.dataset.oneTimeLabel;
+          }
         }
       }
 
@@ -636,64 +583,18 @@
       "default": "#C2CBD4"
     },
     {
-      "type": "header",
-      "content": "t:general.promo_banner"
-    },
-    {
-      "type": "text",
-      "id": "promo_heading",
-      "label": "t:labels.heading",
-      "default": "Can't Pick Just One?"
-    },
-    {
-      "type": "text",
-      "id": "promo_button_label",
-      "label": "t:labels.button_label",
-      "default": "Get My Trial Pack"
-    },
-    {
-      "type": "url",
-      "id": "promo_button_link",
-      "label": "t:labels.button_link"
-    },
-    {
-      "type": "text",
-      "id": "promo_feature_1_text",
-      "label": "t:labels.feature_1_text",
-      "default": "Free 3-flavor trial pack."
-    },
-    {
-      "type": "text",
-      "id": "promo_feature_2_text",
-      "label": "t:labels.feature_2_text",
-      "default": "Just Pay Shipping"
-    },
-    {
-      "type": "image_picker",
-      "id": "promo_image",
-      "label": "t:labels.image"
-    },
-    {
-      "type": "color",
-      "id": "promo_background_color",
-      "label": "t:labels.card_background",
-      "default": "#9AB2D5"
-    },
-    {
-      "type": "header",
-      "content": "t:general.texture_overlay"
-    },
-    {
-      "type": "image_picker",
-      "id": "promo_texture",
-      "label": "t:labels.image"
+      "type": "textarea",
+      "id": "custom_button_text",
+      "label": "Custom button text"
     }
   ],
   "blocks": [
     { "type": "highlight-grid" },
     { "type": "flavor-swatch-row" },
     { "type": "badge-row" },
-    { "type": "accordion-list" }
+    { "type": "accordion-list" },
+    { "type": "promo-banner" },
+    { "type": "combo-offer" }
   ],
   "presets": [
     {
@@ -717,7 +618,30 @@
             }
           ]
         },
-        { "type": "accordion-list", "static": true, "id": "accordion-list" }
+        { "type": "accordion-list", "static": true, "id": "accordion-list" },
+        {
+          "type": "promo-banner",
+          "static": true,
+          "id": "promo-banner",
+          "settings": {
+            "heading": "Can't Pick Just One?",
+            "button_label": "Get My Trial Pack",
+            "feature_1_text": "Free 3-flavor trial pack.",
+            "feature_2_text": "Just Pay Shipping",
+            "image": "shopify://shop_images/pdp-promo-banner-image.png",
+            "background_color": "#9ab2d5"
+          }
+        },
+        {
+          "type": "combo-offer",
+          "static": true,
+          "id": "combo-offer",
+          "settings": {
+            "sale_price": "$0",
+            "original_price": "$30",
+            "badge_text": "Just Pay Shipping"
+          }
+        }
       ]
     }
   ],

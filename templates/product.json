@@ -116,6 +116,17 @@
             "flavor_swatch_zDTPKU"
           ]
         },
+        "combo-offer": {
+          "type": "combo-offer",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "sale_price": "$0",
+            "original_price": "$30",
+            "badge_text": "Just Pay Shipping"
+          },
+          "blocks": {}
+        },
         "badge-row": {
           "type": "badge-row",
           "static": true,
@@ -203,6 +214,20 @@
             "accordion_item_CmFcQt",
             "accordion_item_kiGMEB"
           ]
+        },
+        "promo-banner": {
+          "type": "promo-banner",
+          "static": true,
+          "settings": {
+            "heading": "Can't Pick Just One?",
+            "button_label": "Get My Trial Pack",
+            "button_link": "",
+            "feature_1_text": "Free 3-flavor trial pack.",
+            "feature_2_text": "Just Pay Shipping",
+            "background_color": "#9ab2d5",
+            "image": "shopify://shop_images/Frame_2147235887_2_a981a03a-ea4e-4703-891f-949154834f68.png"
+          },
+          "blocks": {}
         }
       },
       "settings": {
@@ -210,14 +235,7 @@
         "show_badge": true,
         "badge_text": "Launching Soon",
         "delivery_interval": "1 month",
-        "subscribe_card_background_color": "#c2cbd4",
-        "promo_heading": "Can't Pick Just One?",
-        "promo_button_label": "Get My Trial Pack",
-        "promo_button_link": "",
-        "promo_feature_1_text": "Free 3-flavor trial pack.",
-        "promo_feature_2_text": "Just Pay Shipping",
-        "promo_image": "shopify://shop_images/pdp-promo-banner-image.png",
-        "promo_background_color": "#9ab2d5"
+        "subscribe_card_background_color": "#c2cbd4"
       }
     },
     "faq_pills_grid_8Wfzf6": {
@@ -467,9 +485,7 @@
       "settings": {
         "heading": "Choose your flavor.",
         "background_color": "#f6f1ec",
-        "heading_color": "#212323",
-        "padding_top": 100,
-        "padding_bottom": 0
+        "heading_color": "#212323"
       }
     },
     "gruns_find_toasted_EFQ7iF": {

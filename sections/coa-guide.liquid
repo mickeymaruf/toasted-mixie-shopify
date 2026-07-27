@@ -12,8 +12,7 @@
   {{ section.shopify_attributes }}
 >
   <div
-    class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px]"
-    style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+    class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px] py-[50px] md:py-[100px]"
   >
     {% if section.settings.heading != blank %}
       <h2 class="coa-guide__heading mb-10 text-center text-[40px] font-bold leading-[0.95] tracking-[-1.2px] text-[#212323] sm:text-[56px] sm:tracking-[-1.68px] md:mb-[50px] md:text-[72px] md:tracking-[-2.16px]">
@@ -27,8 +26,15 @@
           <tbody>
             {% for block in section.blocks %}
               <tr {{ block.shopify_attributes }} class="coa-guide__row">
-                <th scope="row" class="w-[220px] p-3 text-[18px] font-medium leading-[1.5] text-left whitespace-nowrap align-bottom border-r border-[#212323] md:w-[280px] md:text-[24px] lg:w-[368px] lg:p-4 lg:whitespace-normal">{{ block.settings.title }}</th>
-                <td class="p-3 text-[16px] font-normal leading-[1.5] text-left align-top md:text-[24px] lg:p-4">{{ block.settings.description }}</td>
+                <th
+                  scope="row"
+                  class="w-[150px] p-3 text-[18px] font-medium leading-[1.5] text-left whitespace-nowrap align-center border-r border-[#212323] sm:w-[200px] md:w-[280px] md:text-[24px] lg:w-[320px] lg:p-4 lg:whitespace-normal"
+                >
+                  {{ block.settings.title }}
+                </th>
+                <td class="p-3 text-[16px] font-normal leading-[1.5] text-left align-top md:text-[24px] lg:p-4 lg:pl-[130px]">
+                  {{ block.settings.description }}
+                </td>
               </tr>
             {% endfor %}
           </tbody>
@@ -92,30 +98,6 @@
       "label": "t:labels.background",
       "default": "#F6F1EC"
     },
-    {
-      "type": "header",
-      "content": "t:general.layout"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "label": "t:labels.padding_top",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "unit": "px",
-      "default": 100
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "t:labels.padding_bottom",
-      "min": 0,
-      "max": 200,
-      "step": 4,
-      "unit": "px",
-      "default": 100
-    }
   ],
   "presets": [
     {

@@ -22,7 +22,7 @@
               {% assign groups_shown = true %}
               <div class="faq-group">
                 {% if current_group != blank %}
-                  <h2 class="font-bold text-[48px] leading-[0.95] tracking-[-1.44px] text-[#212323] text-center w-full mb-[16px]">
+                  <h2 class="font-bold text-[32px] leading-[0.95] tracking-[-0.96px] text-[#212323] text-center w-full mb-[16px] sm:text-[40px] sm:tracking-[-1.2px] md:text-[44px] md:tracking-[-1.32px] lg:text-[48px] lg:tracking-[-1.44px]">
                     {{ current_group }}
                   </h2>
                 {% endif %}
@@ -39,30 +39,21 @@
                 aria-expanded="false"
                 aria-controls="faq-answer-{{ block.id }}"
               >
-                <span class="font-medium text-[24px] leading-[1.5] text-[#212323] flex-1">
+                <span class="font-medium text-[18px] leading-[1.5] text-[#212323] flex-1 sm:text-[20px] md:text-[22px] lg:text-[24px]">
                   {{ block.settings.question }}
                 </span>
-                <div class="faq-chevron ml-4 flex-shrink-0 transition-transform duration-300">
-                  <svg
-                    class="w-[24px] h-[24px] text-[#212323]"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 14 8"
-                    fill="none"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M1 1L7 7L13 1" />
-                  </svg>
+                <div class="faq-chevron ml-4 flex-shrink-0 transition-transform duration-300 flex h-[18px] w-[18px] items-center justify-center sm:h-[20px] sm:w-[20px] md:h-[22px] md:w-[22px]">
+                  <img src="{{ 'icon-arrow-down-1.svg' | asset_url }}" alt="" class="h-full w-full" />
                 </div>
               </button>
 
               <div
                 id="faq-answer-{{ block.id }}"
-                class="faq-item-answer hidden"
+                class="faq-item-answer"
                 role="region"
                 aria-labelledby="faq-question-{{ block.id }}"
               >
-                <div class="px-[24px] py-[18px] border-t border-[rgba(33,35,35,0.15)] text-[16px] leading-[1.6] text-[#212323]">
+                <div class="px-[24px] py-[18px] border-t border-[rgba(33,35,35,0.15)] text-[14px] leading-[1.6] text-[#212323] sm:text-[15px] md:text-[16px]">
                   {{ block.settings.answer }}
                 </div>
               </div>
@@ -89,8 +80,15 @@
     transform: rotate(180deg);
   }
 
+  .faq-item-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   .faq-item-answer.show {
-    display: block;
+    max-height: 500px;
+    transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 {% endstylesheet %}
 
@@ -145,7 +143,7 @@
       "type": "color",
       "id": "background_color",
       "label": "t:labels.background",
-      "default": "#ffffff"
+      "default": "#f6f1ec"
     }
   ],
   "presets": [
