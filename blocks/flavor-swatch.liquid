@@ -32,7 +32,7 @@
       {{
         swatch_image
         | image_url: width: 220
-        | image_tag: width: 220, height: 248, class: 'h-full w-auto object-contain', alt: block.settings.flavor_name
+        | image_tag: width: 220, height: 248, class: 'w-full h-full w-auto object-cover', alt: block.settings.flavor_name
       }}
     {% endif %}
   </div>
@@ -40,6 +40,10 @@
   {% if block.settings.flavor_name != blank %}
     <p class="text-[14px] leading-none font-medium whitespace-nowrap text-[#212323]">
       {{ block.settings.flavor_name }}
+    </p>
+  {% elsif block.settings.product != blank %}
+    <p class="text-[14px] leading-none font-medium whitespace-nowrap text-[#212323]">
+      {{ block.settings.product.title }}
     </p>
   {% endif %}
 </a>
