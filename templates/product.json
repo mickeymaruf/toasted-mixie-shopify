@@ -69,7 +69,7 @@
           "type": "flavor-swatch-row",
           "static": true,
           "settings": {
-            "heading": "Choose your Flavor"
+            "heading": "Included Flavors"
           },
           "blocks": {
             "flavor_swatch_ayHRVG": {
@@ -77,7 +77,8 @@
               "name": "t:general.flavor_swatch",
               "settings": {
                 "product": "blood-orange",
-                "flavor_name": ""
+                "flavor_name": "",
+                "swatch_image": "shopify://shop_images/Frame_2147235891.png"
               },
               "blocks": {}
             },
@@ -86,7 +87,8 @@
               "name": "t:general.flavor_swatch",
               "settings": {
                 "product": "berry-acai",
-                "flavor_name": ""
+                "flavor_name": "",
+                "swatch_image": "shopify://shop_images/Frame_2147235893.png"
               },
               "blocks": {}
             },
@@ -95,16 +97,8 @@
               "name": "t:general.flavor_swatch",
               "settings": {
                 "product": "ginger-lime",
-                "flavor_name": ""
-              },
-              "blocks": {}
-            },
-            "flavor_swatch_zDTPKU": {
-              "type": "flavor-swatch",
-              "name": "t:general.flavor_swatch",
-              "settings": {
-                "product": "try-all-3-flavors",
-                "flavor_name": "Trial Pack"
+                "flavor_name": "",
+                "swatch_image": "shopify://shop_images/Frame_2147235892.png"
               },
               "blocks": {}
             }
@@ -112,8 +106,7 @@
           "block_order": [
             "flavor_swatch_ayHRVG",
             "flavor_swatch_HhRbV9",
-            "flavor_swatch_ktfVwb",
-            "flavor_swatch_zDTPKU"
+            "flavor_swatch_ktfVwb"
           ]
         },
         "combo-offer": {
@@ -340,7 +333,8 @@
             "feature_highlight_VwWtE8": {
               "type": "feature-highlight",
               "settings": {
-                "title": "L-Theanine"
+                "title": "L-Theanine",
+                "icon": "shopify://shop_images/icon-leaf.svg"
               },
               "blocks": {}
             },
@@ -426,9 +420,45 @@
       "settings": {
         "heading": "Functional by Design.",
         "description": "Crafted with L-theanine, rhodiola, and 0.4mg hemp-derived THC in a non-carbonated drink made for a lighter social experience.",
-        "center_image": "shopify://shop_images/Group_84.png",
+        "center_image": "shopify://shop_images/1.png",
         "center_image_alt": "",
         "background_image": "shopify://shop_images/ingredient-highlights-background.png"
+      }
+    },
+    "how_it_works_hWxXPx": {
+      "type": "how-it-works",
+      "blocks": {
+        "step_HjzLYm": {
+          "type": "step",
+          "settings": {
+            "text": "Minutes 10-20: feel A gentle Lift"
+          }
+        },
+        "step_npEgki": {
+          "type": "step",
+          "settings": {
+            "text": "Minutes 20-40: Enjoy A Social Buzz"
+          }
+        },
+        "step_hdYYXX": {
+          "type": "step",
+          "settings": {
+            "text": "Minutes 45-65: Build Your Buzz or Enjoy A Subtle Decline"
+          }
+        }
+      },
+      "block_order": [
+        "step_HjzLYm",
+        "step_npEgki",
+        "step_hdYYXX"
+      ],
+      "name": "t:general.how_it_works",
+      "settings": {
+        "eyebrow": "How it Work",
+        "heading": "Our Dirnks Hit Different",
+        "background_color": "#D7DEE5",
+        "heading_color": "#000000",
+        "text_color": "#343434"
       }
     },
     "gruns_product_list_Bh6NTx": {
@@ -512,6 +542,7 @@
     "main",
     "faq_pills_grid_8Wfzf6",
     "ingredient_highlights_wcTznK",
+    "how_it_works_hWxXPx",
     "gruns_product_list_Bh6NTx",
     "gruns_find_toasted_EFQ7iF"
   ]

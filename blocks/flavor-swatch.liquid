@@ -11,42 +11,37 @@
 {% enddoc %}
 
 {% liquid
-  assign is_active = false
-  if block.settings.product != blank and block.settings.product.id == product.id
-    assign is_active = true
-  endif
-
   assign swatch_image = block.settings.swatch_image | default: block.settings.product.featured_image
 %}
 
-<a
-  href="{{ block.settings.product.url | default: '#' }}"
-  class="flex shrink-0 flex-col items-center gap-[10px] rounded-[10px] border px-[5px] pt-[5px] pb-[10px] {% if is_active %}border-[#212323]{% else %}border-[#C2CBD4]{% endif %}"
-  {% if is_active %}
-    aria-current="page"
-  {% endif %}
+<div
+  class="flex shrink min-w-0 flex-col items-center gap-[6px] sm:gap-[10px] rounded-[10px] border border-[#C2CBD4] px-[3px] sm:px-[5px] pt-[3px] sm:pt-[5px] pb-[8px] sm:pb-[10px]"
   {{ block.shopify_attributes }}
 >
-  <div class="relative flex h-[122px] w-[109px] items-center justify-center overflow-hidden rounded-[8px] bg-[#F0F0F0]">
+  <div class="relative flex max-h-[122px] max-w-[109px] items-center justify-center overflow-hidden rounded-[8px] bg-[#F0F0F0]">
     {% if swatch_image %}
       {{
         swatch_image
         | image_url: width: 220
-        | image_tag: width: 220, height: 248, class: 'w-full h-full w-auto object-cover', alt: block.settings.flavor_name
+        | image_tag:
+          width: 220,
+          height: 248,
+          class: 'w-full h-full w-auto object-cover',
+          alt: block.settings.flavor_name
       }}
     {% endif %}
   </div>
 
   {% if block.settings.flavor_name != blank %}
-    <p class="text-[14px] leading-none font-medium whitespace-nowrap text-[#212323]">
+    <p class="text-xs sm:text-[14px] leading-none font-medium whitespace-nowrap text-[#212323]">
       {{ block.settings.flavor_name }}
     </p>
   {% elsif block.settings.product != blank %}
-    <p class="text-[14px] leading-none font-medium whitespace-nowrap text-[#212323]">
+    <p class="text-xs sm:text-[14px] leading-none font-medium whitespace-nowrap text-[#212323]">
       {{ block.settings.product.title }}
     </p>
   {% endif %}
-</a>
+</div>
 
 {% schema %}
 {

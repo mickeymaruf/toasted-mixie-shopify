@@ -34,7 +34,7 @@
     <div class="absolute inset-0 bg-[#F6F1EC]/40"></div>
   </div>
 
-  <div class="relative mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 px-5 py-14 sm:px-8 md:px-12 lg:gap-[60px] lg:px-[80px] lg:pt-[80px] lg:pb-[100px] xl:px-[120px]">
+  <div class="relative mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 px-5 py-8 sm:py-14 sm:px-8 md:px-12 lg:gap-[60px] lg:px-[80px] lg:pt-[80px] lg:pb-[100px] xl:px-[120px]">
     {% if section.settings.heading != blank or section.settings.description != blank %}
       <div class="flex w-full flex-col items-center gap-5 text-center text-[#212323] lg:gap-[20px]">
         {% if section.settings.heading != blank %}
@@ -57,15 +57,16 @@
       </div>
 
       <div class="order-1 col-span-2 flex justify-center lg:order-none lg:col-span-1">
-        <div class="relative w-[190px] sm:w-[240px] lg:w-[340px] flex items-center">
+        <div class="relative w-[190px] sm:w-[240px] lg:w-[300px] flex items-center">
           {% if section.settings.center_image %}
             {{
               section.settings.center_image
-              | image_url: width: 700
+              | image_url: width: 1400
               | image_tag:
                 class: 'relative size-full object-contain',
-                widths: '160, 267, 400, 534, 700',
+                widths: '190, 240, 380, 480, 680, 960, 1400',
                 sizes: '(min-width: 64rem) 340px, (min-width: 40rem) 240px, 190px',
+                loading: 'eager',
                 alt: section.settings.center_image_alt
               | default: section.settings.center_image.alt
             }}

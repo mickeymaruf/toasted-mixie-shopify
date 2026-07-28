@@ -1,244 +1,163 @@
 {% doc %}
-  Renders a responsive grid of COA (Certificate of Analysis) card blocks.
-  Each card displays a product/batch title with a "View Batches" link and icon.
-  Fully customizable with dynamic content and soft peach background styling.
+  Renders a table-based COA (Certificate of Analysis) listing with live search
+  filters (manufacturer, product title, batch number). Each block represents a
+  single row: manufacturer, date, product name, batch number, test results
+  link, and best-by date.
 
   @example
   {% section 'coa-cards' %}
 {% enddoc %}
 
-<section
-  class="coa-cards full-width"
+<coa-filter
+  class="coa-cards full-width block"
   style="background-color: {{ section.settings.background_color }};"
   {{ section.shopify_attributes }}
 >
-  <div
-    class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px] py-[50px] md:py-[100px]"
-  >
-    {% if section.blocks.size > 0 %}
-      <div class="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-[20px] items-start">
-        {% for block in section.blocks %}
-          <div
-            class="coa-cards__card-wrapper rounded-[16px] overflow-hidden"
-            style="background-color: {{ block.settings.card_background_color }}"
-            {{ block.shopify_attributes }}
-          >
-            <button
-              class="coa-cards__card w-full flex flex-col items-center justify-center gap-5 px-[37px] py-[30px] transition-all duration-200 cursor-pointer"
-              data-card-toggle
-            >
-              <div class="flex flex-col items-center gap-5">
-                <!-- Title -->
-                <h3 class="text-center text-[32px] font-semibold leading-[1.2] text-[#212323]">
-                  {{ block.settings.title }}
-                </h3>
-
-                <!-- Link with Icon -->
-                <div class="flex flex-col items-center gap-[15px]">
-                  <p class="coa-cards__link-text text-center text-xl font-normal leading-[1.2] text-[#212323] underline decoration-from-font transition-opacity duration-200">
-                    {{ block.settings.link_text }}
-                  </p>
-                  <!-- Dropdown Icon -->
-                  <div class="coa-cards__icon flex h-[22px] w-[22px] items-center justify-center transition-transform duration-200">
-                    <img src="{{ 'icon-arrow-down-1.svg' | asset_url }}" alt="" class="h-full w-full" />
-                  </div>
-                </div>
-              </div>
-            </button>
-
-            <!-- Expanded Content -->
-            <div class="coa-cards__expanded hidden">
-              {% for i in (1..3) %}
-                {% assign batch_num_key = 'batch_' | append: i | append: '_number' %}
-                {% assign batch_date_key = 'batch_' | append: i | append: '_date' %}
-                {% assign batch_url_key = 'batch_' | append: i | append: '_url' %}
-
-                {% if block.settings[batch_num_key] %}
-                  <div class="flex flex-col gap-[34px] px-[37px] py-[30px] items-start">
-                    <div class="flex flex-col gap-[10px] w-full">
-                      <p class="text-[24px] font-semibold leading-[1.2] text-[#212323]">
-                        Batch Number: {{ block.settings[batch_num_key] }}
-                      </p>
-                      {% if block.settings[batch_date_key] %}
-                        <p class="text-[24px] font-normal leading-[1.2] text-[#212323]">
-                          Batch Date: {{ block.settings[batch_date_key] }}
-                        </p>
-                      {% endif %}
-                      {% if block.settings[batch_url_key] %}
-                        <div class="flex gap-[6px] items-center">
-                          <a href="{{ block.settings[batch_url_key] }}" target="_blank" rel="noopener noreferrer" class="text-[20px] font-normal leading-[1.3] text-[#212323] underline decoration-from-font">
-                            COA PDF
-                          </a>
-                          <svg class="w-[12px] h-[12px]" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 11L11 1M11 1H6M11 1V6" stroke="#212323" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                        </div>
-                      {% endif %}
-                    </div>
-                    {% if forloop.last == false and block.settings[batch_num_key] and forloop.index < 3 %}
-                      {% assign next_batch = forloop.index | plus: 1 %}
-                      {% assign next_key = 'batch_' | append: next_batch | append: '_number' %}
-                      {% if block.settings[next_key] %}
-                        <hr class="w-full border-t border-[#212323] border-opacity-15" />
-                      {% endif %}
-                    {% endif %}
-                  </div>
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-        {% endfor %}
+  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 px-5 pt-[7px] pb-[50px] sm:px-8 md:px-12 md:pb-[100px] lg:px-[80px] xl:px-[120px]">
+    <!-- Search Filters Section -->
+    <div class="flex w-full flex-col items-start gap-6 sm:flex-row">
+      <div class="min-w-0 flex-1 rounded-[4px] border border-[#c1c1c1] p-4">
+        <input
+          type="text"
+          class="w-full bg-transparent text-[15px] leading-normal font-normal text-[#212323] outline-none placeholder:text-[#989898]"
+          placeholder="{{ section.settings.filter_manufacturer_label }}"
+          aria-label="{{ section.settings.filter_manufacturer_label }}"
+          data-filter-manufacturer
+        >
       </div>
-    {% endif %}
+      <div class="min-w-0 flex-1 rounded-[4px] border border-[#c1c1c1] p-4">
+        <input
+          type="text"
+          class="w-full bg-transparent text-[15px] leading-normal font-normal text-[#212323] outline-none placeholder:text-[#989898]"
+          placeholder="{{ section.settings.filter_title_label }}"
+          aria-label="{{ section.settings.filter_title_label }}"
+          data-filter-title
+        >
+      </div>
+      <div class="min-w-0 flex-1 rounded-[4px] border border-[#c1c1c1] p-4">
+        <input
+          type="text"
+          class="w-full bg-transparent text-[15px] leading-normal font-normal text-[#212323] outline-none placeholder:text-[#989898]"
+          placeholder="{{ section.settings.filter_batch_label }}"
+          aria-label="{{ section.settings.filter_batch_label }}"
+          data-filter-batch
+        >
+      </div>
+    </div>
+
+    <!-- Listing Section -->
+    <div class="flex w-full flex-col items-start" data-coa-list>
+      {% for block in section.blocks %}
+        <div
+          class="flex w-full flex-col items-start gap-4 border-b border-[#d1d6e0] py-8"
+          data-coa-row
+          data-manufacturer="{{ block.settings.manufacturer | escape }}"
+          data-title="{{ block.settings.title | escape }}"
+          data-batch="{{ block.settings.batch_number | escape }}"
+          {{ block.shopify_attributes }}
+        >
+          <!-- Column Headers -->
+          <div class="flex w-full items-center gap-6 text-[18px] leading-normal font-bold text-black">
+            <p class="w-[160px] shrink-0">{{ section.settings.header_date }}</p>
+            <p class="min-w-0 flex-1">{{ section.settings.header_product_name }}</p>
+            <p class="w-[240px] shrink-0">{{ section.settings.header_batch_number }}</p>
+            <p class="w-[160px] shrink-0">{{ section.settings.header_test_results }}</p>
+            <p class="w-[160px] shrink-0">{{ section.settings.header_best_by_date }}</p>
+          </div>
+
+          <!-- Column Values -->
+          <div class="flex w-full items-start gap-6">
+            <!-- Date -->
+            <p class="w-[160px] shrink-0 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
+              {{ block.settings.date }}
+            </p>
+
+            <!-- Product Name -->
+            <p class="min-w-0 flex-1 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
+              {{ block.settings.title }}
+            </p>
+
+            <!-- Batch Number -->
+            <p class="w-[240px] shrink-0 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
+              {{ block.settings.batch_number }}
+            </p>
+
+            <!-- Test Results Link -->
+            <div class="w-[160px] shrink-0">
+              {% if block.settings.url %}
+                <a
+                  href="{{ block.settings.url }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-[15px] leading-[1.4] font-normal text-black underline decoration-solid [text-underline-position:from-font]"
+                >
+                  {{ section.settings.link_text }}
+                </a>
+              {% endif %}
+            </div>
+
+            <!-- Best By Date -->
+            <p class="w-[160px] shrink-0 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
+              {{ block.settings.best_by_date }}
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+
+      <p class="hidden w-full py-8 text-center text-[15px] leading-[1.4] font-normal text-[#6d6d6d]" data-coa-empty>
+        {{ section.settings.empty_state_text }}
+      </p>
+    </div>
   </div>
-</section>
+</coa-filter>
 
 {% stylesheet %}
-  .coa-cards__expanded {
-    border-top: 1px solid rgba(33, 35, 35, 0.15);
-  }
-
-  .coa-cards__expanded.visible {
-    display: block;
-  }
-
-  .coa-cards__icon {
-    transform: scaleY(1);
-  }
-
-  .coa-cards__card.open .coa-cards__icon {
-    transform: scaleY(-1);
-  }
-
-  .coa-cards__link-text {
-    transition: opacity 0.2s ease, height 0.2s ease, margin 0.2s ease;
-    overflow: hidden;
-  }
-
-  .coa-cards__card.open .coa-cards__link-text {
-    opacity: 0;
-    height: 0;
-    margin: 0;
+  .coa-cards {
+    background-color: #f6f1ec;
   }
 {% endstylesheet %}
 
 {% javascript %}
-  document.addEventListener('DOMContentLoaded', function() {
-    const toggleButtons = document.querySelectorAll('[data-card-toggle]');
+  class CoaFilter extends HTMLElement {
+    connectedCallback() {
+      this.manufacturerInput = this.querySelector('[data-filter-manufacturer]');
+      this.titleInput = this.querySelector('[data-filter-title]');
+      this.batchInput = this.querySelector('[data-filter-batch]');
+      this.rows = Array.from(this.querySelectorAll('[data-coa-row]'));
+      this.emptyState = this.querySelector('[data-coa-empty]');
 
-    toggleButtons.forEach(button => {
-      button.addEventListener('click', function(e) {
-        const card = this;
-        const expanded = card.parentElement.querySelector('.coa-cards__expanded');
-
-        if (!expanded) return;
-
-        e.preventDefault();
-
-        card.classList.toggle('open');
-        expanded.classList.toggle('visible');
+      [this.manufacturerInput, this.titleInput, this.batchInput].forEach((input) => {
+        input?.addEventListener('input', () => this.filter());
       });
-    });
-  });
+    }
+
+    filter() {
+      const manufacturerQuery = (this.manufacturerInput?.value || '').trim().toLowerCase();
+      const titleQuery = (this.titleInput?.value || '').trim().toLowerCase();
+      const batchQuery = (this.batchInput?.value || '').trim().toLowerCase();
+
+      let visibleCount = 0;
+
+      this.rows.forEach((row) => {
+        const matchesManufacturer = !manufacturerQuery || row.dataset.manufacturer.toLowerCase().includes(manufacturerQuery);
+        const matchesTitle = !titleQuery || row.dataset.title.toLowerCase().includes(titleQuery);
+        const matchesBatch = !batchQuery || row.dataset.batch.toLowerCase().includes(batchQuery);
+        const isVisible = matchesManufacturer && matchesTitle && matchesBatch;
+
+        row.hidden = !isVisible;
+        if (isVisible) visibleCount += 1;
+      });
+
+      if (this.emptyState) this.emptyState.hidden = visibleCount > 0;
+    }
+  }
+
+  customElements.define('coa-filter', CoaFilter);
 {% endjavascript %}
 
 {% schema %}
 {
   "name": "t:general.coa_cards",
-  "blocks": [
-    {
-      "type": "coa-card",
-      "name": "t:general.coa_card",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "t:labels.title",
-          "default": "Blood Orange COA"
-        },
-        {
-          "type": "text",
-          "id": "link_text",
-          "label": "t:labels.link_text",
-          "default": "View Batches"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "t:labels.link"
-        },
-        {
-          "type": "color",
-          "id": "card_background_color",
-          "label": "t:labels.card_background",
-          "default": "#F9D5C0"
-        },
-        {
-          "type": "header",
-          "content": "t:general.batch_1"
-        },
-        {
-          "type": "text",
-          "id": "batch_1_number",
-          "label": "t:labels.batch_number",
-          "placeholder": "e.g., 12345678"
-        },
-        {
-          "type": "text",
-          "id": "batch_1_date",
-          "label": "t:labels.batch_date",
-          "placeholder": "e.g., 09/15/2024"
-        },
-        {
-          "type": "url",
-          "id": "batch_1_url",
-          "label": "t:labels.pdf_url"
-        },
-        {
-          "type": "header",
-          "content": "t:general.batch_2"
-        },
-        {
-          "type": "text",
-          "id": "batch_2_number",
-          "label": "t:labels.batch_number",
-          "placeholder": "e.g., 87654321"
-        },
-        {
-          "type": "text",
-          "id": "batch_2_date",
-          "label": "t:labels.batch_date",
-          "placeholder": "e.g., 08/20/2024"
-        },
-        {
-          "type": "url",
-          "id": "batch_2_url",
-          "label": "t:labels.pdf_url"
-        },
-        {
-          "type": "header",
-          "content": "t:general.batch_3"
-        },
-        {
-          "type": "text",
-          "id": "batch_3_number",
-          "label": "t:labels.batch_number",
-          "placeholder": "e.g., 11223344"
-        },
-        {
-          "type": "text",
-          "id": "batch_3_date",
-          "label": "t:labels.batch_date",
-          "placeholder": "e.g., 07/10/2024"
-        },
-        {
-          "type": "url",
-          "id": "batch_3_url",
-          "label": "t:labels.pdf_url"
-        }
-      ]
-    }
-  ],
   "settings": [
     {
       "type": "header",
@@ -248,8 +167,119 @@
       "type": "color",
       "id": "background_color",
       "label": "t:labels.background",
-      "default": "#FFFFFF"
+      "default": "#f6f1ec"
     },
+    {
+      "type": "header",
+      "content": "t:general.search_filters"
+    },
+    {
+      "type": "text",
+      "id": "filter_manufacturer_label",
+      "label": "Manufacturer Filter Label",
+      "default": "Search by Manufacturer's Name"
+    },
+    {
+      "type": "text",
+      "id": "filter_title_label",
+      "label": "Product Title Filter Label",
+      "default": "Search by Product Title"
+    },
+    {
+      "type": "text",
+      "id": "filter_batch_label",
+      "label": "Batch Filter Label",
+      "default": "Search by Batch Number"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_text",
+      "label": "Empty State Text",
+      "default": "No certificates found matching your search."
+    },
+    {
+      "type": "header",
+      "content": "t:general.table_headers"
+    },
+    {
+      "type": "text",
+      "id": "header_date",
+      "label": "Date Header",
+      "default": "Date"
+    },
+    {
+      "type": "text",
+      "id": "header_product_name",
+      "label": "Product Name Header",
+      "default": "Product Name"
+    },
+    {
+      "type": "text",
+      "id": "header_batch_number",
+      "label": "Batch Number Header",
+      "default": "Batch Number"
+    },
+    {
+      "type": "text",
+      "id": "header_test_results",
+      "label": "Test Results Header",
+      "default": "Test Results"
+    },
+    {
+      "type": "text",
+      "id": "header_best_by_date",
+      "label": "Best By Date Header",
+      "default": "Best By Date"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Test Results Link Text",
+      "default": "Click here"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "coa-card",
+      "name": "t:general.coa_card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:labels.product_name",
+          "default": "Product Name"
+        },
+        {
+          "type": "text",
+          "id": "manufacturer",
+          "label": "t:labels.manufacturer",
+          "placeholder": "e.g., Toasted Mixie"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "t:labels.batch_date",
+          "placeholder": "e.g., July 20, 2026"
+        },
+        {
+          "type": "text",
+          "id": "batch_number",
+          "label": "t:labels.batch_number",
+          "placeholder": "e.g., 12345678"
+        },
+        {
+          "type": "text",
+          "id": "best_by_date",
+          "label": "t:labels.best_by_date",
+          "placeholder": "e.g., 07/07/2027"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "t:labels.pdf_url"
+        }
+      ]
+    }
   ],
   "presets": [
     {
@@ -258,52 +288,45 @@
         {
           "type": "coa-card",
           "settings": {
-            "title": "Blood Orange COA",
-            "link_text": "View Batches",
-            "card_background_color": "#F9D5C0",
-            "batch_1_number": "12345678",
-            "batch_1_date": "09/15/2024",
-            "batch_1_url": "https://example.com/coa1.pdf",
-            "batch_2_number": "87654321",
-            "batch_2_date": "08/20/2024",
-            "batch_2_url": "https://example.com/coa2.pdf",
-            "batch_3_number": "11223344",
-            "batch_3_date": "07/10/2024",
-            "batch_3_url": "https://example.com/coa3.pdf"
+            "title": "Naked Liquid Packet 5mg THC per 15mL",
+            "manufacturer": "Toasted Mixie",
+            "date": "July 20, 2026",
+            "batch_number": "18826",
+            "best_by_date": "07/07/2027",
+            "url": "https://example.com/results"
           }
         },
         {
           "type": "coa-card",
           "settings": {
-            "title": "Ginger Lime COA",
-            "link_text": "View Batches",
-            "card_background_color": "#F9D5C0",
-            "batch_1_number": "55667788",
-            "batch_1_date": "09/12/2024",
-            "batch_1_url": "https://example.com/coa4.pdf",
-            "batch_2_number": "99001122",
-            "batch_2_date": "08/18/2024",
-            "batch_2_url": "https://example.com/coa5.pdf",
-            "batch_3_number": "33445566",
-            "batch_3_date": "07/05/2024",
-            "batch_3_url": "https://example.com/coa6.pdf"
+            "title": "Lemon Lavender 1mg THC: 15mg CBD per 355mL",
+            "manufacturer": "Toasted Mixie",
+            "date": "July 16, 2026",
+            "batch_number": "LL26152/LL26148/LL26147",
+            "best_by_date": "06/05/2027",
+            "url": "https://example.com/results"
           }
         },
         {
           "type": "coa-card",
           "settings": {
-            "title": "Berry Acai COA",
-            "link_text": "View Batches",
-            "card_background_color": "#F9D5C0",
-            "batch_1_number": "77889900",
-            "batch_1_date": "09/10/2024",
-            "batch_1_url": "https://example.com/coa7.pdf",
-            "batch_2_number": "22334455",
-            "batch_2_date": "08/15/2024",
-            "batch_2_url": "https://example.com/coa8.pdf",
-            "batch_3_number": "66778899",
-            "batch_3_date": "07/08/2024",
-            "batch_3_url": "https://example.com/coa9.pdf"
+            "title": "Ginger Lemongrass 3mg THC: 6mg CBD per 355mL",
+            "manufacturer": "Toasted Mixie",
+            "date": "July 16, 2026",
+            "batch_number": "GLG26154",
+            "best_by_date": "06/11/2027",
+            "url": "https://example.com/results"
+          }
+        },
+        {
+          "type": "coa-card",
+          "settings": {
+            "title": "Lemon Lavender 1mg THC: 15mg CBD per 355mL",
+            "manufacturer": "Toasted Mixie",
+            "date": "July 16, 2026",
+            "batch_number": "LL26152",
+            "best_by_date": "06/05/2027",
+            "url": "https://example.com/results"
           }
         }
       ]

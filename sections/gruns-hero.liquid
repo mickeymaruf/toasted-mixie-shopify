@@ -17,7 +17,7 @@
 
       {% if section.settings.description != blank %}
         <div
-          class="mt-4 max-w-[520px] text-[16px] leading-[1.5] text-[color:var(--gruns-hero-heading-color)] md:mt-5 md:text-[18px]"
+          class="mt-4 max-w-[350px] text-[16px] leading-[1.5] text-[color:var(--gruns-hero-heading-color)] md:mt-5 md:text-[18px] -space-y-[12px]"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.description }}
@@ -63,7 +63,7 @@
     </div>
 
     {% if section.settings.product_image %}
-      <div class="relative w-full max-w-[533px] shrink-0 lg:col-start-2 lg:max-w-none lg:self-stretch">
+      <div class="relative w-full max-w-[533px] mx-auto shrink-0 lg:col-start-2 lg:max-w-none lg:self-stretch">
         {{
           section.settings.product_image
           | image_url: width: 1200

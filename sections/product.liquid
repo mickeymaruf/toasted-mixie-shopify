@@ -361,37 +361,49 @@
             {% endunless %}
           >
             <span
-              data-buy-button-label
-              data-subscribe-label="{{ 'products.main.buy_button_subscribe' | t }}"
-              data-one-time-label="{{ 'products.main.buy_button_one_time' | t }}"
-              data-sold-out-label="{{ 'products.main.sold_out' | t }}"
-              data-has-custom-label="{% if section.settings.custom_button_text != blank %}true{% else %}false{% endif %}"
+              class="inline-flex items-center gap-[5px]"
+              data-buy-button-content
             >
-              {% if section.settings.custom_button_text != blank %}
-                {{ section.settings.custom_button_text }}
-              {% elsif current_variant.available == false %}
-                {{ 'products.main.sold_out' | t }}
-              {% elsif selling_plan %}
-                {{ 'products.main.buy_button_subscribe' | t }}
-              {% else %}
-                {{ 'products.main.buy_button_one_time' | t }}
-              {% endif %}
+              <span
+                data-buy-button-label
+                data-subscribe-label="{{ 'products.main.buy_button_subscribe' | t }}"
+                data-one-time-label="{{ 'products.main.buy_button_one_time' | t }}"
+                data-sold-out-label="{{ 'products.main.sold_out' | t }}"
+                data-has-custom-label="{% if section.settings.custom_button_text != blank %}true{% else %}false{% endif %}"
+              >
+                {% if section.settings.custom_button_text != blank %}
+                  {{ section.settings.custom_button_text }}
+                {% elsif current_variant.available == false %}
+                  {{ 'products.main.sold_out' | t }}
+                {% elsif selling_plan %}
+                  {{ 'products.main.buy_button_subscribe' | t }}
+                {% else %}
+                  {{ 'products.main.buy_button_one_time' | t }}
+                {% endif %}
+              </span>
+              <span
+                class="font-medium"
+                data-buy-button-price
+                {% unless current_variant.available %}
+                  hidden
+                {% endunless %}
+                {% if section.settings.custom_button_text != blank %}
+                  hidden
+                {% endif %}
+              >
+                {% if selected_allocation %}
+                  {{ selected_allocation.price | money }}
+                {% else %}
+                  {{ current_variant.price | money }}
+                {% endif %}
+              </span>
             </span>
             <span
-              class="font-medium"
-              data-buy-button-price
-              {% unless current_variant.available %}
-                hidden
-              {% endunless %}
-              {% if section.settings.custom_button_text != blank %}
-                hidden
-              {% endif %}
+              class="hidden"
+              data-buy-button-loader
+              aria-hidden="true"
             >
-              {% if selected_allocation %}
-                {{ selected_allocation.price | money }}
-              {% else %}
-                {{ current_variant.price | money }}
-              {% endif %}
+              <span class="inline-block size-5 animate-spin rounded-full border-2 border-current border-t-transparent"></span>
             </span>
           </button>
         {% endform %}
@@ -485,10 +497,21 @@
 
       event.preventDefault();
 
+      const buttonContent = this.buyButton.querySelector('[data-buy-button-content]');
+      const buttonLoader = this.buyButton.querySelector('[data-buy-button-loader]');
+
       try {
+        this.buyButton.disabled = true;
+        buttonContent.classList.add('hidden');
+        buttonLoader.classList.remove('hidden');
+
         await drawer.addItem(new FormData(this.form));
       } catch (error) {
         this.form.submit();
+      } finally {
+        this.buyButton.disabled = false;
+        buttonContent.classList.remove('hidden');
+        buttonLoader.classList.add('hidden');
       }
     }
 
