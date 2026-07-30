@@ -168,6 +168,21 @@
           {% endif %}
 
           {% if product.has_only_default_variant == false %}
+            {% liquid
+              assign base_pack_count = null
+              assign base_per_can_price = null
+              for variant in product.variants
+                assign pack_count = variant.title | split: ' ' | first | plus: 0
+                if pack_count == 0
+                  assign pack_count = 1
+                endif
+                assign variant_per_can_price = variant.price | divided_by: pack_count
+                if base_pack_count == null or pack_count < base_pack_count
+                  assign base_pack_count = pack_count
+                  assign base_per_can_price = variant_per_can_price
+                endif
+              endfor
+            %}
             <div class="flex w-full flex-col gap-4 mb-10">
               <p id="pack-size-heading-{{ section.id }}" class="text-[16px] leading-[1.3] font-medium text-[#212323]">
                 {{ 'products.main.quantity' | t }}
@@ -190,13 +205,14 @@
                     endcapture
 
                     assign pill_percent = 0
-                    if variant.compare_at_price > variant.price
-                      assign pill_percent = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round
+                    if base_per_can_price > 0 and per_can_price < base_per_can_price
+                      assign pill_percent = base_per_can_price | minus: per_can_price | times: 100.0 | divided_by: base_per_can_price | round
+                      assign pill_percent = pill_percent | at_least: 0
                     endif
                   %}
                   <div class="relative flex flex-1 basis-[150px] flex-col items-center gap-2">
                     {% if pill_percent > 0 %}
-                      <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-[5px] bg-[#F9D5C0] px-3 py-1 text-[10px] font-medium whitespace-nowrap text-[#212323]">
+                      <span class="absolute -top-3 left-1/2 -translate-x-1/2 z-10 rounded-[5px] bg-[#F9D5C0] px-3 py-1 text-[10px] font-medium whitespace-nowrap text-[#212323]">
                         {{ 'products.main.save_percent' | t: percent: pill_percent }}
                       </span>
                     {% endif %}
@@ -262,7 +278,6 @@
                           name="selling_plan"
                           value="{{ selling_plan.id }}"
                           class="peer absolute inset-0 size-full cursor-pointer opacity-0"
-                          checked
                         >
                         <span
                           class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"
@@ -307,7 +322,7 @@
                       {{- 'icon-shipping.svg' | inline_asset_content -}}
                     </span>
                     <p class="text-center text-[12px] sm:text-[14px] text-[#212323]">
-                      {% capture savings_pill %}<span class="rounded-full bg-[#636D90] px-2 sm:px-3 py-[2px] text-[10px] sm:text-[inherit] text-[#F6F1EC]" data-subscribe-savings>{% render 'format-money', cents: initial_savings %}</span>{% endcapture %}
+                      {% capture savings_pill %}<span class="rounded-full bg-[#636D90] px-2 sm:px-3 py-[2px] text-xs text-[#F6F1EC]" data-subscribe-savings>{% render 'format-money', cents: initial_savings %}</span>{% endcapture %}
                       {{ 'products.main.save_each_delivery_html' | t: amount: savings_pill }}
                     </p>
                   </div>
@@ -333,6 +348,7 @@
                       name="selling_plan"
                       value=""
                       class="peer absolute inset-0 size-full cursor-pointer opacity-0"
+                      checked
                     >
                     <span
                       class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"
@@ -377,8 +393,6 @@
                   {{ section.settings.custom_button_text }}
                 {% elsif current_variant.available == false %}
                   {{ 'products.main.sold_out' | t }}
-                {% elsif selling_plan %}
-                  {{ 'products.main.buy_button_subscribe' | t }}
                 {% else %}
                   {{ 'products.main.buy_button_one_time' | t }}
                 {% endif %}
@@ -393,11 +407,7 @@
                   hidden
                 {% endif %}
               >
-                {% if selected_allocation %}
-                  {% render 'format-money', cents: selected_allocation.price %}
-                {% else %}
-                  {% render 'format-money', cents: current_variant.price %}
-                {% endif %}
+                {% render 'format-money', cents: current_variant.price %}
               </span>
             </span>
             <span
@@ -405,7 +415,9 @@
               data-buy-button-loader
               aria-hidden="true"
             >
-              <span class="inline-block size-5 animate-spin rounded-full border-2 border-current border-t-transparent"></span>
+              <span
+                class="inline-block size-5 animate-spin rounded-full border-2 border-current border-t-transparent"
+              ></span>
             </span>
           </button>
         {% endform %}
@@ -535,7 +547,11 @@
       if (variant.hasSubscription) {
         if (this.subscribePrice) this.subscribePrice.textContent = variant.subscribePriceHtml;
         if (this.subscribeSavings) this.subscribeSavings.textContent = variant.subscribeSavingsHtml;
-        if (this.subscribePercentPill) this.subscribePercentPill.textContent = `${variant.subscribePercent}%`;
+        if (this.subscribePercentPill) {
+          const pillText = this.subscribePercentPill.textContent;
+          const newText = pillText.replace(/\d+%/, `${variant.subscribePercent}%`);
+          this.subscribePercentPill.textContent = newText;
+        }
       }
 
       const subscribing = variant.hasSubscription && this.isSubscribing;

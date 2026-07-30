@@ -11,21 +11,50 @@
   "sections": {
     "hero_cXrPe9": {
       "type": "hero",
+      "blocks": {
+        "hero_slide_pQ2vRt": {
+          "type": "hero-slide",
+          "settings": {
+            "heading": "The Chill Drink",
+            "subheading": "Present  in the moment.",
+            "heading_color": "#f6f1ec",
+            "background_image": "shopify://shop_images/hero_2.png",
+            "overlay_color": "#000000",
+            "overlay_opacity": 60,
+            "show_button": true,
+            "button_label": "Subscribe & Save",
+            "button_link": "",
+            "button_background_color": "#f9d5c0",
+            "button_text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "hero_slide_wN8kLd": {
+          "type": "hero-slide",
+          "settings": {
+            "heading": "Try all 3 flavors.",
+            "subheading": "Free 3-flavor trial pack. Just pay shipping.",
+            "heading_color": "#f6f1ec",
+            "background_image": "shopify://shop_images/hero_2.png",
+            "overlay_color": "#000000",
+            "overlay_opacity": 60,
+            "show_button": true,
+            "button_label": "Claim Trial Pack",
+            "button_link": "",
+            "button_background_color": "#f9d5c0",
+            "button_text_color": "#212323"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "hero_slide_pQ2vRt",
+        "hero_slide_wN8kLd"
+      ],
       "name": "t:general.hero",
       "settings": {
-        "heading": "The Chill Drink",
-        "subheading": "Present in the moment.",
-        "heading_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/hero_2.png",
         "height": 780,
-        "texture_opacity": 100,
-        "overlay_color": "#000000",
-        "overlay_opacity": 60,
-        "show_button": true,
-        "button_label": "Subscribe & Save",
-        "button_link": "",
-        "button_background_color": "#f9d5c0",
-        "button_text_color": "#212323"
+        "autoplay_speed": 3
       }
     },
     "gruns_hero_KLipt8": {

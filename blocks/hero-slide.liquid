@@ -1,0 +1,306 @@
+{% doc %}
+  Renders a single hero carousel slide: heading, subheading, background image
+  (with optional mobile art-direction), a configurable gradient overlay, and
+  an optional CTA button. Intended to be nested inside the Hero section,
+  which handles the carousel rotation and fade transitions.
+
+  @example
+  {% render block %}
+{% enddoc %}
+
+{% liquid
+  assign overlay_alpha = block.settings.overlay_opacity | times: 0.01
+  assign overlay_color_rgba = block.settings.overlay_color | color_modify: 'alpha', overlay_alpha
+
+  assign slide_class = 'hero-slide'
+  if section.blocks.first.id == block.id
+    assign slide_class = slide_class | append: ' is-active'
+  endif
+%}
+
+<div
+  class="{{ slide_class }}"
+  data-hero-slide
+  style="
+    --hero-slide-heading-color: {{ block.settings.heading_color }};
+    --hero-slide-overlay-color: {{ overlay_color_rgba }};
+    --hero-slide-button-background: {{ block.settings.button_background_color }};
+    --hero-slide-button-text: {{ block.settings.button_text_color }};
+  "
+  {{ block.shopify_attributes }}
+>
+  <div class="hero-slide__media" aria-hidden="true">
+    {% if block.settings.background_image_mobile and block.settings.background_image %}
+      <picture>
+        <source media="(max-width: 47.9375rem)" srcset="{{ block.settings.background_image_mobile | image_url: width: 750 }} 750w, {{ block.settings.background_image_mobile | image_url: width: 1100 }} 1100w">
+        {{
+          block.settings.background_image
+          | image_url: width: 3200
+          | image_tag:
+            class: 'hero-slide__image',
+            loading: 'eager',
+            fetchpriority: 'high',
+            sizes: '100vw',
+            widths: '750, 1100, 1500, 2000, 2600, 3200',
+            alt: ''
+        }}
+      </picture>
+    {% elsif block.settings.background_image %}
+      {{
+        block.settings.background_image
+        | image_url: width: 3200
+        | image_tag:
+          class: 'hero-slide__image',
+          loading: 'eager',
+          fetchpriority: 'high',
+          sizes: '100vw',
+          widths: '750, 1100, 1500, 2000, 2600, 3200',
+          alt: ''
+      }}
+    {% endif %}
+
+    <div class="hero-slide__gradient"></div>
+  </div>
+
+  <div class="hero-slide__content">
+    {% if block.settings.heading != blank or block.settings.subheading != blank %}
+      <div class="hero-slide__text">
+        {% if block.settings.heading != blank %}
+          <h2 class="hero-slide__heading">{{ block.settings.heading }}</h2>
+        {% endif %}
+
+        {% if block.settings.subheading != blank %}
+          <p class="hero-slide__subheading">{{ block.settings.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_button and block.settings.button_label != blank %}
+      {% if block.settings.button_link != blank %}
+        <a href="{{ block.settings.button_link }}" class="hero-slide__button">
+          {{ block.settings.button_label }}
+        </a>
+      {% else %}
+        <span class="hero-slide__button">{{ block.settings.button_label }}</span>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 1;
+  }
+
+  .hero-slide.is-active {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .hero-slide__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-slide__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-slide__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 12.87%, var(--hero-slide-overlay-color) 72.265%);
+  }
+
+  .hero-slide__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.875rem;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem 0.625rem 6.25rem;
+    text-align: center;
+  }
+
+  .hero-slide__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px;
+    color: var(--hero-slide-heading-color);
+    text-shadow: 0.25rem 0.25rem 0.375rem rgba(0, 0, 0, 0.4);
+  }
+
+  .hero-slide__heading {
+    margin: 0;
+    font-size: clamp(2.25rem, 1rem + 5.35vw, 5.8125rem);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .hero-slide__subheading {
+    margin: 0;
+    font-size: clamp(1.125rem, 0.75rem + 1vw, 1.5rem);
+    line-height: 1.5;
+  }
+
+  .hero-slide__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 4rem;
+    border-radius: 1.875rem;
+    background-color: var(--hero-slide-button-background);
+    color: var(--hero-slide-button-text);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+    box-shadow: 0 0 0.366rem rgba(0, 0, 0, 0.4);
+    transition: opacity 0.15s ease;
+  }
+
+  .hero-slide__button:hover {
+    opacity: 0.85;
+  }
+
+  .hero-slide__button:focus-visible {
+    outline: 2px solid var(--hero-slide-button-text);
+    outline-offset: 2px;
+  }
+
+  @media screen and (max-width: 47.9375rem) {
+    .hero-slide__content {
+      gap: 0.875rem;
+      padding: 1rem 0.625rem 2rem;
+      justify-content: center;
+    }
+
+    .hero-slide__heading {
+      font-size: clamp(2.75rem, 2rem + 5vw, 3.5rem);
+    }
+
+    .hero-slide__subheading {
+      font-size: clamp(0.875rem, 0.5rem + 1.5vw, 1.125rem);
+      margin-top: 0.5rem;
+    }
+
+    .hero-slide__button {
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.hero_slide",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "The Chill Drink"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:labels.subheading",
+      "default": "Present in the moment."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "t:labels.background_mobile",
+      "info": "t:labels.background_mobile_info"
+    },
+    {
+      "type": "header",
+      "content": "t:general.overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "t:labels.overlay_color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "t:labels.overlay_opacity",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Subscribe & Save",
+      "visible_if": "{{ block.settings.show_button }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link",
+      "visible_if": "{{ block.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#F9D5C0",
+      "visible_if": "{{ block.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#212323",
+      "visible_if": "{{ block.settings.show_button }}"
+    }
+  ],
+  "presets": [{ "name": "t:general.hero_slide" }]
+}
+{% endschema %}

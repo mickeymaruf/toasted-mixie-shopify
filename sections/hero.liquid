@@ -1,247 +1,120 @@
-{% liquid
-  assign overlay_alpha = section.settings.overlay_opacity | times: 0.01
-  assign overlay_color_rgba = section.settings.overlay_color | color_modify: 'alpha', overlay_alpha
-  assign texture_opacity = section.settings.texture_opacity | times: 0.01
-%}
-
-<div
+<hero-carousel
   class="hero full-width"
-  style="
-    --hero-height: {{ section.settings.height }}px;
-    --hero-heading-color: {{ section.settings.heading_color }};
-    --hero-overlay-color: {{ overlay_color_rgba }};
-    --hero-texture-opacity: {{ texture_opacity }};
-    --hero-button-background: {{ section.settings.button_background_color }};
-    --hero-button-text: {{ section.settings.button_text_color }};
-  "
+  style="--hero-height: {{ section.settings.height }}px;"
+  data-autoplay-interval="{{ section.settings.autoplay_speed | times: 1000 }}"
+  {{ section.shopify_attributes }}
 >
-  <div class="hero__media" aria-hidden="true">
-    {% if section.settings.background_image_mobile and section.settings.background_image %}
-      <picture>
-        <source media="(max-width: 47.9375rem)" srcset="{{ section.settings.background_image_mobile | image_url: width: 750 }} 750w, {{ section.settings.background_image_mobile | image_url: width: 1100 }} 1100w">
-        {{
-          section.settings.background_image
-          | image_url: width: 3200
-          | image_tag:
-            class: 'hero__image',
-            loading: 'eager',
-            fetchpriority: 'high',
-            sizes: '100vw',
-            widths: '750, 1100, 1500, 2000, 2600, 3200',
-            alt: ''
-        }}
-      </picture>
-    {% elsif section.settings.background_image %}
-      {{
-        section.settings.background_image
-        | image_url: width: 3200
-        | image_tag:
-          class: 'hero__image',
-          loading: 'eager',
-          fetchpriority: 'high',
-          sizes: '100vw',
-          widths: '750, 1100, 1500, 2000, 2600, 3200',
-          alt: ''
-      }}
-    {% endif %}
 
-    {% if section.settings.texture_image %}
-      <div
-        class="hero__texture"
-        style="background-image: url({{ section.settings.texture_image | image_url: width: 500 }});"
-      ></div>
-    {% endif %}
-
-    <div class="hero__gradient"></div>
+  <div class="hero__slides" role="region" aria-label="{{ 'general.accessibility.hero_slideshow' | t }}" aria-roledescription="carousel">
+    {% for block in section.blocks %}
+      {% render block %}
+    {% endfor %}
   </div>
-
-  <div class="hero__content">
-    {% if section.settings.heading != blank or section.settings.subheading != blank %}
-      <div class="hero__text">
-        {% if section.settings.heading != blank %}
-          <h2 class="hero__heading">{{ section.settings.heading }}</h2>
-        {% endif %}
-
-        {% if section.settings.subheading != blank %}
-          <p class="hero__subheading">{{ section.settings.subheading }}</p>
-        {% endif %}
-      </div>
-    {% endif %}
-
-    {% if section.settings.show_button and section.settings.button_label != blank %}
-      {% if section.settings.button_link != blank %}
-        <a href="{{ section.settings.button_link }}" class="hero__button">
-          {{ section.settings.button_label }}
-        </a>
-      {% else %}
-        <span class="hero__button">{{ section.settings.button_label }}</span>
-      {% endif %}
-    {% endif %}
-  </div>
-</div>
+</hero-carousel>
 
 {% stylesheet %}
   .hero {
     position: relative;
-    display: flex;
+    display: block;
     min-height: clamp(25rem, 100svh, var(--hero-height));
     overflow: hidden;
   }
 
-  .hero__media {
+  .hero__slides {
     position: absolute;
     inset: 0;
-  }
-
-  .hero__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .hero__texture {
-    position: absolute;
-    inset: 0;
-    background-repeat: repeat;
-    background-position: top left;
-    background-size: 31.25rem 20.859375rem;
-    mix-blend-mode: soft-light;
-    opacity: var(--hero-texture-opacity);
-  }
-
-  .hero__gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent 12.87%, var(--hero-overlay-color) 72.265%);
-  }
-
-  .hero__content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 1.875rem;
-    width: 100%;
-    padding: 1.5rem 0.625rem 6.25rem;
-    text-align: center;
-  }
-
-  .hero__text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: var(--hero-heading-color);
-    text-shadow: 0.25rem 0.25rem 0.375rem rgba(0, 0, 0, 0.4);
-  }
-
-  .hero__heading {
-    margin: 0;
-    font-size: clamp(2.25rem, 1rem + 5.35vw, 5.8125rem);
-    font-weight: 700;
-    line-height: 1.1;
-  }
-
-  .hero__subheading {
-    margin: 0;
-    font-size: clamp(1.125rem, 0.75rem + 1vw, 1.5rem);
-    line-height: 1.5;
-  }
-
-  .hero__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 4rem;
-    border-radius: 1.875rem;
-    background-color: var(--hero-button-background);
-    color: var(--hero-button-text);
-    font-size: 1.25rem;
-    font-weight: 600;
-    line-height: 1.5;
-    text-decoration: none;
-    box-shadow: 0 0 0.366rem rgba(0, 0, 0, 0.4);
-    transition: opacity 0.15s ease;
-  }
-
-  .hero__button:hover {
-    opacity: 0.85;
-  }
-
-  .hero__button:focus-visible {
-    outline: 2px solid var(--hero-button-text);
-    outline-offset: 2px;
   }
 
   @media screen and (max-width: 47.9375rem) {
     .hero {
       height: calc(100svh - var(--announcement-bar-height-mobile, 48px) - var(--navbar-height-mobile, 64px));
     }
-
-    .hero__content {
-      gap: 0.875rem;
-      padding: 1rem 0.625rem 2rem;
-      justify-content: center;
-    }
-
-    .hero__heading {
-      font-size: clamp(2.75rem, 2rem + 5vw, 3.5rem);
-    }
-
-    .hero__subheading {
-      font-size: clamp(0.875rem, 0.5rem + 1.5vw, 1.125rem);
-      margin-top: 0.5rem;
-    }
-
-    .hero__button {
-      padding: 0.75rem 2rem;
-      font-size: 1rem;
-      margin-top: 0.5rem;
-    }
   }
 {% endstylesheet %}
+
+{% javascript %}
+  class HeroCarousel extends HTMLElement {
+    connectedCallback() {
+      this.slides = Array.from(this.querySelectorAll('[data-hero-slide]'));
+      this.activeIndex = 0;
+      this.interval = parseInt(this.dataset.autoplayInterval, 10) || 5000;
+      this.timer = null;
+      this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (this.slides.length === 0) return;
+
+      this.slides.forEach((slide, index) => {
+        const isActive = index === 0;
+        slide.classList.toggle('is-active', isActive);
+        slide.inert = !isActive;
+      });
+
+      if (this.slides.length <= 1) return;
+
+      this.handlePause = () => this.stop();
+      this.handleFocusOut = (event) => {
+        if (!this.contains(event.relatedTarget)) this.start();
+      };
+      this.handleBlockSelect = (event) => {
+        const slide = event.target.closest('[data-hero-slide]');
+        if (!slide || !this.contains(slide)) return;
+        this.stop();
+        this.goTo(this.slides.indexOf(slide));
+      };
+      this.handleBlockDeselect = () => this.start();
+
+      this.addEventListener('focusin', this.handlePause);
+      this.addEventListener('focusout', this.handleFocusOut);
+      document.addEventListener('shopify:block:select', this.handleBlockSelect);
+      document.addEventListener('shopify:block:deselect', this.handleBlockDeselect);
+
+      this.start();
+    }
+
+    disconnectedCallback() {
+      this.stop();
+      document.removeEventListener('shopify:block:select', this.handleBlockSelect);
+      document.removeEventListener('shopify:block:deselect', this.handleBlockDeselect);
+    }
+
+    start() {
+      if (this.prefersReducedMotion || this.slides.length <= 1) return;
+      this.stop();
+      this.timer = window.setInterval(() => this.next(), this.interval);
+    }
+
+    stop() {
+      if (this.timer) {
+        window.clearInterval(this.timer);
+        this.timer = null;
+      }
+    }
+
+    next() {
+      this.goTo((this.activeIndex + 1) % this.slides.length);
+    }
+
+    goTo(index) {
+      const current = this.slides[this.activeIndex];
+      const next = this.slides[index];
+      if (!current || !next || current === next) return;
+
+      current.classList.remove('is-active');
+      current.inert = true;
+      next.classList.add('is-active');
+      next.inert = false;
+      this.activeIndex = index;
+    }
+  }
+
+  customElements.define('hero-carousel', HeroCarousel);
+{% endjavascript %}
 
 {% schema %}
 {
   "name": "t:general.hero",
+  "blocks": [{ "type": "hero-slide" }],
   "settings": [
-    {
-      "type": "header",
-      "content": "t:general.content"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "t:labels.heading",
-      "default": "The Chill Drink"
-    },
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "t:labels.subheading",
-      "default": "Present in the moment."
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "t:labels.text_color",
-      "default": "#F6F1EC"
-    },
-    {
-      "type": "header",
-      "content": "t:general.image"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "t:labels.background"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image_mobile",
-      "label": "t:labels.background_mobile",
-      "info": "t:labels.background_mobile_info"
-    },
     {
       "type": "range",
       "id": "height",
@@ -254,84 +127,56 @@
     },
     {
       "type": "header",
-      "content": "t:general.texture_overlay"
-    },
-    {
-      "type": "image_picker",
-      "id": "texture_image",
-      "label": "t:labels.image"
+      "content": "t:general.carousel"
     },
     {
       "type": "range",
-      "id": "texture_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "%",
-      "label": "t:labels.opacity",
-      "default": 30
-    },
-    {
-      "type": "header",
-      "content": "t:general.overlay"
-    },
-    {
-      "type": "color",
-      "id": "overlay_color",
-      "label": "t:labels.overlay_color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "%",
-      "label": "t:labels.overlay_opacity",
-      "default": 60
-    },
-    {
-      "type": "header",
-      "content": "t:general.button"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_button",
-      "label": "t:labels.show_button",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "t:labels.button_label",
-      "default": "Subscribe & Save",
-      "visible_if": "{{ section.settings.show_button }}"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "t:labels.button_link",
-      "visible_if": "{{ section.settings.show_button }}"
-    },
-    {
-      "type": "color",
-      "id": "button_background_color",
-      "label": "t:labels.button_background",
-      "default": "#F9D5C0",
-      "visible_if": "{{ section.settings.show_button }}"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "t:labels.button_text_color",
-      "default": "#212323",
-      "visible_if": "{{ section.settings.show_button }}"
+      "id": "autoplay_speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "t:labels.autoplay_speed",
+      "default": 3
     }
   ],
   "presets": [
     {
-      "name": "t:general.hero"
+      "name": "t:general.hero",
+      "blocks": [
+        {
+          "type": "hero-slide",
+          "settings": {
+            "heading": "The Chill Drink",
+            "subheading": "Present  in the moment.",
+            "heading_color": "#F6F1EC",
+            "background_image": "shopify://shop_images/hero_2.png",
+            "overlay_color": "#000000",
+            "overlay_opacity": 60,
+            "show_button": true,
+            "button_label": "Subscribe & Save",
+            "button_link": "",
+            "button_background_color": "#F9D5C0",
+            "button_text_color": "#212323"
+          }
+        },
+        {
+          "type": "hero-slide",
+          "settings": {
+            "heading": "Try all 3 flavors.",
+            "subheading": "Free 3-flavor trial pack. Just pay shipping.",
+            "heading_color": "#F6F1EC",
+            "background_image": "shopify://shop_images/hero_2.png",
+            "overlay_color": "#000000",
+            "overlay_opacity": 60,
+            "show_button": true,
+            "button_label": "Claim Trial Pack",
+            "button_link": "",
+            "button_background_color": "#F9D5C0",
+            "button_text_color": "#212323"
+          }
+        }
+      ]
     }
   ]
 }
