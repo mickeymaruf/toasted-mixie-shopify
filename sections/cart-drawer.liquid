@@ -8,27 +8,18 @@
 
 {% liquid
   assign cart_total = cart.total_price
-  assign discount_threshold_cents = section.settings.discount_threshold | times: 100
   assign free_shipping_threshold_cents = section.settings.free_shipping_threshold | times: 100
-  assign free_gift_threshold_cents = section.settings.free_gift_threshold | times: 100
-  assign max_threshold_cents = free_gift_threshold_cents | at_least: 1
 
-  assign discount_dot_percent = discount_threshold_cents | times: 100 | divided_by: max_threshold_cents
-  assign shipping_dot_percent = free_shipping_threshold_cents | times: 100 | divided_by: max_threshold_cents
+  assign progress_percent = cart_total | times: 100 | divided_by: free_shipping_threshold_cents | at_most: 100
 
-  assign progress_percent = cart_total | times: 100 | divided_by: max_threshold_cents | at_most: 100
-
-  if cart_total >= free_gift_threshold_cents
-    assign progress_message = 'cart_drawer.progress.all_unlocked' | t
-  elsif cart_total >= free_shipping_threshold_cents
-    assign remaining_money = free_gift_threshold_cents | minus: cart_total | money
-    assign progress_message = 'cart_drawer.progress.below_gift_html' | t: amount: remaining_money
-  elsif cart_total >= discount_threshold_cents
-    assign remaining_money = free_shipping_threshold_cents | minus: cart_total | money
-    assign progress_message = 'cart_drawer.progress.below_shipping_html' | t: amount: remaining_money
+  if cart_total >= free_shipping_threshold_cents
+    assign progress_message = section.settings.progress_message_unlocked
   else
-    assign remaining_money = discount_threshold_cents | minus: cart_total | money
-    assign progress_message = 'cart_drawer.progress.below_discount_html' | t: amount: remaining_money
+    capture remaining_money
+      render 'format-money', cents: free_shipping_threshold_cents | minus: cart_total
+    endcapture
+    assign message_template = section.settings.progress_message
+    assign progress_message = message_template | replace: '{{ amount }}', remaining_money
   endif
 %}
 
@@ -68,30 +59,14 @@
           <div class="h-2 rounded-full bg-[#212323]" style="width: {{ progress_percent }}%"></div>
 
           <div
-            class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full p-[6px] {% if cart_total >= discount_threshold_cents %}bg-[#212323]{% else %}bg-[#212323]/30{% endif %}"
-            style="left: {{ discount_dot_percent }}%"
-          >
-            <span class="block size-4 text-[#F6F1EC]">{{ 'icon-percent.svg' | inline_asset_content }}</span>
-          </div>
-
-          <div
-            class="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full p-[6px] {% if cart_total >= free_shipping_threshold_cents %}bg-[#212323]{% else %}bg-[#212323]/30{% endif %}"
-            style="left: {{ shipping_dot_percent }}%"
+            class="absolute top-1/2 right-0 -translate-y-1/2 rounded-full p-[6px] {% if cart_total >= free_shipping_threshold_cents %}bg-[#212323]{% else %}bg-[#212323]/30{% endif %}"
           >
             <span class="block size-4 text-[#F6F1EC]">{{ 'icon-shipping.svg' | inline_asset_content }}</span>
           </div>
-
-          <div
-            class="absolute top-1/2 right-0 -translate-y-1/2 rounded-full p-[6px] {% if cart_total >= free_gift_threshold_cents %}bg-[#212323]{% else %}bg-[#212323]/30{% endif %}"
-          >
-            <span class="block size-4 text-[#F6F1EC]">{{ 'icon-gift.svg' | inline_asset_content }}</span>
-          </div>
         </div>
 
-        <div class="flex w-full items-center justify-between text-[12px] leading-[1.3] font-medium text-[#212323]">
-          <p>{{ 'cart_drawer.milestone_discount' | t }}</p>
-          <p>{{ 'cart_drawer.milestone_shipping' | t }}</p>
-          <p>{{ 'cart_drawer.milestone_gift' | t }}</p>
+        <div class="flex w-full items-center justify-end text-[12px] leading-[1.3] font-medium text-[#212323]">
+          <p>{{ section.settings.milestone_label }}</p>
         </div>
       </div>
 
@@ -172,7 +147,7 @@
             </p>
             <div class="flex items-center justify-end gap-[6px]">
               <p class="text-[18px] leading-[1.3] text-[#626262]">{{ 'cart_drawer.subtotal' | t }}</p>
-              <p class="text-[28px] leading-[1.2] font-medium text-[#212323]">{{ cart.total_price | money }}</p>
+              <p class="text-[28px] leading-[1.2] font-medium text-[#212323]">{% render 'format-money', cents: cart.total_price %}</p>
             </div>
           </div>
           <p class="w-full text-right text-[12px] leading-[1.3] text-[#626262]">
@@ -350,21 +325,27 @@
     },
     {
       "type": "number",
-      "id": "discount_threshold",
-      "label": "t:labels.discount_threshold",
+      "id": "free_shipping_threshold",
+      "label": "t:labels.free_shipping_threshold",
       "default": 50
     },
     {
-      "type": "number",
-      "id": "free_shipping_threshold",
-      "label": "t:labels.free_shipping_threshold",
-      "default": 75
+      "type": "text",
+      "id": "milestone_label",
+      "label": "Free shipping milestone label",
+      "default": "Free Shipping"
     },
     {
-      "type": "number",
-      "id": "free_gift_threshold",
-      "label": "t:labels.free_gift_threshold",
-      "default": 120
+      "type": "text",
+      "id": "progress_message",
+      "label": "Progress message (before threshold)",
+      "default": "Spend {{ amount }} more to unlock free shipping"
+    },
+    {
+      "type": "text",
+      "id": "progress_message_unlocked",
+      "label": "Progress message (after threshold)",
+      "default": "Free shipping unlocked!"
     },
     {
       "type": "text",

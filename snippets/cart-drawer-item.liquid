@@ -57,7 +57,7 @@
     </div>
 
     <div class="flex w-full items-center justify-between">
-      <p class="text-[24px] leading-[1.5] font-medium text-[#212323]">{{ item.final_line_price | money }}</p>
+      <p class="text-[24px] leading-[1.5] font-medium text-[#212323]">{% render 'format-money', cents: item.final_line_price %}</p>
       {% render 'quantity-stepper', quantity: item.quantity, min: 0 %}
     </div>
   </div>
