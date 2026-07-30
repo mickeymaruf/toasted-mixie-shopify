@@ -474,7 +474,7 @@
 {% javascript %}
   class ProductPurchase extends HTMLElement {
     connectedCallback() {
-      const dataScript = this.querySelector('[data-product-purchase-data]');
+      const dataScript = document.querySelector('[data-product-purchase-data]');
       this.data = dataScript ? JSON.parse(dataScript.textContent) : { variants: {} };
 
       this.buyButton = this.querySelector('[data-buy-button]');
