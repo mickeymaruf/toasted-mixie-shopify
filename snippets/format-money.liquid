@@ -1,0 +1,23 @@
+{% doc %}
+  Formats a cents amount as a currency string using "." as the decimal
+  separator, regardless of the shop's admin currency formatting. Use this
+  instead of the `money` filter anywhere the design requires a literal
+  period decimal (this store's currency format otherwise renders with a
+  comma, e.g. money filter output "$3,33" vs. this snippet's "$3.33").
+
+  @param {number} cents - Amount in the shop's smallest currency unit (e.g. variant.price)
+  @param {string} [prefix] - Currency symbol/prefix to prepend, defaults to "$"
+
+  @example
+  {% render 'format-money', cents: variant.price %}
+{% enddoc %}
+
+{% liquid
+  assign prefix = prefix | default: '$'
+  assign whole = cents | divided_by: 100
+  assign remainder = cents | modulo: 100
+  if remainder < 10
+    assign remainder = '0' | append: remainder
+  endif
+%}
+{{- prefix -}}{{ whole }}.{{ remainder }}

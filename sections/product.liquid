@@ -140,17 +140,17 @@
                 if allocation
                   assign savings_amount = variant.price | minus: allocation.price
                   if variant.price > 0
-                    assign savings_percent = savings_amount | times: 100 | divided_by: variant.price
+                    assign savings_percent = savings_amount | times: 100.0 | divided_by: variant.price | round
                   endif
                 endif
               %}
               "{{ variant.id }}": {
                 "available": {{ variant.available | json }},
-                "priceHtml": {{ variant.price | money | json }}
+                "priceHtml": {% capture formatted_price %}{% render 'format-money', cents: variant.price %}{% endcapture %}{{ formatted_price | json }}
                 {% if allocation %}
                   ,"hasSubscription": true,
-                  "subscribePriceHtml": {{ allocation.price | money | json }},
-                  "subscribeSavingsHtml": {{ savings_amount | money | json }},
+                  "subscribePriceHtml": {% capture formatted_subscribe_price %}{% render 'format-money', cents: allocation.price %}{% endcapture %}{{ formatted_subscribe_price | json }},
+                  "subscribeSavingsHtml": {% capture formatted_savings %}{% render 'format-money', cents: savings_amount %}{% endcapture %}{{ formatted_savings | json }},
                   "subscribePercent": {{ savings_percent }}
                 {% else %}
                   ,"hasSubscription": false
@@ -185,11 +185,13 @@
                       assign pack_count = 1
                     endif
                     assign per_can_price = variant.price | divided_by: pack_count
-                    assign per_can_money = per_can_price | money
+                    capture per_can_money
+                      render 'format-money', cents: per_can_price
+                    endcapture
 
                     assign pill_percent = 0
                     if variant.compare_at_price > variant.price
-                      assign pill_percent = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price
+                      assign pill_percent = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round
                     endif
                   %}
                   <div class="relative flex flex-1 basis-[150px] flex-col items-center gap-2">
@@ -238,7 +240,7 @@
               if selected_allocation
                 assign initial_savings = current_variant.price | minus: selected_allocation.price
                 if current_variant.price > 0
-                  assign initial_percent = initial_savings | times: 100 | divided_by: current_variant.price
+                  assign initial_percent = initial_savings | times: 100.0 | divided_by: current_variant.price | round
                 endif
               endif
             %}
@@ -282,7 +284,7 @@
 
                   <div class="flex flex-col items-start gap-1 sm:items-end sm:text-right">
                     <p class="text-[14px] sm:text-[16px] font-medium text-[#212323]" data-subscribe-price>
-                      {{ selected_allocation.price | default: current_variant.price | money }}
+                      {% render 'format-money', cents: selected_allocation.price | default: current_variant.price %}
                     </p>
                     <p class="text-[11px] sm:text-[12px] text-[#212323]">
                       {{ 'products.main.save_percent_every_order' | t: percent: initial_percent }}
@@ -305,7 +307,7 @@
                       {{- 'icon-shipping.svg' | inline_asset_content -}}
                     </span>
                     <p class="text-center text-[12px] sm:text-[14px] text-[#212323]">
-                      {% capture savings_pill %}<span class="rounded-full bg-[#636D90] px-2 sm:px-3 py-[2px] text-[10px] sm:text-[inherit] text-[#F6F1EC]" data-subscribe-savings>{{ initial_savings | money }}</span>{% endcapture %}
+                      {% capture savings_pill %}<span class="rounded-full bg-[#636D90] px-2 sm:px-3 py-[2px] text-[10px] sm:text-[inherit] text-[#F6F1EC]" data-subscribe-savings>{% render 'format-money', cents: initial_savings %}</span>{% endcapture %}
                       {{ 'products.main.save_each_delivery_html' | t: amount: savings_pill }}
                     </p>
                   </div>
@@ -341,7 +343,7 @@
 
                 <div class="flex flex-1 flex-col items-end gap-1 text-right">
                   <p class="text-[16px] font-medium text-[#212323]" data-one-time-price>
-                    {{ current_variant.price | money }}
+                    {% render 'format-money', cents: current_variant.price %}
                   </p>
                   <p class="text-[12px] whitespace-nowrap text-[#212323]">
                     {{ 'products.main.standard_purchase' | t }}
@@ -392,9 +394,9 @@
                 {% endif %}
               >
                 {% if selected_allocation %}
-                  {{ selected_allocation.price | money }}
+                  {% render 'format-money', cents: selected_allocation.price %}
                 {% else %}
-                  {{ current_variant.price | money }}
+                  {% render 'format-money', cents: current_variant.price %}
                 {% endif %}
               </span>
             </span>
