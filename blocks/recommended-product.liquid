@@ -45,7 +45,7 @@
       <p class="w-full truncate text-[18px] leading-[1.3] font-medium text-[#212323]">{{ product.title }}</p>
 
       <div class="flex w-full items-center justify-between gap-2">
-        <p class="text-[20px] leading-[1.5] text-[#212323]">{{ variant.price | money }}</p>
+        <p class="text-[20px] leading-[1.5] text-[#212323]">{% render 'format-money', cents: variant.price %}</p>
 
         <button
           type="button"
