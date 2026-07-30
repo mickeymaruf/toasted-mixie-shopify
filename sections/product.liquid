@@ -146,11 +146,11 @@
               %}
               "{{ variant.id }}": {
                 "available": {{ variant.available | json }},
-                "priceHtml": {% capture formatted_price %}{% render 'format-money', cents: variant.price %}{% endcapture %}{{ formatted_price | json }}
+                "priceHtml": {%- capture formatted_price -%}{% render 'format-money', cents: variant.price %}{%- endcapture -%}{{ formatted_price | json }}
                 {% if allocation %}
                   ,"hasSubscription": true,
-                  "subscribePriceHtml": {% capture formatted_subscribe_price %}{% render 'format-money', cents: allocation.price %}{% endcapture %}{{ formatted_subscribe_price | json }},
-                  "subscribeSavingsHtml": {% capture formatted_savings %}{% render 'format-money', cents: savings_amount %}{% endcapture %}{{ formatted_savings | json }},
+                  "subscribePriceHtml": {%- capture formatted_subscribe_price -%}{% render 'format-money', cents: allocation.price %}{%- endcapture -%}{{ formatted_subscribe_price | json }},
+                  "subscribeSavingsHtml": {%- capture formatted_savings -%}{% render 'format-money', cents: savings_amount %}{%- endcapture -%}{{ formatted_savings | json }},
                   "subscribePercent": {{ savings_percent }}
                 {% else %}
                   ,"hasSubscription": false
