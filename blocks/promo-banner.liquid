@@ -8,16 +8,20 @@
 
 {% if block.settings.heading != blank %}
   <div
-    class="relative flex w-full flex-col items-center gap-3 overflow-hidden rounded-2xl sm:flex-row sm:gap-6 sm:p-4"
+    class="relative flex w-full flex-col items-center md:gap-3 overflow-visible rounded-2xl sm:flex-row sm:gap-6 sm:p-4"
     style="background-color: {{ block.settings.background_color }};"
     {{ block.shopify_attributes }}
   >
     {% if block.settings.image %}
-      <div class="relative aspect-square w-full sm:aspect-[166/150] sm:w-[140px] sm:shrink-0 lg:w-[166px] overflow-hidden rounded-xl">
+      <div class="relative aspect-square w-full sm:aspect-[166/150] sm:w-[140px] sm:shrink-0 lg:w-[166px] overflow-visible rounded-xl">
         {{
           block.settings.image
           | image_url: width: 400
-          | image_tag: width: 400, height: 362, class: 'size-full object-cover', alt: block.settings.heading
+          | image_tag:
+            width: 400,
+            height: 362,
+            class: 'size-full object-cover overflow-visible',
+            alt: block.settings.heading
         }}
       </div>
     {% endif %}

@@ -21,7 +21,7 @@
               label: link.title,
               url: link.url,
               icon: 'icon-chevron-down.svg',
-              class: '!w-auto navbar__mega-menu-trigger whitespace-nowrap !px-[36px] !py-3 gap-[8px]',
+              class: '!w-auto navbar__mega-menu-trigger whitespace-nowrap !text-sm md:!text-xl !px-4 md:!px-[36px] py-[5px] md:!py-3.5 gap-[8px]',
               attributes: 'data-mega-menu-trigger'
             %}
           {% else %}
@@ -127,7 +127,7 @@
       {% endif %}
     </a>
 
-    <div class="navbar__actions bg-[#C2CBD4]/50 py-[10px] pl-[12px] pr-8 rounded-full">
+    <div class="navbar__actions">
       <button
         type="button"
         class="navbar__search-button"
@@ -320,6 +320,14 @@
     justify-self: end;
   }
 
+  @media (min-width: 48rem) {
+    .navbar__actions {
+      background-color: rgba(194, 203, 212, 0.5);
+      padding: 10px 32px 10px 12px;
+      border-radius: 999px;
+    }
+  }
+
   .navbar__link {
     color: currentColor;
     text-decoration: none;
@@ -363,6 +371,17 @@
   }
 
   @media (max-width: 768px) {
+    a.navbar__mega-menu-trigger[data-mega-menu-trigger] {
+      padding: 0.25rem 0.5rem !important;
+      font-size: 1.25rem !important;
+      gap: 0.25rem !important;
+    }
+
+    a.navbar__mega-menu-trigger[data-mega-menu-trigger] svg {
+      width: 0.875rem !important;
+      height: 0.875rem !important;
+    }
+
     .navbar__search-button-text {
       display: none;
     }

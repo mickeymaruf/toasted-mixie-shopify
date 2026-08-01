@@ -21,8 +21,8 @@
   endcase
 %}
 
-<div class="flex w-[95px] flex-col items-center gap-[5px]" {{ block.shopify_attributes }}>
-  <div class="size-[85px] shrink-0">
+<div class="flex w-[75px] md:w-[95px] flex-col items-center gap-[5px]" {{ block.shopify_attributes }}>
+  <div class="size-[60px] shrink-0 sm:size-[85px]">
     {% if block.settings.icon %}
       {{
         block.settings.icon

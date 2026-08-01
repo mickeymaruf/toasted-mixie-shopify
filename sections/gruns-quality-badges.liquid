@@ -30,7 +30,7 @@
     </div>
 
     {% if section.blocks.size > 0 %}
-      <div class="flex w-full flex-wrap gap-3 sm:gap-[10px] xl:w-[60%] xl:max-w-[60%] xl:shrink-0">
+      <div class="grid grid-cols-2 w-full gap-3 sm:flex sm:flex-wrap sm:gap-[10px] xl:w-[60%] xl:max-w-[60%] xl:shrink-0">
         {% content_for 'blocks' %}
       </div>
     {% endif %}

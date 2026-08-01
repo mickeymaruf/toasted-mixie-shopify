@@ -9,7 +9,7 @@
   style="background-color: {{ section.settings.background_color }};"
 >
   <div
-    class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 px-5 py-[40px] sm:px-8 sm:py-[60px] md:px-12 lg:gap-[50px] lg:px-[80px] lg:py-[100px] xl:px-[120px]"
+    class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-6 px-4 py-[40px] sm:gap-8 sm:px-8 sm:py-[60px] md:px-12 lg:gap-[50px] lg:px-[80px] lg:py-[100px] xl:px-[120px]"
   >
     {% if section.settings.heading != blank %}
       <h2
@@ -21,7 +21,7 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <div class="grid w-full grid-cols-1 items-start gap-8 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-[20px]">
+      <div class="grid w-full grid-cols-2 items-start gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-[20px]">
         {% content_for 'blocks' %}
       </div>
     {% endif %}
@@ -58,7 +58,7 @@
       "id": "heading_color",
       "label": "t:labels.text_color",
       "default": "#212323"
-    },
+    }
   ],
   "presets": [
     {

@@ -22,7 +22,7 @@
         "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_1_2c36f923-1247-452f-a22a-03389584c8ed.png",
-        "background_color": "#F6F1EC"
+        "background_color": "#f6f1ec"
       }
     },
     "content_block_cb4Hiy": {
@@ -155,60 +155,79 @@
       "name": "t:general.story_tiles",
       "settings": {}
     },
-    "gruns_product_list_34kMDM": {
+    "gruns_product_list_UJ4BNP": {
       "type": "gruns-product-list",
       "blocks": {
-        "product_card_gHELhK": {
+        "product_card_Dbricq": {
           "type": "product-card",
           "settings": {
             "product": "blood-orange",
+            "image": "shopify://shop_images/Frame_2147235999.png",
             "flavor_name": "Blood Orange",
             "flavor_name_color": "#b70141",
             "description": "Bright. Smooth. Golden-hour ready.",
-            "price_text": "From $9.99",
-            "button_label": "Shop Blood Orange",
+            "price_text": "From $31.99",
+            "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#f6f1ec"
+            "button_text_color": "#c7aa9a"
           },
           "blocks": {}
         },
-        "product_card_bLcPFb": {
+        "product_card_yTcGYc": {
           "type": "product-card",
           "settings": {
             "product": "berry-acai",
+            "image": "shopify://shop_images/Frame_2147236000.png",
             "flavor_name": "Berry Acai",
             "flavor_name_color": "#5e1a79",
             "description": "Deep. Juicy. Easy to enjoy.",
-            "price_text": "From $9.99",
-            "button_label": "Shop Berry Acai",
+            "price_text": "From $31.99",
+            "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#f6f1ec"
+            "button_text_color": "#C7AA9A"
           },
           "blocks": {}
         },
-        "product_card_DrUxGk": {
+        "product_card_qrQVEj": {
           "type": "product-card",
           "settings": {
             "product": "ginger-lime",
+            "image": "shopify://shop_images/Frame_2147236001.png",
             "flavor_name": "Ginger Lime",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
-            "price_text": "From $9.99",
-            "button_label": "Shop Ginger Lime",
+            "price_text": "From $31.99",
+            "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#f6f1ec"
+            "button_text_color": "#c7aa9a"
+          },
+          "blocks": {}
+        },
+        "product_card_MGTWRf": {
+          "type": "product-card",
+          "settings": {
+            "product": "try-all-3-flavors",
+            "image": "shopify://shop_images/Frame_2147236003.png",
+            "flavor_name": "Trial Pack",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "Just Pay Shipping",
+            "button_label": "Try Now",
+            "button_background_color": "#212323",
+            "button_text_color": "#c7aa9a"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "product_card_gHELhK",
-        "product_card_bLcPFb",
-        "product_card_DrUxGk"
+        "product_card_Dbricq",
+        "product_card_yTcGYc",
+        "product_card_qrQVEj",
+        "product_card_MGTWRf"
       ],
       "name": "t:general.product_list",
       "settings": {
-        "heading": "Three ways to stay present.",
+        "heading": "Choose your flavor.",
         "background_color": "#f6f1ec",
         "heading_color": "#212323"
       }
@@ -219,6 +238,6 @@
     "hero_banner_AFPte7",
     "content_block_cb4Hiy",
     "story_tiles_gg9aqG",
-    "gruns_product_list_34kMDM"
+    "gruns_product_list_UJ4BNP"
   ]
 }

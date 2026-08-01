@@ -12,7 +12,10 @@
   endif
 %}
 
-<section class="gruns-drink-better full-width relative overflow-hidden" style="background-color: {{ section.settings.background_color }};">
+<section
+  class="gruns-drink-better full-width relative overflow-hidden"
+  style="background-color: {{ section.settings.background_color }};"
+>
   <div class="pointer-events-none absolute inset-0" aria-hidden="true">
     {% if section.settings.background_image %}
       {{
@@ -37,7 +40,7 @@
   </div>
 
   <div class="relative mx-auto flex w-full max-w-[1920px] flex-col gap-16 px-5 py-12 sm:px-8 sm:py-16 md:px-12 lg:gap-[120px] lg:px-[80px] lg:py-[120px] xl:gap-[200px] xl:px-[120px] xl:pt-[100px] xl:pb-[200px]">
-    <div class="flex w-full flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-[61px]">
+    <div class="flex w-full flex-col-reverse items-center gap-10 lg:flex-row lg:items-center lg:gap-[61px]">
       <div class="relative mx-auto w-full max-w-[360px] sm:max-w-[460px] lg:mx-0 lg:max-w-none lg:flex-1">
         {% if section.settings.image %}
           {{
@@ -102,16 +105,19 @@
             </div>
           {% endif %}
 
-          <div class="relative flex max-w-[560px] flex-col gap-4 sm:gap-5" style="color: {{ section.settings.heading_color }};">
+          <div
+            class="relative flex max-w-[560px] flex-col gap-4 sm:gap-5"
+            style="color: {{ section.settings.heading_color }};"
+          >
             <div class="flex items-center gap-3 sm:gap-5">
               {% if section.settings.bundle_heading != blank %}
-                <p class="text-[28px] leading-[0.95] font-bold tracking-[-1.5px] sm:text-[36px] lg:text-[50px]">
+                <p class="text-[26px] leading-[0.95] font-bold tracking-[-1.5px] sm:text-[36px] lg:text-[50px]">
                   {{ section.settings.bundle_heading }}
                 </p>
               {% endif %}
 
               {% if section.settings.bundle_link != blank %}
-                <span class="block size-[22px] shrink-0 rotate-90 transition-transform duration-150 group-hover:translate-x-1 sm:size-[26px] lg:size-[30px]">
+                <span class="block size-[16px] shrink-0 rotate-90 transition-transform duration-150 group-hover:translate-x-1 sm:size-[26px] lg:size-[30px]">
                   <img
                     src="{{ 'icon-arrow-bundle.svg' | asset_url }}"
                     width="34"
@@ -125,7 +131,7 @@
             </div>
 
             {% if section.settings.bundle_description != blank %}
-              <div class="text-[16px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
+              <div class="text-[13px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
                 {{ section.settings.bundle_description }}
               </div>
             {% endif %}
@@ -251,7 +257,10 @@
         {
           "type": "flavor-row",
           "blocks": [
-            { "type": "flavor-shop-card", "settings": { "flavor_name": "Blood Orange", "flavor_style": "blood_orange" } },
+            {
+              "type": "flavor-shop-card",
+              "settings": { "flavor_name": "Blood Orange", "flavor_style": "blood_orange" }
+            },
             { "type": "flavor-shop-card", "settings": { "flavor_name": "Berry Acai", "flavor_style": "berry_acai" } },
             { "type": "flavor-shop-card", "settings": { "flavor_name": "Ginger Lime", "flavor_style": "ginger_lime" } }
           ]

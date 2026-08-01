@@ -1,0 +1,241 @@
+{% doc %}
+  Renders a single announcement bar slide with its own background, text and
+  optional button. Intended to be nested inside the Announcement bar section,
+  which handles the rotation and fade transition between multiple slides.
+
+  @example
+  {% render block %}
+{% enddoc %}
+
+{% liquid
+  assign item_class = 'announcement-bar__item'
+  if section.blocks.first.id == block.id
+    assign item_class = item_class | append: ' is-active'
+  endif
+%}
+
+<div
+  class="{{ item_class }}"
+  data-announcement-bar-item
+  style="
+    --announcement-bar-background: {{ block.settings.background_color }};
+    --announcement-bar-text: {{ block.settings.text_color }};
+    --announcement-bar-button-background: {{ block.settings.button_background_color }};
+    --announcement-bar-button-text: {{ block.settings.button_text_color }};
+  "
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.text != blank %}
+    <div class="announcement-bar__text">{{ block.settings.text }}</div>
+  {% endif %}
+
+  {% if block.settings.show_button %}
+    {% if block.settings.button_style == 'button' %}
+      {% if block.settings.button_label != blank %}
+        {% if block.settings.button_link != blank %}
+          <a href="{{ block.settings.button_link }}" class="announcement-bar__button">
+            {{ block.settings.button_label }}
+          </a>
+        {% else %}
+          <span class="announcement-bar__button">
+            {{ block.settings.button_label }}
+          </span>
+        {% endif %}
+      {% endif %}
+    {% elsif block.settings.button_style == 'arrow' %}
+      {% if block.settings.button_link != blank %}
+        <a href="{{ block.settings.button_link }}" class="announcement-bar__arrow-link" aria-label="{{ block.settings.arrow_label | default: 'View more' }}">
+          <svg class="announcement-bar__arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .announcement-bar__item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding-block: 10px;
+    padding-inline: var(--page-margin);
+    text-align: center;
+    background-color: var(--announcement-bar-background);
+    color: var(--announcement-bar-text);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .announcement-bar__item.is-active {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .announcement-bar__text {
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+
+  .announcement-bar__text p {
+    margin: 0;
+  }
+
+  .announcement-bar__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    background-color: var(--announcement-bar-button-background);
+    color: var(--announcement-bar-button-text);
+    font-size: 0.875rem;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .announcement-bar__button:hover {
+    opacity: 0.85;
+  }
+
+  .announcement-bar__button:focus-visible {
+    outline: 2px solid var(--announcement-bar-button-text);
+    outline-offset: 2px;
+  }
+
+  .announcement-bar__arrow-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--announcement-bar-button-text);
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+    flex-shrink: 0;
+  }
+
+  .announcement-bar__arrow-link:hover {
+    opacity: 0.7;
+  }
+
+  .announcement-bar__arrow-link:focus-visible {
+    outline: 2px solid var(--announcement-bar-button-text);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .announcement-bar__arrow-icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 47.9375rem) {
+    .announcement-bar__item {
+      gap: 0.5rem;
+      padding-block: 10px;
+    }
+
+    .announcement-bar__text {
+      font-size: 0.75rem;
+    }
+
+    .announcement-bar__button {
+      padding: 0.375rem 0.75rem;
+      font-size: 0.75rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.announcement_bar_item",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:labels.text",
+      "default": "<p>Free 3-flavor trial pack. Just pay shipping.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "t:labels.button_style",
+      "options": [
+        { "value": "button", "label": "t:options.button" },
+        { "value": "arrow", "label": "t:options.arrow_icon" }
+      ],
+      "default": "button",
+      "visible_if": "{{ block.settings.show_button }}"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Claim Your Trial",
+      "visible_if": "{{ block.settings.show_button and block.settings.button_style == 'button' }}"
+    },
+    {
+      "type": "text",
+      "id": "arrow_label",
+      "label": "t:labels.arrow_label",
+      "default": "View more",
+      "visible_if": "{{ block.settings.show_button and block.settings.button_style == 'arrow' }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link",
+      "visible_if": "{{ block.settings.show_button }}"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323",
+      "visible_if": "{{ block.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC",
+      "visible_if": "{{ block.settings.show_button }}"
+    }
+  ],
+  "presets": [{ "name": "t:general.announcement_bar_item" }]
+}
+{% endschema %}

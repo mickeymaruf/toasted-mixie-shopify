@@ -11,7 +11,7 @@
   <div class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 pt-[40px] pb-[60px] sm:py-[60px] lg:gap-[60px] lg:py-[100px] xl:pb-[150px] lg:px-[120px]">
     {% if section.settings.heading != blank %}
       <div
-        class="max-w-4xl text-center text-[36px] leading-[0.95] font-bold text-[color:var(--gruns-gallery-heading-color)] px-5 sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px]"
+        class="order-1 max-w-4xl text-center text-[36px] leading-[0.95] font-bold text-[color:var(--gruns-gallery-heading-color)] px-5 sm:order-none sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px]"
         style="--gruns-gallery-heading-color: {{ section.settings.heading_color }};"
       >
         {{ section.settings.heading }}
@@ -19,7 +19,7 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <gruns-gallery-carousel class="relative flex w-full items-center gap-1 sm:gap-4">
+      <gruns-gallery-carousel class="order-3 relative flex w-full items-center gap-1 sm:order-none sm:gap-4">
         {% comment %}
           <button
             type="button"
@@ -55,7 +55,7 @@
     {% endif %}
 
     {% if section.settings.social_icon_1_image or section.settings.social_icon_2_image or section.settings.social_icon_3_image %}
-      <div class="flex items-center justify-center gap-[18px]">
+      <div class="order-2 flex items-center justify-center gap-[18px] sm:order-none">
         {% if section.settings.social_icon_1_image %}
           <a
             href="{{ section.settings.social_icon_1_link }}"
@@ -64,7 +64,7 @@
             {{
               section.settings.social_icon_1_image
               | image_url: width: 100
-              | image_tag: class: 'size-[60px] object-contain', alt: section.settings.social_icon_1_image.alt
+              | image_tag: class: 'size-9 object-contain sm:size-[60px]', alt: section.settings.social_icon_1_image.alt
             }}
           </a>
         {% endif %}
@@ -77,7 +77,7 @@
             {{
               section.settings.social_icon_2_image
               | image_url: width: 100
-              | image_tag: class: 'size-[60px] object-contain', alt: section.settings.social_icon_2_image.alt
+              | image_tag: class: 'size-9 object-contain sm:size-[60px]', alt: section.settings.social_icon_2_image.alt
             }}
           </a>
         {% endif %}
@@ -90,7 +90,7 @@
             {{
               section.settings.social_icon_3_image
               | image_url: width: 100
-              | image_tag: class: 'size-[60px] object-contain', alt: section.settings.social_icon_3_image.alt
+              | image_tag: class: 'size-9 object-contain sm:size-[60px]', alt: section.settings.social_icon_3_image.alt
             }}
           </a>
         {% endif %}

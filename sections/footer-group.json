@@ -19,7 +19,7 @@
           "name": "t:general.social_icon",
           "settings": {
             "label": "Social link",
-            "link": "",
+            "link": "https://www.instagram.com/drinktoasted",
             "icon": "shopify://shop_images/Item.svg"
           },
           "blocks": {}

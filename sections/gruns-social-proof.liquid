@@ -20,37 +20,43 @@
       style="color: {{ section.settings.heading_color }};"
     >
       {% if section.settings.rating != blank or section.settings.review_count != blank or section.settings.member_count != blank %}
-        <div class="flex flex-wrap items-center gap-x-[10px] gap-y-2">
+        <div class="flex flex-wrap items-center gap-x-1.5 gap-y-1 sm:gap-x-[10px] sm:gap-y-2">
           <div
-            class="flex items-center gap-[2px]"
+            class="flex items-center gap-px sm:gap-[2px]"
             role="img"
             aria-label="{{ 'products.main.rating_label' | t: rating: section.settings.rating }}"
           >
             {% for i in (1..5) %}
-              <span class="block size-[18px] {% unless i <= rating_rounded %}opacity-20{% endunless %}" aria-hidden="true">
-                {{ 'icon-star-social-proof.svg' | inline_asset_content }}
+              <span class="block size-3.5 sm:size-[18px] {% unless i <= rating_rounded %}opacity-20{% endunless %}" aria-hidden="true">
+                <img
+                  src="{{ 'icon-star-social-proof.svg' | asset_url }}"
+                  alt=""
+                  width="20"
+                  height="19"
+                  class="size-full"
+                >
               </span>
             {% endfor %}
           </div>
 
           {% if section.settings.rating != blank %}
-            <p class="text-[18px] leading-[1.5] whitespace-nowrap sm:text-[20px]">
+            <p class="text-[14px] leading-none whitespace-nowrap sm:text-[20px] sm:leading-[1.5]">
               <span class="font-medium">{{ section.settings.rating }}</span>
               {{ 'sections.social_proof.stars' | t }}
             </p>
           {% endif %}
 
           {% if section.settings.review_count != blank %}
-            <span class="block size-[5px] shrink-0 rounded-full bg-current" aria-hidden="true"></span>
-            <p class="text-[18px] leading-[1.5] whitespace-nowrap sm:text-[20px]">
+            <span class="block size-1 shrink-0 rounded-full bg-current sm:size-[5px]" aria-hidden="true"></span>
+            <p class="text-[14px] leading-none whitespace-nowrap sm:text-[20px] sm:leading-[1.5]">
               <span class="font-medium">{{ section.settings.review_count }}</span>
               {{ 'sections.social_proof.reviews' | t }}
             </p>
           {% endif %}
 
           {% if section.settings.member_count != blank %}
-            <span class="block size-[5px] shrink-0 rounded-full bg-current" aria-hidden="true"></span>
-            <p class="text-[18px] leading-[1.5] whitespace-nowrap sm:text-[20px]">
+            <span class="block size-1 shrink-0 rounded-full bg-current sm:size-[5px]" aria-hidden="true"></span>
+            <p class="text-[14px] leading-none whitespace-nowrap sm:text-[20px] sm:leading-[1.5]">
               <span class="font-medium">{{ section.settings.member_count }}</span>
               {{ 'sections.social_proof.members' | t }}
             </p>

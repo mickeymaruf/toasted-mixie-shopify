@@ -22,7 +22,7 @@
           {% for media in product.media %}
             <button
               type="button"
-              class="product-gallery__thumb w-[80px] shrink-0 overflow-hidden rounded-lg outline-offset-2 outline-[#212323] sm:w-[101px] lg:w-full h-[135px] m-1 {% if forloop.first %}outline-2{% endif %}"
+              class="product-gallery__thumb w-[80px] shrink-0 overflow-hidden rounded-lg outline-offset-2 outline-[#212323] sm:w-[101px] lg:w-full h-[100px] sm:h-[135px] m-1 {% if forloop.first %}outline-2{% endif %}"
               data-gallery-thumb
               data-index="{{ forloop.index0 }}"
               aria-label="{{ 'general.accessibility.view_media' | t: index: forloop.index }}"

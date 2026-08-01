@@ -20,11 +20,11 @@
 
 <a
   href="{{ block.settings.product.url }}"
-  class="flex shrink min-w-0 flex-col items-center gap-[6px] sm:gap-[10px] rounded-[10px] border-2 px-[3px] sm:px-[5px] pt-[3px] sm:pt-[5px] pb-[8px] sm:pb-[10px] {% if is_active %}bg-[#F6F1EC]{% endif %}"
+  class="flex w-[109px] shrink-0 min-w-0 flex-col items-center gap-[6px] sm:w-auto sm:shrink sm:gap-[10px] rounded-[10px] border-2 px-[3px] sm:px-[5px] pt-[3px] sm:pt-[5px] pb-[8px] sm:pb-[10px] {% if is_active %}bg-[#F6F1EC]{% endif %}"
   style="{% if is_active %}border-color: {{ block.settings.color }}{% else %}border-color: #C2CBD4{% endif %}"
   {{ block.shopify_attributes }}
 >
-  <div class="relative flex h-[122px] max-w-[109px] shrink-0 items-center justify-center overflow-hidden rounded-[8px] bg-[#F0F0F0]">
+  <div class="relative flex h-[100px] max-w-[109px] shrink-0 items-center justify-center overflow-hidden rounded-[8px] bg-[#F0F0F0] sm:h-[122px]">
     {% if swatch_image %}
       {{
         swatch_image

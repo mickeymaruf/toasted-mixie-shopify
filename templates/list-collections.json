@@ -20,69 +20,86 @@
         "background_color": "#f6f1ec"
       }
     },
-    "gruns_product_list_LjkJRx": {
+    "gruns_product_list_mgCmtF": {
       "type": "gruns-product-list",
       "blocks": {
-        "product_card_HjcGkV": {
+        "product_card_nAVnwE": {
           "type": "product-card",
           "settings": {
             "product": "blood-orange",
+            "image": "shopify://shop_images/Frame_2147235999.png",
             "flavor_name": "Blood Orange",
             "flavor_name_color": "#b70141",
             "description": "Bright. Smooth. Golden-hour ready.",
-            "price_text": "From $9.99",
-            "button_label": "Shop Blood Orange",
+            "price_text": "From $31.99",
+            "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#f6f1ec"
+            "button_text_color": "#c7aa9a"
           },
           "blocks": {}
         },
-        "product_card_4w3w6g": {
+        "product_card_xUzFBm": {
           "type": "product-card",
           "settings": {
             "product": "berry-acai",
+            "image": "shopify://shop_images/Frame_2147236000.png",
             "flavor_name": "Berry Acai",
             "flavor_name_color": "#5e1a79",
             "description": "Deep. Juicy. Easy to enjoy.",
-            "price_text": "From $9.99",
-            "button_label": "Shop Berry Acai",
+            "price_text": "From $31.99",
+            "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#f6f1ec"
+            "button_text_color": "#C7AA9A"
           },
           "blocks": {}
         },
-        "product_card_tB3HUz": {
+        "product_card_w8yd6r": {
           "type": "product-card",
           "settings": {
             "product": "ginger-lime",
+            "image": "shopify://shop_images/Frame_2147236001.png",
             "flavor_name": "Ginger Lime",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
-            "price_text": "From $9.99",
-            "button_label": "Shop Ginger Lime",
+            "price_text": "From $31.99",
+            "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#f6f1ec"
+            "button_text_color": "#c7aa9a"
+          },
+          "blocks": {}
+        },
+        "product_card_9Ff3jK": {
+          "type": "product-card",
+          "settings": {
+            "product": "try-all-3-flavors",
+            "image": "shopify://shop_images/Frame_2147236003.png",
+            "flavor_name": "Trial Pack",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "Just Pay Shipping",
+            "button_label": "Try Now",
+            "button_background_color": "#212323",
+            "button_text_color": "#c7aa9a"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "product_card_HjcGkV",
-        "product_card_4w3w6g",
-        "product_card_tB3HUz"
+        "product_card_nAVnwE",
+        "product_card_xUzFBm",
+        "product_card_w8yd6r",
+        "product_card_9Ff3jK"
       ],
       "name": "t:general.product_list",
       "settings": {
-        "heading": "",
+        "heading": "Choose your flavor.",
         "background_color": "#f6f1ec",
-        "heading_color": "#212323",
-        "padding_top": 100,
-        "padding_bottom": 100
+        "heading_color": "#212323"
       }
     }
   },
   "order": [
     "hero_banner_PWbhtc",
-    "gruns_product_list_LjkJRx"
+    "gruns_product_list_mgCmtF"
   ]
 }

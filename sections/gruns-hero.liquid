@@ -3,9 +3,9 @@
   style="background-color: {{ section.settings.background_color }};"
 >
   <div
-    class="mx-auto flex w-full max-w-[1920px] flex-col gap-12 px-5 pt-[60px] pb-[30px] sm:px-8 sm:pb-[60px] md:px-12 lg:grid lg:grid-cols-[9fr_11fr] lg:items-center lg:gap-x-0 lg:px-[80px] xl:px-[120px] xl:py-[50px]"
+    class="mx-auto flex w-full max-w-[1920px] flex-col gap-12 px-5 pt-[30px] pb-[30px] sm:px-8 sm:pb-[60px] md:px-12 lg:grid lg:grid-cols-[9fr_11fr] lg:items-center lg:gap-x-0 lg:px-[80px] xl:px-[120px] xl:py-[50px]"
   >
-    <div class="flex w-full flex-col items-center text-center lg:col-start-1 lg:items-start lg:text-left">
+    <div class="order-2 flex w-full flex-col items-center text-center lg:order-none lg:col-start-1 lg:items-start lg:text-left">
       {% if section.settings.heading != blank %}
         <div
           class="font-bold text-[36px] leading-[1.1] text-[color:var(--gruns-hero-heading-color)] sm:text-[44px] md:text-[56px] 2xl:text-[70px]"
@@ -63,7 +63,7 @@
     </div>
 
     {% if section.settings.product_image %}
-      <div class="w-full max-w-[533px] mx-auto shrink-0 lg:col-start-2 lg:max-w-none lg:self-stretch">
+      <div class="order-1 w-full max-w-[533px] mx-auto shrink-0 lg:order-none lg:col-start-2 lg:max-w-none lg:self-stretch">
         {{
           section.settings.product_image
           | image_url: width: 1200
@@ -77,13 +77,21 @@
 
         {% if section.settings.show_badge and section.settings.badge_text != blank %}
           <div
-            class="absolute bottom-0 -left-14 origin-center rotate-90 -translate-y-1/2 flex items-center justify-center gap-[20px] rounded-[30px] px-[32px] py-[16px] drop-shadow-[0px_0px_2.5px_rgba(0,0,0,0.1)]"
+            class="absolute bottom-0 -left-9.5 origin-center -rotate-90 -translate-y-1/2 flex items-center justify-center gap-[8px] rounded-[16px] px-[12px] py-[6px] drop-shadow-[0px_0px_2.5px_rgba(0,0,0,0.1)] lg:-left-14 lg:gap-[20px] lg:rounded-[30px] lg:px-[32px] lg:py-[16px]"
             style="background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #F9D5C0, #F9D5C0);"
           >
-            <p class="text-[20px] leading-[1.5] font-medium whitespace-nowrap text-[#212323]">
+            <p class="text-[12px] leading-[1.5] font-medium whitespace-nowrap text-[#212323] lg:text-[20px]">
               {{ section.settings.badge_text }}
             </p>
-            <span class="block size-[16px] shrink-0">{{ 'icon-x-bold.svg' | inline_asset_content }}</span>
+            <span class="block size-[10px] shrink-0 lg:size-[16px]">
+              <img
+                src="{{ 'icon-x-bold.svg' | asset_url }}"
+                alt=""
+                width="16"
+                height="16"
+                class="size-full"
+              >
+            </span>
           </div>
         {% endif %}
       </div>
