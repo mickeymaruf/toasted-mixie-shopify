@@ -13,6 +13,43 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "social_icon_BEEGVQ": {
+          "type": "social-icon",
+          "name": "t:general.social_icon",
+          "settings": {
+            "label": "Social link",
+            "link": "",
+            "icon": "shopify://shop_images/Item.svg"
+          },
+          "blocks": {}
+        },
+        "social_icon_NyQE8L": {
+          "type": "social-icon",
+          "name": "t:general.social_icon",
+          "settings": {
+            "label": "Social link",
+            "link": "",
+            "icon": "shopify://shop_images/Item_1.svg"
+          },
+          "blocks": {}
+        },
+        "social_icon_YhLFmG": {
+          "type": "social-icon",
+          "name": "t:general.social_icon",
+          "settings": {
+            "label": "Social link",
+            "link": "",
+            "icon": "shopify://shop_images/Item_2.svg"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "social_icon_BEEGVQ",
+        "social_icon_NyQE8L",
+        "social_icon_YhLFmG"
+      ],
       "settings": {
         "heading": "Be first to know.",
         "subheading": "Get launch updates, first drops, and new flavor news.",
@@ -21,6 +58,7 @@
         "newsletter_background_color": "#f6f1ec",
         "newsletter_button_background_color": "#212323",
         "newsletter_button_text_color": "#f6f1ec",
+        "background_mark": "shopify://shop_images/Balance_1.svg",
         "logo_width": 280,
         "shop_title": "Shop",
         "shop_menu": "footer-shop",
@@ -28,10 +66,6 @@
         "help_menu": "footer-help",
         "about_title": "About",
         "about_menu": "footer-about",
-        "show_social_icons": true,
-        "social_facebook_link": "#",
-        "social_instagram_link": "#",
-        "social_tiktok_link": "#",
         "copyright_text": "The Toasted Company, Inc. All Rights Reserved.",
         "legal_menu": "footer-legal-menu",
         "background_color": "#c2cbd4",

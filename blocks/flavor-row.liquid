@@ -1,0 +1,35 @@
+{% doc %}
+  Groups flavor-shop-card blocks into a single wrapping row. Nest inside
+  the Drink Better section; add, remove, and reorder the nested
+  flavor-shop-card blocks to control which flavors are shown.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'flavor-row' %}
+{% enddoc %}
+
+<div class="flavor-row flex w-full flex-wrap gap-[15px]" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% stylesheet %}
+  .flavor-row .shopify-block {
+    display: contents;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.flavor_row",
+  "blocks": [{ "type": "flavor-shop-card" }],
+  "presets": [
+    {
+      "name": "t:general.flavor_row",
+      "blocks": [
+        { "type": "flavor-shop-card", "settings": { "flavor_name": "Blood Orange", "flavor_style": "blood_orange" } },
+        { "type": "flavor-shop-card", "settings": { "flavor_name": "Berry Acai", "flavor_style": "berry_acai" } },
+        { "type": "flavor-shop-card", "settings": { "flavor_name": "Ginger Lime", "flavor_style": "ginger_lime" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

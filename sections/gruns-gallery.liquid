@@ -53,6 +53,49 @@
         {% endcomment %}
       </gruns-gallery-carousel>
     {% endif %}
+
+    {% if section.settings.social_icon_1_image or section.settings.social_icon_2_image or section.settings.social_icon_3_image %}
+      <div class="flex items-center justify-center gap-[18px]">
+        {% if section.settings.social_icon_1_image %}
+          <a
+            href="{{ section.settings.social_icon_1_link }}"
+            class="shrink-0 transition-opacity duration-150 hover:opacity-85"
+          >
+            {{
+              section.settings.social_icon_1_image
+              | image_url: width: 100
+              | image_tag: class: 'size-[60px] object-contain', alt: section.settings.social_icon_1_image.alt
+            }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.social_icon_2_image %}
+          <a
+            href="{{ section.settings.social_icon_2_link }}"
+            class="shrink-0 transition-opacity duration-150 hover:opacity-85"
+          >
+            {{
+              section.settings.social_icon_2_image
+              | image_url: width: 100
+              | image_tag: class: 'size-[60px] object-contain', alt: section.settings.social_icon_2_image.alt
+            }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.social_icon_3_image %}
+          <a
+            href="{{ section.settings.social_icon_3_link }}"
+            class="shrink-0 transition-opacity duration-150 hover:opacity-85"
+          >
+            {{
+              section.settings.social_icon_3_image
+              | image_url: width: 100
+              | image_tag: class: 'size-[60px] object-contain', alt: section.settings.social_icon_3_image.alt
+            }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -137,6 +180,43 @@
       "id": "heading_color",
       "label": "t:labels.text_color",
       "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "t:general.social_icons"
+    },
+    {
+      "type": "image_picker",
+      "id": "social_icon_1_image",
+      "label": "t:labels.social_icon_1"
+    },
+    {
+      "type": "url",
+      "id": "social_icon_1_link",
+      "label": "t:labels.link",
+      "info": "t:labels.social_link_info"
+    },
+    {
+      "type": "image_picker",
+      "id": "social_icon_2_image",
+      "label": "t:labels.social_icon_2"
+    },
+    {
+      "type": "url",
+      "id": "social_icon_2_link",
+      "label": "t:labels.link",
+      "info": "t:labels.social_link_info"
+    },
+    {
+      "type": "image_picker",
+      "id": "social_icon_3_image",
+      "label": "t:labels.social_icon_3"
+    },
+    {
+      "type": "url",
+      "id": "social_icon_3_link",
+      "label": "t:labels.link",
+      "info": "t:labels.social_link_info"
     }
   ],
   "presets": [

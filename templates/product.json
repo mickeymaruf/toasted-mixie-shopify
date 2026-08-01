@@ -69,7 +69,7 @@
           "type": "flavor-swatch-row",
           "static": true,
           "settings": {
-            "heading": "Included Flavors"
+            "heading": "Choose your Flavor"
           },
           "blocks": {
             "flavor_swatch_ayHRVG": {
@@ -78,7 +78,8 @@
               "settings": {
                 "product": "blood-orange",
                 "flavor_name": "",
-                "swatch_image": "shopify://shop_images/Frame_2147235891.png"
+                "swatch_image": "shopify://shop_images/Frame_2147235891.png",
+                "color": "#85002c"
               },
               "blocks": {}
             },
@@ -88,7 +89,8 @@
               "settings": {
                 "product": "berry-acai",
                 "flavor_name": "",
-                "swatch_image": "shopify://shop_images/Frame_2147235893.png"
+                "swatch_image": "shopify://shop_images/Frame_2147235893.png",
+                "color": "#552469"
               },
               "blocks": {}
             },
@@ -98,7 +100,18 @@
               "settings": {
                 "product": "ginger-lime",
                 "flavor_name": "",
-                "swatch_image": "shopify://shop_images/Frame_2147235892.png"
+                "swatch_image": "shopify://shop_images/Frame_2147235892.png",
+                "color": "#2f7948"
+              },
+              "blocks": {}
+            },
+            "flavor_swatch_bGjd3J": {
+              "type": "flavor-swatch",
+              "name": "t:general.flavor_swatch",
+              "settings": {
+                "product": "try-all-3-flavors",
+                "flavor_name": "Trial Pack",
+                "color": "#2f7948"
               },
               "blocks": {}
             }
@@ -106,7 +119,8 @@
           "block_order": [
             "flavor_swatch_ayHRVG",
             "flavor_swatch_HhRbV9",
-            "flavor_swatch_ktfVwb"
+            "flavor_swatch_ktfVwb",
+            "flavor_swatch_bGjd3J"
           ]
         },
         "combo-offer": {
@@ -163,50 +177,7 @@
           "type": "accordion-list",
           "static": true,
           "settings": {},
-          "blocks": {
-            "accordion_item_CzALCE": {
-              "type": "accordion-item",
-              "name": "t:general.accordion_item",
-              "settings": {
-                "title": "What is Toasted?",
-                "content": "<p>What is Toasted?</p>"
-              },
-              "blocks": {}
-            },
-            "accordion_item_A3dHUA": {
-              "type": "accordion-item",
-              "name": "t:general.accordion_item",
-              "settings": {
-                "title": "Ingredients & Allergies",
-                "content": "<p>What is Toasted?</p>"
-              },
-              "blocks": {}
-            },
-            "accordion_item_CmFcQt": {
-              "type": "accordion-item",
-              "name": "t:general.accordion_item",
-              "settings": {
-                "title": "What to Expect",
-                "content": "<p>What is Toasted?</p>"
-              },
-              "blocks": {}
-            },
-            "accordion_item_kiGMEB": {
-              "type": "accordion-item",
-              "name": "t:general.accordion_item",
-              "settings": {
-                "title": "Lab Results",
-                "content": "<p>What is Toasted?</p>"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "accordion_item_CzALCE",
-            "accordion_item_A3dHUA",
-            "accordion_item_CmFcQt",
-            "accordion_item_kiGMEB"
-          ]
+          "blocks": {}
         },
         "promo-banner": {
           "type": "promo-banner",
@@ -224,6 +195,7 @@
         }
       },
       "settings": {
+        "product": "",
         "rating": 5,
         "show_badge": true,
         "badge_text": "Launching Soon",
@@ -312,7 +284,7 @@
       ],
       "name": "t:general.faq_pills_grid",
       "settings": {
-        "heading": "Frequently asked questions",
+        "heading": "Good Questions",
         "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "columns_desktop": "3",
@@ -456,7 +428,9 @@
       "settings": {
         "eyebrow": "How it Work",
         "heading": "Our Dirnks Hit Different",
-        "background_color": "#D7DEE5",
+        "image": "shopify://shop_images/Frame_2147235959.png",
+        "image_alt": "How it works illustration",
+        "background_color": "#d7dee5",
         "heading_color": "#000000",
         "text_color": "#343434"
       }

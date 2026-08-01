@@ -6,40 +6,34 @@
 {% liquid
   assign newsletter_form_id = 'FooterNewsletterForm-' | append: section.id
   assign newsletter_email_id = newsletter_form_id | append: '-email'
-  assign has_social = false
-  if section.settings.show_social_icons
-    unless section.settings.social_facebook_link == blank
-      assign has_social = true
-    endunless
-    unless section.settings.social_instagram_link == blank
-      assign has_social = true
-    endunless
-    unless section.settings.social_tiktok_link == blank
-      assign has_social = true
-    endunless
-  endif
 %}
 
 <footer
   class="gruns-footer full-width relative overflow-hidden"
   style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};"
 >
-  <div
-    class="pointer-events-none absolute bottom-0 right-0 hidden aspect-square w-[45vw] max-w-[717px] translate-y-[5%] translate-x-[7%] opacity-30 lg:block"
-    aria-hidden="true"
-  >
-    {{ 'icon-footer-mark.svg' | inline_asset_content }}
-  </div>
+  {% if section.settings.background_mark %}
+    <div
+      class="pointer-events-none absolute bottom-0 right-0 hidden aspect-square w-[45vw] max-w-[717px] translate-y-[5%] translate-x-[7%] lg:block"
+      aria-hidden="true"
+    >
+      {{
+        section.settings.background_mark
+        | image_url: width: 1434
+        | image_tag: class: 'size-full object-contain'
+      }}
+    </div>
+  {% endif %}
 
   <div class="relative mx-auto flex w-full max-w-[1920px] flex-col gap-10 px-5 py-14 sm:px-8 md:px-12 lg:gap-16 lg:px-[80px] lg:pt-[80px] lg:pb-[50px] xl:px-[120px]">
     <div class="flex flex-col items-center gap-10 lg:flex-row lg:items-stretch lg:justify-between lg:gap-8">
-      <div class="order-2 flex w-full flex-col items-center gap-10 text-center sm:flex-row sm:justify-center sm:gap-16 sm:text-left lg:order-1 lg:w-auto lg:flex-col lg:items-start lg:justify-start lg:gap-[60px]">
+      <div class="order-2 flex w-full flex-row flex-wrap items-start justify-start gap-10 text-left sm:justify-center sm:gap-16 sm:text-left lg:order-1 lg:w-auto lg:flex-col lg:items-start lg:justify-start lg:gap-[60px]">
         {% if section.settings.shop_menu.links.size > 0 %}
-          <div class="flex flex-col items-center gap-[30px] sm:items-start">
+          <div class="flex flex-1 flex-col items-start gap-[30px]">
             {% if section.settings.shop_title != blank %}
               <p class="text-[28px] leading-[1.2] font-bold">{{ section.settings.shop_title }}</p>
             {% endif %}
-            <ul class="flex flex-col items-center gap-[15px] text-[16px] leading-[1.3] sm:items-start">
+            <ul class="flex flex-col items-start gap-[15px] text-[16px] leading-[1.3]">
               {% for link in section.settings.shop_menu.links %}
                 <li>
                   <a href="{{ link.url }}" class="transition-opacity duration-150 hover:opacity-70">{{ link.title }}</a>
@@ -50,11 +44,11 @@
         {% endif %}
 
         {% if section.settings.help_menu.links.size > 0 %}
-          <div class="flex flex-col items-center gap-[30px] sm:items-start">
+          <div class="flex flex-1 flex-col items-start gap-[30px]">
             {% if section.settings.help_title != blank %}
               <p class="text-[28px] leading-[1.2] font-bold">{{ section.settings.help_title }}</p>
             {% endif %}
-            <ul class="flex flex-col items-center gap-[15px] text-[16px] leading-[1.3] sm:items-start">
+            <ul class="flex flex-col items-start gap-[15px] text-[16px] leading-[1.3]">
               {% for link in section.settings.help_menu.links %}
                 <li>
                   <a href="{{ link.url }}" class="transition-opacity duration-150 hover:opacity-70">{{ link.title }}</a>
@@ -134,48 +128,18 @@
           {% endform %}
         </div>
 
-        {% if has_social %}
-          <div class="flex items-center justify-center gap-10">
-            {% if section.settings.social_facebook_link != blank %}
-              <a
-                href="{{ section.settings.social_facebook_link }}"
-                class="flex size-[50px] shrink-0 items-center justify-center rounded-full bg-[#212323] text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85"
-                aria-label="{{ 'general.accessibility.facebook' | t }}"
-              >
-                <span class="block size-[20px]">{{ 'icon-facebook.svg' | inline_asset_content }}</span>
-              </a>
-            {% endif %}
-
-            {% if section.settings.social_instagram_link != blank %}
-              <a
-                href="{{ section.settings.social_instagram_link }}"
-                class="flex size-[50px] shrink-0 items-center justify-center rounded-full bg-[#212323] text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85"
-                aria-label="{{ 'general.accessibility.instagram' | t }}"
-              >
-                <span class="block size-[20px]">{{ 'icon-instagram.svg' | inline_asset_content }}</span>
-              </a>
-            {% endif %}
-
-            {% if section.settings.social_tiktok_link != blank %}
-              <a
-                href="{{ section.settings.social_tiktok_link }}"
-                class="flex size-[50px] shrink-0 items-center justify-center rounded-full bg-[#212323] text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85"
-                aria-label="{{ 'general.accessibility.tiktok' | t }}"
-              >
-                <span class="block size-[20px]">{{ 'icon-tiktok.svg' | inline_asset_content }}</span>
-              </a>
-            {% endif %}
-          </div>
-        {% endif %}
+        <div class="flex items-center justify-center gap-[35px]">
+          {% content_for 'blocks' %}
+        </div>
       </div>
 
-      <div class="order-3 flex w-full flex-col items-center gap-[30px] lg:w-auto lg:items-end">
+      <div class="order-3 flex w-full flex-col items-start gap-[30px] lg:w-auto lg:items-end">
         {% if section.settings.about_menu.links.size > 0 %}
-          <div class="flex flex-col items-center gap-[15px] text-center lg:items-end lg:text-right">
+          <div class="flex flex-col items-start gap-[15px] text-left lg:items-end lg:text-right">
             {% if section.settings.about_title != blank %}
               <p class="text-[28px] leading-[1.2] font-bold">{{ section.settings.about_title }}</p>
             {% endif %}
-            <ul class="flex flex-col items-center gap-[15px] text-[16px] leading-[1.3] lg:items-end">
+            <ul class="flex flex-col items-start gap-[15px] text-[16px] leading-[1.3] lg:items-end">
               {% for link in section.settings.about_menu.links %}
                 <li>
                   <a
@@ -224,6 +188,7 @@
 {% schema %}
 {
   "name": "t:general.footer",
+  "blocks": [{ "type": "social-icon" }],
   "settings": [
     {
       "type": "header",
@@ -285,6 +250,11 @@
       "label": "t:labels.logo"
     },
     {
+      "type": "image_picker",
+      "id": "background_mark",
+      "label": "t:labels.background_mark"
+    },
+    {
       "type": "range",
       "id": "logo_width",
       "min": 160,
@@ -330,34 +300,6 @@
       "type": "link_list",
       "id": "about_menu",
       "label": "t:labels.menu"
-    },
-    {
-      "type": "header",
-      "content": "t:general.social"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_social_icons",
-      "label": "t:labels.show_social_icons",
-      "default": true
-    },
-    {
-      "type": "url",
-      "id": "social_facebook_link",
-      "label": "t:labels.facebook_link",
-      "visible_if": "{{ section.settings.show_social_icons }}"
-    },
-    {
-      "type": "url",
-      "id": "social_instagram_link",
-      "label": "t:labels.instagram_link",
-      "visible_if": "{{ section.settings.show_social_icons }}"
-    },
-    {
-      "type": "url",
-      "id": "social_tiktok_link",
-      "label": "t:labels.tiktok_link",
-      "visible_if": "{{ section.settings.show_social_icons }}"
     },
     {
       "type": "header",

@@ -32,7 +32,10 @@
   <div class="hero-slide__media" aria-hidden="true">
     {% if block.settings.background_image_mobile and block.settings.background_image %}
       <picture>
-        <source media="(max-width: 47.9375rem)" srcset="{{ block.settings.background_image_mobile | image_url: width: 750 }} 750w, {{ block.settings.background_image_mobile | image_url: width: 1100 }} 1100w">
+        <source
+          media="(max-width: 47.9375rem)"
+          srcset="{{ block.settings.background_image_mobile | image_url: width: 750 }} 750w, {{ block.settings.background_image_mobile | image_url: width: 1100 }} 1100w"
+        >
         {{
           block.settings.background_image
           | image_url: width: 3200
@@ -190,7 +193,7 @@
     }
 
     .hero-slide__subheading {
-      font-size: clamp(0.875rem, 0.5rem + 1.5vw, 1.125rem);
+      font-size: clamp(1.225rem, 0.7rem + 2.1vw, 1.575rem);
       margin-top: 0.5rem;
     }
 

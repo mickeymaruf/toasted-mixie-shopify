@@ -8,26 +8,21 @@
 
 {% if block.settings.heading != blank %}
   <div
-    class="relative flex w-full flex-col items-center gap-3 overflow-hidden rounded-2xl p-3 sm:flex-row sm:gap-6 sm:p-4"
+    class="relative flex w-full flex-col items-center gap-3 overflow-hidden rounded-2xl sm:flex-row sm:gap-6 sm:p-4"
     style="background-color: {{ block.settings.background_color }};"
     {{ block.shopify_attributes }}
   >
-
     {% if block.settings.image %}
-      <div class="relative aspect-[166/150] w-[100px] shrink-0 overflow-hidden rounded-xl sm:w-[140px] lg:w-[166px]">
+      <div class="relative aspect-square w-full sm:aspect-[166/150] sm:w-[140px] sm:shrink-0 lg:w-[166px] overflow-hidden rounded-xl">
         {{
           block.settings.image
           | image_url: width: 400
-          | image_tag:
-            width: 400,
-            height: 362,
-            class: 'size-full object-cover',
-            alt: block.settings.heading
+          | image_tag: width: 400, height: 362, class: 'size-full object-cover', alt: block.settings.heading
         }}
       </div>
     {% endif %}
 
-    <div class="relative flex flex-1 flex-col items-center md:items-start gap-[10px]">
+    <div class="relative flex flex-1 flex-col items-center md:items-start gap-[10px] p-3 sm:p-0">
       <p class="text-[16px] sm:text-[20px] font-medium text-[#212323]">{{ block.settings.heading }}</p>
 
       {% if block.settings.button_label != blank %}

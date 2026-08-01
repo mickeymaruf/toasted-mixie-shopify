@@ -1,14 +1,14 @@
 <section
-  class="gruns-hero full-width overflow-hidden"
+  class="gruns-hero full-width relative"
   style="background-color: {{ section.settings.background_color }};"
 >
   <div
-    class="mx-auto flex w-full max-w-[1920px] flex-col gap-12 px-5 pt-[60px] pb-[30px] sm:px-8 sm:pb-[60px] md:px-12 lg:grid lg:grid-cols-2 lg:items-center lg:gap-x-16 lg:px-[80px] lg:py-[100px] xl:px-[120px] xl:pt-[150px] xl:pb-[100px]"
+    class="mx-auto flex w-full max-w-[1920px] flex-col gap-12 px-5 pt-[60px] pb-[30px] sm:px-8 sm:pb-[60px] md:px-12 lg:grid lg:grid-cols-[9fr_11fr] lg:items-center lg:gap-x-0 lg:px-[80px] xl:px-[120px] xl:py-[50px]"
   >
     <div class="flex w-full flex-col items-center text-center lg:col-start-1 lg:items-start lg:text-left">
       {% if section.settings.heading != blank %}
         <div
-          class="font-bold text-[36px] leading-[1.1] text-[color:var(--gruns-hero-heading-color)] sm:text-[44px] md:text-[56px] lg:text-[64px]"
+          class="font-bold text-[36px] leading-[1.1] text-[color:var(--gruns-hero-heading-color)] sm:text-[44px] md:text-[56px] 2xl:text-[70px]"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.heading }}
@@ -63,17 +63,29 @@
     </div>
 
     {% if section.settings.product_image %}
-      <div class="relative w-full max-w-[533px] mx-auto shrink-0 lg:col-start-2 lg:max-w-none lg:self-stretch">
+      <div class="w-full max-w-[533px] mx-auto shrink-0 lg:col-start-2 lg:max-w-none lg:self-stretch">
         {{
           section.settings.product_image
           | image_url: width: 1200
           | image_tag:
-            class: 'size-full object-contain',
+            class: 'lg:max-w-none lg:w-[110%] 2xl:w-[100%] size-full object-contain',
             widths: '400, 600, 900, 1200',
             sizes: '(min-width: 64rem) 40rem, 90vw',
             alt: section.settings.product_image_alt
           | default: section.settings.product_image.alt
         }}
+
+        {% if section.settings.show_badge and section.settings.badge_text != blank %}
+          <div
+            class="absolute bottom-0 -left-14 origin-center rotate-90 -translate-y-1/2 flex items-center justify-center gap-[20px] rounded-[30px] px-[32px] py-[16px] drop-shadow-[0px_0px_2.5px_rgba(0,0,0,0.1)]"
+            style="background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #F9D5C0, #F9D5C0);"
+          >
+            <p class="text-[20px] leading-[1.5] font-medium whitespace-nowrap text-[#212323]">
+              {{ section.settings.badge_text }}
+            </p>
+            <span class="block size-[16px] shrink-0">{{ 'icon-x-bold.svg' | inline_asset_content }}</span>
+          </div>
+        {% endif %}
       </div>
     {% endif %}
   </div>
@@ -179,6 +191,23 @@
       "type": "text",
       "id": "product_image_alt",
       "label": "t:labels.alt_text"
+    },
+    {
+      "type": "header",
+      "content": "t:general.badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "t:labels.show_badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "t:labels.badge_text",
+      "default": "Get 50% Off",
+      "visible_if": "{{ section.settings.show_badge }}"
     }
   ],
   "presets": [

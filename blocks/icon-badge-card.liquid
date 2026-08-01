@@ -1,0 +1,90 @@
+{% doc %}
+  Renders a single rounded, colored icon card used in a quality/trust badge
+  row (e.g. "Lab Tested", "Low Dose"). Falls back to a bundled default icon
+  per `icon_style` when no custom `icon` image is uploaded.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'icon-badge-card' %}
+{% enddoc %}
+
+{% liquid
+  case block.settings.icon_style
+    when 'low_dose'
+      assign default_icon = 'icon-badge-low-dose-outline.svg'
+    when 'low_calorie'
+      assign default_icon = 'icon-badge-low-calorie-outline.svg'
+    when 'non_carbonated'
+      assign default_icon = 'icon-badge-non-carbonated-outline.svg'
+    else
+      assign default_icon = 'icon-badge-lab-tested-outline.svg'
+  endcase
+%}
+
+<div
+  class="flex aspect-square w-[110px] min-w-[160px] max-w-[160px] shrink-0 flex-col items-center justify-center gap-[10px] rounded-[33px] px-[10px] text-center shadow-[-2px_2px_3.5px_rgba(0,0,0,0.1)]"
+  style="background-color: {{ block.settings.background_color }};"
+  {{ block.shopify_attributes }}
+>
+  <div class="size-[60px] shrink-0 sm:size-[70px] lg:size-[85px]">
+    {% if block.settings.icon %}
+      {{
+        block.settings.icon
+        | image_url: width: 170
+        | image_tag: width: 170, height: 170, class: 'size-full object-contain', alt: block.settings.label
+      }}
+    {% else %}
+      <img
+        src="{{ default_icon | asset_url }}"
+        width="170"
+        height="170"
+        loading="lazy"
+        class="size-full object-contain"
+        alt="{{ block.settings.label | escape }}"
+      >
+    {% endif %}
+  </div>
+
+  {% if block.settings.label != blank %}
+    <p class="text-[13px] leading-[1.5] font-medium whitespace-nowrap text-[#F6F1EC] sm:text-[14px]">
+      {{ block.settings.label }}
+    </p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.icon_badge_card",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:labels.label",
+      "default": "Lab Tested"
+    },
+    {
+      "type": "select",
+      "id": "icon_style",
+      "label": "t:labels.icon_style",
+      "options": [
+        { "value": "lab", "label": "t:options.icon_style.lab" },
+        { "value": "low_dose", "label": "t:options.icon_style.low_dose" },
+        { "value": "low_calorie", "label": "t:options.icon_style.low_calorie" },
+        { "value": "non_carbonated", "label": "t:options.icon_style.non_carbonated" }
+      ],
+      "default": "lab"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "t:labels.custom_icon"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.card_background",
+      "default": "#636D90"
+    }
+  ],
+  "presets": [{ "name": "t:general.icon_badge_card" }]
+}
+{% endschema %}

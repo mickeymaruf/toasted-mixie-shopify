@@ -1,0 +1,216 @@
+{% doc %}
+  Renders a social-proof banner: a star-rating strip with review/member
+  counts, a large heading and description, a CTA button, and a single
+  product collage image on the right.
+{% enddoc %}
+
+{% liquid
+  assign rating_rounded = section.settings.rating | round
+%}
+
+<section
+  class="gruns-social-proof full-width overflow-hidden border-t-2 border-b-2"
+  style="background-color: {{ section.settings.background_color }}; border-color: {{ section.settings.heading_color }};"
+>
+  <div
+    class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-10 px-5 py-10 sm:px-8 sm:py-12 md:px-12 lg:flex-row lg:items-center lg:gap-[60px] lg:px-[80px] lg:py-[80px] xl:px-[120px] xl:py-[50px]"
+  >
+    <div
+      class="flex w-full flex-col items-start gap-5 text-left lg:max-w-[581px] lg:flex-1"
+      style="color: {{ section.settings.heading_color }};"
+    >
+      {% if section.settings.rating != blank or section.settings.review_count != blank or section.settings.member_count != blank %}
+        <div class="flex flex-wrap items-center gap-x-[10px] gap-y-2">
+          <div
+            class="flex items-center gap-[2px]"
+            role="img"
+            aria-label="{{ 'products.main.rating_label' | t: rating: section.settings.rating }}"
+          >
+            {% for i in (1..5) %}
+              <span class="block size-[18px] {% unless i <= rating_rounded %}opacity-20{% endunless %}" aria-hidden="true">
+                {{ 'icon-star-social-proof.svg' | inline_asset_content }}
+              </span>
+            {% endfor %}
+          </div>
+
+          {% if section.settings.rating != blank %}
+            <p class="text-[18px] leading-[1.5] whitespace-nowrap sm:text-[20px]">
+              <span class="font-medium">{{ section.settings.rating }}</span>
+              {{ 'sections.social_proof.stars' | t }}
+            </p>
+          {% endif %}
+
+          {% if section.settings.review_count != blank %}
+            <span class="block size-[5px] shrink-0 rounded-full bg-current" aria-hidden="true"></span>
+            <p class="text-[18px] leading-[1.5] whitespace-nowrap sm:text-[20px]">
+              <span class="font-medium">{{ section.settings.review_count }}</span>
+              {{ 'sections.social_proof.reviews' | t }}
+            </p>
+          {% endif %}
+
+          {% if section.settings.member_count != blank %}
+            <span class="block size-[5px] shrink-0 rounded-full bg-current" aria-hidden="true"></span>
+            <p class="text-[18px] leading-[1.5] whitespace-nowrap sm:text-[20px]">
+              <span class="font-medium">{{ section.settings.member_count }}</span>
+              {{ 'sections.social_proof.members' | t }}
+            </p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <div class="text-[36px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[72px] lg:tracking-[-2.16px]">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="text-[18px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_button and section.settings.button_label != blank %}
+        {% render 'button',
+          label: section.settings.button_label,
+          url: section.settings.button_link,
+          background_color: section.settings.button_background_color,
+          text_color: section.settings.button_text_color,
+          class: '!w-auto whitespace-nowrap'
+        %}
+      {% endif %}
+    </div>
+
+    {% if section.settings.image %}
+      <div class="relative mx-auto w-full max-w-[360px] sm:max-w-[460px] lg:mx-0 lg:max-w-none lg:flex-1">
+        {{
+          section.settings.image
+          | image_url: width: 1200
+          | image_tag:
+            class: 'size-full object-contain',
+            widths: '400, 700, 1000, 1200',
+            sizes: '(min-width: 64rem) 46vw, 90vw',
+            alt: section.settings.image_alt
+          | default: section.settings.image.alt
+        }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.social_proof",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "range",
+      "id": "rating",
+      "label": "t:labels.rating",
+      "min": 0,
+      "max": 5,
+      "step": 0.1,
+      "default": 4.8
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "t:labels.review_count",
+      "default": "100,000"
+    },
+    {
+      "type": "text",
+      "id": "member_count",
+      "label": "t:labels.member_count",
+      "default": "1,000,000+"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "<p>See what all the hype is about.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:labels.description",
+      "default": "<p>We regularly test for all 20+ vitamins & minerals to ensure claims are accurate & clear of contaminants including:</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Shop Now",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#9AB2D5"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.social_proof"
+    }
+  ]
+}
+{% endschema %}

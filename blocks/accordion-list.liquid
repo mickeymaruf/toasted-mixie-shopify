@@ -1,30 +1,100 @@
 {% doc %}
-  Groups accordion-item blocks into a bordered list (e.g. "What is Toasted?",
-  "Ingredients & Allergies"). Rendered as a fixed region in the main product
-  section, after the guarantee badge row; add, remove, and reorder the
-  nested accordion-item blocks to control which rows are shown.
+  Groups accordion items from product metaobjects into a bordered list.
+  Data pulled from product.metafields.custom.product_faq metaobject entries.
 
-  @example
-  {% content_for 'block', id: block.id, type: 'accordion-list' %}
+  Resolves the product the same way the parent product section does: uses
+  the section's "product" picker setting when set (e.g. when the section is
+  reused on the home page), otherwise falls back to the contextual product.
 {% enddoc %}
 
-<div class="flex w-full flex-col divide-y divide-[#212323]" {{ block.shopify_attributes }}>
-  {% content_for 'blocks' %}
-</div>
+{% liquid
+  assign accordion_product = section.settings.product | default: product
+  assign accordions = accordion_product.metafields.custom.product_faq.value
+%}
+
+{% if accordions != blank %}
+  <div class="flex w-full flex-col divide-y divide-[#212323]" {{ block.shopify_attributes }}>
+    {% for accordion in accordions %}
+      <div class="accordion-item w-full" data-accordion-item>
+        <button
+          type="button"
+          class="flex w-full cursor-pointer items-center justify-between gap-4 py-5 text-[18px] font-medium text-[#212323] transition-opacity duration-200 hover:opacity-70"
+          data-accordion-trigger
+          aria-expanded="false"
+          aria-controls="content-accordion-{{ forloop.index }}"
+        >
+          {{ accordion.title }}
+          <span
+            class="flex size-5 shrink-0 items-center justify-center transition-transform duration-300"
+            data-accordion-icon
+          >
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </span>
+        </button>
+
+        {% if accordion.content != blank %}
+          <div
+            id="content-accordion-{{ forloop.index }}"
+            class="accordion-content overflow-hidden transition-all duration-300 ease-out"
+            data-accordion-content
+            style="max-height: 0;"
+          >
+            <div class="pb-5 text-[16px] leading-[1.6] text-[#212323]/85">
+              {{ accordion.content | metafield_tag }}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .accordion-item {
+    width: 100%;
+  }
+
+  .accordion-content {
+    overflow: hidden;
+  }
+
+  .accordion-item.open [data-accordion-icon] {
+    transform: rotate(45deg);
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-accordion-trigger]');
+    if (!trigger) return;
+
+    const item = trigger.closest('[data-accordion-item]');
+    const content = item?.querySelector('[data-accordion-content]');
+    if (!content) return;
+
+    const isOpen = item.classList.contains('open');
+
+    if (isOpen) {
+      content.style.maxHeight = '0px';
+      trigger.setAttribute('aria-expanded', 'false');
+      item.classList.remove('open');
+    } else {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      trigger.setAttribute('aria-expanded', 'true');
+      item.classList.add('open');
+    }
+  });
+{% endjavascript %}
 
 {% schema %}
 {
   "name": "t:general.accordion_list",
-  "blocks": [{ "type": "accordion-item" }],
   "presets": [
     {
-      "name": "t:general.accordion_list",
-      "blocks": [
-        { "type": "accordion-item", "settings": { "title": "What is Toasted?" } },
-        { "type": "accordion-item", "settings": { "title": "Ingredients & Allergies" } },
-        { "type": "accordion-item", "settings": { "title": "What to Expect" } },
-        { "type": "accordion-item", "settings": { "title": "Lab Results" } }
-      ]
+      "name": "t:general.accordion_list"
     }
   ]
 }

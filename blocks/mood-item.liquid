@@ -1,0 +1,90 @@
+{% doc %}
+  Renders a single "mood" row: a small icon paired with a title and
+  subtitle (e.g. "Supports Clarity" / "Smooth, present focus"). Falls back
+  to a bundled default icon per `icon_style` when no custom `icon` image
+  is uploaded.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'mood-item' %}
+{% enddoc %}
+
+{% liquid
+  case block.settings.icon_style
+    when 'balanced'
+      assign default_icon = 'icon-mood-balanced.svg'
+    when 'calm'
+      assign default_icon = 'icon-mood-calm.svg'
+    else
+      assign default_icon = 'icon-mood-clarity.svg'
+  endcase
+%}
+
+<div class="flex w-full items-center gap-[25px]" {{ block.shopify_attributes }}>
+  <div class="size-[42px] shrink-0 sm:size-[52px]">
+    {% if block.settings.icon %}
+      {{
+        block.settings.icon
+        | image_url: width: 120
+        | image_tag: width: 120, height: 120, class: 'size-full object-contain', alt: block.settings.title
+      }}
+    {% else %}
+      <img
+        src="{{ default_icon | asset_url }}"
+        width="120"
+        height="120"
+        loading="lazy"
+        class="size-full object-contain"
+        alt="{{ block.settings.title | escape }}"
+      >
+    {% endif %}
+  </div>
+
+  {% if block.settings.title != blank or block.settings.subtitle != blank %}
+    <div class="flex flex-col gap-[3px]">
+      {% if block.settings.title != blank %}
+        <p class="text-[18px] leading-[1.3] font-medium text-[#212323] sm:text-[20px]">{{ block.settings.title }}</p>
+      {% endif %}
+
+      {% if block.settings.subtitle != blank %}
+        <p class="text-[18px] leading-[1.3] text-[#212323] sm:text-[20px]">{{ block.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.mood_item",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:labels.title",
+      "default": "Supports Clarity"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "t:labels.subtitle",
+      "default": "Smooth, present focus"
+    },
+    {
+      "type": "select",
+      "id": "icon_style",
+      "label": "t:labels.icon_style",
+      "options": [
+        { "value": "clarity", "label": "t:options.icon_style.clarity" },
+        { "value": "balanced", "label": "t:options.icon_style.balanced" },
+        { "value": "calm", "label": "t:options.icon_style.calm" }
+      ],
+      "default": "clarity"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "t:labels.custom_icon"
+    }
+  ],
+  "presets": [{ "name": "t:general.mood_item" }]
+}
+{% endschema %}

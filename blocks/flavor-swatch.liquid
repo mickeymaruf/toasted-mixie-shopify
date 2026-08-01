@@ -12,13 +12,19 @@
 
 {% liquid
   assign swatch_image = block.settings.swatch_image | default: block.settings.product.featured_image
+  assign is_active = false
+  if block.settings.product and block.settings.product.id == product.id
+    assign is_active = true
+  endif
 %}
 
-<div
-  class="flex shrink min-w-0 flex-col items-center gap-[6px] sm:gap-[10px] rounded-[10px] border border-[#C2CBD4] px-[3px] sm:px-[5px] pt-[3px] sm:pt-[5px] pb-[8px] sm:pb-[10px]"
+<a
+  href="{{ block.settings.product.url }}"
+  class="flex shrink min-w-0 flex-col items-center gap-[6px] sm:gap-[10px] rounded-[10px] border-2 px-[3px] sm:px-[5px] pt-[3px] sm:pt-[5px] pb-[8px] sm:pb-[10px] {% if is_active %}bg-[#F6F1EC]{% endif %}"
+  style="{% if is_active %}border-color: {{ block.settings.color }}{% else %}border-color: #C2CBD4{% endif %}"
   {{ block.shopify_attributes }}
 >
-  <div class="relative flex max-h-[122px] max-w-[109px] items-center justify-center overflow-hidden rounded-[8px] bg-[#F0F0F0]">
+  <div class="relative flex h-[122px] max-w-[109px] shrink-0 items-center justify-center overflow-hidden rounded-[8px] bg-[#F0F0F0]">
     {% if swatch_image %}
       {{
         swatch_image
@@ -26,7 +32,7 @@
         | image_tag:
           width: 220,
           height: 248,
-          class: 'w-full h-full w-auto object-cover',
+          class: 'w-full h-full object-cover',
           alt: block.settings.flavor_name
       }}
     {% endif %}
@@ -41,7 +47,7 @@
       {{ block.settings.product.title }}
     </p>
   {% endif %}
-</div>
+</a>
 
 {% schema %}
 {
@@ -70,6 +76,12 @@
       "type": "image_picker",
       "id": "swatch_image",
       "label": "t:labels.swatch_image"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "t:labels.color",
+      "default": "#212323"
     }
   ],
   "presets": [{ "name": "t:general.flavor_swatch" }]

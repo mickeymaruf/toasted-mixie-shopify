@@ -53,14 +53,9 @@
     </div>
 
     <div class="w-full lg:w-[560px] lg:shrink-0">
-      <img
-        src="{{ 'how-it-works-graph.png' | asset_url }}"
-        alt=""
-        width="1123"
-        height="714"
-        loading="lazy"
-        class="h-auto w-full"
-      >
+      {% if section.settings.image %}
+        {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'h-auto w-full', alt: section.settings.image_alt }}
+      {% endif %}
     </div>
   </div>
 </section>
@@ -84,6 +79,21 @@
       "id": "heading",
       "label": "t:labels.heading",
       "default": "Our Dirnks Hit Different"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "t:labels.alt_text",
+      "default": "How it works illustration"
     },
     {
       "type": "header",

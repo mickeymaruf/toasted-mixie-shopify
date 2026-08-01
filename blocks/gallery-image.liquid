@@ -1,16 +1,17 @@
 {% doc %}
-  Renders a single square, rounded-corner image used as a slide inside the
-  Gruns Gallery section's scrolling carousel.
+  Renders a single framed, rounded-corner portrait image with a cream
+  border used as a slide inside the Gruns Gallery section's scrolling
+  carousel.
 
   @example
   {% content_for 'block', id: block.id, type: 'gallery-image' %}
 {% enddoc %}
 
 <div
-  class="gruns-gallery__slide shrink-0 snap-start w-full max-w-[320px] pl-4"
+  class="gruns-gallery__slide shrink-0 snap-start w-full max-w-[320px] pl-4 lg:pl-[23px]"
   {{ block.shopify_attributes }}
 >
-  <div class="aspect-square w-full overflow-hidden rounded-[25px]">
+  <div class="aspect-[225.6/329.39] w-full overflow-hidden rounded-[22.113px] shadow-[-3px_4px_10px_0px_rgba(0,0,0,0.15)]">
     {% if block.settings.image %}
       {{
         block.settings.image

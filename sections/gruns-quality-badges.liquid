@@ -1,0 +1,96 @@
+{% doc %}
+  Renders a "3rd party-tested" trust banner: a heading and description on
+  the left, and a responsive row of icon-badge-card blocks (e.g. Lab
+  Tested, Low Dose) on the right. Add, remove, and reorder the nested
+  icon-badge-card blocks to control which badges are shown.
+{% enddoc %}
+
+<section
+  class="gruns-quality-badges full-width overflow-hidden"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div
+    class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-10 px-5 py-10 sm:px-8 sm:py-12 md:px-12 lg:flex-row lg:items-center lg:gap-[60px] lg:px-[80px] lg:py-[80px] xl:px-[120px] xl:py-[50px]"
+  >
+    <div
+      class="flex w-full flex-col items-start gap-5 text-left xl:w-[40%] xl:max-w-[40%] xl:shrink-0"
+      style="color: {{ section.settings.heading_color }};"
+    >
+      {% if section.settings.heading != blank %}
+        <div class="text-[36px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[72px] lg:tracking-[-2.16px]">
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="text-[18px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="flex w-full flex-wrap gap-3 sm:gap-[10px] xl:w-[60%] xl:max-w-[60%] xl:shrink-0">
+        {% content_for 'blocks' %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .gruns-quality-badges .shopify-block {
+    display: contents;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.quality_badges",
+  "blocks": [{ "type": "icon-badge-card" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "<p>3rd party-tested for potency, purity, &amp; safety.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:labels.description",
+      "default": "<p>We regularly test for all 20+ vitamins &amp; minerals to ensure claims are accurate &amp; clear of contaminants including:</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#9AB2D5"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.quality_badges",
+      "blocks": [
+        { "type": "icon-badge-card", "settings": { "label": "Lab Tested", "icon_style": "lab" } },
+        { "type": "icon-badge-card", "settings": { "label": "Low Dose", "icon_style": "low_dose" } },
+        { "type": "icon-badge-card", "settings": { "label": "Low Calorie", "icon_style": "low_calorie" } },
+        { "type": "icon-badge-card", "settings": { "label": "Non-carbonated", "icon_style": "non_carbonated" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

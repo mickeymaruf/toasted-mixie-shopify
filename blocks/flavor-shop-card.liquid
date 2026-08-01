@@ -1,0 +1,151 @@
+{% doc %}
+  Renders a horizontal "shop this flavor" card: a small can/pack render, a
+  flavor name, and a "Shop" button linking to the selected product. Falls
+  back to a bundled default render per `flavor_style` when no custom
+  `card_image` is uploaded.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'flavor-shop-card' %}
+{% enddoc %}
+
+{% liquid
+  case block.settings.flavor_style
+    when 'berry_acai'
+      assign default_image = 'card-flavor-berry-acai.png'
+    when 'ginger_lime'
+      assign default_image = 'card-flavor-ginger-lime.png'
+    else
+      assign default_image = 'card-flavor-blood-orange.png'
+  endcase
+
+  assign flavor_name = block.settings.flavor_name | default: block.settings.product.title
+  assign button_label = block.settings.button_label
+  if button_label == blank and flavor_name != blank
+    assign button_label = 'products.list.shop_flavor' | t: flavor: flavor_name
+  endif
+%}
+
+<div
+  class="flex min-w-[260px] flex-1 items-center justify-center gap-5 rounded-[33px] border-[3px] px-1 pb-4 pt-6 shadow-[-2px_2px_3.5px_rgba(0,0,0,0.1)]"
+  style="background-color: {{ block.settings.card_background }}; border-color: {{ block.settings.border_color }};"
+  {{ block.shopify_attributes }}
+>
+  <div class="h-[110px] w-auto shrink-0 sm:h-[140px]">
+    {% if block.settings.card_image %}
+      {{
+        block.settings.card_image
+        | image_url: width: 320
+        | image_tag: width: 320, height: 189, class: 'h-full w-auto object-contain object-bottom', alt: flavor_name
+      }}
+    {% else %}
+      <img
+        src="{{ default_image | asset_url }}"
+        width="320"
+        height="189"
+        loading="lazy"
+        class="h-full w-auto object-contain object-bottom"
+        alt="{{ flavor_name | escape }}"
+      >
+    {% endif %}
+  </div>
+
+  <div class="flex min-w-0 flex-col items-start gap-[10px]">
+    {% if flavor_name != blank %}
+      <p class="whitespace-nowrap text-[18px] leading-[0.95] font-bold tracking-[-0.9px] text-[#212323] sm:text-[24px]">
+        {{ flavor_name }}
+      </p>
+    {% endif %}
+
+    {% if button_label != blank %}
+      {% render 'button',
+        label: button_label,
+        url: block.settings.product.url,
+        background_color: block.settings.button_background_color,
+        text_color: block.settings.button_text_color,
+        class: '!w-fit !text-[14px] !px-6 py-4 !font-medium whitespace-nowrap'
+      %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:general.flavor_shop_card",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:labels.product"
+    },
+    {
+      "type": "text",
+      "id": "flavor_name",
+      "label": "t:labels.flavor_name",
+      "info": "t:labels.flavor_name_info"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "select",
+      "id": "flavor_style",
+      "label": "t:labels.flavor_style",
+      "options": [
+        { "value": "blood_orange", "label": "t:options.flavor_style.blood_orange" },
+        { "value": "berry_acai", "label": "t:options.flavor_style.berry_acai" },
+        { "value": "ginger_lime", "label": "t:options.flavor_style.ginger_lime" }
+      ],
+      "default": "blood_orange"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_image",
+      "label": "t:labels.card_image"
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "info": "t:labels.button_label_info"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#C7AA9A"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "t:labels.card_background",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "t:labels.border_color",
+      "default": "#212323"
+    }
+  ],
+  "presets": [{ "name": "t:general.flavor_shop_card" }]
+}
+{% endschema %}

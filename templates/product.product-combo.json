@@ -77,7 +77,8 @@
               "name": "t:general.flavor_swatch",
               "settings": {
                 "product": "blood-orange",
-                "flavor_name": ""
+                "flavor_name": "",
+                "color": "#85002c"
               },
               "blocks": {}
             },
@@ -86,7 +87,8 @@
               "name": "t:general.flavor_swatch",
               "settings": {
                 "product": "berry-acai",
-                "flavor_name": ""
+                "flavor_name": "",
+                "color": "#552469"
               },
               "blocks": {}
             },
@@ -95,7 +97,18 @@
               "name": "t:general.flavor_swatch",
               "settings": {
                 "product": "ginger-lime",
-                "flavor_name": ""
+                "flavor_name": "",
+                "color": "#2F7948"
+              },
+              "blocks": {}
+            },
+            "flavor_swatch_eb3V44": {
+              "type": "flavor-swatch",
+              "name": "t:general.flavor_swatch",
+              "settings": {
+                "product": "try-all-3-flavors",
+                "flavor_name": "Trial Pack",
+                "color": "#2F7948"
               },
               "blocks": {}
             }
@@ -103,7 +116,8 @@
           "block_order": [
             "flavor_swatch_ayHRVG",
             "flavor_swatch_HhRbV9",
-            "flavor_swatch_ktfVwb"
+            "flavor_swatch_ktfVwb",
+            "flavor_swatch_eb3V44"
           ]
         },
         "combo-offer": {
@@ -153,55 +167,6 @@
             "guarantee_badge_Hq6aKN",
             "guarantee_badge_9QWTJQ",
             "guarantee_badge_aFfJrj"
-          ]
-        },
-        "accordion-list": {
-          "type": "accordion-list",
-          "static": true,
-          "settings": {},
-          "blocks": {
-            "accordion_item_CzALCE": {
-              "type": "accordion-item",
-              "name": "t:general.accordion_item",
-              "settings": {
-                "title": "What is Toasted?",
-                "content": "<p>What is Toasted?</p>"
-              },
-              "blocks": {}
-            },
-            "accordion_item_A3dHUA": {
-              "type": "accordion-item",
-              "name": "t:general.accordion_item",
-              "settings": {
-                "title": "Ingredients & Allergies",
-                "content": "<p>What is Toasted?</p>"
-              },
-              "blocks": {}
-            },
-            "accordion_item_CmFcQt": {
-              "type": "accordion-item",
-              "name": "t:general.accordion_item",
-              "settings": {
-                "title": "What to Expect",
-                "content": "<p>What is Toasted?</p>"
-              },
-              "blocks": {}
-            },
-            "accordion_item_kiGMEB": {
-              "type": "accordion-item",
-              "name": "t:general.accordion_item",
-              "settings": {
-                "title": "Lab Results",
-                "content": "<p>What is Toasted?</p>"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "accordion_item_CzALCE",
-            "accordion_item_A3dHUA",
-            "accordion_item_CmFcQt",
-            "accordion_item_kiGMEB"
           ]
         },
         "promo-banner": {

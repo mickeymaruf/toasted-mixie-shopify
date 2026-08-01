@@ -1,0 +1,47 @@
+{% doc %}
+  Renders a social media icon with a user-uploadable custom icon.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'social-icon' %}
+{% enddoc %}
+
+{% if block.settings.icon %}
+  <a
+    href="{{ block.settings.link }}"
+    class="shrink-0 transition-opacity duration-150 hover:opacity-85"
+    aria-label="{{ block.settings.label | escape }}"
+  >
+    {{
+      block.settings.icon
+      | image_url: width: 100
+      | image_tag: class: 'size-[50px] object-contain', alt: block.settings.label
+    }}
+  </a>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:general.social_icon",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "t:labels.label",
+      "default": "Social link",
+      "info": "t:labels.label_used_for_accessibility"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:labels.link",
+      "info": "t:labels.social_link_info"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "t:labels.icon"
+    }
+  ],
+  "presets": [{ "name": "t:general.social_icon" }]
+}
+{% endschema %}

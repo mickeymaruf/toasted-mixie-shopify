@@ -16,90 +16,97 @@
         {% endif %}
 
         <div class="navbar__menu-item-wrapper {% if has_mega_menu %}navbar__menu-item-wrapper--has-mega-menu{% endif %}">
-          <a
-            href="{{ link.url }}"
-            class="navbar__menu-item"
-            {% if has_mega_menu %}
-              data-mega-menu-trigger
-            {% endif %}
-          >
-            <span>{{ link.title }}</span>
-            {% if link.links.size > 0 or has_mega_menu %}
-              {{ 'icon-chevron-down.svg' | inline_asset_content }}
-            {% endif %}
-          </a>
+          {% if has_mega_menu %}
+            {% render 'button',
+              label: link.title,
+              url: link.url,
+              icon: 'icon-chevron-down.svg',
+              class: '!w-auto navbar__mega-menu-trigger whitespace-nowrap !px-[36px] !py-3 gap-[8px]',
+              attributes: 'data-mega-menu-trigger'
+            %}
+          {% else %}
+            <a href="{{ link.url }}" class="navbar__menu-item">
+              <span>{{ link.title }}</span>
+              {% if link.links.size > 0 %}
+                {{ 'icon-chevron-down.svg' | inline_asset_content }}
+              {% endif %}
+            </a>
+          {% endif %}
 
           {% if has_mega_menu %}
             <!-- Mega Menu Drawer -->
             <div class="navbar__mega-menu-drawer" data-mega-menu-drawer>
               <div class="navbar__mega-menu-content">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 lg:gap-6 px-4 md:px-6 lg:px-[60px] py-6 sm:py-8">
-                  <!-- Mega Menu Button/Trigger - First Column Full Width -->
-                  <div class="col-span-1 flex items-center">
-                    <button
-                      class="navbar__mega-menu-button flex w-full items-center justify-between gap-4 rounded-full px-8 py-4 font-medium transition-all duration-200 hover:shadow-lg"
-                      style="background-color: {{ section.settings.mega_menu_button_background }}; color: {{ section.settings.mega_menu_button_text_color }};"
-                      aria-label="{{ section.settings.mega_menu_button_text }}"
-                    >
-                      <span class="text-base sm:text-lg">{{ section.settings.mega_menu_button_text }}</span>
-                      <svg class="h-6 w-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                      </svg>
-                    </button>
-                  </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 items-start gap-x-0 gap-y-3 md:gap-5 lg:gap-6 px-4 md:px-6 lg:px-[60px] py-6 sm:py-8">
+                  <!-- Mega Menu Button/Trigger - Left -->
+                  <a
+                    href="{{ section.settings.mega_menu_button_link }}"
+                    class="navbar__mega-menu-button col-span-1 md:col-span-2 lg:col-span-1 flex items-center justify-between gap-4 rounded-full px-8 py-4 font-medium transition-all duration-200 hover:shadow-lg no-underline whitespace-nowrap"
+                    style="background-color: {{ section.settings.mega_menu_button_background }}; color: {{ section.settings.mega_menu_button_text_color }};"
+                  >
+                    <span class="text-base sm:text-lg">{{ section.settings.mega_menu_button_text }}</span>
+                    <svg class="h-6 w-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                  </a>
 
-                  <!-- Mega Menu Cards - Remaining 3 Columns -->
-                  {% if section.blocks.size > 0 %}
-                    {% for block in section.blocks %}
-                      {% if block.settings.product != blank %}
-                        <div
-                          class="navbar__mega-menu-card flex items-center gap-4 rounded-2xl p-4"
-                          style="background-color: {{ block.settings.card_background_color }}"
-                          {{ block.shopify_attributes }}
-                        >
-                          <!-- Product Image -->
-                          <div class="shrink-0 overflow-hidden rounded-lg" style="width: 75px; height: 75px;">
-                            {% if block.settings.product.featured_image %}
-                              {{
-                                block.settings.product.featured_image
-                                | image_url: width: 200, height: 200
-                                | image_tag: class: 'h-full w-full object-cover', alt: block.settings.product.title
-                              }}
-                            {% else %}
-                              <div class="flex h-full w-full items-center justify-center bg-gray-200">
-                                <span class="text-xs text-gray-400">No image</span>
-                              </div>
-                            {% endif %}
-                          </div>
-
-                          <!-- Product Info -->
-                          <div class="flex flex-1 flex-col justify-start gap-1">
-                            <!-- Rating and Reviews -->
-                            <div class="flex items-center gap-1">
-                              <div class="flex items-center gap-[1px]" style="color: {{ block.settings.star_color }};">
-                                {% for i in (1..5) %}
-                                  <span
-                                    class="block size-4 {% unless i <= block.settings.rating %}opacity-20{% endunless %}"
-                                    aria-hidden="true"
-                                  >
-                                    {{ 'icon-star-thin-filled.svg' | inline_asset_content }}
-                                  </span>
-                                {% endfor %}
-                              </div>
-                              <span class="text-xs whitespace-nowrap">
-                                {{ block.settings.review_count }}
-                              </span>
+                  <!-- Mega Menu Cards - Right -->
+                  <div class="col-span-1 md:col-span-2 lg:col-span-3 flex flex-1 flex-wrap gap-3 md:gap-5 lg:gap-6">
+                    {% if section.blocks.size > 0 %}
+                      {% for block in section.blocks %}
+                        {% if block.settings.product != blank %}
+                          <div
+                            class="navbar__mega-menu-card flex items-center gap-4 rounded-2xl p-4 flex-1 lg:flex-none"
+                            style="background-color: {{ block.settings.card_background_color }}"
+                            {{ block.shopify_attributes }}
+                          >
+                            <!-- Product Image -->
+                            <div class="shrink-0 overflow-hidden rounded-lg" style="width: 75px; height: 75px;">
+                              {% if block.settings.product.featured_image %}
+                                {{
+                                  block.settings.product.featured_image
+                                  | image_url: width: 200, height: 200
+                                  | image_tag: class: 'h-full w-full object-cover', alt: block.settings.product.title
+                                }}
+                              {% else %}
+                                <div class="flex h-full w-full items-center justify-center bg-gray-200">
+                                  <span class="text-xs text-gray-400">No image</span>
+                                </div>
+                              {% endif %}
                             </div>
 
-                            <!-- Product Name -->
-                            <h3 class="text-sm font-bold sm:text-lg">
-                              {{ block.settings.product.title }}
-                            </h3>
+                            <!-- Product Info -->
+                            <div class="flex flex-1 flex-col justify-start gap-1">
+                              <!-- Rating and Reviews -->
+                              <div class="flex items-center gap-1">
+                                <div
+                                  class="flex items-center gap-0.5 leading-none -space-x-[3px]"
+                                  style="color: {{ block.settings.star_color }};"
+                                >
+                                  {% for i in (1..5) %}
+                                    <span
+                                      class="flex size-4 items-center justify-center {% unless i <= block.settings.rating %}opacity-20{% endunless %}"
+                                      aria-hidden="true"
+                                    >
+                                      {{ 'icon-star-thin-filled.svg' | inline_asset_content }}
+                                    </span>
+                                  {% endfor %}
+                                </div>
+                                <p class="text-xs leading-none whitespace-nowrap">
+                                  {{ block.settings.review_count }}
+                                </p>
+                              </div>
+
+                              <!-- Product Name -->
+                              <h3 class="text-sm font-bold sm:text-lg">
+                                {{ block.settings.product.title }}
+                              </h3>
+                            </div>
                           </div>
-                        </div>
-                      {% endif %}
-                    {% endfor %}
-                  {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  </div>
                 </div>
               </div>
             </div>
@@ -120,15 +127,17 @@
       {% endif %}
     </a>
 
-    <div class="navbar__actions">
+    <div class="navbar__actions bg-[#C2CBD4]/50 py-[10px] pl-[12px] pr-8 rounded-full">
       <button
         type="button"
         class="navbar__search-button"
         aria-label="{{ 'general.accessibility.search' | t }}"
         data-search-open
       >
-        <span class="navbar__search-button-text">{{ section.settings.search_button_text }}</span>
-        {{ 'icon-search.svg' | inline_asset_content }}
+        <span class="navbar__search-button-text border-[3px] py-2 rounded-full px-8">
+          {{- section.settings.search_button_text -}}
+        </span>
+        {% comment %} {{ 'icon-search.svg' | inline_asset_content }} {% endcomment %}
       </button>
 
       <button
@@ -200,12 +209,15 @@
     transition: transform 0.3s ease;
   }
 
-  .navbar__menu-item-wrapper--has-mega-menu .navbar__menu-item svg {
+  .navbar__mega-menu-trigger svg {
+    width: 0.75rem;
+    height: auto;
+    flex-shrink: 0;
     transition: transform 0.3s ease;
   }
 
-  .navbar__menu-item-wrapper--has-mega-menu:hover .navbar__menu-item svg,
-  .navbar__menu-item-wrapper--has-mega-menu.active .navbar__menu-item svg {
+  .navbar__menu-item-wrapper--has-mega-menu:hover .navbar__mega-menu-trigger svg,
+  .navbar__menu-item-wrapper--has-mega-menu.active .navbar__mega-menu-trigger svg {
     transform: rotate(180deg);
   }
 
@@ -577,6 +589,11 @@
       "id": "mega_menu_button_text",
       "label": "t:labels.button_text",
       "default": "Shop Drinks"
+    },
+    {
+      "type": "url",
+      "id": "mega_menu_button_link",
+      "label": "t:labels.button_link"
     },
     {
       "type": "color",

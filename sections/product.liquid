@@ -7,6 +7,7 @@
 {% endcomment %}
 
 {% liquid
+  assign product = section.settings.product | default: product
   assign current_variant = product.selected_or_first_available_variant
   assign selling_plan_group = product.selling_plan_groups.first
   assign selling_plan = selling_plan_group.selling_plans.first
@@ -21,7 +22,7 @@
           {% for media in product.media %}
             <button
               type="button"
-              class="product-gallery__thumb aspect-square w-[80px] shrink-0 overflow-hidden rounded-lg outline-offset-2 outline-[#212323] sm:w-[101px] lg:w-full m-1 {% if forloop.first %}outline-2{% endif %}"
+              class="product-gallery__thumb w-[80px] shrink-0 overflow-hidden rounded-lg outline-offset-2 outline-[#212323] sm:w-[101px] lg:w-full h-[135px] m-1 {% if forloop.first %}outline-2{% endif %}"
               data-gallery-thumb
               data-index="{{ forloop.index0 }}"
               aria-label="{{ 'general.accessibility.view_media' | t: index: forloop.index }}"
@@ -85,13 +86,13 @@
           <div class="flex items-center gap-2">
             {% if section.settings.rating > 0 %}
               <div
-                class="flex items-center gap-[1px] text-[#212323]"
+                class="flex items-center gap-0 text-[#212323] leading-none"
                 role="img"
                 aria-label="{{ 'products.main.rating_label' | t: rating: section.settings.rating }}"
               >
                 {% for i in (1..5) %}
                   <span
-                    class="block size-4 {% unless i <= rating_rounded %}opacity-20{% endunless %}"
+                    class="flex size-6 items-center justify-center -mx-[2.5px] {% unless i <= rating_rounded %}opacity-20{% endunless %}"
                     aria-hidden="true"
                     style="color: currentColor;"
                   >
@@ -102,7 +103,7 @@
             {% endif %}
 
             {% if section.settings.show_badge and section.settings.badge_text != blank %}
-              <p class="text-[12px] leading-[1.3] text-[#212323]">{{ section.settings.badge_text }}</p>
+              <p class="mt-0.5 text-[12px] leading-none text-[#212323]">{{ section.settings.badge_text }}</p>
             {% endif %}
           </div>
         {% endif %}
@@ -212,12 +213,15 @@
                   %}
                   <div class="relative flex flex-1 basis-[150px] flex-col items-center gap-2">
                     {% if pill_percent > 0 %}
-                      <span class="absolute -top-3 left-1/2 -translate-x-1/2 z-10 rounded-[5px] bg-[#F9D5C0] px-3 py-1 text-[10px] font-medium whitespace-nowrap text-[#212323]">
+                      <span
+                        class="absolute -top-3 left-1/2 -translate-x-1/2 z-10 rounded-full px-3 py-1 text-[10px] font-medium whitespace-nowrap"
+                        style="background-color: {{ section.settings.pack_pill_background_color }}; color: {{ section.settings.pack_pill_text_color }};"
+                      >
                         {{ 'products.main.save_percent' | t: percent: pill_percent }}
                       </span>
                     {% endif %}
 
-                    <label class="flex h-11 w-full cursor-pointer items-center justify-center rounded-lg border border-[#212323] bg-[#F6F1EC] px-4 text-center text-[14px] font-medium whitespace-nowrap text-[#212323] has-[:checked]:bg-[#212323] has-[:checked]:text-[#F6F1EC] has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-30">
+                    <label class="flex h-11 w-full cursor-pointer items-center justify-center rounded-full border border-[#212323] bg-[#F6F1EC] px-4 text-center text-[14px] font-medium whitespace-nowrap text-[#212323] has-[:checked]:bg-[#212323] has-[:checked]:text-[#F6F1EC] has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-30">
                       <input
                         type="radio"
                         name="id"
@@ -289,7 +293,7 @@
                     </div>
                     {% if selected_allocation %}
                       <span
-                        class="rounded-full bg-[#636D90] px-2 py-1 sm:px-3 text-[12px] sm:text-[16px] font-medium whitespace-nowrap text-[#F6F1EC]"
+                        class="rounded-full bg-[#636D90] px-2 py-1 sm:px-3 text-[12px] sm:text-[14px] font-normal whitespace-nowrap text-[#F6F1EC]"
                         data-subscribe-percent-pill
                       >
                         {{ 'products.main.save_percent' | t: percent: initial_percent }}
@@ -587,6 +591,12 @@
   "name": "t:general.product",
   "settings": [
     {
+      "type": "product",
+      "id": "product",
+      "label": "t:labels.product",
+      "info": "t:labels.product_info"
+    },
+    {
       "type": "header",
       "content": "t:general.content"
     },
@@ -626,6 +636,18 @@
       "id": "subscribe_card_background_color",
       "label": "t:labels.card_background",
       "default": "#C2CBD4"
+    },
+    {
+      "type": "color",
+      "id": "pack_pill_background_color",
+      "label": "t:labels.pack_pill_background",
+      "default": "#C7AA9A"
+    },
+    {
+      "type": "color",
+      "id": "pack_pill_text_color",
+      "label": "t:labels.pack_pill_text_color",
+      "default": "#212323"
     },
     {
       "type": "textarea",

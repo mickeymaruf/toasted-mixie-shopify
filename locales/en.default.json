@@ -46,7 +46,9 @@
     "pricing": "Pricing",
     "badge": "Badge",
     "texture_overlay": "Texture overlay",
-    "promo_banner": "Promo Banner"
+    "promo_banner": "Promo Banner",
+    "how_it_works": "How it Works",
+    "step": "Step"
   },
   "labels": {
     "heading": "Heading",
@@ -103,7 +105,10 @@
     "original_price": "Original price",
     "badge_text": "Badge text",
     "feature_1_text": "Feature 1 text",
-    "feature_2_text": "Feature 2 text"
+    "feature_2_text": "Feature 2 text",
+    "eyebrow": "Eyebrow",
+    "heading_color": "Heading color",
+    "alt_text": "Alt text"
   },
   "options": {
     "text_style": {
@@ -128,6 +133,11 @@
     "contact_form": {
       "success_message": "Thank you! Your inquiry has been received.",
       "error_message": "There was an error submitting the form. Please try again."
+    },
+    "social_proof": {
+      "stars": "Stars",
+      "reviews": "Reviews",
+      "members": "Members"
     }
   },
   "footer": {
@@ -217,7 +227,9 @@
       "available_in": "Available in:",
       "pack_12": "12 Pack",
       "pack_24": "24 Pack",
-      "pack_36": "36 Pack"
+      "pack_36": "36 Pack",
+      "shop_flavor": "Shop {{ flavor }}",
+      "learn_more": "Learn More"
     },
     "main": {
       "rating_label": "Rated {{ rating }} out of 5",

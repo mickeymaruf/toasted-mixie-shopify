@@ -34,7 +34,7 @@
           "settings": {
             "product": "blood-orange",
             "rating": 5,
-            "review_count": "9,176 Reviews",
+            "review_count": "Launching Soon",
             "card_background_color": "#f6f1ec",
             "star_color": "#d4941f"
           }
@@ -44,7 +44,7 @@
           "settings": {
             "product": "berry-acai",
             "rating": 5,
-            "review_count": "9,176 Reviews",
+            "review_count": "Launching Soon",
             "card_background_color": "#f6f1ec",
             "star_color": "#d4941f"
           }
@@ -52,9 +52,19 @@
         "mega_menu_product_XqzCjY": {
           "type": "mega-menu-product",
           "settings": {
-            "product": "berry-acai",
+            "product": "ginger-lime",
             "rating": 5,
-            "review_count": "9,176 Reviews",
+            "review_count": "Launching Soon",
+            "card_background_color": "#f6f1ec",
+            "star_color": "#d4941f"
+          }
+        },
+        "mega_menu_product_gCj6QM": {
+          "type": "mega-menu-product",
+          "settings": {
+            "product": "try-all-3-flavors",
+            "rating": 5,
+            "review_count": "Launching Soon",
             "card_background_color": "#f6f1ec",
             "star_color": "#d4941f"
           }
@@ -63,7 +73,8 @@
       "block_order": [
         "mega_menu_product_BhbVq7",
         "mega_menu_product_UEH99n",
-        "mega_menu_product_XqzCjY"
+        "mega_menu_product_XqzCjY",
+        "mega_menu_product_gCj6QM"
       ],
       "settings": {
         "logo": "shopify://shop_images/toaster-logo.svg",
@@ -71,6 +82,7 @@
         "search_button_text": "Find Toasted",
         "mega_menu_link_title": "Shop",
         "mega_menu_button_text": "Shop Drinks",
+        "mega_menu_button_link": "/collections/shop-all",
         "mega_menu_button_background": "#212323",
         "mega_menu_button_text_color": "#f6f1ec",
         "background_color": "#f6f1ec",

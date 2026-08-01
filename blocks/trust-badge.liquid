@@ -22,7 +22,7 @@
 %}
 
 <div class="flex w-[95px] flex-col items-center gap-[5px]" {{ block.shopify_attributes }}>
-  <div class="size-[77px] shrink-0">
+  <div class="size-[85px] shrink-0">
     {% if block.settings.icon %}
       {{
         block.settings.icon
@@ -41,10 +41,20 @@
     {% endif %}
   </div>
 
-  {% if block.settings.label != blank %}
-    <p class="text-center text-[14px] leading-[1.5] font-medium whitespace-nowrap text-[#212323]">
-      {{ block.settings.label }}
-    </p>
+  {% if block.settings.label != blank or block.settings.description != blank %}
+    <div class="flex flex-col items-center gap-[2.64px]">
+      {% if block.settings.label != blank %}
+        <p class="text-center text-[12px] leading-normal font-medium whitespace-nowrap text-[#212323]">
+          {{ block.settings.label }}
+        </p>
+      {% endif %}
+
+      {% if block.settings.description != blank %}
+        <p class="text-center text-[12px] leading-normal font-normal whitespace-nowrap text-[#212323]">
+          {{ block.settings.description }}
+        </p>
+      {% endif %}
+    </div>
   {% endif %}
 </div>
 
@@ -57,6 +67,11 @@
       "id": "label",
       "label": "t:labels.label",
       "default": "0.4mg THC"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "t:labels.description"
     },
     {
       "type": "select",

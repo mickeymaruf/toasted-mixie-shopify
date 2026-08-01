@@ -1,0 +1,263 @@
+{% doc %}
+  Renders "Drink Better, Feel Better" — a can collage with a heading and a
+  list of mood-item blocks, a "Build a bundle and Save" callout banner,
+  and a row of flavor-shop-card blocks. Add mood-item blocks to populate
+  the mood list and flavor-shop-card blocks to populate the flavor row.
+{% enddoc %}
+
+{% liquid
+  assign bundle_tag = 'div'
+  if section.settings.bundle_link != blank
+    assign bundle_tag = 'a'
+  endif
+%}
+
+<section class="gruns-drink-better full-width relative overflow-hidden" style="background-color: {{ section.settings.background_color }};">
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    {% if section.settings.background_image %}
+      {{
+        section.settings.background_image
+        | image_url: width: 1600
+        | image_tag: class: 'absolute size-full object-cover', widths: '800, 1200, 1600', alt: ''
+      }}
+    {% else %}
+      <img
+        src="{{ 'bg-texture-drink-better.png' | asset_url }}"
+        alt=""
+        width="1024"
+        height="683"
+        loading="lazy"
+        class="absolute size-full object-cover"
+      >
+    {% endif %}
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(to bottom, {{ section.settings.background_color }} 28.594%, {{ section.settings.background_color }}00 66.673%);"
+    ></div>
+  </div>
+
+  <div class="relative mx-auto flex w-full max-w-[1920px] flex-col gap-16 px-5 py-12 sm:px-8 sm:py-16 md:px-12 lg:gap-[120px] lg:px-[80px] lg:py-[120px] xl:gap-[200px] xl:px-[120px] xl:pt-[100px] xl:pb-[200px]">
+    <div class="flex w-full flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-[61px]">
+      <div class="relative mx-auto w-full max-w-[360px] sm:max-w-[460px] lg:mx-0 lg:max-w-none lg:flex-1">
+        {% if section.settings.image %}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              class: 'size-full object-contain',
+              widths: '400, 700, 1000, 1200',
+              sizes: '(min-width: 64rem) 46vw, 90vw',
+              alt: section.settings.image_alt
+            | default: section.settings.image.alt
+          }}
+        {% else %}
+          <img
+            src="{{ 'can-blood-orange.png' | asset_url }}"
+            width="600"
+            height="518"
+            loading="lazy"
+            class="size-full object-contain"
+            alt="{{ section.settings.image_alt | escape }}"
+          >
+        {% endif %}
+      </div>
+
+      <div class="flex w-full flex-col items-start gap-[30px] lg:max-w-[560px] lg:flex-1">
+        {% if section.settings.heading != blank or section.settings.description != blank %}
+          <div class="flex w-full flex-col items-start gap-5" style="color: {{ section.settings.heading_color }};">
+            {% if section.settings.heading != blank %}
+              <div class="text-[36px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[72px] lg:tracking-[-2.16px]">
+                {{ section.settings.heading }}
+              </div>
+            {% endif %}
+
+            {% if section.settings.description != blank %}
+              <div class="text-[18px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
+                {{ section.settings.description }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% content_for 'block', id: 'mood-list', type: 'mood-list' %}
+      </div>
+    </div>
+
+    <div class="flex w-full flex-col gap-[15px]">
+      {% if section.settings.bundle_heading != blank or section.settings.bundle_description != blank %}
+        <{{ bundle_tag }}
+          {% if section.settings.bundle_link != blank %}
+            href="{{ section.settings.bundle_link }}"
+          {% endif %}
+          class="group relative flex w-full flex-col justify-center gap-4 overflow-hidden rounded-[33px] px-6 py-8 sm:px-10 sm:py-10 lg:px-[75px] lg:py-[45px]"
+          style="background-color: {{ section.settings.bundle_background_color }}; border-color: {{ section.settings.heading_color }};"
+        >
+          {% if section.settings.bundle_image %}
+            <div class="pointer-events-none absolute inset-y-0 right-0 hidden w-[45%] sm:block">
+              {{
+                section.settings.bundle_image
+                | image_url: width: 900
+                | image_tag: class: 'size-full object-cover', alt: ''
+              }}
+            </div>
+          {% endif %}
+
+          <div class="relative flex max-w-[560px] flex-col gap-4 sm:gap-5" style="color: {{ section.settings.heading_color }};">
+            <div class="flex items-center gap-3 sm:gap-5">
+              {% if section.settings.bundle_heading != blank %}
+                <p class="text-[28px] leading-[0.95] font-bold tracking-[-1.5px] sm:text-[36px] lg:text-[50px]">
+                  {{ section.settings.bundle_heading }}
+                </p>
+              {% endif %}
+
+              {% if section.settings.bundle_link != blank %}
+                <span class="block size-[22px] shrink-0 rotate-90 transition-transform duration-150 group-hover:translate-x-1 sm:size-[26px] lg:size-[30px]">
+                  <img
+                    src="{{ 'icon-arrow-bundle.svg' | asset_url }}"
+                    width="34"
+                    height="33"
+                    loading="lazy"
+                    class="size-full object-contain"
+                    alt=""
+                  >
+                </span>
+              {% endif %}
+            </div>
+
+            {% if section.settings.bundle_description != blank %}
+              <div class="text-[16px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
+                {{ section.settings.bundle_description }}
+              </div>
+            {% endif %}
+          </div>
+        </{{ bundle_tag }}>
+      {% endif %}
+
+      {% content_for 'block', id: 'flavor-row', type: 'flavor-row' %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.drink_better",
+  "blocks": [{ "type": "mood-list" }, { "type": "flavor-row" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "<p>Drink Better,</p><p>Feel Better</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:labels.description",
+      "default": "<p>Each tonic uses a unique blend of cannabis, mushrooms, or adaptogens—guaranteed to help you turn up, tap in, or tune out without the consequences.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "header",
+      "content": "t:general.combo_offer"
+    },
+    {
+      "type": "text",
+      "id": "bundle_heading",
+      "label": "t:labels.heading",
+      "default": "Build a bundle and Save"
+    },
+    {
+      "type": "richtext",
+      "id": "bundle_description",
+      "label": "t:labels.description",
+      "default": "<p>Each tonic uses a unique blend of cannabis, mushrooms, or adaptogens....</p>"
+    },
+    {
+      "type": "url",
+      "id": "bundle_link",
+      "label": "t:labels.link"
+    },
+    {
+      "type": "image_picker",
+      "id": "bundle_image",
+      "label": "t:labels.background_image"
+    },
+    {
+      "type": "color",
+      "id": "bundle_background_color",
+      "label": "t:labels.card_background",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background_image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F8F1EA"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.drink_better",
+      "blocks": [
+        {
+          "type": "mood-list",
+          "blocks": [
+            {
+              "type": "mood-item",
+              "settings": { "title": "Supports Clarity", "subtitle": "Smooth, present focus", "icon_style": "clarity" }
+            },
+            {
+              "type": "mood-item",
+              "settings": { "title": "Balanced Mood", "subtitle": "Light, feel-good lift", "icon_style": "balanced" }
+            },
+            {
+              "type": "mood-item",
+              "settings": { "title": "Promotes Calm", "subtitle": "Easy, steady unwind", "icon_style": "calm" }
+            }
+          ]
+        },
+        {
+          "type": "flavor-row",
+          "blocks": [
+            { "type": "flavor-shop-card", "settings": { "flavor_name": "Blood Orange", "flavor_style": "blood_orange" } },
+            { "type": "flavor-shop-card", "settings": { "flavor_name": "Berry Acai", "flavor_style": "berry_acai" } },
+            { "type": "flavor-shop-card", "settings": { "flavor_name": "Ginger Lime", "flavor_style": "ginger_lime" } }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
