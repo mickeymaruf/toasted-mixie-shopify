@@ -258,17 +258,11 @@
   .bottom-\[10px\] {
     bottom: 10px;
   }
-  .-left-6 {
-    left: calc(var(--spacing) * -6);
-  }
   .-left-9 {
     left: calc(var(--spacing) * -9);
   }
   .-left-9\.5 {
     left: calc(var(--spacing) * -9.5);
-  }
-  .-left-10 {
-    left: calc(var(--spacing) * -10);
   }
   .left-0 {
     left: 0px;
@@ -305,9 +299,6 @@
   }
   .col-span-1 {
     grid-column: span 1 / span 1;
-  }
-  .col-span-2 {
-    grid-column: span 2 / span 2;
   }
   .container {
     width: 100%;
@@ -433,14 +424,6 @@
     width: var(--spacing);
     height: var(--spacing);
   }
-  .size-2 {
-    width: calc(var(--spacing) * 2);
-    height: calc(var(--spacing) * 2);
-  }
-  .size-2\.5 {
-    width: calc(var(--spacing) * 2.5);
-    height: calc(var(--spacing) * 2.5);
-  }
   .size-3 {
     width: calc(var(--spacing) * 3);
     height: calc(var(--spacing) * 3);
@@ -473,14 +456,6 @@
     width: calc(var(--spacing) * 10);
     height: calc(var(--spacing) * 10);
   }
-  .size-\[5px\] {
-    width: 5px;
-    height: 5px;
-  }
-  .size-\[8px\] {
-    width: 8px;
-    height: 8px;
-  }
   .size-\[10px\] {
     width: 10px;
     height: 10px;
@@ -489,10 +464,6 @@
     width: 12px;
     height: 12px;
   }
-  .size-\[14px\] {
-    width: 14px;
-    height: 14px;
-  }
   .size-\[15px\] {
     width: 15px;
     height: 15px;
@@ -500,14 +471,6 @@
   .size-\[16px\] {
     width: 16px;
     height: 16px;
-  }
-  .size-\[18px\] {
-    width: 18px;
-    height: 18px;
-  }
-  .size-\[22px\] {
-    width: 22px;
-    height: 22px;
   }
   .size-\[28px\] {
     width: 28px;
@@ -521,6 +484,10 @@
     width: 32px;
     height: 32px;
   }
+  .size-\[40px\] {
+    width: 40px;
+    height: 40px;
+  }
   .size-\[42px\] {
     width: 42px;
     height: 42px;
@@ -533,6 +500,10 @@
     width: 50px;
     height: 50px;
   }
+  .size-\[52px\] {
+    width: 52px;
+    height: 52px;
+  }
   .size-\[60px\] {
     width: 60px;
     height: 60px;
@@ -540,10 +511,6 @@
   .size-\[80px\] {
     width: 80px;
     height: 80px;
-  }
-  .size-\[85px\] {
-    width: 85px;
-    height: 85px;
   }
   .size-\[99px\] {
     width: 99px;
@@ -592,23 +559,11 @@
   .h-\[60px\] {
     height: 60px;
   }
-  .h-\[80px\] {
-    height: 80px;
-  }
   .h-\[99px\] {
     height: 99px;
   }
   .h-\[100px\] {
     height: 100px;
-  }
-  .h-\[110px\] {
-    height: 110px;
-  }
-  .h-\[122px\] {
-    height: 122px;
-  }
-  .h-\[135px\] {
-    height: 135px;
   }
   .h-\[149\%\] {
     height: 149%;
@@ -670,6 +625,9 @@
   .w-\[45vw\] {
     width: 45vw;
   }
+  .w-\[62px\] {
+    width: 62px;
+  }
   .w-\[64px\] {
     width: 64px;
   }
@@ -679,14 +637,14 @@
   .w-\[75px\] {
     width: 75px;
   }
+  .w-\[76px\] {
+    width: 76px;
+  }
   .w-\[80px\] {
     width: 80px;
   }
   .w-\[85\%\] {
     width: 85%;
-  }
-  .w-\[95px\] {
-    width: 95px;
   }
   .w-\[105px\] {
     width: 105px;
@@ -694,11 +652,8 @@
   .w-\[109px\] {
     width: 109px;
   }
-  .w-\[110\%\] {
-    width: 110%;
-  }
-  .w-\[110px\] {
-    width: 110px;
+  .w-\[130px\] {
+    width: 130px;
   }
   .w-\[150px\] {
     width: 150px;
@@ -706,26 +661,20 @@
   .w-\[160px\] {
     width: 160px;
   }
+  .w-\[165px\] {
+    width: 165px;
+  }
   .w-\[172px\] {
     width: 172px;
   }
   .w-\[190px\] {
     width: 190px;
   }
-  .w-\[200px\] {
-    width: 200px;
-  }
   .w-\[240px\] {
     width: 240px;
   }
   .w-\[280px\] {
     width: 280px;
-  }
-  .w-\[300px\] {
-    width: 300px;
-  }
-  .w-\[700px\] {
-    width: 700px;
   }
   .w-auto {
     width: auto;
@@ -741,9 +690,6 @@
   }
   .max-w-\[109px\] {
     max-width: 109px;
-  }
-  .max-w-\[160px\] {
-    max-width: 160px;
   }
   .max-w-\[278px\] {
     max-width: 278px;
@@ -802,9 +748,6 @@
   .min-w-0 {
     min-width: 0px;
   }
-  .min-w-\[160px\] {
-    min-width: 160px;
-  }
   .min-w-\[260px\] {
     min-width: 260px;
   }
@@ -816,9 +759,6 @@
   }
   .flex-shrink-0 {
     flex-shrink: 0;
-  }
-  .shrink {
-    flex-shrink: 1;
   }
   .shrink-0 {
     flex-shrink: 0;
@@ -1072,9 +1012,6 @@
   .gap-y-4 {
     row-gap: calc(var(--spacing) * 4);
   }
-  .gap-y-10 {
-    row-gap: calc(var(--spacing) * 10);
-  }
   :where(.divide-y > :not(:last-child)) {
     --tw-divide-y-reverse: 0;
     border-bottom-style: var(--tw-border-style);
@@ -1089,9 +1026,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-  .\!overflow-visible {
-    overflow: visible !important;
   }
   .overflow-hidden {
     overflow: hidden;
@@ -1125,9 +1059,6 @@
   }
   .rounded-\[10px\] {
     border-radius: 10px;
-  }
-  .rounded-\[14px\] {
-    border-radius: 14px;
   }
   .rounded-\[15px\] {
     border-radius: 15px;
@@ -1380,23 +1311,11 @@
   .p-\[6px\] {
     padding: 6px;
   }
-  .\!px-3 {
-    padding-inline: calc(var(--spacing) * 3) !important;
-  }
   .\!px-4 {
     padding-inline: calc(var(--spacing) * 4) !important;
   }
   .\!px-5 {
     padding-inline: calc(var(--spacing) * 5) !important;
-  }
-  .\!px-6 {
-    padding-inline: calc(var(--spacing) * 6) !important;
-  }
-  .\!px-\[36px\] {
-    padding-inline: 36px !important;
-  }
-  .px-1 {
-    padding-inline: var(--spacing);
   }
   .px-2 {
     padding-inline: calc(var(--spacing) * 2);
@@ -1436,18 +1355,6 @@
   }
   .px-\[24px\] {
     padding-inline: 24px;
-  }
-  .\!py-1 {
-    padding-block: var(--spacing) !important;
-  }
-  .\!py-1\.5 {
-    padding-block: calc(var(--spacing) * 1.5) !important;
-  }
-  .\!py-2 {
-    padding-block: calc(var(--spacing) * 2) !important;
-  }
-  .\!py-3 {
-    padding-block: calc(var(--spacing) * 3) !important;
   }
   .py-0 {
     padding-block: 0px;
@@ -1554,9 +1461,6 @@
   .pb-1 {
     padding-bottom: var(--spacing);
   }
-  .pb-3 {
-    padding-bottom: calc(var(--spacing) * 3);
-  }
   .pb-4 {
     padding-bottom: calc(var(--spacing) * 4);
   }
@@ -1615,10 +1519,6 @@
     font-size: var(--text-sm) !important;
     line-height: var(--tw-leading, var(--text-sm--line-height)) !important;
   }
-  .\!text-xs {
-    font-size: var(--text-xs) !important;
-    line-height: var(--tw-leading, var(--text-xs--line-height)) !important;
-  }
   .text-base {
     font-size: var(--text-base);
     line-height: var(--tw-leading, var(--text-base--line-height));
@@ -1633,9 +1533,6 @@
   }
   .\!text-\[12px\] {
     font-size: 12px !important;
-  }
-  .\!text-\[14px\] {
-    font-size: 14px !important;
   }
   .text-\[10px\] {
     font-size: 10px;
@@ -1663,9 +1560,6 @@
   }
   .text-\[20px\] {
     font-size: 20px;
-  }
-  .text-\[22px\] {
-    font-size: 22px;
   }
   .text-\[24px\] {
     font-size: 24px;
@@ -1724,6 +1618,10 @@
   .leading-\[1\.6\] {
     --tw-leading: 1.6;
     line-height: 1.6;
+  }
+  .leading-\[1\.35\] {
+    --tw-leading: 1.35;
+    line-height: 1.35;
   }
   .leading-\[1\] {
     --tw-leading: 1;
@@ -2298,6 +2196,9 @@
     .sm\:gap-\[15px\] {
       gap: 15px;
     }
+    .sm\:gap-\[20px\] {
+      gap: 20px;
+    }
     .sm\:gap-\[30px\] {
       gap: 30px;
     }
@@ -2503,6 +2404,10 @@
     .md\:mb-\[50px\] {
       margin-bottom: 50px;
     }
+    .md\:size-\[80px\] {
+      width: 80px;
+      height: 80px;
+    }
     .md\:h-\[22px\] {
       height: 22px;
     }
@@ -2554,9 +2459,6 @@
     .md\:gap-\[15px\] {
       gap: 15px;
     }
-    .md\:rounded-\[33px\] {
-      border-radius: 33px;
-    }
     .md\:p-8 {
       padding: calc(var(--spacing) * 8);
     }
@@ -2578,17 +2480,8 @@
     .md\:px-\[50px\] {
       padding-inline: 50px;
     }
-    .md\:\!py-1\.5 {
-      padding-block: calc(var(--spacing) * 1.5) !important;
-    }
-    .md\:\!py-3 {
-      padding-block: calc(var(--spacing) * 3) !important;
-    }
     .md\:\!py-3\.5 {
       padding-block: calc(var(--spacing) * 3.5) !important;
-    }
-    .md\:\!py-4 {
-      padding-block: calc(var(--spacing) * 4) !important;
     }
     .md\:py-5 {
       padding-block: calc(var(--spacing) * 5);
@@ -2616,10 +2509,6 @@
     }
     .md\:pb-\[100px\] {
       padding-bottom: 100px;
-    }
-    .md\:\!text-lg {
-      font-size: var(--text-lg) !important;
-      line-height: var(--tw-leading, var(--text-lg--line-height)) !important;
     }
     .md\:\!text-xl {
       font-size: var(--text-xl) !important;
@@ -2740,9 +2629,6 @@
     }
     .lg\:block {
       display: block;
-    }
-    .lg\:flex {
-      display: flex;
     }
     .lg\:grid {
       display: grid;
