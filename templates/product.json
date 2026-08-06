@@ -186,9 +186,12 @@
             "heading": "Can't Pick Just One?",
             "button_label": "Get My Trial Pack",
             "button_link": "",
+            "button_background_color": "#d4941f",
+            "button_text_color": "#f6f1ec",
             "feature_1_text": "Free 3-flavor trial pack.",
             "feature_2_text": "Just Pay Shipping",
             "background_color": "#9ab2d5",
+            "feature_text_color": "#212323",
             "image": "shopify://shop_images/Frame_2147235887_2_a981a03a-ea4e-4703-891f-949154834f68.png"
           },
           "blocks": {}
@@ -199,10 +202,17 @@
         "rating": 5,
         "show_badge": true,
         "badge_text": "Launching Soon",
-        "delivery_interval": "1 month",
-        "subscribe_card_background_color": "#c2cbd4",
         "pack_pill_background_color": "#c7aa9a",
         "pack_pill_text_color": "#212323",
+        "subscribe_heading": "Subscribe & Save",
+        "save_badge_text": "Save [percent]%",
+        "save_every_order_text": "Save [percent]% on every order",
+        "benefit_1_text": "Delivered every 1 month",
+        "benefit_2_text": "Save [amount] each delivery",
+        "benefit_3_text": "Pause, skip, cancel anytime",
+        "subscribe_card_background_color": "#c2cbd4",
+        "subscribe_pill_background_color": "#636d90",
+        "subscribe_pill_text_color": "#f6f1ec",
         "custom_button_text": ""
       }
     },
@@ -214,9 +224,7 @@
           "settings": {
             "question": "What is Toasted?",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         },
@@ -225,9 +233,7 @@
           "settings": {
             "question": "Ingredients & Allergies",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         },
@@ -236,9 +242,7 @@
           "settings": {
             "question": "What to Expect",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         },
@@ -247,9 +251,7 @@
           "settings": {
             "question": "How is it dosed?",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         },
@@ -258,9 +260,7 @@
           "settings": {
             "question": "Is it legal to ship?",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         },
@@ -269,9 +269,7 @@
           "settings": {
             "question": "Lab Results",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         }
@@ -287,8 +285,12 @@
       "name": "t:general.faq_pills_grid",
       "settings": {
         "heading": "Good Questions",
-        "background_color": "#f6f1ec",
+        "section_background": "#f6f1ec",
+        "card_background": "#9ab2d5",
         "heading_color": "#212323",
+        "border_color": "#212323",
+        "faq_item_background": "#636d90",
+        "faq_item_text_color": "#f6f1ec",
         "columns_desktop": "3",
         "padding_top": 100,
         "padding_bottom": 100,
@@ -426,6 +428,7 @@
         "step_npEgki",
         "step_hdYYXX"
       ],
+      "disabled": true,
       "name": "t:general.how_it_works",
       "settings": {
         "eyebrow": "How it Work",
@@ -510,8 +513,76 @@
       "name": "t:general.product_list",
       "settings": {
         "heading": "Choose your flavor.",
-        "background_color": "#f6f1ec",
+        "background_color": "#9ab2d5",
         "heading_color": "#212323"
+      }
+    },
+    "reviews_Kc4Cw6": {
+      "type": "reviews",
+      "blocks": {
+        "review_image_9k8yRx": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_14_1.png"
+          }
+        },
+        "review_image_f89knz": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_18_1.png"
+          }
+        },
+        "review_image_AVrAnD": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_15_1.png"
+          }
+        },
+        "review_image_9qBKVn": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_16_1.png"
+          }
+        },
+        "review_image_bKXHKq": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_17_1.png"
+          }
+        },
+        "review_testimonial_VUhGVg": {
+          "type": "review-testimonial",
+          "settings": {
+            "avatar_image": "shopify://shop_images/Group_149.svg",
+            "reviewer_name": "Toasted",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_title": "First Toasted reviews coming soon.",
+            "testimonial_text": "Reviews open after first drop. Be one of the first to try Toasted."
+          }
+        }
+      },
+      "block_order": [
+        "review_image_9k8yRx",
+        "review_image_f89knz",
+        "review_image_AVrAnD",
+        "review_image_9qBKVn",
+        "review_image_bKXHKq",
+        "review_testimonial_VUhGVg"
+      ],
+      "name": "Reviews",
+      "settings": {
+        "bg_color": "#f6f1ec",
+        "text_color": "#212323",
+        "heading_prefix": "First comments",
+        "heading_suffix": "coming soon.",
+        "rating": 4.9,
+        "rating_text": "Be among the first to review.",
+        "show_carousel": false,
+        "button_label": "Join the First Drop",
+        "button_link": "",
+        "button_bg_color": "#212323",
+        "button_text_color": "#f6f1ec"
       }
     },
     "gruns_find_toasted_EFQ7iF": {
@@ -523,12 +594,13 @@
         "show_button": true,
         "button_label": "Find near you",
         "button_link": "",
-        "button_background_color": "#212323",
-        "button_text_color": "#f6f1ec",
+        "button_background_color": "#f9d5c0",
+        "button_text_color": "#1e2125",
         "background_color": "#f6f1ec",
-        "panel_background_color": "#f9d5c0",
-        "heading_color": "#212323",
-        "billboard_image": "shopify://shop_images/find-toasted-billboard.png",
+        "panel_background_color": "#551f36",
+        "panel_background_image": "shopify://shop_images/Group_82.png",
+        "heading_color": "#ffffff",
+        "billboard_image": "shopify://shop_images/Cllg5_2_1.png",
         "billboard_image_alt": ""
       }
     }
@@ -539,6 +611,7 @@
     "ingredient_highlights_wcTznK",
     "how_it_works_hWxXPx",
     "gruns_product_list_LHAh4W",
+    "reviews_Kc4Cw6",
     "gruns_find_toasted_EFQ7iF"
   ]
 }

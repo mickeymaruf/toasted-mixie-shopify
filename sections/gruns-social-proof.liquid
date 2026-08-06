@@ -4,62 +4,46 @@
   product collage image on the right.
 {% enddoc %}
 
-{% liquid
-  assign rating_rounded = section.settings.rating | round
-%}
 
 <section
-  class="gruns-social-proof full-width overflow-hidden border-t-2 border-b-2"
+  class="gruns-social-proof full-width overflow-hidden relative"
   style="background-color: {{ section.settings.background_color }}; border-color: {{ section.settings.heading_color }};"
 >
+  {% if section.settings.background_image %}
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute inset-0 bg-[color:var(--gruns-social-proof-overlay-color)]" style="--gruns-social-proof-overlay-color: {{ section.settings.background_color }};"></div>
+      {{ section.settings.background_image | image_url: width: 1920 | image_tag: class: 'absolute inset-0 w-full h-full object-bottom opacity-10' }}
+      <div class="absolute inset-0" style="background: linear-gradient(to right, {{ section.settings.background_color }} 16.827%, transparent 100%);"></div>
+    </div>
+  {% endif %}
   <div
-    class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-10 px-5 py-10 sm:px-8 sm:py-12 md:px-12 lg:flex-row lg:items-center lg:gap-[60px] lg:px-[80px] lg:py-[80px] xl:px-[120px] xl:py-[50px]"
+    class="relative z-10 mx-auto flex w-full max-w-[1920px] flex-col items-center gap-10 px-5 py-10 sm:px-8 sm:py-12 md:px-12 lg:flex-row lg:items-center lg:gap-[60px] lg:px-[80px] lg:py-[80px] xl:px-[120px] xl:py-[50px]"
   >
     <div
       class="flex w-full flex-col items-start gap-5 text-left lg:max-w-[581px] lg:flex-1"
       style="color: {{ section.settings.heading_color }};"
     >
-      {% if section.settings.rating != blank or section.settings.review_count != blank or section.settings.member_count != blank %}
+      {% if section.settings.show_rating_section %}
         <div class="flex flex-wrap items-center gap-x-1.5 gap-y-1 sm:gap-x-[10px] sm:gap-y-2">
-          <div
-            class="flex items-center gap-px sm:gap-[2px]"
-            role="img"
-            aria-label="{{ 'products.main.rating_label' | t: rating: section.settings.rating }}"
-          >
-            {% for i in (1..5) %}
-              <span class="block size-3.5 sm:size-[18px] {% unless i <= rating_rounded %}opacity-20{% endunless %}" aria-hidden="true">
-                <img
-                  src="{{ 'icon-star-social-proof.svg' | asset_url }}"
-                  alt=""
-                  width="20"
-                  height="19"
-                  class="size-full"
-                >
-              </span>
-            {% endfor %}
-          </div>
-
-          {% if section.settings.rating != blank %}
-            <p class="text-[14px] leading-none whitespace-nowrap sm:text-[20px] sm:leading-[1.5]">
-              <span class="font-medium">{{ section.settings.rating }}</span>
-              {{ 'sections.social_proof.stars' | t }}
-            </p>
+          {% if section.settings.star_count > 0 %}
+            <div class="flex items-center gap-px sm:gap-[2px]">
+              {% for i in (1..5) %}
+                <span class="block size-3.5 sm:size-[18px] {% unless i <= section.settings.star_count %}opacity-20{% endunless %}" aria-hidden="true">
+                  <img
+                    src="{{ 'icon-star-social-proof.svg' | asset_url }}"
+                    alt=""
+                    width="20"
+                    height="19"
+                    class="size-full"
+                  >
+                </span>
+              {% endfor %}
+            </div>
           {% endif %}
-
-          {% if section.settings.review_count != blank %}
-            <span class="block size-1 shrink-0 rounded-full bg-current sm:size-[5px]" aria-hidden="true"></span>
-            <p class="text-[14px] leading-none whitespace-nowrap sm:text-[20px] sm:leading-[1.5]">
-              <span class="font-medium">{{ section.settings.review_count }}</span>
-              {{ 'sections.social_proof.reviews' | t }}
-            </p>
-          {% endif %}
-
-          {% if section.settings.member_count != blank %}
-            <span class="block size-1 shrink-0 rounded-full bg-current sm:size-[5px]" aria-hidden="true"></span>
-            <p class="text-[14px] leading-none whitespace-nowrap sm:text-[20px] sm:leading-[1.5]">
-              <span class="font-medium">{{ section.settings.member_count }}</span>
-              {{ 'sections.social_proof.members' | t }}
-            </p>
+          {% if section.settings.rating_text != blank %}
+            <div class="text-[14px] leading-none sm:text-[20px] sm:leading-[1.5]">
+              {{ section.settings.rating_text }}
+            </div>
           {% endif %}
         </div>
       {% endif %}
@@ -113,25 +97,27 @@
       "content": "t:general.content"
     },
     {
+      "type": "checkbox",
+      "id": "show_rating_section",
+      "label": "t:labels.show_rating_section",
+      "default": true
+    },
+    {
       "type": "range",
-      "id": "rating",
-      "label": "t:labels.rating",
+      "id": "star_count",
+      "label": "t:labels.star_count",
       "min": 0,
       "max": 5,
-      "step": 0.1,
-      "default": 4.8
+      "step": 1,
+      "default": 5,
+      "visible_if": "{{ section.settings.show_rating_section }}"
     },
     {
-      "type": "text",
-      "id": "review_count",
-      "label": "t:labels.review_count",
-      "default": "100,000"
-    },
-    {
-      "type": "text",
-      "id": "member_count",
-      "label": "t:labels.member_count",
-      "default": "1,000,000+"
+      "type": "richtext",
+      "id": "rating_text",
+      "label": "t:labels.rating_text",
+      "default": "<p><strong>4.8</strong> Rating<br><strong>100,000</strong> Reviews<br><strong>1,000,000+</strong> Members</p>",
+      "visible_if": "{{ section.settings.show_rating_section }}"
     },
     {
       "type": "richtext",
@@ -204,13 +190,18 @@
       "type": "color",
       "id": "background_color",
       "label": "t:labels.background",
-      "default": "#9AB2D5"
+      "default": "#551F36"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background_image"
     },
     {
       "type": "color",
       "id": "heading_color",
       "label": "t:labels.text_color",
-      "default": "#212323"
+      "default": "#F6F1EC"
     }
   ],
   "presets": [

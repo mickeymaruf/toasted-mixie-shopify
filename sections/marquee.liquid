@@ -1,0 +1,186 @@
+<div class="marquee-wrapper" style="--marquee-text-color: {{ section.settings.text_color }}; --marquee-bg-color: {{ section.settings.background_color }}; --marquee-text-size: {{ section.settings.text_size | default: 36 }}px; --marquee-gap: {{ section.settings.gap | default: 52 }}px;">
+  <div class="marquee-container">
+    <div class="marquee-content">
+      {% for i in (1..2) %}
+        {% for block in section.blocks %}
+          <div class="marquee-item" {{ block.shopify_attributes }}>
+            {% if block.settings.icon %}
+              {{ block.settings.icon | image_url: width: 64, height: 64 | image_tag: class: 'marquee-icon' }}
+            {% else %}
+              <div class="marquee-icon-placeholder"></div>
+            {% endif %}
+            <span class="marquee-text">{{ block.settings.text }}</span>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .marquee-wrapper {
+    background-color: var(--marquee-bg-color);
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-content {
+    display: flex;
+    gap: var(--marquee-gap);
+    align-items: center;
+    width: fit-content;
+    animation: marquee-scroll 60s linear infinite;
+    padding-right: var(--marquee-gap);
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .marquee-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+  }
+
+  .marquee-icon-placeholder {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    background-color: transparent;
+  }
+
+  .marquee-text {
+    font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+    font-size: var(--marquee-text-size);
+    font-weight: 700;
+    color: var(--marquee-text-color);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .marquee-text {
+      font-size: clamp(18px, 5vw, var(--marquee-text-size));
+    }
+
+    .marquee-content {
+      animation: marquee-scroll 45s linear infinite;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .marquee-text {
+      font-size: clamp(14px, 4vw, 24px);
+    }
+
+    .marquee-content {
+      animation: marquee-scroll 35s linear infinite;
+      gap: calc(var(--marquee-gap) * 0.7);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.marquee.name",
+  "blocks": [
+    {
+      "type": "marquee_item",
+      "name": "Marquee item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Text goes here"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 16,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "label": "Text size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Gap between items",
+      "default": 52
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.marquee.name",
+      "blocks": [
+        {
+          "type": "marquee_item",
+          "settings": {
+            "text": "present in the moment"
+          }
+        },
+        {
+          "type": "marquee_item",
+          "settings": {
+            "text": "made for moments that matter"
+          }
+        },
+        {
+          "type": "marquee_item",
+          "settings": {
+            "text": "presence is the new luxury"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

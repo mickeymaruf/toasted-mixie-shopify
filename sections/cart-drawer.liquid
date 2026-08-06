@@ -187,6 +187,41 @@
 </cart-drawer>
 
 {% javascript %}
+  if (!customElements.get('quantity-stepper')) {
+    class QuantityStepper extends HTMLElement {
+      connectedCallback() {
+        this.input = this.querySelector('[data-quantity-input]');
+        this.decreaseButton = this.querySelector('[data-quantity-decrease]');
+        this.increaseButton = this.querySelector('[data-quantity-increase]');
+
+        this.decreaseButton?.addEventListener('click', () => this.step(-1));
+        this.increaseButton?.addEventListener('click', () => this.step(1));
+        this.input?.addEventListener('change', () => this.setValue(this.input.valueAsNumber));
+      }
+
+      get min() {
+        return Number(this.input?.min || 0);
+      }
+
+      step(delta) {
+        const current = this.input?.valueAsNumber || 0;
+        this.setValue(current + delta);
+      }
+
+      setValue(value) {
+        const min = this.min;
+        const next = Number.isFinite(value) ? Math.max(min, Math.round(value)) : min;
+
+        if (this.input) this.input.value = next;
+        if (this.decreaseButton) this.decreaseButton.disabled = next <= min;
+
+        this.dispatchEvent(new CustomEvent('quantity-change', { bubbles: true, detail: { value: next } }));
+      }
+    }
+
+    customElements.define('quantity-stepper', QuantityStepper);
+  }
+
   class CartDrawer extends HTMLElement {
     connectedCallback() {
       this.content = this.querySelector('[data-cart-drawer-content]');

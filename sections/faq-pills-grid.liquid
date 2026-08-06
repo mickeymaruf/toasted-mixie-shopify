@@ -14,16 +14,20 @@
 %}
 
 <section
-  class="faq-pills-grid full-width"
-  style="background-color: {{ section.settings.background_color }};"
+  class="faq-pills-grid full-width px-[50px] md:px-[80px] lg:px-[120px]"
+  style="
+    background-color: {{ section.settings.section_background }};
+    --faq-pills-grid-border-color: {{ section.settings.border_color }};
+    --faq-pills-grid-bg-color: {{ section.settings.card_background }};
+  "
 >
   <div
-    class="faq-pills-grid__inner mx-auto flex w-full max-w-[1440px] flex-col items-center gap-8 px-5 sm:px-8 md:px-12 lg:gap-[60px] lg:px-[80px] xl:px-[120px]"
+    class="faq-pills-grid__inner mx-auto flex w-full max-w-[1440px] flex-col items-center gap-8 lg:gap-[60px]"
     style="
-      --faq-pills-grid-pt-mobile: {{ section.settings.padding_top_mobile }}px;
-      --faq-pills-grid-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
-      --faq-pills-grid-pt-desktop: {{ section.settings.padding_top }}px;
-      --faq-pills-grid-pb-desktop: {{ section.settings.padding_bottom }}px;
+      padding: 50px;
+      background-color: var(--faq-pills-grid-bg-color);
+      border: 3px solid var(--faq-pills-grid-border-color);
+      border-radius: 33px;
     "
   >
     {% if section.settings.heading != blank %}
@@ -43,19 +47,6 @@
   </div>
 </section>
 
-{% stylesheet %}
-  .faq-pills-grid__inner {
-    padding-top: var(--faq-pills-grid-pt-mobile);
-    padding-bottom: var(--faq-pills-grid-pb-mobile);
-  }
-
-  @media (min-width: 1024px) {
-    .faq-pills-grid__inner {
-      padding-top: var(--faq-pills-grid-pt-desktop);
-      padding-bottom: var(--faq-pills-grid-pb-desktop);
-    }
-  }
-{% endstylesheet %}
 
 {% schema %}
 {
@@ -78,15 +69,39 @@
     },
     {
       "type": "color",
-      "id": "background_color",
-      "label": "t:labels.background",
-      "default": "#FFFFFF"
+      "id": "section_background",
+      "label": "t:labels.section_background",
+      "default": "#f6f1ec"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "t:labels.card_background",
+      "default": "#9ab2d5"
     },
     {
       "type": "color",
       "id": "heading_color",
       "label": "t:labels.text_color",
       "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "t:labels.border_color",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "faq_item_background",
+      "label": "t:labels.faq_item_background",
+      "default": "#636D90"
+    },
+    {
+      "type": "color",
+      "id": "faq_item_text_color",
+      "label": "t:labels.faq_item_text_color",
+      "default": "#F6F1EC"
     },
     {
       "type": "header",

@@ -8,12 +8,21 @@
 
 {% if block.settings.heading != blank %}
   <div
-    class="relative flex w-full flex-col items-center md:gap-3 overflow-visible rounded-2xl sm:flex-row sm:gap-6 sm:p-4"
+    class="relative flex w-full flex-col items-center md:gap-3 overflow-hidden rounded-2xl sm:flex-row sm:gap-6 p-1"
     style="background-color: {{ block.settings.background_color }};"
     {{ block.shopify_attributes }}
   >
+    {% if block.settings.background_image %}
+      <div class="pointer-events-none absolute inset-0 rounded-2xl" aria-hidden="true">
+        {{
+          block.settings.background_image
+          | image_url: width: 800
+          | image_tag: class: 'absolute size-full object-cover rounded-2xl', widths: '400, 600, 800', alt: '', style: 'opacity: 0.05;'
+        }}
+      </div>
+    {% endif %}
     {% if block.settings.image %}
-      <div class="relative aspect-square w-full sm:aspect-[166/150] sm:w-[140px] sm:shrink-0 lg:w-[166px] overflow-visible rounded-xl">
+      <div class="relative z-10 aspect-square w-full sm:aspect-[166/150] sm:w-[140px] sm:shrink-0 lg:w-[166px] overflow-visible rounded-xl">
         {{
           block.settings.image
           | image_url: width: 400
@@ -26,33 +35,51 @@
       </div>
     {% endif %}
 
-    <div class="relative flex flex-1 flex-col items-center md:items-start gap-[10px] p-3 sm:p-0">
+    <div class="relative z-10 flex flex-1 flex-col items-center gap-[10px] p-3 sm:p-0">
       <p class="text-[16px] sm:text-[20px] font-medium text-[#212323]">{{ block.settings.heading }}</p>
 
       {% if block.settings.button_label != blank %}
-        {% render 'button',
-          label: block.settings.button_label,
-          url: block.settings.button_link,
-          class: '!w-auto whitespace-nowrap'
-        %}
+        <a href="{{ block.settings.button_link }}" class="relative z-10 flex items-center justify-center px-[32px] py-[12px] rounded-[30px] whitespace-nowrap" style="background-color: {{ block.settings.button_background_color }}; color: {{ block.settings.button_text_color }};">
+          {{ block.settings.button_label }}
+        </a>
       {% endif %}
 
-      {% if block.settings.feature_1_text != blank or block.settings.feature_2_text != blank %}
-        <div class="flex flex-wrap items-center gap-x-[10px] gap-y-2 sm:gap-x-[15px] text-[#212323]">
-          {% if block.settings.feature_1_text != blank %}
+      {% if block.settings.feature_1_text != blank or block.settings.feature_2_text != blank or block.settings.feature_1_icon or block.settings.feature_2_icon %}
+        <div class="flex flex-wrap items-center gap-x-[10px] gap-y-2 sm:gap-x-[15px]" style="color: {{ block.settings.feature_text_color }};">
+          {% if block.settings.feature_1_text != blank or block.settings.feature_1_icon %}
             <div class="flex items-center gap-[5px]">
-              <span class="block size-[15px] shrink-0">{{ 'icon-package.svg' | inline_asset_content }}</span>
+              {% if block.settings.feature_1_icon %}
+                <span class="block size-[15px] shrink-0">
+                  {{
+                    block.settings.feature_1_icon
+                    | image_url: width: 30
+                    | image_tag: width: 30, height: 30, class: 'size-full object-contain', alt: ''
+                  }}
+                </span>
+              {% else %}
+                <span class="block size-[15px] shrink-0">{{ 'icon-package.svg' | inline_asset_content }}</span>
+              {% endif %}
               <span class="text-[12px] leading-[1.5] whitespace-nowrap">
                 {{- block.settings.feature_1_text -}}
               </span>
             </div>
           {% endif %}
 
-          {% if block.settings.feature_2_text != blank %}
+          {% if block.settings.feature_2_text != blank or block.settings.feature_2_icon %}
             <div class="flex items-center gap-[5px]">
-              <span class="block h-[13px] w-[17px] shrink-0">
-                {{- 'icon-shipping.svg' | inline_asset_content -}}
-              </span>
+              {% if block.settings.feature_2_icon %}
+                <span class="block h-[13px] w-[17px] shrink-0">
+                  {{
+                    block.settings.feature_2_icon
+                    | image_url: width: 34
+                    | image_tag: width: 34, height: 26, class: 'size-full object-contain', alt: ''
+                  }}
+                </span>
+              {% else %}
+                <span class="block h-[13px] w-[17px] shrink-0">
+                  {{- 'icon-shipping.svg' | inline_asset_content -}}
+                </span>
+              {% endif %}
               <span class="text-[12px] leading-[1.5] whitespace-nowrap">
                 {{- block.settings.feature_2_text -}}
               </span>
@@ -90,6 +117,18 @@
       "label": "t:labels.button_link"
     },
     {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#D4941F"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC"
+    },
+    {
       "type": "text",
       "id": "feature_1_text",
       "label": "t:labels.feature_1_text",
@@ -102,6 +141,16 @@
       "default": "Just Pay Shipping"
     },
     {
+      "type": "image_picker",
+      "id": "feature_1_icon",
+      "label": "t:labels.feature_1_icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_2_icon",
+      "label": "t:labels.feature_2_icon"
+    },
+    {
       "type": "header",
       "content": "t:general.colors"
     },
@@ -112,8 +161,19 @@
       "default": "#9AB2D5"
     },
     {
+      "type": "color",
+      "id": "feature_text_color",
+      "label": "t:labels.feature_text_color",
+      "default": "#212323"
+    },
+    {
       "type": "header",
       "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background_image"
     },
     {
       "type": "image_picker",

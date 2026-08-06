@@ -18,7 +18,7 @@
 
 <faq-pill-item
   class="faq-item block w-full{% if is_open %} is-open{% endif %}"
-  style="--faq-item-bg: {{ block.settings.background_color }}; --faq-item-color: {{ block.settings.text_color }};"
+  style="--faq-item-bg: {{ section.settings.faq_item_background }}; --faq-item-color: {{ section.settings.faq_item_text_color }};"
   {{ block.shopify_attributes }}
 >
   <button
@@ -53,6 +53,10 @@
 
   .faq-item__trigger:hover {
     background-color: color-mix(in srgb, var(--faq-item-bg, #f9d5c0) 85%, #212323 15%);
+  }
+
+  .faq-item__icon {
+    color: var(--faq-item-color, #212323);
   }
 
   .faq-item.is-open .faq-item__icon {
@@ -107,22 +111,6 @@
       "id": "initially_open",
       "label": "t:labels.initially_open",
       "default": false
-    },
-    {
-      "type": "header",
-      "content": "t:general.colors"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "t:labels.question_background",
-      "default": "#F9D5C0"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "t:labels.question_color",
-      "default": "#212323"
     }
   ],
   "presets": [{ "name": "t:general.faq_item" }]

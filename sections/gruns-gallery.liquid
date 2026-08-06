@@ -5,10 +5,17 @@
 {% enddoc %}
 
 <section
-  class="gruns-gallery full-width"
+  class="gruns-gallery full-width relative overflow-hidden"
   style="background-color: {{ section.settings.background_color }};"
 >
-  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 pt-[40px] pb-[60px] sm:py-[60px] lg:gap-[60px] lg:py-[100px] xl:pb-[150px] lg:px-[120px]">
+  {% if section.settings.background_image %}
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute inset-0 bg-[color:var(--gruns-gallery-overlay-color)]" style="--gruns-gallery-overlay-color: {{ section.settings.background_color }};"></div>
+      {{ section.settings.background_image | image_url: width: 1920 | image_tag: class: 'absolute inset-0 w-full h-full object-bottom opacity-8' }}
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, {{ section.settings.background_color }} 9%, transparent 99%);"></div>
+    </div>
+  {% endif %}
+  <div class="relative z-10 mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 pt-[40px] pb-[60px] sm:py-[60px] lg:gap-[60px] lg:py-[100px] xl:pb-[100px] lg:px-[120px]">
     {% if section.settings.heading != blank %}
       <div
         class="order-1 max-w-4xl text-center text-[36px] leading-[0.95] font-bold text-[color:var(--gruns-gallery-heading-color)] px-5 sm:order-none sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px]"
@@ -174,6 +181,11 @@
       "id": "background_color",
       "label": "t:labels.background",
       "default": "#F6F1EC"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background_image"
     },
     {
       "type": "color",

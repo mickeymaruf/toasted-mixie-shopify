@@ -214,7 +214,7 @@
                   <div class="relative flex flex-1 basis-[150px] flex-col items-center gap-2">
                     {% if pill_percent > 0 %}
                       <span
-                        class="absolute -top-3 left-1/2 -translate-x-1/2 z-10 rounded-full px-3 py-1 text-[10px] font-medium whitespace-nowrap"
+                        class="absolute -top-3 right-5 z-10 rounded-full px-3 py-1 text-[10px] font-medium whitespace-nowrap"
                         style="background-color: {{ section.settings.pack_pill_background_color }}; color: {{ section.settings.pack_pill_text_color }};"
                       >
                         {{ 'products.main.save_percent' | t: percent: pill_percent }}
@@ -288,15 +288,24 @@
                         ></span>
                       </span>
                       <span class="text-[16px] font-medium whitespace-nowrap text-[#212323]">
-                        {{ 'products.main.subscribe_save' | t }}
+                        {% if section.settings.subscribe_heading != blank %}
+                          {{ section.settings.subscribe_heading }}
+                        {% else %}
+                          {{ 'products.main.subscribe_save' | t }}
+                        {% endif %}
                       </span>
                     </div>
                     {% if selected_allocation %}
                       <span
-                        class="rounded-full bg-[#636D90] px-2 py-1 sm:px-3 text-[12px] sm:text-[14px] font-normal whitespace-nowrap text-[#F6F1EC]"
+                        class="rounded-full px-2 py-1 sm:px-3 text-[12px] sm:text-[14px] font-normal whitespace-nowrap"
+                        style="background-color: {{ section.settings.subscribe_pill_background_color }}; color: {{ section.settings.subscribe_pill_text_color }};"
                         data-subscribe-percent-pill
                       >
-                        {{ 'products.main.save_percent' | t: percent: initial_percent }}
+                        {% if section.settings.save_badge_text != blank %}
+                          {{ section.settings.save_badge_text | replace: '[percent]', initial_percent }}
+                        {% else %}
+                          {{ 'products.main.save_percent' | t: percent: initial_percent }}
+                        {% endif %}
                       </span>
                     {% endif %}
                   </div>
@@ -306,37 +315,65 @@
                       {% render 'format-money', cents: selected_allocation.price | default: current_variant.price %}
                     </p>
                     <p class="text-[11px] sm:text-[12px] text-[#212323]">
-                      {{ 'products.main.save_percent_every_order' | t: percent: initial_percent }}
+                      {% if section.settings.save_every_order_text != blank %}
+                        {{ section.settings.save_every_order_text | replace: '[percent]', initial_percent }}
+                      {% else %}
+                        {{ 'products.main.save_percent_every_order' | t: percent: initial_percent }}
+                      {% endif %}
                     </p>
                   </div>
                 </div>
 
                 <div class="flex w-full items-start justify-between gap-2 sm:gap-4">
                   <div class="flex flex-1 flex-col items-center gap-2 sm:gap-4">
-                    <span class="block size-5 sm:size-6 text-[#212323]">
-                      {{- 'icon-package.svg' | inline_asset_content -}}
-                    </span>
+                    {% if section.settings.benefit_1_icon %}
+                      <img src="{{ section.settings.benefit_1_icon | image_url: width: 50 }}" alt="" class="size-5 sm:size-6">
+                    {% else %}
+                      <span class="block size-5 sm:size-6 text-[#212323]">
+                        {{- 'icon-package.svg' | inline_asset_content -}}
+                      </span>
+                    {% endif %}
                     <p class="text-center text-[12px] sm:text-[14px] text-[#212323]">
-                      {{ 'products.main.delivered_every' | t: interval: section.settings.delivery_interval }}
+                      {% if section.settings.benefit_1_text != blank %}
+                        {{ section.settings.benefit_1_text }}
+                      {% else %}
+                        {{ 'products.main.delivered_every' | t: interval: '1 month' }}
+                      {% endif %}
                     </p>
                   </div>
 
                   <div class="flex flex-1 flex-col items-center gap-2 sm:gap-4">
-                    <span class="block size-5 sm:size-6 text-[#212323]">
-                      {{- 'icon-shipping.svg' | inline_asset_content -}}
-                    </span>
+                    {% if section.settings.benefit_2_icon %}
+                      <img src="{{ section.settings.benefit_2_icon | image_url: width: 50 }}" alt="" class="size-5 sm:size-6">
+                    {% else %}
+                      <span class="block size-5 sm:size-6 text-[#212323]">
+                        {{- 'icon-shipping.svg' | inline_asset_content -}}
+                      </span>
+                    {% endif %}
                     <p class="text-center text-[12px] sm:text-[14px] text-[#212323]">
-                      {% capture savings_pill %}<span class="rounded-full bg-[#636D90] px-2 sm:px-3 py-[2px] text-xs text-[#F6F1EC]" data-subscribe-savings>{% render 'format-money', cents: initial_savings %}</span>{% endcapture %}
-                      {{ 'products.main.save_each_delivery_html' | t: amount: savings_pill }}
+                      {% capture savings_pill %}<span class="inline-block rounded-full px-2 sm:px-3 py-[2px] text-xs mx-1" style="background-color: {{ section.settings.subscribe_pill_background_color }}; color: {{ section.settings.subscribe_pill_text_color }};" data-subscribe-savings>{% render 'format-money', cents: initial_savings %}</span>{% endcapture %}
+                      {% if section.settings.benefit_2_text != blank %}
+                        {{ section.settings.benefit_2_text | replace: '[amount]', savings_pill }}
+                      {% else %}
+                        {{ 'products.main.save_each_delivery_html' | t: amount: savings_pill }}
+                      {% endif %}
                     </p>
                   </div>
 
                   <div class="flex flex-1 flex-col items-center gap-2 sm:gap-4">
-                    <span class="block size-5 sm:size-6 text-[#212323]">
-                      {{- 'icon-trust.svg' | inline_asset_content -}}
-                    </span>
+                    {% if section.settings.benefit_3_icon %}
+                      <img src="{{ section.settings.benefit_3_icon | image_url: width: 50 }}" alt="" class="size-5 sm:size-6">
+                    {% else %}
+                      <span class="block size-5 sm:size-6 text-[#212323]">
+                        {{- 'icon-trust.svg' | inline_asset_content -}}
+                      </span>
+                    {% endif %}
                     <p class="text-center text-[12px] sm:text-[14px] text-[#212323]">
-                      {{ 'products.main.pause_skip_cancel' | t }}
+                      {% if section.settings.benefit_3_text != blank %}
+                        {{ section.settings.benefit_3_text }}
+                      {% else %}
+                        {{ 'products.main.pause_skip_cancel' | t }}
+                      {% endif %}
                     </p>
                   </div>
                 </div>
@@ -594,7 +631,7 @@
       "type": "product",
       "id": "product",
       "label": "t:labels.product",
-      "info": "t:labels.product_info"
+      "info": "Leave blank to show the current product"
     },
     {
       "type": "header",
@@ -623,19 +660,7 @@
     },
     {
       "type": "header",
-      "content": "t:general.purchase"
-    },
-    {
-      "type": "text",
-      "id": "delivery_interval",
-      "label": "t:labels.delivery_interval",
-      "default": "1 month"
-    },
-    {
-      "type": "color",
-      "id": "subscribe_card_background_color",
-      "label": "t:labels.card_background",
-      "default": "#C2CBD4"
+      "content": "t:general.pack_size"
     },
     {
       "type": "color",
@@ -650,9 +675,98 @@
       "default": "#212323"
     },
     {
-      "type": "textarea",
+      "type": "header",
+      "content": "t:general.subscribe_and_save"
+    },
+    {
+      "type": "text",
+      "id": "subscribe_heading",
+      "label": "t:labels.subscribe_heading",
+      "default": "Subscribe & Save"
+    },
+    {
+      "type": "text",
+      "id": "save_badge_text",
+      "label": "t:labels.save_badge_text",
+      "default": "Save [percent]%"
+    },
+    {
+      "type": "text",
+      "id": "save_every_order_text",
+      "label": "t:labels.save_every_order_text",
+      "default": "Save [percent]% on every order"
+    },
+    {
+      "type": "header",
+      "content": "t:general.benefit_1"
+    },
+    {
+      "type": "text",
+      "id": "benefit_1_text",
+      "label": "t:labels.benefit_text",
+      "default": "Delivered every 1 month"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_1_icon",
+      "label": "t:labels.benefit_icon"
+    },
+    {
+      "type": "header",
+      "content": "t:general.benefit_2"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2_text",
+      "label": "t:labels.benefit_text",
+      "default": "Save [amount] each delivery"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_2_icon",
+      "label": "t:labels.benefit_icon"
+    },
+    {
+      "type": "header",
+      "content": "t:general.benefit_3"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3_text",
+      "label": "t:labels.benefit_text",
+      "default": "Pause, skip, cancel anytime"
+    },
+    {
+      "type": "image_picker",
+      "id": "benefit_3_icon",
+      "label": "t:labels.benefit_icon"
+    },
+    {
+      "type": "color",
+      "id": "subscribe_card_background_color",
+      "label": "t:labels.card_background",
+      "default": "#C2CBD4"
+    },
+    {
+      "type": "color",
+      "id": "subscribe_pill_background_color",
+      "label": "t:labels.subscribe_pill_background",
+      "default": "#636D90"
+    },
+    {
+      "type": "color",
+      "id": "subscribe_pill_text_color",
+      "label": "t:labels.subscribe_pill_text_color",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "header",
+      "content": "t:general.add_to_cart_button"
+    },
+    {
+      "type": "text",
       "id": "custom_button_text",
-      "label": "Custom button text"
+      "label": "t:labels.custom_button_text"
     }
   ],
   "blocks": [

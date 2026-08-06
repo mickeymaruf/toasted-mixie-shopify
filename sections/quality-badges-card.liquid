@@ -1,0 +1,124 @@
+{% doc %}
+  Renders a "3rd party-tested" trust banner as a card: a heading and description on
+  the left, and a responsive row of icon-badge-card blocks (e.g. Lab
+  Tested, Low Dose) on the right. Add, remove, and reorder the nested
+  icon-badge-card blocks to control which badges are shown.
+{% enddoc %}
+
+<section
+  class="quality-badges-card relative overflow-hidden"
+  style="background-color: {{ section.settings.page_background_color }};"
+>
+  <div class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px] py-10 sm:py-12 md:py-12 lg:py-[80px] xl:py-[100px]">
+    <div
+      class="relative flex w-full flex-col items-center gap-10 rounded-[24px] px-6 py-12 sm:px-8 sm:py-14 md:px-12 md:py-16 lg:flex-row lg:items-center lg:gap-[60px] lg:px-[60px] lg:py-[70px]"
+      style="background-color: {{ section.settings.background_color }};"
+    >
+      <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[24px]" aria-hidden="true">
+        {% if section.settings.background_image %}
+          {{
+            section.settings.background_image
+            | image_url: width: 1600
+            | image_tag: class: 'absolute size-full object-cover object-bottom', widths: '800, 1200, 1600', alt: '', style: 'opacity: 0.08; filter: saturate(0);'
+          }}
+        {% endif %}
+        <div
+          class="absolute inset-0"
+          style="background: linear-gradient(89.98deg, {{ section.settings.background_color }} 16.829%, rgba(99, 109, 144, 0) 99.997%);"
+        ></div>
+      </div>
+
+      <div
+        class="relative flex w-full flex-col items-start gap-5 text-left lg:w-[40%] lg:max-w-[40%] lg:shrink-0"
+        style="color: {{ section.settings.heading_color }};"
+      >
+        {% if section.settings.heading != blank %}
+          <div class="text-[28px] leading-[0.95] font-bold sm:text-[36px] md:text-[48px] lg:text-[56px] lg:tracking-[-1.68px]">
+            {{ section.settings.heading }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="text-[16px] leading-[1.5] sm:text-[18px] lg:text-[20px]">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if section.blocks.size > 0 %}
+        <div class="relative grid grid-cols-2 w-full gap-3 sm:flex sm:flex-wrap sm:gap-[10px] lg:w-[60%] lg:max-w-[60%] lg:shrink-0">
+          {% content_for 'blocks' %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .quality-badges-card .shopify-block {
+    display: contents;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.quality_badges_card",
+  "blocks": [{ "type": "icon-badge-card" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "<p>3rd party-tested for potency, purity, &amp; safety.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:labels.description",
+      "default": "<p>We regularly test for all 20+ vitamins &amp; minerals to ensure claims are accurate &amp; clear of contaminants including:</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "page_background_color",
+      "label": "t:labels.page_background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background_image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.card_background",
+      "default": "#636D90"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#F6F1EC"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.quality_badges_card",
+      "blocks": [
+        { "type": "icon-badge-card", "settings": { "label": "Lab Tested" } },
+        { "type": "icon-badge-card", "settings": { "label": "Low Dose" } },
+        { "type": "icon-badge-card", "settings": { "label": "Low Calorie" } },
+        { "type": "icon-badge-card", "settings": { "label": "Non-carbonated" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

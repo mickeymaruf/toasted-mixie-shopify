@@ -111,7 +111,7 @@
                 "label": "Low Dose",
                 "description": "",
                 "icon_style": "lab",
-                "icon": "shopify://shop_images/Group_138.svg"
+                "icon": "shopify://shop_images/Group_138_b84acac5-5ed2-4275-818d-a4619a1f8db9.svg"
               },
               "blocks": {}
             },
@@ -121,7 +121,7 @@
                 "label": "Low Calorie",
                 "description": "",
                 "icon_style": "carbonation",
-                "icon": "shopify://shop_images/Group_136.svg"
+                "icon": "shopify://shop_images/Group_136_d99b06b3-0160-4cf1-bd8b-47c4deb93390.svg"
               },
               "blocks": {}
             },
@@ -131,7 +131,7 @@
                 "label": "Lab Tested",
                 "description": "",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/Group_137.svg"
+                "icon": "shopify://shop_images/Group_137_61008a2e-623c-494f-8679-9410f0dab7c1.svg"
               },
               "blocks": {}
             }
@@ -153,16 +153,56 @@
         "show_button": true,
         "button_label": "Get My Trial Pack",
         "button_link": "",
-        "button_background_color": "#212323",
-        "button_text_color": "#c7aa9a",
+        "button_background_color": "#d4941f",
+        "button_text_color": "#ffffff",
         "feature_1_text": "Free 3-flavor trial pack.",
         "feature_2_text": "Just Pay Shipping",
-        "background_color": "#f6f1ec",
+        "background_color": "#9ab2d5",
         "heading_color": "#212323",
-        "product_image": "shopify://shop_images/Frame_2147235887_e1934f17-219d-471d-872c-fd27c495f86e.png",
+        "product_image": "shopify://shop_images/Frame_2147235887_1.png",
         "product_image_alt": "",
         "show_badge": true,
         "badge_text": "Get 50% Off"
+      }
+    },
+    "marquee_QBFjMB": {
+      "type": "marquee",
+      "blocks": {
+        "marquee_item_dw6Hrg": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "present in the moment",
+            "icon": "shopify://shop_images/Vector_e3581ec8-e448-44d5-a3d3-f4eed293b2c1.svg"
+          }
+        },
+        "marquee_item_QRnwQd": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "made for moments that matter",
+            "icon": "shopify://shop_images/Vector_4fcf00a8-e0bd-4616-94a2-9193362f21c7.svg"
+          }
+        },
+        "marquee_item_yLUt9r": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "presence is the new luxury",
+            "icon": "shopify://shop_images/Vector_e3581ec8-e448-44d5-a3d3-f4eed293b2c1.svg"
+          }
+        }
+      },
+      "block_order": [
+        "marquee_item_dw6Hrg",
+        "marquee_item_QRnwQd",
+        "marquee_item_yLUt9r"
+      ],
+      "name": "t:sections.marquee.name",
+      "settings": {
+        "text_color": "#212323",
+        "background_color": "#9AB2D5",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "text_size": 36,
+        "gap": 52
       }
     },
     "gruns_product_list_BKNPjX": {
@@ -179,7 +219,7 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
@@ -194,7 +234,7 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#C7AA9A"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
@@ -209,7 +249,7 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
@@ -224,7 +264,7 @@
             "price_text": "Just Pay Shipping",
             "button_label": "Try Now",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         }
@@ -238,7 +278,7 @@
       "name": "t:general.product_list",
       "settings": {
         "heading": "Choose your flavor.",
-        "background_color": "#f6f1ec",
+        "background_color": "#9ab2d5",
         "heading_color": "#212323"
       }
     },
@@ -256,7 +296,8 @@
               "settings": {
                 "title": "Supports Clarity",
                 "subtitle": "Smooth, present focus",
-                "icon_style": "clarity"
+                "icon_style": "clarity",
+                "icon": "shopify://shop_images/Star_2_Stroke.svg"
               },
               "blocks": {}
             },
@@ -267,7 +308,7 @@
                 "title": "Balanced Mood",
                 "subtitle": "Light, feel-good lift",
                 "icon_style": "clarity",
-                "icon": "shopify://shop_images/Vector.svg"
+                "icon": "shopify://shop_images/Vector_Stroke_fa5748c9-9aef-4da0-b2d0-2920d617a354.svg"
               },
               "blocks": {}
             },
@@ -278,7 +319,7 @@
                 "title": "Promotes Calm",
                 "subtitle": "Easy, steady unwind",
                 "icon_style": "clarity",
-                "icon": "shopify://shop_images/Vector_Stroke_4bbf4e11-516f-4863-be49-26132041b72b.svg"
+                "icon": "shopify://shop_images/Vector_Stroke_Stroke.svg"
               },
               "blocks": {}
             }
@@ -305,8 +346,8 @@
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
                 "button_text_color": "#c7aa9a",
-                "card_background": "#c7aa9a",
-                "border_color": "#c7aa9a"
+                "card_background": "#f9d5c0",
+                "border_color": "#f9d5c0"
               },
               "blocks": {}
             },
@@ -321,8 +362,8 @@
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
                 "button_text_color": "#c7aa9a",
-                "card_background": "#c7aa9a",
-                "border_color": "#c7aa9a"
+                "card_background": "#f9d5c0",
+                "border_color": "#f9d5c0"
               },
               "blocks": {}
             },
@@ -337,8 +378,8 @@
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
                 "button_text_color": "#c7aa9a",
-                "card_background": "#c7aa9a",
-                "border_color": "#c7aa9a"
+                "card_background": "#f9d5c0",
+                "border_color": "#f9d5c0"
               },
               "blocks": {}
             }
@@ -360,10 +401,12 @@
         "bundle_description": "<p>Each tonic uses a unique blend of cannabis, mushrooms, or adaptogens....</p>",
         "bundle_link": "#",
         "bundle_image": "shopify://shop_images/Group_114.png",
-        "bundle_background_color": "#c7aa9a",
-        "background_image": "shopify://shop_images/bg-texture-drink-better.png",
-        "background_color": "#f8f1ea",
-        "heading_color": "#212323"
+        "bundle_background_color": "#f9d5c0",
+        "bundle_text_color": "#212323",
+        "background_image": "shopify://shop_images/f289b62b919ba07994f473b44042a0f53abfc6d5.jpg",
+        "background_color": "#551f36",
+        "gradient_color": "#551f36",
+        "heading_color": "#ffffff"
       }
     },
     "gruns_quality_badges_FMBPx9": {
@@ -373,8 +416,9 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Lab Tested",
-            "icon_style": "lab",
-            "background_color": "#636d90"
+            "icon": "shopify://shop_images/Group_89_e9ba6ef0-0a6e-48da-a2cc-3715e59c8604.svg",
+            "background_color": "#f9d5c0",
+            "text_color": "#636d90"
           },
           "blocks": {}
         },
@@ -382,8 +426,9 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Low Dose",
-            "icon_style": "low_dose",
-            "background_color": "#636d90"
+            "icon": "shopify://shop_images/Group_87.svg",
+            "background_color": "#f9d5c0",
+            "text_color": "#636d90"
           },
           "blocks": {}
         },
@@ -391,8 +436,9 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Low Calorie",
-            "icon_style": "low_calorie",
-            "background_color": "#636d90"
+            "icon": "shopify://shop_images/Group_94_afeeb1af-4fb7-4373-afad-d18c71673287.svg",
+            "background_color": "#f9d5c0",
+            "text_color": "#636d90"
           },
           "blocks": {}
         },
@@ -400,8 +446,9 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Non-carbonated",
-            "icon_style": "non_carbonated",
-            "background_color": "#636d90"
+            "icon": "shopify://shop_images/Group_95_d453a3b7-1e5e-4f58-9bcf-589922fc4a6b.svg",
+            "background_color": "#f9d5c0",
+            "text_color": "#636d90"
           },
           "blocks": {}
         }
@@ -415,9 +462,10 @@
       "name": "t:general.quality_badges",
       "settings": {
         "heading": "<p>3rd party-tested for potency, purity, & safety.</p>",
-        "description": "<p>We regularly test for all 20+ vitamins & minerals to ensure claims are accurate & clear of contaminants including:</p>",
-        "background_color": "#9ab2d5",
-        "heading_color": "#212323"
+        "description": "",
+        "background_image": "shopify://shop_images/Frame_2147235971.png",
+        "background_color": "#636d90",
+        "heading_color": "#ffffff"
       }
     },
     "product_ywnbJP": {
@@ -595,11 +643,15 @@
           "static": true,
           "settings": {
             "heading": "Can't Pick Just One?",
-            "button_label": "Get My Trial Pack",
+            "button_label": "Try our Bundle Pack",
             "button_link": "",
-            "feature_1_text": "Free 3-flavor trial pack.",
-            "feature_2_text": "Just Pay Shipping",
+            "button_background_color": "#d4941f",
+            "button_text_color": "#f6f1ec",
+            "feature_1_text": "",
+            "feature_2_text": "",
             "background_color": "#9ab2d5",
+            "feature_text_color": "#212323",
+            "background_image": "shopify://shop_images/Frame_2147235943_1.png",
             "image": "shopify://shop_images/Frame_2147235887_2_a981a03a-ea4e-4703-891f-949154834f68.png"
           },
           "blocks": {}
@@ -610,10 +662,20 @@
         "rating": 5,
         "show_badge": true,
         "badge_text": "Launching Soon",
-        "delivery_interval": "1 month",
-        "subscribe_card_background_color": "#c2cbd4",
-        "pack_pill_background_color": "#c7aa9a",
+        "pack_pill_background_color": "#f9d5c0",
         "pack_pill_text_color": "#212323",
+        "subscribe_heading": "Subscribe & Save",
+        "save_badge_text": "Save [percent]%",
+        "save_every_order_text": "Save [percent]% on every order",
+        "benefit_1_text": "Delivered every 1 month",
+        "benefit_1_icon": "shopify://shop_images/SVG.svg",
+        "benefit_2_text": "Save [amount] each delivery",
+        "benefit_2_icon": "shopify://shop_images/SVG_1.svg",
+        "benefit_3_text": "Pause, skip, cancel anytime",
+        "benefit_3_icon": "shopify://shop_images/Clip_path_group.svg",
+        "subscribe_card_background_color": "#c2cbd4",
+        "subscribe_pill_background_color": "#551f36",
+        "subscribe_pill_text_color": "#f6f1ec",
         "custom_button_text": ""
       }
     },
@@ -625,9 +687,7 @@
           "settings": {
             "question": "What is Toasted?",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#c7aa9a",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         },
@@ -636,9 +696,7 @@
           "settings": {
             "question": "Ingredients & Allergies",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#c7aa9a",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         },
@@ -647,9 +705,7 @@
           "settings": {
             "question": "What to Expect",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#c7aa9a",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         },
@@ -658,9 +714,7 @@
           "settings": {
             "question": "How is it dosed?",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#c7aa9a",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         },
@@ -669,9 +723,7 @@
           "settings": {
             "question": "Is it legal to ship?",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#c7aa9a",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         },
@@ -680,9 +732,7 @@
           "settings": {
             "question": "Lab Results",
             "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#c7aa9a",
-            "text_color": "#212323"
+            "initially_open": false
           },
           "blocks": {}
         }
@@ -698,8 +748,12 @@
       "name": "t:general.faq_pills_grid",
       "settings": {
         "heading": "Good Questions",
-        "background_color": "#f6f1ec",
+        "section_background": "#f6f1ec",
+        "card_background": "#9ab2d5",
         "heading_color": "#212323",
+        "border_color": "#212323",
+        "faq_item_background": "#636d90",
+        "faq_item_text_color": "#f6f1ec",
         "columns_desktop": "3",
         "padding_top": 100,
         "padding_bottom": 100,
@@ -868,6 +922,74 @@
         "heading_color": "#212323"
       }
     },
+    "reviews_YedMhm": {
+      "type": "reviews",
+      "blocks": {
+        "review_image_aJ9nyw": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_14_1.png"
+          }
+        },
+        "review_image_PA9fyA": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_18_1.png"
+          }
+        },
+        "review_image_T87aNn": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_15_1.png"
+          }
+        },
+        "review_image_fHKrk7": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_16_1.png"
+          }
+        },
+        "review_image_dnYnMC": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_17_1.png"
+          }
+        },
+        "review_testimonial_mEex8k": {
+          "type": "review-testimonial",
+          "settings": {
+            "avatar_image": "shopify://shop_images/Group_149.svg",
+            "reviewer_name": "Toasted",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_title": "First Toasted reviews coming soon.",
+            "testimonial_text": "Reviews open after first drop. Be one of the first to try Toasted."
+          }
+        }
+      },
+      "block_order": [
+        "review_image_aJ9nyw",
+        "review_image_PA9fyA",
+        "review_image_T87aNn",
+        "review_image_fHKrk7",
+        "review_image_dnYnMC",
+        "review_testimonial_mEex8k"
+      ],
+      "name": "Reviews",
+      "settings": {
+        "bg_color": "#f6f1ec",
+        "text_color": "#212323",
+        "heading_prefix": "First comments",
+        "heading_suffix": "coming soon.",
+        "rating": 4.9,
+        "rating_text": "Be among the first to review.",
+        "show_carousel": false,
+        "button_label": "Join the First Drop",
+        "button_link": "",
+        "button_bg_color": "#212323",
+        "button_text_color": "#f6f1ec"
+      }
+    },
     "gruns_gallery_AAGdfP": {
       "type": "gruns-gallery",
       "blocks": {
@@ -932,13 +1054,14 @@
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>First drops. Good moments. <em>@drinktoasted</em></p>",
-        "background_color": "#f6f1ec",
-        "heading_color": "#212323",
-        "social_icon_1_image": "shopify://shop_images/Item_3.svg",
+        "background_color": "#636d90",
+        "background_image": "shopify://shop_images/Frame_2147230637.png",
+        "heading_color": "#ffffff",
+        "social_icon_1_image": "shopify://shop_images/Item_a47a4d47-c447-485d-86d0-1f8d8032ce0e.svg",
         "social_icon_1_link": "https://www.instagram.com/drinktoasted/",
-        "social_icon_2_image": "shopify://shop_images/Item_4.svg",
+        "social_icon_2_image": "shopify://shop_images/Item_1_59a2d210-5486-433d-a293-d0b56d325b40.svg",
         "social_icon_2_link": "",
-        "social_icon_3_image": "shopify://shop_images/Item_5.svg",
+        "social_icon_3_image": "shopify://shop_images/Item_2_d764d3b2-6783-4759-9f62-e9d29820dbd3.svg",
         "social_icon_3_link": ""
       }
     },
@@ -946,26 +1069,28 @@
       "type": "gruns-social-proof",
       "name": "t:general.social_proof",
       "settings": {
-        "rating": 4.8,
-        "review_count": "100,000",
-        "member_count": "1,000,000+",
-        "heading": "<p>See what all the hype is about.</p>",
-        "description": "<p>We regularly test for all 20+ vitamins & minerals to ensure claims are accurate & clear of contaminants including:</p>",
+        "show_rating_section": false,
+        "star_count": 5,
+        "rating_text": "<p><strong>4.8</strong> Rating <strong>• 100,000</strong> Reviews <strong>• 1,000,000+</strong> Members</p>",
+        "heading": "<p>Try the chill drink.</p>",
+        "description": "<p>A functional relaxation beverage made with real fruit. Present in the moment.</p>",
         "show_button": true,
         "button_label": "Shop Now",
         "button_link": "/collections/shop-all",
-        "button_background_color": "#212323",
-        "button_text_color": "#f6f1ec",
+        "button_background_color": "#f9d5c0",
+        "button_text_color": "#1e2125",
         "image": "shopify://shop_images/Group_104_ffaddbdc-e520-471e-8d88-cf4e664245c4.png",
         "image_alt": "",
-        "background_color": "#9ab2d5",
-        "heading_color": "#212323"
+        "background_color": "#551f36",
+        "background_image": "shopify://shop_images/Frame_2147235973.png",
+        "heading_color": "#ffffff"
       }
     }
   },
   "order": [
     "hero_cXrPe9",
     "gruns_hero_KLipt8",
+    "marquee_QBFjMB",
     "gruns_product_list_BKNPjX",
     "gruns_drink_better_rceHVp",
     "gruns_quality_badges_FMBPx9",
@@ -975,6 +1100,7 @@
     "gruns_collage_callout_BeYC7N",
     "gruns_media_testimonials_VWVBLr",
     "gruns_info_grid_gPbYKk",
+    "reviews_YedMhm",
     "gruns_gallery_AAGdfP",
     "gruns_social_proof_7yRYNQ"
   ]

@@ -19,10 +19,10 @@
       "name": "t:general.content_banner",
       "settings": {
         "heading": "Certificate of Analysis",
-        "subheading": "All Toasted products are third-party lab tested. COAs are available on the site. Adults 21+ only. Use responsibly.",
-        "heading_color": "#212323",
-        "container_background_color": "#9ab2d5",
-        "background_image": "shopify://shop_images/Frame_2147235873_2.png"
+        "subheading": "Every Toasted batch is third-party lab tested for potency, purity, and safety.",
+        "heading_color": "#ffffff",
+        "container_background_color": "#551f36",
+        "background_image": "shopify://shop_images/Frame_2147235873.png"
       }
     },
     "lab_results_HmgaWd": {
@@ -65,6 +65,66 @@
         "background_color": "#f6f1ec"
       }
     },
+    "quality_badges_card_hhpJCy": {
+      "type": "quality-badges-card",
+      "blocks": {
+        "icon_badge_card_xRMbLN": {
+          "type": "icon-badge-card",
+          "settings": {
+            "label": "Lab Tested",
+            "icon": "shopify://shop_images/Group_89_e9ba6ef0-0a6e-48da-a2cc-3715e59c8604.svg",
+            "background_color": "#f9d5c0",
+            "text_color": "#626c8d"
+          },
+          "blocks": {}
+        },
+        "icon_badge_card_hEPdhi": {
+          "type": "icon-badge-card",
+          "settings": {
+            "label": "Low Dose",
+            "icon": "shopify://shop_images/Group_87.svg",
+            "background_color": "#f9d5c0",
+            "text_color": "#626c8d"
+          },
+          "blocks": {}
+        },
+        "icon_badge_card_4AFMnE": {
+          "type": "icon-badge-card",
+          "settings": {
+            "label": "Low Calorie",
+            "icon": "shopify://shop_images/Group_94_afeeb1af-4fb7-4373-afad-d18c71673287.svg",
+            "background_color": "#f9d5c0",
+            "text_color": "#626c8d"
+          },
+          "blocks": {}
+        },
+        "icon_badge_card_D7xKEE": {
+          "type": "icon-badge-card",
+          "settings": {
+            "label": "Non-carbonated",
+            "icon": "shopify://shop_images/Group_95_d453a3b7-1e5e-4f58-9bcf-589922fc4a6b.svg",
+            "background_color": "#f9d5c0",
+            "text_color": "#626c8d"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "icon_badge_card_xRMbLN",
+        "icon_badge_card_hEPdhi",
+        "icon_badge_card_4AFMnE",
+        "icon_badge_card_D7xKEE"
+      ],
+      "name": "t:general.quality_badges_card",
+      "settings": {
+        "heading": "<p>3rd party-tested for potency, purity, & safety.</p>",
+        "description": "",
+        "page_background_color": "#f6f1ec",
+        "background_image": "shopify://shop_images/Frame_2147235874.png",
+        "background_color": "#636d90",
+        "heading_color": "#f6f1ec"
+      }
+    },
     "coa_cards_MRUDHC": {
       "type": "coa-cards",
       "blocks": {
@@ -72,6 +132,7 @@
           "type": "coa-card",
           "settings": {
             "title": "Naked Liquid Packet 5mg THC per 15mL",
+            "manufacturer": "",
             "date": "July 20, 2026",
             "batch_number": "18826",
             "best_by_date": "07/07/2027",
@@ -82,6 +143,7 @@
           "type": "coa-card",
           "settings": {
             "title": "Lemon Lavender 1mg THC: 15mg CBD per 355mL",
+            "manufacturer": "",
             "date": "July 16, 2026",
             "batch_number": "LL26152/LL26148/LL26147",
             "best_by_date": "06/05/2027",
@@ -92,6 +154,7 @@
           "type": "coa-card",
           "settings": {
             "title": "Ginger Lemongrass 3mg THC: 6mg CBD per 355mL",
+            "manufacturer": "",
             "date": "July 16, 2026",
             "batch_number": "GLG26154",
             "best_by_date": "06/11/2027",
@@ -102,6 +165,7 @@
           "type": "coa-card",
           "settings": {
             "title": "Lemon Lavender 1mg THC: 15mg CBD per 355mL",
+            "manufacturer": "",
             "date": "July 16, 2026",
             "batch_number": "LL26152",
             "best_by_date": "06/05/2027",
@@ -118,9 +182,9 @@
       "name": "t:general.coa_cards",
       "settings": {
         "background_color": "#f6f1ec",
-        "filter_manufacturer_label": "Search by Manufacturer's Name",
         "filter_title_label": "Search by Product Title",
         "filter_batch_label": "Search by Batch Number",
+        "empty_state_text": "No certificates found matching your search.",
         "header_date": "Date",
         "header_product_name": "Product Name",
         "header_batch_number": "Batch Number",
@@ -129,48 +193,48 @@
         "link_text": "Click here"
       }
     },
-    "coa_guide_bpiRwk": {
+    "coa_guide_FJM8Yq": {
       "type": "coa-guide",
       "blocks": {
-        "row_g9MtgK": {
+        "row_xnkArz": {
           "type": "row",
           "settings": {
-            "title": "Summary Page",
-            "description": "CBD content, THC detection*, total cannabinoids, and terpene content."
+            "title": "THC / Total THC / Delta-9",
+            "description": "Shows cannabinoid potency and confirms hemp-derived THC compliance."
           }
         },
-        "row_k7AfR7": {
+        "row_m7zqTE": {
           "type": "row",
           "settings": {
-            "title": "Safety Standards",
-            "description": "Tested for residual solvents, pesticides, heavy metals, and biological impurities."
+            "title": "Safety Microbials",
+            "description": "Tests for microorganisms, including bacteria, yeast, and mold."
           }
         },
-        "row_UyLTxp": {
+        "row_ydq4Rb": {
           "type": "row",
           "settings": {
-            "title": "Detailed Reports",
-            "description": "Full cannabinoid profile and terpene analysis are provided on the following pages."
+            "title": "Pesticide Heavy Metals",
+            "description": "Tests for pesticide residue and heavy metals."
           }
         },
-        "row_LVmikA": {
+        "row_TW4aQt": {
           "type": "row",
           "settings": {
-            "title": "Reference Guide",
-            "description": "A glossary of abbreviations and acronyms is included for easy understanding."
+            "title": "Residual Solvents",
+            "description": "Tests for extraction-related solvent residue."
           }
         }
       },
       "block_order": [
-        "row_g9MtgK",
-        "row_k7AfR7",
-        "row_UyLTxp",
-        "row_LVmikA"
+        "row_xnkArz",
+        "row_m7zqTE",
+        "row_ydq4Rb",
+        "row_TW4aQt"
       ],
       "name": "t:general.coa_guide",
       "settings": {
         "heading": "How to Read a COA",
-        "background_color": "#f6f1ec"
+        "background_color": "#F6F1EC"
       }
     }
   },
@@ -178,7 +242,8 @@
     "main",
     "content_banner_BDzrWf",
     "lab_results_HmgaWd",
+    "quality_badges_card_hhpJCy",
     "coa_cards_MRUDHC",
-    "coa_guide_bpiRwk"
+    "coa_guide_FJM8Yq"
   ]
 }

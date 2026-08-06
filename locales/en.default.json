@@ -130,6 +130,9 @@
     "arrow_icon": "Arrow icon"
   },
   "sections": {
+    "marquee": {
+      "name": "Marquee"
+    },
     "contact_form": {
       "success_message": "Thank you! Your inquiry has been received.",
       "error_message": "There was an error submitting the form. Please try again."

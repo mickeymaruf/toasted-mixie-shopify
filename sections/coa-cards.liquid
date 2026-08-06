@@ -13,19 +13,10 @@
   style="background-color: {{ section.settings.background_color }};"
   {{ section.shopify_attributes }}
 >
-  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 px-5 pt-[7px] pb-[50px] sm:px-8 md:px-12 md:pb-[100px] lg:px-[80px] xl:px-[120px]">
+  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 px-5 pt-[7px] pb-[50px] sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px]">
     <!-- Search Filters Section -->
     <div class="flex w-full flex-col items-start gap-6 sm:flex-row">
-      <div class="min-w-0 flex-1 rounded-[4px] border border-[#c1c1c1] p-4">
-        <input
-          type="text"
-          class="w-full bg-transparent text-[15px] leading-normal font-normal text-[#212323] outline-none placeholder:text-[#989898]"
-          placeholder="{{ section.settings.filter_manufacturer_label }}"
-          aria-label="{{ section.settings.filter_manufacturer_label }}"
-          data-filter-manufacturer
-        >
-      </div>
-      <div class="min-w-0 flex-1 rounded-[4px] border border-[#c1c1c1] p-4">
+      <div class="min-w-0 flex-1 rounded-full border border-[#c1c1c1] p-4">
         <input
           type="text"
           class="w-full bg-transparent text-[15px] leading-normal font-normal text-[#212323] outline-none placeholder:text-[#989898]"
@@ -34,7 +25,7 @@
           data-filter-title
         >
       </div>
-      <div class="min-w-0 flex-1 rounded-[4px] border border-[#c1c1c1] p-4">
+      <div class="min-w-0 flex-1 rounded-full border border-[#c1c1c1] p-4">
         <input
           type="text"
           class="w-full bg-transparent text-[15px] leading-normal font-normal text-[#212323] outline-none placeholder:text-[#989898]"
@@ -120,29 +111,26 @@
 {% javascript %}
   class CoaFilter extends HTMLElement {
     connectedCallback() {
-      this.manufacturerInput = this.querySelector('[data-filter-manufacturer]');
       this.titleInput = this.querySelector('[data-filter-title]');
       this.batchInput = this.querySelector('[data-filter-batch]');
       this.rows = Array.from(this.querySelectorAll('[data-coa-row]'));
       this.emptyState = this.querySelector('[data-coa-empty]');
 
-      [this.manufacturerInput, this.titleInput, this.batchInput].forEach((input) => {
+      [this.titleInput, this.batchInput].forEach((input) => {
         input?.addEventListener('input', () => this.filter());
       });
     }
 
     filter() {
-      const manufacturerQuery = (this.manufacturerInput?.value || '').trim().toLowerCase();
       const titleQuery = (this.titleInput?.value || '').trim().toLowerCase();
       const batchQuery = (this.batchInput?.value || '').trim().toLowerCase();
 
       let visibleCount = 0;
 
       this.rows.forEach((row) => {
-        const matchesManufacturer = !manufacturerQuery || row.dataset.manufacturer.toLowerCase().includes(manufacturerQuery);
         const matchesTitle = !titleQuery || row.dataset.title.toLowerCase().includes(titleQuery);
         const matchesBatch = !batchQuery || row.dataset.batch.toLowerCase().includes(batchQuery);
-        const isVisible = matchesManufacturer && matchesTitle && matchesBatch;
+        const isVisible = matchesTitle && matchesBatch;
 
         row.hidden = !isVisible;
         if (isVisible) visibleCount += 1;
@@ -172,12 +160,6 @@
     {
       "type": "header",
       "content": "t:general.search_filters"
-    },
-    {
-      "type": "text",
-      "id": "filter_manufacturer_label",
-      "label": "Manufacturer Filter Label",
-      "default": "Search by Manufacturer's Name"
     },
     {
       "type": "text",

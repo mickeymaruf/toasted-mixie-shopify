@@ -183,9 +183,12 @@
             "heading": "Can't Pick Just One?",
             "button_label": "Get My Trial Pack",
             "button_link": "",
+            "button_background_color": "#d4941f",
+            "button_text_color": "#f6f1ec",
             "feature_1_text": "Free 3-flavor trial pack.",
             "feature_2_text": "Just Pay Shipping",
-            "background_color": "#9ab2d5"
+            "background_color": "#9ab2d5",
+            "feature_text_color": "#212323"
           },
           "blocks": {}
         }
@@ -195,96 +198,95 @@
         "rating": 5,
         "show_badge": true,
         "badge_text": "Launching Soon",
-        "delivery_interval": "1 month",
-        "subscribe_card_background_color": "#c2cbd4",
         "pack_pill_background_color": "#c7aa9a",
         "pack_pill_text_color": "#212323",
+        "subscribe_heading": "Subscribe & Save",
+        "save_badge_text": "Save [percent]%",
+        "save_every_order_text": "Save [percent]% on every order",
+        "benefit_1_text": "Delivered every 1 month",
+        "benefit_2_text": "Save [amount] each delivery",
+        "benefit_3_text": "Pause, skip, cancel anytime",
+        "subscribe_card_background_color": "#c2cbd4",
+        "subscribe_pill_background_color": "#636d90",
+        "subscribe_pill_text_color": "#f6f1ec",
         "custom_button_text": "Claim Your Trial Pack\n<strong class=\"font-medium\">FREE</strong>"
       }
     },
-    "faq_pills_grid_8Wfzf6": {
+    "faq_pills_grid_Hp3E9Q": {
       "type": "faq-pills-grid",
       "blocks": {
-        "faq_item_YPAGzA": {
+        "faq_item_dYjm3d": {
           "type": "faq-item",
           "settings": {
             "question": "What is Toasted?",
-            "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "answer": "",
+            "initially_open": false
           },
           "blocks": {}
         },
-        "faq_item_GehJNf": {
+        "faq_item_xQQg97": {
           "type": "faq-item",
           "settings": {
             "question": "Ingredients & Allergies",
-            "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "answer": "",
+            "initially_open": false
           },
           "blocks": {}
         },
-        "faq_item_QChKnG": {
+        "faq_item_9QKDqx": {
           "type": "faq-item",
           "settings": {
             "question": "What to Expect",
-            "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "answer": "",
+            "initially_open": false
           },
           "blocks": {}
         },
-        "faq_item_dr6wdx": {
+        "faq_item_NxLiBi": {
           "type": "faq-item",
           "settings": {
             "question": "How is it dosed?",
-            "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "answer": "",
+            "initially_open": false
           },
           "blocks": {}
         },
-        "faq_item_bz9Q7P": {
+        "faq_item_ALptfV": {
           "type": "faq-item",
           "settings": {
             "question": "Is it legal to ship?",
-            "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "answer": "",
+            "initially_open": false
           },
           "blocks": {}
         },
-        "faq_item_mDPWP9": {
+        "faq_item_imi49b": {
           "type": "faq-item",
           "settings": {
             "question": "Lab Results",
-            "answer": "<p>What is Toasted?</p>",
-            "initially_open": false,
-            "background_color": "#f9d5c0",
-            "text_color": "#212323"
+            "answer": "",
+            "initially_open": false
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "faq_item_YPAGzA",
-        "faq_item_GehJNf",
-        "faq_item_QChKnG",
-        "faq_item_dr6wdx",
-        "faq_item_bz9Q7P",
-        "faq_item_mDPWP9"
+        "faq_item_dYjm3d",
+        "faq_item_xQQg97",
+        "faq_item_9QKDqx",
+        "faq_item_NxLiBi",
+        "faq_item_ALptfV",
+        "faq_item_imi49b"
       ],
       "name": "t:general.faq_pills_grid",
       "settings": {
         "heading": "Frequently asked questions",
-        "background_color": "#f6f1ec",
+        "section_background": "#f6f1ec",
+        "card_background": "#9ab2d5",
         "heading_color": "#212323",
+        "border_color": "#212323",
+        "faq_item_background": "#636D90",
+        "faq_item_text_color": "#F6F1EC",
         "columns_desktop": "3",
         "padding_top": 100,
         "padding_bottom": 100,
@@ -423,7 +425,7 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#C7AA9A"
+            "button_text_color": "#c7aa9a"
           },
           "blocks": {}
         },
@@ -492,7 +494,7 @@
   },
   "order": [
     "main",
-    "faq_pills_grid_8Wfzf6",
+    "faq_pills_grid_Hp3E9Q",
     "ingredient_highlights_wcTznK",
     "gruns_product_list_ayENjD",
     "gruns_find_toasted_EFQ7iF"

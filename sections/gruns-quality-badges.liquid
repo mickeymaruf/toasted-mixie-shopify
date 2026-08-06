@@ -6,11 +6,25 @@
 {% enddoc %}
 
 <section
-  class="gruns-quality-badges full-width overflow-hidden"
+  class="gruns-quality-badges full-width relative overflow-hidden"
   style="background-color: {{ section.settings.background_color }};"
 >
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    {% if section.settings.background_image %}
+      {{
+        section.settings.background_image
+        | image_url: width: 1600
+        | image_tag: class: 'absolute size-full object-cover object-bottom', widths: '800, 1200, 1600', alt: '', style: 'opacity: 0.08; filter: saturate(0);'
+      }}
+    {% endif %}
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(89.98deg, {{ section.settings.background_color }} 16.829%, rgba(99, 109, 144, 0) 99.997%);"
+    ></div>
+  </div>
+
   <div
-    class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-10 px-5 py-10 sm:px-8 sm:py-12 md:px-12 lg:flex-row lg:items-center lg:gap-[60px] lg:px-[80px] lg:py-[80px] xl:px-[120px] xl:py-[50px]"
+    class="relative mx-auto flex w-full max-w-[1920px] flex-col items-center gap-10 px-5 py-10 sm:px-8 sm:py-12 md:px-12 lg:flex-row lg:items-center lg:gap-[60px] lg:px-[80px] lg:py-[80px] xl:px-[120px] xl:py-[100px]"
   >
     <div
       class="flex w-full flex-col items-start gap-5 text-left xl:w-[40%] xl:max-w-[40%] xl:shrink-0"
@@ -69,26 +83,31 @@
       "content": "t:general.colors"
     },
     {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background_image"
+    },
+    {
       "type": "color",
       "id": "background_color",
       "label": "t:labels.background",
-      "default": "#9AB2D5"
+      "default": "#636D90"
     },
     {
       "type": "color",
       "id": "heading_color",
       "label": "t:labels.text_color",
-      "default": "#212323"
+      "default": "#F6F1EC"
     }
   ],
   "presets": [
     {
       "name": "t:general.quality_badges",
       "blocks": [
-        { "type": "icon-badge-card", "settings": { "label": "Lab Tested", "icon_style": "lab" } },
-        { "type": "icon-badge-card", "settings": { "label": "Low Dose", "icon_style": "low_dose" } },
-        { "type": "icon-badge-card", "settings": { "label": "Low Calorie", "icon_style": "low_calorie" } },
-        { "type": "icon-badge-card", "settings": { "label": "Non-carbonated", "icon_style": "non_carbonated" } }
+        { "type": "icon-badge-card", "settings": { "label": "Lab Tested" } },
+        { "type": "icon-badge-card", "settings": { "label": "Low Dose" } },
+        { "type": "icon-badge-card", "settings": { "label": "Low Calorie" } },
+        { "type": "icon-badge-card", "settings": { "label": "Non-carbonated" } }
       ]
     }
   ]

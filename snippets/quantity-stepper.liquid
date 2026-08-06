@@ -58,39 +58,18 @@
   </button>
 </quantity-stepper>
 
-{% javascript %}
-  if (!customElements.get('quantity-stepper')) {
-    class QuantityStepper extends HTMLElement {
-      connectedCallback() {
-        this.input = this.querySelector('[data-quantity-input]');
-        this.decreaseButton = this.querySelector('[data-quantity-decrease]');
-        this.increaseButton = this.querySelector('[data-quantity-increase]');
+{% comment %}
+  The `quantity-stepper` custom element is registered from
+  `sections/cart-drawer.liquid`'s {% javascript %} block, not from here.
 
-        this.decreaseButton?.addEventListener('click', () => this.step(-1));
-        this.increaseButton?.addEventListener('click', () => this.step(1));
-        this.input?.addEventListener('change', () => this.setValue(this.input.valueAsNumber));
-      }
-
-      get min() {
-        return Number(this.input?.min || 0);
-      }
-
-      step(delta) {
-        const current = this.input?.valueAsNumber || 0;
-        this.setValue(current + delta);
-      }
-
-      setValue(value) {
-        const min = this.min;
-        const next = Number.isFinite(value) ? Math.max(min, Math.round(value)) : min;
-
-        if (this.input) this.input.value = next;
-        if (this.decreaseButton) this.decreaseButton.disabled = next <= min;
-
-        this.dispatchEvent(new CustomEvent('quantity-change', { bubbles: true, detail: { value: next } }));
-      }
-    }
-
-    customElements.define('quantity-stepper', QuantityStepper);
-  }
-{% endjavascript %}
+  This snippet is only ever rendered inside `cart-drawer-item`, which is
+  wrapped in `{% if cart.item_count > 0 %}`. Shopify only injects a snippet's
+  bundled JS on pages where that snippet actually rendered, so on any page
+  where the cart starts empty (the common case for a new visitor), this
+  file's own {% javascript %} would never load. When the shopper then adds
+  their first item, the cart drawer swaps in `<quantity-stepper>` markup via
+  AJAX and the custom element would be unregistered, leaving the +/- buttons
+  inert. The `cart-drawer` section is always rendered from `layout/theme.liquid`,
+  so registering the element there guarantees it's defined before any markup
+  needs it.
+{% endcomment %}
