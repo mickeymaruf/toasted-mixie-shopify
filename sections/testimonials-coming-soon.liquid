@@ -1,4 +1,4 @@
-<div class="testimonials-section px-[50px] py-[50px] md:p-[80px] lg:px-[120px] lg:py-[100px]">
+<div class="testimonials-section px-[50px] py-[50px] md:p-[80px] lg:px-[120px] lg:py-[100px]" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }}">
   {%- capture heading_prefix -%}
     {{ section.settings.heading_prefix }}
   {%- endcapture -%}
@@ -6,7 +6,7 @@
   <div class="flex flex-col gap-12 w-full">
     <!-- Heading -->
     <div class="text-center">
-      <h1 class="text-[72px] font-bold leading-tight tracking-[-2.16px] text-[#212323]">
+      <h1 class="text-[72px] font-bold leading-tight tracking-[-2.16px]" style="color: {{ section.settings.text_color }}">
         <span>{{ heading_prefix }}</span>
         <em class="italic">{{ section.settings.heading_suffix }}</em>
       </h1>
@@ -31,11 +31,11 @@
 
             <!-- Profile Info -->
             <div class="flex flex-col gap-1">
-              <p class="text-[12px] font-['Neue_Haas_Grotesk_Display_Pro'] text-[#212323]">
+              <p class="text-[12px]">
                 {{ section.settings.reviewer_name }}
               </p>
               <div class="flex items-center gap-1.5">
-                <span class="text-[14px] font-['Neue_Haas_Grotesk_Display_Pro'] font-medium text-[#212323]">
+                <span class="text-[14px] font-medium">
                   {{ section.settings.reviewer_title }}
                 </span>
                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
@@ -59,10 +59,10 @@
 
           <!-- Testimonial Text -->
           <div class="flex flex-col gap-2">
-            <p class="text-[14px] font-['Neue_Haas_Grotesk_Display_Pro'] font-medium text-[#212323]">
+            <p class="text-[14px] font-medium">
               {{ section.settings.testimonial_title }}
             </p>
-            <p class="text-[16px] font-['Neue_Haas_Grotesk_Display_Pro'] text-[#212323]">
+            <p class="text-[16px]">
               {{ section.settings.testimonial_text }}
             </p>
           </div>
@@ -76,6 +76,18 @@
 {
   "name": "Testimonials Coming Soon",
   "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#212323"
+    },
     {
       "type": "text",
       "id": "heading_prefix",
