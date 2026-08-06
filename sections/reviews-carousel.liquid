@@ -1,0 +1,254 @@
+{% doc %}
+  Renders a review carousel section with rating display and image carousel.
+  Uses Swiper for carousel functionality with previous/next controls.
+{% enddoc %}
+
+<section
+  class="reviews-carousel relative overflow-hidden"
+  style="background-color: {{ section.settings.bg_color }};"
+>
+  <div class="mx-auto w-full max-w-[1920px] flex flex-col gap-6 px-[50px] py-[50px] md:px-[80px] md:py-[80px] lg:px-[120px] lg:py-[100px]">
+    <!-- Rating Header -->
+    <div class="flex gap-4 items-center">
+      <!-- Rating Number -->
+      <span class="text-[18px] font-medium" style="color: {{ section.settings.text_color }}">
+        {{ section.settings.rating }}
+      </span>
+
+      <!-- Stars -->
+      <div class="flex gap-0.5 items-center pb-0.5">
+        {%- for i in (1..5) -%}
+          <svg class="w-4.5 h-4.5 {% if i <= section.settings.rating | floor %}text-[#D4941F]{% else %}text-[#e0e0e0]{% endif %}" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2l-2.81 6.63L2 9.24l5.46 4.73L5.82 21 12 17.27z"/>
+          </svg>
+        {%- endfor -%}
+      </div>
+
+      <!-- Text -->
+      <span class="text-[12px]" style="color: {{ section.settings.text_color }}">
+        {{ section.settings.rating_text }}
+      </span>
+    </div>
+
+    <!-- Carousel -->
+    {%- if section.blocks.size > 0 -%}
+      <reviews-carousel-component class="relative flex w-full items-center gap-4">
+        <!-- Previous Button -->
+        <button
+          type="button"
+          class="hidden sm:flex size-12 shrink-0 items-center justify-center z-10 cursor-pointer hover:opacity-70 transition-opacity"
+          data-carousel-prev
+          aria-label="Previous review"
+          style="color: {{ section.settings.text_color }}"
+        >
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"/>
+          </svg>
+        </button>
+
+        <!-- Carousel Container -->
+        <div class="swiper reviews-carousel__swiper flex-1 overflow-hidden min-w-0">
+          <div class="swiper-wrapper reviews-carousel__track gap-4">
+            {%- for block in section.blocks -%}
+              <div class="swiper-slide h-auto" {{ block.shopify_attributes }}>
+                <div class="aspect-square rounded-[25px] overflow-hidden bg-gray-200">
+                  {% if block.settings.image %}
+                    {{ block.settings.image | image_url: width: 500, height: 500 | image_tag: class: 'w-full h-full object-cover' }}
+                  {% else %}
+                    <div class="w-full h-full flex items-center justify-center bg-gray-300">
+                      <span class="text-gray-500">{{ block.settings.placeholder_text | default: 'Image' }}</span>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <!-- Next Button -->
+        <button
+          type="button"
+          class="hidden sm:flex size-12 shrink-0 items-center justify-center z-10 cursor-pointer hover:opacity-70 transition-opacity"
+          data-carousel-next
+          aria-label="Next review"
+          style="color: {{ section.settings.text_color }}"
+        >
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/>
+          </svg>
+        </button>
+      </reviews-carousel-component>
+    {%- endif -%}
+
+    <!-- CTA Button -->
+    {%- if section.settings.button_text != blank -%}
+      <div class="flex justify-center pt-6">
+        <a
+          href="{{ section.settings.button_url }}"
+          class="px-8 py-3 rounded-lg font-medium transition-opacity hover:opacity-80"
+          style="background-color: {{ section.settings.button_bg_color }}; color: {{ section.settings.button_text_color }}"
+        >
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const initSwiper = () => {
+      const carouselEl = document.querySelector('reviews-carousel-component');
+      if (!carouselEl || typeof Swiper === 'undefined') return;
+
+      const prevEl = carouselEl.querySelector('[data-carousel-prev]');
+      const nextEl = carouselEl.querySelector('[data-carousel-next]');
+
+      new Swiper(carouselEl.querySelector('.swiper'), {
+        slidesPerView: 1.5,
+        loop: true,
+        grabCursor: true,
+        navigation: {
+          prevEl: prevEl,
+          nextEl: nextEl,
+        },
+        breakpoints: {
+          425: {
+            slidesPerView: 2.2,
+          },
+          640: {
+            slidesPerView: 3,
+          },
+          1024: {
+            slidesPerView: 3.5,
+          },
+          1280: {
+            slidesPerView: 4.5,
+          },
+        },
+      });
+    };
+
+    initSwiper();
+
+    // Support Shopify Theme Editor re-initialization
+    document.addEventListener('shopify:section:load', initSwiper);
+  });
+</script>
+
+{% stylesheet %}
+  .reviews-carousel__track {
+    box-sizing: border-box;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Reviews Carousel",
+  "blocks": [
+    {
+      "type": "review-image",
+      "name": "Review Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "placeholder_text",
+          "label": "Placeholder text",
+          "default": "Image coming soon"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "Rating"
+    },
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Rating",
+      "default": "4.9"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating text",
+      "default": "Be among the first to review."
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Write a review"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews Carousel",
+      "blocks": [
+        {
+          "type": "review-image",
+          "settings": {
+            "placeholder_text": "Image coming soon"
+          }
+        },
+        {
+          "type": "review-image",
+          "settings": {
+            "placeholder_text": "Image coming soon"
+          }
+        },
+        {
+          "type": "review-image",
+          "settings": {
+            "placeholder_text": "Image coming soon"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
