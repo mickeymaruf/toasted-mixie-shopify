@@ -43,8 +43,8 @@
         {% endif %}
       </a>
 
-      <div class="flex w-full items-center justify-between gap-8">
-        <div class="flex flex-col gap-[30px] items-start">
+      <div class="flex w-full flex-col items-center gap-10 lg:flex-row lg:items-stretch lg:justify-between lg:gap-8">
+        <div class="flex w-full flex-col gap-[30px] items-center text-center sm:items-start sm:text-left lg:w-auto lg:items-start">
           {% if section.settings.heading != blank or section.settings.subheading != blank %}
             <div class="flex flex-col gap-[10px]">
               {% if section.settings.heading != blank %}
@@ -100,9 +100,9 @@
           </div>
         </div>
 
-        <div class="flex gap-[60px] items-start">
+        <div class="flex w-full flex-row flex-wrap items-start justify-center gap-10 sm:gap-16 lg:w-auto lg:gap-[60px]">
           {% if section.settings.shop_menu.links.size > 0 %}
-            <div class="flex flex-col gap-[30px] items-start">
+            <div class="flex flex-1 flex-col gap-[30px] items-center text-center sm:flex-none sm:items-start sm:text-left">
               {% if section.settings.shop_title != blank %}
                 <p class="text-[28px] leading-[1.2] font-bold">{{ section.settings.shop_title }}</p>
               {% endif %}
@@ -117,7 +117,7 @@
           {% endif %}
 
           {% if section.settings.help_menu.links.size > 0 %}
-            <div class="flex flex-col gap-[30px] items-start">
+            <div class="flex flex-1 flex-col gap-[30px] items-center text-center sm:flex-none sm:items-start sm:text-left">
               {% if section.settings.help_title != blank %}
                 <p class="text-[28px] leading-[1.2] font-bold">{{ section.settings.help_title }}</p>
               {% endif %}
@@ -132,11 +132,11 @@
           {% endif %}
 
           {% if section.settings.about_menu.links.size > 0 %}
-            <div class="flex flex-col gap-[30px] items-end">
+            <div class="flex flex-1 flex-col gap-[30px] items-center text-center sm:flex-none sm:items-start sm:text-left lg:items-end lg:text-right">
               {% if section.settings.about_title != blank %}
                 <p class="text-[28px] leading-[1.2] font-bold">{{ section.settings.about_title }}</p>
               {% endif %}
-              <ul class="flex flex-col items-end gap-[15px] text-[16px] leading-[1.3]">
+              <ul class="flex flex-col items-center gap-[15px] text-[16px] leading-[1.3] sm:items-start lg:items-end">
                 {% for link in section.settings.about_menu.links %}
                   <li>
                     <a
