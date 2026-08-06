@@ -29,31 +29,29 @@
                 <div class="flex flex-col gap-[16px]">
             {% endif %}
 
-            <div
-              class="faq-item bg-[#f6f1ec] border border-[rgba(33,35,35,0.15)] rounded-lg overflow-hidden"
-              data-faq-item
-              {{ block.shopify_attributes }}
-            >
-              <button
-                class="faq-item-toggle w-full flex items-center justify-between px-[24px] py-[18px] text-left hover:bg-[rgba(33,35,35,0.05)] transition-colors"
-                aria-expanded="false"
-                aria-controls="faq-answer-{{ block.id }}"
-              >
-                <span class="font-medium text-[18px] leading-[1.5] text-[#212323] flex-1 sm:text-[20px] md:text-[22px] lg:text-[24px]">
-                  {{ block.settings.question }}
-                </span>
-                <div class="faq-chevron ml-4 flex-shrink-0 transition-transform duration-300 flex h-[18px] w-[18px] items-center justify-center sm:h-[20px] sm:w-[20px] md:h-[22px] md:w-[22px]">
-                  <img src="{{ 'icon-arrow-down-1.svg' | asset_url }}" alt="" class="h-full w-full" />
-                </div>
-              </button>
+            <div class="faq-item" data-faq-item {{ block.shopify_attributes }}>
+              <div class="faq-item-question bg-[#f6f1ec] border-[3px] border-[#000000] rounded-full overflow-hidden">
+                <button
+                  class="faq-item-toggle w-full flex items-center justify-between px-[24px] py-[18px] text-left hover:bg-[rgba(33,35,35,0.05)] transition-colors"
+                  aria-expanded="false"
+                  aria-controls="faq-answer-{{ block.id }}"
+                >
+                  <span class="font-medium text-[18px] leading-[1.5] text-[#212323] flex-1 sm:text-[20px] md:text-[22px] lg:text-[24px]">
+                    {{ block.settings.question }}
+                  </span>
+                  <div class="faq-chevron ml-4 flex-shrink-0 transition-transform duration-300 flex h-[14px] w-[14px] items-center justify-center sm:h-[16px] sm:w-[16px] md:h-[18px] md:w-[18px]">
+                    <img src="{{ 'icon-arrow-down-1.svg' | asset_url }}" alt="" class="h-full w-full" />
+                  </div>
+                </button>
+              </div>
 
               <div
                 id="faq-answer-{{ block.id }}"
-                class="faq-item-answer"
+                class="faq-item-answer bg-[#f6f1ec] border-x-[3px] border-b-[3px] border-[#000000] rounded-b-[24px]"
                 role="region"
                 aria-labelledby="faq-question-{{ block.id }}"
               >
-                <div class="px-[24px] py-[18px] border-t border-[rgba(33,35,35,0.15)] text-[14px] leading-[1.6] text-[#212323] sm:text-[15px] md:text-[16px]">
+                <div class="px-[24px] py-[18px] text-[14px] leading-[1.6] text-[#212323] sm:text-[15px] md:text-[16px]">
                   {{ block.settings.answer }}
                 </div>
               </div>
@@ -84,11 +82,20 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: none;
   }
 
   .faq-item-answer.show {
+    display: block;
     max-height: 500px;
     transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-item:has(.faq-item-toggle[aria-expanded="true"]) .faq-item-question {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
   }
 {% endstylesheet %}
 

@@ -24,8 +24,14 @@
   {% endif %}
 
   {% if block.settings.body != blank %}
-    <div class="story-tile-cell__body w-full text-[16px] leading-[1.5] sm:text-[18px] md:text-[15px] lg:text-[18px] xl:text-[20px]">
+    <div class="story-tile-cell__body w-full text-[16px] leading-[1.5] sm:text-[18px] md:text-[20px] lg:text-[24px] xl:text-[28px]">
       {{ block.settings.body }}
+    </div>
+  {% endif %}
+
+  {% if block.settings.image != blank %}
+    <div class="story-tile-cell__image w-full max-w-[120px] ml-[20px]">
+      {{ block.settings.image | image_url: width: 240 | image_tag }}
     </div>
   {% endif %}
 </div>
@@ -44,6 +50,17 @@
     margin-top: 1em;
   }
 
+  .story-tile-cell__image {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+  }
+
+  .story-tile-cell__image img {
+    max-width: 100%;
+    height: auto;
+  }
+
   /*
     A "one-third" width cell shares the same row height as a "two-thirds"
     cell but gets a third of the horizontal space, so it needs its own,
@@ -57,7 +74,7 @@
     }
 
     .story-tile-cell[data-tile-width="1"] .story-tile-cell__body {
-      font-size: 16px;
+      font-size: 20px;
     }
   }
 
@@ -68,7 +85,7 @@
     }
 
     .story-tile-cell[data-tile-width="1"] .story-tile-cell__body {
-      font-size: 18px;
+      font-size: 20px;
     }
   }
 
@@ -84,7 +101,7 @@
     }
 
     .story-tile-cell[data-tile-width="2"] .story-tile-cell__body {
-      font-size: 14px;
+      font-size: 18px;
     }
   }
 
@@ -95,7 +112,7 @@
     }
 
     .story-tile-cell[data-tile-width="2"] .story-tile-cell__body {
-      font-size: 18px;
+      font-size: 20px;
     }
   }
 {% endstylesheet %}
@@ -114,6 +131,11 @@
       "type": "richtext",
       "id": "body",
       "label": "t:labels.body"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.image"
     },
     {
       "type": "header",

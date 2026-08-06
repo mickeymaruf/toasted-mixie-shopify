@@ -25,25 +25,6 @@
         "background_color": "#f6f1ec"
       }
     },
-    "gruns_hero_LTibNz": {
-      "type": "gruns-hero",
-      "name": "t:general.gruns_hero",
-      "settings": {
-        "heading": "<p>Better options. Better moments. Better margins.</p>",
-        "description": "<p>Toasted gives guests a light, premium option they can order, enjoy, and remember.</p>",
-        "show_button": false,
-        "button_label": "Get My Trial Pack",
-        "button_link": "",
-        "button_background_color": "#212323",
-        "button_text_color": "#f6f1ec",
-        "feature_1_text": "Free 3-flavor trial pack.",
-        "feature_2_text": "Just Pay Shipping",
-        "background_color": "#f6f1ec",
-        "heading_color": "#212323",
-        "product_image": "shopify://shop_images/Group_104.png",
-        "product_image_alt": ""
-      }
-    },
     "promo_cards_tdzKYC": {
       "type": "promo-cards",
       "blocks": {
@@ -223,7 +204,6 @@
   "order": [
     "main",
     "hero_banner_TVLmyk",
-    "gruns_hero_LTibNz",
     "promo_cards_tdzKYC",
     "contact_form_chM34h"
   ]

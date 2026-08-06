@@ -66,8 +66,8 @@
       ],
       "name": "t:sections.contact_form.name",
       "settings": {
-        "heading": "Say hello.",
-        "subheading": "Questions, partnerships, press, wholesale, or venue inquiries. Send us a note.",
+        "heading": "Need help? We’re here.",
+        "subheading": "Questions, orders, wholesale, partnerships, or press. Send us a note.",
         "form_type": "shopify_contact",
         "form_endpoint": "",
         "button_text": "Send message",

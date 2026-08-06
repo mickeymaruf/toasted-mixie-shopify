@@ -19,10 +19,10 @@
       "name": "t:general.hero_banner",
       "settings": {
         "heading": "Choose your Flavor.",
-        "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
+        "subheading": "Everything to know before you try Toasted.",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_2.png",
-        "background_color": "#f6f1ec"
+        "background_color": "#9AB2D5"
       }
     },
     "faq_accordion_zGV9jD": {
@@ -222,7 +222,7 @@
       ],
       "name": "FAQ Accordion",
       "settings": {
-        "background_color": "#F6F1EC"
+        "background_color": "#9AB2D5"
       }
     }
   },

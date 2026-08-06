@@ -18,11 +18,11 @@
       "type": "hero-banner",
       "name": "t:general.hero_banner",
       "settings": {
-        "heading": "Choose your Flavor.",
-        "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
+        "heading": "We made Toasted for moments worth remembering.",
+        "subheading": "A functional relaxation beverage made with real fruit.",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_1_2c36f923-1247-452f-a22a-03389584c8ed.png",
-        "background_color": "#f6f1ec"
+        "background_color": "#9ab2d5"
       }
     },
     "content_block_cb4Hiy": {
@@ -30,8 +30,8 @@
       "name": "t:general.content_block",
       "settings": {
         "heading": "<p>The <em>Chill</em> Drink.</p>",
-        "subheading": "Relax, connect, and stay present.",
-        "background_color": "#f6f1ec",
+        "subheading": "Present in the moment. Made for moments worth remembering.",
+        "background_color": "#9ab2d5",
         "text_color": "#212323"
       }
     },
@@ -67,10 +67,10 @@
             "story_tile_text_xzb4xt": {
               "type": "story-tile-text",
               "settings": {
-                "heading": "<p>More open. More present. More here.</p>",
-                "body": "<p>A lighter ritual for being present in the moment.</p>",
-                "background_color": "#c2cbd4",
-                "text_color": "#212323",
+                "heading": "",
+                "body": "<p>Made with real fruit,<br/>L-theanine, Rhodiola, and 0.4mg hemp-derived THC.</p>",
+                "background_color": "#551f36",
+                "text_color": "#ffffff",
                 "width": "1"
               },
               "blocks": {}
@@ -89,7 +89,7 @@
             "story_tile_image_8e7reC": {
               "type": "story-tile-image",
               "settings": {
-                "image": "shopify://shop_images/Frame_2147235832.png",
+                "image": "shopify://shop_images/Frame_2147235832_1.png",
                 "alt_text": "",
                 "show_grain": true,
                 "texture_opacity": 20,
@@ -100,9 +100,9 @@
             "story_tile_text_peDFB3": {
               "type": "story-tile-text",
               "settings": {
-                "heading": "<p>Good rooms deserve better options.</p>",
-                "body": "<p>Toasted belongs here. For premium venues, retailers, and partners who want a better option for the social moment.</p>",
-                "background_color": "#212323",
+                "heading": "<p>Social moments deserve better options.</p>",
+                "body": "<p>Toasted was made for people who want a better option for the social moment.</p>",
+                "background_color": "#626c8d",
                 "text_color": "#f6f1ec",
                 "width": "2"
               },
@@ -121,9 +121,10 @@
             "story_tile_text_MpDhDY": {
               "type": "story-tile-text",
               "settings": {
-                "heading": "<p>A note from Danny.</p>",
-                "body": "<p>We wanted a drink that helped you feel relaxed without checking out. Something light, tasteful, and made to be enjoyed any time of day.</p><p>This was built for those of us who ran out of options in today's social world.</p><p>Stay Toasted, my friends.<br/><em>Danny</em></p>",
-                "background_color": "#9ab2d5",
+                "heading": "",
+                "body": "<p>We created a drink to help you<strong> relax without checking out</strong>. Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society.<br/><br/><strong>Stay Toasted.</strong></p>",
+                "image": "shopify://shop_images/signature.svg",
+                "background_color": "#c2cbd4",
                 "text_color": "#212323",
                 "width": "2"
               },
@@ -132,7 +133,7 @@
             "story_tile_image_Yx6iqP": {
               "type": "story-tile-image",
               "settings": {
-                "image": "shopify://shop_images/Frame_2147235832_1.png",
+                "image": "shopify://shop_images/Frame_2147235832_02bfe72f-dad7-4a32-86dc-971bf320522b.png",
                 "alt_text": "",
                 "show_grain": true,
                 "texture_opacity": 20,
@@ -155,10 +156,10 @@
       "name": "t:general.story_tiles",
       "settings": {}
     },
-    "gruns_product_list_UJ4BNP": {
+    "gruns_product_list_gyYaxT": {
       "type": "gruns-product-list",
       "blocks": {
-        "product_card_Dbricq": {
+        "product_card_FARwcC": {
           "type": "product-card",
           "settings": {
             "product": "blood-orange",
@@ -169,11 +170,11 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
-        "product_card_yTcGYc": {
+        "product_card_aHDbp6": {
           "type": "product-card",
           "settings": {
             "product": "berry-acai",
@@ -184,11 +185,11 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#C7AA9A"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
-        "product_card_qrQVEj": {
+        "product_card_jBkT9A": {
           "type": "product-card",
           "settings": {
             "product": "ginger-lime",
@@ -199,11 +200,11 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
-        "product_card_MGTWRf": {
+        "product_card_tpGA3w": {
           "type": "product-card",
           "settings": {
             "product": "try-all-3-flavors",
@@ -214,22 +215,41 @@
             "price_text": "Just Pay Shipping",
             "button_label": "Try Now",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "product_card_Dbricq",
-        "product_card_yTcGYc",
-        "product_card_qrQVEj",
-        "product_card_MGTWRf"
+        "product_card_FARwcC",
+        "product_card_aHDbp6",
+        "product_card_jBkT9A",
+        "product_card_tpGA3w"
       ],
       "name": "t:general.product_list",
       "settings": {
         "heading": "Choose your flavor.",
-        "background_color": "#f6f1ec",
+        "background_color": "#9ab2d5",
         "heading_color": "#212323"
+      }
+    },
+    "gruns_find_toasted_XUAkUx": {
+      "type": "gruns-find-toasted",
+      "name": "t:general.gruns_find_toasted",
+      "settings": {
+        "heading": "Find Toasted",
+        "description": "Coming to select venues and retailers.",
+        "show_button": true,
+        "button_label": "Find near you",
+        "button_link": "",
+        "button_background_color": "#f9d5c0",
+        "button_text_color": "#1e2125",
+        "background_color": "#9ab2d5",
+        "panel_background_color": "#551f36",
+        "panel_background_image": "shopify://shop_images/Group_82.png",
+        "heading_color": "#ffffff",
+        "billboard_image": "shopify://shop_images/Cllg5_2_1.png",
+        "billboard_image_alt": ""
       }
     }
   },
@@ -238,6 +258,7 @@
     "hero_banner_AFPte7",
     "content_block_cb4Hiy",
     "story_tiles_gg9aqG",
-    "gruns_product_list_UJ4BNP"
+    "gruns_product_list_gyYaxT",
+    "gruns_find_toasted_XUAkUx"
   ]
 }

@@ -199,8 +199,6 @@
       "settings": {
         "text_color": "#212323",
         "background_color": "#9AB2D5",
-        "padding_top": 40,
-        "padding_bottom": 40,
         "text_size": 36,
         "gap": 52
       }
