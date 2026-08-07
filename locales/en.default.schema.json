@@ -39,6 +39,11 @@
     "batch_1": "Batch 1",
     "batch_2": "Batch 2",
     "batch_3": "Batch 3",
+    "bundle_builder": "Bundle builder",
+    "bundle_product": "Bundle product",
+    "bundle_product_list": "Bundle product list",
+    "bundle_milestone": "Bundle milestone",
+    "bundle_milestone_list": "Bundle milestone list",
     "colors": "Colors",
     "combo_offer": "Combo offer",
     "pricing": "Pricing",
@@ -153,6 +158,7 @@
     "button_label_info": "Defaults to \"Shop {flavor name}\" if left blank",
     "button_style": "Button style",
     "arrow_label": "Arrow label",
+    "add_to_cart_label": "Add to cart button label",
     "container_background": "Container background",
     "button_link": "Button link",
     "button_text_color": "Button text color",
@@ -220,9 +226,11 @@
     "menu": "Menu",
     "menu_item_title": "Menu item title for mega menu",
     "customer_account_menu": "Customer account menu",
+    "one_time_label": "One-time order label",
     "opacity": "Opacity",
     "overlay_color": "Overlay color",
     "overlay_opacity": "Overlay opacity",
+    "pack_label": "Pack label",
     "pack_pill_background": "Pack size pill background",
     "pack_pill_text_color": "Pack size pill text color",
     "subscribe_pill_background": "Subscribe pill background",
@@ -255,7 +263,10 @@
     "product_image": "Product image",
     "product_name": "Product name",
     "product_name_color": "Product name color",
+    "purchase_selected_color": "Selected purchase option color",
     "review_text_color": "Review text color",
+    "reward_label": "Reward label",
+    "reward_label_info": "The discount shown on this milestone, e.g. \"$5\" or \"Free Ship\"",
     "star_rating": "Star rating",
     "star_count": "Number of stars to display",
     "star_color": "Star color",
@@ -282,11 +293,16 @@
     "search_button_text": "Search button text",
     "search_button_text_info": "Text to display next to search icon on desktop",
     "show_social_icons": "Show social icons",
+    "spend_threshold": "Spend threshold",
+    "spend_threshold_info": "The bundle subtotal a shopper must reach to unlock this reward",
     "subheading": "Subheading",
+    "subscribe_label": "Subscribe & save label",
+    "subscribe_note": "Subscribe note",
     "subtext": "Subtext",
     "subtitle": "Subtitle",
     "swatch_image": "Swatch image",
     "text_color": "Text color",
+    "background_color": "Background color",
     "text_style": "Text style",
     "text": "Text",
     "thumbnail_image": "Thumbnail image",
@@ -377,6 +393,14 @@
     },
     "combo_offer": {
       "name": "Combo Offer"
+    },
+    "order_confirmation": {
+      "name": "Order Confirmation",
+      "settings": {
+        "main_heading_header": "Main heading",
+        "card_header": "Order confirmation card",
+        "button_header": "Button"
+      }
     }
   }
 }

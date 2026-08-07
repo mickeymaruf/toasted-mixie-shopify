@@ -21,9 +21,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "0.4mg hemp-derived THC",
+                "label": "200mg L-theanine",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-thc-highlight.svg"
+                "icon": "shopify://shop_images/Group_86.svg"
               },
               "blocks": {}
             },
@@ -31,9 +31,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "L-theanine + Rhodiola",
+                "label": "0.4mg hemp-derived THC",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-adaptogen.svg"
+                "icon": "shopify://shop_images/Group_154.svg"
               },
               "blocks": {}
             },
@@ -41,9 +41,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "Non-carbonated",
+                "label": "50mg Rhodiola",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-non-carbonated.svg"
+                "icon": "shopify://shop_images/Group_89_1.svg"
               },
               "blocks": {}
             },
@@ -51,9 +51,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "COA available",
+                "label": "Non-carbonated",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-usa-hemp.svg"
+                "icon": "shopify://shop_images/Group_155.svg"
               },
               "blocks": {}
             }
@@ -202,7 +202,7 @@
         "rating": 5,
         "show_badge": true,
         "badge_text": "Launching Soon",
-        "pack_pill_background_color": "#c7aa9a",
+        "pack_pill_background_color": "#f9d5c0",
         "pack_pill_text_color": "#212323",
         "subscribe_heading": "Subscribe & Save",
         "save_badge_text": "Save [percent]%",
@@ -314,14 +314,6 @@
               },
               "blocks": {}
             },
-            "feature_highlight_4miYN3": {
-              "type": "feature-highlight",
-              "settings": {
-                "title": "Low Dose THC",
-                "icon": "shopify://shop_images/icon-ingredient-thc.svg"
-              },
-              "blocks": {}
-            },
             "feature_highlight_7pcgjg": {
               "type": "feature-highlight",
               "settings": {
@@ -330,20 +322,28 @@
               },
               "blocks": {}
             },
-            "feature_highlight_iR7VFz": {
+            "feature_highlight_4miYN3": {
               "type": "feature-highlight",
               "settings": {
-                "title": "Lab Tested",
-                "icon": "shopify://shop_images/Group_89.svg"
+                "title": "Low Dose THC",
+                "icon": "shopify://shop_images/Group_87_1.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_UMpEGg": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Real Fruit Juice",
+                "icon": "shopify://shop_images/Group_91.svg"
               },
               "blocks": {}
             }
           },
           "block_order": [
             "feature_highlight_VwWtE8",
-            "feature_highlight_4miYN3",
             "feature_highlight_7pcgjg",
-            "feature_highlight_iR7VFz"
+            "feature_highlight_4miYN3",
+            "feature_highlight_UMpEGg"
           ]
         },
         "feature-column-right": {
@@ -351,30 +351,6 @@
           "static": true,
           "settings": {},
           "blocks": {
-            "feature_highlight_HyR9Ln": {
-              "type": "feature-highlight",
-              "settings": {
-                "title": "Real Fruit Juice",
-                "icon": "shopify://shop_images/Group_91.svg"
-              },
-              "blocks": {}
-            },
-            "feature_highlight_gnHG89": {
-              "type": "feature-highlight",
-              "settings": {
-                "title": "Drinking Age",
-                "icon": "shopify://shop_images/Group_92.svg"
-              },
-              "blocks": {}
-            },
-            "feature_highlight_PyjK8n": {
-              "type": "feature-highlight",
-              "settings": {
-                "title": "Low Calorie",
-                "icon": "shopify://shop_images/Group_94.svg"
-              },
-              "blocks": {}
-            },
             "feature_highlight_Fg8fxt": {
               "type": "feature-highlight",
               "settings": {
@@ -382,13 +358,37 @@
                 "icon": "shopify://shop_images/Group_95.svg"
               },
               "blocks": {}
+            },
+            "feature_highlight_PyjK8n": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Low Calorie",
+                "icon": "shopify://shop_images/Group_94_1.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_8FiN4F": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Lab Tested",
+                "icon": "shopify://shop_images/Group_89_2.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_gnHG89": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "21+ Only",
+                "icon": "shopify://shop_images/Group_92.svg"
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "feature_highlight_HyR9Ln",
-            "feature_highlight_gnHG89",
+            "feature_highlight_Fg8fxt",
             "feature_highlight_PyjK8n",
-            "feature_highlight_Fg8fxt"
+            "feature_highlight_8FiN4F",
+            "feature_highlight_gnHG89"
           ]
         }
       },
@@ -454,7 +454,7 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#FFFFFF"
           },
           "blocks": {}
         },
@@ -469,7 +469,7 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#FFFFFF"
           },
           "blocks": {}
         },
@@ -484,7 +484,7 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#FFFFFF"
           },
           "blocks": {}
         },
@@ -499,7 +499,7 @@
             "price_text": "Just Pay Shipping",
             "button_label": "Try Now",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#FFFFFF"
           },
           "blocks": {}
         }
@@ -590,9 +590,9 @@
       "name": "t:general.gruns_find_toasted",
       "settings": {
         "heading": "Find Toasted",
-        "description": "Coming to select venues and retailers.",
+        "description": "Coming soon to select venues and retailers.",
         "show_button": true,
-        "button_label": "Find near you",
+        "button_label": "Coming soon…",
         "button_link": "",
         "button_background_color": "#f9d5c0",
         "button_text_color": "#1e2125",

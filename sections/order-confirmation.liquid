@@ -1,0 +1,212 @@
+{% doc %}
+  Renders "Order Confirmation": a large "Thank You" heading and description,
+  followed by a rounded color card with a pin-shaped badge on its top edge,
+  an order-confirmed message, and an optional CTA button. Intended for the
+  order status / thank-you page.
+{% enddoc %}
+
+<section
+  class="order-confirmation full-width"
+  style="background-color: {{ section.settings.background_color }};"
+  {{ section.shopify_attributes }}
+>
+  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-center justify-center gap-8 px-5 py-12 text-center sm:gap-10 sm:px-8 sm:py-16 md:px-12 md:py-20 lg:px-[80px] xl:gap-[50px] xl:px-[120px] xl:py-[100px]">
+    {% if section.settings.main_heading != blank or section.settings.main_description != blank %}
+      <div class="flex max-w-[820px] flex-col items-center gap-2 sm:gap-3">
+        {% if section.settings.main_heading != blank %}
+          <h1 class="text-[40px] leading-[0.95] font-bold sm:text-[56px] md:text-[72px] xl:text-[93px]">
+            {{ section.settings.main_heading }}
+          </h1>
+        {% endif %}
+
+        {% if section.settings.main_description != blank %}
+          <p class="text-[16px] leading-[1.5] sm:text-[20px] xl:text-[28px]">
+            {{ section.settings.main_description }}
+          </p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="relative w-full max-w-[765px] pt-[35px] sm:pt-[39px]">
+      <div class="absolute top-[35px] left-1/2 z-10 w-[70px] -translate-x-1/2 -translate-y-1/2 sm:top-[39px] sm:w-[90px] md:w-[110px] lg:w-[121px]">
+        <img
+          src="{{ 'icon-polygon.svg' | asset_url }}"
+          alt=""
+          class="h-auto w-full"
+          width="121"
+          height="78"
+          loading="lazy"
+        >
+      </div>
+
+      <div
+        class="relative overflow-hidden rounded-[24px] sm:rounded-[33px]"
+        style="background-color: {{ section.settings.card_background_color }};"
+      >
+        {% if section.settings.card_background_image %}
+          <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+            {{
+              section.settings.card_background_image
+              | image_url: width: 1200
+              | image_tag: class: 'absolute inset-0 w-full h-full object-cover opacity-20', loading: 'lazy'
+            }}
+          </div>
+        {% endif %}
+
+        <div
+          class="pointer-events-none absolute inset-0"
+          style="background-image: linear-gradient(173deg, {{ section.settings.card_background_color }} 15%, color-mix(in srgb, {{ section.settings.card_background_color }} 40%, transparent) 100%);"
+          aria-hidden="true"
+        ></div>
+
+        <div class="relative z-10 flex flex-col items-center gap-4 px-6 py-12 text-center sm:gap-5 sm:px-10 sm:py-14 md:px-[60px] md:py-16">
+          {% if section.settings.card_heading != blank %}
+            <h2
+              class="text-[28px] leading-[0.95] font-bold sm:text-[36px] md:text-[48px]"
+              style="color: {{ section.settings.card_text_color }};"
+            >
+              {{ section.settings.card_heading }}
+            </h2>
+          {% endif %}
+
+          {% if section.settings.card_description != blank %}
+            <p
+              class="max-w-[495px] text-[16px] leading-[1.5] sm:text-[20px] md:text-[24px]"
+              style="color: {{ section.settings.card_text_color }};"
+            >
+              {{ section.settings.card_description }}
+            </p>
+          {% endif %}
+
+          {% if section.settings.show_button and section.settings.button_text != blank %}
+            {% render 'button',
+              label: section.settings.button_text,
+              url: section.settings.button_link,
+              background_color: section.settings.button_background,
+              text_color: section.settings.button_text_color
+            %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.order_confirmation.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.order_confirmation.settings.main_heading_header"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "t:labels.heading",
+      "default": "Thank You!"
+    },
+    {
+      "type": "text",
+      "id": "main_description",
+      "label": "t:labels.subheading",
+      "default": "Thanks for your purchase. We're getting everything ready for you."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.order_confirmation.settings.card_header"
+    },
+    {
+      "type": "text",
+      "id": "card_heading",
+      "label": "t:labels.heading",
+      "default": "Order Confirmed"
+    },
+    {
+      "type": "text",
+      "id": "card_description",
+      "label": "t:labels.description",
+      "default": "Your order is confirmed. We'll let you know when it's on its way."
+    },
+    {
+      "type": "image_picker",
+      "id": "card_background_image",
+      "label": "t:labels.background_image"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.order_confirmation.settings.button_header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "t:labels.button_text",
+      "default": "Track My Order"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "t:labels.button_background",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.section_background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "t:labels.card_background",
+      "default": "#551F36"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "t:labels.text_color",
+      "default": "#F6F1EC"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.order_confirmation.name",
+      "settings": {
+        "main_heading": "Thank You!",
+        "main_description": "Thanks for your purchase. We're getting everything ready for you.",
+        "card_heading": "Order Confirmed",
+        "card_description": "Your order is confirmed. We'll let you know when it's on its way.",
+        "show_button": true,
+        "button_text": "Track My Order",
+        "button_link": "",
+        "button_background": "#F9D5C0",
+        "button_text_color": "#212323",
+        "background_color": "#F6F1EC",
+        "card_background_color": "#551F36",
+        "card_text_color": "#F6F1EC"
+      }
+    }
+  ]
+}
+{% endschema %}

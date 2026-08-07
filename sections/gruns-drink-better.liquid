@@ -88,56 +88,58 @@
     </div>
 
     <div class="flex w-full flex-col gap-[15px]">
-      {% if section.settings.bundle_heading != blank or section.settings.bundle_description != blank %}
-        <{{ bundle_tag }}
-          {% if section.settings.bundle_link != blank %}
-            href="{{ section.settings.bundle_link }}"
-          {% endif %}
-          class="group relative flex w-full flex-col justify-center gap-4 overflow-hidden rounded-[33px] px-6 py-8 sm:px-10 sm:py-10 lg:px-[75px] lg:py-[45px]"
-          style="background-color: {{ section.settings.bundle_background_color }}; border-color: {{ section.settings.heading_color }};"
-        >
-          {% if section.settings.bundle_image %}
-            <div class="pointer-events-none absolute inset-y-0 right-0 hidden w-[45%] sm:block">
-              {{
-                section.settings.bundle_image
-                | image_url: width: 900
-                | image_tag: class: 'size-full object-cover', alt: ''
-              }}
-            </div>
-          {% endif %}
-
-          <div
-            class="relative flex max-w-[560px] flex-col gap-4 sm:gap-5"
-            style="color: {{ section.settings.bundle_text_color }};"
+      {% if section.settings.show_combo_offer %}
+        {% if section.settings.bundle_heading != blank or section.settings.bundle_description != blank %}
+          <{{ bundle_tag }}
+            {% if section.settings.bundle_link != blank %}
+              href="{{ section.settings.bundle_link }}"
+            {% endif %}
+            class="group relative flex w-full flex-col justify-center gap-4 overflow-hidden rounded-[33px] px-6 py-8 sm:px-10 sm:py-10 lg:px-[75px] lg:py-[45px]"
+            style="background-color: {{ section.settings.bundle_background_color }}; border-color: {{ section.settings.heading_color }};"
           >
-            <div class="flex items-center gap-3 sm:gap-5">
-              {% if section.settings.bundle_heading != blank %}
-                <p class="text-[26px] leading-[0.95] font-bold tracking-[-1.5px] sm:text-[36px] lg:text-[50px]">
-                  {{ section.settings.bundle_heading }}
-                </p>
-              {% endif %}
-
-              {% if section.settings.bundle_link != blank %}
-                <span class="block size-[16px] shrink-0 rotate-90 transition-transform duration-150 group-hover:translate-x-1 sm:size-[26px] lg:size-[30px]">
-                  <img
-                    src="{{ 'icon-arrow-bundle.svg' | asset_url }}"
-                    width="34"
-                    height="33"
-                    loading="lazy"
-                    class="size-full object-contain"
-                    alt=""
-                  >
-                </span>
-              {% endif %}
-            </div>
-
-            {% if section.settings.bundle_description != blank %}
-              <div class="text-[13px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
-                {{ section.settings.bundle_description }}
+            {% if section.settings.bundle_image %}
+              <div class="pointer-events-none absolute inset-y-0 right-0 hidden w-[45%] sm:block">
+                {{
+                  section.settings.bundle_image
+                  | image_url: width: 900
+                  | image_tag: class: 'size-full object-cover', alt: ''
+                }}
               </div>
             {% endif %}
-          </div>
-        </{{ bundle_tag }}>
+
+            <div
+              class="relative flex max-w-[560px] flex-col gap-4 sm:gap-5"
+              style="color: {{ section.settings.bundle_text_color }};"
+            >
+              <div class="flex items-center gap-3 sm:gap-5">
+                {% if section.settings.bundle_heading != blank %}
+                  <p class="text-[26px] leading-[0.95] font-bold tracking-[-1.5px] sm:text-[36px] lg:text-[50px]">
+                    {{ section.settings.bundle_heading }}
+                  </p>
+                {% endif %}
+
+                {% if section.settings.bundle_link != blank %}
+                  <span class="block size-[16px] shrink-0 rotate-90 transition-transform duration-150 group-hover:translate-x-1 sm:size-[26px] lg:size-[30px]">
+                    <img
+                      src="{{ 'icon-arrow-bundle.svg' | asset_url }}"
+                      width="34"
+                      height="33"
+                      loading="lazy"
+                      class="size-full object-contain"
+                      alt=""
+                    >
+                  </span>
+                {% endif %}
+              </div>
+
+              {% if section.settings.bundle_description != blank %}
+                <div class="text-[13px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
+                  {{ section.settings.bundle_description }}
+                </div>
+              {% endif %}
+            </div>
+          </{{ bundle_tag }}>
+        {% endif %}
       {% endif %}
 
       {% content_for 'block', id: 'flavor-row', type: 'flavor-row' %}
@@ -183,6 +185,12 @@
     {
       "type": "header",
       "content": "t:general.combo_offer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_combo_offer",
+      "label": "Show combo offer card",
+      "default": true
     },
     {
       "type": "text",

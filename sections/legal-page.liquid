@@ -9,7 +9,7 @@
   Online Store > Pages.
 {% endcomment %}
 
-<section class="legal-page full-width">
+<section class="legal-page full-width" style="--bg-color: {{ section.settings.background_color }}; --text-color: {{ section.settings.text_color }}">
   <div class="legal-page__container mx-auto w-full max-w-[1920px] px-5 pt-[50px] pb-[60px] sm:px-8 sm:pt-[60px] sm:pb-[80px] md:px-12 lg:px-[80px] lg:pt-[70px] lg:pb-[100px] xl:px-[120px]">
     {% if page.title != blank %}
       <h1 class="legal-page__title mb-3 text-[36px] leading-[0.95] font-bold sm:text-[44px] sm:mb-4 md:text-[56px] lg:text-[64px] xl:text-[72px] xl:tracking-[-2.16px] xl:mb-5">
@@ -24,9 +24,13 @@
 </section>
 
 {% stylesheet %}
+  .legal-page {
+    background-color: var(--bg-color);
+  }
+
   .legal-page__title {
     font-family: var(--font-heading--family);
-    color: #212323;
+    color: var(--text-color);
   }
 
   .legal-page__content {
@@ -34,7 +38,7 @@
     flex-direction: column;
     gap: 24px;
     font-family: var(--font-primary--family);
-    color: #212323;
+    color: var(--text-color);
   }
 
   .legal-page__content h2,
@@ -91,7 +95,7 @@
   }
 
   .legal-page__content td {
-    border-top: 1px solid #212323;
+    border-top: 1px solid var(--text-color);
     padding: 12px;
     font-size: 13px;
     line-height: 1.3;
@@ -100,12 +104,12 @@
   }
 
   .legal-page__content tr:last-child > td {
-    border-bottom: 1px solid #212323;
+    border-bottom: 1px solid var(--text-color);
   }
 
   .legal-page__content th:first-child,
   .legal-page__content td:first-child {
-    border-right: 1px solid #212323;
+    border-right: 1px solid var(--text-color);
   }
 
   @media (min-width: 1024px) {
@@ -146,7 +150,20 @@
 {% schema %}
 {
   "name": "t:general.legal_page",
-  "settings": [],
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background_color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    }
+  ],
   "presets": [
     {
       "name": "t:general.legal_page"

@@ -152,7 +152,7 @@
         "description": "",
         "show_button": true,
         "button_label": "Get My Trial Pack",
-        "button_link": "",
+        "button_link": "shopify://products/try-all-3-flavors",
         "button_background_color": "#d4941f",
         "button_text_color": "#ffffff",
         "feature_1_text": "Free 3-flavor trial pack.",
@@ -161,7 +161,7 @@
         "heading_color": "#212323",
         "product_image": "shopify://shop_images/Frame_2147235887_1.png",
         "product_image_alt": "",
-        "show_badge": true,
+        "show_badge": false,
         "badge_text": "Get 50% Off"
       }
     },
@@ -391,12 +391,13 @@
       },
       "name": "t:general.drink_better",
       "settings": {
-        "heading": "<p>Drink Better,</p><p>Feel Better</p>",
-        "description": "<p>Each tonic uses a unique blend of cannabis, mushrooms, or adaptogens—guaranteed to help you turn up, tap in, or tune out without the consequences.</p>",
+        "heading": "<p>Feel Present.</p><p>Stay Toasted.</p>",
+        "description": "<p>A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC. Made to help you feel present without overdoing it.</p>",
         "image": "shopify://shop_images/Group_104_ffaddbdc-e520-471e-8d88-cf4e664245c4.png",
         "image_alt": "",
+        "show_combo_offer": true,
         "bundle_heading": "Build a bundle and Save",
-        "bundle_description": "<p>Each tonic uses a unique blend of cannabis, mushrooms, or adaptogens....</p>",
+        "bundle_description": "<p>Pick your flavors. Stock the fridge. Stay Toasted.</p>",
         "bundle_link": "#",
         "bundle_image": "shopify://shop_images/Group_114.png",
         "bundle_background_color": "#f9d5c0",
@@ -478,9 +479,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "0.4mg hemp-derived THC",
+                "label": "200mg L-theanine",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-thc-highlight.svg"
+                "icon": "shopify://shop_images/Group_86.svg"
               },
               "blocks": {}
             },
@@ -488,9 +489,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "L-theanine + Rhodiola",
+                "label": "0.4mg hemp-derived THC",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-adaptogen.svg"
+                "icon": "shopify://shop_images/Group_154.svg"
               },
               "blocks": {}
             },
@@ -498,9 +499,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "Non-carbonated",
+                "label": "50mg Rhodiola",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-non-carbonated.svg"
+                "icon": "shopify://shop_images/Group_89_1.svg"
               },
               "blocks": {}
             },
@@ -508,9 +509,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "COA available",
+                "label": "Non-carbonated",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-usa-hemp.svg"
+                "icon": "shopify://shop_images/Group_155.svg"
               },
               "blocks": {}
             }

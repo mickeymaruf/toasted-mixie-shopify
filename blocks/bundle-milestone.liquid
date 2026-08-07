@@ -1,0 +1,55 @@
+{% doc %}
+  Renders a single spend milestone on the bundle discount progress bar: a
+  reward pill (e.g. "$5", "Free Ship") and the bundle subtotal required to
+  unlock it. The parent bundle-builder web component automatically
+  highlights the pill once the shopper's current bundle subtotal reaches
+  the threshold, and outlines whichever unreached milestone is next. Must
+  be nested inside a bundle-milestone-list block.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'bundle-milestone' %}
+{% enddoc %}
+
+{% liquid
+  assign threshold_cents = block.settings.threshold | times: 100
+%}
+
+<div
+  class="flex shrink-0 flex-col items-center gap-1"
+  data-bundle-milestone
+  data-threshold="{{ threshold_cents }}"
+  {{ block.shopify_attributes }}
+>
+  <div
+    class="flex size-[30px] shrink-0 items-center justify-center rounded-full bg-white text-center text-[8px] leading-[1.1] font-medium text-[#212323] transition-all duration-200"
+    data-bundle-milestone-pill
+  >
+    {{ block.settings.reward_label }}
+  </div>
+  <p class="text-center text-[10px] leading-[14px] tracking-[0.6px] whitespace-nowrap text-[#212323]">
+    {% render 'format-money', cents: threshold_cents %}
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "t:general.bundle_milestone",
+  "settings": [
+    {
+      "type": "number",
+      "id": "threshold",
+      "label": "t:labels.spend_threshold",
+      "info": "t:labels.spend_threshold_info",
+      "default": 50
+    },
+    {
+      "type": "text",
+      "id": "reward_label",
+      "label": "t:labels.reward_label",
+      "info": "t:labels.reward_label_info",
+      "default": "$5"
+    }
+  ],
+  "presets": [{ "name": "t:general.bundle_milestone" }]
+}
+{% endschema %}

@@ -1,0 +1,460 @@
+{% comment %}
+  Renders "Bundle Builder": a grid of bundle-product flavor cards on the
+  left and a sticky "Your bundle" panel on the right with a spend-based
+  discount progress bar, a horizontally scrollable tray of the shopper's
+  current selections, a one-time/subscribe purchase-type picker, and an
+  "Add to Cart" button that adds every selected line to the cart in a
+  single request.
+{% endcomment %}
+
+<section
+  class="bundle-builder full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <bundle-builder
+    class="mx-auto flex w-full max-w-[1920px] flex-col items-start gap-8 px-4 py-[40px] sm:gap-10 sm:px-8 sm:py-[60px] md:px-12 lg:flex-row lg:gap-[30px] lg:px-[80px] lg:py-[100px] xl:px-[120px]"
+    data-remove-label-template="{{ 'bundle_builder.remove_item' | t: title: '__TITLE__' | escape }}"
+    data-placeholder-count="6"
+  >
+    <template data-bundle-remove-icon>{{ 'icon-close.svg' | inline_asset_content }}</template>
+
+    {% content_for 'block', id: 'bundle-product-list', type: 'bundle-product-list' %}
+
+    <div
+      class="flex w-full flex-col gap-6 rounded-[24px] p-5 shadow-[0px_0px_5px_rgba(0,0,0,0.05)] sm:rounded-[33px] sm:p-6 lg:sticky lg:top-8 lg:w-[408px] lg:shrink-0"
+      style="background-color: {{ section.settings.panel_background_color }};"
+    >
+      {% if section.settings.bundle_heading != blank %}
+        <h2 class="text-center text-[32px] leading-[1.2] font-bold tracking-[-1px] text-[#212323] sm:text-[36px] lg:text-[42px]">
+          {{ section.settings.bundle_heading }}
+        </h2>
+      {% endif %}
+
+      {% content_for 'block', id: 'bundle-milestone-list', type: 'bundle-milestone-list' %}
+
+      <div class="relative flex w-full items-center">
+        <div
+          class="flex w-full gap-2 overflow-x-auto scroll-smooth pb-1"
+          data-bundle-track
+          aria-label="{{ 'bundle_builder.selected_products' | t }}"
+        >
+          {% for i in (1..6) %}
+            <div class="h-[130px] w-[100px] shrink-0 rounded-xl border border-dashed border-black/50"></div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <form class="flex w-full flex-col gap-6" data-bundle-form>
+        <div
+          class="flex w-full flex-col gap-2"
+          role="radiogroup"
+          aria-label="{{ 'products.main.purchase_option_group_label' | t }}"
+        >
+          <label class="flex w-full items-center gap-2">
+            <span class="relative flex size-[18px] shrink-0 items-center justify-center rounded-full border border-[#212323]">
+              <input
+                type="radio"
+                name="bundle-purchase-type-{{ section.id }}"
+                value="one_time"
+                class="peer absolute inset-0 size-full cursor-pointer opacity-0"
+                data-bundle-purchase-type
+                checked
+              >
+              <span
+                class="pointer-events-none block size-[10px] rounded-full opacity-0 peer-checked:opacity-100"
+                style="background-color: {{ section.settings.purchase_selected_color }};"
+              ></span>
+            </span>
+            <span class="text-[16px] leading-normal text-[#212323]">{{ section.settings.one_time_label }}</span>
+          </label>
+
+          <label class="flex w-full items-center gap-2">
+            <span class="relative flex size-[18px] shrink-0 items-center justify-center rounded-full border border-[#212323]">
+              <input
+                type="radio"
+                name="bundle-purchase-type-{{ section.id }}"
+                value="subscribe"
+                class="peer absolute inset-0 size-full cursor-pointer opacity-0"
+                data-bundle-purchase-type
+              >
+              <span
+                class="pointer-events-none block size-[10px] rounded-full opacity-0 peer-checked:opacity-100"
+                style="background-color: {{ section.settings.purchase_selected_color }};"
+              ></span>
+            </span>
+            <span class="text-[16px] leading-normal text-[#212323]">{{ section.settings.subscribe_label }}</span>
+          </label>
+        </div>
+
+        <div class="flex w-full flex-col items-center justify-center gap-[10px]">
+          <button
+            type="submit"
+            class="flex h-[58px] w-full items-center justify-center gap-[5px] rounded-[30px] px-8 py-4 text-center text-[20px] transition-opacity duration-150 hover:opacity-85 disabled:opacity-30"
+            style="background-color: {{ section.settings.add_to_cart_background_color }}; color: {{ section.settings.add_to_cart_text_color }};"
+            data-bundle-add-to-cart
+            disabled
+          >
+            <span data-bundle-add-to-cart-label>{{ section.settings.add_to_cart_label }}</span>
+            <span class="hidden" data-bundle-add-to-cart-loader aria-hidden="true">
+              <span class="inline-block size-5 animate-spin rounded-full border-2 border-current border-t-transparent"></span>
+            </span>
+          </button>
+
+          {% if section.settings.subscribe_note != blank %}
+            <p class="text-center text-[16px] leading-normal text-[#212323]">{{ section.settings.subscribe_note }}</p>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+  </bundle-builder>
+</section>
+
+{% stylesheet %}
+  .bundle-builder [data-bundle-track]::-webkit-scrollbar {
+    height: 6px;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  class BundleBuilder extends HTMLElement {
+    connectedCallback() {
+      this.items = new Map();
+
+      this.track = this.querySelector('[data-bundle-track]');
+      this.milestones = Array.from(this.querySelectorAll('[data-bundle-milestone]'));
+      this.progressFill = this.querySelector('[data-bundle-progress-fill]');
+      this.addToCartButton = this.querySelector('[data-bundle-add-to-cart]');
+      this.addToCartLabel = this.querySelector('[data-bundle-add-to-cart-label]');
+      this.addToCartLoader = this.querySelector('[data-bundle-add-to-cart-loader]');
+      this.removeIconMarkup = this.querySelector('[data-bundle-remove-icon]')?.innerHTML || '&times;';
+      this.removeLabelTemplate = this.dataset.removeLabelTemplate || 'Remove __TITLE__';
+      this.placeholderCount = Number(this.dataset.placeholderCount || 6);
+      this.maxThreshold = Math.max(1, ...this.milestones.map((el) => Number(el.dataset.threshold || 0)));
+
+      this.addEventListener('click', (event) => {
+        const addButton = event.target.closest('[data-bundle-add]');
+        if (addButton) {
+          this.addItem(addButton.dataset);
+          return;
+        }
+
+        const removeButton = event.target.closest('[data-bundle-remove]');
+        if (removeButton) this.removeItem(removeButton.dataset.blockId);
+      });
+
+      this.addEventListener('change', (event) => {
+        if (event.target.matches('[data-bundle-purchase-type]')) this.render();
+      });
+
+      this.form = this.querySelector('[data-bundle-form]');
+      this.form?.addEventListener('submit', (event) => this.handleSubmit(event));
+
+      this.render();
+    }
+
+    addItem(dataset) {
+      const blockId = dataset.blockId;
+      const existing = this.items.get(blockId);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        this.items.set(blockId, {
+          blockId,
+          variantId: dataset.variantId,
+          title: dataset.title,
+          image: dataset.image,
+          price: Number(dataset.price || 0),
+          sellingPlanId: dataset.sellingPlanId || null,
+          subscribePrice: dataset.subscribePrice ? Number(dataset.subscribePrice) : null,
+          quantity: 1,
+        });
+      }
+
+      this.render();
+    }
+
+    removeItem(blockId) {
+      this.items.delete(blockId);
+      this.render();
+    }
+
+    get isSubscribing() {
+      return this.querySelector('[data-bundle-purchase-type]:checked')?.value === 'subscribe';
+    }
+
+    get subtotalCents() {
+      let total = 0;
+      for (const item of this.items.values()) {
+        const unit = this.isSubscribing && item.subscribePrice ? item.subscribePrice : item.price;
+        total += unit * item.quantity;
+      }
+      return total;
+    }
+
+    get totalQuantity() {
+      let total = 0;
+      for (const item of this.items.values()) total += item.quantity;
+      return total;
+    }
+
+    render() {
+      this.renderTrack();
+      this.renderMilestones();
+      if (this.addToCartButton) this.addToCartButton.disabled = this.totalQuantity === 0;
+    }
+
+    renderTrack() {
+      if (!this.track) return;
+      this.track.innerHTML = '';
+
+      for (const item of this.items.values()) {
+        const card = document.createElement('div');
+        card.className =
+          'relative h-[130px] w-[100px] shrink-0 overflow-hidden rounded-xl border border-[#212323]/10 bg-white';
+
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.title;
+        img.className = 'size-full object-cover';
+        card.appendChild(img);
+
+        const removeButton = document.createElement('button');
+        removeButton.type = 'button';
+        removeButton.className =
+          'absolute right-1.5 top-1.5 flex size-6 items-center justify-center rounded-full bg-[#212323] text-[#F6F1EC] [&_svg]:size-3';
+        removeButton.dataset.bundleRemove = '';
+        removeButton.dataset.blockId = item.blockId;
+        removeButton.setAttribute('aria-label', this.removeLabelTemplate.replace('__TITLE__', item.title));
+        removeButton.innerHTML = this.removeIconMarkup;
+        card.appendChild(removeButton);
+
+        if (item.quantity > 1) {
+          const badge = document.createElement('span');
+          badge.className =
+            'absolute bottom-1.5 left-1.5 rounded-full bg-[#212323] px-2 py-0.5 text-[11px] font-medium text-[#F6F1EC]';
+          badge.textContent = `×${item.quantity}`;
+          card.appendChild(badge);
+        }
+
+        this.track.appendChild(card);
+      }
+
+      const placeholdersNeeded = Math.max(0, this.placeholderCount - this.items.size);
+      for (let i = 0; i < placeholdersNeeded; i += 1) {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'h-[130px] w-[100px] shrink-0 rounded-xl border border-dashed border-black/50';
+        this.track.appendChild(placeholder);
+      }
+    }
+
+    renderMilestones() {
+      const subtotal = this.subtotalCents;
+
+      if (this.progressFill) {
+        const percent = Math.min(100, (subtotal / this.maxThreshold) * 100);
+        this.progressFill.style.width = `${percent}%`;
+      }
+
+      const upcoming = this.milestones
+        .filter((el) => Number(el.dataset.threshold) > subtotal)
+        .sort((a, b) => Number(a.dataset.threshold) - Number(b.dataset.threshold))[0];
+
+      this.milestones.forEach((el) => {
+        const pill = el.querySelector('[data-bundle-milestone-pill]');
+        if (!pill) return;
+
+        const achieved = Number(el.dataset.threshold) <= subtotal;
+        const isNext = el === upcoming;
+
+        pill.classList.toggle('bg-[#212323]', achieved);
+        pill.classList.toggle('text-[#F6F1EC]', achieved);
+        pill.classList.toggle('bg-white', !achieved);
+        pill.classList.toggle('text-[#212323]', !achieved);
+        pill.classList.toggle('border-2', isNext);
+        pill.classList.toggle('border-[#212323]', isNext);
+        pill.classList.toggle('scale-110', isNext);
+      });
+    }
+
+    async handleSubmit(event) {
+      event.preventDefault();
+      if (this.totalQuantity === 0) return;
+
+      const subscribing = this.isSubscribing;
+      const items = Array.from(this.items.values()).map((item) => {
+        const payload = { id: item.variantId, quantity: item.quantity };
+        if (subscribing && item.sellingPlanId) payload.selling_plan = item.sellingPlanId;
+        return payload;
+      });
+
+      this.addToCartButton.disabled = true;
+      this.addToCartLabel?.classList.add('invisible');
+      this.addToCartLoader?.classList.remove('hidden');
+
+      try {
+        const response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items }),
+        });
+
+        if (!response.ok) throw new Error('Failed to add bundle to cart');
+
+        this.items.clear();
+        this.render();
+
+        const drawer = document.querySelector('cart-drawer');
+        if (drawer) {
+          await drawer.refresh();
+          drawer.open();
+        }
+      } catch (error) {
+        this.addToCartButton.disabled = this.totalQuantity === 0;
+      } finally {
+        this.addToCartLabel?.classList.remove('invisible');
+        this.addToCartLoader?.classList.add('hidden');
+      }
+    }
+  }
+
+  customElements.define('bundle-builder', BundleBuilder);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.bundle_builder",
+  "blocks": [{ "type": "bundle-product-list" }, { "type": "bundle-milestone-list" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "bundle_heading",
+      "label": "t:labels.heading",
+      "default": "Your bundle"
+    },
+    {
+      "type": "header",
+      "content": "t:general.purchase"
+    },
+    {
+      "type": "text",
+      "id": "one_time_label",
+      "label": "t:labels.one_time_label",
+      "default": "One-Time Order"
+    },
+    {
+      "type": "text",
+      "id": "subscribe_label",
+      "label": "t:labels.subscribe_label",
+      "default": "Subscribe & Save 20%"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_label",
+      "label": "t:labels.add_to_cart_label",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "text",
+      "id": "subscribe_note",
+      "label": "t:labels.subscribe_note",
+      "default": "Subscribe & Save is the best value."
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.section_background",
+      "default": "#C2CBD4"
+    },
+    {
+      "type": "color",
+      "id": "panel_background_color",
+      "label": "t:labels.card_background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "purchase_selected_color",
+      "label": "t:labels.purchase_selected_color",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "color",
+      "id": "add_to_cart_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "add_to_cart_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.bundle_builder",
+      "blocks": [
+        {
+          "type": "bundle-product-list",
+          "static": true,
+          "id": "bundle-product-list",
+          "blocks": [
+            {
+              "type": "bundle-product",
+              "settings": {
+                "flavor_name": "Blood Orange",
+                "pack_label": "12-pack",
+                "flavor_style": "blood_orange",
+                "card_background_color": "#85002C",
+                "button_label": "Add to Bundle"
+              }
+            },
+            {
+              "type": "bundle-product",
+              "settings": {
+                "flavor_name": "Berry Acai",
+                "pack_label": "12-pack",
+                "flavor_style": "berry_acai",
+                "card_background_color": "#391847",
+                "button_label": "Add to Bundle"
+              }
+            },
+            {
+              "type": "bundle-product",
+              "settings": {
+                "flavor_name": "Ginger Lime",
+                "pack_label": "12-pack",
+                "flavor_style": "ginger_lime",
+                "card_background_color": "#215332",
+                "button_label": "Add to Bundle"
+              }
+            }
+          ]
+        },
+        {
+          "type": "bundle-milestone-list",
+          "static": true,
+          "id": "bundle-milestone-list",
+          "blocks": [
+            { "type": "bundle-milestone", "settings": { "threshold": 50, "reward_label": "$5" } },
+            { "type": "bundle-milestone", "settings": { "threshold": 125, "reward_label": "Free Ship" } },
+            { "type": "bundle-milestone", "settings": { "threshold": 150, "reward_label": "$15" } },
+            { "type": "bundle-milestone", "settings": { "threshold": 200, "reward_label": "$30" } },
+            { "type": "bundle-milestone", "settings": { "threshold": 250, "reward_label": "$50" } },
+            { "type": "bundle-milestone", "settings": { "threshold": 500, "reward_label": "$125" } }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

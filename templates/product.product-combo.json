@@ -21,9 +21,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "0.4mg hemp-derived THC",
+                "label": "200mg L-theanine",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-thc-highlight.svg"
+                "icon": "shopify://shop_images/Group_86.svg"
               },
               "blocks": {}
             },
@@ -31,9 +31,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "L-theanine + Rhodiola",
+                "label": "0.4mg hemp-derived THC",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-adaptogen.svg"
+                "icon": "shopify://shop_images/Group_154.svg"
               },
               "blocks": {}
             },
@@ -41,9 +41,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "Non-carbonated",
+                "label": "50mg Rhodiola",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-non-carbonated.svg"
+                "icon": "shopify://shop_images/Group_89_1.svg"
               },
               "blocks": {}
             },
@@ -51,9 +51,9 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "COA available",
+                "label": "Non-carbonated",
                 "icon_style": "thc",
-                "icon": "shopify://shop_images/icon-usa-hemp.svg"
+                "icon": "shopify://shop_images/Group_155.svg"
               },
               "blocks": {}
             }

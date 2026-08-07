@@ -1,8 +1,25 @@
+{% liquid
+  assign navbar_bg = section.settings.default_background_color
+
+  # Parse page URLs and check if current page matches
+  if section.settings.alternate_pages != blank
+    assign page_urls = section.settings.alternate_pages | split: ' '
+    assign current_path = request.path
+
+    for url in page_urls
+      if current_path contains url
+        assign navbar_bg = section.settings.alternate_background_color
+        break
+      endif
+    endfor
+  endif
+%}
+
 <header
   class="navbar full-width"
   style="
-    --navbar-background: {{ section.settings.background_color }};
-    --navbar-text: {{ section.settings.text_color }};
+    --navbar-background: {{ navbar_bg }};
+    --navbar-text: #212323;
     --navbar-height: 80px;
     --navbar-height-mobile: 64px;
   "
@@ -35,7 +52,7 @@
 
           {% if has_mega_menu %}
             <!-- Mega Menu Drawer -->
-            <div class="navbar__mega-menu-drawer" data-mega-menu-drawer>
+            <div class="navbar__mega-menu-drawer" data-mega-menu-drawer style="background-color: {{ section.settings.mega_menu_background_color }};">
               <div class="navbar__mega-menu-content">
                 <div class="grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 items-start gap-x-0 gap-y-3 md:gap-5 lg:gap-6 px-4 md:px-6 lg:px-[60px] py-6 sm:py-8">
                   <!-- Mega Menu Button/Trigger - Left -->
@@ -55,8 +72,9 @@
                     {% if section.blocks.size > 0 %}
                       {% for block in section.blocks %}
                         {% if block.settings.product != blank %}
-                          <div
-                            class="navbar__mega-menu-card flex items-center gap-4 rounded-2xl p-4 flex-1 lg:flex-none"
+                          <a
+                            href="{{ block.settings.product.url }}"
+                            class="navbar__mega-menu-card flex items-center gap-4 rounded-2xl p-4 flex-1 lg:flex-none no-underline"
                             style="background-color: {{ block.settings.card_background_color }}"
                             {{ block.shopify_attributes }}
                           >
@@ -102,7 +120,7 @@
                                 {{ block.settings.product.title }}
                               </h3>
                             </div>
-                          </div>
+                          </a>
                         {% endif %}
                       {% endfor %}
                     {% endif %}
@@ -128,17 +146,19 @@
     </a>
 
     <div class="navbar__actions">
-      <button
-        type="button"
-        class="navbar__search-button"
-        aria-label="{{ 'general.accessibility.search' | t }}"
-        data-search-open
-      >
-        <span class="navbar__search-button-text border-[3px] py-2 rounded-full px-8">
-          {{- section.settings.search_button_text -}}
-        </span>
-        {% comment %} {{ 'icon-search.svg' | inline_asset_content }} {% endcomment %}
-      </button>
+      {% if section.settings.show_search_button %}
+        <button
+          type="button"
+          class="navbar__search-button"
+          aria-label="{{ 'general.accessibility.search' | t }}"
+          data-search-open
+        >
+          <span class="navbar__search-button-text border-[3px] py-2 rounded-full px-8">
+            {{- section.settings.search_button_text -}}
+          </span>
+          {% comment %} {{ 'icon-search.svg' | inline_asset_content }} {% endcomment %}
+        </button>
+      {% endif %}
 
       <button
         type="button"
@@ -227,7 +247,6 @@
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #f9d5c0;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -268,6 +287,18 @@
     align-items: center;
     gap: 1rem;
     transition: all 0.2s ease;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .navbar__mega-menu-card:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+  }
+
+  .navbar__mega-menu-card:focus-visible {
+    outline: 2px solid var(--navbar-text);
+    outline-offset: 2px;
   }
 
   a[data-mega-menu-trigger] {
@@ -326,6 +357,10 @@
       padding: 10px 32px 10px 12px;
       border-radius: 999px;
     }
+
+    .navbar__actions:not(:has(.navbar__search-button)) {
+      padding: 10px 24px;
+    }
   }
 
   .navbar__link {
@@ -343,6 +378,7 @@
     justify-content: center;
     flex-shrink: 0;
     color: currentColor;
+    cursor: pointer;
   }
 
   .navbar__search-button {
@@ -592,6 +628,12 @@
       "info": "t:labels.search_button_text_info"
     },
     {
+      "type": "checkbox",
+      "id": "show_search_button",
+      "label": "Show search button",
+      "default": true
+    },
+    {
       "type": "header",
       "content": "t:general.mega_menu"
     },
@@ -627,20 +669,34 @@
       "default": "#F6F1EC"
     },
     {
+      "type": "color",
+      "id": "mega_menu_background_color",
+      "label": "Mega Menu Background",
+      "default": "#F9D5C0"
+    },
+    {
       "type": "header",
       "content": "t:general.colors"
     },
     {
       "type": "color",
-      "id": "background_color",
-      "label": "t:labels.background",
+      "id": "default_background_color",
+      "label": "Navbar Background",
       "default": "#F6F1EC"
     },
     {
+      "type": "text",
+      "id": "alternate_pages",
+      "label": "Pages with alternate background",
+      "placeholder": "/about-us /wholesale /contact-us",
+      "info": "Enter page URL paths separated by spaces. Example: /about-us /wholesale /contact-us"
+    },
+    {
       "type": "color",
-      "id": "text_color",
-      "label": "t:labels.foreground",
-      "default": "#212323"
+      "id": "alternate_background_color",
+      "label": "Custom Navbar Background",
+      "default": "#F9D5C0",
+      "info": "Used for specific pages listed above"
     }
   ]
 }

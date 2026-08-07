@@ -1,0 +1,170 @@
+{% doc %}
+  Renders a single "Add to Bundle" flavor card: a colored image card, flavor
+  name, pack label, and an "Add to Bundle" button that hands the selected
+  product's first available variant off to the parent bundle-builder web
+  component (via data attributes) instead of submitting a form directly.
+  Falls back to the selected product's title/image when a custom
+  title/image isn't set. Must be nested inside a bundle-product-list block.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'bundle-product' %}
+{% enddoc %}
+
+{% liquid
+  assign variant = block.settings.product.selected_or_first_available_variant
+  assign flavor_name = block.settings.flavor_name | default: block.settings.product.title
+  assign card_image = block.settings.image | default: block.settings.product.featured_image
+
+  case block.settings.flavor_style
+    when 'berry_acai'
+      assign default_image = 'card-flavor-berry-acai.png'
+    when 'ginger_lime'
+      assign default_image = 'card-flavor-ginger-lime.png'
+    else
+      assign default_image = 'card-flavor-blood-orange.png'
+  endcase
+
+  assign selling_plan = block.settings.product.selling_plan_groups.first.selling_plans.first
+  assign subscribe_price = blank
+  if selling_plan
+    for allocation in variant.selling_plan_allocations
+      if allocation.selling_plan.id == selling_plan.id
+        assign subscribe_price = allocation.price
+      endif
+    endfor
+  endif
+%}
+
+<div class="flex w-full flex-col items-center gap-3 sm:gap-[17px]" {{ block.shopify_attributes }}>
+  <div
+    class="relative flex w-full aspect-[202/256] items-center justify-center overflow-visible rounded-[24px] sm:rounded-[33px]"
+    {% comment %} style="background-color: {{ block.settings.card_background_color }};" {% endcomment %}
+  >
+    {% if card_image %}
+      {{
+        card_image
+        | image_url: width: 600
+        | image_tag:
+          class: 'object-contain overflow-visible',
+          widths: '300, 450, 600',
+          alt: card_image.alt | default: flavor_name
+      }}
+    {% else %}
+      <img
+        src="{{ default_image | asset_url }}"
+        width="300"
+        height="380"
+        loading="lazy"
+        class="object-contain overflow-visible"
+        alt="{{ flavor_name | escape }}"
+      >
+    {% endif %}
+  </div>
+
+  {% if flavor_name != blank or block.settings.pack_label != blank %}
+    <div class="flex flex-col items-center gap-0 text-center text-[#212323]">
+      {% if flavor_name != blank %}
+        <p class="text-[20px] leading-[1.2] font-bold sm:text-[27px]">{{ flavor_name }}</p>
+      {% endif %}
+      {% if block.settings.pack_label != blank %}
+        <p class="text-[13px] leading-[1.3] sm:text-[15px]">{{ block.settings.pack_label }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="flex w-full flex-col items-center gap-[10px]">
+    {% if variant %}
+      <button
+        type="button"
+        class="flex w-full items-center justify-center rounded-full bg-[#212323] py-[13px] text-center text-[16px] font-medium text-[#F6F1EC] drop-shadow-[0px_0px_7.5px_rgba(0,0,0,0.1)] transition-opacity duration-150 hover:opacity-85 sm:text-[20px]"
+        data-bundle-add
+        data-block-id="{{ block.id }}"
+        data-variant-id="{{ variant.id }}"
+        data-title="{{ flavor_name | escape }}"
+        data-image="{{ card_image | image_url: width: 200 }}"
+        data-price="{{ variant.price }}"
+        data-selling-plan-id="{{ selling_plan.id }}"
+        data-subscribe-price="{{ subscribe_price }}"
+      >
+        {{ block.settings.button_label }}
+      </button>
+    {% endif %}
+
+    {% if block.settings.product != blank %}
+      <a
+        href="{{ block.settings.product.url }}"
+        class="text-[14px] leading-[1.3] text-[#212323] underline underline-offset-2 sm:text-[17px]"
+      >
+        {{ 'products.list.learn_more' | t }}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:general.bundle_product",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:labels.product",
+      "info": "t:labels.product_info"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.image",
+      "info": "t:labels.image_info"
+    },
+    {
+      "type": "select",
+      "id": "flavor_style",
+      "label": "t:labels.flavor_style",
+      "options": [
+        { "value": "blood_orange", "label": "t:options.flavor_style.blood_orange" },
+        { "value": "berry_acai", "label": "t:options.flavor_style.berry_acai" },
+        { "value": "ginger_lime", "label": "t:options.flavor_style.ginger_lime" }
+      ],
+      "default": "blood_orange"
+    },
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "flavor_name",
+      "label": "t:labels.flavor_name",
+      "info": "t:labels.flavor_name_info"
+    },
+    {
+      "type": "text",
+      "id": "pack_label",
+      "label": "t:labels.pack_label",
+      "default": "12-pack"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "t:labels.card_background",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Add to Bundle"
+    }
+  ],
+  "presets": [{ "name": "t:general.bundle_product" }]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+{% doc %}
+  Groups bundle-milestone blocks into the "Your bundle" discount progress
+  bar: a track that fills as the shopper adds products, with each nested
+  milestone's reward pill spaced evenly along it. Nest inside the Bundle
+  Builder section; add, remove, and reorder the nested bundle-milestone
+  blocks to control the discount schedule.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'bundle-milestone-list' %}
+{% enddoc %}
+
+<div class="relative h-[48px] w-full" {{ block.shopify_attributes }}>
+  <div class="absolute inset-x-[15px] top-[13px] h-1 rounded-full bg-white">
+    <div
+      class="h-full w-0 rounded-full bg-[#212323] transition-[width] duration-300 ease-out"
+      data-bundle-progress-fill
+    ></div>
+  </div>
+  <div class="relative flex h-full w-full items-start justify-between">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:general.bundle_milestone_list",
+  "blocks": [{ "type": "bundle-milestone" }],
+  "presets": [
+    {
+      "name": "t:general.bundle_milestone_list",
+      "blocks": [
+        { "type": "bundle-milestone", "settings": { "threshold": 50, "reward_label": "$5" } },
+        { "type": "bundle-milestone", "settings": { "threshold": 125, "reward_label": "Free Ship" } },
+        { "type": "bundle-milestone", "settings": { "threshold": 150, "reward_label": "$15" } },
+        { "type": "bundle-milestone", "settings": { "threshold": 200, "reward_label": "$30" } },
+        { "type": "bundle-milestone", "settings": { "threshold": 250, "reward_label": "$50" } },
+        { "type": "bundle-milestone", "settings": { "threshold": 500, "reward_label": "$125" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -22,27 +22,27 @@
             "button_style": "arrow",
             "button_label": "Claim Your Trial",
             "arrow_label": "View more",
-            "button_link": "#",
-            "background_color": "#f9d5c0",
-            "text_color": "#212323",
+            "button_link": "shopify://products/try-all-3-flavors",
+            "background_color": "#215332",
+            "text_color": "#ffffff",
             "button_background_color": "#212323",
-            "button_text_color": "#212323"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
         "announcement_bar_item_chndfM": {
           "type": "announcement-bar-item",
           "settings": {
-            "text": "<p>Now serving at select venues & retailers</p>",
+            "text": "<p>Bundle up and subscribe to save the most.</p>",
             "show_button": true,
             "button_style": "arrow",
             "button_label": "Claim Your Trial",
             "arrow_label": "View more",
-            "button_link": "#",
-            "background_color": "#c2cbd4",
-            "text_color": "#212323",
+            "button_link": "shopify://pages/bundle-builder",
+            "background_color": "#391847",
+            "text_color": "#ffffff",
             "button_background_color": "#212323",
-            "button_text_color": "#212323"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
@@ -54,11 +54,11 @@
             "button_style": "arrow",
             "button_label": "Claim Your Trial",
             "arrow_label": "View more",
-            "button_link": "#",
-            "background_color": "#9ab2d5",
-            "text_color": "#212323",
+            "button_link": "shopify://pages/coa",
+            "background_color": "#85002c",
+            "text_color": "#ffffff",
             "button_background_color": "#212323",
-            "button_text_color": "#212323"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         }
@@ -127,13 +127,16 @@
         "logo": "shopify://shop_images/toaster-logo.svg",
         "menu": "shop",
         "search_button_text": "Find Toasted",
+        "show_search_button": false,
         "mega_menu_link_title": "Shop",
         "mega_menu_button_text": "Shop Drinks",
         "mega_menu_button_link": "/collections/shop-all",
         "mega_menu_button_background": "#212323",
         "mega_menu_button_text_color": "#f6f1ec",
-        "background_color": "#9AB2D5",
-        "text_color": "#212323"
+        "mega_menu_background_color": "#c2cbd4",
+        "default_background_color": "#9ab2d5",
+        "alternate_pages": "/coa /privacy-policy /contact-us /wholesale /products",
+        "alternate_background_color": "#f6f1ec"
       }
     }
   },

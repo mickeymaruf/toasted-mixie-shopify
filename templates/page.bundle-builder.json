@@ -1,0 +1,166 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "hero_banner_AFPte7": {
+      "type": "hero-banner",
+      "name": "t:general.hero_banner",
+      "settings": {
+        "heading": "Bundle & Save",
+        "subheading": "Pick your flavors. Stock the fridge. Save when you bundle.",
+        "heading_color": "#f6f1ec",
+        "background_image": "shopify://shop_images/Frame_2147230792_1_0723ef5c-41fc-4e02-99a9-8b09bccc13dc.png",
+        "background_color": "#9ab2d5"
+      }
+    },
+    "bundle_builder_gPVQwm": {
+      "type": "bundle-builder",
+      "blocks": {
+        "bundle-product-list": {
+          "type": "bundle-product-list",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "bundle_product_Cbqde9": {
+              "type": "bundle-product",
+              "settings": {
+                "product": "blood-orange",
+                "image": "shopify://shop_images/Group_145.png",
+                "flavor_style": "blood_orange",
+                "flavor_name": "Blood Orange",
+                "pack_label": "12-pack",
+                "card_background_color": "#85002c",
+                "button_label": "Add to Bundle"
+              },
+              "blocks": {}
+            },
+            "bundle_product_nM9qcq": {
+              "type": "bundle-product",
+              "settings": {
+                "product": "berry-acai",
+                "image": "shopify://shop_images/Group_145_1.png",
+                "flavor_style": "berry_acai",
+                "flavor_name": "Berry Acai",
+                "pack_label": "12-pack",
+                "card_background_color": "#391847",
+                "button_label": "Add to Bundle"
+              },
+              "blocks": {}
+            },
+            "bundle_product_HAFtWU": {
+              "type": "bundle-product",
+              "settings": {
+                "product": "ginger-lime",
+                "image": "shopify://shop_images/Group_145_2.png",
+                "flavor_style": "ginger_lime",
+                "flavor_name": "Ginger Lime",
+                "pack_label": "12-pack",
+                "card_background_color": "#215332",
+                "button_label": "Add to Bundle"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "bundle_product_Cbqde9",
+            "bundle_product_nM9qcq",
+            "bundle_product_HAFtWU"
+          ]
+        },
+        "bundle-milestone-list": {
+          "type": "bundle-milestone-list",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "bundle_milestone_PfJmMB": {
+              "type": "bundle-milestone",
+              "settings": {
+                "threshold": 50,
+                "reward_label": "$5"
+              },
+              "blocks": {}
+            },
+            "bundle_milestone_93Ghex": {
+              "type": "bundle-milestone",
+              "settings": {
+                "threshold": 125,
+                "reward_label": "Free Ship"
+              },
+              "blocks": {}
+            },
+            "bundle_milestone_iYfgPm": {
+              "type": "bundle-milestone",
+              "settings": {
+                "threshold": 150,
+                "reward_label": "$15"
+              },
+              "blocks": {}
+            },
+            "bundle_milestone_gCFGUg": {
+              "type": "bundle-milestone",
+              "settings": {
+                "threshold": 200,
+                "reward_label": "$30"
+              },
+              "blocks": {}
+            },
+            "bundle_milestone_GcLtdX": {
+              "type": "bundle-milestone",
+              "settings": {
+                "threshold": 250,
+                "reward_label": "$50"
+              },
+              "blocks": {}
+            },
+            "bundle_milestone_DMTXh8": {
+              "type": "bundle-milestone",
+              "settings": {
+                "threshold": 500,
+                "reward_label": "$125"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "bundle_milestone_PfJmMB",
+            "bundle_milestone_93Ghex",
+            "bundle_milestone_iYfgPm",
+            "bundle_milestone_gCFGUg",
+            "bundle_milestone_GcLtdX",
+            "bundle_milestone_DMTXh8"
+          ]
+        }
+      },
+      "name": "t:general.bundle_builder",
+      "settings": {
+        "bundle_heading": "Your bundle",
+        "one_time_label": "One-Time Order",
+        "subscribe_label": "Subscribe & Save 20%",
+        "add_to_cart_label": "Add to Cart",
+        "subscribe_note": "Subscribe & Save is the best value.",
+        "background_color": "#9AB2D5",
+        "panel_background_color": "#f6f1ec",
+        "purchase_selected_color": "#f9d5c0",
+        "add_to_cart_background_color": "#212323",
+        "add_to_cart_text_color": "#f6f1ec"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero_banner_AFPte7",
+    "bundle_builder_gPVQwm"
+  ]
+}

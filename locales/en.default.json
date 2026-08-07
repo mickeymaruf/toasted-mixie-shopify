@@ -53,7 +53,9 @@
   "labels": {
     "heading": "Heading",
     "subheading": "Subheading",
+    "description": "Description",
     "text_color": "Text color",
+    "background_color": "Background color",
     "background": "Background",
     "image": "Image",
     "button_text": "Button text",
@@ -248,9 +250,13 @@
       "pause_skip_cancel": "Pause, skip, or cancel anytime",
       "one_time_order": "One-Time Order",
       "standard_purchase": "Standard one-time purchase",
-      "buy_button_subscribe": "Try Now",
+      "buy_button_subscribe": "Subscribe & Save",
       "buy_button_one_time": "Add to cart",
       "sold_out": "Sold out"
     }
+  },
+  "bundle_builder": {
+    "selected_products": "Selected bundle products",
+    "remove_item": "Remove {{ title }} from your bundle"
   }
 }

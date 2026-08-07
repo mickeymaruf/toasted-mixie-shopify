@@ -1,0 +1,37 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page",
+      "disabled": true,
+      "settings": {}
+    },
+    "order_confirmation_GkqrUn": {
+      "type": "order-confirmation",
+      "name": "t:sections.order_confirmation.name",
+      "settings": {
+        "main_heading": "Thank You!",
+        "main_description": "Thanks for your purchase. We're getting everything ready for you.",
+        "card_heading": "Order Confirmed",
+        "card_description": "Your order is confirmed. We'll let you know when it's on its way.",
+        "show_button": true,
+        "button_text": "Track My Order",
+        "button_link": "",
+        "button_background": "#f9d5c0",
+        "button_text_color": "#212323"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "order_confirmation_GkqrUn"
+  ]
+}

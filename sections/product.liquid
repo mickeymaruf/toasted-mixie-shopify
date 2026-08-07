@@ -599,8 +599,7 @@
 
       if (this.buyButtonPrice) {
         const hasCustomLabel = this.buyButtonLabel?.dataset.hasCustomLabel === 'true';
-        this.buyButtonPrice.hidden = !variant.available || hasCustomLabel;
-        this.buyButtonPrice.textContent = subscribing ? variant.subscribePriceHtml : variant.priceHtml;
+        this.buyButtonPrice.hidden = true;
       }
 
       if (this.buyButtonLabel) {
@@ -609,9 +608,11 @@
           if (!variant.available) {
             this.buyButtonLabel.textContent = this.buyButtonLabel.dataset.soldOutLabel;
           } else {
-            this.buyButtonLabel.textContent = subscribing
+            const label = subscribing
               ? this.buyButtonLabel.dataset.subscribeLabel
               : this.buyButtonLabel.dataset.oneTimeLabel;
+            const price = subscribing ? variant.subscribePriceHtml : variant.priceHtml;
+            this.buyButtonLabel.innerHTML = `${label} ${price}`;
           }
         }
       }

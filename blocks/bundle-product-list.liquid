@@ -1,0 +1,60 @@
+{% doc %}
+  Groups bundle-product blocks into a responsive grid of "Add to Bundle"
+  flavor cards. Nest inside the Bundle Builder section; add, remove, and
+  reorder the nested bundle-product blocks to control which flavors are
+  offered.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'bundle-product-list' %}
+{% enddoc %}
+
+<div
+  class="grid w-full grid-cols-2 items-start gap-4 sm:grid-cols-3"
+  {{ block.shopify_attributes }}
+>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "t:general.bundle_product_list",
+  "blocks": [{ "type": "bundle-product" }],
+  "presets": [
+    {
+      "name": "t:general.bundle_product_list",
+      "blocks": [
+        {
+          "type": "bundle-product",
+          "settings": {
+            "flavor_name": "Blood Orange",
+            "pack_label": "12-pack",
+            "flavor_style": "blood_orange",
+            "card_background_color": "#85002C",
+            "button_label": "Add to Bundle"
+          }
+        },
+        {
+          "type": "bundle-product",
+          "settings": {
+            "flavor_name": "Berry Acai",
+            "pack_label": "12-pack",
+            "flavor_style": "berry_acai",
+            "card_background_color": "#391847",
+            "button_label": "Add to Bundle"
+          }
+        },
+        {
+          "type": "bundle-product",
+          "settings": {
+            "flavor_name": "Ginger Lime",
+            "pack_label": "12-pack",
+            "flavor_style": "ginger_lime",
+            "card_background_color": "#215332",
+            "button_label": "Add to Bundle"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

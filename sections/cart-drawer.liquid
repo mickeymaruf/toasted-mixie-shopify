@@ -105,6 +105,7 @@
         <div class="h-px w-full bg-[#212323]/10"></div>
       {% endif %}
 
+      {% comment %}
       {% if section.blocks.size > 0 %}
         <div class="flex w-full flex-col items-center">
           <p class="w-full text-center text-[16px] leading-[1.3] font-medium text-[#212323]">
@@ -138,6 +139,7 @@
           </button>
         </cart-recommendations>
       {% endif %}
+      {% endcomment %}
 
       {% if cart.item_count > 0 %}
         <div class="flex w-full flex-col items-start gap-1">
@@ -157,12 +159,11 @@
 
         {% form 'cart', cart, class: 'flex w-full flex-col items-center gap-6' %}
           <button
-            type="submit"
-            name="checkout"
-            class="flex w-full items-center justify-center gap-3 rounded-full bg-[#212323] px-8 py-4 text-[18px] font-medium text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85"
+            type="button"
+            disabled
+            class="flex w-full items-center justify-center rounded-full bg-[#212323] px-8 py-4 text-[18px] font-medium text-[#F6F1EC] cursor-not-allowed opacity-50"
           >
-            <span class="block size-5">{{ 'icon-lock.svg' | inline_asset_content }}</span>
-            {{ 'cart_drawer.checkout' | t }}
+            Coming soon…
           </button>
 
           <button
