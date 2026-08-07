@@ -78,6 +78,7 @@
               "settings": {
                 "product": "blood-orange",
                 "flavor_name": "",
+                "swatch_image": "shopify://shop_images/Frame_2147235891.png",
                 "color": "#85002c"
               },
               "blocks": {}
@@ -88,6 +89,7 @@
               "settings": {
                 "product": "berry-acai",
                 "flavor_name": "",
+                "swatch_image": "shopify://shop_images/Frame_2147235893.png",
                 "color": "#552469"
               },
               "blocks": {}
@@ -98,6 +100,7 @@
               "settings": {
                 "product": "ginger-lime",
                 "flavor_name": "",
+                "swatch_image": "shopify://shop_images/Frame_2147235892.png",
                 "color": "#2f7948"
               },
               "blocks": {}
@@ -285,8 +288,8 @@
         "card_background": "#9ab2d5",
         "heading_color": "#212323",
         "border_color": "#212323",
-        "faq_item_background": "#636D90",
-        "faq_item_text_color": "#F6F1EC",
+        "faq_item_background": "#636d90",
+        "faq_item_text_color": "#f6f1ec",
         "columns_desktop": "3",
         "padding_top": 100,
         "padding_bottom": 100,
@@ -396,10 +399,10 @@
         "background_image": "shopify://shop_images/ingredient-highlights-background.png"
       }
     },
-    "gruns_product_list_ayENjD": {
+    "gruns_product_list_Nb6QE8": {
       "type": "gruns-product-list",
       "blocks": {
-        "product_card_CeprN3": {
+        "product_card_mTMzF4": {
           "type": "product-card",
           "settings": {
             "product": "blood-orange",
@@ -410,11 +413,11 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
-        "product_card_F3i7Xg": {
+        "product_card_C3dUJ8": {
           "type": "product-card",
           "settings": {
             "product": "berry-acai",
@@ -425,11 +428,11 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
-        "product_card_TbK6dw": {
+        "product_card_86473N": {
           "type": "product-card",
           "settings": {
             "product": "ginger-lime",
@@ -440,11 +443,11 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
-        "product_card_zXbK38": {
+        "product_card_74xQ8b": {
           "type": "product-card",
           "settings": {
             "product": "try-all-3-flavors",
@@ -455,25 +458,93 @@
             "price_text": "Just Pay Shipping",
             "button_label": "Try Now",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "product_card_CeprN3",
-        "product_card_F3i7Xg",
-        "product_card_TbK6dw",
-        "product_card_zXbK38"
+        "product_card_mTMzF4",
+        "product_card_C3dUJ8",
+        "product_card_86473N",
+        "product_card_74xQ8b"
       ],
       "name": "t:general.product_list",
       "settings": {
         "heading": "Choose your flavor.",
-        "background_color": "#f6f1ec",
+        "background_color": "#9ab2d5",
         "heading_color": "#212323"
       }
     },
-    "gruns_find_toasted_EFQ7iF": {
+    "reviews_kbCGcD": {
+      "type": "reviews",
+      "blocks": {
+        "review_image_GHYRhw": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_14_1.png"
+          }
+        },
+        "review_image_ajcLdn": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_18_1.png"
+          }
+        },
+        "review_image_Ek63jP": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_15_1.png"
+          }
+        },
+        "review_image_HhBMkt": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_16_1.png"
+          }
+        },
+        "review_image_WGbTBg": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_17_1.png"
+          }
+        },
+        "review_testimonial_mkeqkd": {
+          "type": "review-testimonial",
+          "settings": {
+            "avatar_image": "shopify://shop_images/Group_149.svg",
+            "reviewer_name": "Toasted",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_title": "First Toasted reviews coming soon.",
+            "testimonial_text": "Reviews open after first drop. Be one of the first to try Toasted."
+          }
+        }
+      },
+      "block_order": [
+        "review_image_GHYRhw",
+        "review_image_ajcLdn",
+        "review_image_Ek63jP",
+        "review_image_HhBMkt",
+        "review_image_WGbTBg",
+        "review_testimonial_mkeqkd"
+      ],
+      "name": "Reviews",
+      "settings": {
+        "bg_color": "#f6f1ec",
+        "text_color": "#212323",
+        "heading_prefix": "First comments",
+        "heading_suffix": "coming soon.",
+        "rating": 4.9,
+        "rating_text": "Be among the first to review.",
+        "show_carousel": true,
+        "button_label": "Join the First Drop",
+        "button_link": "",
+        "button_bg_color": "#212323",
+        "button_text_color": "#f6f1ec"
+      }
+    },
+    "gruns_find_toasted_ddGMA9": {
       "type": "gruns-find-toasted",
       "name": "t:general.gruns_find_toasted",
       "settings": {
@@ -482,12 +553,13 @@
         "show_button": true,
         "button_label": "Find near you",
         "button_link": "",
-        "button_background_color": "#212323",
-        "button_text_color": "#f6f1ec",
+        "button_background_color": "#f9d5c0",
+        "button_text_color": "#1e2125",
         "background_color": "#f6f1ec",
-        "panel_background_color": "#f9d5c0",
-        "heading_color": "#212323",
-        "billboard_image": "shopify://shop_images/find-toasted-billboard.png",
+        "panel_background_color": "#551f36",
+        "panel_background_image": "shopify://shop_images/Group_82.png",
+        "heading_color": "#ffffff",
+        "billboard_image": "shopify://shop_images/Cllg5_2_1.png",
         "billboard_image_alt": ""
       }
     }
@@ -496,7 +568,8 @@
     "main",
     "faq_pills_grid_Hp3E9Q",
     "ingredient_highlights_wcTznK",
-    "gruns_product_list_ayENjD",
-    "gruns_find_toasted_EFQ7iF"
+    "gruns_product_list_Nb6QE8",
+    "reviews_kbCGcD",
+    "gruns_find_toasted_ddGMA9"
   ]
 }

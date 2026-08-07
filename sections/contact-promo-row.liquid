@@ -1,0 +1,403 @@
+{% doc %}
+  Renders a two-column layout combining contact form (left) and promo cards (right).
+  Contact form on left, promo cards on right. Promo cards display in column direction.
+{% enddoc %}
+
+{% assign form_type = section.settings.form_type %}
+{% assign bg_color = section.settings.background_color %}
+{% assign text_color = section.settings.text_color %}
+{% assign button_bg_color = section.settings.button_background_color %}
+{% assign button_text_color = section.settings.button_text_color %}
+{% assign promo_bg_color = section.settings.promo_background_color %}
+
+<section class="w-full" style="
+  --form-bg: {{ bg_color }};
+  --form-text: {{ text_color }};
+  --form-button-bg: {{ button_bg_color }};
+  --form-button-text: {{ button_text_color }};
+  --promo-bg: {{ promo_bg_color }};
+">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 w-full min-h-screen lg:min-h-auto">
+    <!-- LEFT COLUMN: CONTACT FORM -->
+    <div class="flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-[80px]" style="background-color: var(--form-bg); color: var(--form-text);">
+      <div class="w-full max-w-full">
+        {% if section.settings.heading != blank %}
+          <div class="flex flex-col gap-5 mb-[60px] lg:mb-[80px] lg:text-left text-center">
+            <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-bold -tracking-[2.16px] m-0 leading-tight">
+              {{ section.settings.heading }}
+            </h2>
+            {% if section.settings.subheading != blank %}
+              <p class="text-lg sm:text-2xl font-normal leading-[1.3] m-0">
+                {{ section.settings.subheading }}
+              </p>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <div class="flex flex-col gap-16">
+          {% if form_type == 'shopify_contact' %}
+            {% form 'contact' %}
+              {% if form.errors %}
+                <div class="bg-red-100 border border-red-300 rounded text-red-800 p-3 text-sm">
+                  {{ form.errors | default_errors }}
+                </div>
+              {% endif %}
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
+                {% for block in section.blocks %}
+                  {% if block.type == 'form_field' %}
+                    {% assign field_type = block.settings.field_type %}
+                    {% assign field_name = block.settings.field_name %}
+                    {% assign field_label = block.settings.field_label %}
+                    {% assign field_required = block.settings.field_required %}
+                    {% assign field_column_span = block.settings.column_span %}
+
+                    <div class="flex flex-col gap-2.5{% if field_column_span == '2' %} md:col-span-2{% endif %}">
+                      <label for="contact-{{ field_name }}" class="block text-xl sm:text-2xl font-normal leading-tight m-0">
+                        {{ field_label }}
+                      </label>
+
+                      {% case field_type %}
+                        {% when 'text' %}
+                          <input
+                            type="text"
+                            id="contact-{{ field_name }}"
+                            name="contact[{{ field_name }}]"
+                            class="w-full border-0 border-b border-solid bg-transparent font-inherit text-base leading-[1.5] py-2 pl-0 outline-none transition-colors duration-150"
+                            style="border-bottom-color: var(--form-text); color: var(--form-text);"
+                            {% if field_required %}required{% endif %}
+                            placeholder=""
+                          />
+                        {% when 'email' %}
+                          <input
+                            type="email"
+                            id="contact-{{ field_name }}"
+                            name="contact[{{ field_name }}]"
+                            class="w-full border-0 border-b border-solid bg-transparent font-inherit text-base leading-[1.5] py-2 pl-0 outline-none transition-colors duration-150"
+                            style="border-bottom-color: var(--form-text); color: var(--form-text);"
+                            {% if field_required %}required{% endif %}
+                            placeholder=""
+                          />
+                        {% when 'phone' %}
+                          <input
+                            type="tel"
+                            id="contact-{{ field_name }}"
+                            name="contact[{{ field_name }}]"
+                            class="w-full border-0 border-b border-solid bg-transparent font-inherit text-base leading-[1.5] py-2 pl-0 outline-none transition-colors duration-150"
+                            style="border-bottom-color: var(--form-text); color: var(--form-text);"
+                            {% if field_required %}required{% endif %}
+                            placeholder=""
+                          />
+                      {% endcase %}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <button type="submit" class="w-full h-[58px] mt-16 flex items-center justify-center rounded-full text-xl sm:text-2xl font-medium leading-[1.5] transition-opacity duration-150 hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" style="background-color: var(--form-button-bg); color: var(--form-button-text); outline-color: var(--form-button-text);">
+                {{ section.settings.button_text }}
+              </button>
+            {% endform %}
+          {% elsif form_type == 'custom' %}
+            <form
+              class="flex flex-col gap-16"
+              data-form-handler="{{ section.settings.form_endpoint }}"
+              data-success-message="{{ 'sections.contact_form.success_message' | t }}"
+              data-error-message="{{ 'sections.contact_form.error_message' | t }}"
+            >
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
+                {% for block in section.blocks %}
+                  {% if block.type == 'form_field' %}
+                    {% assign field_type = block.settings.field_type %}
+                    {% assign field_name = block.settings.field_name %}
+                    {% assign field_label = block.settings.field_label %}
+                    {% assign field_required = block.settings.field_required %}
+                    {% assign field_column_span = block.settings.column_span %}
+
+                    <div class="flex flex-col gap-2.5{% if field_column_span == '2' %} md:col-span-2{% endif %}">
+                      <label for="custom-{{ field_name }}" class="block text-xl sm:text-2xl font-normal leading-tight m-0">
+                        {{ field_label }}
+                        {% if field_required %}<span class="text-red-600">*</span>{% endif %}
+                      </label>
+
+                      {% case field_type %}
+                        {% when 'text' %}
+                          <input
+                            type="text"
+                            id="custom-{{ field_name }}"
+                            name="{{ field_name }}"
+                            class="w-full border-0 border-b border-solid bg-transparent font-inherit text-base leading-[1.5] py-2 pl-0 outline-none transition-colors duration-150"
+                            style="border-bottom-color: var(--form-text); color: var(--form-text);"
+                            {% if field_required %}required{% endif %}
+                            placeholder=""
+                          />
+                        {% when 'email' %}
+                          <input
+                            type="email"
+                            id="custom-{{ field_name }}"
+                            name="{{ field_name }}"
+                            class="w-full border-0 border-b border-solid bg-transparent font-inherit text-base leading-[1.5] py-2 pl-0 outline-none transition-colors duration-150"
+                            style="border-bottom-color: var(--form-text); color: var(--form-text);"
+                            {% if field_required %}required{% endif %}
+                            placeholder=""
+                          />
+                        {% when 'phone' %}
+                          <input
+                            type="tel"
+                            id="custom-{{ field_name }}"
+                            name="{{ field_name }}"
+                            class="w-full border-0 border-b border-solid bg-transparent font-inherit text-base leading-[1.5] py-2 pl-0 outline-none transition-colors duration-150"
+                            style="border-bottom-color: var(--form-text); color: var(--form-text);"
+                            {% if field_required %}required{% endif %}
+                            placeholder=""
+                          />
+                      {% endcase %}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <button type="submit" class="w-full h-[58px] mt-16 flex items-center justify-center rounded-full text-xl sm:text-2xl font-medium leading-[1.5] transition-opacity duration-150 hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" style="background-color: var(--form-button-bg); color: var(--form-button-text); outline-color: var(--form-button-text);">
+                {{ section.settings.button_text }}
+              </button>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: PROMO CARDS -->
+    <div class="flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-[80px]" style="background-color: var(--promo-bg);">
+      <div class="mx-auto w-full max-w-[1920px]">
+        {% if section.blocks.size > 0 %}
+          <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 lg:gap-[30px]">
+            {% for block in section.blocks %}
+              {% if block.type == 'promo_card' %}
+                <div class="relative w-full aspect-square overflow-hidden rounded-[20px] flex flex-col justify-end" {{ block.shopify_attributes }}>
+                  {% if block.settings.image %}
+                    <div class="absolute inset-0 z-0 overflow-hidden">
+                      {{ block.settings.image | image_url: width: 600 | image_tag: class: 'w-full h-full object-cover' }}
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/0"></div>
+                    </div>
+                  {% endif %}
+                  <div class="relative z-10 p-[40px] text-white">
+                    {% if block.settings.title %}
+                      <h3 class="text-3xl sm:text-4xl font-bold m-0 mb-2 leading-tight">{{ block.settings.title }}</h3>
+                    {% endif %}
+                    {% if block.settings.description %}
+                      <p class="text-base sm:text-lg font-normal m-0 leading-[1.4]">{{ block.settings.description }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', function() {
+    const forms = document.querySelectorAll('.contact-form');
+
+    forms.forEach(form => {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const endpoint = form.getAttribute('data-form-handler');
+        const successMessage = form.getAttribute('data-success-message');
+        const errorMessage = form.getAttribute('data-error-message');
+
+        try {
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            form.reset();
+            alert(successMessage);
+          } else {
+            alert(errorMessage);
+          }
+        } catch (error) {
+          console.error('Form submission error:', error);
+          alert(errorMessage);
+        }
+      });
+    });
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Contact Promo Row",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Contact Form Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Partner with us"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Tell us about your venue, store, or event."
+    },
+    {
+      "type": "select",
+      "id": "form_type",
+      "label": "Form Type",
+      "options": [
+        { "value": "shopify_contact", "label": "Shopify Contact" },
+        { "value": "custom", "label": "Custom" }
+      ],
+      "default": "shopify_contact"
+    },
+    {
+      "type": "url",
+      "id": "form_endpoint",
+      "label": "Form Endpoint",
+      "visible_if": "{{ section.settings.form_type == 'custom' }}"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Submit inquiry"
+    },
+    {
+      "type": "header",
+      "content": "Form Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "header",
+      "content": "Promo Cards Colors"
+    },
+    {
+      "type": "color",
+      "id": "promo_background_color",
+      "label": "Background",
+      "default": "#F6F1EC"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "form_field",
+      "name": "Form Field",
+      "settings": [
+        {
+          "type": "text",
+          "id": "field_label",
+          "label": "Label",
+          "default": "Field Name"
+        },
+        {
+          "type": "text",
+          "id": "field_name",
+          "label": "Field Name",
+          "default": "field"
+        },
+        {
+          "type": "select",
+          "id": "field_type",
+          "label": "Type",
+          "options": [
+            { "value": "text", "label": "Text" },
+            { "value": "email", "label": "Email" },
+            { "value": "phone", "label": "Phone" }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "checkbox",
+          "id": "field_required",
+          "label": "Required",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "column_span",
+          "label": "Column Span",
+          "options": [
+            { "value": "1", "label": "Half" },
+            { "value": "2", "label": "Full" }
+          ],
+          "default": "1"
+        }
+      ]
+    },
+    {
+      "type": "promo_card",
+      "name": "Promo Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Partner with us"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Ready to serve | No prep | Premium option | COA available | Adults 21+ only"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Promo Row",
+      "blocks": [
+        { "type": "form_field", "settings": { "field_label": "Name", "field_name": "name", "field_type": "text", "field_required": true } },
+        { "type": "form_field", "settings": { "field_label": "Email", "field_name": "email", "field_type": "email", "field_required": true } },
+        { "type": "form_field", "settings": { "field_label": "Business name", "field_name": "business_name", "field_type": "text" } },
+        { "type": "form_field", "settings": { "field_label": "Phone", "field_name": "phone", "field_type": "phone" } },
+        { "type": "promo_card", "settings": { "title": "Partner with us", "description": "Ready to serve | No prep | Premium option | COA available | Adults 21+ only" } },
+        { "type": "promo_card", "settings": { "title": "Partner with us", "description": "Ready to serve | No prep | Premium option | COA available | Adults 21+ only" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

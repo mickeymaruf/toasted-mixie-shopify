@@ -21,14 +21,14 @@
         "heading": "Choose your Flavor.",
         "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
         "heading_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/Frame_2147230792.png",
-        "background_color": "#f6f1ec"
+        "background_image": "shopify://shop_images/Frame_2147230792_3.png",
+        "background_color": "#9AB2D5"
       }
     },
-    "gruns_product_list_MDjJ74": {
+    "gruns_product_list_g7QmmR": {
       "type": "gruns-product-list",
       "blocks": {
-        "product_card_W7FP9C": {
+        "product_card_fCftJ9": {
           "type": "product-card",
           "settings": {
             "product": "blood-orange",
@@ -39,11 +39,11 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
-        "product_card_EUgCGz": {
+        "product_card_8m7Vyc": {
           "type": "product-card",
           "settings": {
             "product": "berry-acai",
@@ -54,11 +54,11 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#C7AA9A"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
-        "product_card_GCWNa8": {
+        "product_card_zG8YkG": {
           "type": "product-card",
           "settings": {
             "product": "ginger-lime",
@@ -69,11 +69,11 @@
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
-        "product_card_CDQwnU": {
+        "product_card_Vrh4Fd": {
           "type": "product-card",
           "settings": {
             "product": "try-all-3-flavors",
@@ -84,21 +84,21 @@
             "price_text": "Just Pay Shipping",
             "button_label": "Try Now",
             "button_background_color": "#212323",
-            "button_text_color": "#c7aa9a"
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "product_card_W7FP9C",
-        "product_card_EUgCGz",
-        "product_card_GCWNa8",
-        "product_card_CDQwnU"
+        "product_card_fCftJ9",
+        "product_card_8m7Vyc",
+        "product_card_zG8YkG",
+        "product_card_Vrh4Fd"
       ],
       "name": "t:general.product_list",
       "settings": {
         "heading": "Choose your flavor.",
-        "background_color": "#f6f1ec",
+        "background_color": "#9ab2d5",
         "heading_color": "#212323"
       }
     }
@@ -106,6 +106,6 @@
   "order": [
     "main",
     "hero_banner_FcDRLr",
-    "gruns_product_list_MDjJ74"
+    "gruns_product_list_g7QmmR"
   ]
 }

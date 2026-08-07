@@ -18,53 +18,18 @@
       "type": "hero-banner",
       "name": "t:general.hero_banner",
       "settings": {
-        "heading": "Choose your Flavor.",
-        "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
+        "heading": "Bring Toasted to your venue.",
+        "subheading": "A premium functional relaxation beverage made for social moments.",
         "heading_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/wholesale-banner.png",
+        "background_image": "shopify://shop_images/Frame_2147230792_2535579d-1b8a-43a0-b4ae-b8b0e41b4994.png",
         "background_color": "#f6f1ec"
       }
     },
-    "promo_cards_tdzKYC": {
-      "type": "promo-cards",
+    "contact_promo_row_qM9UhD": {
+      "type": "contact-promo-row",
       "blocks": {
-        "promo_card_EtJc98": {
-          "type": "promo-card",
-          "settings": {
-            "image": "shopify://shop_images/partner-1.png",
-            "alt_text": "",
-            "title": "Partner with us",
-            "description": "Ready to serve | No prep | Premium option | COA available | Adults 21+ only",
-            "text_color": "#f6f1ec"
-          },
-          "blocks": {}
-        },
-        "promo_card_AcJAHb": {
-          "type": "promo-card",
-          "settings": {
-            "image": "shopify://shop_images/partner-2.png",
-            "alt_text": "",
-            "title": "Partner with us",
-            "description": "Ready to serve | No prep | Premium option | COA available | Adults 21+ only",
-            "text_color": "#f6f1ec"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "promo_card_EtJc98",
-        "promo_card_AcJAHb"
-      ],
-      "name": "t:general.promo_cards",
-      "settings": {
-        "background_color": "#f6f1ec"
-      }
-    },
-    "contact_form_chM34h": {
-      "type": "contact-form",
-      "blocks": {
-        "field_Q8r3gQ": {
-          "type": "field",
+        "form_field_YHhEkC": {
+          "type": "form_field",
           "settings": {
             "field_label": "Name",
             "field_name": "name",
@@ -73,8 +38,8 @@
             "column_span": "1"
           }
         },
-        "field_zjejqq": {
-          "type": "field",
+        "form_field_R3CdrL": {
+          "type": "form_field",
           "settings": {
             "field_label": "Email",
             "field_name": "email",
@@ -83,8 +48,8 @@
             "column_span": "1"
           }
         },
-        "field_yeRcBT": {
-          "type": "field",
+        "form_field_Uyf6zQ": {
+          "type": "form_field",
           "settings": {
             "field_label": "Business name",
             "field_name": "business_name",
@@ -93,8 +58,8 @@
             "column_span": "1"
           }
         },
-        "field_fMAxHf": {
-          "type": "field",
+        "form_field_yApfA3": {
+          "type": "form_field",
           "settings": {
             "field_label": "Phone number",
             "field_name": "phone",
@@ -103,8 +68,8 @@
             "column_span": "1"
           }
         },
-        "field_KLdPet": {
-          "type": "field",
+        "form_field_Aymhpb": {
+          "type": "form_field",
           "settings": {
             "field_label": "Business type",
             "field_name": "business_type",
@@ -113,8 +78,8 @@
             "column_span": "2"
           }
         },
-        "field_cERnBi": {
-          "type": "field",
+        "form_field_NtXQDN": {
+          "type": "form_field",
           "settings": {
             "field_label": "City",
             "field_name": "city",
@@ -123,18 +88,8 @@
             "column_span": "1"
           }
         },
-        "field_NkJQbY": {
-          "type": "field",
-          "settings": {
-            "field_label": "Message",
-            "field_name": "message",
-            "field_type": "text",
-            "field_required": false,
-            "column_span": "1"
-          }
-        },
-        "field_UTzMVr": {
-          "type": "field",
+        "form_field_wbXJx3": {
+          "type": "form_field",
           "settings": {
             "field_label": "Country",
             "field_name": "country",
@@ -143,18 +98,28 @@
             "column_span": "1"
           }
         },
-        "field_h3akyV": {
-          "type": "field",
+        "form_field_QG3FWN": {
+          "type": "form_field",
           "settings": {
-            "field_label": "Website (Leave Blank If N/A)",
+            "field_label": "Message",
+            "field_name": "message",
+            "field_type": "text",
+            "field_required": false,
+            "column_span": "2"
+          }
+        },
+        "form_field_9CJPWM": {
+          "type": "form_field",
+          "settings": {
+            "field_label": "Website",
             "field_name": "website",
             "field_type": "text",
             "field_required": false,
-            "column_span": "1"
+            "column_span": "2"
           }
         },
-        "field_bEEdGF": {
-          "type": "field",
+        "form_field_QBe8UH": {
+          "type": "form_field",
           "settings": {
             "field_label": "Number of locations",
             "field_name": "locations",
@@ -163,8 +128,8 @@
             "column_span": "1"
           }
         },
-        "field_8TVnDV": {
-          "type": "field",
+        "form_field_gFFmf3": {
+          "type": "form_field",
           "settings": {
             "field_label": "EIN",
             "field_name": "ein",
@@ -172,39 +137,57 @@
             "field_required": false,
             "column_span": "1"
           }
+        },
+        "promo_card_KpLmY3": {
+          "type": "promo_card",
+          "settings": {
+            "image": "shopify://shop_images/Frame_2147230615.png",
+            "title": "Partner with us",
+            "description": "Fruit-forward flavors. Functional by Design. Built for the premium beverage set. Adults 21+ only."
+          }
+        },
+        "promo_card_kenb3Q": {
+          "type": "promo_card",
+          "settings": {
+            "image": "shopify://shop_images/Frame_2147230614.png",
+            "title": "For Retailers",
+            "description": "Ready to serve. No prep. Premium functional option. COA available. Adults 21+ only."
+          }
         }
       },
       "block_order": [
-        "field_Q8r3gQ",
-        "field_zjejqq",
-        "field_yeRcBT",
-        "field_fMAxHf",
-        "field_KLdPet",
-        "field_cERnBi",
-        "field_NkJQbY",
-        "field_UTzMVr",
-        "field_h3akyV",
-        "field_bEEdGF",
-        "field_8TVnDV"
+        "form_field_YHhEkC",
+        "form_field_R3CdrL",
+        "form_field_Uyf6zQ",
+        "form_field_yApfA3",
+        "form_field_Aymhpb",
+        "form_field_NtXQDN",
+        "form_field_wbXJx3",
+        "form_field_QG3FWN",
+        "form_field_9CJPWM",
+        "form_field_QBe8UH",
+        "form_field_gFFmf3",
+        "promo_card_KpLmY3",
+        "promo_card_kenb3Q"
       ],
-      "name": "t:sections.contact_form.name",
+      "name": "Contact Form + Promo Cards Row",
       "settings": {
         "heading": "Partner with us",
-        "subheading": "Tell us about your venue, store, or event.",
+        "subheading": "Tell us where Toasted belongs next.",
         "form_type": "shopify_contact",
         "form_endpoint": "",
-        "button_text": "Submit inquiry",
+        "button_text": "Partner with Toasted",
         "background_color": "#f6f1ec",
         "text_color": "#212323",
         "button_background_color": "#212323",
-        "button_text_color": "#f6f1ec"
+        "button_text_color": "#f6f1ec",
+        "promo_background_color": "#f6f1ec"
       }
     }
   },
   "order": [
     "main",
     "hero_banner_TVLmyk",
-    "promo_cards_tdzKYC",
-    "contact_form_chM34h"
+    "contact_promo_row_qM9UhD"
   ]
 }

@@ -198,7 +198,7 @@
       "name": "t:sections.marquee.name",
       "settings": {
         "text_color": "#212323",
-        "background_color": "#9AB2D5",
+        "background_color": "#9ab2d5",
         "text_size": 36,
         "gap": 52
       }
