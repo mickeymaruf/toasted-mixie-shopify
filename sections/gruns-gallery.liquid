@@ -63,7 +63,7 @@
 
     {% if section.settings.social_icon_1_image or section.settings.social_icon_2_image or section.settings.social_icon_3_image %}
       <div class="order-2 flex items-center justify-center gap-[18px] sm:order-none">
-        {% if section.settings.social_icon_1_image %}
+        {% if section.settings.social_icon_1_image and section.settings.social_icon_1_link != blank %}
           <a
             href="{{ section.settings.social_icon_1_link }}"
             class="shrink-0 transition-opacity duration-150 hover:opacity-85"
@@ -76,7 +76,7 @@
           </a>
         {% endif %}
 
-        {% if section.settings.social_icon_2_image %}
+        {% if section.settings.social_icon_2_image and section.settings.social_icon_2_link != blank %}
           <a
             href="{{ section.settings.social_icon_2_link }}"
             class="shrink-0 transition-opacity duration-150 hover:opacity-85"
@@ -89,7 +89,7 @@
           </a>
         {% endif %}
 
-        {% if section.settings.social_icon_3_image %}
+        {% if section.settings.social_icon_3_image and section.settings.social_icon_3_link != blank %}
           <a
             href="{{ section.settings.social_icon_3_link }}"
             class="shrink-0 transition-opacity duration-150 hover:opacity-85"

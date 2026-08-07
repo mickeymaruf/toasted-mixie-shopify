@@ -27,6 +27,7 @@
         "social_icon_NyQE8L": {
           "type": "social-icon",
           "name": "t:general.social_icon",
+          "disabled": true,
           "settings": {
             "label": "Social link",
             "link": "",
@@ -37,6 +38,7 @@
         "social_icon_YhLFmG": {
           "type": "social-icon",
           "name": "t:general.social_icon",
+          "disabled": true,
           "settings": {
             "label": "Social link",
             "link": "",

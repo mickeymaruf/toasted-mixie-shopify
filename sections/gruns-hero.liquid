@@ -3,12 +3,12 @@
   style="background-color: {{ section.settings.background_color }};"
 >
   <div
-    class="mx-auto flex w-full max-w-[1920px] flex-col gap-12 px-5 pt-[30px] pb-[30px] sm:px-8 sm:pb-[60px] md:px-12 lg:grid lg:grid-cols-[9fr_11fr] lg:items-center lg:gap-x-0 lg:px-[80px] xl:px-[120px] xl:py-[50px]"
+    class="mx-auto flex w-full max-w-[1920px] flex-col gap-4 px-5 pb-[45px] sm:gap-12 sm:px-8 sm:pb-[60px] md:px-12 lg:grid lg:grid-cols-[9fr_11fr] lg:items-center lg:gap-x-0 lg:px-[80px] xl:px-[120px] xl:py-[50px]"
   >
     <div class="order-2 flex w-full flex-col items-center text-center lg:order-none lg:col-start-1 lg:items-start lg:text-left">
       {% if section.settings.heading != blank %}
         <div
-          class="font-bold text-[36px] leading-[1.1] text-[color:var(--gruns-hero-heading-color)] sm:text-[44px] md:text-[56px] 2xl:text-[70px]"
+          class="font-bold text-[28px] leading-[1.1] text-[color:var(--gruns-hero-heading-color)] sm:text-[36px] md:text-[44px] lg:text-[56px] 2xl:text-[70px]"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.heading }}
@@ -17,7 +17,7 @@
 
       {% if section.settings.description != blank %}
         <div
-          class="mt-4 max-w-[350px] text-[16px] leading-[1.5] text-[color:var(--gruns-hero-heading-color)] md:mt-5 md:text-[18px] -space-y-[12px]"
+          class="mt-2 max-w-[350px] text-[14px] leading-[1.4] text-[color:var(--gruns-hero-heading-color)] sm:mt-4 sm:text-[16px] md:mt-5 md:text-[18px] -space-y-[12px]"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.description }}
@@ -25,7 +25,7 @@
       {% endif %}
 
       {% if section.settings.show_button and section.settings.button_label != blank %}
-        <div class="mt-8 flex w-full max-w-[278px] flex-col items-center gap-[10px] lg:mt-[50px]">
+        <div class="mt-4 flex w-full max-w-[278px] flex-col items-center gap-[10px] sm:mt-8 lg:mt-[50px]">
           {% render 'button',
             label: section.settings.button_label,
             url: section.settings.button_link,
@@ -57,13 +57,13 @@
         </div>
       {% endif %}
 
-      <div class="mt-8 lg:mt-[50px]">
+      <div class="mt-4 sm:mt-8 lg:mt-[50px]">
         {% content_for 'blocks' %}
       </div>
     </div>
 
     {% if section.settings.product_image %}
-      <div class="order-1 w-full max-w-[533px] mx-auto shrink-0 lg:order-none lg:col-start-2 lg:max-w-none lg:self-stretch">
+      <div class="order-1 w-full mx-auto shrink-0 sm:max-w-[533px] lg:order-none lg:col-start-2 lg:max-w-none lg:self-stretch">
         {{
           section.settings.product_image
           | image_url: width: 1200

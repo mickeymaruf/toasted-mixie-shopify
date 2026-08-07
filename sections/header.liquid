@@ -267,6 +267,13 @@
     padding: 1.5rem 0;
   }
 
+  @media (max-width: 768px) {
+    .navbar__mega-menu-content {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
   .navbar__mega-menu-button {
     display: flex;
     align-items: center;
@@ -312,6 +319,12 @@
     left: -20px;
     width: 300%;
     height: 200%;
+  }
+
+  @media (max-width: 1024px) {
+    a[data-mega-menu-trigger]:hover::after {
+      display: none;
+    }
   }
 
   .navbar__logo {
@@ -520,33 +533,83 @@
 {% endstylesheet %}
 
 {% javascript %}
-  // Mega Menu functionality
-  document.addEventListener('DOMContentLoaded', () => {
-    const megaMenuWrappers = document.querySelectorAll('[data-mega-menu-trigger]');
+  // Mega menu toggle with direct visibility control
+  document.addEventListener('click', function(e) {
+    console.log('=== CLICK EVENT ===');
+    const trigger = e.target.closest('.navbar__mega-menu-trigger');
 
-    megaMenuWrappers.forEach((trigger) => {
+    if (trigger) {
+      console.log('✓ Shop button clicked');
+      e.preventDefault();
+      e.stopPropagation();
+
       const wrapper = trigger.closest('.navbar__menu-item-wrapper');
+      if (!wrapper) return;
 
-      // Close mega menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!wrapper.contains(e.target)) {
-          wrapper.classList.remove('active');
+      const drawer = wrapper.querySelector('.navbar__mega-menu-drawer');
+      const isOpen = wrapper.classList.contains('active');
+
+      console.log('Menu is currently open:', isOpen);
+
+      // Close all other menus
+      document.querySelectorAll('.navbar__menu-item-wrapper').forEach(w => {
+        if (w !== wrapper) {
+          w.classList.remove('active');
+          const otherDrawer = w.querySelector('.navbar__mega-menu-drawer');
+          if (otherDrawer) {
+            otherDrawer.style.opacity = '0';
+            otherDrawer.style.visibility = 'hidden';
+            otherDrawer.style.pointerEvents = 'none';
+          }
         }
       });
 
-      // Toggle on click (mobile support)
-      trigger.addEventListener('click', (e) => {
-        const isActive = wrapper.classList.contains('active');
-        document.querySelectorAll('.navbar__menu-item-wrapper.active').forEach((el) => {
-          el.classList.remove('active');
-        });
-        if (!isActive) {
-          wrapper.classList.add('active');
+      // Toggle this menu
+      if (isOpen) {
+        // CLOSE - slide up animation
+        wrapper.classList.remove('active');
+        if (drawer) {
+          drawer.style.opacity = '0';
+          drawer.style.pointerEvents = 'none';
+          // Hide after animation completes (300ms to match CSS transition)
+          setTimeout(() => {
+            drawer.style.visibility = 'hidden';
+          }, 300);
         }
-        e.preventDefault();
-      });
-    });
-  });
+        // Rotate arrow back
+        const arrow = trigger.querySelector('svg');
+        if (arrow) arrow.style.transform = 'rotate(0deg)';
+        console.log('Menu CLOSED');
+      } else {
+        // OPEN - slide down animation
+        wrapper.classList.add('active');
+        if (drawer) {
+          drawer.style.visibility = 'visible';
+          drawer.style.opacity = '1';
+          drawer.style.pointerEvents = 'auto';
+        }
+        // Rotate arrow
+        const arrow = trigger.querySelector('svg');
+        if (arrow) arrow.style.transform = 'rotate(180deg)';
+        console.log('Menu OPENED');
+      }
+
+      return false;
+    }
+
+    // Close menu when clicking outside
+    const activeMenu = document.querySelector('.navbar__menu-item-wrapper.active');
+    if (activeMenu && !activeMenu.contains(e.target)) {
+      const drawer = activeMenu.querySelector('.navbar__mega-menu-drawer');
+      if (drawer) {
+        drawer.style.opacity = '0';
+        drawer.style.visibility = 'hidden';
+        drawer.style.pointerEvents = 'none';
+      }
+      activeMenu.classList.remove('active');
+      console.log('Menu closed (clicked outside)');
+    }
+  }, false);
 
   // Cart update listener
   document.addEventListener('cart:updated', async () => {

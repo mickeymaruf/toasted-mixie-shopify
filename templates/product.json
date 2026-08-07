@@ -578,7 +578,7 @@
         "heading_suffix": "coming soon.",
         "rating": 4.9,
         "rating_text": "Be among the first to review.",
-        "show_carousel": false,
+        "show_carousel": true,
         "button_label": "Join the First Drop",
         "button_link": "",
         "button_bg_color": "#212323",

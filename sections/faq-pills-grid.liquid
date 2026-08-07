@@ -1,30 +1,48 @@
 {% doc %}
-  Renders a centered heading followed by a responsive grid of collapsible
-  faq-item pills (3 columns desktop by default, 2 columns tablet, 1 column
-  mobile). Add faq-item blocks to populate the grid.
+  Renders a centered heading followed by a fully responsive grid of collapsible
+  faq-item pills. Configurable columns for mobile (1-2), tablet (2-3), and
+  desktop (2-3). Add faq-item blocks to populate the grid.
 {% enddoc %}
 
 {% liquid
+  case section.settings.columns_mobile
+    when '2'
+      assign columns_mobile_class = 'grid-cols-2'
+    else
+      assign columns_mobile_class = 'grid-cols-1'
+  endcase
+
+  case section.settings.columns_tablet
+    when '2'
+      assign columns_tablet_class = 'md:grid-cols-2'
+    when '3'
+      assign columns_tablet_class = 'md:grid-cols-3'
+    else
+      assign columns_tablet_class = 'md:grid-cols-2'
+  endcase
+
   case section.settings.columns_desktop
     when '2'
-      assign columns_class = 'lg:grid-cols-2'
+      assign columns_desktop_class = 'lg:grid-cols-2'
     else
-      assign columns_class = 'lg:grid-cols-3'
+      assign columns_desktop_class = 'lg:grid-cols-3'
   endcase
 %}
 
 <section
-  class="faq-pills-grid full-width px-[50px] md:px-[80px] lg:px-[120px]"
+  class="faq-pills-grid full-width px-4 sm:px-6 md:px-10 lg:px-[120px]"
   style="
     background-color: {{ section.settings.section_background }};
     --faq-pills-grid-border-color: {{ section.settings.border_color }};
     --faq-pills-grid-bg-color: {{ section.settings.card_background }};
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
   "
 >
   <div
-    class="faq-pills-grid__inner mx-auto flex w-full max-w-[1440px] flex-col items-center gap-8 lg:gap-[60px]"
+    class="faq-pills-grid__inner mx-auto flex w-full max-w-[1440px] flex-col items-center gap-4 sm:gap-6 md:gap-8 lg:gap-[60px]"
     style="
-      padding: 50px;
+      padding: 24px;
       background-color: var(--faq-pills-grid-bg-color);
       border: 3px solid var(--faq-pills-grid-border-color);
       border-radius: 33px;
@@ -32,7 +50,7 @@
   >
     {% if section.settings.heading != blank %}
       <h2
-        class="w-full text-center text-[36px] leading-[0.95] font-bold text-[color:var(--faq-pills-grid-heading-color)] sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] xl:tracking-[-2.16px]"
+        class="w-full text-center text-[28px] leading-[1.15] font-bold text-[color:var(--faq-pills-grid-heading-color)] sm:text-[36px] md:text-[48px] lg:text-[56px] xl:text-[72px] xl:tracking-[-2.16px]"
         style="--faq-pills-grid-heading-color: {{ section.settings.heading_color }};"
       >
         {{ section.settings.heading }}
@@ -40,13 +58,31 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 {{ columns_class }}">
+      <div class="grid w-full gap-3 sm:gap-4 md:gap-5 lg:gap-6 {{ columns_mobile_class }} {{ columns_tablet_class }} {{ columns_desktop_class }}">
         {% content_for 'blocks' %}
       </div>
     {% endif %}
   </div>
 </section>
 
+{% stylesheet %}
+  @media (min-width: 768px) {
+    .faq-pills-grid__inner {
+      padding: 40px !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .faq-pills-grid {
+      padding-top: {{ section.settings.padding_top }}px !important;
+      padding-bottom: {{ section.settings.padding_bottom }}px !important;
+    }
+
+    .faq-pills-grid__inner {
+      padding: {{ section.settings.padding_top }}px !important;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -106,6 +142,26 @@
     {
       "type": "header",
       "content": "t:general.layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "t:labels.columns_mobile",
+      "default": "1",
+      "options": [
+        { "value": "1", "label": "t:options.columns.one" },
+        { "value": "2", "label": "t:options.columns.two" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "columns_tablet",
+      "label": "t:labels.columns_tablet",
+      "default": "2",
+      "options": [
+        { "value": "2", "label": "t:options.columns.two" },
+        { "value": "3", "label": "t:options.columns.three" }
+      ]
     },
     {
       "type": "select",

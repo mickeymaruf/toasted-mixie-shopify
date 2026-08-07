@@ -308,15 +308,8 @@
             "feature_highlight_VwWtE8": {
               "type": "feature-highlight",
               "settings": {
-                "title": "L-Theanine"
-              },
-              "blocks": {}
-            },
-            "feature_highlight_4miYN3": {
-              "type": "feature-highlight",
-              "settings": {
-                "title": "Low Dose THC",
-                "icon": "shopify://shop_images/icon-ingredient-thc.svg"
+                "title": "L-Theanine",
+                "icon": "shopify://shop_images/icon-leaf.svg"
               },
               "blocks": {}
             },
@@ -328,20 +321,28 @@
               },
               "blocks": {}
             },
-            "feature_highlight_iR7VFz": {
+            "feature_highlight_4miYN3": {
               "type": "feature-highlight",
               "settings": {
-                "title": "Lab Tested",
-                "icon": "shopify://shop_images/Group_89.svg"
+                "title": "Low Dose THC",
+                "icon": "shopify://shop_images/Group_87_1.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_UMpEGg": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Real Fruit Juice",
+                "icon": "shopify://shop_images/Group_91.svg"
               },
               "blocks": {}
             }
           },
           "block_order": [
             "feature_highlight_VwWtE8",
-            "feature_highlight_4miYN3",
             "feature_highlight_7pcgjg",
-            "feature_highlight_iR7VFz"
+            "feature_highlight_4miYN3",
+            "feature_highlight_UMpEGg"
           ]
         },
         "feature-column-right": {
@@ -349,30 +350,6 @@
           "static": true,
           "settings": {},
           "blocks": {
-            "feature_highlight_HyR9Ln": {
-              "type": "feature-highlight",
-              "settings": {
-                "title": "Real Fruit Juice",
-                "icon": "shopify://shop_images/Group_91.svg"
-              },
-              "blocks": {}
-            },
-            "feature_highlight_gnHG89": {
-              "type": "feature-highlight",
-              "settings": {
-                "title": "Drinking Age",
-                "icon": "shopify://shop_images/Group_92.svg"
-              },
-              "blocks": {}
-            },
-            "feature_highlight_PyjK8n": {
-              "type": "feature-highlight",
-              "settings": {
-                "title": "Low Calorie",
-                "icon": "shopify://shop_images/Group_94.svg"
-              },
-              "blocks": {}
-            },
             "feature_highlight_Fg8fxt": {
               "type": "feature-highlight",
               "settings": {
@@ -380,13 +357,37 @@
                 "icon": "shopify://shop_images/Group_95.svg"
               },
               "blocks": {}
+            },
+            "feature_highlight_PyjK8n": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Low Calorie",
+                "icon": "shopify://shop_images/Group_94_1.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_8FiN4F": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Lab Tested",
+                "icon": "shopify://shop_images/Group_89_2.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_gnHG89": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "21+ Only",
+                "icon": "shopify://shop_images/Group_92.svg"
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "feature_highlight_HyR9Ln",
-            "feature_highlight_gnHG89",
+            "feature_highlight_Fg8fxt",
             "feature_highlight_PyjK8n",
-            "feature_highlight_Fg8fxt"
+            "feature_highlight_8FiN4F",
+            "feature_highlight_gnHG89"
           ]
         }
       },
@@ -394,7 +395,7 @@
       "settings": {
         "heading": "Functional by Design.",
         "description": "Crafted with L-theanine, rhodiola, and 0.4mg hemp-derived THC in a non-carbonated drink made for a lighter social experience.",
-        "center_image": "shopify://shop_images/Group_84.png",
+        "center_image": "shopify://shop_images/1_1.png",
         "center_image_alt": "",
         "background_image": "shopify://shop_images/ingredient-highlights-background.png"
       }
@@ -549,9 +550,9 @@
       "name": "t:general.gruns_find_toasted",
       "settings": {
         "heading": "Find Toasted",
-        "description": "Coming to select venues and retailers.",
+        "description": "Coming soon to select venues and retailers.",
         "show_button": true,
-        "button_label": "Find near you",
+        "button_label": "Coming soon…",
         "button_link": "",
         "button_background_color": "#f9d5c0",
         "button_text_color": "#1e2125",
