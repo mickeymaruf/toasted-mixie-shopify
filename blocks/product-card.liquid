@@ -12,7 +12,7 @@
   class="mx-auto flex w-full max-w-full flex-col items-center gap-3 sm:max-w-[386.667px] sm:gap-[30px]"
   {{ block.shopify_attributes }}
 >
-  <div class="flex w-full items-center justify-center overflow-hidden rounded-[16px] sm:rounded-[30px]">
+  <div class="relative flex w-full items-center justify-center overflow-hidden rounded-[16px] sm:rounded-[30px]">
     {% if block.settings.image %}
       {{
         block.settings.image
@@ -31,6 +31,17 @@
           widths: '400, 600, 800, 1000',
           alt: block.settings.product.featured_image.alt | default: block.settings.flavor_name
       }}
+    {% endif %}
+
+    {% if block.settings.use_lottie_animation %}
+      <dotlottie-wc
+        src="{{ 'animation-ginger-lime.lottie' | asset_url }}"
+        autoplay
+        loop
+        speed="0.5"
+        useFrameInterpolation
+        class="absolute inset-0 size-full object-cover"
+      ></dotlottie-wc>
     {% endif %}
   </div>
 
@@ -95,6 +106,12 @@
   </div>
 </div>
 
+{% javascript %}
+  if (!customElements.get('dotlottie-wc')) {
+    import('https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-wc@0.9.25/dist/dotlottie-wc.js');
+  }
+{% endjavascript %}
+
 {% schema %}
 {
   "name": "t:general.product_card",
@@ -113,6 +130,17 @@
       "id": "image",
       "label": "t:labels.image",
       "info": "t:labels.image_info"
+    },
+    {
+      "type": "header",
+      "content": "t:general.animation"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_lottie_animation",
+      "label": "t:labels.use_lottie_animation",
+      "info": "t:labels.use_lottie_animation_info",
+      "default": false
     },
     {
       "type": "header",

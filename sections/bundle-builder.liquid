@@ -12,8 +12,10 @@
   style="background-color: {{ section.settings.background_color }};"
 >
   <bundle-builder
-    class="mx-auto flex w-full max-w-[1920px] flex-col items-start gap-8 px-4 py-[40px] sm:gap-10 sm:px-8 sm:py-[60px] md:px-12 lg:flex-row lg:gap-[30px] lg:px-[80px] lg:py-[100px] xl:px-[120px]"
+    class="group/bundle-drawer mx-auto flex w-full max-w-[1920px] flex-col items-start gap-8 px-4 py-[40px] sm:gap-10 sm:px-8 sm:py-[60px] md:px-12 lg:flex-row lg:gap-[30px] lg:px-[80px] lg:py-[100px] xl:px-[120px]"
     data-remove-label-template="{{ 'bundle_builder.remove_item' | t: title: '__TITLE__' | escape }}"
+    data-drawer-expand-label="{{ 'bundle_builder.expand' | t | escape }}"
+    data-drawer-collapse-label="{{ 'bundle_builder.collapse' | t | escape }}"
     data-placeholder-count="8"
     data-discounts='[
       {"threshold": 5000, "discount": 500},
@@ -29,102 +31,131 @@
     {% content_for 'block', id: 'bundle-product-list', type: 'bundle-product-list' %}
 
     <div
-      class="flex w-full flex-col gap-6 rounded-[24px] p-5 shadow-[0px_0px_5px_rgba(0,0,0,0.05)] sm:rounded-[33px] sm:p-6 lg:sticky lg:top-8 lg:w-[408px] lg:shrink-0"
+      class="pointer-events-none fixed inset-0 z-30 bg-[#212323]/40 opacity-0 transition-opacity duration-300 ease-out group-open/bundle-drawer:pointer-events-auto group-open/bundle-drawer:opacity-100 lg:hidden"
+      data-bundle-drawer-close
+      aria-hidden="true"
+    ></div>
+
+    <div
+      class="fixed inset-x-0 bottom-0 z-40 flex w-full flex-col gap-6 rounded-t-[24px] p-5 shadow-[0px_0px_5px_rgba(0,0,0,0.05)] sm:rounded-t-[33px] sm:p-6 group-open/bundle-drawer:max-h-[85dvh] group-open/bundle-drawer:overflow-y-auto lg:sticky lg:top-8 lg:z-auto lg:inset-auto lg:w-[408px] lg:shrink-0 lg:max-h-none lg:overflow-visible lg:rounded-[33px]"
       style="background-color: {{ section.settings.panel_background_color }};"
+      id="bundle-panel-{{ section.id }}"
+      data-bundle-panel
     >
-      {% if section.settings.bundle_heading != blank %}
-        <h2 class="text-center text-[32px] leading-[1.2] font-bold tracking-[-1px] text-[#212323] sm:text-[36px] lg:text-[42px]">
-          {{ section.settings.bundle_heading }}
-        </h2>
+      <div class="flex w-full items-center gap-2">
+        {% if section.settings.bundle_heading != blank %}
+          <h2 class="flex-1 text-center text-[32px] leading-[1.2] font-bold tracking-[-1px] text-[#212323] sm:text-[36px] lg:text-[42px]">
+            {{ section.settings.bundle_heading }}
+          </h2>
+        {% endif %}
+        <button
+          type="button"
+          class="flex size-8 shrink-0 cursor-pointer items-center justify-center text-[#212323] lg:hidden"
+          data-bundle-drawer-toggle
+          aria-expanded="false"
+          aria-controls="bundle-panel-{{ section.id }}"
+        >
+          <span class="block size-5 rotate-180 transition-transform duration-300 ease-out group-open/bundle-drawer:rotate-0">
+            {{ 'icon-chevron-down.svg' | inline_asset_content }}
+          </span>
+        </button>
+      </div>
+
+      {% if section.settings.bundle_subtitle != blank %}
+        <p class="hidden text-[14px] leading-normal text-[#212323] group-open/bundle-drawer:block lg:hidden">
+          {{ section.settings.bundle_subtitle }}
+        </p>
       {% endif %}
 
       {% content_for 'block', id: 'bundle-milestone-list', type: 'bundle-milestone-list' %}
 
-      <div class="relative flex w-full items-center">
-        <div
-          class="flex w-full gap-2 overflow-x-auto scroll-smooth pb-1"
-          data-bundle-track
-          aria-label="{{ 'bundle_builder.selected_products' | t }}"
-        >
-          {% for i in (1..6) %}
-            <div class="h-[130px] w-[100px] shrink-0 rounded-xl border border-dashed border-black/50"></div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <form class="flex w-full flex-col gap-6" data-bundle-form>
-        <div
-          class="flex w-full flex-col gap-2"
-          role="radiogroup"
-          aria-label="{{ 'products.main.purchase_option_group_label' | t }}"
-        >
-          <label class="flex w-full items-center justify-between gap-2">
-            <span class="flex items-center gap-2">
-              <span class="relative flex size-[18px] shrink-0 items-center justify-center rounded-full border border-[#212323]">
-                <input
-                  type="radio"
-                  name="bundle-purchase-type-{{ section.id }}"
-                  value="one_time"
-                  class="peer absolute inset-0 size-full cursor-pointer opacity-0"
-                  data-bundle-purchase-type
-                  checked
-                >
-                <span
-                  class="pointer-events-none block size-[10px] rounded-full opacity-0 peer-checked:opacity-100"
-                  style="background-color: {{ section.settings.purchase_selected_color }};"
-                ></span>
-              </span>
-              <span class="text-[16px] leading-normal text-[#212323]">{{ section.settings.one_time_label }}</span>
-            </span>
-            <div class="flex items-center gap-2">
-              <span class="text-[13px] leading-normal text-[#999999] line-through" data-bundle-price-one-time-original>$0.00</span>
-              <span class="text-[16px] leading-normal text-[#212323]" data-bundle-price-one-time>$0.00</span>
-            </div>
-          </label>
-
-          <label class="flex w-full items-center justify-between gap-2">
-            <span class="flex items-center gap-2">
-              <span class="relative flex size-[18px] shrink-0 items-center justify-center rounded-full border border-[#212323]">
-                <input
-                  type="radio"
-                  name="bundle-purchase-type-{{ section.id }}"
-                  value="subscribe"
-                  class="peer absolute inset-0 size-full cursor-pointer opacity-0"
-                  data-bundle-purchase-type
-                >
-                <span
-                  class="pointer-events-none block size-[10px] rounded-full opacity-0 peer-checked:opacity-100"
-                  style="background-color: {{ section.settings.purchase_selected_color }};"
-                ></span>
-              </span>
-              <span class="text-[16px] leading-normal text-[#212323]">{{ section.settings.subscribe_label }}</span>
-            </span>
-            <div class="flex items-center gap-2">
-              <span class="text-[13px] leading-normal text-[#999999] line-through" data-bundle-price-subscribe-original>$0.00</span>
-              <span class="text-[16px] leading-normal text-[#212323]" data-bundle-price-subscribe>$0.00</span>
-            </div>
-          </label>
-        </div>
-
-        <div class="flex w-full flex-col items-center justify-center gap-[10px]">
-          <button
-            type="submit"
-            class="flex h-[58px] w-full items-center justify-center gap-[5px] rounded-[30px] px-8 py-4 text-center text-[20px] transition-opacity duration-150 hover:opacity-85 disabled:opacity-30"
-            style="background-color: {{ section.settings.add_to_cart_background_color }}; color: {{ section.settings.add_to_cart_text_color }};"
-            data-bundle-add-to-cart
-            disabled
+      <div class="hidden w-full flex-col gap-6 group-open/bundle-drawer:flex lg:flex">
+        <div class="relative flex w-full items-center">
+          <div
+            class="flex w-full gap-2 overflow-x-auto scroll-smooth pb-1"
+            data-bundle-track
+            aria-label="{{ 'bundle_builder.selected_products' | t }}"
           >
-            <span data-bundle-add-to-cart-label>{{ section.settings.add_to_cart_label }}</span>
-            <span class="hidden" data-bundle-add-to-cart-loader aria-hidden="true">
-              <span class="inline-block size-5 animate-spin rounded-full border-2 border-current border-t-transparent"></span>
-            </span>
-          </button>
-
-          {% if section.settings.subscribe_note != blank %}
-            <p class="text-center text-[16px] leading-normal text-[#212323]">{{ section.settings.subscribe_note }}</p>
-          {% endif %}
+            {% for i in (1..6) %}
+              <div class="h-[130px] w-[100px] shrink-0 rounded-xl border border-dashed border-black/50"></div>
+            {% endfor %}
+          </div>
         </div>
-      </form>
+
+        <form class="flex w-full flex-col gap-6" data-bundle-form>
+          <div
+            class="flex w-full flex-col gap-2"
+            role="radiogroup"
+            aria-label="{{ 'products.main.purchase_option_group_label' | t }}"
+          >
+            <label class="flex w-full items-center justify-between gap-2">
+              <span class="flex items-center gap-2">
+                <span class="relative flex size-[18px] shrink-0 items-center justify-center rounded-full border border-[#212323]">
+                  <input
+                    type="radio"
+                    name="bundle-purchase-type-{{ section.id }}"
+                    value="one_time"
+                    class="peer absolute inset-0 size-full cursor-pointer opacity-0"
+                    data-bundle-purchase-type
+                    checked
+                  >
+                  <span
+                    class="pointer-events-none block size-[10px] rounded-full opacity-0 peer-checked:opacity-100"
+                    style="background-color: {{ section.settings.purchase_selected_color }};"
+                  ></span>
+                </span>
+                <span class="text-[16px] leading-normal text-[#212323]">{{ section.settings.one_time_label }}</span>
+              </span>
+              <div class="flex items-center gap-2">
+                <span class="text-[13px] leading-normal text-[#999999] line-through" data-bundle-price-one-time-original>$0.00</span>
+                <span class="text-[16px] leading-normal text-[#212323]" data-bundle-price-one-time>$0.00</span>
+              </div>
+            </label>
+
+            <label class="flex w-full items-center justify-between gap-2">
+              <span class="flex items-center gap-2">
+                <span class="relative flex size-[18px] shrink-0 items-center justify-center rounded-full border border-[#212323]">
+                  <input
+                    type="radio"
+                    name="bundle-purchase-type-{{ section.id }}"
+                    value="subscribe"
+                    class="peer absolute inset-0 size-full cursor-pointer opacity-0"
+                    data-bundle-purchase-type
+                  >
+                  <span
+                    class="pointer-events-none block size-[10px] rounded-full opacity-0 peer-checked:opacity-100"
+                    style="background-color: {{ section.settings.purchase_selected_color }};"
+                  ></span>
+                </span>
+                <span class="text-[16px] leading-normal text-[#212323]">{{ section.settings.subscribe_label }}</span>
+              </span>
+              <div class="flex items-center gap-2">
+                <span class="text-[13px] leading-normal text-[#999999] line-through" data-bundle-price-subscribe-original>$0.00</span>
+                <span class="text-[16px] leading-normal text-[#212323]" data-bundle-price-subscribe>$0.00</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="flex w-full flex-col items-center justify-center gap-[10px]">
+            <button
+              type="submit"
+              class="flex h-[58px] w-full items-center justify-center gap-[5px] rounded-[30px] px-8 py-4 text-center text-[20px] transition-opacity duration-150 hover:opacity-85 disabled:opacity-30"
+              style="background-color: {{ section.settings.add_to_cart_background_color }}; color: {{ section.settings.add_to_cart_text_color }};"
+              data-bundle-add-to-cart
+              disabled
+            >
+              <span data-bundle-add-to-cart-label>{{ section.settings.add_to_cart_label }}</span>
+              <span class="hidden" data-bundle-add-to-cart-loader aria-hidden="true">
+                <span class="inline-block size-5 animate-spin rounded-full border-2 border-current border-t-transparent"></span>
+              </span>
+            </button>
+
+            {% if section.settings.subscribe_note != blank %}
+              <p class="text-center text-[16px] leading-normal text-[#212323]">{{ section.settings.subscribe_note }}</p>
+            {% endif %}
+          </div>
+        </form>
+      </div>
     </div>
   </bundle-builder>
 </section>
@@ -175,6 +206,11 @@
       this.placeholderCount = Number(this.dataset.placeholderCount || 6);
       this.discounts = JSON.parse(this.dataset.discounts || '[]');
 
+      this.drawerToggle = this.querySelector('[data-bundle-drawer-toggle]');
+      this.drawerExpandLabel = this.dataset.drawerExpandLabel || 'Expand your bundle';
+      this.drawerCollapseLabel = this.dataset.drawerCollapseLabel || 'Collapse your bundle';
+      this.setDrawerOpen(false);
+
       this.addEventListener('click', (event) => {
         const addButton = event.target.closest('[data-bundle-add]');
         if (addButton) {
@@ -185,7 +221,21 @@
         }
 
         const removeButton = event.target.closest('[data-bundle-remove]');
-        if (removeButton) this.removeItem(Number(removeButton.dataset.itemId));
+        if (removeButton) {
+          this.removeItem(Number(removeButton.dataset.itemId));
+          return;
+        }
+
+        if (event.target.closest('[data-bundle-drawer-toggle]')) {
+          this.setDrawerOpen(!this.hasAttribute('open'));
+          return;
+        }
+
+        if (event.target.closest('[data-bundle-drawer-close]')) this.setDrawerOpen(false);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && this.hasAttribute('open')) this.setDrawerOpen(false);
       });
 
       this.addEventListener('change', (event) => {
@@ -196,6 +246,14 @@
       this.form?.addEventListener('submit', (event) => this.handleSubmit(event));
 
       this.render();
+    }
+
+    setDrawerOpen(isOpen) {
+      this.toggleAttribute('open', isOpen);
+      if (this.drawerToggle) {
+        this.drawerToggle.setAttribute('aria-expanded', String(isOpen));
+        this.drawerToggle.setAttribute('aria-label', isOpen ? this.drawerCollapseLabel : this.drawerExpandLabel);
+      }
     }
 
     addItem(dataset) {
@@ -417,6 +475,7 @@
 
         this.items.clear();
         this.render();
+        this.setDrawerOpen(false);
 
         const drawer = document.querySelector('cart-drawer');
         if (drawer) {
@@ -449,6 +508,13 @@
       "id": "bundle_heading",
       "label": "t:labels.heading",
       "default": "Your bundle"
+    },
+    {
+      "type": "text",
+      "id": "bundle_subtitle",
+      "label": "t:labels.subtitle",
+      "info": "t:labels.bundle_subtitle_info",
+      "default": "Add more products to save"
     },
     {
       "type": "header",
