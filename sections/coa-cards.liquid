@@ -15,20 +15,20 @@
 >
   <div class="mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 px-5 pt-[7px] pb-[50px] sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px]">
     <!-- Search Filters Section -->
-    <div class="flex w-full flex-col items-start gap-6 sm:flex-row">
-      <div class="min-w-0 flex-1 rounded-full border border-[#c1c1c1] p-4">
+    <div class="flex w-full flex-row gap-3 sm:gap-6">
+      <div class="min-w-0 flex-1 rounded-full border border-[#c1c1c1] p-3 sm:p-4">
         <input
           type="text"
-          class="w-full bg-transparent text-[15px] leading-normal font-normal text-[#212323] outline-none placeholder:text-[#989898]"
+          class="w-full bg-transparent text-[13px] sm:text-[15px] leading-normal font-normal text-[#212323] outline-none placeholder:text-[#989898]"
           placeholder="{{ section.settings.filter_title_label }}"
           aria-label="{{ section.settings.filter_title_label }}"
           data-filter-title
         >
       </div>
-      <div class="min-w-0 flex-1 rounded-full border border-[#c1c1c1] p-4">
+      <div class="min-w-0 flex-1 rounded-full border border-[#c1c1c1] p-3 sm:p-4">
         <input
           type="text"
-          class="w-full bg-transparent text-[15px] leading-normal font-normal text-[#212323] outline-none placeholder:text-[#989898]"
+          class="w-full bg-transparent text-[13px] sm:text-[15px] leading-normal font-normal text-[#212323] outline-none placeholder:text-[#989898]"
           placeholder="{{ section.settings.filter_batch_label }}"
           aria-label="{{ section.settings.filter_batch_label }}"
           data-filter-batch
@@ -40,57 +40,144 @@
     <div class="flex w-full flex-col items-start" data-coa-list>
       {% for block in section.blocks %}
         <div
-          class="flex w-full flex-col items-start gap-4 border-b border-[#d1d6e0] py-8"
+          class="flex w-full flex-col gap-4 border-b border-[#d1d6e0] py-6 sm:py-8 sm:gap-0"
           data-coa-row
           data-manufacturer="{{ block.settings.manufacturer | escape }}"
           data-title="{{ block.settings.title | escape }}"
           data-batch="{{ block.settings.batch_number | escape }}"
           {{ block.shopify_attributes }}
         >
-          <!-- Column Headers -->
-          <div class="flex w-full items-center gap-6 text-[18px] leading-normal font-bold text-black">
-            <p class="w-[160px] shrink-0">{{ section.settings.header_date }}</p>
-            <p class="min-w-0 flex-1">{{ section.settings.header_product_name }}</p>
-            <p class="w-[240px] shrink-0">{{ section.settings.header_batch_number }}</p>
-            <p class="w-[160px] shrink-0">{{ section.settings.header_test_results }}</p>
-            <p class="w-[160px] shrink-0">{{ section.settings.header_best_by_date }}</p>
-          </div>
-
-          <!-- Column Values -->
-          <div class="flex w-full items-start gap-6">
-            <!-- Date -->
-            <p class="w-[160px] shrink-0 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
-              {{ block.settings.date }}
-            </p>
-
-            <!-- Product Name -->
-            <p class="min-w-0 flex-1 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
-              {{ block.settings.title }}
-            </p>
-
-            <!-- Batch Number -->
-            <p class="w-[240px] shrink-0 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
-              {{ block.settings.batch_number }}
-            </p>
-
-            <!-- Test Results Link -->
-            <div class="w-[160px] shrink-0">
+          <!-- Mobile Card Layout (hidden on sm and up) -->
+          <div class="flex sm:hidden flex-col gap-3">
+            <div class="flex flex-col gap-1">
+              <p class="text-[13px] font-bold text-black uppercase">{{ section.settings.header_product_name }}</p>
+              <p class="text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
+                {{ block.settings.title }}
+              </p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="text-[13px] font-bold text-black uppercase">{{ section.settings.header_date }}</p>
+              <p class="text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">{{ block.settings.date }}</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="text-[13px] font-bold text-black uppercase">{{ section.settings.header_batch_number }}</p>
+              <p class="text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">{{ block.settings.batch_number }}</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="text-[13px] font-bold text-black uppercase">{{ section.settings.header_best_by_date }}</p>
+              <p class="text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">{{ block.settings.best_by_date }}</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="text-[13px] font-bold text-black uppercase">{{ section.settings.header_test_results }}</p>
               {% if block.settings.url %}
                 <a
                   href="{{ block.settings.url }}"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-[15px] leading-[1.4] font-normal text-black underline decoration-solid [text-underline-position:from-font]"
+                  class="text-[15px] leading-[1.4] font-normal text-black underline decoration-solid [text-underline-position:from-font] w-fit"
                 >
                   {{ section.settings.link_text }}
                 </a>
               {% endif %}
             </div>
+          </div>
 
-            <!-- Best By Date -->
-            <p class="w-[160px] shrink-0 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
-              {{ block.settings.best_by_date }}
-            </p>
+          <!-- Tablet Layout (hidden below md) -->
+          <div class="hidden sm:flex md:hidden flex-col gap-3">
+            <!-- Column Headers -->
+            <div class="flex w-full items-center gap-3 text-[14px] leading-normal font-bold text-black">
+              <p class="w-[100px] shrink-0">{{ section.settings.header_date }}</p>
+              <p class="min-w-0 flex-1">{{ section.settings.header_product_name }}</p>
+              <p class="w-[130px] shrink-0">{{ section.settings.header_batch_number }}</p>
+              <p class="w-[100px] shrink-0">{{ section.settings.header_test_results }}</p>
+              <p class="w-[100px] shrink-0">{{ section.settings.header_best_by_date }}</p>
+            </div>
+
+            <!-- Column Values -->
+            <div class="flex w-full items-start gap-3">
+              <!-- Date -->
+              <p class="w-[100px] shrink-0 text-[13px] leading-[1.4] font-normal text-[#6d6d6d]">
+                {{ block.settings.date }}
+              </p>
+
+              <!-- Product Name -->
+              <p class="min-w-0 flex-1 text-[13px] leading-[1.4] font-normal text-[#6d6d6d]">
+                {{ block.settings.title }}
+              </p>
+
+              <!-- Batch Number -->
+              <p class="w-[130px] shrink-0 text-[13px] leading-[1.4] font-normal text-[#6d6d6d]">
+                {{ block.settings.batch_number }}
+              </p>
+
+              <!-- Test Results Link -->
+              <div class="w-[100px] shrink-0">
+                {% if block.settings.url %}
+                  <a
+                    href="{{ block.settings.url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-[13px] leading-[1.4] font-normal text-black underline decoration-solid [text-underline-position:from-font]"
+                  >
+                    {{ section.settings.link_text }}
+                  </a>
+                {% endif %}
+              </div>
+
+              <!-- Best By Date -->
+              <p class="w-[100px] shrink-0 text-[13px] leading-[1.4] font-normal text-[#6d6d6d]">
+                {{ block.settings.best_by_date }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Desktop Table Layout (hidden below md) -->
+          <div class="hidden md:flex flex-col gap-4">
+            <!-- Column Headers -->
+            <div class="flex w-full items-center gap-6 text-[18px] leading-normal font-bold text-black">
+              <p class="w-[160px] shrink-0">{{ section.settings.header_date }}</p>
+              <p class="min-w-0 flex-1">{{ section.settings.header_product_name }}</p>
+              <p class="w-[200px] shrink-0">{{ section.settings.header_batch_number }}</p>
+              <p class="w-[140px] shrink-0">{{ section.settings.header_test_results }}</p>
+              <p class="w-[140px] shrink-0">{{ section.settings.header_best_by_date }}</p>
+            </div>
+
+            <!-- Column Values -->
+            <div class="flex w-full items-start gap-6">
+              <!-- Date -->
+              <p class="w-[160px] shrink-0 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
+                {{ block.settings.date }}
+              </p>
+
+              <!-- Product Name -->
+              <p class="min-w-0 flex-1 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
+                {{ block.settings.title }}
+              </p>
+
+              <!-- Batch Number -->
+              <p class="w-[200px] shrink-0 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
+                {{ block.settings.batch_number }}
+              </p>
+
+              <!-- Test Results Link -->
+              <div class="w-[140px] shrink-0">
+                {% if block.settings.url %}
+                  <a
+                    href="{{ block.settings.url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-[15px] leading-[1.4] font-normal text-black underline decoration-solid [text-underline-position:from-font]"
+                  >
+                    {{ section.settings.link_text }}
+                  </a>
+                {% endif %}
+              </div>
+
+              <!-- Best By Date -->
+              <p class="w-[140px] shrink-0 text-[15px] leading-[1.4] font-normal text-[#6d6d6d]">
+                {{ block.settings.best_by_date }}
+              </p>
+            </div>
           </div>
         </div>
       {% endfor %}

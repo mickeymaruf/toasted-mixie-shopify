@@ -222,7 +222,7 @@
           "type": "faq-item",
           "settings": {
             "question": "What is Toasted?",
-            "answer": "",
+            "answer": "<p>Toasted is the chill drink. A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -230,8 +230,8 @@
         "faq_item_xQQg97": {
           "type": "faq-item",
           "settings": {
-            "question": "Ingredients & Allergies",
-            "answer": "",
+            "question": "Is Toasted carbonated?",
+            "answer": "<p>No. Toasted is non-carbonated, smooth, and ready to drink.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -239,8 +239,8 @@
         "faq_item_9QKDqx": {
           "type": "faq-item",
           "settings": {
-            "question": "What to Expect",
-            "answer": "",
+            "question": "How should I try Toasted?",
+            "answer": "<p>Start with one can and see how you feel. Toasted is made for a light, present experience.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -248,8 +248,8 @@
         "faq_item_NxLiBi": {
           "type": "faq-item",
           "settings": {
-            "question": "How is it dosed?",
-            "answer": "",
+            "question": "Is Toasted alcoholic?",
+            "answer": "<p>No. Toasted is alcohol-free.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -257,8 +257,8 @@
         "faq_item_ALptfV": {
           "type": "faq-item",
           "settings": {
-            "question": "Is it legal to ship?",
-            "answer": "",
+            "question": "Does Toasted contain THC?",
+            "answer": "<p>Yes. Each can contains 0.4mg hemp-derived THC.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -266,8 +266,8 @@
         "faq_item_imi49b": {
           "type": "faq-item",
           "settings": {
-            "question": "Lab Results",
-            "answer": "",
+            "question": "Who is Toasted for?",
+            "answer": "<p>Toasted is for adults 21+ who want a lighter way to enjoy social moments without alcohol.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -283,13 +283,15 @@
       ],
       "name": "t:general.faq_pills_grid",
       "settings": {
-        "heading": "Frequently asked questions",
+        "heading": "Good Questions",
         "section_background": "#f6f1ec",
         "card_background": "#9ab2d5",
         "heading_color": "#212323",
         "border_color": "#212323",
         "faq_item_background": "#636d90",
         "faq_item_text_color": "#f6f1ec",
+        "columns_mobile": "1",
+        "columns_tablet": "2",
         "columns_desktop": "3",
         "padding_top": 100,
         "padding_bottom": 100,

@@ -40,9 +40,7 @@
         ],
         "settings": {
           "heading": "Your Toasted bag",
-          "discount_threshold": 50,
           "free_shipping_threshold": 75,
-          "free_gift_threshold": 120,
           "upgrade_label": "Upgrade to Subscription & Save 20%",
           "upgrade_url": "",
           "recommendations_heading": "Try our best sellers and get free shipping"

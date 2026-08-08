@@ -5,7 +5,7 @@
         {% for block in section.blocks %}
           <div class="marquee-item" {{ block.shopify_attributes }}>
             {% if block.settings.icon %}
-              {{ block.settings.icon | image_url: width: 64, height: 64 | image_tag: class: 'marquee-icon' }}
+              {{ block.settings.icon | image_url: width: 44, height: 44 | image_tag: class: 'marquee-icon' }}
             {% else %}
               <div class="marquee-icon-placeholder"></div>
             {% endif %}
@@ -42,21 +42,22 @@
   .marquee-item {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 32px;
     flex-shrink: 0;
     white-space: nowrap;
   }
 
   .marquee-icon {
     flex-shrink: 0;
-    width: 64px;
-    height: 64px;
+    width: 44px;
+    height: 44px;
     object-fit: contain;
   }
 
   .marquee-icon-placeholder {
-    width: 64px;
-    height: 64px;
+    width: 44px;
+    height: 44px;
     flex-shrink: 0;
     background-color: transparent;
   }

@@ -75,9 +75,7 @@
       ],
       "name": "t:general.promo_cards",
       "settings": {
-        "background_color": "#f6f1ec",
-        "padding_top": 100,
-        "padding_bottom": 100
+        "background_color": "#f6f1ec"
       }
     }
   },

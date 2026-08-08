@@ -10,7 +10,23 @@
   assign product = section.settings.product | default: product
   assign current_variant = product.selected_or_first_available_variant
   assign selling_plan_group = product.selling_plan_groups.first
-  assign selling_plan = selling_plan_group.selling_plans.first
+
+  assign selling_plan = blank
+  if selling_plan_group
+    for plan in selling_plan_group.selling_plans
+      assign has_current_variant = false
+      for variant in product.variants
+        if variant.selling_plan_allocations.first.selling_plan.id == plan.id and variant.id == current_variant.id
+          assign has_current_variant = true
+        endif
+      endfor
+      if has_current_variant
+        assign selling_plan = plan
+        break
+      endif
+    endfor
+  endif
+
   assign rating_rounded = section.settings.rating | round
 %}
 
@@ -127,14 +143,7 @@
           "variants": {
             {% for variant in product.variants %}
               {% liquid
-                assign allocation = blank
-                if selling_plan
-                  for a in variant.selling_plan_allocations
-                    if a.selling_plan.id == selling_plan.id
-                      assign allocation = a
-                    endif
-                  endfor
-                endif
+                assign allocation = variant.selling_plan_allocations.first
 
                 assign savings_amount = 0
                 assign savings_percent = 0
@@ -413,7 +422,7 @@
           <button
             type="submit"
             name="add"
-            class="flex h-[58px] w-full items-center justify-center gap-[5px] rounded-[30px] bg-[#212323] px-8 py-4 text-center text-[20px] text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85 disabled:opacity-30"
+            class="flex h-[58px] w-full items-center justify-center gap-[5px] rounded-[30px] bg-[#212323] px-8 py-4 text-center text-[16px] sm:text-[20px] text-[#F6F1EC] transition-opacity duration-150 hover:opacity-85 disabled:opacity-30"
             data-buy-button
             {% unless current_variant.available %}
               disabled

@@ -43,7 +43,33 @@
   <div class="relative mx-auto flex w-full max-w-[1920px] flex-col gap-16 px-5 py-12 sm:px-8 sm:py-16 md:px-12 lg:gap-[80px] lg:px-[80px] lg:py-[80px] xl:gap-[100px] xl:px-[120px] xl:pt-[100px] xl:pb-[100px]">
     <div class="flex w-full flex-col-reverse items-center gap-10 lg:flex-row lg:items-center lg:gap-[61px]">
       <div class="relative mx-auto w-full max-w-[360px] sm:max-w-[460px] lg:mx-0 lg:max-w-none lg:flex-1">
-        {% if section.settings.image %}
+        {% if section.settings.video != blank %}
+          <video
+            id="drink-video-{{ section.id }}"
+            class="size-full object-contain"
+            autoplay
+            muted
+            loop
+            playsinline
+            webkit-playsinline
+            preload="auto"
+            style="display: block;"
+          >
+            <source src="{{ section.settings.video | asset_url }}" type="video/webm">
+          </video>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              const video = document.getElementById('drink-video-{{ section.id }}');
+              if (video) {
+                video.muted = true;
+                video.play().catch(function (e) {
+                  console.log('Autoplay prevented:', e);
+                });
+              }
+            });
+          </script>
+        {% elsif section.settings.image %}
           {{
             section.settings.image
             | image_url: width: 1200
@@ -173,9 +199,16 @@
       "content": "t:general.image"
     },
     {
+      "type": "text",
+      "id": "video",
+      "label": "Video filename",
+      "info": "Upload an MP4 video to assets folder and enter filename (e.g., hero-animation.mp4)"
+    },
+    {
       "type": "image_picker",
       "id": "image",
-      "label": "t:labels.image"
+      "label": "t:labels.image",
+      "info": "Fallback image if no video is set"
     },
     {
       "type": "text",

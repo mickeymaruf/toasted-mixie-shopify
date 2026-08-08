@@ -14,7 +14,15 @@
   <bundle-builder
     class="mx-auto flex w-full max-w-[1920px] flex-col items-start gap-8 px-4 py-[40px] sm:gap-10 sm:px-8 sm:py-[60px] md:px-12 lg:flex-row lg:gap-[30px] lg:px-[80px] lg:py-[100px] xl:px-[120px]"
     data-remove-label-template="{{ 'bundle_builder.remove_item' | t: title: '__TITLE__' | escape }}"
-    data-placeholder-count="6"
+    data-placeholder-count="8"
+    data-discounts='[
+      {"threshold": 5000, "discount": 500},
+      {"threshold": 12500, "discount": 0},
+      {"threshold": 15000, "discount": 1500},
+      {"threshold": 20000, "discount": 3000},
+      {"threshold": 25000, "discount": 5000},
+      {"threshold": 50000, "discount": 12500}
+    ]'
   >
     <template data-bundle-remove-icon>{{ 'icon-close.svg' | inline_asset_content }}</template>
 
@@ -50,39 +58,51 @@
           role="radiogroup"
           aria-label="{{ 'products.main.purchase_option_group_label' | t }}"
         >
-          <label class="flex w-full items-center gap-2">
-            <span class="relative flex size-[18px] shrink-0 items-center justify-center rounded-full border border-[#212323]">
-              <input
-                type="radio"
-                name="bundle-purchase-type-{{ section.id }}"
-                value="one_time"
-                class="peer absolute inset-0 size-full cursor-pointer opacity-0"
-                data-bundle-purchase-type
-                checked
-              >
-              <span
-                class="pointer-events-none block size-[10px] rounded-full opacity-0 peer-checked:opacity-100"
-                style="background-color: {{ section.settings.purchase_selected_color }};"
-              ></span>
+          <label class="flex w-full items-center justify-between gap-2">
+            <span class="flex items-center gap-2">
+              <span class="relative flex size-[18px] shrink-0 items-center justify-center rounded-full border border-[#212323]">
+                <input
+                  type="radio"
+                  name="bundle-purchase-type-{{ section.id }}"
+                  value="one_time"
+                  class="peer absolute inset-0 size-full cursor-pointer opacity-0"
+                  data-bundle-purchase-type
+                  checked
+                >
+                <span
+                  class="pointer-events-none block size-[10px] rounded-full opacity-0 peer-checked:opacity-100"
+                  style="background-color: {{ section.settings.purchase_selected_color }};"
+                ></span>
+              </span>
+              <span class="text-[16px] leading-normal text-[#212323]">{{ section.settings.one_time_label }}</span>
             </span>
-            <span class="text-[16px] leading-normal text-[#212323]">{{ section.settings.one_time_label }}</span>
+            <div class="flex items-center gap-2">
+              <span class="text-[13px] leading-normal text-[#999999] line-through" data-bundle-price-one-time-original>$0.00</span>
+              <span class="text-[16px] leading-normal text-[#212323]" data-bundle-price-one-time>$0.00</span>
+            </div>
           </label>
 
-          <label class="flex w-full items-center gap-2">
-            <span class="relative flex size-[18px] shrink-0 items-center justify-center rounded-full border border-[#212323]">
-              <input
-                type="radio"
-                name="bundle-purchase-type-{{ section.id }}"
-                value="subscribe"
-                class="peer absolute inset-0 size-full cursor-pointer opacity-0"
-                data-bundle-purchase-type
-              >
-              <span
-                class="pointer-events-none block size-[10px] rounded-full opacity-0 peer-checked:opacity-100"
-                style="background-color: {{ section.settings.purchase_selected_color }};"
-              ></span>
+          <label class="flex w-full items-center justify-between gap-2">
+            <span class="flex items-center gap-2">
+              <span class="relative flex size-[18px] shrink-0 items-center justify-center rounded-full border border-[#212323]">
+                <input
+                  type="radio"
+                  name="bundle-purchase-type-{{ section.id }}"
+                  value="subscribe"
+                  class="peer absolute inset-0 size-full cursor-pointer opacity-0"
+                  data-bundle-purchase-type
+                >
+                <span
+                  class="pointer-events-none block size-[10px] rounded-full opacity-0 peer-checked:opacity-100"
+                  style="background-color: {{ section.settings.purchase_selected_color }};"
+                ></span>
+              </span>
+              <span class="text-[16px] leading-normal text-[#212323]">{{ section.settings.subscribe_label }}</span>
             </span>
-            <span class="text-[16px] leading-normal text-[#212323]">{{ section.settings.subscribe_label }}</span>
+            <div class="flex items-center gap-2">
+              <span class="text-[13px] leading-normal text-[#999999] line-through" data-bundle-price-subscribe-original>$0.00</span>
+              <span class="text-[16px] leading-normal text-[#212323]" data-bundle-price-subscribe>$0.00</span>
+            </div>
           </label>
         </div>
 
@@ -111,7 +131,26 @@
 
 {% stylesheet %}
   .bundle-builder [data-bundle-track]::-webkit-scrollbar {
-    height: 6px;
+    height: 16px;
+  }
+
+  .bundle-builder [data-bundle-track]::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+  }
+
+  .bundle-builder [data-bundle-track]::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+  }
+
+  .bundle-builder [data-bundle-track]::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .bundle-builder [data-bundle-track] {
+    scrollbar-color: rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.05);
+    scrollbar-width: auto;
   }
 {% endstylesheet %}
 
@@ -119,6 +158,7 @@
   class BundleBuilder extends HTMLElement {
     connectedCallback() {
       this.items = new Map();
+      this.itemIdCounter = 0;
 
       this.track = this.querySelector('[data-bundle-track]');
       this.milestones = Array.from(this.querySelectorAll('[data-bundle-milestone]'));
@@ -126,20 +166,26 @@
       this.addToCartButton = this.querySelector('[data-bundle-add-to-cart]');
       this.addToCartLabel = this.querySelector('[data-bundle-add-to-cart-label]');
       this.addToCartLoader = this.querySelector('[data-bundle-add-to-cart-loader]');
+      this.priceOneTime = this.querySelector('[data-bundle-price-one-time]');
+      this.priceSubscribe = this.querySelector('[data-bundle-price-subscribe]');
+      this.priceOneTimeOriginal = this.querySelector('[data-bundle-price-one-time-original]');
+      this.priceSubscribeOriginal = this.querySelector('[data-bundle-price-subscribe-original]');
       this.removeIconMarkup = this.querySelector('[data-bundle-remove-icon]')?.innerHTML || '&times;';
       this.removeLabelTemplate = this.dataset.removeLabelTemplate || 'Remove __TITLE__';
       this.placeholderCount = Number(this.dataset.placeholderCount || 6);
-      this.maxThreshold = Math.max(1, ...this.milestones.map((el) => Number(el.dataset.threshold || 0)));
+      this.discounts = JSON.parse(this.dataset.discounts || '[]');
 
       this.addEventListener('click', (event) => {
         const addButton = event.target.closest('[data-bundle-add]');
         if (addButton) {
-          this.addItem(addButton.dataset);
+          if (this.items.size < this.placeholderCount) {
+            this.addItem(addButton.dataset);
+          }
           return;
         }
 
         const removeButton = event.target.closest('[data-bundle-remove]');
-        if (removeButton) this.removeItem(removeButton.dataset.blockId);
+        if (removeButton) this.removeItem(Number(removeButton.dataset.itemId));
       });
 
       this.addEventListener('change', (event) => {
@@ -153,29 +199,23 @@
     }
 
     addItem(dataset) {
-      const blockId = dataset.blockId;
-      const existing = this.items.get(blockId);
-
-      if (existing) {
-        existing.quantity += 1;
-      } else {
-        this.items.set(blockId, {
-          blockId,
-          variantId: dataset.variantId,
-          title: dataset.title,
-          image: dataset.image,
-          price: Number(dataset.price || 0),
-          sellingPlanId: dataset.sellingPlanId || null,
-          subscribePrice: dataset.subscribePrice ? Number(dataset.subscribePrice) : null,
-          quantity: 1,
-        });
-      }
+      const itemId = ++this.itemIdCounter;
+      this.items.set(itemId, {
+        itemId,
+        blockId: dataset.blockId,
+        variantId: dataset.variantId,
+        title: dataset.title,
+        image: dataset.image,
+        price: Number(dataset.price || 0),
+        sellingPlanId: dataset.sellingPlanId || null,
+        subscribePrice: dataset.subscribePrice ? Number(dataset.subscribePrice) : null,
+      });
 
       this.render();
     }
 
-    removeItem(blockId) {
-      this.items.delete(blockId);
+    removeItem(itemId) {
+      this.items.delete(itemId);
       this.render();
     }
 
@@ -187,21 +227,85 @@
       let total = 0;
       for (const item of this.items.values()) {
         const unit = this.isSubscribing && item.subscribePrice ? item.subscribePrice : item.price;
-        total += unit * item.quantity;
+        total += unit;
       }
       return total;
     }
 
     get totalQuantity() {
-      let total = 0;
-      for (const item of this.items.values()) total += item.quantity;
-      return total;
+      return this.items.size;
     }
 
     render() {
       this.renderTrack();
       this.renderMilestones();
+      this.renderPrices();
       if (this.addToCartButton) this.addToCartButton.disabled = this.totalQuantity === 0;
+    }
+
+    renderPrices() {
+      let oneTimeSubtotal = 0;
+      for (const item of this.items.values()) {
+        oneTimeSubtotal += item.price;
+      }
+      let subscribeSubtotal = 0;
+      for (const item of this.items.values()) {
+        const price = item.subscribePrice || item.price;
+        subscribeSubtotal += price;
+      }
+
+      const oneTimeDiscount = this.getAppliedDiscount(oneTimeSubtotal);
+      const subscribeDiscount = this.getAppliedDiscount(subscribeSubtotal);
+
+      const oneTimeDiscounted = Math.max(0, oneTimeSubtotal - oneTimeDiscount);
+      const subscribeDiscounted = Math.max(0, subscribeSubtotal - subscribeDiscount);
+
+      if (this.priceOneTimeOriginal) {
+        this.priceOneTimeOriginal.textContent = this.formatPrice(oneTimeSubtotal);
+      }
+      if (this.priceOneTime) {
+        this.priceOneTime.textContent = this.formatPrice(oneTimeDiscounted);
+      }
+
+      if (this.priceSubscribeOriginal) {
+        this.priceSubscribeOriginal.textContent = this.formatPrice(subscribeSubtotal);
+      }
+      if (this.priceSubscribe) {
+        this.priceSubscribe.textContent = this.formatPrice(subscribeDiscounted);
+      }
+    }
+
+    getAppliedDiscount(subtotal) {
+      let applicableDiscount = 0;
+      for (const discount of this.discounts) {
+        if (subtotal >= discount.threshold) {
+          applicableDiscount = discount.discount;
+        }
+      }
+      return applicableDiscount;
+    }
+
+    getOneTimeTotal() {
+      let subtotal = 0;
+      for (const item of this.items.values()) {
+        subtotal += item.price;
+      }
+      const discount = this.getAppliedDiscount(subtotal);
+      return Math.max(0, subtotal - discount);
+    }
+
+    getSubscribeTotal() {
+      let subtotal = 0;
+      for (const item of this.items.values()) {
+        const price = item.subscribePrice || item.price;
+        subtotal += price;
+      }
+      const discount = this.getAppliedDiscount(subtotal);
+      return Math.max(0, subtotal - discount);
+    }
+
+    formatPrice(cents) {
+      return '$' + (cents / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
     renderTrack() {
@@ -224,18 +328,10 @@
         removeButton.className =
           'absolute right-1.5 top-1.5 flex size-6 items-center justify-center rounded-full bg-[#212323] text-[#F6F1EC] [&_svg]:size-3';
         removeButton.dataset.bundleRemove = '';
-        removeButton.dataset.blockId = item.blockId;
+        removeButton.dataset.itemId = item.itemId;
         removeButton.setAttribute('aria-label', this.removeLabelTemplate.replace('__TITLE__', item.title));
         removeButton.innerHTML = this.removeIconMarkup;
         card.appendChild(removeButton);
-
-        if (item.quantity > 1) {
-          const badge = document.createElement('span');
-          badge.className =
-            'absolute bottom-1.5 left-1.5 rounded-full bg-[#212323] px-2 py-0.5 text-[11px] font-medium text-[#F6F1EC]';
-          badge.textContent = `×${item.quantity}`;
-          card.appendChild(badge);
-        }
 
         this.track.appendChild(card);
       }
@@ -252,29 +348,47 @@
       const subtotal = this.subtotalCents;
 
       if (this.progressFill) {
-        const percent = Math.min(100, (subtotal / this.maxThreshold) * 100);
-        this.progressFill.style.width = `${percent}%`;
+        this.progressFill.style.width = `${this.getProgressPercent(subtotal)}%`;
       }
-
-      const upcoming = this.milestones
-        .filter((el) => Number(el.dataset.threshold) > subtotal)
-        .sort((a, b) => Number(a.dataset.threshold) - Number(b.dataset.threshold))[0];
 
       this.milestones.forEach((el) => {
         const pill = el.querySelector('[data-bundle-milestone-pill]');
         if (!pill) return;
 
         const achieved = Number(el.dataset.threshold) <= subtotal;
-        const isNext = el === upcoming;
 
         pill.classList.toggle('bg-[#212323]', achieved);
         pill.classList.toggle('text-[#F6F1EC]', achieved);
         pill.classList.toggle('bg-white', !achieved);
         pill.classList.toggle('text-[#212323]', !achieved);
-        pill.classList.toggle('border-2', isNext);
-        pill.classList.toggle('border-[#212323]', isNext);
-        pill.classList.toggle('scale-110', isNext);
       });
+    }
+
+    getProgressPercent(subtotal) {
+      const thresholds = this.milestones
+        .map((el) => Number(el.dataset.threshold))
+        .sort((a, b) => a - b);
+
+      const count = thresholds.length;
+      if (count === 0) return 0;
+      if (subtotal <= 0) return 0;
+
+      const positions = thresholds.map((_, index) => ((index + 0.75) / count) * 100);
+
+      if (subtotal >= thresholds[count - 1]) return 100;
+
+      let lowerIndex = -1;
+      for (let i = 0; i < count; i += 1) {
+        if (subtotal >= thresholds[i]) lowerIndex = i;
+      }
+
+      const lowerThreshold = lowerIndex >= 0 ? thresholds[lowerIndex] : 0;
+      const lowerPosition = lowerIndex >= 0 ? positions[lowerIndex] : 0;
+      const upperThreshold = thresholds[lowerIndex + 1];
+      const upperPosition = positions[lowerIndex + 1];
+
+      const ratio = (subtotal - lowerThreshold) / (upperThreshold - lowerThreshold);
+      return lowerPosition + ratio * (upperPosition - lowerPosition);
     }
 
     async handleSubmit(event) {
@@ -283,7 +397,7 @@
 
       const subscribing = this.isSubscribing;
       const items = Array.from(this.items.values()).map((item) => {
-        const payload = { id: item.variantId, quantity: item.quantity };
+        const payload = { id: item.variantId, quantity: 1 };
         if (subscribing && item.sellingPlanId) payload.selling_plan = item.sellingPlanId;
         return payload;
       });

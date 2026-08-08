@@ -172,21 +172,21 @@
           "type": "marquee_item",
           "settings": {
             "text": "present in the moment",
-            "icon": "shopify://shop_images/Vector_e3581ec8-e448-44d5-a3d3-f4eed293b2c1.svg"
+            "icon": "shopify://shop_images/Vector_2.svg"
           }
         },
         "marquee_item_QRnwQd": {
           "type": "marquee_item",
           "settings": {
-            "text": "made for moments that matter",
-            "icon": "shopify://shop_images/Vector_4fcf00a8-e0bd-4616-94a2-9193362f21c7.svg"
+            "text": "present in the moment",
+            "icon": "shopify://shop_images/Vector_2.svg"
           }
         },
         "marquee_item_yLUt9r": {
           "type": "marquee_item",
           "settings": {
-            "text": "presence is the new luxury",
-            "icon": "shopify://shop_images/Vector_e3581ec8-e448-44d5-a3d3-f4eed293b2c1.svg"
+            "text": "present in the moment",
+            "icon": "shopify://shop_images/Vector_2.svg"
           }
         }
       },
@@ -393,7 +393,8 @@
       "settings": {
         "heading": "<p>Feel Present.</p><p>Stay Toasted.</p>",
         "description": "<p>A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC. Made to help you feel present without overdoing it.</p>",
-        "image": "shopify://shop_images/Group_104_ffaddbdc-e520-471e-8d88-cf4e664245c4.png",
+        "video": "SAMPLE_WEB_ANIMATION.webm",
+        "image": "shopify://shop_images/SAMPLE_WEB_ANIMATIONonline-video-cutter.com-ezgif.com-video-to-webp-converter.webp",
         "image_alt": "",
         "show_combo_offer": true,
         "bundle_heading": "Build a bundle and Save",
@@ -685,7 +686,7 @@
           "type": "faq-item",
           "settings": {
             "question": "What is Toasted?",
-            "answer": "<p>What is Toasted?</p>",
+            "answer": "<p>Toasted is the chill drink. A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -693,8 +694,8 @@
         "faq_item_c4mxh7": {
           "type": "faq-item",
           "settings": {
-            "question": "Ingredients & Allergies",
-            "answer": "<p>What is Toasted?</p>",
+            "question": "Is Toasted carbonated?",
+            "answer": "<p>No. Toasted is non-carbonated, smooth, and ready to drink.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -702,8 +703,8 @@
         "faq_item_DzVxMw": {
           "type": "faq-item",
           "settings": {
-            "question": "What to Expect",
-            "answer": "<p>What is Toasted?</p>",
+            "question": "How should I try Toasted?",
+            "answer": "<p>Start with one can and see how you feel. Toasted is made for a light, present experience.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -711,8 +712,8 @@
         "faq_item_nW6RaJ": {
           "type": "faq-item",
           "settings": {
-            "question": "How is it dosed?",
-            "answer": "<p>What is Toasted?</p>",
+            "question": "Is Toasted alcoholic?",
+            "answer": "<p>No. Toasted is alcohol-free.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -720,8 +721,8 @@
         "faq_item_NDQepn": {
           "type": "faq-item",
           "settings": {
-            "question": "Is it legal to ship?",
-            "answer": "<p>What is Toasted?</p>",
+            "question": "Does Toasted contain THC?",
+            "answer": "<p>Yes. Each can contains 0.4mg hemp-derived THC.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -729,8 +730,8 @@
         "faq_item_HcnUJ6": {
           "type": "faq-item",
           "settings": {
-            "question": "Lab Results",
-            "answer": "<p>What is Toasted?</p>",
+            "question": "Who is Toasted for?",
+            "answer": "<p>Toasted is for adults 21+ who want a lighter way to enjoy social moments without alcohol.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -753,6 +754,8 @@
         "border_color": "#212323",
         "faq_item_background": "#636d90",
         "faq_item_text_color": "#f6f1ec",
+        "columns_mobile": "1",
+        "columns_tablet": "2",
         "columns_desktop": "3",
         "padding_top": 100,
         "padding_bottom": 100,
