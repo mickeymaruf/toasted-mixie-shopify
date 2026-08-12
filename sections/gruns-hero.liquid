@@ -1,5 +1,5 @@
 <section
-  class="gruns-hero full-width relative"
+  class="gruns-hero full-width relative z-10"
   style="background-color: {{ section.settings.background_color }};"
 >
   <div
@@ -77,10 +77,13 @@
 
         {% if section.settings.show_badge and section.settings.badge_text != blank %}
           <div
-            class="absolute bottom-0 -left-9.5 origin-center -rotate-90 -translate-y-1/2 flex items-center justify-center gap-[8px] rounded-[16px] px-[12px] py-[6px] drop-shadow-[0px_0px_2.5px_rgba(0,0,0,0.1)] lg:-left-14 lg:gap-[20px] lg:rounded-[30px] lg:px-[32px] lg:py-[16px]"
-            style="background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #F9D5C0, #F9D5C0);"
+            class="absolute bottom-0 -left-9.5 z-10 origin-center -rotate-90 -translate-y-1/2 flex items-center justify-center gap-[8px] rounded-[16px] px-[12px] py-[6px] drop-shadow-[0px_0px_2.5px_rgba(0,0,0,0.1)] lg:-left-14 lg:gap-[20px] lg:rounded-[30px] lg:px-[32px] lg:py-[16px]"
+            style="background-color: {{ section.settings.badge_background_color }};"
           >
-            <p class="text-[12px] leading-[1.5] font-medium whitespace-nowrap text-[#212323] lg:text-[20px]">
+            <p
+              class="text-[12px] leading-[1.5] font-medium whitespace-nowrap lg:text-[20px]"
+              style="color: {{ section.settings.badge_text_color }};"
+            >
               {{ section.settings.badge_text }}
             </p>
             <span class="block size-[10px] shrink-0 lg:size-[16px]">
@@ -215,6 +218,20 @@
       "id": "badge_text",
       "label": "t:labels.badge_text",
       "default": "Get 50% Off",
+      "visible_if": "{{ section.settings.show_badge }}"
+    },
+    {
+      "type": "color",
+      "id": "badge_background_color",
+      "label": "t:labels.badge_background",
+      "default": "#F9D5C0",
+      "visible_if": "{{ section.settings.show_badge }}"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "t:labels.badge_text_color",
+      "default": "#212323",
       "visible_if": "{{ section.settings.show_badge }}"
     }
   ],

@@ -11,23 +11,25 @@
 {% assign promo_bg_color = section.settings.promo_background_color %}
 
 <section class="w-full" style="
+  background-color: {{ bg_color }};
   --form-bg: {{ bg_color }};
   --form-text: {{ text_color }};
   --form-button-bg: {{ button_bg_color }};
   --form-button-text: {{ button_text_color }};
   --promo-bg: {{ promo_bg_color }};
 ">
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 w-full min-h-screen lg:min-h-auto">
+  <div class="mx-auto w-full max-w-[1200px] px-5 sm:px-8 md:px-12 lg:px-0">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-[80px] w-full min-h-screen lg:min-h-auto">
     <!-- LEFT COLUMN: CONTACT FORM -->
-    <div class="flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-[80px] lg:sticky lg:top-0 lg:self-start" style="background-color: var(--form-bg); color: var(--form-text);">
+    <div class="flex flex-col justify-center pt-8 pb-0 sm:py-8 md:py-12 lg:py-[80px] lg:sticky lg:top-0 lg:self-start" style="background-color: var(--form-bg); color: var(--form-text);">
       <div class="w-full max-w-full">
         {% if section.settings.heading != blank %}
-          <div class="flex flex-col gap-5 mb-[60px] lg:mb-[80px] lg:text-left text-center">
-            <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-5xl font-bold -tracking-[2.16px] m-0 leading-tight">
+          <div class="flex flex-col items-center gap-5 mb-[60px] text-center lg:mb-[80px]">
+            <h2 class="w-full text-[36px] leading-[0.95] font-bold m-0 sm:text-[72px]">
               {{ section.settings.heading }}
             </h2>
             {% if section.settings.subheading != blank %}
-              <p class="text-lg sm:text-2xl font-normal leading-[1.3] m-0">
+              <p class="w-full text-[16px] font-normal leading-[1.3] m-0 sm:text-[24px]">
                 {{ section.settings.subheading }}
               </p>
             {% endif %}
@@ -52,8 +54,8 @@
                     {% assign field_required = block.settings.field_required %}
                     {% assign field_column_span = block.settings.column_span %}
 
-                    <div class="flex flex-col gap-2.5{% if field_column_span == '2' %} md:col-span-2{% endif %}">
-                      <label for="contact-{{ field_name }}" class="block text-xl sm:text-2xl font-normal leading-tight m-0">
+                    <div class="flex flex-col gap-[12px] sm:gap-[32px]{% if field_column_span == '2' %} md:col-span-2{% endif %}">
+                      <label for="contact-{{ field_name }}" class="block text-[20px] font-normal leading-[1.2] m-0">
                         {{ field_label }}
                       </label>
 
@@ -94,7 +96,7 @@
                 {% endfor %}
               </div>
 
-              <button type="submit" class="w-full h-[58px] mt-8 sm:mt-16 flex items-center justify-center rounded-full text-xl sm:text-2xl font-medium leading-[1.5] transition-opacity duration-150 hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" style="background-color: var(--form-button-bg); color: var(--form-button-text); outline-color: var(--form-button-text);">
+              <button type="submit" class="mt-[32px] lg:mt-[64px] w-full h-[58px] flex items-center justify-center rounded-[30px] px-[32px] py-[16px] text-[20px] font-medium leading-[1.5] whitespace-nowrap drop-shadow-[0px_0px_7.5px_rgba(0,0,0,0.1)] transition-opacity duration-150 hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" style="background-color: var(--form-button-bg); color: var(--form-button-text); outline-color: var(--form-button-text);">
                 {{ section.settings.button_text }}
               </button>
             {% endform %}
@@ -114,8 +116,8 @@
                     {% assign field_required = block.settings.field_required %}
                     {% assign field_column_span = block.settings.column_span %}
 
-                    <div class="flex flex-col gap-2.5{% if field_column_span == '2' %} md:col-span-2{% endif %}">
-                      <label for="custom-{{ field_name }}" class="block text-xl sm:text-2xl font-normal leading-tight m-0">
+                    <div class="flex flex-col gap-[12px] sm:gap-[32px]{% if field_column_span == '2' %} md:col-span-2{% endif %}">
+                      <label for="custom-{{ field_name }}" class="block text-[20px] font-normal leading-[1.2] m-0">
                         {{ field_label }}
                         {% if field_required %}<span class="text-red-600">*</span>{% endif %}
                       </label>
@@ -157,7 +159,7 @@
                 {% endfor %}
               </div>
 
-              <button type="submit" class="w-full h-[58px] mt-8 sm:mt-16 flex items-center justify-center rounded-full text-xl sm:text-2xl font-medium leading-[1.5] transition-opacity duration-150 hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" style="background-color: var(--form-button-bg); color: var(--form-button-text); outline-color: var(--form-button-text);">
+              <button type="submit" class="mt-[32px] lg:mt-[64px] w-full h-[58px] flex items-center justify-center rounded-[30px] px-[32px] py-[16px] text-[20px] font-medium leading-[1.5] whitespace-nowrap drop-shadow-[0px_0px_7.5px_rgba(0,0,0,0.1)] transition-opacity duration-150 hover:opacity-85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2" style="background-color: var(--form-button-bg); color: var(--form-button-text); outline-color: var(--form-button-text);">
                 {{ section.settings.button_text }}
               </button>
             </form>
@@ -167,25 +169,25 @@
     </div>
 
     <!-- RIGHT COLUMN: PROMO CARDS -->
-    <div class="flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-[80px]" style="background-color: var(--promo-bg);">
+    <div class="flex flex-col justify-center pt-8 pb-16 sm:py-8 md:py-12 lg:py-[80px]" style="background-color: var(--promo-bg);">
       <div class="mx-auto w-full max-w-[1920px]">
         {% if section.blocks.size > 0 %}
           <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 lg:gap-[30px]">
             {% for block in section.blocks %}
               {% if block.type == 'promo_card' %}
-                <div class="relative w-full aspect-square overflow-hidden rounded-[20px] flex flex-col justify-end" {{ block.shopify_attributes }}>
+                <div class="relative w-full aspect-square overflow-hidden rounded-[33px] flex flex-col items-start justify-end p-[20px] sm:p-[40px]" {{ block.shopify_attributes }}>
                   {% if block.settings.image %}
-                    <div class="absolute inset-0 z-0 overflow-hidden">
+                    <div class="absolute inset-0 z-0 overflow-hidden rounded-[33px]">
                       {{ block.settings.image | image_url: width: 600 | image_tag: class: 'w-full h-full object-cover' }}
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/0"></div>
+                      <div class="absolute inset-0 bg-gradient-to-b from-black/0 from-[19.79%] to-black/90"></div>
                     </div>
                   {% endif %}
-                  <div class="relative z-10 p-[20px] sm:p-[40px] text-white">
+                  <div class="relative z-10 flex w-full flex-col gap-[20px] text-[#F6F1EC] [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)]">
                     {% if block.settings.title %}
-                      <h3 class="text-3xl sm:text-4xl font-bold m-0 mb-2 leading-tight">{{ block.settings.title }}</h3>
+                      <h3 class="w-full text-[28px] leading-[0.95] font-bold m-0 sm:text-[48px]">{{ block.settings.title }}</h3>
                     {% endif %}
                     {% if block.settings.description %}
-                      <p class="text-base sm:text-lg font-normal m-0 leading-[1.4]">{{ block.settings.description }}</p>
+                      <p class="w-full text-[16px] leading-[1.4] font-normal m-0 sm:text-[24px] sm:leading-[1.5]">{{ block.settings.description }}</p>
                     {% endif %}
                   </div>
                 </div>
@@ -194,6 +196,7 @@
           </div>
         {% endif %}
       </div>
+    </div>
     </div>
   </div>
 </section>

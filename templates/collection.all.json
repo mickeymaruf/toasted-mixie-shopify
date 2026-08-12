@@ -22,7 +22,7 @@
         "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792.png",
-        "background_color": "#f6f1ec"
+        "background_color": "#9AB2D5"
       }
     },
     "gruns_product_list_cnbgNL": {
@@ -33,6 +33,7 @@
           "settings": {
             "product": "blood-orange",
             "image": "shopify://shop_images/Frame_2147235999.png",
+            "use_lottie_animation": false,
             "flavor_name": "Blood Orange",
             "flavor_name_color": "#b70141",
             "description": "Bright. Smooth. Golden-hour ready.",
@@ -48,13 +49,14 @@
           "settings": {
             "product": "berry-acai",
             "image": "shopify://shop_images/Frame_2147236000.png",
+            "use_lottie_animation": false,
             "flavor_name": "Berry Acai",
             "flavor_name_color": "#5e1a79",
             "description": "Deep. Juicy. Easy to enjoy.",
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#C7AA9A"
+            "button_text_color": "#c7aa9a"
           },
           "blocks": {}
         },
@@ -63,6 +65,7 @@
           "settings": {
             "product": "ginger-lime",
             "image": "shopify://shop_images/Frame_2147236001.png",
+            "use_lottie_animation": false,
             "flavor_name": "Ginger Lime",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
@@ -78,6 +81,7 @@
           "settings": {
             "product": "try-all-3-flavors",
             "image": "shopify://shop_images/Frame_2147236003.png",
+            "use_lottie_animation": false,
             "flavor_name": "Trial Pack",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
@@ -98,7 +102,7 @@
       "name": "t:general.product_list",
       "settings": {
         "heading": "Choose your flavor.",
-        "background_color": "#f6f1ec",
+        "background_color": "#9AB2D5",
         "heading_color": "#212323"
       }
     }

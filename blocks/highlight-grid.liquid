@@ -8,7 +8,7 @@
   {% content_for 'block', id: block.id, type: 'highlight-grid' %}
 {% enddoc %}
 
-<div class="grid w-full grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2" {{ block.shopify_attributes }}>
+<div class="grid w-full grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-[repeat(2,max-content)]" {{ block.shopify_attributes }}>
   {% content_for 'blocks' %}
 </div>
 

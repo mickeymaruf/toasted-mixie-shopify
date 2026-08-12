@@ -279,45 +279,53 @@
               aria-label="{{ 'products.main.purchase_option_group_label' | t }}"
             >
               <label
-                class="flex w-full flex-col gap-3 sm:gap-4 rounded-2xl px-3 py-3 sm:p-[18px]"
+                class="relative flex w-full flex-col gap-3 overflow-hidden sm:gap-4 rounded-[16.5px] px-3 py-3 sm:p-[18px]"
                 style="background-color: {{ section.settings.subscribe_card_background_color }};"
               >
-                <div class="flex w-full flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between">
-                  <div class="flex items-center gap-2 sm:gap-[3px]">
-                    <div class="flex items-center gap-2">
-                      <span class="relative flex size-5 shrink-0 items-center justify-center rounded-full border border-[#212323] p-1">
-                        <input
-                          type="radio"
-                          name="selling_plan"
-                          value="{{ selling_plan.id }}"
-                          class="peer absolute inset-0 size-full cursor-pointer opacity-0"
-                          checked
-                        >
-                        <span
-                          class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"
-                        ></span>
-                      </span>
-                      <span class="text-[16px] font-medium whitespace-nowrap text-[#212323]">
-                        {% if section.settings.subscribe_heading != blank %}
-                          {{ section.settings.subscribe_heading }}
-                        {% else %}
-                          {{ 'products.main.subscribe_save' | t }}
-                        {% endif %}
-                      </span>
-                    </div>
-                    {% if selected_allocation %}
-                      <span
-                        class="rounded-full px-2 py-1 sm:px-3 text-[12px] sm:text-[14px] font-normal whitespace-nowrap"
-                        style="background-color: {{ section.settings.subscribe_pill_background_color }}; color: {{ section.settings.subscribe_pill_text_color }};"
-                        data-subscribe-percent-pill
+                {% if section.settings.subscribe_card_background_image %}
+                  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+                    {{
+                      section.settings.subscribe_card_background_image
+                      | image_url: width: 900
+                      | image_tag: class: 'absolute size-full object-cover object-bottom', widths: '400, 600, 900', alt: '', style: 'opacity: 0.05; filter: saturate(0);'
+                    }}
+                  </div>
+                {% endif %}
+
+                <div class="relative z-10 flex w-full flex-row items-center justify-between gap-2">
+                  <div class="flex items-center gap-2">
+                    <span class="relative flex size-5 shrink-0 items-center justify-center rounded-full border border-[#212323] p-1">
+                      <input
+                        type="radio"
+                        name="selling_plan"
+                        value="{{ selling_plan.id }}"
+                        class="peer absolute inset-0 size-full cursor-pointer opacity-0"
+                        checked
                       >
-                        {% if section.settings.save_badge_text != blank %}
-                          {{ section.settings.save_badge_text | replace: '[percent]', initial_percent }}
-                        {% else %}
-                          {{ 'products.main.save_percent' | t: percent: initial_percent }}
-                        {% endif %}
-                      </span>
-                    {% endif %}
+                      <span
+                        class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"
+                      ></span>
+                    </span>
+                    <span class="text-[16px] font-medium text-[#212323]">
+                      {% if section.settings.subscribe_heading != blank %}
+                        {{ section.settings.subscribe_heading }}
+                      {% else %}
+                        {{ 'products.main.subscribe_save' | t }}
+                      {% endif %}
+                      {% if selected_allocation %}
+                        <span
+                          class="inline-block rounded-full px-2 py-1 sm:px-3 text-[12px] font-medium whitespace-nowrap sm:text-[16px]"
+                          style="background-color: {{ section.settings.subscribe_pill_background_color }}; color: {{ section.settings.subscribe_pill_text_color }};"
+                          data-subscribe-percent-pill
+                        >
+                          {% if section.settings.save_badge_text != blank %}
+                            {{ section.settings.save_badge_text | replace: '[percent]', initial_percent }}
+                          {% else %}
+                            {{ 'products.main.save_percent' | t: percent: initial_percent }}
+                          {% endif %}
+                        </span>
+                      {% endif %}
+                    </span>
                   </div>
 
                   <div class="flex flex-col items-start gap-1 sm:items-end sm:text-right">
@@ -334,7 +342,7 @@
                   </div>
                 </div>
 
-                <div class="flex w-full items-start justify-between gap-2 sm:gap-4">
+                <div class="relative z-10 flex w-full items-center justify-between gap-2 sm:gap-4">
                   <div class="flex flex-1 flex-col items-center gap-2 sm:gap-4">
                     {% if section.settings.benefit_1_icon %}
                       <img src="{{ section.settings.benefit_1_icon | image_url: width: 50 }}" alt="" class="size-5 sm:size-6">
@@ -361,7 +369,7 @@
                       </span>
                     {% endif %}
                     <p class="text-center text-[12px] sm:text-[14px] text-[#212323]">
-                      {% capture savings_pill %}<span class="inline-block rounded-full px-2 sm:px-3 py-[2px] text-xs mx-1" style="background-color: {{ section.settings.subscribe_pill_background_color }}; color: {{ section.settings.subscribe_pill_text_color }};" data-subscribe-savings>{% render 'format-money', cents: initial_savings %}</span>{% endcapture %}
+                      {% capture savings_pill %}<span class="inline-block rounded-full px-2 sm:px-3 py-[2px] text-[12px] font-medium mx-1 sm:text-[14px]" style="background-color: {{ section.settings.subscribe_pill_background_color }}; color: {{ section.settings.subscribe_pill_text_color }};" data-subscribe-savings>{% render 'format-money', cents: initial_savings %}</span>{% endcapture %}
                       {% if section.settings.benefit_2_text != blank %}
                         {{ section.settings.benefit_2_text | replace: '[amount]', savings_pill }}
                       {% else %}
@@ -762,6 +770,11 @@
       "id": "subscribe_card_background_color",
       "label": "t:labels.card_background",
       "default": "#C2CBD4"
+    },
+    {
+      "type": "image_picker",
+      "id": "subscribe_card_background_image",
+      "label": "t:labels.background_image"
     },
     {
       "type": "color",

@@ -161,8 +161,10 @@
         "heading_color": "#212323",
         "product_image": "shopify://shop_images/Frame_2147235887_1.png",
         "product_image_alt": "",
-        "show_badge": false,
-        "badge_text": "Get 50% Off"
+        "show_badge": true,
+        "badge_text": "Get 20% Off",
+        "badge_background_color": "#f9d5c0",
+        "badge_text_color": "#212323"
       }
     },
     "marquee_QBFjMB": {
@@ -216,7 +218,7 @@
             "flavor_name": "Blood Orange",
             "flavor_name_color": "#b70141",
             "description": "Bright. Smooth. Golden-hour ready.",
-            "price_text": "From $31.99",
+            "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
             "button_text_color": "#ffffff"
@@ -233,7 +235,7 @@
             "flavor_name": "Berry Acai",
             "flavor_name_color": "#5e1a79",
             "description": "Deep. Juicy. Easy to enjoy.",
-            "price_text": "From $31.99",
+            "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
             "button_text_color": "#ffffff"
@@ -250,7 +252,7 @@
             "flavor_name": "Ginger Lime",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
-            "price_text": "From $31.99",
+            "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
             "button_text_color": "#ffffff"
@@ -407,7 +409,7 @@
         "show_combo_offer": true,
         "bundle_heading": "Build a bundle and Save",
         "bundle_description": "<p>Pick your flavors. Stock the fridge. Stay Toasted.</p>",
-        "bundle_link": "#",
+        "bundle_link": "shopify://pages/bundle-builder",
         "bundle_image": "shopify://shop_images/Group_114.png",
         "bundle_background_color": "#f9d5c0",
         "bundle_text_color": "#212323",
@@ -454,7 +456,7 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Non-carbonated",
-            "icon": "shopify://shop_images/Group_95_1.svg",
+            "icon": "shopify://shop_images/Group_95_2.png",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -578,6 +580,7 @@
               "settings": {
                 "product": "try-all-3-flavors",
                 "flavor_name": "Trial Pack",
+                "swatch_image": "shopify://shop_images/Frame_2147235892_1.png",
                 "color": "#2f7948"
               },
               "blocks": {}
@@ -660,7 +663,7 @@
             "background_color": "#9ab2d5",
             "feature_text_color": "#212323",
             "background_image": "shopify://shop_images/Frame_2147235943_1.png",
-            "image": "shopify://shop_images/Frame_2147235887_2_a981a03a-ea4e-4703-891f-949154834f68.png"
+            "image": "shopify://shop_images/Frame_2147235944.png"
           },
           "blocks": {}
         }
@@ -682,6 +685,7 @@
         "benefit_3_text": "Pause, skip, cancel anytime",
         "benefit_3_icon": "shopify://shop_images/Clip_path_group.svg",
         "subscribe_card_background_color": "#c2cbd4",
+        "subscribe_card_background_image": "shopify://shop_images/Label.png",
         "subscribe_pill_background_color": "#551f36",
         "subscribe_pill_text_color": "#f6f1ec",
         "custom_button_text": ""

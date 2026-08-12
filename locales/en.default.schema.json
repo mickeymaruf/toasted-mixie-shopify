@@ -151,6 +151,8 @@
     "background_mobile": "Background image (mobile)",
     "background_mobile_info": "Optional mobile-specific background image. Defaults to desktop image if not provided.",
     "badge_text": "Badge text",
+    "badge_background": "Badge background",
+    "badge_text_color": "Badge text color",
     "body": "Body text",
     "button_text": "Button text",
     "card_background": "Card background",

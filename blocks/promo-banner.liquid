@@ -8,7 +8,7 @@
 
 {% if block.settings.heading != blank %}
   <div
-    class="relative flex w-full flex-col items-center gap-3 overflow-hidden rounded-2xl p-4 shadow-[-2px_2px_3.5px_rgba(0,0,0,0.1)] sm:flex-row sm:gap-[56px]"
+    class="relative flex w-full flex-col items-center gap-0 overflow-hidden rounded-2xl shadow-[-2px_2px_3.5px_rgba(0,0,0,0.1)] sm:flex-row sm:gap-[56px]"
     style="background-color: {{ block.settings.background_color }};"
     {{ block.shopify_attributes }}
   >
@@ -22,30 +22,30 @@
       </div>
     {% endif %}
     {% if block.settings.image %}
-      <div class="relative z-10 aspect-square w-full sm:aspect-[166/150] sm:w-[140px] sm:shrink-0 lg:w-[191px] overflow-visible rounded-[13px]">
+      <div class="relative z-10 w-full p-0 rounded-[13px] sm:w-[140px] sm:shrink-0 lg:w-[191px]">
         {{
           block.settings.image
           | image_url: width: 400
           | image_tag:
             width: 400,
             height: 362,
-            class: 'size-full object-cover overflow-visible',
+            class: 'mx-auto object-contain',
             alt: block.settings.heading
         }}
       </div>
     {% endif %}
 
-    <div class="relative z-10 flex flex-1 flex-col items-start gap-[10px] p-3 sm:p-0">
-      <p class="text-[16px] leading-[1.3] font-medium text-[#212323] sm:text-[20px] lg:text-[24px]">{{ block.settings.heading }}</p>
+    <div class="relative z-10 flex flex-1 flex-col items-center gap-[10px] px-3 pt-0 pb-4 text-center sm:items-start sm:pt-4 sm:pr-4 sm:pb-4 sm:pl-0 sm:text-left">
+      <p class="text-[20px] leading-[1.3] font-medium text-[#212323] sm:text-[20px] lg:text-[24px]">{{ block.settings.heading }}</p>
 
       {% if block.settings.button_label != blank %}
-        <a href="{{ block.settings.button_link }}" class="relative z-10 flex w-fit items-center justify-center px-[46px] py-[16px] rounded-[30px] text-[14px] leading-[1.5] font-medium whitespace-nowrap shadow-[0px_0px_7.5px_rgba(0,0,0,0.1)]" style="background-color: {{ block.settings.button_background_color }}; color: {{ block.settings.button_text_color }};">
+        <a href="{{ block.settings.button_link }}" class="relative z-10 flex w-fit items-center justify-center px-[46px] py-[16px] rounded-[30px] text-[15px] leading-[1.5] font-medium whitespace-nowrap shadow-[0px_0px_7.5px_rgba(0,0,0,0.1)] sm:text-[14px]" style="background-color: {{ block.settings.button_background_color }}; color: {{ block.settings.button_text_color }};">
           {{ block.settings.button_label }}
         </a>
       {% endif %}
 
       {% if block.settings.feature_1_text != blank or block.settings.feature_2_text != blank or block.settings.feature_1_icon or block.settings.feature_2_icon %}
-        <div class="flex flex-wrap items-center gap-x-[10px] gap-y-2 sm:gap-x-[15px]" style="color: {{ block.settings.feature_text_color }};">
+        <div class="flex flex-wrap items-center justify-center gap-x-[10px] gap-y-2 sm:justify-start sm:gap-x-[15px]" style="color: {{ block.settings.feature_text_color }};">
           {% if block.settings.feature_1_text != blank or block.settings.feature_1_icon %}
             <div class="flex items-center gap-[5px]">
               {% if block.settings.feature_1_icon %}
@@ -59,7 +59,7 @@
               {% else %}
                 <span class="block size-[15px] shrink-0">{{ 'icon-package.svg' | inline_asset_content }}</span>
               {% endif %}
-              <span class="text-[12px] leading-[1.5] whitespace-nowrap">
+              <span class="text-[13px] leading-[1.5] whitespace-nowrap sm:text-[12px]">
                 {{- block.settings.feature_1_text -}}
               </span>
             </div>
@@ -80,7 +80,7 @@
                   {{- 'icon-shipping.svg' | inline_asset_content -}}
                 </span>
               {% endif %}
-              <span class="text-[12px] leading-[1.5] whitespace-nowrap">
+              <span class="text-[13px] leading-[1.5] whitespace-nowrap sm:text-[12px]">
                 {{- block.settings.feature_2_text -}}
               </span>
             </div>

@@ -24,14 +24,14 @@
   </div>
 
   <div
-    class="relative mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 px-5 py-10 sm:px-8 sm:py-12 md:px-12 lg:flex-row lg:items-center lg:gap-[60px] lg:px-0 lg:py-[80px] xl:py-[100px]"
+    class="relative mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 px-5 py-8 sm:px-8 sm:py-10 md:px-12 lg:flex-row lg:items-center lg:gap-[60px] lg:px-0 lg:py-[64px] xl:py-[80px]"
   >
     <div
       class="flex w-full flex-col items-start gap-5 text-left xl:w-[40%] xl:max-w-[40%] xl:shrink-0"
       style="color: {{ section.settings.heading_color }};"
     >
       {% if section.settings.heading != blank %}
-        <div class="gruns-quality-badges__heading text-[36px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[72px]">
+        <div class="gruns-quality-badges__heading text-[36px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[62px]">
           {{ section.settings.heading }}
         </div>
       {% endif %}
@@ -44,7 +44,7 @@
     </div>
 
     {% if section.blocks.size > 0 %}
-      <div class="grid grid-cols-2 w-full gap-3 sm:flex sm:flex-wrap sm:gap-[10px] xl:w-[60%] xl:max-w-[60%] xl:shrink-0">
+      <div class="flex w-full flex-wrap gap-3 sm:gap-[10px] xl:w-[60%] xl:max-w-[60%] xl:shrink-0">
         {% content_for 'blocks' %}
       </div>
     {% endif %}

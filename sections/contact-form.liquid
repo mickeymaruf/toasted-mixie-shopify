@@ -157,7 +157,7 @@
   }
 
   .contact-form-container {
-    max-width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
@@ -283,6 +283,13 @@
   .contact-form-button:focus-visible {
     outline: 2px solid var(--form-button-text);
     outline-offset: 2px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .contact-form-section {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   @media screen and (max-width: 768px) {
