@@ -1,48 +1,60 @@
 {% doc %}
-  Renders a single flavor card with a full-width product image, an
-  editable flavor name/description/price, static pack-size options and a
-  "Shop" button linking to the selected product's page. Intended to be
-  nested inside the Gruns Product List section.
+  Renders a single flavor card with a background image and a floating can
+  image anchored to the bottom center, an editable flavor name/description/
+  price, static pack-size options and a "Shop" button linking to the
+  selected product's page. Intended to be nested inside the Gruns Product
+  List section.
 
   @example
   {% content_for 'block', id: block.id, type: 'product-card' %}
 {% enddoc %}
 
 <div
-  class="mx-auto flex w-full max-w-full flex-col items-center gap-3 sm:max-w-[386.667px] sm:gap-[30px]"
+  class="group mx-auto flex w-full max-w-full flex-col items-center gap-3 sm:max-w-[386.667px] sm:gap-[30px]"
   {{ block.shopify_attributes }}
 >
-  <div class="relative flex w-full items-center justify-center overflow-hidden rounded-[16px] sm:rounded-[30px]">
-    {% if block.settings.image %}
-      {{
-        block.settings.image
-        | image_url: width: 800
-        | image_tag:
-          class: 'size-full object-cover',
-          widths: '400, 600, 800, 1000',
-          alt: block.settings.image.alt | default: block.settings.flavor_name
-      }}
-    {% elsif block.settings.product.featured_image %}
-      {{
-        block.settings.product.featured_image
-        | image_url: width: 800
-        | image_tag:
-          class: 'size-full object-cover',
-          widths: '400, 600, 800, 1000',
-          alt: block.settings.product.featured_image.alt | default: block.settings.flavor_name
-      }}
+  <div class="relative w-full" style="aspect-ratio: 0.677;">
+    {% if block.settings.background_image %}
+      <div class="absolute inset-0 overflow-hidden rounded-[16px] sm:rounded-[30px]">
+        {{
+          block.settings.background_image
+          | image_url: width: 800
+          | image_tag: class: 'size-full object-cover', widths: '400, 600, 800, 1000', loading: 'lazy', alt: ''
+        }}
+      </div>
     {% endif %}
 
-    {% if block.settings.use_lottie_animation %}
-      <dotlottie-wc
-        src="{{ 'animation-ginger-lime.lottie' | asset_url }}"
-        autoplay
-        loop
-        speed="0.5"
-        useFrameInterpolation
-        class="absolute inset-0 size-full object-cover"
-      ></dotlottie-wc>
-    {% endif %}
+    <div class="absolute bottom-[1%] left-1/2 h-[84.7%] -translate-x-1/2 transition-transform duration-300 ease-out group-hover:-translate-y-3">
+      {% if block.settings.image %}
+        {{
+          block.settings.image
+          | image_url: width: 800
+          | image_tag: class: 'h-full w-auto', widths: '200, 300, 400, 600, 800', alt: block.settings.image.alt
+          | default: block.settings.flavor_name
+        }}
+      {% elsif block.settings.product.featured_image %}
+        {{
+          block.settings.product.featured_image
+          | image_url: width: 800
+          | image_tag:
+            class: 'h-full w-auto',
+            widths: '200, 300, 400, 600, 800',
+            alt: block.settings.product.featured_image.alt
+          | default: block.settings.flavor_name
+        }}
+      {% endif %}
+
+      {% if block.settings.use_lottie_animation %}
+        <dotlottie-wc
+          src="{{ 'animation-ginger-lime.lottie' | asset_url }}"
+          autoplay
+          loop
+          speed="0.5"
+          useFrameInterpolation
+          class="absolute inset-0 size-full object-contain object-bottom"
+        ></dotlottie-wc>
+      {% endif %}
+    </div>
   </div>
 
   <div class="flex w-full max-w-full flex-col items-center gap-2 sm:max-w-[360px] sm:gap-5">
@@ -127,9 +139,15 @@
     },
     {
       "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background_image",
+      "info": "t:labels.background_image_info"
+    },
+    {
+      "type": "image_picker",
       "id": "image",
-      "label": "t:labels.image",
-      "info": "t:labels.image_info"
+      "label": "t:labels.can_image",
+      "info": "t:labels.can_image_info"
     },
     {
       "type": "header",

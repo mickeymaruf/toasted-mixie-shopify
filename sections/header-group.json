@@ -127,7 +127,7 @@
         "logo": "shopify://shop_images/toaster-logo.svg",
         "menu": "shop",
         "search_button_text": "Find Toasted",
-        "show_search_button": false,
+        "show_search_button": true,
         "mega_menu_link_title": "Shop",
         "mega_menu_button_text": "Shop Drinks",
         "mega_menu_button_link": "/collections/shop-all",

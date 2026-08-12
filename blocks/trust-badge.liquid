@@ -21,19 +21,19 @@
   endcase
 %}
 
-<div class="flex w-[75px] md:w-[95px] flex-col items-center gap-[5px]" {{ block.shopify_attributes }}>
-  <div class="size-[60px] shrink-0 sm:size-[85px]">
+<div class="flex w-auto shrink-0 flex-col items-center gap-[5px]" {{ block.shopify_attributes }}>
+  <div class="size-[72px] shrink-0 sm:size-[85px] lg:size-[101px]">
     {% if block.settings.icon %}
       {{
         block.settings.icon
-        | image_url: width: 154
-        | image_tag: width: 154, height: 154, class: 'size-full object-contain', alt: block.settings.label
+        | image_url: width: 202
+        | image_tag: width: 202, height: 202, class: 'size-full object-contain', alt: block.settings.label
       }}
     {% else %}
       <img
         src="{{ default_icon | asset_url }}"
-        width="154"
-        height="154"
+        width="202"
+        height="202"
         loading="lazy"
         class="size-full object-contain"
         alt="{{ block.settings.label | escape }}"
@@ -44,13 +44,13 @@
   {% if block.settings.label != blank or block.settings.description != blank %}
     <div class="flex flex-col items-center gap-[2.64px]">
       {% if block.settings.label != blank %}
-        <p class="text-center text-[12px] leading-normal font-medium whitespace-nowrap text-[#212323]">
+        <p class="text-center text-[13px] leading-[1.5] font-medium whitespace-nowrap text-[#212323] lg:text-[14px]">
           {{ block.settings.label }}
         </p>
       {% endif %}
 
       {% if block.settings.description != blank %}
-        <p class="text-center text-[12px] leading-normal font-normal whitespace-nowrap text-[#212323]">
+        <p class="text-center text-[12px] leading-[1.5] font-normal whitespace-nowrap text-[#212323] lg:text-[14px]">
           {{ block.settings.description }}
         </p>
       {% endif %}

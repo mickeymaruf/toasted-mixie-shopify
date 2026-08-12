@@ -259,6 +259,7 @@
     "selected_products": "Selected bundle products",
     "remove_item": "Remove {{ title }} from your bundle",
     "expand": "Expand your bundle",
-    "collapse": "Collapse your bundle"
+    "collapse": "Collapse your bundle",
+    "pack_size": "Pack size"
   }
 }

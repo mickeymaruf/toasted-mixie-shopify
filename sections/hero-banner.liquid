@@ -4,7 +4,25 @@
       class="relative flex min-h-[320px] w-full flex-col items-center justify-end gap-[10px] overflow-hidden rounded-2xl px-4 pb-6 text-center sm:min-h-[440px] sm:rounded-[40px] sm:px-10 sm:pb-14 md:min-h-[520px] md:px-16 md:pb-16 lg:min-h-[435px] lg:px-[120px] lg:pb-[70px]"
     >
       <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[40px]" aria-hidden="true">
-        {% if section.settings.background_image %}
+        {% if section.settings.background_image_mobile and section.settings.background_image %}
+          <picture>
+            <source
+              media="(max-width: 47.9375rem)"
+              srcset="{{ section.settings.background_image_mobile | image_url: width: 750 }} 750w, {{ section.settings.background_image_mobile | image_url: width: 1100 }} 1100w"
+            >
+            {{
+              section.settings.background_image
+              | image_url: width: 3200
+              | image_tag:
+                class: 'absolute inset-0 size-full object-cover',
+                loading: 'eager',
+                fetchpriority: 'high',
+                sizes: '100vw',
+                widths: '750, 1100, 1500, 2000, 2600, 3200',
+                alt: ''
+            }}
+          </picture>
+        {% elsif section.settings.background_image %}
           {{
             section.settings.background_image
             | image_url: width: 3200
@@ -78,6 +96,12 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "t:labels.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "t:labels.background_mobile",
+      "info": "t:labels.background_mobile_info"
     },
     {
       "type": "color",

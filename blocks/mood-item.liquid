@@ -12,26 +12,29 @@
   case block.settings.icon_style
     when 'balanced'
       assign default_icon = 'icon-mood-balanced.svg'
+      assign icon_aspect_ratio = '62.488 / 77.159'
     when 'calm'
       assign default_icon = 'icon-mood-calm.svg'
+      assign icon_aspect_ratio = '63 / 42'
     else
       assign default_icon = 'icon-mood-clarity.svg'
+      assign icon_aspect_ratio = '62.771 / 61.63'
   endcase
 %}
 
 <div class="flex w-full items-center gap-[25px]" {{ block.shopify_attributes }}>
-  <div class="size-[42px] shrink-0 sm:size-[52px]">
+  <div class="mood-item__icon shrink-0" style="--mood-item-icon-aspect-ratio: {{ icon_aspect_ratio }};">
     {% if block.settings.icon %}
       {{
         block.settings.icon
-        | image_url: width: 120
-        | image_tag: width: 120, height: 120, class: 'size-full object-contain', alt: block.settings.title
+        | image_url: width: 200
+        | image_tag: width: 200, height: 200, class: 'size-full object-contain', alt: block.settings.title
       }}
     {% else %}
       <img
         src="{{ default_icon | asset_url }}"
-        width="120"
-        height="120"
+        width="200"
+        height="200"
         loading="lazy"
         class="size-full object-contain"
         alt="{{ block.settings.title | escape }}"
@@ -40,17 +43,36 @@
   </div>
 
   {% if block.settings.title != blank or block.settings.subtitle != blank %}
-    <div class="flex flex-col gap-[3px]">
+    <div class="flex flex-col gap-[2.638px]">
       {% if block.settings.title != blank %}
-        <p class="text-[18px] leading-[1.3] font-medium sm:text-[20px]">{{ block.settings.title }}</p>
+        <p class="text-[18px] leading-normal font-medium whitespace-nowrap sm:text-[20px]">{{ block.settings.title }}</p>
       {% endif %}
 
       {% if block.settings.subtitle != blank %}
-        <p class="text-[18px] leading-[1.3] sm:text-[20px]">{{ block.settings.subtitle }}</p>
+        <p class="text-[18px] leading-normal whitespace-nowrap sm:text-[20px]">{{ block.settings.subtitle }}</p>
       {% endif %}
     </div>
   {% endif %}
 </div>
+
+{% stylesheet %}
+  .mood-item__icon {
+    width: 46px;
+    aspect-ratio: var(--mood-item-icon-aspect-ratio);
+  }
+
+  @media (min-width: 40rem) {
+    .mood-item__icon {
+      width: 55px;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .mood-item__icon {
+      width: 63px;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

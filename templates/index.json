@@ -210,7 +210,9 @@
           "type": "product-card",
           "settings": {
             "product": "blood-orange",
-            "image": "shopify://shop_images/Frame_2147235999.png",
+            "background_image": "shopify://shop_images/Frame_2147236000.svg",
+            "image": "shopify://shop_images/Group_8.png",
+            "use_lottie_animation": false,
             "flavor_name": "Blood Orange",
             "flavor_name_color": "#b70141",
             "description": "Bright. Smooth. Golden-hour ready.",
@@ -225,7 +227,9 @@
           "type": "product-card",
           "settings": {
             "product": "berry-acai",
-            "image": "shopify://shop_images/Frame_2147236000.png",
+            "background_image": "shopify://shop_images/Frame_2147236002.svg",
+            "image": "shopify://shop_images/Group_6.png",
+            "use_lottie_animation": false,
             "flavor_name": "Berry Acai",
             "flavor_name_color": "#5e1a79",
             "description": "Deep. Juicy. Easy to enjoy.",
@@ -240,15 +244,16 @@
           "type": "product-card",
           "settings": {
             "product": "ginger-lime",
-            "image": "shopify://shop_images/Frame_2147236001.png",
+            "background_image": "shopify://shop_images/Frame_2147236003.svg",
+            "image": "shopify://shop_images/Group_7.png",
+            "use_lottie_animation": false,
             "flavor_name": "Ginger Lime",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
             "price_text": "From $31.99",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff",
-            "use_lottie_animation": true
+            "button_text_color": "#ffffff"
           },
           "blocks": {}
         },
@@ -256,7 +261,9 @@
           "type": "product-card",
           "settings": {
             "product": "try-all-3-flavors",
-            "image": "shopify://shop_images/Frame_2147236003.png",
+            "background_image": "shopify://shop_images/Frame_2147236049.svg",
+            "image": "shopify://shop_images/Group_157.png",
+            "use_lottie_animation": false,
             "flavor_name": "Trial Pack",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
@@ -344,7 +351,7 @@
                 "card_image": "shopify://shop_images/Group_124.png",
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
-                "button_text_color": "#c7aa9a",
+                "button_text_color": "#ffffff",
                 "card_background": "#f9d5c0",
                 "border_color": "#f9d5c0"
               },
@@ -360,7 +367,7 @@
                 "card_image": "shopify://shop_images/Group_124_1.png",
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
-                "button_text_color": "#c7aa9a",
+                "button_text_color": "#ffffff",
                 "card_background": "#f9d5c0",
                 "border_color": "#f9d5c0"
               },
@@ -376,7 +383,7 @@
                 "card_image": "shopify://shop_images/Group_126.png",
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
-                "button_text_color": "#c7aa9a",
+                "button_text_color": "#ffffff",
                 "card_background": "#f9d5c0",
                 "border_color": "#f9d5c0"
               },
@@ -394,8 +401,8 @@
       "settings": {
         "heading": "<p>Feel Present.</p><p>Stay Toasted.</p>",
         "description": "<p>A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC. Made to help you feel present without overdoing it.</p>",
-        "video": "SAMPLE_WEB_ANIMATION.webm",
-        "image": "shopify://shop_images/SAMPLE_WEB_ANIMATIONonline-video-cutter.com-ezgif.com-video-to-webp-converter.webp",
+        "video": "",
+        "image": "shopify://shop_images/Group_104_1.png",
         "image_alt": "",
         "show_combo_offer": true,
         "bundle_heading": "Build a bundle and Save",
@@ -417,7 +424,7 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Lab Tested",
-            "icon": "shopify://shop_images/Group_89_e9ba6ef0-0a6e-48da-a2cc-3715e59c8604.svg",
+            "icon": "shopify://shop_images/Group_89_3.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -427,7 +434,7 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Low Dose",
-            "icon": "shopify://shop_images/Group_87.svg",
+            "icon": "shopify://shop_images/Group_87_2.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -437,7 +444,7 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Low Calorie",
-            "icon": "shopify://shop_images/Group_94_afeeb1af-4fb7-4373-afad-d18c71673287.svg",
+            "icon": "shopify://shop_images/Group_94_2.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -447,7 +454,7 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Non-carbonated",
-            "icon": "shopify://shop_images/Group_95_d453a3b7-1e5e-4f58-9bcf-589922fc4a6b.svg",
+            "icon": "shopify://shop_images/Group_95_1.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -983,7 +990,6 @@
         "bg_color": "#f6f1ec",
         "text_color": "#212323",
         "heading_prefix": "First comments",
-        "heading_suffix": "coming soon.",
         "rating": 4.9,
         "rating_text": "Be among the first to review.",
         "show_carousel": false,
@@ -1000,7 +1006,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Component_14_1.png",
+            "image": "shopify://shop_images/picz_5.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -1010,7 +1016,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Component_18_1.png",
+            "image": "shopify://shop_images/picz_6.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -1020,7 +1026,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Component_15_1.png",
+            "image": "shopify://shop_images/picz_7.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -1030,7 +1036,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Component_16_1.png",
+            "image": "shopify://shop_images/picz_8.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -1040,7 +1046,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Component_17_1.png",
+            "image": "shopify://shop_images/picz_9_f963d21f-6a59-433e-9c97-9eb18b624a4f.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -1056,16 +1062,16 @@
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
-        "heading": "<p>First drops. Good moments. <em>@drinktoasted</em></p>",
+        "heading": "<p>Drops, Events & Good moments.</p><p><em>@drinktoasted</em></p>",
         "background_color": "#636d90",
         "background_image": "shopify://shop_images/Frame_2147230637.png",
         "heading_color": "#ffffff",
         "social_icon_1_image": "shopify://shop_images/Item_a47a4d47-c447-485d-86d0-1f8d8032ce0e.svg",
         "social_icon_1_link": "https://www.instagram.com/drinktoasted/",
         "social_icon_2_image": "shopify://shop_images/Item_1_59a2d210-5486-433d-a293-d0b56d325b40.svg",
-        "social_icon_2_link": "",
+        "social_icon_2_link": "#",
         "social_icon_3_image": "shopify://shop_images/Item_2_d764d3b2-6783-4759-9f62-e9d29820dbd3.svg",
-        "social_icon_3_link": ""
+        "social_icon_3_link": "#"
       }
     },
     "gruns_social_proof_7yRYNQ": {

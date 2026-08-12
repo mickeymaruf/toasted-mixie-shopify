@@ -1,7 +1,7 @@
 {% doc %}
-  Renders "First Drops. Good Moments." — a heading and an infinite scrolling 
-  Swiper carousel of gallery-image blocks, with previous/next controls 
-  and 2 items per view on mobile.
+  Renders "Drops, Events & Good moments. @drinktoasted" — a heading and an
+  infinite scrolling Swiper carousel of gallery-image blocks, with
+  previous/next controls and 2 items per view on mobile.
 {% enddoc %}
 
 <section
@@ -18,7 +18,7 @@
   <div class="relative z-10 mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 pt-[40px] pb-[60px] sm:py-[60px] lg:gap-[60px] lg:py-[100px] xl:pb-[100px] lg:px-[120px]">
     {% if section.settings.heading != blank %}
       <div
-        class="order-1 max-w-4xl text-center text-[36px] leading-[0.95] font-bold text-[color:var(--gruns-gallery-heading-color)] px-5 sm:order-none sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px]"
+        class="order-1 max-w-[916px] text-center text-[36px] leading-[0.95] font-bold text-[color:var(--gruns-gallery-heading-color)] px-5 sm:order-none sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] xl:tracking-[-2.16px] md:whitespace-nowrap"
         style="--gruns-gallery-heading-color: {{ section.settings.heading_color }};"
       >
         {{ section.settings.heading }}
@@ -62,7 +62,7 @@
     {% endif %}
 
     {% if section.settings.social_icon_1_image or section.settings.social_icon_2_image or section.settings.social_icon_3_image %}
-      <div class="order-2 flex items-center justify-center gap-[18px] sm:order-none">
+      <div class="order-2 flex items-center justify-center gap-[18px] sm:order-none xl:gap-[15px]">
         {% if section.settings.social_icon_1_image and section.settings.social_icon_1_link != blank %}
           <a
             href="{{ section.settings.social_icon_1_link }}"
@@ -71,7 +71,7 @@
             {{
               section.settings.social_icon_1_image
               | image_url: width: 100
-              | image_tag: class: 'size-9 object-contain sm:size-[60px]', alt: section.settings.social_icon_1_image.alt
+              | image_tag: class: 'size-9 object-contain sm:size-[60px] xl:size-[76px]', alt: section.settings.social_icon_1_image.alt
             }}
           </a>
         {% endif %}
@@ -84,7 +84,7 @@
             {{
               section.settings.social_icon_2_image
               | image_url: width: 100
-              | image_tag: class: 'size-9 object-contain sm:size-[60px]', alt: section.settings.social_icon_2_image.alt
+              | image_tag: class: 'size-9 object-contain sm:size-[60px] xl:size-[76px]', alt: section.settings.social_icon_2_image.alt
             }}
           </a>
         {% endif %}
@@ -97,7 +97,7 @@
             {{
               section.settings.social_icon_3_image
               | image_url: width: 100
-              | image_tag: class: 'size-9 object-contain sm:size-[60px]', alt: section.settings.social_icon_3_image.alt
+              | image_tag: class: 'size-9 object-contain sm:size-[60px] xl:size-[76px]', alt: section.settings.social_icon_3_image.alt
             }}
           </a>
         {% endif %}
@@ -170,7 +170,7 @@
       "type": "richtext",
       "id": "heading",
       "label": "t:labels.heading",
-      "default": "<p>First drops. Good moments. <em>@drinktoasted</em></p>"
+      "default": "<p>Drops, Events &amp; Good moments.</p><p><em>@drinktoasted</em></p>"
     },
     {
       "type": "header",

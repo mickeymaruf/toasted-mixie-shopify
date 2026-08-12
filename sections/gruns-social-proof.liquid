@@ -12,7 +12,11 @@
   {% if section.settings.background_image %}
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <div class="absolute inset-0 bg-[color:var(--gruns-social-proof-overlay-color)]" style="--gruns-social-proof-overlay-color: {{ section.settings.background_color }};"></div>
-      {{ section.settings.background_image | image_url: width: 1920 | image_tag: class: 'absolute inset-0 w-full h-full object-bottom opacity-10' }}
+      {{
+        section.settings.background_image
+        | image_url: width: 1920
+        | image_tag: class: 'absolute inset-0 w-full h-full object-bottom opacity-10', style: 'filter: saturate(0);'
+      }}
       <div class="absolute inset-0" style="background: linear-gradient(to right, {{ section.settings.background_color }} 16.827%, transparent 100%);"></div>
     </div>
   {% endif %}
@@ -72,7 +76,7 @@
     </div>
 
     {% if section.settings.image %}
-      <div class="relative mx-auto w-full max-w-[360px] sm:max-w-[460px] lg:mx-0 lg:max-w-none lg:flex-1">
+      <div class="relative mx-auto w-full max-w-[360px] sm:max-w-[460px] lg:mx-0 lg:max-w-[600px] lg:flex-1">
         {{
           section.settings.image
           | image_url: width: 1200

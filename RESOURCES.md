@@ -1,0 +1,1 @@
+https://rotato.app/blog/transparent-videos-for-the-web

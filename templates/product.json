@@ -208,10 +208,13 @@
         "save_badge_text": "Save [percent]%",
         "save_every_order_text": "Save [percent]% on every order",
         "benefit_1_text": "Delivered every 1 month",
+        "benefit_1_icon": "shopify://shop_images/SVG.svg",
         "benefit_2_text": "Save [amount] each delivery",
+        "benefit_2_icon": "shopify://shop_images/SVG_1.svg",
         "benefit_3_text": "Pause, skip, cancel anytime",
+        "benefit_3_icon": "shopify://shop_images/Clip_path_group.svg",
         "subscribe_card_background_color": "#c2cbd4",
-        "subscribe_pill_background_color": "#636d90",
+        "subscribe_pill_background_color": "#551f36",
         "subscribe_pill_text_color": "#f6f1ec",
         "custom_button_text": ""
       }

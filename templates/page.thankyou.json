@@ -22,11 +22,15 @@
         "main_description": "Thanks for your purchase. We're getting everything ready for you.",
         "card_heading": "Order Confirmed",
         "card_description": "Your order is confirmed. We'll let you know when it's on its way.",
+        "card_background_image": "shopify://shop_images/Rectangle_100.png",
         "show_button": true,
         "button_text": "Track My Order",
         "button_link": "",
         "button_background": "#f9d5c0",
-        "button_text_color": "#212323"
+        "button_text_color": "#212323",
+        "background_color": "#9ab2d5",
+        "card_background_color": "#551f36",
+        "card_text_color": "#f6f1ec"
       }
     }
   },

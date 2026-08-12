@@ -20,6 +20,7 @@
   style="
     --navbar-background: {{ navbar_bg }};
     --navbar-text: #212323;
+    --navbar-actions-background: {{ section.settings.navbar_actions_background }};
     --navbar-height: 80px;
     --navbar-height-mobile: 64px;
   "
@@ -156,7 +157,7 @@
           <span class="navbar__search-button-text border-[3px] py-2 rounded-full px-8">
             {{- section.settings.search_button_text -}}
           </span>
-          {% comment %} {{ 'icon-search.svg' | inline_asset_content }} {% endcomment %}
+          {{ 'icon-search.svg' | inline_asset_content }}
         </button>
       {% endif %}
 
@@ -366,7 +367,7 @@
 
   @media (min-width: 48rem) {
     .navbar__actions {
-      background-color: rgba(194, 203, 212, 0.5);
+      background-color: var(--navbar-actions-background);
       padding: 10px 32px 10px 12px;
       border-radius: 999px;
     }
@@ -746,6 +747,12 @@
       "id": "default_background_color",
       "label": "Navbar Background",
       "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "navbar_actions_background",
+      "label": "t:labels.navbar_actions_background",
+      "default": "rgba(194, 203, 212, 0.5)"
     },
     {
       "type": "text",

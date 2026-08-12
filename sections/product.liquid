@@ -31,7 +31,7 @@
 %}
 
 <section class="product-main full-width bg-[#F6F1EC]">
-  <div class="mx-auto flex w-full max-w-[1920px] flex-col items-start gap-8 px-5 pb-8 pt-5 sm:px-8 md:flex-row md:gap-6 md:px-12 lg:gap-[60px] lg:px-[80px] lg:py-[70px] xl:px-[120px]">
+  <div class="mx-auto flex w-full max-w-[1200px] flex-col items-start gap-8 px-5 pb-8 pt-5 sm:px-8 md:flex-row md:gap-6 md:px-12 lg:gap-[60px] lg:px-0 lg:py-[70px]">
     {% if product.media.size > 0 %}
       <product-gallery class="flex w-full flex-col gap-3 sm:gap-5 md:min-w-[300px] md:w-[350px] lg:sticky lg:top-8 lg:w-[585px] lg:flex-row lg:shrink-0">
         <div class="order-2 flex gap-1 overflow-x-auto sm:gap-3 lg:order-1 lg:w-[101px] lg:shrink-0 lg:flex-col lg:overflow-visible">
@@ -171,7 +171,7 @@
         }
       </script>
 
-      <product-purchase class="flex w-full flex-col gap-10">
+      <product-purchase id="product-buy-box" class="flex w-full flex-col gap-10 scroll-mt-24">
         {% form 'product', product %}
           {% if product.has_only_default_variant == true %}
             <input type="hidden" name="id" value="{{ current_variant.id }}">
@@ -291,6 +291,7 @@
                           name="selling_plan"
                           value="{{ selling_plan.id }}"
                           class="peer absolute inset-0 size-full cursor-pointer opacity-0"
+                          checked
                         >
                         <span
                           class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"
@@ -398,7 +399,6 @@
                       name="selling_plan"
                       value=""
                       class="peer absolute inset-0 size-full cursor-pointer opacity-0"
-                      checked
                     >
                     <span
                       class="pointer-events-none block size-full rounded-full bg-[#212323] opacity-0 peer-checked:opacity-100"
@@ -443,6 +443,8 @@
                   {{ section.settings.custom_button_text }}
                 {% elsif current_variant.available == false %}
                   {{ 'products.main.sold_out' | t }}
+                {% elsif selling_plan %}
+                  {{ 'products.main.buy_button_subscribe' | t }}
                 {% else %}
                   {{ 'products.main.buy_button_one_time' | t }}
                 {% endif %}
@@ -457,7 +459,11 @@
                   hidden
                 {% endif %}
               >
-                {% render 'format-money', cents: current_variant.price %}
+                {% if selling_plan %}
+                  {% render 'format-money', cents: selected_allocation.price | default: current_variant.price %}
+                {% else %}
+                  {% render 'format-money', cents: current_variant.price %}
+                {% endif %}
               </span>
             </span>
             <span

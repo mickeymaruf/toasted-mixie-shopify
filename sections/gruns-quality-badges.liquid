@@ -24,14 +24,14 @@
   </div>
 
   <div
-    class="relative mx-auto flex w-full max-w-[1920px] flex-col items-center gap-10 px-5 py-10 sm:px-8 sm:py-12 md:px-12 lg:flex-row lg:items-center lg:gap-[60px] lg:px-[80px] lg:py-[80px] xl:px-[120px] xl:py-[100px]"
+    class="relative mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 px-5 py-10 sm:px-8 sm:py-12 md:px-12 lg:flex-row lg:items-center lg:gap-[60px] lg:px-0 lg:py-[80px] xl:py-[100px]"
   >
     <div
       class="flex w-full flex-col items-start gap-5 text-left xl:w-[40%] xl:max-w-[40%] xl:shrink-0"
       style="color: {{ section.settings.heading_color }};"
     >
       {% if section.settings.heading != blank %}
-        <div class="text-[36px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[72px] lg:tracking-[-2.16px]">
+        <div class="gruns-quality-badges__heading text-[36px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[72px]">
           {{ section.settings.heading }}
         </div>
       {% endif %}
@@ -54,6 +54,9 @@
 {% stylesheet %}
   .gruns-quality-badges .shopify-block {
     display: contents;
+  }
+  .gruns-quality-badges__heading {
+    font-family: var(--font-heading--family);
   }
 {% endstylesheet %}
 

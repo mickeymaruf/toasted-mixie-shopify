@@ -4,12 +4,11 @@
 {% enddoc %}
 
 <div class="reviews-section px-4 py-8 sm:px-6 sm:py-12 md:px-10 md:py-16 lg:px-[120px] lg:py-[100px]" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }}">
-  <div class="flex flex-col gap-8 sm:gap-10 md:gap-12 w-full">
+  <div class="flex flex-col gap-8 sm:gap-10 md:gap-12 w-full max-w-[1200px] mx-auto">
     <!-- Heading -->
     <div class="text-center">
       <h1 class="text-[36px] leading-[0.95] font-bold sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px]" style="color: {{ section.settings.text_color }}">
         <span>{{ section.settings.heading_prefix }}</span>
-        <em class="italic">{{ section.settings.heading_suffix }}</em>
       </h1>
     </div>
 
@@ -167,8 +166,9 @@
 
     <!-- CTA Button -->
     {%- if section.settings.button_label != blank -%}
+      {%- assign button_href = section.settings.button_link | default: '#product-buy-box' -%}
       <div class="flex justify-center pt-4 sm:pt-6 md:pt-8">
-        <a href="{{ section.settings.button_link }}" class="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-3.5 md:py-4 rounded-full font-medium text-[14px] sm:text-[15px] md:text-[16px] transition-opacity hover:opacity-85" style="background-color: {{ section.settings.button_bg_color }}; color: {{ section.settings.button_text_color }}; box-shadow: 0px 0px 7.5px rgba(0,0,0,0.1);">
+        <a href="{{ button_href }}" class="inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-3 sm:py-3.5 md:py-4 rounded-full font-medium text-[14px] sm:text-[15px] md:text-[16px] transition-opacity hover:opacity-85" style="background-color: {{ section.settings.button_bg_color }}; color: {{ section.settings.button_text_color }}; box-shadow: 0px 0px 7.5px rgba(0,0,0,0.1);">
           {{ section.settings.button_label }}
         </a>
       </div>
@@ -302,12 +302,6 @@
       "id": "heading_prefix",
       "label": "Heading prefix",
       "default": "First comments"
-    },
-    {
-      "type": "text",
-      "id": "heading_suffix",
-      "label": "Heading suffix (italic)",
-      "default": "coming soon."
     },
     {
       "type": "header",

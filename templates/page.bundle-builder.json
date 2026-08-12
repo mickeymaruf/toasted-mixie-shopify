@@ -21,7 +21,8 @@
         "heading": "Bundle & Save",
         "subheading": "Pick your flavors. Stock the fridge. Save when you bundle.",
         "heading_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/Frame_2147230792_1_0723ef5c-41fc-4e02-99a9-8b09bccc13dc.png",
+        "background_image": "shopify://shop_images/Frame_2147230792_2_d9ea2e03-3fd3-45fb-bec0-189d4d2ac384.png",
+        "background_image_mobile": "shopify://shop_images/Frame_2147230792_1_0723ef5c-41fc-4e02-99a9-8b09bccc13dc.png",
         "background_color": "#9ab2d5"
       }
     },
@@ -146,11 +147,12 @@
       "name": "t:general.bundle_builder",
       "settings": {
         "bundle_heading": "Your bundle",
+        "bundle_subtitle": "Add more products to save",
         "one_time_label": "One-Time Order",
         "subscribe_label": "Subscribe & Save 20%",
         "add_to_cart_label": "Add to Cart",
         "subscribe_note": "Subscribe & Save is the best value.",
-        "background_color": "#9AB2D5",
+        "background_color": "#9ab2d5",
         "panel_background_color": "#f6f1ec",
         "purchase_selected_color": "#f9d5c0",
         "add_to_cart_background_color": "#212323",
