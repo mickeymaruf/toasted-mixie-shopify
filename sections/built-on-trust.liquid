@@ -1,0 +1,101 @@
+{% doc %}
+  Renders "Built on trust" — a centered brand-values panel with a heading, a
+  merchant-uploaded badge image, and a supporting description.
+{% enddoc %}
+
+<section
+  class="built-on-trust full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div
+    class="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-8 px-5 py-16 text-center sm:gap-10 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:gap-[51px] lg:px-[120px] lg:py-[100px]"
+    style="color: {{ section.settings.text_color }};"
+  >
+    {% if section.settings.heading != blank %}
+      <h2 class="font-[family-name:var(--font-heading--family)] w-full text-[36px] leading-[0.95] font-bold tracking-[-0.03em] sm:text-[48px] md:text-[56px] lg:text-[72px]">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    <div class="w-[180px] sm:w-[220px] lg:w-[266px]">
+      {% if section.settings.badge_image %}
+        {{
+          section.settings.badge_image
+          | image_url: width: 532
+          | image_tag: class: 'size-full object-contain', widths: '180, 220, 266, 532', sizes: '(min-width: 1024px) 266px, (min-width: 640px) 220px, 180px', alt: section.settings.badge_image_alt
+        }}
+      {% else %}
+        <img
+          src="{{ 'built-on-trust-badge.png' | asset_url }}"
+          alt="{{ section.settings.badge_image_alt }}"
+          class="size-full object-contain"
+          loading="lazy"
+          width="266"
+          height="209"
+        >
+      {% endif %}
+    </div>
+
+    {% if section.settings.description != blank %}
+      <div class="max-w-[938px] text-[16px] leading-[1.5] sm:text-[18px] lg:text-[24px]">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.built_on_trust",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Built on trust."
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "t:labels.badge_image"
+    },
+    {
+      "type": "text",
+      "id": "badge_image_alt",
+      "label": "t:labels.alt_text",
+      "default": "America's most compliant badge"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:labels.description",
+      "default": "<p>We believe great brands aren't just remembered for how they look or taste, but for how they're built. Every decision we make is guided by quality, transparency, and compliance, giving our retail partners, venues, and customers the confidence to choose Toasted. Our ambition is to become America's most compliant functional beverage brand by making responsibility part of everything we do.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#551F36"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.text_color",
+      "default": "#F6F1EC"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.built_on_trust"
+    }
+  ]
+}
+{% endschema %}

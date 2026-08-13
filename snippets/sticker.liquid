@@ -1,0 +1,227 @@
+{% doc %}
+  Renders an absolutely positioned decorative sticker image anchored to a
+  point on its nearest positioned ancestor — any of the 4 corners, the
+  midpoint of an edge, or dead center — with an adjustable fine-tune
+  offset. Anchor position, width, and fine-tune offset are each set
+  independently for mobile and desktop; the desktop values take over at
+  the `md` breakpoint and up. Intended to be rendered inside a block whose
+  wrapper element has `position: relative`.
+
+  @param {image} image - The sticker image to render
+  @param {string} [position] - Desktop (md+) anchor point: top_left, top_center, top_right, middle_left, center, middle_right, bottom_left, bottom_center, bottom_right. Defaults to top_left
+  @param {string} [position_mobile] - Mobile anchor point, same options as `position`. Defaults to top_left
+  @param {number} [width] - Desktop (md+) sticker width in pixels. 0 or blank renders the image at its natural width
+  @param {number} [width_mobile] - Mobile sticker width in pixels. 0 or blank renders the image at its natural width
+  @param {number} [translate_x] - Desktop (md+) horizontal fine-tune offset as a percentage of the sticker's own width, applied after anchoring. Defaults to 0
+  @param {number} [translate_x_mobile] - Mobile horizontal fine-tune offset. Defaults to 0
+  @param {number} [translate_y] - Desktop (md+) vertical fine-tune offset as a percentage of the sticker's own height, applied after anchoring. Defaults to 0
+  @param {number} [translate_y_mobile] - Mobile vertical fine-tune offset. Defaults to 0
+
+  @example
+  {% render 'sticker',
+    image: block.settings.sticker_image,
+    position: block.settings.sticker_position,
+    position_mobile: block.settings.sticker_position_mobile,
+    width: block.settings.sticker_width,
+    width_mobile: block.settings.sticker_width_mobile,
+    translate_x: block.settings.sticker_translate_x,
+    translate_x_mobile: block.settings.sticker_translate_x_mobile,
+    translate_y: block.settings.sticker_translate_y,
+    translate_y_mobile: block.settings.sticker_translate_y_mobile
+  %}
+{% enddoc %}
+
+{% liquid
+  assign position = position | default: 'top_left'
+  assign position_mobile = position_mobile | default: 'top_left'
+%}
+
+{% if image %}
+  <div
+    class="sticker sticker--{{ position_mobile }} sticker--md-{{ position }}"
+    style="
+      --sticker-translate-x-mobile: {{ translate_x_mobile | default: 0 }}%;
+      --sticker-translate-y-mobile: {{ translate_y_mobile | default: 0 }}%;
+      --sticker-translate-x-desktop: {{ translate_x | default: 0 }}%;
+      --sticker-translate-y-desktop: {{ translate_y | default: 0 }}%;
+      {% if width_mobile > 0 %}--sticker-width-mobile: {{ width_mobile }}px;{% endif %}
+      {% if width > 0 %}--sticker-width-desktop: {{ width }}px;{% endif %}
+    "
+  >
+    {{
+      image
+      | image_url: width: image.width
+      | image_tag:
+        class: 'sticker__image',
+        loading: 'lazy',
+        alt: ''
+    }}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .sticker {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    --sticker-translate-x: var(--sticker-translate-x-mobile, 0%);
+    --sticker-translate-y: var(--sticker-translate-y-mobile, 0%);
+    transform: translate(
+      calc(var(--sticker-anchor-x, 0%) + var(--sticker-translate-x)),
+      calc(var(--sticker-anchor-y, 0%) + var(--sticker-translate-y))
+    );
+  }
+
+  @media (min-width: 48rem) {
+    .sticker {
+      --sticker-translate-x: var(--sticker-translate-x-desktop, 0%);
+      --sticker-translate-y: var(--sticker-translate-y-desktop, 0%);
+    }
+  }
+
+  .sticker__image {
+    display: block;
+    max-width: none;
+    width: var(--sticker-width-mobile, auto);
+  }
+
+  @media (min-width: 48rem) {
+    .sticker__image {
+      width: var(--sticker-width-desktop, auto);
+    }
+  }
+
+  .sticker--top_left {
+    top: 0;
+    left: 0;
+  }
+
+  .sticker--top_center {
+    top: 0;
+    left: 50%;
+    --sticker-anchor-x: -50%;
+  }
+
+  .sticker--top_right {
+    top: 0;
+    right: 0;
+  }
+
+  .sticker--middle_left {
+    top: 50%;
+    left: 0;
+    --sticker-anchor-y: -50%;
+  }
+
+  .sticker--center {
+    top: 50%;
+    left: 50%;
+    --sticker-anchor-x: -50%;
+    --sticker-anchor-y: -50%;
+  }
+
+  .sticker--middle_right {
+    top: 50%;
+    right: 0;
+    --sticker-anchor-y: -50%;
+  }
+
+  .sticker--bottom_left {
+    bottom: 0;
+    left: 0;
+  }
+
+  .sticker--bottom_center {
+    bottom: 0;
+    left: 50%;
+    --sticker-anchor-x: -50%;
+  }
+
+  .sticker--bottom_right {
+    bottom: 0;
+    right: 0;
+  }
+
+  @media (min-width: 48rem) {
+    .sticker--md-top_left {
+      top: 0;
+      right: auto;
+      bottom: auto;
+      left: 0;
+      --sticker-anchor-x: 0%;
+      --sticker-anchor-y: 0%;
+    }
+
+    .sticker--md-top_center {
+      top: 0;
+      right: auto;
+      bottom: auto;
+      left: 50%;
+      --sticker-anchor-x: -50%;
+      --sticker-anchor-y: 0%;
+    }
+
+    .sticker--md-top_right {
+      top: 0;
+      right: 0;
+      bottom: auto;
+      left: auto;
+      --sticker-anchor-x: 0%;
+      --sticker-anchor-y: 0%;
+    }
+
+    .sticker--md-middle_left {
+      top: 50%;
+      right: auto;
+      bottom: auto;
+      left: 0;
+      --sticker-anchor-x: 0%;
+      --sticker-anchor-y: -50%;
+    }
+
+    .sticker--md-center {
+      top: 50%;
+      right: auto;
+      bottom: auto;
+      left: 50%;
+      --sticker-anchor-x: -50%;
+      --sticker-anchor-y: -50%;
+    }
+
+    .sticker--md-middle_right {
+      top: 50%;
+      right: 0;
+      bottom: auto;
+      left: auto;
+      --sticker-anchor-x: 0%;
+      --sticker-anchor-y: -50%;
+    }
+
+    .sticker--md-bottom_left {
+      top: auto;
+      right: auto;
+      bottom: 0;
+      left: 0;
+      --sticker-anchor-x: 0%;
+      --sticker-anchor-y: 0%;
+    }
+
+    .sticker--md-bottom_center {
+      top: auto;
+      right: auto;
+      bottom: 0;
+      left: 50%;
+      --sticker-anchor-x: -50%;
+      --sticker-anchor-y: 0%;
+    }
+
+    .sticker--md-bottom_right {
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: auto;
+      --sticker-anchor-x: 0%;
+      --sticker-anchor-y: 0%;
+    }
+  }
+{% endstylesheet %}

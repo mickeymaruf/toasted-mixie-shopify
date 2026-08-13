@@ -8,66 +8,26 @@
   {% content_for 'block', id: block.id, type: 'story-tile-row' %}
 {% enddoc %}
 
-<div class="story-tile-row" {{ block.shopify_attributes }}>
+<div
+  class="story-tile-row flex w-full flex-col border-y-[3px] border-[#212323] md:grid md:grid-cols-3 lg:aspect-[3/1]"
+  {{ block.shopify_attributes }}
+>
   {% content_for 'blocks' %}
 </div>
 
 {% stylesheet %}
-  .story-tile-row {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border: 1px solid #212323;
-  }
-
-  @media (min-width: 48rem) {
-    .story-tile-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .story-tile-row {
-      aspect-ratio: 3 / 1;
-    }
-  }
-
   .story-tile-row > .shopify-block {
     display: contents;
   }
 
-  .story-tile-cell {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-  }
-
   .shopify-block + .shopify-block > .story-tile-cell {
-    border-top: 1px solid #212323;
+    border-top: 3px solid #212323;
   }
 
   @media (min-width: 48rem) {
-    .story-tile-cell {
-      grid-column: span var(--story-tile-span, 1);
-    }
-
-    .story-tile-cell[data-tile-width="2"] {
-      aspect-ratio: auto;
-      height: 100%;
-    }
-
     .shopify-block + .shopify-block > .story-tile-cell {
       border-top: none;
-      border-left: 1px solid #212323;
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .story-tile-cell {
-      aspect-ratio: auto;
-      height: 100%;
+      border-left: 3px solid #212323;
     }
   }
 {% endstylesheet %}

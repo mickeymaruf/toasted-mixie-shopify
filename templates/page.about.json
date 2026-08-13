@@ -45,22 +45,39 @@
             "story_tile_text_QF4xmb": {
               "type": "story-tile-text",
               "settings": {
-                "heading": "<p>More open. More present. More here.</p>",
+                "heading": "<p>More open.</p><p>More present.</p><p>More here.</p>",
                 "body": "",
                 "background_color": "#f9d5c0",
                 "text_color": "#212323",
-                "width": "1"
+                "width": "1",
+                "sticker_image": "shopify://shop_images/Group_171.svg",
+                "sticker_position": "top_center",
+                "sticker_width": 200,
+                "sticker_translate_x": 0,
+                "sticker_translate_y": -50,
+                "sticker_position_mobile": "top_center",
+                "sticker_width_mobile": 155,
+                "sticker_translate_x_mobile": 0,
+                "sticker_translate_y_mobile": -50
               },
               "blocks": {}
             },
             "story_tile_image_rGGD3Q": {
               "type": "story-tile-image",
               "settings": {
-                "image": "shopify://shop_images/Frame_2147235830.png",
+                "image": "shopify://shop_images/Frame_2147235830_67b408be-408e-4223-b1e7-6d9c1f95162c.png",
                 "alt_text": "",
                 "show_grain": true,
                 "texture_opacity": 20,
-                "width": "1"
+                "width": "1",
+                "sticker_position": "top_right",
+                "sticker_width": 0,
+                "sticker_translate_x": 0,
+                "sticker_translate_y": 0,
+                "sticker_position_mobile": "top_right",
+                "sticker_width_mobile": 0,
+                "sticker_translate_x_mobile": 0,
+                "sticker_translate_y_mobile": 0
               },
               "blocks": {}
             },
@@ -71,7 +88,16 @@
                 "body": "<p>Made with real fruit,<br/>L-theanine, Rhodiola, and 0.4mg hemp-derived THC.</p>",
                 "background_color": "#551f36",
                 "text_color": "#ffffff",
-                "width": "1"
+                "width": "1",
+                "sticker_image": "shopify://shop_images/Group_170.svg",
+                "sticker_position": "bottom_center",
+                "sticker_width": 260,
+                "sticker_translate_x": 15,
+                "sticker_translate_y": 50,
+                "sticker_position_mobile": "bottom_center",
+                "sticker_width_mobile": 220,
+                "sticker_translate_x_mobile": 15,
+                "sticker_translate_y_mobile": 50
               },
               "blocks": {}
             }
@@ -89,11 +115,19 @@
             "story_tile_image_8e7reC": {
               "type": "story-tile-image",
               "settings": {
-                "image": "shopify://shop_images/Frame_2147235832_1.png",
+                "image": "shopify://shop_images/Frame_2147235832_3.png",
                 "alt_text": "",
                 "show_grain": true,
                 "texture_opacity": 20,
-                "width": "1"
+                "width": "1",
+                "sticker_position": "top_right",
+                "sticker_width": 0,
+                "sticker_translate_x": 0,
+                "sticker_translate_y": 0,
+                "sticker_position_mobile": "top_right",
+                "sticker_width_mobile": 0,
+                "sticker_translate_x_mobile": 0,
+                "sticker_translate_y_mobile": 0
               },
               "blocks": {}
             },
@@ -104,7 +138,15 @@
                 "body": "<p>Toasted was made for people who want a better option for the social moment.</p>",
                 "background_color": "#626c8d",
                 "text_color": "#f6f1ec",
-                "width": "2"
+                "width": "2",
+                "sticker_position": "top_right",
+                "sticker_width": 0,
+                "sticker_translate_x": 0,
+                "sticker_translate_y": 0,
+                "sticker_position_mobile": "top_right",
+                "sticker_width_mobile": 0,
+                "sticker_translate_x_mobile": 0,
+                "sticker_translate_y_mobile": 0
               },
               "blocks": {}
             }
@@ -126,18 +168,35 @@
                 "image": "shopify://shop_images/signature.svg",
                 "background_color": "#c2cbd4",
                 "text_color": "#212323",
-                "width": "2"
+                "width": "2",
+                "sticker_image": "shopify://shop_images/Group.svg",
+                "sticker_position": "bottom_right",
+                "sticker_width": 170,
+                "sticker_translate_x": 50,
+                "sticker_translate_y": 50,
+                "sticker_position_mobile": "bottom_right",
+                "sticker_width_mobile": 150,
+                "sticker_translate_x_mobile": 0,
+                "sticker_translate_y_mobile": 50
               },
               "blocks": {}
             },
             "story_tile_image_Yx6iqP": {
               "type": "story-tile-image",
               "settings": {
-                "image": "shopify://shop_images/Frame_2147235832_02bfe72f-dad7-4a32-86dc-971bf320522b.png",
+                "image": "shopify://shop_images/Frame_2147235832_1_3025fb72-f611-4c9d-a9af-240f841b63c8.png",
                 "alt_text": "",
                 "show_grain": true,
                 "texture_opacity": 20,
-                "width": "1"
+                "width": "1",
+                "sticker_position": "top_right",
+                "sticker_width": 0,
+                "sticker_translate_x": 0,
+                "sticker_translate_y": 0,
+                "sticker_position_mobile": "top_right",
+                "sticker_width_mobile": 0,
+                "sticker_translate_x_mobile": 0,
+                "sticker_translate_y_mobile": 0
               },
               "blocks": {}
             }
@@ -156,108 +215,126 @@
       "name": "t:general.story_tiles",
       "settings": {}
     },
-    "gruns_product_list_gyYaxT": {
-      "type": "gruns-product-list",
+    "gruns_product_list_simple_mgnb4p": {
+      "type": "gruns-product-list-simple",
       "blocks": {
-        "product_card_kPnEQx": {
-          "type": "product-card",
+        "product_card_simple_hCyNMf": {
+          "type": "product-card-simple",
           "settings": {
             "product": "blood-orange",
-            "background_image": "shopify://shop_images/Frame_2147236000.svg",
-            "image": "shopify://shop_images/Group_8.png",
-            "use_lottie_animation": false,
-            "flavor_name": "Blood Orange",
-            "flavor_name_color": "#b70141",
-            "description": "Bright. Smooth. Golden-hour ready.",
-            "price_text": "$2.67/can",
-            "button_label": "Add To Cart",
+            "image": "shopify://shop_images/Frame_2147236067.png",
+            "alt_text": "",
+            "title": "Blood Orange",
+            "description": "Bright blood orange, real fruit flavor, and a functional blend made to help you stay present.",
+            "button_label": "Add to Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#f6f1ec"
           },
           "blocks": {}
         },
-        "product_card_CEY8Xa": {
-          "type": "product-card",
+        "product_card_simple_dJMxJH": {
+          "type": "product-card-simple",
           "settings": {
             "product": "berry-acai",
-            "background_image": "shopify://shop_images/Frame_2147236002.svg",
-            "image": "shopify://shop_images/Group_6.png",
-            "use_lottie_animation": false,
-            "flavor_name": "Berry Acai",
-            "flavor_name_color": "#5e1a79",
-            "description": "Deep. Juicy. Easy to enjoy.",
-            "price_text": "$2.67/can",
-            "button_label": "Add To Cart",
+            "image": "shopify://shop_images/Frame_2147236069.png",
+            "alt_text": "",
+            "title": "Berry Acai",
+            "description": "Bright blood orange, real fruit flavor, and a functional blend made to help you stay present.",
+            "button_label": "Add to Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#f6f1ec"
           },
           "blocks": {}
         },
-        "product_card_PVhUHH": {
-          "type": "product-card",
+        "product_card_simple_i8tAgt": {
+          "type": "product-card-simple",
           "settings": {
             "product": "ginger-lime",
-            "background_image": "shopify://shop_images/Frame_2147236003.svg",
-            "image": "shopify://shop_images/Group_7.png",
-            "use_lottie_animation": false,
-            "flavor_name": "Ginger Lime",
-            "flavor_name_color": "#215332",
-            "description": "Crisp. Lively. Clean finish.",
-            "price_text": "$2.67/can",
-            "button_label": "Add To Cart",
+            "image": "shopify://shop_images/Frame_2147236069_1.png",
+            "alt_text": "",
+            "title": "Ginger Lime",
+            "description": "Bright blood orange, real fruit flavor, and a functional blend made to help you stay present.",
+            "button_label": "Add to Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
-          },
-          "blocks": {}
-        },
-        "product_card_iUCqkK": {
-          "type": "product-card",
-          "settings": {
-            "product": "try-all-3-flavors",
-            "background_image": "shopify://shop_images/Frame_2147236049.svg",
-            "image": "shopify://shop_images/Group_157.png",
-            "use_lottie_animation": false,
-            "flavor_name": "Trial Pack",
-            "flavor_name_color": "#215332",
-            "description": "Crisp. Lively. Clean finish.",
-            "price_text": "Just Pay Shipping",
-            "button_label": "Try Now",
-            "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#f6f1ec"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "product_card_kPnEQx",
-        "product_card_CEY8Xa",
-        "product_card_PVhUHH",
-        "product_card_iUCqkK"
+        "product_card_simple_hCyNMf",
+        "product_card_simple_dJMxJH",
+        "product_card_simple_i8tAgt"
       ],
-      "name": "t:general.product_list",
+      "name": "t:general.product_list_simple",
       "settings": {
-        "heading": "Choose your flavor.",
+        "heading": "Three ways to stay present.",
         "background_color": "#9ab2d5",
         "heading_color": "#212323"
       }
     },
-    "gruns_find_toasted_XUAkUx": {
-      "type": "gruns-find-toasted",
-      "name": "t:general.gruns_find_toasted",
+    "gruns_find_toasted_simple_8wjfyP": {
+      "type": "gruns-find-toasted-simple",
+      "name": "t:general.gruns_find_toasted_simple",
       "settings": {
         "heading": "Find Toasted",
-        "description": "Coming soon to select venues and retailers.",
+        "description": "Coming to select venues and retailers.",
         "show_button": true,
-        "button_label": "Coming soon…",
+        "button_label": "Get My Free Trial Pack",
         "button_link": "",
-        "button_background_color": "#f9d5c0",
-        "button_text_color": "#1e2125",
-        "background_color": "#9ab2d5",
-        "panel_background_color": "#551f36",
-        "panel_background_image": "shopify://shop_images/Group_82.png",
-        "heading_color": "#ffffff",
-        "billboard_image": "shopify://shop_images/Cllg5_2_1.png",
+        "button_background_color": "#d4941f",
+        "button_text_color": "#f6f1ec",
+        "background_color": "#9cb1d1",
+        "panel_background_color": "#636d90",
+        "panel_background_image": "shopify://shop_images/Asset_8_2.svg",
+        "heading_color": "#f6f1ec",
+        "billboard_image": "shopify://shop_images/Group_172.png",
         "billboard_image_alt": ""
+      }
+    },
+    "built_on_trust_4NiRYR": {
+      "type": "built-on-trust",
+      "name": "t:general.built_on_trust",
+      "settings": {
+        "heading": "Built on trust.",
+        "badge_image_alt": "America's most compliant badge",
+        "description": "<p>We believe great brands aren't just remembered for how they look or taste, but for how they're built. Every decision we make is guided by quality, transparency, and compliance, giving our retail partners, venues, and customers the confidence to choose Toasted. Our ambition is to become America's most compliant functional beverage brand by making responsibility part of everything we do.</p>",
+        "background_color": "#551f36",
+        "text_color": "#f6f1ec"
+      }
+    },
+    "gruns_gallery_qWdnnE": {
+      "type": "gruns-gallery",
+      "blocks": {
+        "gallery_image_9aCpHL": {
+          "type": "gallery-image",
+          "settings": {
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_yYxGJL": {
+          "type": "gallery-image",
+          "settings": {
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "gallery_image_9aCpHL",
+        "gallery_image_yYxGJL"
+      ],
+      "name": "t:general.gruns_gallery",
+      "settings": {
+        "heading": "<p>People have tried it. You’re up next.</p>",
+        "background_color": "#636d90",
+        "heading_color": "#f6f1ec",
+        "social_icon_1_link": "",
+        "social_icon_2_link": "",
+        "social_icon_3_link": ""
       }
     }
   },
@@ -266,7 +343,9 @@
     "hero_banner_AFPte7",
     "content_block_cb4Hiy",
     "story_tiles_gg9aqG",
-    "gruns_product_list_gyYaxT",
-    "gruns_find_toasted_XUAkUx"
+    "gruns_product_list_simple_mgnb4p",
+    "gruns_find_toasted_simple_8wjfyP",
+    "built_on_trust_4NiRYR",
+    "gruns_gallery_qWdnnE"
   ]
 }

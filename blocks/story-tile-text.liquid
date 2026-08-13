@@ -7,111 +7,55 @@
   {% content_for 'block', id: block.id, type: 'story-tile-text' %}
 {% enddoc %}
 
+{% liquid
+  assign is_two_thirds = false
+  if block.settings.width == '2'
+    assign is_two_thirds = true
+  endif
+%}
+
 <div
-  class="story-tile-cell flex flex-col items-center justify-center gap-4 p-8 text-center sm:gap-5 sm:p-10 md:p-8 lg:gap-5 lg:p-[60px] xl:p-[100px]"
-  data-tile-width="{{ block.settings.width }}"
-  style="
-    --story-tile-span: {{ block.settings.width }};
-    background-color: {{ block.settings.background_color }};
-    color: {{ block.settings.text_color }};
-  "
+  class="story-tile-cell relative w-full aspect-square lg:aspect-auto lg:h-full {% if is_two_thirds %}md:col-span-2 md:aspect-auto md:h-full{% else %}md:col-span-1{% endif %}"
   {{ block.shopify_attributes }}
 >
-  {% if block.settings.heading != blank %}
-    <div class="story-tile-cell__heading w-full font-bold text-[28px] leading-[0.95] sm:text-[36px] md:text-[26px] lg:text-[72px] xl:text-[60px]">
-      {{ block.settings.heading }}
-    </div>
-  {% endif %}
+  <div
+    class="story-tile-cell__clip absolute inset-0 flex flex-col items-center justify-center gap-4 overflow-hidden text-center sm:gap-5 p-10 xl:p-15 lg:gap-5"
+    style="
+      background-color: {{ block.settings.background_color }};
+      color: {{ block.settings.text_color }};
+    "
+  >
+    {% if block.settings.heading != blank %}
+      <div class="story-tile-cell__heading w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[32px] xl:text-[58px] 2xl:text-[78px]">
+        {{ block.settings.heading }}
+      </div>
+    {% endif %}
 
-  {% if block.settings.body != blank %}
-    <div class="story-tile-cell__body w-full text-[16px] leading-[1.5] sm:text-[18px] md:text-[20px] lg:text-[28px] xl:text-[28px]">
-      {{ block.settings.body }}
-    </div>
-  {% endif %}
+    {% if block.settings.body != blank %}
+      <div class="story-tile-cell__body w-full text-[20px] leading-[1.5] [&_p]:m-0 [&_p+p]:mt-[1em] sm:text-[16px] lg:text-[20px] xl:text-[24px] 2xl:text-[32px]">
+        {{ block.settings.body }}
+      </div>
+    {% endif %}
 
-  {% if block.settings.image != blank %}
-    <div class="story-tile-cell__image w-full max-w-[120px] ml-[20px]">
-      {{ block.settings.image | image_url: width: 240 | image_tag }}
-    </div>
-  {% endif %}
+    {% if block.settings.image != blank %}
+      <div class="story-tile-cell__image mt-[1em] flex w-full max-w-[120px] ml-[20px] justify-center">
+        {{ block.settings.image | image_url: width: 240 | image_tag: class: 'max-w-full h-auto' }}
+      </div>
+    {% endif %}
+  </div>
+
+  {% render 'sticker',
+    image: block.settings.sticker_image,
+    position: block.settings.sticker_position,
+    position_mobile: block.settings.sticker_position_mobile,
+    width: block.settings.sticker_width,
+    width_mobile: block.settings.sticker_width_mobile,
+    translate_x: block.settings.sticker_translate_x,
+    translate_x_mobile: block.settings.sticker_translate_x_mobile,
+    translate_y: block.settings.sticker_translate_y,
+    translate_y_mobile: block.settings.sticker_translate_y_mobile
+  %}
 </div>
-
-{% stylesheet %}
-  .story-tile-cell__heading {
-    font-family: var(--font-heading--family);
-  }
-
-  .story-tile-cell__heading :where(p),
-  .story-tile-cell__body :where(p) {
-    margin: 0;
-  }
-
-  .story-tile-cell__body :where(p) + p {
-    margin-top: 1em;
-  }
-
-  .story-tile-cell__image {
-    display: flex;
-    justify-content: center;
-    margin-top: 1em;
-  }
-
-  .story-tile-cell__image img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  /*
-    A "one-third" width cell shares the same row height as a "two-thirds"
-    cell but gets a third of the horizontal space, so it needs its own,
-    smaller type scale at lg/xl to avoid the heading/body overflowing and
-    getting clipped by the cell's overflow:hidden.
-  */
-  @media (min-width: 64rem) {
-    .story-tile-cell[data-tile-width="1"] .story-tile-cell__heading {
-      font-size: 72px;
-    }
-
-    .story-tile-cell[data-tile-width="1"] .story-tile-cell__body {
-      font-size: 28px;
-    }
-  }
-
-  @media (min-width: 80rem) {
-    .story-tile-cell[data-tile-width="1"] .story-tile-cell__heading {
-      font-size: 72px;
-    }
-
-    .story-tile-cell[data-tile-width="1"] .story-tile-cell__body {
-      font-size: 28px;
-    }
-  }
-
-  /*
-    A "two-thirds" cell gets more width than a one-third cell, but when it
-    carries both a heading and a body it can still overflow the row's fixed
-    height at lg/xl, so it gets its own slightly reduced scale too.
-  */
-  @media (min-width: 64rem) {
-    .story-tile-cell[data-tile-width="2"] .story-tile-cell__heading {
-      font-size: 72px;
-    }
-
-    .story-tile-cell[data-tile-width="2"] .story-tile-cell__body {
-      font-size: 28px;
-    }
-  }
-
-  @media (min-width: 80rem) {
-    .story-tile-cell[data-tile-width="2"] .story-tile-cell__heading {
-      font-size: 56px;
-    }
-
-    .story-tile-cell[data-tile-width="2"] .story-tile-cell__body {
-      font-size: 24px;
-    }
-  }
-{% endstylesheet %}
 
 {% schema %}
 {
@@ -162,6 +106,117 @@
         { "value": "2", "label": "t:options.width.two_thirds" }
       ],
       "default": "1"
+    },
+    {
+      "type": "header",
+      "content": "t:general.sticker"
+    },
+    {
+      "type": "image_picker",
+      "id": "sticker_image",
+      "label": "t:labels.sticker_image"
+    },
+    {
+      "type": "header",
+      "content": "t:general.sticker_desktop"
+    },
+    {
+      "type": "select",
+      "id": "sticker_position",
+      "label": "t:labels.sticker_position",
+      "options": [
+        { "value": "top_left", "label": "t:options.sticker_position.top_left" },
+        { "value": "top_center", "label": "t:options.sticker_position.top_center" },
+        { "value": "top_right", "label": "t:options.sticker_position.top_right" },
+        { "value": "middle_left", "label": "t:options.sticker_position.middle_left" },
+        { "value": "center", "label": "t:options.sticker_position.center" },
+        { "value": "middle_right", "label": "t:options.sticker_position.middle_right" },
+        { "value": "bottom_left", "label": "t:options.sticker_position.bottom_left" },
+        { "value": "bottom_center", "label": "t:options.sticker_position.bottom_center" },
+        { "value": "bottom_right", "label": "t:options.sticker_position.bottom_right" }
+      ],
+      "default": "top_right"
+    },
+    {
+      "type": "range",
+      "id": "sticker_width",
+      "label": "t:labels.sticker_width",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "sticker_translate_x",
+      "label": "t:labels.sticker_translate_x",
+      "min": -100,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "sticker_translate_y",
+      "label": "t:labels.sticker_translate_y",
+      "min": -100,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:general.sticker_mobile"
+    },
+    {
+      "type": "select",
+      "id": "sticker_position_mobile",
+      "label": "t:labels.sticker_position",
+      "options": [
+        { "value": "top_left", "label": "t:options.sticker_position.top_left" },
+        { "value": "top_center", "label": "t:options.sticker_position.top_center" },
+        { "value": "top_right", "label": "t:options.sticker_position.top_right" },
+        { "value": "middle_left", "label": "t:options.sticker_position.middle_left" },
+        { "value": "center", "label": "t:options.sticker_position.center" },
+        { "value": "middle_right", "label": "t:options.sticker_position.middle_right" },
+        { "value": "bottom_left", "label": "t:options.sticker_position.bottom_left" },
+        { "value": "bottom_center", "label": "t:options.sticker_position.bottom_center" },
+        { "value": "bottom_right", "label": "t:options.sticker_position.bottom_right" }
+      ],
+      "default": "top_right"
+    },
+    {
+      "type": "range",
+      "id": "sticker_width_mobile",
+      "label": "t:labels.sticker_width",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "sticker_translate_x_mobile",
+      "label": "t:labels.sticker_translate_x",
+      "min": -100,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "sticker_translate_y_mobile",
+      "label": "t:labels.sticker_translate_y",
+      "min": -100,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
     }
   ],
   "presets": [{ "name": "t:general.story_tile_text" }]

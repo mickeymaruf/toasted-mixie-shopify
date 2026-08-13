@@ -9,45 +9,52 @@
 
 {% liquid
   assign texture_opacity = block.settings.texture_opacity | times: 0.01
+  assign is_two_thirds = false
+  if block.settings.width == '2'
+    assign is_two_thirds = true
+  endif
 %}
 
 <div
-  class="story-tile-cell bg-[#F0F0F0]"
-  data-tile-width="{{ block.settings.width }}"
-  style="--story-tile-span: {{ block.settings.width }};"
+  class="story-tile-cell relative w-full aspect-square lg:aspect-auto lg:h-full {% if is_two_thirds %}md:col-span-2 md:aspect-auto md:h-full{% else %}md:col-span-1{% endif %}"
   {{ block.shopify_attributes }}
 >
-  {% if block.settings.image %}
-    {{
-      block.settings.image
-      | image_url: width: 1200
-      | image_tag:
-        class: 'absolute inset-0 size-full object-cover',
-        loading: 'lazy',
-        sizes: '(min-width: 64rem) 33vw, 100vw',
-        widths: '400, 600, 900, 1200',
-        alt: block.settings.alt_text
-      | default: block.settings.image.alt
-    }}
-  {% endif %}
+  <div class="story-tile-cell__clip absolute inset-0 overflow-hidden bg-[#F0F0F0]">
+    {% if block.settings.image %}
+      {{
+        block.settings.image
+        | image_url: width: 1200
+        | image_tag:
+          class: 'absolute inset-0 size-full object-cover',
+          loading: 'lazy',
+          sizes: '(min-width: 64rem) 33vw, 100vw',
+          widths: '400, 600, 900, 1200',
+          alt: block.settings.alt_text
+        | default: block.settings.image.alt
+      }}
+    {% endif %}
 
-  {% if block.settings.show_grain %}
-    <div
-      class="story-tile-cell__grain pointer-events-none absolute inset-0"
-      style="background-image: url({{ 'texture-grain.jpg' | asset_url }}); opacity: {{ texture_opacity }};"
-      aria-hidden="true"
-    ></div>
-  {% endif %}
+    {% if block.settings.show_grain %}
+      <div
+        class="story-tile-cell__grain pointer-events-none absolute inset-0 bg-[length:500px_333.75px] bg-left-top bg-repeat mix-blend-soft-light"
+        style="background-image: url({{ 'texture-grain.jpg' | asset_url }}); opacity: {{ texture_opacity }};"
+        aria-hidden="true"
+      ></div>
+    {% endif %}
+  </div>
+
+  {% render 'sticker',
+    image: block.settings.sticker_image,
+    position: block.settings.sticker_position,
+    position_mobile: block.settings.sticker_position_mobile,
+    width: block.settings.sticker_width,
+    width_mobile: block.settings.sticker_width_mobile,
+    translate_x: block.settings.sticker_translate_x,
+    translate_x_mobile: block.settings.sticker_translate_x_mobile,
+    translate_y: block.settings.sticker_translate_y,
+    translate_y_mobile: block.settings.sticker_translate_y_mobile
+  %}
 </div>
-
-{% stylesheet %}
-  .story-tile-cell__grain {
-    background-repeat: repeat;
-    background-position: top left;
-    background-size: 31.25rem 20.859375rem;
-    mix-blend-mode: soft-light;
-  }
-{% endstylesheet %}
 
 {% schema %}
 {
@@ -96,6 +103,117 @@
         { "value": "2", "label": "t:options.width.two_thirds" }
       ],
       "default": "1"
+    },
+    {
+      "type": "header",
+      "content": "t:general.sticker"
+    },
+    {
+      "type": "image_picker",
+      "id": "sticker_image",
+      "label": "t:labels.sticker_image"
+    },
+    {
+      "type": "header",
+      "content": "t:general.sticker_desktop"
+    },
+    {
+      "type": "select",
+      "id": "sticker_position",
+      "label": "t:labels.sticker_position",
+      "options": [
+        { "value": "top_left", "label": "t:options.sticker_position.top_left" },
+        { "value": "top_center", "label": "t:options.sticker_position.top_center" },
+        { "value": "top_right", "label": "t:options.sticker_position.top_right" },
+        { "value": "middle_left", "label": "t:options.sticker_position.middle_left" },
+        { "value": "center", "label": "t:options.sticker_position.center" },
+        { "value": "middle_right", "label": "t:options.sticker_position.middle_right" },
+        { "value": "bottom_left", "label": "t:options.sticker_position.bottom_left" },
+        { "value": "bottom_center", "label": "t:options.sticker_position.bottom_center" },
+        { "value": "bottom_right", "label": "t:options.sticker_position.bottom_right" }
+      ],
+      "default": "top_right"
+    },
+    {
+      "type": "range",
+      "id": "sticker_width",
+      "label": "t:labels.sticker_width",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "sticker_translate_x",
+      "label": "t:labels.sticker_translate_x",
+      "min": -100,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "sticker_translate_y",
+      "label": "t:labels.sticker_translate_y",
+      "min": -100,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:general.sticker_mobile"
+    },
+    {
+      "type": "select",
+      "id": "sticker_position_mobile",
+      "label": "t:labels.sticker_position",
+      "options": [
+        { "value": "top_left", "label": "t:options.sticker_position.top_left" },
+        { "value": "top_center", "label": "t:options.sticker_position.top_center" },
+        { "value": "top_right", "label": "t:options.sticker_position.top_right" },
+        { "value": "middle_left", "label": "t:options.sticker_position.middle_left" },
+        { "value": "center", "label": "t:options.sticker_position.center" },
+        { "value": "middle_right", "label": "t:options.sticker_position.middle_right" },
+        { "value": "bottom_left", "label": "t:options.sticker_position.bottom_left" },
+        { "value": "bottom_center", "label": "t:options.sticker_position.bottom_center" },
+        { "value": "bottom_right", "label": "t:options.sticker_position.bottom_right" }
+      ],
+      "default": "top_right"
+    },
+    {
+      "type": "range",
+      "id": "sticker_width_mobile",
+      "label": "t:labels.sticker_width",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "sticker_translate_x_mobile",
+      "label": "t:labels.sticker_translate_x",
+      "min": -100,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "sticker_translate_y_mobile",
+      "label": "t:labels.sticker_translate_y",
+      "min": -100,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 0
     }
   ],
   "presets": [{ "name": "t:general.story_tile_image" }]

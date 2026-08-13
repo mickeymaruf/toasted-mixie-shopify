@@ -115,9 +115,16 @@
                   {% if block.settings.avatar_image %}
                     {{ block.settings.avatar_image | image_url: width: 40, height: 40 | image_tag: class: 'w-full h-full rounded-full object-cover' }}
                   {% else %}
-                    <svg class="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#666]" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
+                    {%- liquid
+                      assign name_parts = block.settings.reviewer_name | strip | split: ' '
+                      assign avatar_initials = name_parts | first | slice: 0
+                      if name_parts.size > 1
+                        assign avatar_initials = avatar_initials | append: name_parts.last | slice: 0, 2
+                      endif
+                    -%}
+                    <span class="text-[10px] sm:text-[11px] md:text-[12px] font-medium uppercase text-white" aria-hidden="true">
+                      {{ avatar_initials }}
+                    </span>
                   {% endif %}
                 </div>
 

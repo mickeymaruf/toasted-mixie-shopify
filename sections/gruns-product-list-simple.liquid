@@ -1,0 +1,97 @@
+{% comment %}
+  Renders an editable heading followed by a responsive grid of simple
+  product-card-simple blocks — each with a single product image, title,
+  description and an "Add to Cart" button, laid out three per row on
+  larger screens. Add product-card-simple blocks and select a product on
+  each to populate the grid.
+{% endcomment %}
+
+<section
+  class="gruns-product-list-simple full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div
+    class="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-6 px-4 py-[40px] sm:gap-8 sm:px-8 sm:py-[60px] md:px-12 lg:gap-[50px] lg:px-0 lg:py-[100px]"
+  >
+    {% if section.settings.heading != blank %}
+      <h2
+        class="w-full text-center text-[40px] leading-[0.95] font-bold text-[color:var(--gruns-product-list-simple-heading-color)] sm:text-[48px] md:text-[60px] lg:text-[70px] xl:text-[78px] "
+        style="--gruns-product-list-simple-heading-color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="grid w-full grid-cols-1 items-start gap-[30px] sm:grid-cols-3">
+        {% content_for 'blocks' %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.product_list_simple",
+  "blocks": [{ "type": "product-card-simple" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Three ways to stay present."
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.product_list_simple",
+      "blocks": [
+        {
+          "type": "product-card-simple",
+          "settings": {
+            "title": "Blood Orange",
+            "description": "Bright blood orange, real fruit flavor, and a functional blend made to help you stay present.",
+            "button_label": "Add to Cart"
+          }
+        },
+        {
+          "type": "product-card-simple",
+          "settings": {
+            "title": "Berry Acai",
+            "description": "Bright blood orange, real fruit flavor, and a functional blend made to help you stay present.",
+            "button_label": "Add to Cart"
+          }
+        },
+        {
+          "type": "product-card-simple",
+          "settings": {
+            "title": "Ginger Lime",
+            "description": "Bright blood orange, real fruit flavor, and a functional blend made to help you stay present.",
+            "button_label": "Add to Cart"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

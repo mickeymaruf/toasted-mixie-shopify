@@ -1,5 +1,7 @@
 {% doc %}
-  Groups accordion items from product metaobjects into a bordered list.
+  Groups accordion items from product metaobjects into a list of collapsible
+  pills, styled identically to the faq-item blocks used in the
+  faq-pills-grid section.
   Data pulled from product.metafields.custom.product_faq metaobject entries.
 
   Resolves the product the same way the parent product section does: uses
@@ -13,85 +15,101 @@
 %}
 
 {% if accordions != blank %}
-  <div class="flex w-full flex-col divide-y divide-[#212323]" {{ block.shopify_attributes }}>
+  <div class="flex w-full flex-col gap-3" {{ block.shopify_attributes }}>
     {% for accordion in accordions %}
-      <div class="accordion-item w-full" data-accordion-item>
+      <accordion-pill-item
+        class="accordion-item block w-full"
+        style="--accordion-item-bg: {{ block.settings.background_color }}; --accordion-item-color: {{ block.settings.text_color }};"
+      >
         <button
           type="button"
-          class="flex w-full cursor-pointer items-center justify-between gap-4 py-5 text-[18px] font-medium text-[#212323] transition-opacity duration-200 hover:opacity-70"
-          data-accordion-trigger
+          class="accordion-item__trigger flex min-h-[48px] w-full items-center justify-between gap-4 rounded-full px-[18px] py-[10px] text-left transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#212323]"
           aria-expanded="false"
           aria-controls="content-accordion-{{ forloop.index }}"
         >
-          {{ accordion.title }}
-          <span
-            class="flex size-5 shrink-0 items-center justify-center transition-transform duration-300"
-            data-accordion-icon
-          >
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
+          <span class="text-[16px] leading-[1.3] font-normal sm:text-[18px] md:text-[20px]">{{ accordion.title }}</span>
+          <span class="accordion-item__icon flex items-center justify-center size-4 shrink-0 transition-transform duration-250 ease-out" aria-hidden="true">
+            {{ 'icon-arrow-down-bold.svg' | inline_asset_content }}
           </span>
         </button>
 
-        {% if accordion.content != blank %}
-          <div
-            id="content-accordion-{{ forloop.index }}"
-            class="accordion-content overflow-hidden transition-all duration-300 ease-out"
-            data-accordion-content
-            style="max-height: 0;"
-          >
-            <div class="pb-5 text-[16px] leading-[1.6] text-[#212323]/85">
-              {{ accordion.content | metafield_tag }}
-            </div>
+        <div class="accordion-item__answer-wrap" id="content-accordion-{{ forloop.index }}" role="region">
+          <div class="accordion-item__answer-inner overflow-hidden">
+            {% if accordion.content != blank %}
+              <div class="px-[18px] pt-2 pb-4 text-[16px] leading-[1.5] text-[#212323]/85">
+                {{ accordion.content | metafield_tag }}
+              </div>
+            {% endif %}
           </div>
-        {% endif %}
-      </div>
+        </div>
+      </accordion-pill-item>
     {% endfor %}
   </div>
 {% endif %}
 
 {% stylesheet %}
-  .accordion-item {
-    width: 100%;
+  .accordion-item__trigger {
+    background-color: var(--accordion-item-bg, #f9d5c0);
+    color: var(--accordion-item-color, #212323);
+    cursor: pointer;
   }
 
-  .accordion-content {
-    overflow: hidden;
+  .accordion-item__trigger:hover {
+    background-color: color-mix(in srgb, var(--accordion-item-bg, #f9d5c0) 85%, #212323 15%);
   }
 
-  .accordion-item.open [data-accordion-icon] {
-    transform: rotate(45deg);
+  .accordion-item__icon {
+    color: var(--accordion-item-color, #212323);
+  }
+
+  .accordion-item.is-open .accordion-item__icon {
+    transform: rotate(180deg);
+  }
+
+  .accordion-item__answer-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 250ms ease;
+  }
+
+  .accordion-item.is-open .accordion-item__answer-wrap {
+    grid-template-rows: 1fr;
   }
 {% endstylesheet %}
 
 {% javascript %}
-  document.addEventListener('click', (event) => {
-    const trigger = event.target.closest('[data-accordion-trigger]');
-    if (!trigger) return;
-
-    const item = trigger.closest('[data-accordion-item]');
-    const content = item?.querySelector('[data-accordion-content]');
-    if (!content) return;
-
-    const isOpen = item.classList.contains('open');
-
-    if (isOpen) {
-      content.style.maxHeight = '0px';
-      trigger.setAttribute('aria-expanded', 'false');
-      item.classList.remove('open');
-    } else {
-      content.style.maxHeight = content.scrollHeight + 'px';
-      trigger.setAttribute('aria-expanded', 'true');
-      item.classList.add('open');
+  class AccordionPillItem extends HTMLElement {
+    connectedCallback() {
+      this.trigger = this.querySelector('.accordion-item__trigger');
+      this.trigger?.addEventListener('click', () => this.toggle());
     }
-  });
+
+    toggle() {
+      const isOpen = this.classList.toggle('is-open');
+      this.trigger?.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+  }
+
+  customElements.define('accordion-pill-item', AccordionPillItem);
 {% endjavascript %}
 
 {% schema %}
 {
   "name": "t:general.accordion_list",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.faq_item_background",
+      "default": "#636D90"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.faq_item_text_color",
+      "default": "#F6F1EC"
+    }
+  ],
   "presets": [
     {
       "name": "t:general.accordion_list"

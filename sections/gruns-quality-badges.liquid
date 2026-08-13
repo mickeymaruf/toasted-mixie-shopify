@@ -24,27 +24,18 @@
   </div>
 
   <div
-    class="relative mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 px-5 py-8 sm:px-8 sm:py-10 md:px-12 lg:flex-row lg:items-center lg:gap-[60px] lg:px-0 lg:py-[64px] xl:py-[80px]"
+    class="relative mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 px-5 py-8 sm:px-8 sm:py-10 md:px-12 lg:flex-row lg:items-center lg:gap-[20px] lg:px-0 lg:py-[64px] xl:py-[80px]"
   >
-    <div
-      class="flex w-full flex-col items-start gap-5 text-left xl:w-[40%] xl:max-w-[40%] xl:shrink-0"
-      style="color: {{ section.settings.heading_color }};"
-    >
-      {% if section.settings.heading != blank %}
-        <div class="gruns-quality-badges__heading text-[36px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[62px]">
-          {{ section.settings.heading }}
-        </div>
-      {% endif %}
-
-      {% if section.settings.description != blank %}
-        <div class="text-[18px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
-          {{ section.settings.description }}
-        </div>
-      {% endif %}
-    </div>
+    {% render 'quality-badges-content',
+      heading: section.settings.heading,
+      description: section.settings.description,
+      heading_color: section.settings.heading_color,
+    %}
 
     {% if section.blocks.size > 0 %}
-      <div class="flex w-full flex-wrap gap-3 sm:gap-[10px] xl:w-[60%] xl:max-w-[60%] xl:shrink-0">
+      <div
+        class="relative inline-grid w-fit grid-cols-[repeat(2,max-content)] items-start gap-3 [--icon-badge-card-height:130px] [--icon-badge-card-width:130px] sm:grid sm:w-full sm:grid-cols-[repeat(auto-fill,150px)] sm:gap-[10px] sm:[--icon-badge-card-height:150px] sm:[--icon-badge-card-width:150px] lg:min-w-0 lg:flex-[1_0_0] lg:grid-cols-4 lg:[--icon-badge-card-aspect-ratio:1/1] lg:[--icon-badge-card-height:auto] lg:[--icon-badge-card-width:100%]"
+      >
         {% content_for 'blocks' %}
       </div>
     {% endif %}
@@ -54,9 +45,6 @@
 {% stylesheet %}
   .gruns-quality-badges .shopify-block {
     display: contents;
-  }
-  .gruns-quality-badges__heading {
-    font-family: var(--font-heading--family);
   }
 {% endstylesheet %}
 

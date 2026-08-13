@@ -7,11 +7,21 @@
 
 <section class="story-tiles full-width">
   {% if section.blocks.size > 0 %}
-    <div class="mx-auto flex w-full max-w-[1920px] flex-col">
+    <div class="story-tiles__list mx-auto flex w-full max-w-[1920px] flex-col">
       {% content_for 'blocks' %}
     </div>
   {% endif %}
 </section>
+
+{% stylesheet %}
+  .story-tiles__list > .shopify-block {
+    display: contents;
+  }
+
+  .story-tiles__list > .shopify-block + .shopify-block > .story-tile-row {
+    border-top: 0;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
