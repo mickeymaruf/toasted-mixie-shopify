@@ -425,7 +425,7 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#F6F1EC"
           },
           "blocks": {}
         },
@@ -442,7 +442,7 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#F6F1EC"
           },
           "blocks": {}
         },
@@ -459,7 +459,7 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#F6F1EC"
           },
           "blocks": {}
         },
@@ -476,7 +476,7 @@
             "price_text": "Just Pay Shipping",
             "button_label": "Try Now",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#F6F1EC"
           },
           "blocks": {}
         }
@@ -527,14 +527,49 @@
             "image": "shopify://shop_images/Component_17_1.png"
           }
         },
-        "review_testimonial_mkeqkd": {
+        "review_testimonial_peter": {
           "type": "review-testimonial",
           "settings": {
-            "reviewer_name": "Toasted",
+            "reviewer_name": "Peter Medina",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
-            "testimonial_title": "First Toasted reviews coming soon.",
-            "testimonial_text": "Reviews open after first drop. Be one of the first to try Toasted."
+            "testimonial_text": "Bro. That’s my favorite. That is beautiful. Yo, this is money. It would replace your poolside daiquiri, Bellini, or slushie."
+          }
+        },
+        "review_testimonial_nathalie": {
+          "type": "review-testimonial",
+          "settings": {
+            "reviewer_name": "Nathalie B.",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_text": "I am definitely going to buy this."
+          }
+        },
+        "review_testimonial_danny": {
+          "type": "review-testimonial",
+          "settings": {
+            "reviewer_name": "Danny T.",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_text": "Light on the palette. Really refreshing. I could drink this all day."
+          }
+        },
+        "review_testimonial_ana": {
+          "type": "review-testimonial",
+          "settings": {
+            "reviewer_name": "Ana T.",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_text": "I like ginger. That’s perfect. That’s what you want in the club."
+          }
+        },
+        "review_testimonial_jordan": {
+          "type": "review-testimonial",
+          "settings": {
+            "reviewer_name": "Jordan S.",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_text": "Ouff i like the smell on this one, this is more distinct sort of like a San Pelegrino Blood Orange. Light, sweet, very drinkable compared to the sodas out there."
           }
         }
       },
@@ -544,7 +579,11 @@
         "review_image_Ek63jP",
         "review_image_HhBMkt",
         "review_image_WGbTBg",
-        "review_testimonial_mkeqkd"
+        "review_testimonial_peter",
+        "review_testimonial_nathalie",
+        "review_testimonial_danny",
+        "review_testimonial_ana",
+        "review_testimonial_jordan"
       ],
       "name": "Reviews",
       "settings": {
@@ -574,7 +613,7 @@
         "background_color": "#f6f1ec",
         "panel_background_color": "#551f36",
         "panel_background_image": "shopify://shop_images/Group_82.png",
-        "heading_color": "#ffffff",
+        "heading_color": "#F6F1EC",
         "billboard_image": "shopify://shop_images/Cllg5_2_1.png",
         "billboard_image_alt": ""
       }

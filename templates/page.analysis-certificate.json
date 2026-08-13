@@ -20,7 +20,7 @@
       "settings": {
         "heading": "Certificate of Analysis",
         "subheading": "Every Toasted batch is third-party lab tested for potency, purity, and safety.",
-        "heading_color": "#ffffff",
+        "heading_color": "#F6F1EC",
         "container_background_color": "#551f36",
         "background_image": "shopify://shop_images/Frame_2147235873.png"
       }
@@ -72,9 +72,9 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Lab Tested",
-            "icon": "shopify://shop_images/Group_89_e9ba6ef0-0a6e-48da-a2cc-3715e59c8604.svg",
+            "icon": "shopify://shop_images/Group_89_3.svg",
             "background_color": "#f9d5c0",
-            "text_color": "#626c8d"
+            "text_color": "#636d90"
           },
           "blocks": {}
         },
@@ -82,9 +82,9 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Low Dose",
-            "icon": "shopify://shop_images/Group_87.svg",
+            "icon": "shopify://shop_images/Group_87_2.svg",
             "background_color": "#f9d5c0",
-            "text_color": "#626c8d"
+            "text_color": "#636d90"
           },
           "blocks": {}
         },
@@ -92,9 +92,9 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Low Calorie",
-            "icon": "shopify://shop_images/Group_94_afeeb1af-4fb7-4373-afad-d18c71673287.svg",
+            "icon": "shopify://shop_images/Group_94_2.svg",
             "background_color": "#f9d5c0",
-            "text_color": "#626c8d"
+            "text_color": "#636d90"
           },
           "blocks": {}
         },
@@ -102,9 +102,9 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Non-carbonated",
-            "icon": "shopify://shop_images/Group_95_d453a3b7-1e5e-4f58-9bcf-589922fc4a6b.svg",
+            "icon": "shopify://shop_images/Group_95_2.png",
             "background_color": "#f9d5c0",
-            "text_color": "#626c8d"
+            "text_color": "#636d90"
           },
           "blocks": {}
         }

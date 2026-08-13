@@ -3,7 +3,7 @@
   Features a swiper-based image carousel with navigation controls and a single review card.
 {% enddoc %}
 
-<div class="reviews-section px-4 py-8 sm:px-6 sm:py-12 md:px-10 md:py-16 lg:px-[120px] lg:py-[100px]" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }}">
+<div class="reviews-section px-4 py-8 sm:px-6 sm:py-12 md:px-10 md:py-16 lg:px-[60px] lg:py-[100px] xl:px-0" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }}">
   <div class="flex flex-col gap-8 sm:gap-10 md:gap-12 w-full max-w-[1200px] mx-auto">
     <!-- Heading -->
     <div class="text-center">
@@ -104,14 +104,15 @@
     <!-- Testimonials Section with Blocks -->
     {%- assign review_testimonials = section.blocks | where: 'type', 'review-testimonial' -%}
     {%- if review_testimonials.size > 0 -%}
+      <div class="flex flex-col border-t" style="border-color: {{ section.settings.text_color }};">
       {%- for block in review_testimonials -%}
-        <div class="border-t border-b py-6 sm:py-8 md:py-10 lg:py-12" style="border-color: {{ section.settings.text_color }};" {{ block.shopify_attributes }}>
+        <div class="border-b py-6 sm:py-8 md:py-10 lg:py-12" style="border-color: {{ section.settings.text_color }};" {{ block.shopify_attributes }}>
           <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-10 items-start lg:items-center">
             <!-- User Profile Card -->
             <div class="bg-[#c2cbd4] rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 shrink-0 w-full lg:w-auto">
               <div class="flex gap-3 sm:gap-4 md:gap-5 items-center">
                 <!-- Avatar -->
-                <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-[#9ca8b5] flex items-center justify-center shrink-0">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center shrink-0" style="background-color: {{ section.settings.text_color }}">
                   {% if block.settings.avatar_image %}
                     {{ block.settings.avatar_image | image_url: width: 40, height: 40 | image_tag: class: 'w-full h-full rounded-full object-cover' }}
                   {% else %}
@@ -122,7 +123,7 @@
                         assign avatar_initials = avatar_initials | append: name_parts.last | slice: 0, 2
                       endif
                     -%}
-                    <span class="text-[10px] sm:text-[11px] md:text-[12px] font-medium uppercase text-white" aria-hidden="true">
+                    <span class="text-[10px] sm:text-[11px] md:text-[12px] font-medium uppercase text-[#F6F1EC]" aria-hidden="true">
                       {{ avatar_initials }}
                     </span>
                   {% endif %}
@@ -158,9 +159,11 @@
 
               <!-- Testimonial Text -->
               <div class="flex flex-col gap-1 sm:gap-1.5 md:gap-2">
-                <p class="text-[12px] sm:text-[13px] md:text-[14px] font-medium" style="color: {{ section.settings.text_color }}">
-                  {{ block.settings.testimonial_title }}
-                </p>
+                {%- if block.settings.testimonial_title != blank -%}
+                  <p class="text-[12px] sm:text-[13px] md:text-[14px] font-medium" style="color: {{ section.settings.text_color }}">
+                    {{ block.settings.testimonial_title }}
+                  </p>
+                {%- endif -%}
                 <p class="text-[13px] sm:text-[14px] md:text-[16px] leading-[1.5]" style="color: {{ section.settings.text_color }}">
                   {{ block.settings.testimonial_text }}
                 </p>
@@ -169,6 +172,7 @@
           </div>
         </div>
       {%- endfor -%}
+      </div>
     {%- endif -%}
 
     <!-- CTA Button -->
@@ -271,8 +275,7 @@
         {
           "type": "text",
           "id": "testimonial_title",
-          "label": "Testimonial title",
-          "default": "First Toasted reviews coming soon."
+          "label": "Testimonial title"
         },
         {
           "type": "text",

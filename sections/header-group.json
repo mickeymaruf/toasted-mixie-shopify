@@ -24,9 +24,9 @@
             "arrow_label": "View more",
             "button_link": "shopify://products/try-all-3-flavors",
             "background_color": "#215332",
-            "text_color": "#ffffff",
+            "text_color": "#F6F1EC",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#F6F1EC"
           },
           "blocks": {}
         },
@@ -40,9 +40,9 @@
             "arrow_label": "View more",
             "button_link": "shopify://pages/bundle-builder",
             "background_color": "#391847",
-            "text_color": "#ffffff",
+            "text_color": "#F6F1EC",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#F6F1EC"
           },
           "blocks": {}
         },
@@ -56,9 +56,9 @@
             "arrow_label": "View more",
             "button_link": "shopify://pages/coa",
             "background_color": "#85002c",
-            "text_color": "#ffffff",
+            "text_color": "#F6F1EC",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#F6F1EC"
           },
           "blocks": {}
         }

@@ -12,7 +12,7 @@
   {{ section.shopify_attributes }}
 >
   <div
-    class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px] py-[50px] md:py-[100px]"
+    class="mx-auto w-full max-w-[1200px] px-5 sm:px-8 md:px-12 lg:px-[60px] xl:px-0 py-[50px] md:py-[100px]"
   >
     {% if section.settings.heading != blank %}
       <h2 class="coa-guide__heading mb-10 text-center text-[40px] font-bold leading-[0.95] tracking-[-1.2px] text-[#212323] sm:text-[56px] sm:tracking-[-1.68px] md:mb-[50px] md:text-[72px] md:tracking-[-2.16px]">
@@ -21,7 +21,7 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <div class="coa-guide__table-wrap mx-auto w-full max-w-[988px] overflow-x-auto">
+      <div class="coa-guide__table-wrap mx-auto w-full overflow-x-auto">
         <table class="block w-full max-w-full border-collapse">
           <tbody>
             {% for block in section.blocks %}

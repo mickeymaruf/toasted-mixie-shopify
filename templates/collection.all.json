@@ -41,7 +41,7 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#F6F1EC"
           },
           "blocks": {}
         },
@@ -58,7 +58,7 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#F6F1EC"
           },
           "blocks": {}
         },
@@ -75,7 +75,7 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#F6F1EC"
           },
           "blocks": {}
         },
@@ -92,7 +92,7 @@
             "price_text": "Just Pay Shipping",
             "button_label": "Try Now",
             "button_background_color": "#212323",
-            "button_text_color": "#ffffff"
+            "button_text_color": "#F6F1EC"
           },
           "blocks": {}
         }

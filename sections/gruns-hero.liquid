@@ -3,7 +3,7 @@
   style="background-color: {{ section.settings.background_color }};"
 >
   <div
-    class="mx-auto flex w-full max-w-[1920px] flex-col gap-4 px-5 pb-[45px] sm:gap-12 sm:px-8 sm:pb-[60px] md:px-12 lg:grid lg:grid-cols-[9fr_11fr] lg:items-center lg:gap-x-0 lg:px-[80px] xl:px-[120px] xl:py-[50px]"
+    class="mx-auto flex w-full max-w-[1500px] flex-col gap-4 px-5 pb-[45px] sm:gap-12 sm:px-8 sm:pb-[60px] md:px-12 lg:grid lg:grid-cols-[9fr_11fr] lg:items-center lg:gap-x-0 lg:px-[80px] xl:px-[80px] xl:py-[50px]"
   >
     <div class="order-2 flex w-full flex-col items-center text-center lg:order-none lg:col-start-1 lg:items-start lg:text-left">
       {% if section.settings.heading != blank %}
@@ -31,7 +31,7 @@
             url: section.settings.button_link,
             background_color: section.settings.button_background_color,
             text_color: section.settings.button_text_color,
-            class: 'whitespace-nowrap lg:px-[42px]'
+            class: 'whitespace-nowrap lg:px-[60px]'
           %}
 
           {% if section.settings.feature_1_text != blank or section.settings.feature_2_text != blank %}

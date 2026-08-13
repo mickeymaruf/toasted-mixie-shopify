@@ -8,7 +8,7 @@
   style="background-color: {{ section.settings.background_color }};"
 >
   <div
-    class="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-8 px-5 py-16 text-center sm:gap-10 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:gap-[51px] lg:px-[120px] lg:py-[100px]"
+    class="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-8 px-5 py-16 text-center sm:gap-10 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:gap-[51px] lg:px-[60px] lg:py-[100px] xl:px-0"
     style="color: {{ section.settings.text_color }};"
   >
     {% if section.settings.heading != blank %}
@@ -37,7 +37,7 @@
     </div>
 
     {% if section.settings.description != blank %}
-      <div class="max-w-[938px] text-[16px] leading-[1.5] sm:text-[18px] lg:text-[24px]">
+      <div class="text-[16px] leading-[1.5] sm:text-[18px] lg:text-[24px]">
         {{ section.settings.description }}
       </div>
     {% endif %}
