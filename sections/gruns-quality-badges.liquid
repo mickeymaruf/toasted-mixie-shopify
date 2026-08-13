@@ -30,11 +30,12 @@
       heading: section.settings.heading,
       description: section.settings.description,
       heading_color: section.settings.heading_color,
+      heading_class: 'section-heading lg:text-[62px]',
     %}
 
     {% if section.blocks.size > 0 %}
       <div
-        class="relative inline-grid w-fit grid-cols-[repeat(2,max-content)] items-start gap-3 [--icon-badge-card-height:130px] [--icon-badge-card-width:130px] sm:grid sm:w-full sm:grid-cols-[repeat(auto-fill,150px)] sm:gap-[10px] sm:[--icon-badge-card-height:150px] sm:[--icon-badge-card-width:150px] lg:min-w-0 lg:flex-[1_0_0] lg:grid-cols-4 lg:[--icon-badge-card-aspect-ratio:1/1] lg:[--icon-badge-card-height:auto] lg:[--icon-badge-card-width:100%]"
+        class="relative grid w-full grid-cols-2 items-start gap-3 max-lg:[--icon-badge-card-aspect-ratio:1/1] max-lg:[--icon-badge-card-height:auto] max-lg:[--icon-badge-card-width:100%] min-[420px]:max-lg:grid-cols-3 min-[560px]:max-lg:grid-cols-4 sm:max-lg:grid-cols-[repeat(auto-fill,minmax(150px,1fr))] sm:gap-[10px] lg:min-w-0 lg:flex-[1_0_0] lg:grid-cols-4 lg:[--icon-badge-card-aspect-ratio:1/1] lg:[--icon-badge-card-height:auto] lg:[--icon-badge-card-width:100%]"
       >
         {% content_for 'blocks' %}
       </div>

@@ -5,3 +5,13 @@
 @source "../blocks/**/*.liquid";
 @source "../snippets/**/*.liquid";
 @source "../templates/**/*.liquid";
+
+@layer components {
+  /*
+   * Shared section heading scale, matching sections/gruns-product-list.liquid.
+   * Change the sizes here to resize every section heading using this class at once.
+   */
+  .section-heading {
+    @apply text-[40px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[70px] xl:text-[78px];
+  }
+}

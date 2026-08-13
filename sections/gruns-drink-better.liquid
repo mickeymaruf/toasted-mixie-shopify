@@ -96,7 +96,7 @@
         {% if section.settings.heading != blank or section.settings.description != blank %}
           <div class="flex w-full flex-col items-start gap-5" style="color: {{ section.settings.heading_color }};">
             {% if section.settings.heading != blank %}
-              <div class="font-[family-name:var(--font-heading--family)] text-[36px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[72px]">
+              <div class="font-[family-name:var(--font-heading--family)] text-[40px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[72px]">
                 {{ section.settings.heading }}
               </div>
             {% endif %}
@@ -139,7 +139,7 @@
             >
               <div class="flex items-center gap-3 sm:gap-5">
                 {% if section.settings.bundle_heading != blank %}
-                  <p class="text-[26px] leading-[0.95] font-bold tracking-[-1.5px] sm:text-[36px] lg:text-[50px]">
+                  <p class="text-[26px] leading-[0.95] font-bold tracking-normal sm:text-[36px] sm:tracking-[-1.5px] lg:text-[50px]">
                     {{ section.settings.bundle_heading }}
                   </p>
                 {% endif %}

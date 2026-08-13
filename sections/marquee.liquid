@@ -87,6 +87,11 @@
 
     .marquee-content {
       animation: marquee-scroll 45s linear infinite;
+      gap: calc(var(--marquee-gap) * 0.55);
+    }
+
+    .marquee-item {
+      gap: 24px;
     }
   }
 
@@ -107,7 +112,11 @@
 
     .marquee-content {
       animation: marquee-scroll 35s linear infinite;
-      gap: calc(var(--marquee-gap) * 0.7);
+      gap: calc(var(--marquee-gap) * 0.4);
+    }
+
+    .marquee-item {
+      gap: 16px;
     }
   }
 {% endstylesheet %}

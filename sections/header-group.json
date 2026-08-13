@@ -24,9 +24,9 @@
             "arrow_label": "View more",
             "button_link": "shopify://products/try-all-3-flavors",
             "background_color": "#215332",
-            "text_color": "#F6F1EC",
+            "text_color": "#f6f1ec",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec"
           },
           "blocks": {}
         },
@@ -40,9 +40,9 @@
             "arrow_label": "View more",
             "button_link": "shopify://pages/bundle-builder",
             "background_color": "#391847",
-            "text_color": "#F6F1EC",
+            "text_color": "#f6f1ec",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec"
           },
           "blocks": {}
         },
@@ -56,9 +56,9 @@
             "arrow_label": "View more",
             "button_link": "shopify://pages/coa",
             "background_color": "#85002c",
-            "text_color": "#F6F1EC",
+            "text_color": "#f6f1ec",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec"
           },
           "blocks": {}
         }
@@ -70,7 +70,7 @@
       ],
       "name": "t:general.announcement_bar",
       "settings": {
-        "autoplay_speed": 3
+        "autoplay_speed": 8
       }
     },
     "header": {
@@ -135,6 +135,7 @@
         "mega_menu_button_text_color": "#f6f1ec",
         "mega_menu_background_color": "#c2cbd4",
         "default_background_color": "#9ab2d5",
+        "navbar_actions_background": "#c2cbd480",
         "alternate_pages": "/coa /privacy-policy /contact-us /wholesale /products",
         "alternate_background_color": "#f6f1ec"
       }

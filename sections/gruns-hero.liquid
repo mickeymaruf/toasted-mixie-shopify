@@ -8,7 +8,7 @@
     <div class="order-2 flex w-full flex-col items-center text-center lg:order-none lg:col-start-1 lg:items-start lg:text-left">
       {% if section.settings.heading != blank %}
         <div
-          class="font-[family-name:var(--font-heading--family)] font-bold text-[28px] leading-[1.1] text-[color:var(--gruns-hero-heading-color)] sm:text-[36px] md:text-[44px] lg:text-[56px] xl:text-[72px]"
+          class="font-[family-name:var(--font-heading--family)] font-bold text-[32px] leading-[1.1] text-[color:var(--gruns-hero-heading-color)] sm:text-[36px] md:text-[44px] lg:text-[56px] xl:text-[72px]"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.heading }}
@@ -31,7 +31,7 @@
             url: section.settings.button_link,
             background_color: section.settings.button_background_color,
             text_color: section.settings.button_text_color,
-            class: 'whitespace-nowrap lg:px-[60px]'
+            class: 'whitespace-nowrap !px-6 !w-full'
           %}
 
           {% if section.settings.feature_1_text != blank or section.settings.feature_2_text != blank %}
@@ -57,7 +57,7 @@
         </div>
       {% endif %}
 
-      <div class="mt-4 sm:mt-8 lg:mt-[50px]">
+      <div class="mt-8 sm:mt-8 lg:mt-[50px]">
         {% content_for 'blocks' %}
       </div>
     </div>
@@ -77,16 +77,16 @@
 
         {% if section.settings.show_badge and section.settings.badge_text != blank %}
           <div
-            class="absolute bottom-[28px] -left-9.5 z-10 origin-center -rotate-90 translate-y-1/2 flex items-center justify-center gap-[8px] rounded-[16px] px-[12px] py-[6px] drop-shadow-[0px_0px_2.5px_rgba(0,0,0,0.1)] lg:-left-14 lg:gap-[20px] lg:rounded-[30px] lg:px-[32px] lg:py-[16px]"
+            class="absolute bottom-0 -left-[56px] z-10 origin-center -rotate-90 translate-y-1/2 flex items-center justify-center gap-[14px] rounded-[26px] px-[22px] py-[12px] drop-shadow-[0px_0px_2.5px_rgba(0,0,0,0.1)] lg:-left-14 lg:gap-[20px] lg:rounded-[30px] lg:px-[32px] lg:py-[16px]"
             style="background-color: {{ section.settings.badge_background_color }};"
           >
             <p
-              class="text-[12px] leading-[1.5] font-medium whitespace-nowrap lg:text-[20px]"
+              class="text-[16px] leading-[1.5] font-medium whitespace-nowrap lg:text-[20px]"
               style="color: {{ section.settings.badge_text_color }};"
             >
               {{ section.settings.badge_text }}
             </p>
-            <span class="block size-[10px] shrink-0 lg:size-[16px]">
+            <span class="block size-[14px] shrink-0 lg:size-[16px]">
               <img
                 src="{{ 'icon-x-bold.svg' | asset_url }}"
                 alt=""

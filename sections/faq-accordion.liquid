@@ -30,29 +30,31 @@
             {% endif %}
 
             <div class="faq-item" data-faq-item {{ block.shopify_attributes }}>
-              <div class="faq-item-question bg-[#f6f1ec] border-2 border-[#212323] rounded-full overflow-hidden">
+              <div class="faq-item-container bg-[#f6f1ec] border-2 border-[#212323] overflow-hidden">
                 <button
                   class="faq-item-toggle w-full flex items-center justify-between px-[24px] py-[18px] text-left hover:bg-[rgba(33,35,35,0.05)] transition-colors"
                   aria-expanded="false"
                   aria-controls="faq-answer-{{ block.id }}"
                 >
-                  <span class="font-medium text-[14px] leading-[1.5] text-[#212323] flex-1 sm:text-[15px] md:text-[16px] lg:text-[24px]">
+                  <span class="font-medium text-[18px] leading-[1.5] text-[#212323] flex-1 sm:text-[15px] md:text-[16px] lg:text-[24px]">
                     {{ block.settings.question }}
                   </span>
                   <div class="faq-chevron ml-4 flex-shrink-0 transition-transform duration-300 flex h-[14px] w-[14px] items-center justify-center sm:h-[16px] sm:w-[16px] md:h-[18px] md:w-[18px]">
                     <img src="{{ 'icon-arrow-down-1.svg' | asset_url }}" alt="" class="h-full w-full" />
                   </div>
                 </button>
-              </div>
 
-              <div
-                id="faq-answer-{{ block.id }}"
-                class="faq-item-answer bg-[#f6f1ec] border-x-2 border-b-2 border-[#212323] rounded-b-[24px]"
-                role="region"
-                aria-labelledby="faq-question-{{ block.id }}"
-              >
-                <div class="px-[24px] py-[18px] text-[14px] leading-[1.6] text-[#212323] sm:text-[15px] md:text-[16px] lg:text-[20px]">
-                  {{ block.settings.answer }}
+                <div
+                  id="faq-answer-{{ block.id }}"
+                  class="faq-item-answer"
+                  role="region"
+                  aria-labelledby="faq-question-{{ block.id }}"
+                >
+                  <div class="faq-item-answer-inner overflow-hidden">
+                    <div class="px-[24px] py-[18px] text-[16px] leading-[1.6] text-[#212323] sm:text-[15px] md:text-[16px] lg:text-[20px]">
+                      {{ block.settings.answer }}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -69,6 +71,10 @@
 </section>
 
 {% stylesheet %}
+  .faq-item-container {
+    border-radius: 36px;
+  }
+
   .faq-item-toggle:focus-visible {
     outline: 2px solid #212323;
     outline-offset: 2px;
@@ -78,24 +84,18 @@
     transform: rotate(180deg);
   }
 
+  .faq-item-toggle[aria-expanded="true"] {
+    background-color: rgba(33, 35, 35, 0.05);
+  }
+
   .faq-item-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    display: none;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 250ms ease;
   }
 
   .faq-item-answer.show {
-    display: block;
-    max-height: 500px;
-    transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .faq-item:has(.faq-item-toggle[aria-expanded="true"]) .faq-item-question {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: 24px;
-    border-top-right-radius: 24px;
+    grid-template-rows: 1fr;
   }
 {% endstylesheet %}
 

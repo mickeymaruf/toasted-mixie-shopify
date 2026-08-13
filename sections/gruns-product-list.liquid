@@ -13,7 +13,7 @@
   >
     {% if section.settings.heading != blank %}
       <h2
-        class="w-full text-center text-[40px] leading-[0.95] font-bold text-[color:var(--gruns-product-list-heading-color)] sm:text-[48px] md:text-[60px] lg:text-[70px] xl:text-[78px] "
+        class="section-heading w-full text-center text-[color:var(--gruns-product-list-heading-color)]"
         style="--gruns-product-list-heading-color: {{ section.settings.heading_color }};"
       >
         {{ section.settings.heading }}
@@ -71,7 +71,8 @@
             "flavor_name_color": "#B70141",
             "description": "Bright. Smooth. Golden-hour ready.",
             "price_text": "From $9.99",
-            "button_label": "Shop Blood Orange"
+            "button_label": "Shop Blood Orange",
+            "learn_more_label": ""
           }
         },
         {
@@ -81,7 +82,8 @@
             "flavor_name_color": "#5E1A79",
             "description": "Deep. Juicy. Easy to enjoy.",
             "price_text": "From $9.99",
-            "button_label": "Shop Berry Acai"
+            "button_label": "Shop Berry Acai",
+            "learn_more_label": ""
           }
         },
         {
@@ -92,7 +94,8 @@
             "description": "Crisp. Lively. Clean finish.",
             "price_text": "From $9.99",
             "button_label": "Shop Ginger Lime",
-            "use_lottie_animation": true
+            "use_lottie_animation": true,
+            "learn_more_label": ""
           }
         }
       ]

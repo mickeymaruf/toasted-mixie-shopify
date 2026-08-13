@@ -21,32 +21,38 @@
   style="--faq-item-bg: {{ section.settings.faq_item_background }}; --faq-item-color: {{ section.settings.faq_item_text_color }};"
   {{ block.shopify_attributes }}
 >
-  <button
-    type="button"
-    class="faq-item__trigger flex min-h-[48px] w-full items-center justify-between gap-4 rounded-full px-[18px] py-[10px] text-left transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#212323]"
-    aria-expanded="{{ is_open }}"
-    aria-controls="{{ answer_id }}"
-  >
-    <span class="text-[16px] leading-[1.3] font-normal sm:text-[18px] md:text-[20px]">{{ block.settings.question }}</span>
-    <span class="faq-item__icon flex items-center justify-center size-4 shrink-0 transition-transform duration-250 ease-out" aria-hidden="true">
-      {{ 'icon-arrow-down-bold.svg' | inline_asset_content }}
-    </span>
-  </button>
+  <div class="faq-item__container w-full overflow-hidden">
+    <button
+      type="button"
+      class="faq-item__trigger flex min-h-[48px] w-full items-center justify-between gap-4 px-[18px] py-[10px] text-left transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#212323]"
+      aria-expanded="{{ is_open }}"
+      aria-controls="{{ answer_id }}"
+    >
+      <span class="text-[16px] leading-[1.3] font-normal sm:text-[18px] md:text-[20px]">{{ block.settings.question }}</span>
+      <span class="faq-item__icon flex items-center justify-center size-4 shrink-0 transition-transform duration-250 ease-out" aria-hidden="true">
+        {{ 'icon-arrow-down-bold.svg' | inline_asset_content }}
+      </span>
+    </button>
 
-  <div class="faq-item__answer-wrap" id="{{ answer_id }}" role="region">
-    <div class="faq-item__answer-inner overflow-hidden">
-      {% if block.settings.answer != blank %}
-        <div class="px-[18px] pt-2 pb-4 text-[16px] leading-[1.5]">
-          {{ block.settings.answer }}
-        </div>
-      {% endif %}
+    <div class="faq-item__answer-wrap" id="{{ answer_id }}" role="region">
+      <div class="faq-item__answer-inner overflow-hidden">
+        {% if block.settings.answer != blank %}
+          <div class="px-[18px] pt-2 pb-4 text-[16px] leading-[1.5]">
+            {{ block.settings.answer }}
+          </div>
+        {% endif %}
+      </div>
     </div>
   </div>
 </faq-pill-item>
 
 {% stylesheet %}
-  .faq-item__trigger {
+  .faq-item__container {
     background-color: var(--faq-item-bg, #f9d5c0);
+    border-radius: 24px;
+  }
+
+  .faq-item__trigger {
     color: var(--faq-item-color, #212323);
     cursor: pointer;
   }
