@@ -15,7 +15,8 @@
               fetchpriority: 'low',
               sizes: '100vw',
               widths: '750, 1100, 1500, 2000, 2600, 3200',
-              alt: ''
+              alt: '',
+              style: 'filter: saturate(0);'
           }}
         </div>
       {%- endif -%}
@@ -23,7 +24,7 @@
       <div class="relative z-10 flex w-full flex-col items-center justify-center gap-5">
         {%- if section.settings.heading != blank -%}
           <h2
-            class="w-full text-[32px] font-bold leading-[0.95] sm:text-[48px] md:text-[56px] lg:text-[72px] lg:tracking-[-2.16px]"
+            class="w-full text-[32px] font-bold leading-[0.95] sm:text-[48px] md:text-[56px] lg:text-[72px]"
             style="color: {{ section.settings.heading_color }};"
           >
             {{ section.settings.heading }}

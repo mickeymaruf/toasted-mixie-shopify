@@ -1,4 +1,4 @@
-<div class="marquee-wrapper" style="--marquee-text-color: {{ section.settings.text_color }}; --marquee-bg-color: {{ section.settings.background_color }}; --marquee-text-size: {{ section.settings.text_size | default: 36 }}px; --marquee-gap: {{ section.settings.gap | default: 52 }}px;">
+<div class="marquee-wrapper" style="--marquee-text-color: {{ section.settings.text_color }}; --marquee-bg-color: {{ section.settings.background_color }}; --marquee-text-size: {{ section.settings.text_size | default: 36 }}px; --marquee-gap: {{ section.settings.gap | default: 130 }}px;">
   <div class="marquee-container">
     <div class="marquee-content">
       {% for i in (1..2) %}
@@ -43,7 +43,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 32px;
+    gap: 64px;
     flex-shrink: 0;
     white-space: nowrap;
   }
@@ -161,11 +161,11 @@
       "type": "range",
       "id": "gap",
       "min": 20,
-      "max": 100,
+      "max": 160,
       "step": 2,
       "unit": "px",
       "label": "Gap between items",
-      "default": 52
+      "default": 130
     }
   ],
   "presets": [

@@ -18,13 +18,13 @@
   {{ block.shopify_attributes }}
 >
   {% if block.settings.heading != blank %}
-    <div class="story-tile-cell__heading w-full font-bold text-[28px] leading-[0.95] tracking-[-0.84px] sm:text-[36px] sm:tracking-[-1.08px] md:text-[26px] md:tracking-[-0.78px] lg:text-[42px] lg:tracking-[-1.26px] xl:text-[60px] xl:tracking-[-1.8px]">
+    <div class="story-tile-cell__heading w-full font-bold text-[28px] leading-[0.95] sm:text-[36px] md:text-[26px] lg:text-[72px] xl:text-[60px]">
       {{ block.settings.heading }}
     </div>
   {% endif %}
 
   {% if block.settings.body != blank %}
-    <div class="story-tile-cell__body w-full text-[16px] leading-[1.5] sm:text-[18px] md:text-[20px] lg:text-[24px] xl:text-[28px]">
+    <div class="story-tile-cell__body w-full text-[16px] leading-[1.5] sm:text-[18px] md:text-[20px] lg:text-[28px] xl:text-[28px]">
       {{ block.settings.body }}
     </div>
   {% endif %}
@@ -69,23 +69,21 @@
   */
   @media (min-width: 64rem) {
     .story-tile-cell[data-tile-width="1"] .story-tile-cell__heading {
-      font-size: 38px;
-      letter-spacing: -1.14px;
+      font-size: 72px;
     }
 
     .story-tile-cell[data-tile-width="1"] .story-tile-cell__body {
-      font-size: 20px;
+      font-size: 28px;
     }
   }
 
   @media (min-width: 80rem) {
     .story-tile-cell[data-tile-width="1"] .story-tile-cell__heading {
-      font-size: 54px;
-      letter-spacing: -1.62px;
+      font-size: 72px;
     }
 
     .story-tile-cell[data-tile-width="1"] .story-tile-cell__body {
-      font-size: 20px;
+      font-size: 28px;
     }
   }
 
@@ -96,23 +94,21 @@
   */
   @media (min-width: 64rem) {
     .story-tile-cell[data-tile-width="2"] .story-tile-cell__heading {
-      font-size: 40px;
-      letter-spacing: -1.2px;
+      font-size: 72px;
     }
 
     .story-tile-cell[data-tile-width="2"] .story-tile-cell__body {
-      font-size: 18px;
+      font-size: 28px;
     }
   }
 
   @media (min-width: 80rem) {
     .story-tile-cell[data-tile-width="2"] .story-tile-cell__heading {
       font-size: 56px;
-      letter-spacing: -1.68px;
     }
 
     .story-tile-cell[data-tile-width="2"] .story-tile-cell__body {
-      font-size: 20px;
+      font-size: 24px;
     }
   }
 {% endstylesheet %}

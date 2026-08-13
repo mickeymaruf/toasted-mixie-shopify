@@ -11,10 +11,10 @@
 >
   <div class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px] py-10 sm:py-12 md:py-12 lg:py-[80px] xl:py-[100px]">
     <div
-      class="relative flex w-full flex-col items-center gap-10 rounded-[24px] px-6 py-12 sm:px-8 sm:py-14 md:px-12 md:py-16 lg:flex-row lg:items-center lg:gap-[60px] lg:px-[60px] lg:py-[70px]"
+      class="relative flex w-full flex-col items-center gap-10 rounded-[33px] px-6 py-12 sm:px-8 sm:py-14 md:px-12 md:py-16 lg:flex-row lg:items-center lg:gap-[20px] lg:px-[50px] lg:py-[50px]"
       style="background-color: {{ section.settings.background_color }};"
     >
-      <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[24px]" aria-hidden="true">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[33px]" aria-hidden="true">
         {% if section.settings.background_image %}
           {{
             section.settings.background_image
@@ -29,11 +29,11 @@
       </div>
 
       <div
-        class="relative flex w-full flex-col items-start gap-5 text-left lg:w-[40%] lg:max-w-[40%] lg:shrink-0"
+        class="relative flex w-full flex-col items-start gap-5 text-left lg:w-auto lg:max-w-[476px] lg:shrink-0"
         style="color: {{ section.settings.heading_color }};"
       >
         {% if section.settings.heading != blank %}
-          <div class="text-[28px] leading-[0.95] font-bold sm:text-[36px] md:text-[48px] lg:text-[56px] lg:tracking-[-1.68px]">
+          <div class="font-[family-name:var(--font-heading--family)] text-[28px] leading-[0.95] font-bold sm:text-[36px] md:text-[48px] lg:text-[72px]">
             {{ section.settings.heading }}
           </div>
         {% endif %}
@@ -46,7 +46,7 @@
       </div>
 
       {% if section.blocks.size > 0 %}
-        <div class="relative grid grid-cols-2 w-full gap-3 sm:flex sm:flex-wrap sm:gap-[10px] lg:w-[60%] lg:max-w-[60%] lg:shrink-0">
+        <div class="relative grid grid-cols-2 w-full items-stretch gap-3 sm:flex sm:flex-wrap sm:gap-[10px] lg:w-auto lg:flex-1 lg:flex-nowrap">
           {% content_for 'blocks' %}
         </div>
       {% endif %}
