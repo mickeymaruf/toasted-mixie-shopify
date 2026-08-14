@@ -154,14 +154,14 @@
         "button_label": "Get My Trial Pack",
         "button_link": "shopify://products/try-all-3-flavors",
         "button_background_color": "#d4941f",
-        "button_text_color": "#F6F1EC",
+        "button_text_color": "#f6f1ec",
         "feature_1_text": "Free 3-flavor trial pack.",
         "feature_2_text": "Just Pay Shipping",
         "background_color": "#9ab2d5",
         "heading_color": "#212323",
         "product_image": "shopify://shop_images/Frame_2147235887_1.png",
         "product_image_alt": "",
-        "show_badge": true,
+        "show_badge": false,
         "badge_text": "Get 20% Off",
         "badge_background_color": "#f9d5c0",
         "badge_text_color": "#212323"
@@ -221,7 +221,8 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
             "learn_more_label": ""
           },
           "blocks": {}
@@ -239,7 +240,8 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
             "learn_more_label": ""
           },
           "blocks": {}
@@ -257,7 +259,8 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
             "learn_more_label": ""
           },
           "blocks": {}
@@ -275,7 +278,8 @@
             "price_text": "Just Pay Shipping",
             "button_label": "Try Now",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
             "learn_more_label": ""
           },
           "blocks": {}
@@ -357,7 +361,7 @@
                 "card_image": "shopify://shop_images/Group_124.png",
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
-                "button_text_color": "#F6F1EC",
+                "button_text_color": "#f6f1ec",
                 "card_background": "#f9d5c0",
                 "border_color": "#f9d5c0"
               },
@@ -373,7 +377,7 @@
                 "card_image": "shopify://shop_images/Group_124_1.png",
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
-                "button_text_color": "#F6F1EC",
+                "button_text_color": "#f6f1ec",
                 "card_background": "#f9d5c0",
                 "border_color": "#f9d5c0"
               },
@@ -389,7 +393,7 @@
                 "card_image": "shopify://shop_images/Group_126.png",
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
-                "button_text_color": "#F6F1EC",
+                "button_text_color": "#f6f1ec",
                 "card_background": "#f9d5c0",
                 "border_color": "#f9d5c0"
               },
@@ -420,7 +424,7 @@
         "background_image": "shopify://shop_images/f289b62b919ba07994f473b44042a0f53abfc6d5.jpg",
         "background_color": "#551f36",
         "gradient_color": "#551f36",
-        "heading_color": "#F6F1EC"
+        "heading_color": "#f6f1ec"
       }
     },
     "gruns_quality_badges_FMBPx9": {
@@ -479,7 +483,7 @@
         "description": "",
         "background_image": "shopify://shop_images/Frame_2147235971.png",
         "background_color": "#636d90",
-        "heading_color": "#F6F1EC"
+        "heading_color": "#f6f1ec"
       }
     },
     "product_ywnbJP": {
@@ -650,7 +654,10 @@
         "accordion-list": {
           "type": "accordion-list",
           "static": true,
-          "settings": {},
+          "settings": {
+            "background_color": "#636d90",
+            "text_color": "#f6f1ec"
+          },
           "blocks": {}
         },
         "promo-banner": {
@@ -979,6 +986,7 @@
             "reviewer_name": "Peter Medina",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "Bro. That’s my favorite. That is beautiful. Yo, this is money. It would replace your poolside daiquiri, Bellini, or slushie."
           }
         },
@@ -988,6 +996,7 @@
             "reviewer_name": "Nathalie B.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "I am definitely going to buy this."
           }
         },
@@ -997,6 +1006,7 @@
             "reviewer_name": "Danny T.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "Light on the palette. Really refreshing. I could drink this all day."
           }
         },
@@ -1006,6 +1016,7 @@
             "reviewer_name": "Ana T.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "I like ginger. That’s perfect. That’s what you want in the club."
           }
         },
@@ -1015,6 +1026,7 @@
             "reviewer_name": "Jordan S.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "Ouff i like the smell on this one, this is more distinct sort of like a San Pelegrino Blood Orange. Light, sweet, very drinkable compared to the sodas out there."
           }
         }
@@ -1111,7 +1123,7 @@
         "heading": "<p>Drops, Events & Good moments.</p><p><em>@drinktoasted</em></p>",
         "background_color": "#636d90",
         "background_image": "shopify://shop_images/Frame_2147230637.png",
-        "heading_color": "#F6F1EC",
+        "heading_color": "#f6f1ec",
         "social_icon_1_image": "shopify://shop_images/Item_a47a4d47-c447-485d-86d0-1f8d8032ce0e.svg",
         "social_icon_1_link": "https://www.instagram.com/drinktoasted/",
         "social_icon_2_image": "shopify://shop_images/Item_1_59a2d210-5486-433d-a293-d0b56d325b40.svg",
@@ -1138,7 +1150,7 @@
         "image_alt": "",
         "background_color": "#551f36",
         "background_image": "shopify://shop_images/Frame_2147235973.png",
-        "heading_color": "#F6F1EC"
+        "heading_color": "#f6f1ec"
       }
     }
   },

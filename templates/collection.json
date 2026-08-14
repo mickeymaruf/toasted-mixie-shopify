@@ -105,7 +105,7 @@
       ],
       "name": "t:general.product_list",
       "settings": {
-        "heading": "Choose your flavor.",
+        "heading": "",
         "background_color": "#9ab2d5",
         "heading_color": "#212323"
       }

@@ -227,6 +227,14 @@
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
   },
+  "search_modal": {
+    "heading": "Search products",
+    "placeholder": "Search products",
+    "clear": "Clear search",
+    "loading": "Searching…",
+    "products_heading": "Products",
+    "no_results_html": "No products found for “{{ terms }}”"
+  },
   "products": {
     "list": {
       "available_in": "Available in:",

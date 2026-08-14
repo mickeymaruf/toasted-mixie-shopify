@@ -18,7 +18,7 @@
   <div class="relative z-10 mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 pt-[40px] pb-[60px] sm:py-[60px] lg:gap-[60px] lg:py-[100px] xl:pb-[100px] lg:px-[120px]">
     {% if section.settings.heading != blank %}
       <div
-        class="section-heading font-[family-name:var(--font-heading--family)] order-1 max-w-[916px] text-center text-[color:var(--gruns-gallery-heading-color)] px-5 sm:order-none md:whitespace-nowrap"
+        class="section-heading font-[family-name:var(--font-heading--family)] order-1 max-w-none text-center text-[color:var(--gruns-gallery-heading-color)] px-5 sm:order-none md:whitespace-nowrap"
         style="--gruns-gallery-heading-color: {{ section.settings.heading_color }};"
       >
         {{ section.settings.heading }}
@@ -155,6 +155,7 @@
   .gruns-gallery__track {
     box-sizing: border-box;
   }
+
 {% endstylesheet %}
 
 {% schema %}
@@ -171,6 +172,12 @@
       "id": "heading",
       "label": "t:labels.heading",
       "default": "<p>Drops, Events &amp; Good moments.</p><p><em>@drinktoasted</em></p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_slide_border",
+      "label": "t:labels.enable_slide_border",
+      "default": false
     },
     {
       "type": "header",
