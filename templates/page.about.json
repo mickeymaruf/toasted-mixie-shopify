@@ -306,17 +306,46 @@
     "gruns_gallery_qWdnnE": {
       "type": "gruns-gallery",
       "blocks": {
-        "gallery_image_9aCpHL": {
+        "gallery_image_yYxGJL": {
           "type": "gallery-image",
           "settings": {
+            "image": "shopify://shop_images/picz_ccaa7bbd-b888-4306-9897-76f8e6823d84.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
           "blocks": {}
         },
-        "gallery_image_yYxGJL": {
+        "gallery_image_xrMCPD": {
           "type": "gallery-image",
           "settings": {
+            "image": "shopify://shop_images/picz_1_fcdac52d-0d94-4c5d-b361-3b702a185a63.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_9aCpHL": {
+          "type": "gallery-image",
+          "settings": {
+            "image": "shopify://shop_images/picz_2_301e458f-3288-44ad-81ff-c2f487eb0f33.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_m6i7fe": {
+          "type": "gallery-image",
+          "settings": {
+            "image": "shopify://shop_images/picz_3_90ab0e91-a9f9-4fb6-a6d4-71f4a064b71d.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_4B4i3R": {
+          "type": "gallery-image",
+          "settings": {
+            "image": "shopify://shop_images/picz_4_358a7c71-57e2-44d1-be75-cf62b7a02235.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -324,12 +353,16 @@
         }
       },
       "block_order": [
+        "gallery_image_yYxGJL",
+        "gallery_image_xrMCPD",
         "gallery_image_9aCpHL",
-        "gallery_image_yYxGJL"
+        "gallery_image_m6i7fe",
+        "gallery_image_4B4i3R"
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>People have tried it. You’re up next.</p>",
+        "enable_slide_border": true,
         "background_color": "#636d90",
         "heading_color": "#f6f1ec",
         "social_icon_1_link": "",

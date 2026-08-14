@@ -608,6 +608,10 @@
         drawer.style.pointerEvents = 'none';
       }
       activeMenu.classList.remove('active');
+      // Rotate arrow back to closed position
+      const activeTrigger = activeMenu.querySelector('.navbar__mega-menu-trigger');
+      const activeArrow = activeTrigger ? activeTrigger.querySelector('svg') : null;
+      if (activeArrow) activeArrow.style.transform = 'rotate(0deg)';
       console.log('Menu closed (clicked outside)');
     }
   }, false);

@@ -9,80 +9,12 @@
  */
 {
   "sections": {
-    "hero_banner_AFPte7": {
-      "type": "hero-banner",
-      "name": "t:general.hero_banner",
-      "settings": {
-        "heading": "Choose your Flavor.",
-        "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
-        "heading_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/wholesale-banner.png",
-        "background_color": "#e5e5e5"
-      }
-    },
-    "gruns_hero_LTibNz": {
-      "type": "gruns-hero",
-      "name": "t:general.gruns_hero",
-      "settings": {
-        "heading": "<p>Better options. Better moments. Better margins.</p>",
-        "description": "<p>Toasted gives guests a light, premium option they</p><p>can order, enjoy, and remember.</p>",
-        "show_button": false,
-        "button_label": "Get My Trial Pack",
-        "button_link": "",
-        "button_background_color": "#212323",
-        "button_text_color": "#f6f1ec",
-        "feature_1_text": "Free 3-flavor trial pack.",
-        "feature_2_text": "Just Pay Shipping",
-        "background_color": "#f6f1ec",
-        "heading_color": "#212323",
-        "product_image": "shopify://shop_images/Render_Mockup_4000_3000_2026-06-30_1.png",
-        "product_image_alt": ""
-      }
-    },
     "main": {
       "type": "page",
       "settings": {}
-    },
-    "promo_cards_7Gxqne": {
-      "type": "promo-cards",
-      "blocks": {
-        "promo_card_f6rznR": {
-          "type": "promo-card",
-          "settings": {
-            "image": "shopify://shop_images/partner-1.png",
-            "alt_text": "",
-            "title": "Partner with us",
-            "description": "Ready to serve | No prep | Premium option | COA available | Adults 21+ only",
-            "text_color": "#f6f1ec"
-          },
-          "blocks": {}
-        },
-        "promo_card_6rVbCP": {
-          "type": "promo-card",
-          "settings": {
-            "image": "shopify://shop_images/partner-2.png",
-            "alt_text": "",
-            "title": "Partner with us",
-            "description": "Ready to serve | No prep | Premium option | COA available | Adults 21+ only",
-            "text_color": "#f6f1ec"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "promo_card_f6rznR",
-        "promo_card_6rVbCP"
-      ],
-      "name": "t:general.promo_cards",
-      "settings": {
-        "background_color": "#f6f1ec"
-      }
     }
   },
   "order": [
-    "hero_banner_AFPte7",
-    "gruns_hero_LTibNz",
-    "main",
-    "promo_cards_7Gxqne"
+    "main"
   ]
 }
