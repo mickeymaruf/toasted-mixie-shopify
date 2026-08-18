@@ -48,17 +48,34 @@
   endif
 %}
 
-<div class="flex w-full flex-col items-center gap-3 sm:gap-[17px]" data-bundle-card {{ block.shopify_attributes }}>
+<div
+  class="group flex w-full flex-col items-center gap-3 sm:gap-[17px]"
+  style="overflow: visible;"
+  data-bundle-card
+  {{ block.shopify_attributes }}
+>
   <div
-    class="relative flex w-full aspect-[202/256] items-center justify-center overflow-visible rounded-[24px] sm:rounded-[33px]"
-    {% comment %} style="background-color: {{ block.settings.card_background_color }};" {% endcomment %}
+    class="relative flex w-full aspect-[202/256] items-end justify-center overflow-visible rounded-[24px] sm:rounded-[33px]"
+    style="background-color: {{ block.settings.card_background_color }};"
   >
+    {% if block.settings.background_image %}
+      {{
+        block.settings.background_image
+        | image_url: width: 600
+        | image_tag:
+          class: 'absolute inset-0 size-full rounded-[24px] object-cover sm:rounded-[33px]',
+          widths: '300, 450, 600',
+          loading: 'lazy',
+          alt: ''
+      }}
+    {% endif %}
+
     {% if card_image %}
       {{
         card_image
         | image_url: width: 600
         | image_tag:
-          class: 'object-contain overflow-visible',
+          class: 'relative z-10 w-[115%] max-w-none object-contain overflow-visible transition-transform duration-400 ease-out group-hover:-translate-y-2',
           widths: '300, 450, 600',
           alt: card_image.alt | default: flavor_name
       }}
@@ -68,7 +85,7 @@
         width="300"
         height="380"
         loading="lazy"
-        class="object-contain overflow-visible"
+        class="relative z-10 w-[115%] max-w-none object-contain overflow-visible transition-transform duration-400 ease-out group-hover:-translate-y-2"
         alt="{{ flavor_name | escape }}"
       >
     {% endif %}
@@ -188,9 +205,15 @@
     },
     {
       "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background_image",
+      "info": "t:labels.background_image_info"
+    },
+    {
+      "type": "image_picker",
       "id": "image",
-      "label": "t:labels.image",
-      "info": "t:labels.image_info"
+      "label": "t:labels.can_image",
+      "info": "t:labels.can_image_info"
     },
     {
       "type": "select",

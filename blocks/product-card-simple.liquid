@@ -1,42 +1,78 @@
 {% doc %}
-  Renders a simple product card with a single product image, title,
-  description and an "Add to Cart" button linking to the selected
-  product's page. Unlike product-card, this has no background color or
-  floating can layering — just one flat product image. Intended to be
-  nested inside the Gruns Product List Simple section.
+  Renders a simple product card with a layered image (background color +
+  optional merchant-uploaded background pattern, a centered fruit image, and
+  two decorative stickers), title, description and an "Add to Cart" button
+  linking to the selected product's page. Layer positions are ported 1:1 from
+  the Figma "Frame 2147236068" node (fileKey mPnZFgOy032whTzJGzGdND).
+  Intended to be nested inside the Gruns Product List Simple section.
 
   @example
   {% content_for 'block', id: block.id, type: 'product-card-simple' %}
 {% enddoc %}
 
 <div
-  class="mx-auto flex w-full max-w-full flex-col items-center gap-4 sm:max-w-[380px] sm:gap-[30px]"
+  class="group mx-auto flex w-full max-w-full flex-col items-center gap-4 sm:max-w-[380px] sm:gap-[30px]"
   {{ block.shopify_attributes }}
 >
   <div
-    class="relative w-full overflow-hidden rounded-[16px] bg-[#F0F0F0] sm:rounded-[33px]"
-    style="aspect-ratio: 380 / 445;"
+    class="product-card-simple__media relative w-full overflow-hidden rounded-[16px] sm:rounded-[33px]"
+    style="aspect-ratio: 380 / 445; background-color: {{ block.settings.background_color }};"
   >
+    {% if block.settings.background_image %}
+      {{
+        block.settings.background_image
+        | image_url: width: 1200
+        | image_tag:
+          class: 'product-card-simple__background pointer-events-none absolute inset-0 size-full object-cover',
+          loading: 'lazy',
+          widths: '600, 900, 1200',
+          alt: ''
+      }}
+    {% endif %}
+
     {% if block.settings.image %}
       {{
         block.settings.image
         | image_url: width: 800
         | image_tag:
-          class: 'absolute inset-0 size-full object-cover',
+          class: 'product-card-simple__fruit absolute h-auto -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 ease group-hover:scale-[1.05]',
           loading: 'lazy',
           widths: '400, 600, 800',
-          alt: block.settings.alt_text
-        | default: block.settings.image.alt
+          alt: block.settings.alt_text | default: block.settings.image.alt
       }}
     {% elsif block.settings.product.featured_image %}
       {{
         block.settings.product.featured_image
         | image_url: width: 800
         | image_tag:
-          class: 'absolute inset-0 size-full object-cover',
+          class: 'product-card-simple__fruit absolute h-auto -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 ease group-hover:scale-[1.05]',
           loading: 'lazy',
           widths: '400, 600, 800',
           alt: block.settings.product.featured_image.alt
+      }}
+    {% endif %}
+
+    {% if block.settings.badge_sticker %}
+      {{
+        block.settings.badge_sticker
+        | image_url: width: 400
+        | image_tag:
+          class: 'product-card-simple__badge pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.05]',
+          loading: 'lazy',
+          widths: '200, 300, 400',
+          alt: ''
+      }}
+    {% endif %}
+
+    {% if block.settings.flavor_sticker %}
+      {{
+        block.settings.flavor_sticker
+        | image_url: width: 500
+        | image_tag:
+          class: 'product-card-simple__flavor pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.05]',
+          loading: 'lazy',
+          widths: '300, 400, 500',
+          alt: ''
       }}
     {% endif %}
   </div>
@@ -70,6 +106,36 @@
   .product-card-simple__title {
     font-family: var(--font-heading--family);
   }
+
+  /* Layer positions below are ported 1:1 from the Figma "Frame 2147236068"
+     node (fileKey mPnZFgOy032whTzJGzGdND). No fixed widths/heights are set —
+     each image keeps its natural aspect ratio at the given width. */
+
+  .product-card-simple__fruit {
+    left: calc(50% + 0.25px);
+    top: calc(50% - 0.25px);
+    width: 63.29%;
+  }
+
+  .product-card-simple__badge {
+    top: 20.89%;
+    left: 62.11%;
+    width: 28.12%;
+  }
+
+  .product-card-simple__flavor {
+    top: 62.6%;
+    left: 8.01%;
+    width: 38.63%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-card-simple__fruit,
+    .product-card-simple__badge,
+    .product-card-simple__flavor {
+      transition: none;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -95,6 +161,35 @@
       "type": "text",
       "id": "alt_text",
       "label": "t:labels.alt_text"
+    },
+    {
+      "type": "header",
+      "content": "t:general.background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background_color",
+      "default": "#F0F0F0"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:labels.background_image"
+    },
+    {
+      "type": "header",
+      "content": "t:general.sticker"
+    },
+    {
+      "type": "image_picker",
+      "id": "flavor_sticker",
+      "label": "t:labels.sticker_image"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_sticker",
+      "label": "t:labels.badge_image"
     },
     {
       "type": "header",

@@ -1,8 +1,9 @@
 {% doc %}
   Renders "Functional by Design" — a centered heading and description above a
-  center product image flanked by two columns of icon + title feature
-  blocks. The left/right column layout is kept at all breakpoints, scaling
-  down in size on smaller screens.
+  center cluster of four animated fruit images (lime, blackberry, grapefruit,
+  ginger) flanked by two columns of icon + title feature blocks. The
+  left/right column layout is kept at all breakpoints, scaling down in size
+  on smaller screens.
 {% enddoc %}
 
 <section class="ingredient-highlights relative w-full overflow-hidden bg-[#F6F1EC]">
@@ -51,29 +52,17 @@
       </div>
     {% endif %}
 
-    <div class="flex w-full max-w-[600px] flex-row items-center justify-center gap-2 sm:max-w-[700px] sm:gap-6 lg:w-auto lg:max-w-none lg:gap-[70px]">
+    <div class="flex w-full max-w-[600px] flex-row items-center justify-center gap-2 sm:max-w-[700px] sm:gap-6 lg:w-auto lg:max-w-none lg:gap-[70px] xl:gap-[90px]">
       <div>
         {% content_for 'block', type: 'feature-column', id: 'feature-column-left' %}
       </div>
 
       <div class="flex justify-center">
-        <div class="relative w-[165px] sm:w-[240px] lg:w-[300px] flex items-center">
-          {% liquid
-            assign center_image = product.metafields.custom.ingredient_highlight_image.value | default: section.settings.center_image
-            assign center_image_alt = section.settings.center_image_alt | default: center_image.alt
-          %}
-          {% if center_image %}
-            {{
-              center_image
-              | image_url: width: 1400
-              | image_tag:
-                class: 'relative size-full object-contain',
-                widths: '165, 240, 380, 480, 680, 960, 1400',
-                sizes: '(min-width: 64rem) 340px, (min-width: 40rem) 240px, 165px',
-                loading: 'eager',
-                alt: center_image_alt
-            }}
-          {% endif %}
+        <div class="relative aspect-[448/543] w-[165px] sm:w-[240px] lg:w-[380px] xl:w-[448px]">
+          {% render 'ingredient-fruit-image', name: 'lime' %}
+          {% render 'ingredient-fruit-image', name: 'blackberry' %}
+          {% render 'ingredient-fruit-image', name: 'grapefruit' %}
+          {% render 'ingredient-fruit-image', name: 'ginger' %}
         </div>
       </div>
 
@@ -107,17 +96,6 @@
     {
       "type": "header",
       "content": "t:general.image"
-    },
-    {
-      "type": "image_picker",
-      "id": "center_image",
-      "label": "t:labels.center_product_image",
-      "info": "t:labels.center_product_image_info"
-    },
-    {
-      "type": "text",
-      "id": "center_image_alt",
-      "label": "t:labels.alt_text"
     },
     {
       "type": "image_picker",

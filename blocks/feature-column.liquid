@@ -2,15 +2,42 @@
   Groups feature-highlight blocks into a vertical column. Rendered as one of
   two fixed regions (left/right) flanking the center product image in the
   Ingredient Highlights section; add, remove, and reorder the nested
-  feature-highlight blocks to control which features are shown.
+  feature-highlight blocks to control which features are shown. On extra
+  large screens, the first and last items shift toward the center image so
+  the column arcs around it; the direction mirrors based on whether `block.id`
+  is the left or right static instance.
 
   @example
   {% content_for 'block', id: block.id, type: 'feature-column' %}
 {% enddoc %}
 
-<div class="flex w-[76px] shrink-0 flex-col items-center gap-[14px] sm:w-[110px] sm:gap-[20px] lg:w-[160px] lg:gap-[30px]" {{ block.shopify_attributes }}>
+{% liquid
+  assign column_side = 'left'
+  if block.id contains 'right'
+    assign column_side = 'right'
+  endif
+%}
+
+<div
+  class="feature-column feature-column--{{ column_side }} flex w-[76px] shrink-0 flex-col items-center gap-[14px] sm:w-[110px] sm:gap-[20px] lg:w-[160px] lg:gap-[30px]"
+  {{ block.shopify_attributes }}
+>
   {% content_for 'blocks' %}
 </div>
+
+{% stylesheet %}
+  @media (min-width: 80rem) {
+    .feature-column--left > :first-child,
+    .feature-column--left > :last-child {
+      transform: translateX(60px);
+    }
+
+    .feature-column--right > :first-child,
+    .feature-column--right > :last-child {
+      transform: translateX(-60px);
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

@@ -1,0 +1,166 @@
+{% doc %}
+  Renders one animated product can image inside the Gruns Hero right-side
+  visual cluster. Position, size, and the floating loop animation are all
+  driven by the `gruns-hero-can--{modifier}` class below, reproducing the
+  exact per-layer placement and motion from the Figma "Frame 2147235887" node
+  (fileKey mPnZFgOy032whTzJGzGdND). Uploaded images are expected to already
+  be rotated to match the design, so no CSS rotation is applied. DOM order
+  across the three renders controls stacking (back to front), so keep the
+  render order in sections/gruns-hero.liquid unchanged.
+
+  @param {image} image - The can image to render
+  @param {string} [alt] - Alt text for the image
+  @param {string} modifier - Position identifier; must be one of 'back-right', 'back-left', 'front-center'
+
+  @example
+  {% render 'gruns-hero-can-image', image: section.settings.can_image_1, alt: section.settings.can_image_1_alt, modifier: 'back-right' %}
+{% enddoc %}
+
+{% if image %}
+  <div class="gruns-hero-can gruns-hero-can--{{ modifier }}">
+    <div class="gruns-hero-can__frame">
+      {{
+        image
+        | image_url: width: 800
+        | image_tag:
+          class: 'gruns-hero-can__image',
+          widths: '300, 450, 600, 800',
+          sizes: '(min-width: 64rem) 30rem, 60vw',
+          loading: 'lazy',
+          alt: alt | default: image.alt
+      }}
+    </div>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .gruns-hero-can {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .gruns-hero-can__frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .gruns-hero-can__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  /* Positions, size and motion below are ported 1:1 from the Figma
+     "Frame 2147235887" node (fileKey mPnZFgOy032whTzJGzGdND). Rotation is
+     omitted since uploaded images are expected to already be rotated. */
+
+  .gruns-hero-can--back-right {
+    left: 58.685%;
+    top: 15.468%;
+    width: 44.334%;
+    height: 91.633%;
+    animation: gruns-hero-can-float-back-right 5s linear infinite;
+  }
+
+  .gruns-hero-can--back-left {
+    left: -0.039%;
+    top: -0.087%;
+    width: 40.536%;
+    height: 86.102%;
+    animation: gruns-hero-can-float-back-left 5s linear infinite;
+  }
+
+  .gruns-hero-can--front-center {
+    left: 20.164%;
+    top: -9.436%;
+    width: 58.396%;
+    height: 119.259%;
+    animation: gruns-hero-can-float-front-center 5s linear infinite;
+  }
+
+  @keyframes gruns-hero-can-float-back-right {
+    0% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px -4px;
+    }
+    16% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px -8px;
+    }
+    40% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px 0px;
+    }
+    68% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px -8px;
+    }
+    92% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px 0px;
+    }
+    100% {
+      translate: 0px -4px;
+    }
+  }
+
+  @keyframes gruns-hero-can-float-back-left {
+    0% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px 0px;
+    }
+    24% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px -7px;
+    }
+    50% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px 0px;
+    }
+    76% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px -7px;
+    }
+    100% {
+      translate: 0px 0px;
+    }
+  }
+
+  @keyframes gruns-hero-can-float-front-center {
+    0% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px 0px;
+    }
+    32% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px -10px;
+    }
+    64% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px 0px;
+    }
+    88% {
+      animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+      translate: 0px -6px;
+    }
+    100% {
+      translate: 0px 0px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gruns-hero-can--back-right,
+    .gruns-hero-can--back-left,
+    .gruns-hero-can--front-center {
+      animation: none;
+    }
+  }
+{% endstylesheet %}

@@ -1,5 +1,5 @@
 <section
-  class="gruns-hero full-width relative z-10"
+  class="gruns-hero full-width relative z-10 pt-[50px]"
   style="background-color: {{ section.settings.background_color }};"
 >
   <div
@@ -62,18 +62,48 @@
       </div>
     </div>
 
-    {% if section.settings.product_image %}
+    {% if section.settings.can_image_1 or section.settings.can_image_2 or section.settings.can_image_3 %}
       <div class="order-1 w-full mx-auto shrink-0 sm:max-w-[533px] lg:order-none lg:col-start-2 lg:max-w-none lg:self-stretch">
-        {{
-          section.settings.product_image
-          | image_url: width: 1200
-          | image_tag:
-            class: 'lg:max-w-none lg:w-[110%] 2xl:w-[100%] size-full object-contain',
-            widths: '400, 600, 900, 1200',
-            sizes: '(min-width: 64rem) 40rem, 90vw',
-            alt: section.settings.product_image_alt
-          | default: section.settings.product_image.alt
-        }}
+        <div class="relative mx-auto w-full" style="aspect-ratio: 624 / 477;">
+          <div
+            class="absolute overflow-hidden rounded-[24px] sm:rounded-[36px]"
+            style="
+              left: 3.49%;
+              top: 7.55%;
+              width: 91.87%;
+              height: 84.9%;
+              background-color: {{ section.settings.cans_background_color }};
+            "
+          >
+            {% if section.settings.cans_background_image %}
+              {{
+                section.settings.cans_background_image
+                | image_url: width: 1200
+                | image_tag:
+                  class: 'absolute inset-0 size-full max-w-none object-cover object-bottom',
+                  widths: '600, 900, 1200',
+                  loading: 'lazy',
+                  alt: ''
+              }}
+            {% endif %}
+          </div>
+
+          {% render 'gruns-hero-can-image',
+            image: section.settings.can_image_1,
+            alt: section.settings.can_image_1_alt,
+            modifier: 'back-right'
+          %}
+          {% render 'gruns-hero-can-image',
+            image: section.settings.can_image_2,
+            alt: section.settings.can_image_2_alt,
+            modifier: 'back-left'
+          %}
+          {% render 'gruns-hero-can-image',
+            image: section.settings.can_image_3,
+            alt: section.settings.can_image_3_alt,
+            modifier: 'front-center'
+          %}
+        </div>
 
         {% if section.settings.show_badge and section.settings.badge_text != blank %}
           <div
@@ -194,13 +224,45 @@
       "content": "t:general.image"
     },
     {
+      "type": "color",
+      "id": "cans_background_color",
+      "label": "t:labels.background_color",
+      "default": "#F9D5C0"
+    },
+    {
       "type": "image_picker",
-      "id": "product_image",
-      "label": "t:labels.image"
+      "id": "cans_background_image",
+      "label": "t:labels.background_image",
+      "info": "t:labels.background_image_info"
+    },
+    {
+      "type": "image_picker",
+      "id": "can_image_1",
+      "label": "t:labels.can_image_1"
     },
     {
       "type": "text",
-      "id": "product_image_alt",
+      "id": "can_image_1_alt",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "image_picker",
+      "id": "can_image_2",
+      "label": "t:labels.can_image_2"
+    },
+    {
+      "type": "text",
+      "id": "can_image_2_alt",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "image_picker",
+      "id": "can_image_3",
+      "label": "t:labels.can_image_3"
+    },
+    {
+      "type": "text",
+      "id": "can_image_3_alt",
       "label": "t:labels.alt_text"
     },
     {

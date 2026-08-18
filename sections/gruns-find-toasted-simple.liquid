@@ -11,7 +11,7 @@
 >
   <div class="mx-auto flex w-full max-w-[1200px] flex-col px-5 p-14 pb-[120px] sm:pb-[156px] sm:px-8 md:px-12 md:pb-14 lg:px-[80px] lg:pb-[150px] xl:px-0">
     <div
-      class="relative flex flex-col-reverse items-center gap-5 md:gap-8 overflow-visible md:overflow-hidden rounded-[40px] px-6 py-10 text-center sm:px-10 sm:py-14 lg:flex-row lg:items-center lg:overflow-visible lg:px-[60px] lg:py-16 lg:text-left"
+      class="relative flex flex-col-reverse items-center gap-5 md:gap-8 overflow-visible md:overflow-hidden rounded-[40px] px-6 py-10 text-center sm:px-10 sm:py-14 lg:flex-row lg:items-center lg:overflow-visible lg:px-[80px] lg:py-[88px] lg:text-left"
       style="background-color: {{ section.settings.panel_background_color }}; position: relative;"
     >
       {% if section.settings.panel_background_image %}
@@ -39,14 +39,14 @@
         </div>
       {% endif %}
 
-      <div class="relative z-30 pointer-events-none w-full h-auto md:w-full md:h-auto -mb-[115px] md:mb-0 lg:absolute lg:top-1/2 lg:right-10 lg:w-[530px] lg:h-auto" style="max-width: none;" id="billboard-container">
-        <div class="relative">
+      <div class="group relative z-30 pointer-events-none flex w-full h-auto justify-end md:w-full md:h-auto -mb-[115px] md:mb-0 lg:absolute lg:top-1/2 lg:right-12 lg:w-[480px] lg:h-auto" style="max-width: none; overflow: visible;" id="billboard-container">
+        <div class="relative pointer-events-auto">
           {% if section.settings.billboard_image %}
             {{
               section.settings.billboard_image
               | image_url: width: 1440
               | image_tag:
-                class: 'size-full object-contain',
+                class: 'size-full object-contain transition-transform duration-500 ease group-hover:scale-[1.02]',
                 widths: '400, 700, 1000, 1440',
                 sizes: '(min-width: 64rem) 530px, 100vw',
                 alt: section.settings.billboard_image_alt
@@ -56,11 +56,35 @@
             <img
               src="{{ 'find-toasted-billboard.png' | asset_url }}"
               alt="{{ section.settings.billboard_image_alt }}"
-              class="size-full object-contain"
+              class="size-full object-contain transition-transform duration-500 ease group-hover:scale-[1.02]"
               loading="lazy"
               width="719"
               height="430"
             >
+          {% endif %}
+
+          {% if section.settings.billboard_sticker %}
+            {{
+              section.settings.billboard_sticker
+              | image_url: width: 400
+              | image_tag:
+                class: 'find-toasted-billboard__sticker pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.02]',
+                loading: 'lazy',
+                widths: '200, 300, 400',
+                alt: ''
+            }}
+          {% endif %}
+
+          {% if section.settings.billboard_badge %}
+            {{
+              section.settings.billboard_badge
+              | image_url: width: 300
+              | image_tag:
+                class: 'find-toasted-billboard__badge pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.02]',
+                loading: 'lazy',
+                widths: '150, 220, 300',
+                alt: ''
+            }}
           {% endif %}
         </div>
       </div>
@@ -106,6 +130,29 @@
   @media (min-width: 1024px) {
     #billboard-container {
       transform: translateY(-50%);
+    }
+  }
+
+  /* Sticker/badge positions are ported 1:1 from the Figma "Frame 2147236090"
+     node (fileKey mPnZFgOy032whTzJGzGdND), relative to the billboard image's
+     own box. No fixed widths/heights are set — each image keeps its natural
+     aspect ratio at the given width. */
+
+  .find-toasted-billboard__sticker {
+    left: -4.6%;
+    top: 25.16%;
+    width: 29.72%;
+  }
+
+  .find-toasted-billboard__badge {
+    left: 79.83%;
+    top: 64.5%;
+    width: 23.97%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #billboard-container img {
+      transition: none;
     }
   }
 {% endstylesheet %}
@@ -207,6 +254,20 @@
       "type": "text",
       "id": "billboard_image_alt",
       "label": "t:labels.alt_text"
+    },
+    {
+      "type": "header",
+      "content": "t:general.sticker"
+    },
+    {
+      "type": "image_picker",
+      "id": "billboard_sticker",
+      "label": "t:labels.sticker_image"
+    },
+    {
+      "type": "image_picker",
+      "id": "billboard_badge",
+      "label": "t:labels.badge_image"
     }
   ],
   "presets": [
