@@ -23,32 +23,10 @@
             "icon": "shopify://shop_images/Item.svg"
           },
           "blocks": {}
-        },
-        "social_icon_NyQE8L": {
-          "type": "social-icon",
-          "name": "t:general.social_icon",
-          "settings": {
-            "label": "Social link",
-            "link": "",
-            "icon": "shopify://shop_images/Item_1.svg"
-          },
-          "blocks": {}
-        },
-        "social_icon_YhLFmG": {
-          "type": "social-icon",
-          "name": "t:general.social_icon",
-          "settings": {
-            "label": "Social link",
-            "link": "",
-            "icon": "shopify://shop_images/Item_2.svg"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "social_icon_BEEGVQ",
-        "social_icon_NyQE8L",
-        "social_icon_YhLFmG"
+        "social_icon_BEEGVQ"
       ],
       "settings": {
         "heading": "Be first to know.",

@@ -1121,15 +1121,14 @@
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>Drops, Events & Good moments.</p><p><em>@drinktoasted</em></p>",
+        "enable_slide_border": false,
         "background_color": "#636d90",
         "background_image": "shopify://shop_images/Frame_2147230637.png",
         "heading_color": "#f6f1ec",
         "social_icon_1_image": "shopify://shop_images/Item_a47a4d47-c447-485d-86d0-1f8d8032ce0e.svg",
         "social_icon_1_link": "https://www.instagram.com/drinktoasted/",
-        "social_icon_2_image": "shopify://shop_images/Item_1_59a2d210-5486-433d-a293-d0b56d325b40.svg",
-        "social_icon_2_link": "#",
-        "social_icon_3_image": "shopify://shop_images/Item_2_d764d3b2-6783-4759-9f62-e9d29820dbd3.svg",
-        "social_icon_3_link": "#"
+        "social_icon_2_link": "",
+        "social_icon_3_link": ""
       }
     },
     "gruns_social_proof_7yRYNQ": {
