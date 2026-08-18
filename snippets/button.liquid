@@ -48,3 +48,10 @@
     <span class="button__icon inline-flex shrink-0">{{ icon | inline_asset_content }}</span>
   {% endif %}
 </{{ tag }}>
+
+{% stylesheet %}
+  .button__icon svg {
+    width: 1em;
+    height: 1em;
+  }
+{% endstylesheet %}

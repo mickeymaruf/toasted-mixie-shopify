@@ -75,65 +75,43 @@
     },
     "header": {
       "type": "header",
-      "blocks": {
-        "mega_menu_product_BhbVq7": {
-          "type": "mega-menu-product",
-          "settings": {
-            "product": "blood-orange",
-            "rating": 5,
-            "review_count": "Launching Soon",
-            "card_background_color": "#f6f1ec",
-            "star_color": "#d4941f"
-          }
-        },
-        "mega_menu_product_UEH99n": {
-          "type": "mega-menu-product",
-          "settings": {
-            "product": "berry-acai",
-            "rating": 5,
-            "review_count": "Launching Soon",
-            "card_background_color": "#f6f1ec",
-            "star_color": "#d4941f"
-          }
-        },
-        "mega_menu_product_XqzCjY": {
-          "type": "mega-menu-product",
-          "settings": {
-            "product": "ginger-lime",
-            "rating": 5,
-            "review_count": "Launching Soon",
-            "card_background_color": "#f6f1ec",
-            "star_color": "#d4941f"
-          }
-        },
-        "mega_menu_product_gCj6QM": {
-          "type": "mega-menu-product",
-          "settings": {
-            "product": "try-all-3-flavors",
-            "rating": 5,
-            "review_count": "Launching Soon",
-            "card_background_color": "#f6f1ec",
-            "star_color": "#d4941f"
-          }
-        }
-      },
-      "block_order": [
-        "mega_menu_product_BhbVq7",
-        "mega_menu_product_UEH99n",
-        "mega_menu_product_XqzCjY",
-        "mega_menu_product_gCj6QM"
-      ],
       "settings": {
         "logo": "shopify://shop_images/toaster-logo.svg",
-        "menu": "shop",
         "search_button_text": "Find Toasted",
         "show_search_button": true,
-        "mega_menu_link_title": "Shop",
         "mega_menu_button_text": "Shop Drinks",
         "mega_menu_button_link": "/collections/shop-all",
         "mega_menu_button_background": "#212323",
         "mega_menu_button_text_color": "#f6f1ec",
         "mega_menu_background_color": "#c2cbd4",
+        "dropdown_heading_color": "#551f36",
+        "mega_menu_card_background_color": "#f6f1ec",
+        "card_1_product": "blood-orange",
+        "card_1_name": "Blood Orange",
+        "card_1_image": "shopify://shop_images/BLOOD_V1_3.png",
+        "card_1_link": "",
+        "card_2_product": "berry-acai",
+        "card_2_name": "Berry Acai",
+        "card_2_image": "shopify://shop_images/ACAI_V1_3.png",
+        "card_2_link": "",
+        "card_3_product": "ginger-lime",
+        "card_3_name": "Ginger Lime",
+        "card_3_image": "shopify://shop_images/LIME_1_3.png",
+        "card_3_link": "",
+        "card_4_product": "try-all-3-flavors",
+        "card_4_name": "Try All 3 Flavors",
+        "card_4_image": "shopify://shop_images/Render_Mockup_4000_3000_2026-07-31_1.png",
+        "card_4_link": "",
+        "dropdown_menu_one_title": "Get Toasted",
+        "dropdown_menu_one": "menu-get-toasted",
+        "dropdown_menu_two_title": "The Toasted Side",
+        "dropdown_menu_two": "menu-the-toasted-side",
+        "instagram_icon": "shopify://shop_images/Item_3_af037243-0fb6-4424-b854-73c547bbbc94.svg",
+        "instagram_link": "shopify://blogs/news",
+        "youtube_icon": "shopify://shop_images/Item_4_ed20595c-bd3e-49ec-abcf-eb427d43707b.svg",
+        "youtube_link": "",
+        "tiktok_icon": "shopify://shop_images/Item_5_15658bc9-3b0e-47ec-b86d-7d1b26ff342c.svg",
+        "tiktok_link": "",
         "default_background_color": "#9ab2d5",
         "navbar_actions_background": "#c2cbd480",
         "alternate_pages": "/coa /privacy-policy /contact-us /wholesale /products",

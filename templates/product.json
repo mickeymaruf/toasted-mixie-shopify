@@ -177,7 +177,10 @@
         "accordion-list": {
           "type": "accordion-list",
           "static": true,
-          "settings": {},
+          "settings": {
+            "background_color": "#636d90",
+            "text_color": "#f6f1ec"
+          },
           "blocks": {}
         },
         "promo-banner": {
@@ -291,15 +294,15 @@
       "name": "t:general.faq_pills_grid",
       "settings": {
         "heading": "Good Questions",
+        "show_button": true,
+        "button_label": "Shop Now",
+        "button_link": "",
         "section_background": "#f6f1ec",
-        "card_background": "#9ab2d5",
         "heading_color": "#212323",
-        "border_color": "#212323",
+        "button_background_color": "#212323",
+        "button_text_color": "#f6f1ec",
         "faq_item_background": "#636d90",
         "faq_item_text_color": "#f6f1ec",
-        "columns_mobile": "1",
-        "columns_tablet": "2",
-        "columns_desktop": "3",
         "padding_top": 100,
         "padding_bottom": 100,
         "padding_top_mobile": 48,
@@ -404,7 +407,7 @@
       "settings": {
         "heading": "Functional by Design.",
         "description": "Made with real fruit, 200mg L-theanine, 50mg Rhodiola, and 0.4mg hemp-derived THC.",
-        "center_image": "shopify://shop_images/1_1.png",
+        "center_image": "shopify://shop_images/Frame_2147236104asdfasdfasdf.svg",
         "center_image_alt": "",
         "background_image": "shopify://shop_images/ingredient-highlights-background.png"
       }
@@ -464,7 +467,9 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         },
@@ -481,7 +486,9 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         },
@@ -498,7 +505,9 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         },
@@ -515,7 +524,9 @@
             "price_text": "Just Pay Shipping",
             "button_label": "Try Now",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         }
@@ -572,6 +583,7 @@
             "reviewer_name": "Peter Medina",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "Bro. That’s my favorite. That is beautiful. Yo, this is money. It would replace your poolside daiquiri, Bellini, or slushie."
           }
         },
@@ -581,6 +593,7 @@
             "reviewer_name": "Nathalie B.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "I am definitely going to buy this."
           }
         },
@@ -590,6 +603,7 @@
             "reviewer_name": "Danny T.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "Light on the palette. Really refreshing. I could drink this all day."
           }
         },
@@ -599,6 +613,7 @@
             "reviewer_name": "Ana T.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "I like ginger. That’s perfect. That’s what you want in the club."
           }
         },
@@ -608,6 +623,7 @@
             "reviewer_name": "Jordan S.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "Ouff i like the smell on this one, this is more distinct sort of like a San Pelegrino Blood Orange. Light, sweet, very drinkable compared to the sodas out there."
           }
         }
@@ -652,7 +668,7 @@
         "background_color": "#f6f1ec",
         "panel_background_color": "#551f36",
         "panel_background_image": "shopify://shop_images/Group_82.png",
-        "heading_color": "#F6F1EC",
+        "heading_color": "#f6f1ec",
         "billboard_image": "shopify://shop_images/Cllg5_2_1.png",
         "billboard_image_alt": ""
       }

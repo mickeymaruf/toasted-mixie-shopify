@@ -1,64 +1,43 @@
 {% doc %}
-  Renders a centered heading followed by a fully responsive grid of collapsible
-  faq-item pills. Configurable columns for mobile (1-2), tablet (2-3), and
-  desktop (2-3). Add faq-item blocks to populate the grid.
+  Renders a two-column "Good Questions" FAQ section: a heading and "Shop Now"
+  CTA on the left, paired with a stacked list of collapsible faq-item pills
+  on the right. Columns stack on smaller screens. Add faq-item blocks to
+  populate the list.
 {% enddoc %}
 
-{% liquid
-  case section.settings.columns_mobile
-    when '2'
-      assign columns_mobile_class = 'grid-cols-2'
-    else
-      assign columns_mobile_class = 'grid-cols-1'
-  endcase
-
-  case section.settings.columns_tablet
-    when '2'
-      assign columns_tablet_class = 'md:grid-cols-2'
-    when '3'
-      assign columns_tablet_class = 'md:grid-cols-3'
-    else
-      assign columns_tablet_class = 'md:grid-cols-2'
-  endcase
-
-  case section.settings.columns_desktop
-    when '2'
-      assign columns_desktop_class = 'lg:grid-cols-2'
-    else
-      assign columns_desktop_class = 'lg:grid-cols-3'
-  endcase
-%}
-
 <section
-  class="faq-pills-grid full-width px-4 sm:px-6 md:px-10 lg:px-[60px] xl:px-0"
+  class="faq-pills-grid full-width"
   style="
     background-color: {{ section.settings.section_background }};
-    --faq-pills-grid-border-color: {{ section.settings.border_color }};
-    --faq-pills-grid-bg-color: {{ section.settings.card_background }};
     padding-top: {{ section.settings.padding_top_mobile }}px;
     padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
   "
+  {{ section.shopify_attributes }}
 >
-  <div
-    class="faq-pills-grid__inner mx-auto flex w-full max-w-[1200px] flex-col items-center gap-4 sm:gap-6 md:gap-8 lg:gap-[60px]"
-    style="
-      padding: 24px;
-      background-color: var(--faq-pills-grid-bg-color);
-      border: 3px solid var(--faq-pills-grid-border-color);
-      border-radius: 33px;
-    "
-  >
-    {% if section.settings.heading != blank %}
-      <h2
-        class="section-heading w-full text-center text-[color:var(--faq-pills-grid-heading-color)]"
-        style="--faq-pills-grid-heading-color: {{ section.settings.heading_color }};"
-      >
-        {{ section.settings.heading }}
-      </h2>
-    {% endif %}
+  <div class="faq-pills-grid__inner mx-auto flex w-full max-w-[1920px] flex-col items-start gap-8 px-5 sm:px-8 md:px-12 lg:flex-row lg:items-start lg:justify-between lg:gap-[60px] lg:px-[80px] xl:gap-[140px] xl:px-[120px]">
+    <div class="flex w-full flex-col items-start gap-5 lg:w-auto lg:shrink-0">
+      {% if section.settings.heading != blank %}
+        <h2
+          class="w-full text-[40px] leading-[0.95] font-bold tracking-[-1.2px] text-[color:var(--faq-pills-grid-heading-color)] sm:text-[48px] md:text-[56px] lg:text-[64px] xl:text-[72px] xl:tracking-[-2.16px]"
+          style="--faq-pills-grid-heading-color: {{ section.settings.heading_color }};"
+        >
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.show_button and section.settings.button_label != blank %}
+        {% render 'button',
+          label: section.settings.button_label,
+          url: section.settings.button_link,
+          background_color: section.settings.button_background_color,
+          text_color: section.settings.button_text_color,
+          class: 'w-auto whitespace-nowrap'
+        %}
+      {% endif %}
+    </div>
 
     {% if section.blocks.size > 0 %}
-      <div class="grid w-full gap-3 sm:gap-4 md:gap-5 lg:gap-6 {{ columns_mobile_class }} {{ columns_tablet_class }} {{ columns_desktop_class }}">
+      <div class="flex w-full flex-col gap-3 sm:gap-[15px] lg:flex-1">
         {% content_for 'blocks' %}
       </div>
     {% endif %}
@@ -66,20 +45,10 @@
 </section>
 
 {% stylesheet %}
-  @media (min-width: 768px) {
-    .faq-pills-grid__inner {
-      padding: 40px !important;
-    }
-  }
-
   @media (min-width: 1024px) {
     .faq-pills-grid {
       padding-top: {{ section.settings.padding_top }}px !important;
       padding-bottom: {{ section.settings.padding_bottom }}px !important;
-    }
-
-    .faq-pills-grid__inner {
-      padding: {{ section.settings.padding_top }}px !important;
     }
   }
 {% endstylesheet %}
@@ -97,7 +66,26 @@
       "type": "text",
       "id": "heading",
       "label": "t:labels.heading",
-      "default": "Frequently asked questions"
+      "default": "Good Questions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Shop Now",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link",
+      "visible_if": "{{ section.settings.show_button }}"
     },
     {
       "type": "header",
@@ -107,12 +95,6 @@
       "type": "color",
       "id": "section_background",
       "label": "t:labels.section_background",
-      "default": "#f6f1ec"
-    },
-    {
-      "type": "color",
-      "id": "card_background",
-      "label": "t:labels.card_background",
       "default": "#9ab2d5"
     },
     {
@@ -123,9 +105,17 @@
     },
     {
       "type": "color",
-      "id": "border_color",
-      "label": "t:labels.border_color",
-      "default": "#212323"
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323",
+      "visible_if": "{{ section.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#f6f1ec",
+      "visible_if": "{{ section.settings.show_button }}"
     },
     {
       "type": "color",
@@ -142,36 +132,6 @@
     {
       "type": "header",
       "content": "t:general.layout"
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "label": "t:labels.columns_mobile",
-      "default": "1",
-      "options": [
-        { "value": "1", "label": "t:options.columns.one" },
-        { "value": "2", "label": "t:options.columns.two" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "columns_tablet",
-      "label": "t:labels.columns_tablet",
-      "default": "2",
-      "options": [
-        { "value": "2", "label": "t:options.columns.two" },
-        { "value": "3", "label": "t:options.columns.three" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "columns_desktop",
-      "label": "t:labels.columns_desktop",
-      "default": "3",
-      "options": [
-        { "value": "2", "label": "t:options.columns.two" },
-        { "value": "3", "label": "t:options.columns.three" }
-      ]
     },
     {
       "type": "range",
@@ -218,12 +178,12 @@
     {
       "name": "t:general.faq_pills_grid",
       "blocks": [
-        { "type": "faq-item", "settings": { "question": "What is Toasted?" } },
-        { "type": "faq-item", "settings": { "question": "Ingredients & Allergies" } },
-        { "type": "faq-item", "settings": { "question": "What to Expect" } },
-        { "type": "faq-item", "settings": { "question": "How is it dosed?" } },
-        { "type": "faq-item", "settings": { "question": "Is it legal to ship?" } },
-        { "type": "faq-item", "settings": { "question": "Lab Results" } }
+        { "type": "faq-item", "settings": { "question": "Is Toasted for me?" } },
+        { "type": "faq-item", "settings": { "question": "When is the best time for Toasted?" } },
+        { "type": "faq-item", "settings": { "question": "What does it feel like?" } },
+        { "type": "faq-item", "settings": { "question": "Will it make me anxious or paranoid?" } },
+        { "type": "faq-item", "settings": { "question": "Is it like an edible?" } },
+        { "type": "faq-item", "settings": { "question": "Are these drinks legal?" } }
       ]
     }
   ]

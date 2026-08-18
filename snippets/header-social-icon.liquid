@@ -1,0 +1,20 @@
+{% doc %}
+  Renders a single social link icon for the header dropdown.
+
+  @param {image} [icon] - The icon image
+  @param {string} [link] - The destination URL
+  @param {string} label - Accessible label for the icon
+
+  @example
+  {% render 'header-social-icon', icon: section.settings.instagram_icon, link: section.settings.instagram_link, label: 'general.accessibility.instagram' | t %}
+{% enddoc %}
+
+{% if icon %}
+  <a
+    href="{{ link | default: '#' }}"
+    class="navbar__dropdown-social-icon"
+    aria-label="{{ label | escape }}"
+  >
+    {{ icon | image_url: width: 100 | image_tag: class: 'navbar__dropdown-social-icon-img', alt: label }}
+  </a>
+{% endif %}

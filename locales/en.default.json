@@ -19,9 +19,11 @@
       "play_video": "Play video",
       "facebook": "Facebook",
       "instagram": "Instagram",
+      "youtube": "YouTube",
       "tiktok": "TikTok",
       "view_media": "View image {{ index }}",
-      "close": "Close"
+      "close": "Close",
+      "menu": "Menu"
     },
     "mega_menu": "Mega Menu",
     "product_card": "Product Card",
@@ -149,11 +151,6 @@
     "email_label": "Email address",
     "newsletter_success": "Thanks for subscribing!",
     "newsletter_error": "Please enter a valid email address."
-  },
-  "404": {
-    "title": "404",
-    "not_found": "Page not found.",
-    "back_to_shopping": "Back to shopping"
   },
   "blog": {
     "article_comments": "Comments",

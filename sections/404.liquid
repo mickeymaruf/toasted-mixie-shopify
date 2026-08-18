@@ -5,41 +5,55 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/404
 {% endcomment %}
 
-<section class="not-found full-width" style="background-color: #f6f1ec;" {{ section.shopify_attributes }}>
-  <div class="mx-auto w-full max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-[80px] xl:px-[120px] py-[80px] md:py-[120px] lg:py-[160px]">
-    <div class="flex flex-col items-center justify-center gap-8 text-center">
-      <!-- 404 Number -->
-      <div class="relative">
-        <div class="text-[120px] md:text-[180px] lg:text-[240px] font-bold leading-[1] tracking-[-4px] md:tracking-[-6px] lg:tracking-[-8px] text-[#212323] opacity-10">
-          404
-        </div>
-        <div class="absolute inset-0 flex items-center justify-center">
-          <div class="text-[60px] md:text-[80px] lg:text-[100px] font-bold text-[#212323]">
-            {{ '404.title' | t }}
-          </div>
-        </div>
-      </div>
+{% liquid
+  assign button_url = section.settings.button_link | default: routes.root_url
+%}
 
-      <!-- Message -->
-      <div class="flex flex-col gap-4 max-w-[600px]">
-        <h1 class="text-[32px] md:text-[44px] lg:text-[56px] font-bold leading-[0.95] tracking-[-1.2px] md:tracking-[-1.68px] lg:tracking-[-2.16px] text-[#212323]">
-          Page Not Found
-        </h1>
-        <p class="text-[16px] md:text-[18px] lg:text-[20px] leading-[1.6] text-[#212323] font-normal">
-          {{ '404.not_found' | t }}
-        </p>
-      </div>
-
-      <!-- CTA Button -->
-      <div class="pt-4">
-        <a
-          href="{{ routes.root_url }}"
-          class="inline-flex items-center justify-center px-8 py-4 md:px-10 md:py-5 bg-[#212323] text-[#f6f1ec] text-[16px] md:text-[18px] font-semibold leading-[1.2] rounded-lg transition-all duration-200 hover:bg-[#212323] hover:opacity-90 active:scale-95"
+<section
+  class="not-found full-width"
+  style="background-color: {{ section.settings.background_color }};"
+  {{ section.shopify_attributes }}
+>
+  <div class="mx-auto w-full max-w-[1920px] px-5 py-[80px] sm:px-8 md:px-12 md:py-[120px] lg:px-[80px] lg:py-[160px] xl:px-[120px]">
+    <div class="mx-auto flex w-full max-w-[479px] flex-col items-center gap-8 text-center sm:gap-10 lg:gap-[50px]">
+      <div class="flex flex-col items-center gap-5 sm:gap-6 lg:gap-[30px]">
+        <img
+          src="{{ 'icon-404-not-found.svg' | asset_url }}"
+          alt=""
+          width="325"
+          height="132"
+          class="h-auto w-[220px] sm:w-[260px] md:w-[300px] lg:w-[325px]"
+          loading="lazy"
         >
-          {{ '404.back_to_shopping' | t }}
-        </a>
+
+        {% if section.settings.heading != blank %}
+          <h1
+            class="font-[family-name:var(--font-heading--family)] text-[36px] leading-[0.95] font-bold tracking-[-1.08px] sm:text-[44px] sm:tracking-[-1.32px] md:text-[54px] lg:text-[62px] lg:tracking-[-1.86px]"
+            style="color: {{ section.settings.heading_color }};"
+          >
+            {{ section.settings.heading }}
+          </h1>
+        {% endif %}
       </div>
 
+      {% if section.settings.description != blank %}
+        <div
+          class="text-[18px] leading-[1.5] sm:text-[20px] md:text-[24px] lg:text-[28px]"
+          style="color: {{ section.settings.text_color }};"
+        >
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_button and section.settings.button_label != blank %}
+        {% render 'button',
+          label: section.settings.button_label,
+          url: button_url,
+          background_color: section.settings.button_background_color,
+          text_color: section.settings.button_text_color,
+          class: 'w-full drop-shadow-[0px_0px_7.5px_rgba(0,0,0,0.1)]'
+        %}
+      {% endif %}
     </div>
   </div>
 </section>
@@ -47,6 +61,78 @@
 {% schema %}
 {
   "name": "t:general.404",
-  "settings": []
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "not found"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "t:labels.description",
+      "default": "<p><strong>Looks like you took a wrong turn.</strong><br>No worries. The good stuff is still this way.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Continue Shopping"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.section_background",
+      "default": "#9ab2d5"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.heading_color",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    }
+  ]
 }
 {% endschema %}

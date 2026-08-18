@@ -1,0 +1,90 @@
+{% doc %}
+  Renders a single flavor/product card for the header's mega menu dropdown.
+
+  @param {product} [product] - Optional product to source defaults from
+  @param {image} [image] - Custom card image; falls back to the product's featured image
+  @param {string} [name] - Custom card name; falls back to the product's title
+  @param {string} [url] - Custom destination URL; falls back to the product's URL
+  @param {string} [background_color] - Card background color
+
+  @example
+  {% render 'mega-menu-card',
+    product: section.settings.card_1_product,
+    image: section.settings.card_1_image,
+    name: section.settings.card_1_name,
+    url: section.settings.card_1_link,
+    background_color: section.settings.mega_menu_card_background_color
+  %}
+{% enddoc %}
+
+{% liquid
+  assign card_image = image | default: product.featured_image
+  assign card_name = name | default: product.title
+  assign card_url = url | default: product.url
+
+  if card_url != blank
+    assign wrapper = 'a'
+  else
+    assign wrapper = 'div'
+  endif
+%}
+
+{% if card_name != blank or card_image != blank %}
+  <{{ wrapper }}
+    {% if card_url != blank %}
+      href="{{ card_url }}"
+    {% endif %}
+    class="mega-menu-product"
+    style="background-color: {{ background_color }};"
+  >
+    <span class="mega-menu-product__image">
+      {% if card_image %}
+        {{ card_image | image_url: width: 200 | image_tag: loading: 'lazy', alt: card_name }}
+      {% endif %}
+    </span>
+    <span class="mega-menu-product__title">{{ card_name }}</span>
+  </{{ wrapper }}>
+{% endif %}
+
+{% stylesheet %}
+  .mega-menu-product {
+    display: flex;
+    align-items: center;
+    gap: 0.9375rem;
+    padding: 1rem;
+    border: 3px solid #212323;
+    border-radius: 1rem;
+    text-decoration: none;
+    color: #212323;
+    min-width: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .mega-menu-product:hover {
+    opacity: 0.85;
+  }
+
+  .mega-menu-product__image {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-shrink: 0;
+    width: auto;
+    max-width: 3.75rem;
+    height: 4.4375rem;
+  }
+
+  .mega-menu-product__image img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .mega-menu-product__title {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+{% endstylesheet %}

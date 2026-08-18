@@ -30,7 +30,7 @@
   style="background-color: {{ block.settings.card_background }}; border-color: {{ block.settings.border_color }};"
   {{ block.shopify_attributes }}
 >
-  <div class="h-[48px] w-auto shrink-0 sm:h-[140px]">
+  <div class="h-[72px] w-auto shrink-0 sm:h-[140px]">
     {% if block.settings.card_image %}
       {{
         block.settings.card_image
@@ -51,7 +51,7 @@
 
   <div class="flex min-w-0 flex-1 flex-col items-start gap-[10px]">
     {% if flavor_name != blank %}
-      <p class="text-[18px] leading-[1.15] font-bold tracking-normal text-[#212323] sm:text-[24px] sm:leading-[0.95] sm:tracking-[-0.9px] lg:text-[30px]">
+      <p class="text-[21px] leading-[1.15] font-bold tracking-normal text-[#212323] sm:text-[24px] sm:tracking-[-0.6px]">
         {{ flavor_name }}
       </p>
     {% endif %}
@@ -62,7 +62,7 @@
         url: block.settings.product.url,
         background_color: block.settings.button_background_color,
         text_color: block.settings.button_text_color,
-        class: '!w-fit !max-w-full !text-[11px] !px-5 py-1.5 sm:!text-[14px] sm:!px-8 sm:py-4 !font-medium whitespace-nowrap'
+        class: '!w-fit !max-w-full !text-[13px] !px-6 py-2 sm:!text-[14px] sm:!px-8 sm:py-4 !font-medium whitespace-nowrap'
       %}
     {% endif %}
   </div>

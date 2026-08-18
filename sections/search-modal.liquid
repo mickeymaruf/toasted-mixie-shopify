@@ -4,42 +4,45 @@
   Toasted" button in sections/header.liquid). Mirrors the cart-drawer
   section's <cart-drawer> custom element pattern.
 
+  Styled after the header's mega-menu dropdown (sections/header.liquid): a
+  single bordered, rounded floating card anchored under the navbar, instead
+  of a full-width bar. It's anchored to the right edge and slides in from
+  the right (translate-x) rather than the header's top-drop animation.
+
   Typing into the input fetches this same section (?section_id=search-modal)
   scoped to products only via resources[type]=product, and swaps the
-  #search-modal-results markup into the live results dropdown, which floats
-  below the input as its own card (separate background/shadow from the
-  input bar above it).
+  #search-modal-results markup into the results list inside the same card.
 {% endcomment %}
 
 <search-modal
-  class="group pointer-events-none fixed inset-0 z-50"
+  class="group pointer-events-none absolute inset-0 z-50"
   data-search-modal
   data-predictive-search-url="{{ routes.predictive_search_url }}"
   data-loading-text="{{ 'search_modal.loading' | t }}"
 >
   <div
-    class="pointer-events-none absolute inset-0 bg-[#212323]/40 opacity-0 transition-opacity duration-300 ease-out group-open:pointer-events-auto group-open:opacity-100"
+    class="pointer-events-none absolute inset-0 group-open:pointer-events-auto"
     data-search-close
     aria-hidden="true"
   ></div>
 
   <div
-    class="pointer-events-none absolute inset-x-0 top-0 -translate-y-3 opacity-0 transition-all duration-300 ease-out will-change-transform group-open:pointer-events-auto group-open:translate-y-0 group-open:opacity-100"
+    class="pointer-events-none absolute right-0 flex justify-end pr-4 pb-6 sm:pr-[clamp(var(--page-margin),6vw,6.25rem)]"
     role="dialog"
     aria-modal="true"
     aria-label="{{ 'search_modal.heading' | t }}"
     data-search-panel
   >
     <div
-      class="flex w-full items-center"
-      style="background-color: {{ section.settings.background_color }}; padding-inline: clamp(var(--page-margin), 6vw, 6.25rem);"
-      data-search-bar
+      class="pointer-events-none flex w-[min(92vw,560px)] origin-top-right -translate-y-3 scale-90 flex-col overflow-hidden rounded-[1.5rem] border-[3px] border-[#212323] opacity-0 shadow-[0_20px_40px_rgba(33,35,35,0.15)] transition-all duration-200 ease-[ease] will-change-transform group-open:pointer-events-auto group-open:translate-y-0 group-open:scale-100 group-open:opacity-100 sm:rounded-[2.0625rem]"
+      style="background-color: {{ section.settings.background_color }};"
+      data-search-box
     >
       <form
         action="{{ routes.search_url }}"
         method="get"
         role="search"
-        class="mx-auto flex w-full max-w-[720px] items-center gap-3"
+        class="flex w-full items-center gap-3 p-6 sm:p-9"
         data-search-form
       >
         <div class="relative flex-1">
@@ -75,21 +78,18 @@
           aria-label="{{ 'general.accessibility.close' | t }}"
           data-search-close
         >
-          <span class="block size-5">{{ 'icon-close.svg' | inline_asset_content }}</span>
+          <span class="block size-5">{{ 'icon-close-bold.svg' | inline_asset_content }}</span>
         </button>
       </form>
-    </div>
 
-    <div class="w-full px-0 sm:px-[clamp(var(--page-margin),6vw,6.25rem)]">
       <div
         id="search-modal-results"
-        class="{% if predictive_search.performed %}flex{% else %}hidden{% endif %} mx-auto w-full max-w-[720px] flex-col overflow-hidden rounded-b-none shadow-[0_20px_40px_rgba(33,35,35,0.15)] sm:rounded-b-[16px]"
-        style="background-color: {{ section.settings.background_color }};"
+        class="{% if predictive_search.performed %}flex{% else %}hidden{% endif %} w-full flex-col overflow-hidden"
         data-search-results
       >
         {%- if predictive_search.performed -%}
           {%- if predictive_search.resources.products.size > 0 -%}
-            <p class="px-4 pt-4 text-[12px] font-medium tracking-[0.08em] text-[#212323]/60 uppercase sm:px-6">
+            <p class="px-6 text-[12px] font-medium tracking-[0.08em] text-[#212323]/60 uppercase sm:px-9">
               {{- 'search_modal.products_heading' | t -}}
             </p>
             <div class="mt-2 h-px w-full bg-[#212323]/10"></div>
@@ -98,7 +98,7 @@
                 <li>
                   <a
                     href="{{ product.url }}"
-                    class="flex items-center gap-4 px-4 py-3 transition-colors hover:bg-[#212323]/5 sm:px-6"
+                    class="flex items-center gap-4 px-6 py-3 transition-colors hover:bg-[#212323]/5 sm:px-9"
                   >
                     <span class="block size-12 shrink-0 overflow-hidden rounded-lg bg-white">
                       {%- if product.featured_image -%}
@@ -117,7 +117,7 @@
               {%- endfor -%}
             </ul>
           {%- else -%}
-            <p class="px-4 py-6 text-center text-[14px] text-[#212323]/70 sm:px-6">
+            <p class="px-6 pb-6 text-center text-[14px] text-[#212323]/70 sm:px-9">
               {{ 'search_modal.no_results_html' | t: terms: predictive_search.terms }}
             </p>
           {%- endif -%}
@@ -128,10 +128,6 @@
 </search-modal>
 
 {% stylesheet %}
-  body:has(search-modal[open]) {
-    padding-right: 0 !important;
-  }
-
   #SearchModalInput::-webkit-search-cancel-button,
   #SearchModalInput::-webkit-search-decoration {
     appearance: none;
@@ -148,7 +144,6 @@
   class SearchModal extends HTMLElement {
     connectedCallback() {
       this.panel = this.querySelector('[data-search-panel]');
-      this.bar = this.querySelector('[data-search-bar]');
       this.form = this.querySelector('[data-search-form]');
       this.input = this.querySelector('[data-search-input]');
       this.clearButton = this.querySelector('[data-search-clear]');
@@ -193,8 +188,7 @@
       const navbar = document.querySelector('.navbar');
       if (!navbar) return;
       const rect = navbar.getBoundingClientRect();
-      this.panel.style.top = `${rect.top}px`;
-      this.bar.style.height = `${rect.height}px`;
+      this.panel.style.top = `${rect.bottom + window.scrollY}px`;
     }
 
     debounce(callback, wait) {
@@ -208,14 +202,12 @@
     open() {
       this.positionPanel();
       this.setAttribute('open', '');
-      document.body.style.overflow = 'hidden';
       this.input.focus({ preventScroll: true });
       window.addEventListener('resize', this.onResize);
     }
 
     close() {
       this.removeAttribute('open');
-      document.body.style.overflow = '';
       this.abortController?.abort();
       this.input.value = '';
       this.hideResults();
@@ -249,7 +241,7 @@
 
       this.abortController = new AbortController();
       this.showResults(
-        `<p class="px-4 py-6 text-center text-[14px] text-[#212323]/70 sm:px-6">${this.dataset.loadingText || ''}</p>`
+        `<p class="px-6 pb-6 text-center text-[14px] text-[#212323]/70 sm:px-9">${this.dataset.loadingText || ''}</p>`
       );
 
       const url = `${this.dataset.predictiveSearchUrl}?q=${encodeURIComponent(term)}&resources[type]=product&resources[limit]=6&section_id=search-modal`;
