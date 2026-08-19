@@ -43,7 +43,7 @@
                 "flavor_style": "blood_orange",
                 "flavor_name": "Blood Orange",
                 "pack_label": "12-pack",
-                "card_background_color": "#9CB1D1",
+                "card_background_color": "#9cb1d1",
                 "button_label": "Add to Bundle"
               },
               "blocks": {}
@@ -57,7 +57,7 @@
                 "flavor_style": "berry_acai",
                 "flavor_name": "Berry Acai",
                 "pack_label": "12-pack",
-                "card_background_color": "#9CB1D1",
+                "card_background_color": "#9cb1d1",
                 "button_label": "Add to Bundle"
               },
               "blocks": {}
@@ -71,7 +71,7 @@
                 "flavor_style": "ginger_lime",
                 "flavor_name": "Ginger Lime",
                 "pack_label": "12-pack",
-                "card_background_color": "#9CB1D1",
+                "card_background_color": "#9cb1d1",
                 "button_label": "Add to Bundle"
               },
               "blocks": {}
@@ -161,11 +161,400 @@
         "add_to_cart_background_color": "#212323",
         "add_to_cart_text_color": "#f6f1ec"
       }
+    },
+    "gruns_gallery_hJaXd3": {
+      "type": "gruns-gallery",
+      "blocks": {
+        "gallery_image_XFwthe": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/picz.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_r4b6BA": {
+          "type": "gallery-image",
+          "settings": {
+            "image": "shopify://shop_images/picz_1.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_QHUH6b": {
+          "type": "gallery-image",
+          "settings": {
+            "image": "shopify://shop_images/picz_2.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_4GkJaM": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/picz_3.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_GtE7EB": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/picz_4.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "gallery_image_XFwthe",
+        "gallery_image_r4b6BA",
+        "gallery_image_QHUH6b",
+        "gallery_image_4GkJaM",
+        "gallery_image_GtE7EB"
+      ],
+      "name": "t:general.gruns_gallery",
+      "settings": {
+        "heading": "<p>People have tried it. You’re up next.</p>",
+        "enable_slide_border": false,
+        "background_color": "#F6F1EC",
+        "heading_color": "#212323",
+        "social_icon_1_link": "",
+        "social_icon_2_link": "",
+        "social_icon_3_link": ""
+      }
+    },
+    "ingredient_highlights_rqAjmH": {
+      "type": "ingredient-highlights",
+      "blocks": {
+        "feature-column-left": {
+          "type": "feature-column",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "feature_highlight_aCFW7E": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "L-Theanine",
+                "icon": "shopify://shop_images/icon-leaf.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_AjAb3b": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Rhodiola",
+                "icon": "shopify://shop_images/Group_88.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_cznVHt": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Low Dose THC",
+                "icon": "shopify://shop_images/Group_87_1.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_yYecDG": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Real Fruit Juice",
+                "icon": "shopify://shop_images/Group_91.svg"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "feature_highlight_aCFW7E",
+            "feature_highlight_AjAb3b",
+            "feature_highlight_cznVHt",
+            "feature_highlight_yYecDG"
+          ]
+        },
+        "feature-column-right": {
+          "type": "feature-column",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "feature_highlight_gamzit": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Non-carbonated",
+                "icon": "shopify://shop_images/Group_95_1.png"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_gtgR3A": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Low Calorie",
+                "icon": "shopify://shop_images/Group_94_1.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_eLHpmU": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "Lab Tested",
+                "icon": "shopify://shop_images/Group_89_2.svg"
+              },
+              "blocks": {}
+            },
+            "feature_highlight_TFz93F": {
+              "type": "feature-highlight",
+              "settings": {
+                "title": "21+ Only",
+                "icon": "shopify://shop_images/Group_92.svg"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "feature_highlight_gamzit",
+            "feature_highlight_gtgR3A",
+            "feature_highlight_eLHpmU",
+            "feature_highlight_TFz93F"
+          ]
+        }
+      },
+      "name": "t:general.ingredient_highlights",
+      "settings": {
+        "heading": "Functional by Design",
+        "description": "Made with real fruit, 200mg L-theanine, 50mg Rhodiola, and 0.4mg hemp-derived THC.",
+        "background_image": "shopify://shop_images/ingredient-highlights-background.png"
+      }
+    },
+    "reviews_jrdVGD": {
+      "type": "reviews",
+      "blocks": {
+        "review_image_4fCikJ": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_14_1.png"
+          }
+        },
+        "review_image_YfPgpn": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_18_1.png"
+          }
+        },
+        "review_image_gK8YD3": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_15_1.png"
+          }
+        },
+        "review_image_hAi4Qn": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_16_1.png"
+          }
+        },
+        "review_image_LrVDDU": {
+          "type": "review-image",
+          "settings": {
+            "image": "shopify://shop_images/Component_17_1.png"
+          }
+        },
+        "review_testimonial_DFQfkM": {
+          "type": "review-testimonial",
+          "settings": {
+            "reviewer_name": "Peter Medina",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_title": "",
+            "testimonial_text": "Bro. That’s my favorite. That is beautiful. Yo, this is money. It would replace your poolside daiquiri, Bellini, or slushie."
+          }
+        },
+        "review_testimonial_x3zk7d": {
+          "type": "review-testimonial",
+          "settings": {
+            "reviewer_name": "Nathalie B.",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_title": "",
+            "testimonial_text": "I am definitely going to buy this."
+          }
+        },
+        "review_testimonial_LUXYmK": {
+          "type": "review-testimonial",
+          "settings": {
+            "reviewer_name": "Danny T.",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_title": "",
+            "testimonial_text": "Light on the palette. Really refreshing. I could drink this all day."
+          }
+        },
+        "review_testimonial_fmmVEK": {
+          "type": "review-testimonial",
+          "settings": {
+            "reviewer_name": "Ana T.",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_title": "",
+            "testimonial_text": "I like ginger. That’s perfect. That’s what you want in the club."
+          }
+        },
+        "review_testimonial_7GP49e": {
+          "type": "review-testimonial",
+          "settings": {
+            "reviewer_name": "Jordan S.",
+            "reviewer_title": "Verified Buyer",
+            "rating": 5,
+            "testimonial_title": "",
+            "testimonial_text": "Ouff i like the smell on this one, this is more distinct sort of like a San Pelegrino Blood Orange. Light, sweet, very drinkable compared to the sodas out there."
+          }
+        }
+      },
+      "block_order": [
+        "review_image_4fCikJ",
+        "review_image_YfPgpn",
+        "review_image_gK8YD3",
+        "review_image_hAi4Qn",
+        "review_image_LrVDDU",
+        "review_testimonial_DFQfkM",
+        "review_testimonial_x3zk7d",
+        "review_testimonial_LUXYmK",
+        "review_testimonial_fmmVEK",
+        "review_testimonial_7GP49e"
+      ],
+      "name": "Reviews",
+      "settings": {
+        "bg_color": "#f6f1ec",
+        "text_color": "#212323",
+        "heading_prefix": "First comments",
+        "rating": 4.9,
+        "rating_text": "",
+        "show_carousel": false,
+        "button_label": "",
+        "button_link": "",
+        "button_bg_color": "#212323",
+        "button_text_color": "#f6f1ec"
+      }
+    },
+    "gruns_find_toasted_UgytHC": {
+      "type": "gruns-find-toasted",
+      "name": "t:general.gruns_find_toasted",
+      "settings": {
+        "heading": "Find Toasted",
+        "description": "Coming soon to select venues and retailers.",
+        "show_button": true,
+        "button_label": "Coming soon…",
+        "button_link": "",
+        "button_background_color": "#f9d5c0",
+        "button_text_color": "#1e2125",
+        "background_color": "#f6f1ec",
+        "panel_background_color": "#551f36",
+        "panel_background_image": "shopify://shop_images/Group_82.png",
+        "heading_color": "#f6f1ec",
+        "billboard_image": "shopify://shop_images/Cllg5_2_1.png",
+        "billboard_image_alt": ""
+      }
+    },
+    "faq_pills_grid_mF4J3y": {
+      "type": "faq-pills-grid",
+      "blocks": {
+        "faq_item_Bytw7m": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Is Toasted for me?",
+            "answer": "<p>If you want to unwind, relax, and stay present without alcohol, Toasted is for you.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        },
+        "faq_item_M4tzzy": {
+          "type": "faq-item",
+          "settings": {
+            "question": "When is the best time for Toasted?",
+            "answer": "<p>Anytime you want to take the edge off without losing yourself. Stay in, go out, or anywhere in between.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        },
+        "faq_item_VDEagE": {
+          "type": "faq-item",
+          "settings": {
+            "question": "What does it feel like?",
+            "answer": "<p>Light, relaxed, and feel-good. Designed to keep you clear, present, and in control.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        },
+        "faq_item_MLchJJ": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Will it make me anxious or paranoid?",
+            "answer": "<p>Toasted is intentionally low-dose and made with calming ingredients for a gentle, approachable experience.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        },
+        "faq_item_yALbR8": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Is it like an edible?",
+            "answer": "<p>Not at all. The experience is lighter, faster, and shorter-lasting—making it a natural fit for social occasions.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        },
+        "faq_item_9mcXAR": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Are these drinks legal?",
+            "answer": "<p>Yes. Toasted is formulated to meet federal requirements. Availability varies by state and is limited to adults 21+.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "faq_item_Bytw7m",
+        "faq_item_M4tzzy",
+        "faq_item_VDEagE",
+        "faq_item_MLchJJ",
+        "faq_item_yALbR8",
+        "faq_item_9mcXAR"
+      ],
+      "name": "t:general.faq_pills_grid",
+      "settings": {
+        "heading": "Good Questions",
+        "show_button": true,
+        "button_label": "Try Toasted Now",
+        "button_link": "",
+        "section_background": "#9ab2d5",
+        "heading_color": "#212323",
+        "button_background_color": "#212323",
+        "button_text_color": "#f6f1ec",
+        "faq_item_background": "#636d90",
+        "faq_item_text_color": "#f6f1ec",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
+      }
     }
   },
   "order": [
     "main",
     "hero_banner_AFPte7",
-    "bundle_builder_gPVQwm"
+    "bundle_builder_gPVQwm",
+    "gruns_gallery_hJaXd3",
+    "ingredient_highlights_rqAjmH",
+    "reviews_jrdVGD",
+    "gruns_find_toasted_UgytHC",
+    "faq_pills_grid_mF4J3y"
   ]
 }

@@ -108,9 +108,8 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const initSwiper = () => {
-      const carouselEl = document.querySelector('gruns-gallery-carousel');
-      if (!carouselEl || typeof Swiper === 'undefined') return;
+    const initSwiper = (carouselEl) => {
+      if (!carouselEl || carouselEl.swiper || typeof Swiper === 'undefined') return;
 
       const prevEl = carouselEl.querySelector('[data-gallery-prev]');
       const nextEl = carouselEl.querySelector('[data-gallery-next]');
@@ -144,10 +143,14 @@
       });
     };
 
-    initSwiper();
+    const initAllSwipers = () => {
+      document.querySelectorAll('gruns-gallery-carousel').forEach((carouselEl) => initSwiper(carouselEl));
+    };
+
+    initAllSwipers();
 
     // Support Shopify Theme Editor re-initialization
-    document.addEventListener('shopify:section:load', initSwiper);
+    document.addEventListener('shopify:section:load', initAllSwipers);
   });
 </script>
 

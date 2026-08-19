@@ -176,7 +176,10 @@
         "accordion-list": {
           "type": "accordion-list",
           "static": true,
-          "settings": {},
+          "settings": {
+            "background_color": "#636d90",
+            "text_color": "#f6f1ec"
+          },
           "blocks": {}
         },
         "promo-banner": {
@@ -204,6 +207,7 @@
         "rating": 5,
         "show_badge": true,
         "badge_text": "Launching Soon",
+        "hide_purchase_options": true,
         "pack_pill_background_color": "#c7aa9a",
         "pack_pill_text_color": "#212323",
         "subscribe_heading": "Subscribe & Save",
@@ -222,83 +226,74 @@
         "custom_button_text": "Claim Your Trial Pack\n<strong class=\"font-medium\">FREE</strong>"
       }
     },
-    "faq_pills_grid_Hp3E9Q": {
-      "type": "faq-pills-grid",
+    "gruns_gallery_bgbxEd": {
+      "type": "gruns-gallery",
       "blocks": {
-        "faq_item_dYjm3d": {
-          "type": "faq-item",
+        "gallery_image_cfDeLE": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
           "settings": {
-            "question": "What is Toasted?",
-            "answer": "<p>Toasted is the chill drink. A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC.</p>",
-            "initially_open": false
+            "image": "shopify://shop_images/picz.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
           },
           "blocks": {}
         },
-        "faq_item_xQQg97": {
-          "type": "faq-item",
+        "gallery_image_Wgmqme": {
+          "type": "gallery-image",
           "settings": {
-            "question": "Is Toasted carbonated?",
-            "answer": "<p>No. Toasted is non-carbonated, smooth, and ready to drink.</p>",
-            "initially_open": false
+            "image": "shopify://shop_images/picz_1.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
           },
           "blocks": {}
         },
-        "faq_item_9QKDqx": {
-          "type": "faq-item",
+        "gallery_image_zpHnnA": {
+          "type": "gallery-image",
           "settings": {
-            "question": "How should I try Toasted?",
-            "answer": "<p>Start with one can and see how you feel. Toasted is made for a light, present experience.</p>",
-            "initially_open": false
+            "image": "shopify://shop_images/picz_2.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
           },
           "blocks": {}
         },
-        "faq_item_NxLiBi": {
-          "type": "faq-item",
+        "gallery_image_nAbWNQ": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
           "settings": {
-            "question": "Is Toasted alcoholic?",
-            "answer": "<p>No. Toasted is alcohol-free.</p>",
-            "initially_open": false
+            "image": "shopify://shop_images/picz_3.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
           },
           "blocks": {}
         },
-        "faq_item_ALptfV": {
-          "type": "faq-item",
+        "gallery_image_HEX78Q": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
           "settings": {
-            "question": "Does Toasted contain THC?",
-            "answer": "<p>Yes. Each can contains 0.4mg hemp-derived THC.</p>",
-            "initially_open": false
-          },
-          "blocks": {}
-        },
-        "faq_item_imi49b": {
-          "type": "faq-item",
-          "settings": {
-            "question": "Who is Toasted for?",
-            "answer": "<p>Toasted is for adults 21+ who want a lighter way to enjoy social moments without alcohol.</p>",
-            "initially_open": false
+            "image": "shopify://shop_images/picz_4.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "faq_item_dYjm3d",
-        "faq_item_xQQg97",
-        "faq_item_9QKDqx",
-        "faq_item_NxLiBi",
-        "faq_item_ALptfV",
-        "faq_item_imi49b"
+        "gallery_image_cfDeLE",
+        "gallery_image_Wgmqme",
+        "gallery_image_zpHnnA",
+        "gallery_image_nAbWNQ",
+        "gallery_image_HEX78Q"
       ],
-      "name": "t:general.faq_pills_grid",
+      "name": "t:general.gruns_gallery",
       "settings": {
-        "heading": "Good Questions",
-        "section_background": "#f6f1ec",
+        "heading": "<p>People have tried it. You’re up next.</p>",
+        "enable_slide_border": false,
+        "background_color": "#F6F1EC",
         "heading_color": "#212323",
-        "faq_item_background": "#636d90",
-        "faq_item_text_color": "#f6f1ec",
-        "padding_top": 100,
-        "padding_bottom": 100,
-        "padding_top_mobile": 48,
-        "padding_bottom_mobile": 48
+        "social_icon_1_link": "",
+        "social_icon_2_link": "",
+        "social_icon_3_link": ""
       }
     },
     "ingredient_highlights_wcTznK": {
@@ -402,91 +397,6 @@
         "background_image": "shopify://shop_images/ingredient-highlights-background.png"
       }
     },
-    "gruns_product_list_Nb6QE8": {
-      "type": "gruns-product-list",
-      "blocks": {
-        "product_card_kPnEQx": {
-          "type": "product-card",
-          "settings": {
-            "product": "blood-orange",
-            "background_image": "shopify://shop_images/Frame_2147236000.svg",
-            "image": "shopify://shop_images/Group_8.png",
-            "use_lottie_animation": false,
-            "flavor_name": "Blood Orange",
-            "flavor_name_color": "#b70141",
-            "description": "Bright. Smooth. Golden-hour ready.",
-            "price_text": "$2.67/can",
-            "button_label": "Add To Cart",
-            "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
-          },
-          "blocks": {}
-        },
-        "product_card_CEY8Xa": {
-          "type": "product-card",
-          "settings": {
-            "product": "berry-acai",
-            "background_image": "shopify://shop_images/Frame_2147236002.svg",
-            "image": "shopify://shop_images/Group_6.png",
-            "use_lottie_animation": false,
-            "flavor_name": "Berry Acai",
-            "flavor_name_color": "#5e1a79",
-            "description": "Deep. Juicy. Easy to enjoy.",
-            "price_text": "$2.67/can",
-            "button_label": "Add To Cart",
-            "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
-          },
-          "blocks": {}
-        },
-        "product_card_PVhUHH": {
-          "type": "product-card",
-          "settings": {
-            "product": "ginger-lime",
-            "background_image": "shopify://shop_images/Frame_2147236003.svg",
-            "image": "shopify://shop_images/Group_7.png",
-            "use_lottie_animation": false,
-            "flavor_name": "Ginger Lime",
-            "flavor_name_color": "#215332",
-            "description": "Crisp. Lively. Clean finish.",
-            "price_text": "$2.67/can",
-            "button_label": "Add To Cart",
-            "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
-          },
-          "blocks": {}
-        },
-        "product_card_iUCqkK": {
-          "type": "product-card",
-          "settings": {
-            "product": "try-all-3-flavors",
-            "background_image": "shopify://shop_images/Frame_2147236049.svg",
-            "image": "shopify://shop_images/Group_157.png",
-            "use_lottie_animation": false,
-            "flavor_name": "Trial Pack",
-            "flavor_name_color": "#215332",
-            "description": "Crisp. Lively. Clean finish.",
-            "price_text": "Just Pay Shipping",
-            "button_label": "Try Now",
-            "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "product_card_kPnEQx",
-        "product_card_CEY8Xa",
-        "product_card_PVhUHH",
-        "product_card_iUCqkK"
-      ],
-      "name": "t:general.product_list",
-      "settings": {
-        "heading": "Choose your flavor.",
-        "background_color": "#9ab2d5",
-        "heading_color": "#212323"
-      }
-    },
     "reviews_kbCGcD": {
       "type": "reviews",
       "blocks": {
@@ -526,6 +436,7 @@
             "reviewer_name": "Peter Medina",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "Bro. That’s my favorite. That is beautiful. Yo, this is money. It would replace your poolside daiquiri, Bellini, or slushie."
           }
         },
@@ -535,6 +446,7 @@
             "reviewer_name": "Nathalie B.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "I am definitely going to buy this."
           }
         },
@@ -544,6 +456,7 @@
             "reviewer_name": "Danny T.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "Light on the palette. Really refreshing. I could drink this all day."
           }
         },
@@ -553,6 +466,7 @@
             "reviewer_name": "Ana T.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "I like ginger. That’s perfect. That’s what you want in the club."
           }
         },
@@ -562,6 +476,7 @@
             "reviewer_name": "Jordan S.",
             "reviewer_title": "Verified Buyer",
             "rating": 5,
+            "testimonial_title": "",
             "testimonial_text": "Ouff i like the smell on this one, this is more distinct sort of like a San Pelegrino Blood Orange. Light, sweet, very drinkable compared to the sodas out there."
           }
         }
@@ -586,7 +501,7 @@
         "rating": 4.9,
         "rating_text": "",
         "show_carousel": false,
-        "button_label": "Join the First Drop",
+        "button_label": "",
         "button_link": "",
         "button_bg_color": "#212323",
         "button_text_color": "#f6f1ec"
@@ -606,18 +521,102 @@
         "background_color": "#f6f1ec",
         "panel_background_color": "#551f36",
         "panel_background_image": "shopify://shop_images/Group_82.png",
-        "heading_color": "#F6F1EC",
+        "heading_color": "#f6f1ec",
         "billboard_image": "shopify://shop_images/Cllg5_2_1.png",
         "billboard_image_alt": ""
+      }
+    },
+    "faq_pills_grid_xxpMdk": {
+      "type": "faq-pills-grid",
+      "blocks": {
+        "faq_item_PcpQU4": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Is Toasted for me?",
+            "answer": "<p>If you want to unwind, relax, and stay present without alcohol, Toasted is for you.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        },
+        "faq_item_Yta8PD": {
+          "type": "faq-item",
+          "settings": {
+            "question": "When is the best time for Toasted?",
+            "answer": "<p>Anytime you want to take the edge off without losing yourself. Stay in, go out, or anywhere in between.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        },
+        "faq_item_Xkq6bB": {
+          "type": "faq-item",
+          "settings": {
+            "question": "What does it feel like?",
+            "answer": "<p>Light, relaxed, and feel-good. Designed to keep you clear, present, and in control.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        },
+        "faq_item_xFJkkU": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Will it make me anxious or paranoid?",
+            "answer": "<p>Toasted is intentionally low-dose and made with calming ingredients for a gentle, approachable experience.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        },
+        "faq_item_CMVEUP": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Is it like an edible?",
+            "answer": "<p>Not at all. The experience is lighter, faster, and shorter-lasting—making it a natural fit for social occasions.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        },
+        "faq_item_8HhyDj": {
+          "type": "faq-item",
+          "settings": {
+            "question": "Are these drinks legal?",
+            "answer": "<p>Yes. Toasted is formulated to meet federal requirements. Availability varies by state and is limited to adults 21+.</p>",
+            "initially_open": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "faq_item_PcpQU4",
+        "faq_item_Yta8PD",
+        "faq_item_Xkq6bB",
+        "faq_item_xFJkkU",
+        "faq_item_CMVEUP",
+        "faq_item_8HhyDj"
+      ],
+      "name": "t:general.faq_pills_grid",
+      "settings": {
+        "heading": "Good Questions",
+        "show_button": true,
+        "button_label": "Try Toasted Now",
+        "button_link": "",
+        "section_background": "#9ab2d5",
+        "heading_color": "#212323",
+        "button_background_color": "#212323",
+        "button_text_color": "#f6f1ec",
+        "faq_item_background": "#636d90",
+        "faq_item_text_color": "#f6f1ec",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48
       }
     }
   },
   "order": [
     "main",
-    "faq_pills_grid_Hp3E9Q",
+    "gruns_gallery_bgbxEd",
     "ingredient_highlights_wcTznK",
-    "gruns_product_list_Nb6QE8",
     "reviews_kbCGcD",
-    "gruns_find_toasted_ddGMA9"
+    "gruns_find_toasted_ddGMA9",
+    "faq_pills_grid_xxpMdk"
   ]
 }

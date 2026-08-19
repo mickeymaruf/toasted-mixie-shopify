@@ -19,10 +19,10 @@
       "name": "t:general.hero_banner",
       "settings": {
         "heading": "Choose your Flavor.",
-        "subheading": "Three fruit-forward flavors. One light way to relax, connect, and stay present.",
+        "subheading": "Three fruit-forward flavors. One functional drink made for moments worth remembering.",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_3.png",
-        "background_color": "#9AB2D5"
+        "background_color": "#9ab2d5"
       }
     },
     "gruns_product_list_g7QmmR": {
@@ -38,10 +38,12 @@
             "flavor_name": "Blood Orange",
             "flavor_name_color": "#b70141",
             "description": "Bright. Smooth. Golden-hour ready.",
-            "price_text": "$2.67/can",
+            "price_text": "12 Pack as low as $2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         },
@@ -55,10 +57,12 @@
             "flavor_name": "Berry Acai",
             "flavor_name_color": "#5e1a79",
             "description": "Deep. Juicy. Easy to enjoy.",
-            "price_text": "$2.67/can",
+            "price_text": "12 Pack as low as $2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         },
@@ -72,10 +76,12 @@
             "flavor_name": "Ginger Lime",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
-            "price_text": "$2.67/can",
+            "price_text": "12 Pack as low as $2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         },
@@ -86,13 +92,15 @@
             "background_image": "shopify://shop_images/Frame_2147236049.svg",
             "image": "shopify://shop_images/Group_157.png",
             "use_lottie_animation": false,
-            "flavor_name": "Trial Pack",
+            "flavor_name": "Free Trial Pack",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
             "price_text": "Just Pay Shipping",
             "button_label": "Try Now",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         }

@@ -76,17 +76,19 @@
     </div>
 
     {% if section.settings.image %}
-      <div class="relative mx-auto w-full max-w-[360px] sm:max-w-[460px] lg:mx-0 lg:max-w-[600px] lg:flex-1">
-        {{
-          section.settings.image
-          | image_url: width: 1200
-          | image_tag:
-            class: 'size-full object-contain',
-            widths: '400, 700, 1000, 1200',
-            sizes: '(min-width: 64rem) 46vw, 90vw',
-            alt: section.settings.image_alt
-          | default: section.settings.image.alt
-        }}
+      <div class="relative mx-auto w-full max-w-[360px] overflow-visible sm:max-w-[460px] lg:mx-0 lg:max-w-[600px] lg:flex-1">
+        <div class="transition-transform duration-500 ease-out hover:scale-[1.03]">
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              class: 'size-full object-contain',
+              widths: '400, 700, 1000, 1200',
+              sizes: '(min-width: 64rem) 46vw, 90vw',
+              alt: section.settings.image_alt
+            | default: section.settings.image.alt
+          }}
+        </div>
       </div>
     {% endif %}
   </div>

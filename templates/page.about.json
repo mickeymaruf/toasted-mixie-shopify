@@ -164,7 +164,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
-                "body": "<p>We created a drink to help you<strong> relax without checking out</strong>. Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society.<br/><br/><strong>Stay Toasted.</strong></p>",
+                "body": "<p>We created a drink to help you relax withoutchecking out. Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society.<br/><br/><strong>Stay Toasted.</strong></p>",
                 "image": "shopify://shop_images/signature.svg",
                 "background_color": "#c2cbd4",
                 "text_color": "#212323",
@@ -247,7 +247,7 @@
             "flavor_sticker": "shopify://shop_images/flavor.svg",
             "badge_sticker": "shopify://shop_images/Group_112_1.svg",
             "title": "Berry Acai",
-            "description": "Bright blood orange, real fruit flavor, and a functional blend made to help you stay present.",
+            "description": "Rich berry, vibrant açaí, real fruit flavor, and a functional blend for good company and good moments.",
             "button_label": "Add to Cart",
             "button_background_color": "#212323",
             "button_text_color": "#f6f1ec"
@@ -265,7 +265,7 @@
             "flavor_sticker": "shopify://shop_images/Group_159.svg",
             "badge_sticker": "shopify://shop_images/Group_110_1.svg",
             "title": "Ginger Lime",
-            "description": "Bright blood orange, real fruit flavor, and a functional blend made to help you stay present.",
+            "description": "Zesty ginger, bright lime, real fruit flavor, and a functional blend for ease, presence, and connection.",
             "button_label": "Add to Cart",
             "button_background_color": "#212323",
             "button_text_color": "#f6f1ec"
@@ -280,7 +280,7 @@
       ],
       "name": "t:general.product_list_simple",
       "settings": {
-        "heading": "Three ways to stay present.",
+        "heading": "Three ways to stay present",
         "background_color": "#9ab2d5",
         "heading_color": "#212323"
       }
@@ -289,11 +289,11 @@
       "type": "gruns-find-toasted-simple",
       "name": "t:general.gruns_find_toasted_simple",
       "settings": {
-        "heading": "Find Toasted",
-        "description": "Coming to select venues and retailers.",
+        "heading": "Free Trial Pack",
+        "description": "Get yours, just pay shipping.",
         "show_button": true,
         "button_label": "Get My Free Trial Pack",
-        "button_link": "",
+        "button_link": "shopify://products/try-all-3-flavors",
         "button_background_color": "#d4941f",
         "button_text_color": "#f6f1ec",
         "background_color": "#9cb1d1",

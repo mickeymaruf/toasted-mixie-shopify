@@ -255,7 +255,7 @@
             </div>
           {% endif %}
 
-          {% if selling_plan %}
+          {% if selling_plan and section.settings.hide_purchase_options == false %}
             {% liquid
               assign selected_allocation = blank
               for a in current_variant.selling_plan_allocations
@@ -701,6 +701,12 @@
     {
       "type": "header",
       "content": "t:general.subscribe_and_save"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_purchase_options",
+      "label": "t:labels.hide_purchase_options",
+      "default": false
     },
     {
       "type": "text",

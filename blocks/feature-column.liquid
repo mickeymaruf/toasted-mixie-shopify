@@ -2,10 +2,11 @@
   Groups feature-highlight blocks into a vertical column. Rendered as one of
   two fixed regions (left/right) flanking the center product image in the
   Ingredient Highlights section; add, remove, and reorder the nested
-  feature-highlight blocks to control which features are shown. On extra
-  large screens, the first and last items shift toward the center image so
-  the column arcs around it; the direction mirrors based on whether `block.id`
-  is the left or right static instance.
+  feature-highlight blocks to control which features are shown. At every
+  breakpoint, the first and last items shift toward the center image (by a
+  percentage of the column's own width, so the offset scales with it) so the
+  column arcs around it; the direction mirrors based on whether `block.id` is
+  the left or right static instance.
 
   @example
   {% content_for 'block', id: block.id, type: 'feature-column' %}
@@ -26,15 +27,23 @@
 </div>
 
 {% stylesheet %}
-  @media (min-width: 80rem) {
-    .feature-column--left > :first-child,
-    .feature-column--left > :last-child {
-      transform: translateX(60px);
+  .feature-column--left > :first-child,
+  .feature-column--left > :last-child {
+    transform: translateX(37.5%);
+  }
+
+  .feature-column--right > :first-child,
+  .feature-column--right > :last-child {
+    transform: translateX(-37.5%);
+  }
+
+  @media (max-width: 39.99rem) {
+    .feature-column--right > :first-child {
+      transform: translateX(-25.5%);
     }
 
-    .feature-column--right > :first-child,
     .feature-column--right > :last-child {
-      transform: translateX(-60px);
+      transform: translateX(-73.5%);
     }
   }
 {% endstylesheet %}
