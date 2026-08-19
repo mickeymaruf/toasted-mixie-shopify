@@ -200,6 +200,8 @@
     "card_4_link": "Card 4 link",
     "color": "Color",
     "category": "Category",
+    "center_product_image": "Center product image",
+    "center_product_image_info": "Used when the product doesn't have a custom ingredient highlight image set",
     "sale_price": "Sale price",
     "original_price": "Original price",
     "columns_desktop": "Columns (desktop)",

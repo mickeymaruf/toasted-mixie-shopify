@@ -393,6 +393,8 @@
       "settings": {
         "heading": "Functional by Design",
         "description": "Made with real fruit, 200mg L-theanine, 50mg Rhodiola, and 0.4mg hemp-derived THC.",
+        "center_image": "shopify://shop_images/Frame_2147236104asdfasdfasdf.svg",
+        "center_image_alt": "",
         "background_image": "shopify://shop_images/ingredient-highlights-background.png"
       }
     },
