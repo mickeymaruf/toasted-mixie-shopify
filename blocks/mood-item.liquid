@@ -1,44 +1,19 @@
 {% doc %}
   Renders a single "mood" row: a small icon paired with a title and
-  subtitle (e.g. "Supports Clarity" / "Smooth, present focus"). Falls back
-  to a bundled default icon per `icon_style` when no custom `icon` image
-  is uploaded.
+  subtitle (e.g. "Supports Clarity" / "Smooth, present focus").
 
   @example
   {% content_for 'block', id: block.id, type: 'mood-item' %}
 {% enddoc %}
 
-{% liquid
-  case block.settings.icon_style
-    when 'balanced'
-      assign default_icon = 'icon-mood-balanced.svg'
-      assign icon_aspect_ratio = '62.488 / 77.159'
-    when 'calm'
-      assign default_icon = 'icon-mood-calm.svg'
-      assign icon_aspect_ratio = '63 / 42'
-    else
-      assign default_icon = 'icon-mood-clarity.svg'
-      assign icon_aspect_ratio = '62.771 / 61.63'
-  endcase
-%}
-
 <div class="flex w-full items-center gap-[35px] sm:gap-[25px]" {{ block.shopify_attributes }}>
-  <div class="mood-item__icon shrink-0" style="--mood-item-icon-aspect-ratio: {{ icon_aspect_ratio }};">
+  <div class="mood-item__icon shrink-0">
     {% if block.settings.icon %}
       {{
         block.settings.icon
-        | image_url: width: 200
-        | image_tag: width: 200, height: 200, class: 'size-full object-contain', alt: block.settings.title
+        | image_url: width: 1600
+        | image_tag: width: nil, height: nil, class: 'size-full object-contain', alt: block.settings.title
       }}
-    {% else %}
-      <img
-        src="{{ default_icon | asset_url }}"
-        width="200"
-        height="200"
-        loading="lazy"
-        class="size-full object-contain"
-        alt="{{ block.settings.title | escape }}"
-      >
     {% endif %}
   </div>
 
@@ -58,7 +33,7 @@
 {% stylesheet %}
   .mood-item__icon {
     width: 80px;
-    aspect-ratio: var(--mood-item-icon-aspect-ratio);
+    aspect-ratio: 1 / 1;
   }
 
   @media (min-width: 40rem) {
@@ -91,20 +66,9 @@
       "default": "Smooth, present focus"
     },
     {
-      "type": "select",
-      "id": "icon_style",
-      "label": "t:labels.icon_style",
-      "options": [
-        { "value": "clarity", "label": "t:options.icon_style.clarity" },
-        { "value": "balanced", "label": "t:options.icon_style.balanced" },
-        { "value": "calm", "label": "t:options.icon_style.calm" }
-      ],
-      "default": "clarity"
-    },
-    {
       "type": "image_picker",
       "id": "icon",
-      "label": "t:labels.custom_icon"
+      "label": "t:labels.icon"
     }
   ],
   "presets": [{ "name": "t:general.mood_item" }]
