@@ -237,6 +237,8 @@
     "grid_item_width": "Grid item width",
     "gradient_overlay": "Gradient overlay",
     "heading": "Heading",
+    "heading_mobile": "Heading (mobile)",
+    "heading_mobile_info": "Optional. Overrides the heading on mobile screens only",
     "heading_color": "Heading color",
     "height": "Height",
     "icon_style": "Icon style",

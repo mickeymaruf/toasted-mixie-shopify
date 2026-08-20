@@ -109,7 +109,7 @@
               "type": "flavor-swatch",
               "name": "t:general.flavor_swatch",
               "settings": {
-                "product": "try-all-3-flavors",
+                "product": "freetrial",
                 "flavor_name": "Trial Pack",
                 "swatch_image": "shopify://shop_images/Frame_2147235892_1.png",
                 "color": "#2f7948"
@@ -194,10 +194,11 @@
             "button_text_color": "#f6f1ec",
             "feature_1_text": "",
             "feature_2_text": "",
-            "background_color": "#9ab2d5",
+            "background_color": "#551F36",
             "feature_text_color": "#212323",
+            "heading_color": "#F6F1EC",
             "background_image": "shopify://shop_images/Frame_2147235943_1.png",
-            "image": "shopify://shop_images/Frame_2147235944.png"
+            "image": "shopify://shop_images/Frame_2147236126.png"
           },
           "blocks": {}
         }
@@ -209,6 +210,7 @@
         "badge_text": "Launching Soon",
         "pack_pill_background_color": "#f9d5c0",
         "pack_pill_text_color": "#212323",
+        "hide_purchase_options": false,
         "subscribe_heading": "Subscribe & Save",
         "save_badge_text": "Save [percent]%",
         "save_every_order_text": "Save [percent]% on every order",
@@ -288,7 +290,7 @@
       "settings": {
         "heading": "<p>People have tried it. You’re up next.</p>",
         "enable_slide_border": false,
-        "background_color": "#F6F1EC",
+        "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "social_icon_1_link": "",
         "social_icon_2_link": "",
@@ -393,7 +395,7 @@
       "settings": {
         "heading": "Functional by Design",
         "description": "Made with real fruit, 200mg L-theanine, 50mg Rhodiola, and 0.4mg hemp-derived THC.",
-        "center_image": "shopify://shop_images/Frame_2147236104asdfasdfasdf.svg",
+        "center_image": "shopify://shop_images/Group_107.png",
         "center_image_alt": "",
         "background_image": "shopify://shop_images/ingredient-highlights-background.png"
       }
@@ -500,7 +502,7 @@
         "product_card_iUCqkK": {
           "type": "product-card",
           "settings": {
-            "product": "try-all-3-flavors",
+            "product": "freetrial",
             "background_image": "shopify://shop_images/Frame_2147236049.svg",
             "image": "shopify://shop_images/Group_157.png",
             "use_lottie_animation": false,

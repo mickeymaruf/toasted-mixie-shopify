@@ -22,6 +22,7 @@
         "subheading": "A functional relaxation beverage made with real fruit.",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_1_2c36f923-1247-452f-a22a-03389584c8ed.png",
+        "background_image_mobile": "shopify://shop_images/Frame_2147230792_8.png",
         "background_color": "#9ab2d5"
       }
     },
@@ -293,7 +294,7 @@
         "description": "Get yours, just pay shipping.",
         "show_button": true,
         "button_label": "Get My Free Trial Pack",
-        "button_link": "shopify://products/try-all-3-flavors",
+        "button_link": "shopify://products/freetrial",
         "button_background_color": "#d4941f",
         "button_text_color": "#f6f1ec",
         "background_color": "#9cb1d1",

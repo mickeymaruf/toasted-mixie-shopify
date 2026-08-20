@@ -57,9 +57,9 @@
       </div>
 
       <div class="flex justify-center">
-        <div class="relative w-[165px] sm:w-[240px] lg:w-[300px] flex items-center">
+        <div class="relative aspect-[484/515] w-[165px] sm:w-[240px] lg:w-[380px] xl:w-[484px]">
           {% liquid
-            assign center_image = product.metafields.custom.ingredient_highlight_image.value | default: section.settings.center_image
+            assign center_image = section.settings.center_image
             assign center_image_alt = section.settings.center_image_alt | default: center_image.alt
           %}
           {% if center_image %}
@@ -68,8 +68,8 @@
               | image_url: width: 1400
               | image_tag:
                 class: 'relative size-full object-contain',
-                widths: '165, 240, 380, 480, 680, 960, 1400',
-                sizes: '(min-width: 64rem) 340px, (min-width: 40rem) 240px, 165px',
+                widths: '165, 240, 380, 484, 680, 960, 1400',
+                sizes: '(min-width: 80rem) 484px, (min-width: 64rem) 380px, (min-width: 40rem) 240px, 165px',
                 loading: 'eager',
                 alt: center_image_alt
             }}

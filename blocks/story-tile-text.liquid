@@ -19,14 +19,14 @@
   {{ block.shopify_attributes }}
 >
   <div
-    class="story-tile-cell__clip absolute inset-0 flex flex-col items-center justify-center gap-4 overflow-hidden text-center sm:gap-5 p-10 xl:p-15 lg:gap-5"
+    class="story-tile-cell__clip absolute inset-0 flex flex-col items-center justify-center gap-4 overflow-hidden text-center sm:gap-5 p-10 md:px-5 lg:gap-5"
     style="
       background-color: {{ block.settings.background_color }};
       color: {{ block.settings.text_color }};
     "
   >
     {% if block.settings.heading != blank %}
-      <div class="story-tile-cell__heading w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[32px] xl:text-[58px] 2xl:text-[78px]">
+      <div class="story-tile-cell__heading w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[38px] lg:text-[58px] xl:text-[72px] 2xl:text-[92px]">
         {{ block.settings.heading }}
       </div>
     {% endif %}

@@ -152,7 +152,7 @@
         "description": "",
         "show_button": true,
         "button_label": "Get My Free Trial Pack",
-        "button_link": "shopify://products/try-all-3-flavors",
+        "button_link": "shopify://products/freetrial",
         "button_background_color": "#d4941f",
         "button_text_color": "#f6f1ec",
         "feature_1_text": "Free 3-flavor trial pack.",
@@ -275,7 +275,7 @@
         "product_card_iUCqkK": {
           "type": "product-card",
           "settings": {
-            "product": "try-all-3-flavors",
+            "product": "freetrial",
             "background_image": "shopify://shop_images/Frame_2147236049.svg",
             "image": "shopify://shop_images/Group_157.png",
             "use_lottie_animation": false,
@@ -417,7 +417,7 @@
       "name": "t:general.drink_better",
       "settings": {
         "heading": "<p>Feel Present.</p><p>Stay Toasted.</p>",
-        "description": "<p>A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC. <br/>Made to help you feel present without overdoing it.</p>",
+        "description": "<p>A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC. Made to help you feel present without overdoing it.</p>",
         "video": "",
         "image": "shopify://shop_images/Rectangle_102.png",
         "image_alt": "",
@@ -593,7 +593,7 @@
               "type": "flavor-swatch",
               "name": "t:general.flavor_swatch",
               "settings": {
-                "product": "try-all-3-flavors",
+                "product": "freetrial",
                 "flavor_name": "Trial Pack",
                 "swatch_image": "shopify://shop_images/Frame_2147235892_1.png",
                 "color": "#2f7948"
@@ -678,10 +678,11 @@
             "button_text_color": "#f6f1ec",
             "feature_1_text": "",
             "feature_2_text": "",
-            "background_color": "#9ab2d5",
+            "background_color": "#551F36",
             "feature_text_color": "#212323",
+            "heading_color": "#F6F1EC",
             "background_image": "shopify://shop_images/Frame_2147235943_1.png",
-            "image": "shopify://shop_images/Frame_2147235944.png"
+            "image": "shopify://shop_images/Frame_2147236126.png"
           },
           "blocks": {}
         }
@@ -693,6 +694,7 @@
         "badge_text": "Launching Soon",
         "pack_pill_background_color": "#f9d5c0",
         "pack_pill_text_color": "#212323",
+        "hide_purchase_options": false,
         "subscribe_heading": "Subscribe & Save",
         "save_badge_text": "Save [percent]%",
         "save_every_order_text": "Save [percent]% on every order",
@@ -932,8 +934,9 @@
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>People have tried it. You’re up next.</p>",
+        "heading_mobile": "",
         "enable_slide_border": false,
-        "background_color": "#F6F1EC",
+        "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "social_icon_1_link": "",
         "social_icon_2_link": "",
@@ -1025,9 +1028,10 @@
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>Drops, Events & Good moments.</p><p><em>@drinktoasted</em></p>",
+        "heading_mobile": "<p>Drops, Events & Good moments. <em>@drinktoasted</em></p>",
         "enable_slide_border": false,
         "background_color": "#636d90",
-        "background_image": "shopify://shop_images/Frame_2147230637.png",
+        "background_image": "shopify://shop_images/Frame_2147230637_1.png",
         "heading_color": "#f6f1ec",
         "social_icon_1_image": "shopify://shop_images/Item_a47a4d47-c447-485d-86d0-1f8d8032ce0e.svg",
         "social_icon_1_link": "https://www.instagram.com/drinktoasted/",

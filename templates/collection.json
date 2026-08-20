@@ -88,7 +88,7 @@
         "product_card_iUCqkK": {
           "type": "product-card",
           "settings": {
-            "product": "try-all-3-flavors",
+            "product": "freetrial",
             "background_image": "shopify://shop_images/Frame_2147236049.svg",
             "image": "shopify://shop_images/Group_157.png",
             "use_lottie_animation": false,

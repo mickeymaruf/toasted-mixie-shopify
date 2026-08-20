@@ -22,7 +22,7 @@
   endcase
 %}
 
-<div class="flex w-full items-center gap-[25px]" {{ block.shopify_attributes }}>
+<div class="flex w-full items-center gap-[35px] sm:gap-[25px]" {{ block.shopify_attributes }}>
   <div class="mood-item__icon shrink-0" style="--mood-item-icon-aspect-ratio: {{ icon_aspect_ratio }};">
     {% if block.settings.icon %}
       {{
@@ -45,7 +45,7 @@
   {% if block.settings.title != blank or block.settings.subtitle != blank %}
     <div class="flex flex-col gap-[2.638px]">
       {% if block.settings.title != blank %}
-        <p class="text-[18px] leading-normal font-medium whitespace-nowrap sm:text-[20px]">{{ block.settings.title }}</p>
+        <p class="text-[22px] leading-normal font-medium whitespace-nowrap sm:text-[20px]">{{ block.settings.title }}</p>
       {% endif %}
 
       {% if block.settings.subtitle != blank %}
@@ -57,7 +57,7 @@
 
 {% stylesheet %}
   .mood-item__icon {
-    width: 46px;
+    width: 80px;
     aspect-ratio: var(--mood-item-icon-aspect-ratio);
   }
 

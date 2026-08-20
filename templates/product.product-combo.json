@@ -109,7 +109,7 @@
               "type": "flavor-swatch",
               "name": "t:general.flavor_swatch",
               "settings": {
-                "product": "try-all-3-flavors",
+                "product": "freetrial",
                 "flavor_name": "Trial Pack",
                 "swatch_image": "shopify://shop_images/Frame_2147235892_1.png",
                 "color": "#2f7948"
@@ -194,10 +194,11 @@
             "button_text_color": "#f6f1ec",
             "feature_1_text": "",
             "feature_2_text": "",
-            "background_color": "#9ab2d5",
+            "background_color": "#551F36",
             "feature_text_color": "#212323",
+            "heading_color": "#F6F1EC",
             "background_image": "shopify://shop_images/Frame_2147235943_1.png",
-            "image": "shopify://shop_images/Frame_2147235944.png"
+            "image": "shopify://shop_images/Frame_2147236126.png"
           },
           "blocks": {}
         }
@@ -207,9 +208,9 @@
         "rating": 5,
         "show_badge": true,
         "badge_text": "Launching Soon",
-        "hide_purchase_options": true,
         "pack_pill_background_color": "#c7aa9a",
         "pack_pill_text_color": "#212323",
+        "hide_purchase_options": true,
         "subscribe_heading": "Subscribe & Save",
         "save_badge_text": "Save [percent]%",
         "save_every_order_text": "Save [percent]% on every order",

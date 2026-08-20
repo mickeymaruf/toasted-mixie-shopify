@@ -8,16 +8,10 @@
   style="background-color: {{ section.settings.background_color }};"
 >
   <div
-    class="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-8 px-5 py-16 text-center sm:gap-10 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:gap-[51px] lg:px-[60px] lg:py-[100px] xl:px-0"
+    class="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-8 px-5 py-16 text-center sm:gap-10 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:flex-row lg:items-center lg:justify-between lg:gap-[51px] lg:px-[60px] lg:py-[100px] lg:text-left xl:px-0"
     style="color: {{ section.settings.text_color }};"
   >
-    {% if section.settings.heading != blank %}
-      <h2 class="font-[family-name:var(--font-heading--family)] w-full text-[36px] leading-[0.95] font-bold tracking-[-0.03em] sm:text-[48px] md:text-[56px] lg:text-[72px]">
-        {{ section.settings.heading }}
-      </h2>
-    {% endif %}
-
-    <div class="w-[180px] sm:w-[220px] lg:w-[266px]">
+    <div class="w-[180px] shrink-0 sm:w-[220px] lg:w-[266px]">
       {% if section.settings.badge_image %}
         {{
           section.settings.badge_image
@@ -36,11 +30,19 @@
       {% endif %}
     </div>
 
-    {% if section.settings.description != blank %}
-      <div class="text-[16px] leading-[1.5] sm:text-[18px] lg:text-[24px]">
-        {{ section.settings.description }}
-      </div>
-    {% endif %}
+    <div class="flex w-full flex-col items-center gap-8 sm:gap-10 lg:w-[833px] lg:items-start lg:gap-[51px]">
+      {% if section.settings.heading != blank %}
+        <h2 class="font-[family-name:var(--font-heading--family)] w-full text-[36px] leading-[0.95] font-bold sm:text-[48px] md:text-[56px] lg:text-[72px]">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="text-[16px] leading-[1.5] font-light sm:text-[18px] lg:text-[24px]">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+    </div>
   </div>
 </section>
 
