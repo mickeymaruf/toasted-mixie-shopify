@@ -165,7 +165,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
-                "body": "<p>We created a drink to help you relax withoutchecking out. Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society.<br/><br/><strong>Stay Toasted.</strong></p>",
+                "body": "<p>We created a drink to help you relax withoutchecking out. Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society.</p><p><strong>Stay Toasted.</strong></p>",
                 "image": "shopify://shop_images/signature.svg",
                 "background_color": "#c2cbd4",
                 "text_color": "#212323",
@@ -312,6 +312,7 @@
       "name": "t:general.built_on_trust",
       "settings": {
         "heading": "Built on trust.",
+        "badge_image": "shopify://shop_images/Group_133.png",
         "badge_image_alt": "America's most compliant badge",
         "description": "<p>We believe great brands aren't just remembered for how they look or taste, but for how they're built. Every decision we make is guided by quality, transparency, and compliance, giving our retail partners, venues, and customers the confidence to choose Toasted. Our ambition is to become America's most compliant functional beverage brand by making responsibility part of everything we do.</p>",
         "background_color": "#551f36",
@@ -377,6 +378,7 @@
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>People have tried it. You’re up next.</p>",
+        "heading_mobile": "",
         "enable_slide_border": true,
         "background_color": "#636d90",
         "heading_color": "#f6f1ec",

@@ -23,7 +23,7 @@
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_2_d9ea2e03-3fd3-45fb-bec0-189d4d2ac384.png",
         "background_image_mobile": "shopify://shop_images/Frame_2147230792_1_0723ef5c-41fc-4e02-99a9-8b09bccc13dc.png",
-        "background_color": "#9ab2d5"
+        "background_color": "#F6F1EC"
       }
     },
     "bundle_builder_gPVQwm": {
@@ -155,8 +155,8 @@
         "subscribe_label": "Subscribe & Save 20%",
         "add_to_cart_label": "Add to Cart",
         "subscribe_note": "Subscribe & Save is the best value.",
-        "background_color": "#9ab2d5",
-        "panel_background_color": "#f6f1ec",
+        "background_color": "#F6F1EC",
+        "panel_background_color": "#F9D5C0",
         "purchase_selected_color": "#f9d5c0",
         "add_to_cart_background_color": "#212323",
         "add_to_cart_text_color": "#f6f1ec"
@@ -224,8 +224,9 @@
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>People have tried it. You’re up next.</p>",
+        "heading_mobile": "",
         "enable_slide_border": false,
-        "background_color": "#F6F1EC",
+        "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "social_icon_1_link": "",
         "social_icon_2_link": "",
@@ -330,6 +331,8 @@
       "settings": {
         "heading": "Functional by Design",
         "description": "Made with real fruit, 200mg L-theanine, 50mg Rhodiola, and 0.4mg hemp-derived THC.",
+        "center_image": "shopify://shop_images/Group_107.png",
+        "center_image_alt": "",
         "background_image": "shopify://shop_images/ingredient-highlights-background.png"
       }
     },

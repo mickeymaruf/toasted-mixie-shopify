@@ -20,7 +20,7 @@
       "settings": {
         "heading": "Certificate of Analysis",
         "subheading": "Every Toasted batch is third-party lab tested for potency, purity, and safety.",
-        "heading_color": "#F6F1EC",
+        "heading_color": "#f6f1ec",
         "container_background_color": "#551f36",
         "background_image": "shopify://shop_images/Frame_2147235873.png"
       }
@@ -32,24 +32,24 @@
           "type": "step",
           "settings": {
             "step_number": "01",
-            "title": "SCAN THE CODE",
-            "description": "Scan the code on your can or packaging to open the latest lab results."
+            "title": "Batch/Lot Code",
+            "description": "Find it on the bottom of your can or package."
           }
         },
         "step_PFNLFJ": {
           "type": "step",
           "settings": {
             "step_number": "02",
-            "title": "FIND YOUR BATCH NUMBER",
-            "description": "Your batch number is printed on the bottom of the can."
+            "title": "Third-Party Tested",
+            "description": "Tested by independent labs for clarity and consistency."
           }
         },
         "step_y4RKcc": {
           "type": "step",
           "settings": {
             "step_number": "03",
-            "title": "REVIEW THE COA",
-            "description": "Check potency, ingredients, and testing details before you sip."
+            "title": "Product Safety",
+            "description": "Checked for potency, purity, and safety."
           }
         }
       },
@@ -61,7 +61,7 @@
       "name": "Lab results",
       "settings": {
         "title": "Find your Lab Results",
-        "description": "Every Toasted batch is tested. Use your batch number to find the Certificate of Analysis for your can.",
+        "description": "Enter your batch number or lot code to find your Certificate of Analysis.",
         "background_color": "#f6f1ec"
       }
     },
@@ -234,7 +234,7 @@
       "name": "t:general.coa_guide",
       "settings": {
         "heading": "How to Read a COA",
-        "background_color": "#F6F1EC"
+        "background_color": "#f6f1ec"
       }
     }
   },

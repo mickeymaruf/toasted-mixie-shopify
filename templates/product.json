@@ -188,15 +188,15 @@
           "static": true,
           "settings": {
             "heading": "Can't Pick Just One?",
-            "button_label": "Try our Bundle Pack",
-            "button_link": "",
+            "button_label": "Bundle and Save",
+            "button_link": "shopify://pages/bundle-builder",
             "button_background_color": "#d4941f",
             "button_text_color": "#f6f1ec",
             "feature_1_text": "",
             "feature_2_text": "",
-            "background_color": "#551F36",
+            "background_color": "#551f36",
             "feature_text_color": "#212323",
-            "heading_color": "#F6F1EC",
+            "heading_color": "#f6f1ec",
             "background_image": "shopify://shop_images/Frame_2147235943_1.png",
             "image": "shopify://shop_images/Frame_2147236126.png"
           },
@@ -289,6 +289,7 @@
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>People have tried it. You’re up next.</p>",
+        "heading_mobile": "",
         "enable_slide_border": false,
         "background_color": "#f6f1ec",
         "heading_color": "#212323",

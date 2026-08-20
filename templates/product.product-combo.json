@@ -67,6 +67,7 @@
         },
         "flavor-swatch-row": {
           "type": "flavor-swatch-row",
+          "disabled": true,
           "static": true,
           "settings": {
             "heading": "Choose your Flavor"
@@ -194,9 +195,9 @@
             "button_text_color": "#f6f1ec",
             "feature_1_text": "",
             "feature_2_text": "",
-            "background_color": "#551F36",
+            "background_color": "#551f36",
             "feature_text_color": "#212323",
-            "heading_color": "#F6F1EC",
+            "heading_color": "#f6f1ec",
             "background_image": "shopify://shop_images/Frame_2147235943_1.png",
             "image": "shopify://shop_images/Frame_2147236126.png"
           },
@@ -224,7 +225,7 @@
         "subscribe_card_background_image": "shopify://shop_images/Label.png",
         "subscribe_pill_background_color": "#551f36",
         "subscribe_pill_text_color": "#f6f1ec",
-        "custom_button_text": "Claim Your Trial Pack\n<strong class=\"font-medium\">FREE</strong>"
+        "custom_button_text": "Claim Your Trial Pack FREE"
       }
     },
     "gruns_gallery_bgbxEd": {
@@ -289,8 +290,9 @@
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>People have tried it. You’re up next.</p>",
+        "heading_mobile": "",
         "enable_slide_border": false,
-        "background_color": "#F6F1EC",
+        "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "social_icon_1_link": "",
         "social_icon_2_link": "",
@@ -309,7 +311,7 @@
               "type": "feature-highlight",
               "settings": {
                 "title": "L-Theanine",
-                "icon": "shopify://shop_images/icon-leaf.svg"
+                "icon": "shopify://shop_images/Group_85.svg"
               },
               "blocks": {}
             },
@@ -317,7 +319,7 @@
               "type": "feature-highlight",
               "settings": {
                 "title": "Rhodiola",
-                "icon": "shopify://shop_images/Group_88.svg"
+                "icon": "shopify://shop_images/Group_88_f1ed27a0-a08b-4c06-a302-e91043350b3f.svg"
               },
               "blocks": {}
             },
@@ -333,7 +335,7 @@
               "type": "feature-highlight",
               "settings": {
                 "title": "Real Fruit Juice",
-                "icon": "shopify://shop_images/Group_91.svg"
+                "icon": "shopify://shop_images/Group_91_6620b2b6-74f0-440d-aa91-ccadbe66c10c.svg"
               },
               "blocks": {}
             }
@@ -378,7 +380,7 @@
               "type": "feature-highlight",
               "settings": {
                 "title": "21+ Only",
-                "icon": "shopify://shop_images/Group_92.svg"
+                "icon": "shopify://shop_images/Group_92_07903adb-0b1f-44c2-aff0-0d0a34fd1771.svg"
               },
               "blocks": {}
             }
@@ -395,7 +397,7 @@
       "settings": {
         "heading": "Functional by Design.",
         "description": "Made with real fruit, 200mg L-theanine, 50mg Rhodiola, and 0.4mg hemp-derived THC.",
-        "center_image": "shopify://shop_images/1_697aeb09-a3cd-4b5c-a929-b77803a6572f.png",
+        "center_image": "shopify://shop_images/Group_107.png",
         "center_image_alt": "",
         "background_image": "shopify://shop_images/ingredient-highlights-background.png"
       }

@@ -320,7 +320,7 @@
                 "title": "Supports Clarity",
                 "subtitle": "Smooth, present focus",
                 "icon_style": "clarity",
-                "icon": "shopify://shop_images/Star_2_Stroke.svg"
+                "icon": "shopify://shop_images/Star_2_Stroke_a395db4a-f1ab-4738-8e17-cad3191cf757.svg"
               },
               "blocks": {}
             },
@@ -331,7 +331,7 @@
                 "title": "Balanced Mood",
                 "subtitle": "Light, feel-good lift",
                 "icon_style": "clarity",
-                "icon": "shopify://shop_images/Vector_Stroke_fa5748c9-9aef-4da0-b2d0-2920d617a354.svg"
+                "icon": "shopify://shop_images/Vector_Stroke_faf6aeb0-9cd9-433f-a3bb-e66dee396aac.svg"
               },
               "blocks": {}
             },
@@ -342,7 +342,7 @@
                 "title": "Promotes Calm",
                 "subtitle": "Easy, steady unwind",
                 "icon_style": "clarity",
-                "icon": "shopify://shop_images/Vector_Stroke_Stroke.svg"
+                "icon": "shopify://shop_images/Vector_Stroke_Stroke_663a47a5-594c-4b32-a6fa-da7659ab7744.svg"
               },
               "blocks": {}
             }
@@ -672,15 +672,15 @@
           "static": true,
           "settings": {
             "heading": "Can't Pick Just One?",
-            "button_label": "Try our Bundle Pack",
-            "button_link": "",
+            "button_label": "Bundle and Save",
+            "button_link": "shopify://pages/bundle-builder",
             "button_background_color": "#d4941f",
             "button_text_color": "#f6f1ec",
             "feature_1_text": "",
             "feature_2_text": "",
-            "background_color": "#551F36",
+            "background_color": "#551f36",
             "feature_text_color": "#212323",
-            "heading_color": "#F6F1EC",
+            "heading_color": "#f6f1ec",
             "background_image": "shopify://shop_images/Frame_2147235943_1.png",
             "image": "shopify://shop_images/Frame_2147236126.png"
           },
