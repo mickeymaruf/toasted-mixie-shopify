@@ -43,7 +43,7 @@
           {% for media in product.media %}
             <button
               type="button"
-              class="product-gallery__thumb flex w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg outline-offset-2 outline-[#212323] sm:w-20 lg:w-auto lg:self-center {% if forloop.first %}outline-2{% endif %}"
+              class="product-gallery__thumb flex w-[72px] shrink-0 items-center justify-center overflow-hidden rounded-lg outline-offset-2 outline-[#212323] sm:w-20 lg:w-auto lg:self-center {% if forloop.first %}outline-2{% endif %}"
               data-gallery-thumb
               data-index="{{ forloop.index0 }}"
               aria-label="{{ 'general.accessibility.view_media' | t: index: forloop.index }}"
@@ -939,14 +939,14 @@
           "static": true,
           "id": "badge-row",
           "blocks": [
-            { "type": "guarantee-badge", "settings": { "label": "30-Day Guarantee", "icon_style": "guarantee" } },
+            { "type": "guarantee-badge", "settings": { "label": "<p>30-Day Guarantee</p>", "icon_style": "guarantee" } },
             {
               "type": "guarantee-badge",
-              "settings": { "label": "COA available. 3rd party tested.", "icon_style": "lab" }
+              "settings": { "label": "<p>COA available. 3rd party tested.</p>", "icon_style": "lab" }
             },
             {
               "type": "guarantee-badge",
-              "settings": { "label": "Adults 21+ only. Use responsibly.", "icon_style": "payment" }
+              "settings": { "label": "<p>Adults 21+ only. Use responsibly.</p>", "icon_style": "payment" }
             }
           ]
         },

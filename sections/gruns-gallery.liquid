@@ -35,7 +35,10 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <gruns-gallery-carousel class="order-3 relative flex w-full items-center gap-1 sm:order-none sm:gap-4">
+      <gruns-gallery-carousel
+        class="order-3 relative flex w-full items-center gap-1 sm:order-none sm:gap-4"
+        data-autoplay="{{ section.settings.enable_autoplay }}"
+      >
         {% comment %}
           <button
             type="button"
@@ -122,6 +125,7 @@
 
       const prevEl = carouselEl.querySelector('[data-gallery-prev]');
       const nextEl = carouselEl.querySelector('[data-gallery-next]');
+      const autoplayEnabled = carouselEl.dataset.autoplay === 'true';
 
       new Swiper(carouselEl.querySelector('.swiper'), {
         slidesPerView: 1.8,
@@ -131,10 +135,12 @@
           prevEl: prevEl,
           nextEl: nextEl,
         }, {% endcomment %}
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
+        autoplay: autoplayEnabled
+          ? {
+              delay: 3000,
+              disableOnInteraction: false,
+            }
+          : false,
         breakpoints: {
           425: {
             slidesPerView: 2.5,
@@ -196,6 +202,12 @@
       "id": "enable_slide_border",
       "label": "t:labels.enable_slide_border",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "t:labels.enable_autoplay",
+      "default": true
     },
     {
       "type": "header",

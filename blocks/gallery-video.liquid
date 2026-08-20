@@ -108,21 +108,11 @@
       this.playButton = this.querySelector('[data-gallery-video-play]');
 
       this.video.addEventListener('play', () => {
-        this.closest('.swiper')?.swiper?.autoplay?.stop();
         if (this.playButton) this.playButton.hidden = true;
       });
 
       this.video.addEventListener('pause', () => {
         if (this.playButton) this.playButton.hidden = false;
-
-        // Resume the carousel's autoplay once every video slide in it is
-        // paused again — 'pause' also fires when a video reaches its natural
-        // end, so this covers that case too.
-        const swiperEl = this.closest('.swiper');
-        const anyStillPlaying = swiperEl
-          ? Array.from(swiperEl.querySelectorAll('[data-gallery-video]')).some((v) => !v.paused)
-          : false;
-        if (!anyStillPlaying) swiperEl?.swiper?.autoplay?.start();
       });
 
       // This button sits outside <video-player>, so clicking it never enters
@@ -134,12 +124,17 @@
       // (togglePaused, region: center) via media-container — adding our own
       // 'click' handler on top of that double-handles the same click and
       // causes play() immediately followed by an unwanted pause(). Its touch
-      // gesture only toggles controls though, not playback, so with the play
-      // button hidden pre-play there's otherwise no way to start playback on
-      // mobile — hence this is scoped to touch/pen pointers only.
+      // gesture only toggles controls though, never playback, so tapping the
+      // video on mobile would otherwise do nothing once already playing (no
+      // pause) and, with the play button hidden pre-play, nothing to start
+      // playback either — hence this handles both directions, scoped to
+      // touch/pen pointers only so it never fights the mouse gesture above.
       this.video.addEventListener('pointerup', (event) => {
-        if (event.pointerType !== 'mouse' && this.video.paused) {
+        if (event.pointerType === 'mouse') return;
+        if (this.video.paused) {
           this.video.play();
+        } else {
+          this.video.pause();
         }
       });
 

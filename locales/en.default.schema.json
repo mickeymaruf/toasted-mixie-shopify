@@ -163,6 +163,7 @@
     "background_mobile": "Background image (mobile)",
     "background_mobile_info": "Optional mobile-specific background image. Defaults to desktop image if not provided.",
     "enable_slide_border": "Enable slide border",
+    "enable_autoplay": "Enable auto-scroll",
     "badge_text": "Badge text",
     "badge_image": "Badge image",
     "badge_background": "Badge background",

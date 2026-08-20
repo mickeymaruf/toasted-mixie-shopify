@@ -21,7 +21,7 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "200mg L-theanine",
+                "label": "<p>200mg L-theanine</p>",
                 "label_mobile": "",
                 "icon": "shopify://shop_images/Group_86.svg"
               },
@@ -31,7 +31,7 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "0.4mg hemp-derived THC",
+                "label": "<p>0.4mg hemp-derived THC</p>",
                 "label_mobile": "",
                 "icon": "shopify://shop_images/Group_154.svg"
               },
@@ -41,7 +41,7 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "50mg Rhodiola",
+                "label": "<p>50mg Rhodiola</p>",
                 "label_mobile": "",
                 "icon": "shopify://shop_images/Group_89_1.svg"
               },
@@ -51,7 +51,7 @@
               "type": "product-highlight",
               "name": "t:general.product_highlight",
               "settings": {
-                "label": "Non-carbonated",
+                "label": "<p>Non-carbonated</p>",
                 "label_mobile": "",
                 "icon": "shopify://shop_images/Group_155.svg"
               },
@@ -144,7 +144,7 @@
               "type": "guarantee-badge",
               "name": "t:general.guarantee_badge",
               "settings": {
-                "label": "30-Day Guarantee",
+                "label": "<p>30-Day Guarantee</p>",
                 "label_mobile": "",
                 "icon_style": "guarantee"
               },
@@ -154,7 +154,7 @@
               "type": "guarantee-badge",
               "name": "t:general.guarantee_badge",
               "settings": {
-                "label": "COA available. 3rd party tested.",
+                "label": "<p>COA available. 3rd party tested.</p>",
                 "label_mobile": "",
                 "icon_style": "lab"
               },
@@ -164,7 +164,7 @@
               "type": "guarantee-badge",
               "name": "t:general.guarantee_badge",
               "settings": {
-                "label": "Adults 21+ only. Use responsibly.",
+                "label": "<p>Adults 21+ only. Use responsibly.</p>",
                 "label_mobile": "",
                 "icon_style": "payment"
               },
@@ -339,6 +339,7 @@
         "heading": "<p>People have tried it. You’re up next.</p>",
         "heading_mobile": "",
         "enable_slide_border": true,
+        "enable_autoplay": false,
         "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "social_icon_1_link": "",
