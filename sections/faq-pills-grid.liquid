@@ -28,7 +28,7 @@
       {% if section.settings.show_button and section.settings.button_label != blank %}
         {% render 'button',
           label: section.settings.button_label,
-          url: section.settings.button_link,
+          url: section.settings.button_link | default: '#product-buy-box',
           background_color: section.settings.button_background_color,
           text_color: section.settings.button_text_color,
           class: 'w-auto whitespace-nowrap'

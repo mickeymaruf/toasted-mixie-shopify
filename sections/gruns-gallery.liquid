@@ -1,7 +1,7 @@
 {% doc %}
   Renders "Drops, Events & Good moments. @drinktoasted" — a heading and an
-  infinite scrolling Swiper carousel of gallery-image blocks, with
-  previous/next controls and 2 items per view on mobile.
+  infinite scrolling Swiper carousel of gallery-image and gallery-video
+  blocks, with previous/next controls and 2 items per view on mobile.
 {% enddoc %}
 
 <section
@@ -173,7 +173,7 @@
 {% schema %}
 {
   "name": "t:general.gruns_gallery",
-  "blocks": [{ "type": "gallery-image" }],
+  "blocks": [{ "type": "gallery-image" }, { "type": "gallery-video" }],
   "settings": [
     {
       "type": "header",

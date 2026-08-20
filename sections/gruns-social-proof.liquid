@@ -59,8 +59,16 @@
       {% endif %}
 
       {% if section.settings.description != blank %}
-        <div class="text-[18px] leading-[1.5] sm:text-[20px] lg:text-[24px]">
+        <div
+          class="text-[18px] leading-[1.5] sm:text-[20px] lg:text-[24px] {% if section.settings.mobile_description != blank %}hidden sm:block{% endif %}"
+        >
           {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.mobile_description != blank %}
+        <div class="block text-[18px] leading-[1.5] sm:hidden">
+          {{ section.settings.mobile_description }}
         </div>
       {% endif %}
 
@@ -136,6 +144,12 @@
       "id": "description",
       "label": "t:labels.description",
       "default": "<p>We regularly test for all 20+ vitamins & minerals to ensure claims are accurate & clear of contaminants including:</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "mobile_description",
+      "label": "t:labels.mobile_description",
+      "info": "t:labels.mobile_description_info"
     },
     {
       "type": "header",

@@ -165,49 +165,84 @@
     "gruns_gallery_hJaXd3": {
       "type": "gruns-gallery",
       "blocks": {
-        "gallery_image_XFwthe": {
+        "gallery_video_gXakGr": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
+          "settings": {
+            "video": "shopify://files/videos/0819.mov",
+            "thumbnail": "shopify://shop_images/picz_10.png",
+            "alt_text": "",
+            "placeholder_text": "Video coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_iVbVNc": {
+          "type": "gallery-image",
+          "settings": {
+            "image": "shopify://shop_images/picz_12.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_video_nyQwPN": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
+          "settings": {
+            "video": "shopify://files/videos/0819(1)d.mov",
+            "thumbnail": "shopify://shop_images/picz_15.png",
+            "alt_text": "",
+            "placeholder_text": "Video coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_XrgW9a": {
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz.png",
+            "image": "shopify://shop_images/picz_13.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
           "blocks": {}
         },
-        "gallery_image_r4b6BA": {
-          "type": "gallery-image",
+        "gallery_video_FNnfzg": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
           "settings": {
-            "image": "shopify://shop_images/picz_1.png",
+            "video": "shopify://files/videos/IMG_7803 (1).MOV",
+            "thumbnail": "shopify://shop_images/picz_18.png",
             "alt_text": "",
-            "placeholder_text": "Image coming soon"
+            "placeholder_text": "Video coming soon"
           },
           "blocks": {}
         },
-        "gallery_image_QHUH6b": {
-          "type": "gallery-image",
-          "settings": {
-            "image": "shopify://shop_images/picz_2.png",
-            "alt_text": "",
-            "placeholder_text": "Image coming soon"
-          },
-          "blocks": {}
-        },
-        "gallery_image_4GkJaM": {
+        "gallery_image_bGAgEh": {
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz_3.png",
+            "image": "shopify://shop_images/picz_11.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
           "blocks": {}
         },
-        "gallery_image_GtE7EB": {
+        "gallery_video_Jr3RC3": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
+          "settings": {
+            "video": "shopify://files/videos/0819 (1).mov",
+            "thumbnail": "shopify://shop_images/picz_19.png",
+            "alt_text": "",
+            "placeholder_text": "Video coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_NKnwre": {
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz_4.png",
+            "image": "shopify://shop_images/picz_14.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -215,17 +250,20 @@
         }
       },
       "block_order": [
-        "gallery_image_XFwthe",
-        "gallery_image_r4b6BA",
-        "gallery_image_QHUH6b",
-        "gallery_image_4GkJaM",
-        "gallery_image_GtE7EB"
+        "gallery_video_gXakGr",
+        "gallery_image_iVbVNc",
+        "gallery_video_nyQwPN",
+        "gallery_image_XrgW9a",
+        "gallery_video_FNnfzg",
+        "gallery_image_bGAgEh",
+        "gallery_video_Jr3RC3",
+        "gallery_image_NKnwre"
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>People have tried it. You’re up next.</p>",
         "heading_mobile": "",
-        "enable_slide_border": false,
+        "enable_slide_border": true,
         "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "social_icon_1_link": "",
@@ -536,7 +574,7 @@
         "heading": "Good Questions",
         "show_button": true,
         "button_label": "Try Toasted Now",
-        "button_link": "",
+        "button_link": "#product-buy-box",
         "section_background": "#9ab2d5",
         "heading_color": "#212323",
         "button_background_color": "#212323",

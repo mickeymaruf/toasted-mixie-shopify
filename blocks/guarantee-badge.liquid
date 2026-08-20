@@ -37,7 +37,17 @@
   </div>
 
   {% if block.settings.label != blank %}
-    <p class="text-center text-[14px] leading-[1.3] text-[#212323]">{{ block.settings.label }}</p>
+    <p
+      class="text-center text-[14px] leading-[1.3] text-[#212323] {% if block.settings.label_mobile != blank %}hidden sm:block{% endif %}"
+    >
+      {{ block.settings.label }}
+    </p>
+  {% endif %}
+
+  {% if block.settings.label_mobile != blank %}
+    <p class="block text-center text-[14px] leading-[1.3] text-[#212323] sm:hidden">
+      {{ block.settings.label_mobile }}
+    </p>
   {% endif %}
 </div>
 
@@ -50,6 +60,12 @@
       "id": "label",
       "label": "t:labels.label",
       "default": "30-Day Guarantee"
+    },
+    {
+      "type": "text",
+      "id": "label_mobile",
+      "label": "t:labels.label_mobile",
+      "info": "t:labels.label_mobile_info"
     },
     {
       "type": "select",

@@ -28,17 +28,22 @@
   endif
 
   assign rating_rounded = section.settings.rating | round
+
+  assign sticky_cta_background_alpha = section.settings.sticky_cta_background_opacity | times: 0.01
+  assign sticky_cta_background_rgba = section.settings.sticky_cta_background_color | color_modify: 'alpha', sticky_cta_background_alpha
 %}
 
 <section class="product-main full-width bg-[#F6F1EC]">
-  <div class="mx-auto flex w-full max-w-[1200px] flex-col items-start gap-8 px-5 pb-8 pt-5 sm:px-8 md:flex-row md:gap-6 md:px-12 lg:gap-[60px] lg:px-0 lg:py-[70px]">
+  <div class="mx-auto flex w-full max-w-[1200px] flex-col items-start gap-8 px-5 pb-8 pt-5 sm:px-8 md:flex-row md:gap-6 md:px-12 lg:gap-10 lg:px-0 lg:py-[70px] xl:gap-[60px]">
     {% if product.media.size > 0 %}
-      <product-gallery class="flex w-full flex-col items-start gap-3 sm:gap-5 md:min-w-[300px] md:w-[350px] lg:sticky lg:top-8 lg:w-[585px] lg:flex-row lg:shrink-0">
-        <div class="order-2 flex gap-1 overflow-x-auto sm:gap-3 lg:order-1 lg:w-[101px] lg:shrink-0 lg:flex-col lg:overflow-visible">
+      <product-gallery class="flex w-full flex-col items-start gap-3 sm:gap-5 md:min-w-[300px] md:w-[350px] lg:sticky lg:top-8 lg:w-[585px] lg:flex-row lg:items-stretch lg:shrink-0">
+        <div
+          class="product-gallery__thumb-list order-2 flex w-full min-w-0 gap-2 overflow-x-auto px-1 py-1 sm:gap-4 lg:order-1 lg:w-[82px] lg:shrink-0 lg:flex-col lg:gap-3 lg:overflow-visible lg:px-0 lg:py-0"
+        >
           {% for media in product.media %}
             <button
               type="button"
-              class="product-gallery__thumb w-[80px] shrink-0 overflow-hidden rounded-lg outline-offset-2 outline-[#212323] sm:w-[101px] lg:w-full h-[100px] sm:h-[135px] m-1 {% if forloop.first %}outline-2{% endif %}"
+              class="product-gallery__thumb flex w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg outline-offset-2 outline-[#212323] sm:w-20 lg:w-auto lg:self-center {% if forloop.first %}outline-2{% endif %}"
               data-gallery-thumb
               data-index="{{ forloop.index0 }}"
               aria-label="{{ 'general.accessibility.view_media' | t: index: forloop.index }}"
@@ -46,7 +51,7 @@
               {{
                 media.preview_image
                 | image_url: width: 200
-                | image_tag: width: 200, height: 200, class: 'size-full object-cover', alt: media.alt
+                | image_tag: width: 200, class: 'block h-auto w-full', alt: media.alt
               }}
             </button>
           {% endfor %}
@@ -496,6 +501,23 @@
   </div>
 </section>
 
+{% if section.settings.show_sticky_cta and template.name == 'product' %}
+  <sticky-add-to-cart
+    class="sticky-add-to-cart fixed inset-x-0 bottom-0 z-[999999] p-4 backdrop-blur-sm"
+    style="background-color: {{ sticky_cta_background_rgba }};"
+  >
+    <div class="relative mx-auto flex w-full max-w-[400px] items-start justify-center">
+      <a
+        href="#product-buy-box"
+        class="flex w-full items-center justify-center gap-2 rounded-[30px] px-6 py-3 text-center text-[16px] leading-[1.5] font-medium focus-visible:outline-2 focus-visible:outline-offset-2 sm:px-16 sm:py-4 sm:text-[20px]"
+        style="background-color: {{ section.settings.sticky_cta_button_background_color }}; color: {{ section.settings.sticky_cta_button_text_color }};"
+      >
+        {{ section.settings.sticky_cta_label | default: 'Try Now' }}
+      </a>
+    </div>
+  </sticky-add-to-cart>
+{% endif %}
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const initProductGallery = () => {
@@ -544,6 +566,36 @@
 {% stylesheet %}
   .product-gallery__swiper .swiper-slide {
     box-sizing: border-box;
+  }
+
+  @media (min-width: 1024px) {
+    .product-gallery__thumb {
+      flex: 1 1 0%;
+      min-height: 0;
+    }
+
+    .product-gallery__thumb img {
+      width: auto;
+      height: 100%;
+      max-width: 100%;
+    }
+  }
+
+  .sticky-add-to-cart {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .sticky-add-to-cart.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  [data-buy-button-label] p {
+    display: contents;
   }
 {% endstylesheet %}
 
@@ -645,6 +697,26 @@
   }
 
   customElements.define('product-purchase', ProductPurchase);
+
+  class StickyAddToCart extends HTMLElement {
+    connectedCallback() {
+      this.buyButton = document.querySelector('[data-buy-button]');
+      if (!this.buyButton || typeof IntersectionObserver === 'undefined') return;
+
+      this.observer = new IntersectionObserver(([entry]) => {
+        const scrolledPast = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        this.classList.toggle('is-visible', scrolledPast);
+      });
+
+      this.observer.observe(this.buyButton);
+    }
+
+    disconnectedCallback() {
+      this.observer?.disconnect();
+    }
+  }
+
+  customElements.define('sticky-add-to-cart', StickyAddToCart);
 {% endjavascript %}
 
 {% schema %}
@@ -799,9 +871,53 @@
       "content": "t:general.add_to_cart_button"
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "custom_button_text",
       "label": "t:labels.custom_button_text"
+    },
+    {
+      "type": "header",
+      "content": "t:general.sticky_add_to_cart"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sticky_cta",
+      "label": "t:labels.show_sticky_cta",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sticky_cta_label",
+      "label": "t:labels.sticky_cta_label",
+      "default": "Try Now"
+    },
+    {
+      "type": "color",
+      "id": "sticky_cta_background_color",
+      "label": "t:labels.sticky_cta_background",
+      "default": "#212323"
+    },
+    {
+      "type": "range",
+      "id": "sticky_cta_background_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "t:labels.sticky_cta_background_opacity",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "sticky_cta_button_background_color",
+      "label": "t:labels.sticky_cta_button_background",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "sticky_cta_button_text_color",
+      "label": "t:labels.sticky_cta_button_text_color",
+      "default": "#F6F1EC"
     }
   ],
   "blocks": [

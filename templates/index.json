@@ -109,8 +109,8 @@
               "type": "trust-badge",
               "settings": {
                 "label": "200mg L-theanine",
+                "label_mobile": "",
                 "description": "",
-                "icon_style": "lab",
                 "icon": "shopify://shop_images/Frame_2147236065.png"
               },
               "blocks": {}
@@ -119,8 +119,8 @@
               "type": "trust-badge",
               "settings": {
                 "label": "50mg Rhodiola",
+                "label_mobile": "",
                 "description": "",
-                "icon_style": "carbonation",
                 "icon": "shopify://shop_images/Frame_2147236064.png"
               },
               "blocks": {}
@@ -129,8 +129,8 @@
               "type": "trust-badge",
               "settings": {
                 "label": ".4mg Hemp THC",
+                "label_mobile": "",
                 "description": "",
-                "icon_style": "thc",
                 "icon": "shopify://shop_images/Frame_2147236066.png"
               },
               "blocks": {}
@@ -161,11 +161,11 @@
         "heading_color": "#212323",
         "cans_background_color": "#f9d5c0",
         "cans_background_image": "shopify://shop_images/Rectangle_61.png",
-        "can_image_1": "shopify://shop_images/ACAI_Z10000_2.png",
+        "can_image_1": "shopify://shop_images/berry_30000_1.png",
         "can_image_1_alt": "",
-        "can_image_2": "shopify://shop_images/LIME_Y1.png0008_2.png",
+        "can_image_2": "shopify://shop_images/lime_20000_1.png",
         "can_image_2_alt": "",
-        "can_image_3": "shopify://shop_images/BLOOD_V1_2_2.png",
+        "can_image_3": "shopify://shop_images/orange_010000_3.png",
         "can_image_3_alt": "",
         "show_badge": false,
         "badge_text": "Get 20% Off",
@@ -220,7 +220,7 @@
           "settings": {
             "product": "blood-orange",
             "background_image": "shopify://shop_images/Frame_2147236000.svg",
-            "image": "shopify://shop_images/Group_8.png",
+            "image": "shopify://shop_images/Group_8_1.png",
             "use_lottie_animation": false,
             "flavor_name": "Blood Orange",
             "flavor_name_color": "#b70141",
@@ -239,7 +239,7 @@
           "settings": {
             "product": "berry-acai",
             "background_image": "shopify://shop_images/Frame_2147236002.svg",
-            "image": "shopify://shop_images/Group_6.png",
+            "image": "shopify://shop_images/Group_5.png",
             "use_lottie_animation": false,
             "flavor_name": "Berry Acai",
             "flavor_name_color": "#5e1a79",
@@ -258,7 +258,7 @@
           "settings": {
             "product": "ginger-lime",
             "background_image": "shopify://shop_images/Frame_2147236003.svg",
-            "image": "shopify://shop_images/Group_7.png",
+            "image": "shopify://shop_images/Group_7_1.png",
             "use_lottie_animation": false,
             "flavor_name": "Ginger Lime",
             "flavor_name_color": "#215332",
@@ -277,7 +277,7 @@
           "settings": {
             "product": "freetrial",
             "background_image": "shopify://shop_images/Frame_2147236049.svg",
-            "image": "shopify://shop_images/Group_157.png",
+            "image": "shopify://shop_images/Group_157_1.png",
             "use_lottie_animation": false,
             "flavor_name": "Free Trial Pack",
             "flavor_name_color": "#215332",
@@ -506,7 +506,7 @@
               "name": "t:general.product_highlight",
               "settings": {
                 "label": "200mg L-theanine",
-                "icon_style": "thc",
+                "label_mobile": "",
                 "icon": "shopify://shop_images/Group_86.svg"
               },
               "blocks": {}
@@ -516,7 +516,7 @@
               "name": "t:general.product_highlight",
               "settings": {
                 "label": "0.4mg hemp-derived THC",
-                "icon_style": "thc",
+                "label_mobile": "",
                 "icon": "shopify://shop_images/Group_154.svg"
               },
               "blocks": {}
@@ -526,7 +526,7 @@
               "name": "t:general.product_highlight",
               "settings": {
                 "label": "50mg Rhodiola",
-                "icon_style": "thc",
+                "label_mobile": "",
                 "icon": "shopify://shop_images/Group_89_1.svg"
               },
               "blocks": {}
@@ -536,7 +536,7 @@
               "name": "t:general.product_highlight",
               "settings": {
                 "label": "Non-carbonated",
-                "icon_style": "thc",
+                "label_mobile": "",
                 "icon": "shopify://shop_images/Group_155.svg"
               },
               "blocks": {}
@@ -629,7 +629,9 @@
               "name": "t:general.guarantee_badge",
               "settings": {
                 "label": "30-Day Guarantee",
-                "icon_style": "guarantee"
+                "label_mobile": "",
+                "icon_style": "guarantee",
+                "icon": "shopify://shop_images/Icon_2.svg"
               },
               "blocks": {}
             },
@@ -638,7 +640,9 @@
               "name": "t:general.guarantee_badge",
               "settings": {
                 "label": "COA available. 3rd party tested.",
-                "icon_style": "lab"
+                "label_mobile": "",
+                "icon_style": "guarantee",
+                "icon": "shopify://shop_images/Icon_2_1088c0c6-4fbd-4112-944a-42e52c1b20d0.svg"
               },
               "blocks": {}
             },
@@ -647,7 +651,9 @@
               "name": "t:general.guarantee_badge",
               "settings": {
                 "label": "Adults 21+ only. Use responsibly.",
-                "icon_style": "payment"
+                "label_mobile": "",
+                "icon_style": "guarantee",
+                "icon": "shopify://shop_images/Icon_3.svg"
               },
               "blocks": {}
             }
@@ -708,7 +714,13 @@
         "subscribe_card_background_image": "shopify://shop_images/Label.png",
         "subscribe_pill_background_color": "#551f36",
         "subscribe_pill_text_color": "#f6f1ec",
-        "custom_button_text": ""
+        "custom_button_text": "",
+        "show_sticky_cta": true,
+        "sticky_cta_label": "Try Now",
+        "sticky_cta_background_color": "#212323",
+        "sticky_cta_background_opacity": 10,
+        "sticky_cta_button_background_color": "#212323",
+        "sticky_cta_button_text_color": "#f6f1ec"
       }
     },
     "gruns_feature_grid_qYc4BG": {
@@ -875,31 +887,34 @@
     "gruns_gallery_bG9CQ8": {
       "type": "gruns-gallery",
       "blocks": {
-        "gallery_image_ebkn3Q": {
-          "type": "gallery-image",
-          "name": "t:general.gallery_image",
+        "gallery_video_gXakGr": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
           "settings": {
-            "image": "shopify://shop_images/picz.png",
+            "video": "shopify://files/videos/0819.mov",
+            "thumbnail": "shopify://shop_images/picz_10.png",
             "alt_text": "",
-            "placeholder_text": "Image coming soon"
+            "placeholder_text": "Video coming soon"
           },
           "blocks": {}
         },
         "gallery_image_iVbVNc": {
           "type": "gallery-image",
           "settings": {
-            "image": "shopify://shop_images/picz_1.png",
+            "image": "shopify://shop_images/picz_12.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
           "blocks": {}
         },
-        "gallery_image_X79BKw": {
-          "type": "gallery-image",
+        "gallery_video_nyQwPN": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
           "settings": {
-            "image": "shopify://shop_images/picz_2.png",
+            "video": "shopify://files/videos/0819(1)d.mov",
+            "thumbnail": "shopify://shop_images/picz_15.png",
             "alt_text": "",
-            "placeholder_text": "Image coming soon"
+            "placeholder_text": "Video coming soon"
           },
           "blocks": {}
         },
@@ -907,17 +922,49 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz_3.png",
+            "image": "shopify://shop_images/picz_13.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
           "blocks": {}
         },
-        "gallery_image_zaeQyV": {
+        "gallery_video_FNnfzg": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
+          "settings": {
+            "video": "shopify://files/videos/IMG_7803 (1).MOV",
+            "thumbnail": "shopify://shop_images/picz_18.png",
+            "alt_text": "",
+            "placeholder_text": "Video coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_bGAgEh": {
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz_4.png",
+            "image": "shopify://shop_images/picz_11.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_video_Jr3RC3": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
+          "settings": {
+            "video": "shopify://files/videos/0819 (1).mov",
+            "thumbnail": "shopify://shop_images/picz_19.png",
+            "alt_text": "",
+            "placeholder_text": "Video coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_NKnwre": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/picz_14.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -925,17 +972,20 @@
         }
       },
       "block_order": [
-        "gallery_image_ebkn3Q",
+        "gallery_video_gXakGr",
         "gallery_image_iVbVNc",
-        "gallery_image_X79BKw",
+        "gallery_video_nyQwPN",
         "gallery_image_XrgW9a",
-        "gallery_image_zaeQyV"
+        "gallery_video_FNnfzg",
+        "gallery_image_bGAgEh",
+        "gallery_video_Jr3RC3",
+        "gallery_image_NKnwre"
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
         "heading": "<p>People have tried it. You’re up next.</p>",
         "heading_mobile": "",
-        "enable_slide_border": false,
+        "enable_slide_border": true,
         "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "social_icon_1_link": "",
@@ -952,6 +1002,7 @@
         "rating_text": "<p><strong>4.8</strong> Rating <strong>• 100,000</strong> Reviews <strong>• 1,000,000+</strong> Members</p>",
         "heading": "<p>Try the chill drink.</p>",
         "description": "<p>A functional relaxation beverage made with real fruit. <br/>Present in the moment.</p>",
+        "mobile_description": "<p>A functional relaxation beverage made with real fruit. Present in the moment.</p>",
         "show_button": true,
         "button_label": "Shop Now",
         "button_link": "/collections/shop-all",
@@ -1110,7 +1161,7 @@
         "heading": "Good Questions",
         "show_button": true,
         "button_label": "Try Toasted Now",
-        "button_link": "",
+        "button_link": "#product-buy-box",
         "section_background": "#9ab2d5",
         "heading_color": "#212323",
         "button_background_color": "#212323",

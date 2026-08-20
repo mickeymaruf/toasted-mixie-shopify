@@ -2,24 +2,12 @@
   Renders a small circular icon with a label underneath, used to call out a
   product trust signal (e.g. potency, carbonation, lab testing).
 
-  Falls back to a bundled default icon per `icon_style` when no custom
-  `icon` image is uploaded. Intended to be nested inside a badge-row block
-  (e.g. the Gruns Hero section).
+  Intended to be nested inside a badge-row block (e.g. the Gruns Hero
+  section).
 
   @example
   {% content_for 'block', id: block.id, type: 'trust-badge' %}
 {% enddoc %}
-
-{% liquid
-  case block.settings.icon_style
-    when 'carbonation'
-      assign default_icon = 'icon-badge-carbonation.png'
-    when 'lab'
-      assign default_icon = 'icon-badge-lab-tested.png'
-    else
-      assign default_icon = 'icon-badge-thc.png'
-  endcase
-%}
 
 <div class="flex min-w-0 flex-1 flex-col items-center gap-[8px] sm:w-auto sm:flex-none sm:gap-[5px]" {{ block.shopify_attributes }}>
   <div class="size-[72px] shrink-0 sm:size-[85px] lg:size-[101px]">
@@ -29,23 +17,22 @@
         | image_url: width: 202
         | image_tag: width: 202, height: 202, class: 'size-full object-contain', alt: block.settings.label
       }}
-    {% else %}
-      <img
-        src="{{ default_icon | asset_url }}"
-        width="202"
-        height="202"
-        loading="lazy"
-        class="size-full object-contain"
-        alt="{{ block.settings.label | escape }}"
-      >
     {% endif %}
   </div>
 
   {% if block.settings.label != blank or block.settings.description != blank %}
     <div class="flex flex-col items-center gap-[2.64px]">
       {% if block.settings.label != blank %}
-        <p class="text-center text-[14px] leading-[1.5] font-medium text-[#212323] sm:text-[13px] sm:whitespace-nowrap lg:text-[14px]">
+        <p
+          class="text-center text-[14px] leading-[1.5] font-medium text-[#212323] sm:text-[13px] sm:whitespace-nowrap lg:text-[14px] {% if block.settings.label_mobile != blank %}hidden sm:block{% endif %}"
+        >
           {{ block.settings.label }}
+        </p>
+      {% endif %}
+
+      {% if block.settings.label_mobile != blank %}
+        <p class="block text-center text-[14px] leading-[1.5] font-medium text-[#212323] sm:hidden">
+          {{ block.settings.label_mobile }}
         </p>
       {% endif %}
 
@@ -70,19 +57,14 @@
     },
     {
       "type": "text",
-      "id": "description",
-      "label": "t:labels.description"
+      "id": "label_mobile",
+      "label": "t:labels.label_mobile",
+      "info": "t:labels.label_mobile_info"
     },
     {
-      "type": "select",
-      "id": "icon_style",
-      "label": "t:labels.icon_style",
-      "options": [
-        { "value": "thc", "label": "t:options.icon_style.thc" },
-        { "value": "carbonation", "label": "t:options.icon_style.carbonation" },
-        { "value": "lab", "label": "t:options.icon_style.lab" }
-      ],
-      "default": "thc"
+      "type": "text",
+      "id": "description",
+      "label": "t:labels.description"
     },
     {
       "type": "image_picker",

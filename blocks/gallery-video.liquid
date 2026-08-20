@@ -1,0 +1,217 @@
+{% doc %}
+  Renders a single framed, rounded-corner portrait video, played via Video.js
+  (minimal skin) as a slide inside the Gruns Gallery section's scrolling
+  carousel.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'gallery-video' %}
+{% enddoc %}
+
+<div
+  class="gruns-gallery__slide shrink-0 snap-start w-full max-w-[320px] pl-4 lg:pl-[23px] pt-1 pb-5"
+  {{ block.shopify_attributes }}
+>
+  <gallery-video-player
+    class="relative block aspect-[225.6/329.39] w-full overflow-hidden rounded-[22.113px] shadow-[-3px_4px_10px_0px_rgba(0,0,0,0.15)] {% if section.settings.enable_slide_border %}border-[3px] border-[#212323]{% endif %}"
+  >
+    {% if block.settings.video %}
+      <video-player class="contents">
+        <video-minimal-skin class="absolute inset-0 block size-full">
+          <video
+            class="size-full object-cover"
+            playsinline
+            preload="metadata"
+            disablePictureInPicture
+            disableRemotePlayback
+            {% if block.settings.thumbnail %}
+              poster="{{ block.settings.thumbnail | image_url: width: 600 }}"
+            {% endif %}
+            data-gallery-video
+          >
+            {% for source in block.settings.video.sources %}
+              <source src="{{ source.url }}" type="{{ source.mime_type }}">
+            {% endfor %}
+          </video>
+        </video-minimal-skin>
+      </video-player>
+
+      <button
+        type="button"
+        class="absolute top-1/2 left-1/2 z-10 flex size-[44px] -translate-x-1/2 -translate-y-1/2 items-center justify-center cursor-pointer"
+        data-gallery-video-play
+        aria-label="{{ 'general.accessibility.play_video' | t }}"
+      >
+        {{ 'icon-play-circle.svg' | inline_asset_content }}
+      </button>
+    {% elsif block.settings.thumbnail %}
+      {{
+        block.settings.thumbnail
+        | image_url: width: 600
+        | image_tag:
+          class: 'absolute inset-0 block size-full object-cover',
+          widths: '160, 200, 220, 252, 400, 600',
+          sizes: '(min-width: 64rem) 252px, (min-width: 48rem) 220px, (min-width: 40rem) 200px, 160px',
+          alt: block.settings.alt_text
+      }}
+    {% else %}
+      <div class="flex size-full items-center justify-center bg-[#D9D9D9] px-4 text-center text-sm font-medium text-[#6D6D6D]">
+        {{ block.settings.placeholder_text }}
+      </div>
+    {% endif %}
+  </gallery-video-player>
+</div>
+
+{% javascript %}
+  const videoMinimalReady = customElements.get('video-player')
+    ? Promise.resolve()
+    : import('https://cdn.jsdelivr.net/npm/@videojs/html/cdn/video-minimal.js');
+
+  // video-minimal-skin renders into an open Shadow DOM with no exposed ::part()
+  // hooks, so these can only be hidden by reaching into shadowRoot directly —
+  // a light-DOM stylesheet can never select them.
+  // Video.js's own play button is replaced by our bespoke center icon below,
+  // so it's suppressed permanently rather than revealed after first play.
+  const HIDDEN_ALWAYS = [
+    '#settings-trigger',
+    '#settings-menu',
+    'media-pip-button',
+    '.media-overlay',
+    'media-play-button',
+    '#play-tooltip',
+    '.media-status-indicator--playback',
+    '.media-time-controls',
+  ];
+  // Shown only while actively playing — hidden any time the video is
+  // paused, not just before the first play.
+  const HIDDEN_WHILE_PAUSED = [
+    'media-mute-button',
+    '#video-volume-popover',
+    'media-captions-button',
+    'media-cast-button',
+    'media-airplay-button',
+    'media-fullscreen-button',
+  ];
+
+  function hide(el) {
+    el?.style.setProperty('display', 'none', 'important');
+  }
+
+  function show(el) {
+    el?.style.removeProperty('display');
+  }
+
+  class GalleryVideoPlayer extends HTMLElement {
+    async connectedCallback() {
+      this.video = this.querySelector('[data-gallery-video]');
+      if (!this.video) return;
+
+      this.playButton = this.querySelector('[data-gallery-video-play]');
+
+      this.video.addEventListener('play', () => {
+        this.closest('.swiper')?.swiper?.autoplay?.stop();
+        if (this.playButton) this.playButton.hidden = true;
+      });
+
+      this.video.addEventListener('pause', () => {
+        if (this.playButton) this.playButton.hidden = false;
+
+        // Resume the carousel's autoplay once every video slide in it is
+        // paused again — 'pause' also fires when a video reaches its natural
+        // end, so this covers that case too.
+        const swiperEl = this.closest('.swiper');
+        const anyStillPlaying = swiperEl
+          ? Array.from(swiperEl.querySelectorAll('[data-gallery-video]')).some((v) => !v.paused)
+          : false;
+        if (!anyStillPlaying) swiperEl?.swiper?.autoplay?.start();
+      });
+
+      // This button sits outside <video-player>, so clicking it never enters
+      // media-container's composed path — no conflict with Video.js's own
+      // click gesture (unlike a listener placed directly on the video).
+      this.playButton?.addEventListener('click', () => this.video.play());
+
+      // Video.js's own Gesture component already handles mouse clicks
+      // (togglePaused, region: center) via media-container — adding our own
+      // 'click' handler on top of that double-handles the same click and
+      // causes play() immediately followed by an unwanted pause(). Its touch
+      // gesture only toggles controls though, not playback, so with the play
+      // button hidden pre-play there's otherwise no way to start playback on
+      // mobile — hence this is scoped to touch/pen pointers only.
+      this.video.addEventListener('pointerup', (event) => {
+        if (event.pointerType !== 'mouse' && this.video.paused) {
+          this.video.play();
+        }
+      });
+
+      // Video.js fullscreens <media-container> (inside the shadow tree), not
+      // the <video> itself — so document.fullscreenElement retargets to the
+      // shadow host, <video-minimal-skin>, per the standard shadow DOM
+      // retargeting rules. object-cover crops a portrait video to fill the
+      // card; switch to object-contain in fullscreen so the whole frame
+      // stays visible instead of being cropped against the fullscreen frame.
+      const skinHost = this.querySelector('video-minimal-skin');
+      document.addEventListener('fullscreenchange', () => {
+        const isFullscreen = document.fullscreenElement === skinHost;
+        this.video.classList.toggle('object-contain', isFullscreen);
+        this.video.classList.toggle('object-cover', !isFullscreen);
+      });
+
+      this.visibilityObserver = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) this.video.pause();
+          }
+        },
+        { threshold: 0.5 },
+      );
+      this.visibilityObserver.observe(this);
+
+      await videoMinimalReady;
+      const root = this.querySelector('video-minimal-skin')?.shadowRoot;
+      if (!root) return;
+
+      HIDDEN_ALWAYS.forEach((selector) => hide(root.querySelector(selector)));
+
+      HIDDEN_WHILE_PAUSED.forEach((selector) => hide(root.querySelector(selector)));
+      this.video.addEventListener('play', () => HIDDEN_WHILE_PAUSED.forEach((selector) => show(root.querySelector(selector))));
+      this.video.addEventListener('pause', () => HIDDEN_WHILE_PAUSED.forEach((selector) => hide(root.querySelector(selector))));
+    }
+
+    disconnectedCallback() {
+      this.visibilityObserver?.disconnect();
+    }
+  }
+
+  customElements.define('gallery-video-player', GalleryVideoPlayer);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.gallery_video",
+  "settings": [
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:labels.video"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumbnail",
+      "label": "t:labels.thumbnail_image"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "t:labels.placeholder_text",
+      "info": "t:labels.placeholder_text_info",
+      "default": "Video coming soon"
+    }
+  ],
+  "presets": [{ "name": "t:general.gallery_video" }]
+}
+{% endschema %}

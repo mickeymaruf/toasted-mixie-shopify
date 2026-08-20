@@ -28,7 +28,7 @@
           "settings": {
             "product": "blood-orange",
             "background_image": "shopify://shop_images/Frame_2147236000.svg",
-            "image": "shopify://shop_images/Group_8.png",
+            "image": "shopify://shop_images/Group_8_1.png",
             "use_lottie_animation": false,
             "flavor_name": "Blood Orange",
             "flavor_name_color": "#b70141",
@@ -47,7 +47,7 @@
           "settings": {
             "product": "berry-acai",
             "background_image": "shopify://shop_images/Frame_2147236002.svg",
-            "image": "shopify://shop_images/Group_6.png",
+            "image": "shopify://shop_images/Group_5.png",
             "use_lottie_animation": false,
             "flavor_name": "Berry Acai",
             "flavor_name_color": "#5e1a79",
@@ -66,7 +66,7 @@
           "settings": {
             "product": "ginger-lime",
             "background_image": "shopify://shop_images/Frame_2147236003.svg",
-            "image": "shopify://shop_images/Group_7.png",
+            "image": "shopify://shop_images/Group_7_1.png",
             "use_lottie_animation": false,
             "flavor_name": "Ginger Lime",
             "flavor_name_color": "#215332",
@@ -85,7 +85,7 @@
           "settings": {
             "product": "freetrial",
             "background_image": "shopify://shop_images/Frame_2147236049.svg",
-            "image": "shopify://shop_images/Group_157.png",
+            "image": "shopify://shop_images/Group_157_1.png",
             "use_lottie_animation": false,
             "flavor_name": "Trial Pack",
             "flavor_name_color": "#215332",

@@ -82,6 +82,11 @@ h6 {
   font-family: var(--font-heading--family);
 }
 
+b,
+strong {
+  font-weight: 500;
+}
+
 /** Section layout utilities */
 
 /**
