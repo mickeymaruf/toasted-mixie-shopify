@@ -9,17 +9,20 @@
 {% liquid
   assign cart_total = cart.total_price
   assign free_shipping_threshold_cents = section.settings.free_shipping_threshold | times: 100
+  assign show_free_shipping = section.settings.show_free_shipping
 
-  assign progress_percent = cart_total | times: 100 | divided_by: free_shipping_threshold_cents | at_most: 100
+  if show_free_shipping and free_shipping_threshold_cents > 0
+    assign progress_percent = cart_total | times: 100 | divided_by: free_shipping_threshold_cents | at_most: 100
 
-  if cart_total >= free_shipping_threshold_cents
-    assign progress_message = section.settings.progress_message_unlocked
-  else
-    capture remaining_money
-      render 'format-money', cents: free_shipping_threshold_cents | minus: cart_total
-    endcapture
-    assign message_template = section.settings.progress_message
-    assign progress_message = message_template | replace: '{{ amount }}', remaining_money
+    if cart_total >= free_shipping_threshold_cents
+      assign progress_message = section.settings.progress_message_unlocked
+    else
+      capture remaining_money
+        render 'format-money', cents: free_shipping_threshold_cents | minus: cart_total
+      endcapture
+      assign message_template = section.settings.progress_message
+      assign progress_message = message_template | replace: '{{ amount }}', remaining_money
+    endif
   endif
 %}
 
@@ -52,23 +55,25 @@
         </button>
       </div>
 
-      <div class="flex w-full flex-col items-center justify-center gap-3 rounded-lg bg-[#F9D5C0] p-2">
-        <p class="w-full text-center text-[14px] leading-[1.3] font-medium text-[#212323]">{{ progress_message }}</p>
+      {% if show_free_shipping %}
+        <div class="flex w-full flex-col items-center justify-center gap-3 rounded-lg bg-[#F9D5C0] p-2">
+          <p class="w-full text-center text-[14px] leading-[1.3] font-medium text-[#212323]">{{ progress_message }}</p>
 
-        <div class="relative w-full rounded-full bg-[#F6F1EC] p-1">
-          <div class="h-2 rounded-full bg-[#212323]" style="width: {{ progress_percent }}%"></div>
+          <div class="relative w-full rounded-full bg-[#F6F1EC] p-1">
+            <div class="h-2 rounded-full bg-[#212323]" style="width: {{ progress_percent }}%"></div>
 
-          <div
-            class="absolute top-1/2 right-0 -translate-y-1/2 rounded-full p-[6px] {% if cart_total >= free_shipping_threshold_cents %}bg-[#212323]{% else %}bg-[#212323]/30{% endif %}"
-          >
-            <span class="block size-4 text-[#F6F1EC]">{{ 'icon-shipping.svg' | inline_asset_content }}</span>
+            <div
+              class="absolute top-1/2 right-0 -translate-y-1/2 rounded-full p-[6px] {% if cart_total >= free_shipping_threshold_cents %}bg-[#212323]{% else %}bg-[#212323]/30{% endif %}"
+            >
+              <span class="block size-4 text-[#F6F1EC]">{{ 'icon-shipping.svg' | inline_asset_content }}</span>
+            </div>
+          </div>
+
+          <div class="flex w-full items-center justify-end text-[12px] leading-[1.3] font-medium text-[#212323]">
+            <p>{{ section.settings.milestone_label }}</p>
           </div>
         </div>
-
-        <div class="flex w-full items-center justify-end text-[12px] leading-[1.3] font-medium text-[#212323]">
-          <p>{{ section.settings.milestone_label }}</p>
-        </div>
-      </div>
+      {% endif %}
 
       {% if cart.item_count > 0 %}
         <div class="flex w-full flex-col items-center justify-center gap-6">
@@ -358,6 +363,12 @@
     {
       "type": "header",
       "content": "t:general.purchase"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_free_shipping",
+      "label": "Show free shipping progress",
+      "default": true
     },
     {
       "type": "number",

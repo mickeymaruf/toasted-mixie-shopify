@@ -39,16 +39,20 @@
         class="order-3 relative flex w-full items-center gap-1 sm:order-none sm:gap-4"
         data-autoplay="{{ section.settings.enable_autoplay }}"
       >
-        {% comment %}
+        {% if section.settings.show_navigation %}
           <button
             type="button"
-            class="hidden sm:flex size-[48px] shrink-0 items-center justify-center text-[#212323] disabled:opacity-30 z-10 cursor-pointer"
+            class="gruns-gallery__nav-button gruns-gallery__nav-button--prev hidden size-[48px] shrink-0 items-center justify-center text-[#212323] disabled:opacity-30 lg:flex"
             data-gallery-prev
             aria-label="{{ 'general.accessibility.previous_slide' | t }}"
           >
-            <span class="block size-[28px]">{{ 'icon-chevron-left.svg' | inline_asset_content }}</span>
+            <span class="block size-[28px]" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" fill="none" aria-hidden="true" focusable="false">
+                <path stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" d="M1 1L7 7L13 1"></path>
+              </svg>
+            </span>
           </button>
-        {% endcomment %}
+        {% endif %}
 
         <div class="swiper gruns-gallery__swiper flex-1 overflow-hidden min-w-0">
           <div class="swiper-wrapper gruns-gallery__track">
@@ -60,16 +64,20 @@
           </div>
         </div>
 
-        {% comment %}
+        {% if section.settings.show_navigation %}
           <button
             type="button"
-            class="hidden sm:flex size-[48px] shrink-0 items-center justify-center text-[#212323] disabled:opacity-30 z-10 cursor-pointer"
+            class="gruns-gallery__nav-button gruns-gallery__nav-button--next hidden size-[48px] shrink-0 items-center justify-center text-[#212323] disabled:opacity-30 lg:flex"
             data-gallery-next
             aria-label="{{ 'general.accessibility.next_slide' | t }}"
           >
-            <span class="block size-[28px]">{{ 'icon-chevron-right.svg' | inline_asset_content }}</span>
+            <span class="block size-[28px]" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 8" fill="none" aria-hidden="true" focusable="false">
+                <path stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" d="M1 1L7 7L13 1"></path>
+              </svg>
+            </span>
           </button>
-        {% endcomment %}
+        {% endif %}
       </gruns-gallery-carousel>
     {% endif %}
 
@@ -127,14 +135,10 @@
       const nextEl = carouselEl.querySelector('[data-gallery-next]');
       const autoplayEnabled = carouselEl.dataset.autoplay === 'true';
 
-      new Swiper(carouselEl.querySelector('.swiper'), {
+      const swiperOptions = {
         slidesPerView: 1.8,
         loop: true,
         grabCursor: true,
-        {% comment %} navigation: {
-          prevEl: prevEl,
-          nextEl: nextEl,
-        }, {% endcomment %}
         autoplay: autoplayEnabled
           ? {
               delay: 3000,
@@ -155,7 +159,16 @@
             slidesPerView: 5,
           },
         },
-      });
+      };
+
+      if (prevEl && nextEl) {
+        swiperOptions.navigation = {
+          prevEl: prevEl,
+          nextEl: nextEl,
+        };
+      }
+
+      new Swiper(carouselEl.querySelector('.swiper'), swiperOptions);
     };
 
     const initAllSwipers = () => {
@@ -172,6 +185,26 @@
 {% stylesheet %}
   .gruns-gallery__track {
     box-sizing: border-box;
+  }
+
+  .gruns-gallery__nav-button {
+    color: #212323;
+    cursor: pointer;
+    transition:
+      opacity 150ms ease,
+      transform 150ms ease;
+  }
+
+  .gruns-gallery__nav-button:hover {
+    opacity: 0.75;
+  }
+
+  .gruns-gallery__nav-button--prev svg {
+    transform: rotate(90deg);
+  }
+
+  .gruns-gallery__nav-button--next svg {
+    transform: rotate(-90deg);
   }
 
 {% endstylesheet %}
@@ -207,6 +240,12 @@
       "type": "checkbox",
       "id": "enable_autoplay",
       "label": "t:labels.enable_autoplay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Show navigation arrows",
       "default": true
     },
     {

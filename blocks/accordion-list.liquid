@@ -37,7 +37,7 @@
           <div class="accordion-item__answer-wrap" id="content-accordion-{{ forloop.index }}" role="region">
             <div class="accordion-item__answer-inner overflow-hidden">
               {% if accordion.content != blank %}
-                <div class="px-[18px] pt-2 pb-4 text-[16px] leading-[1.5]">
+                <div class="accordion-item__answer-content px-[18px] pt-2 pb-4 text-[16px] leading-[1.5]">
                   {{ accordion.content | metafield_tag }}
                 </div>
               {% endif %}
@@ -81,6 +81,14 @@
 
   .accordion-item.is-open .accordion-item__answer-wrap {
     grid-template-rows: 1fr;
+  }
+
+  .accordion-item__answer-content a,
+  .accordion-item__answer-content u {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: from-font;
+    text-underline-offset: 0.15em;
   }
 {% endstylesheet %}
 

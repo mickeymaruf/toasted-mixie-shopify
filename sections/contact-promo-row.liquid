@@ -10,7 +10,7 @@
 {% assign button_text_color = section.settings.button_text_color %}
 {% assign promo_bg_color = section.settings.promo_background_color %}
 
-<section class="w-full" style="
+<section class="contact-promo-row w-full" style="
   background-color: {{ bg_color }};
   --form-bg: {{ bg_color }};
   --form-text: {{ text_color }};
@@ -169,8 +169,8 @@
     </div>
 
     <!-- RIGHT COLUMN: PROMO CARDS -->
-    <div class="flex flex-col justify-start pt-8 pb-16 sm:py-8 md:py-12 lg:py-[80px] lg:min-h-[2000px]" style="background-color: var(--promo-bg);">
-      <div class="mx-auto w-full max-w-[1920px]">
+    <div class="contact-promo-row__promo-column flex flex-col justify-start pt-8 pb-16 sm:py-8 md:py-12 lg:py-[80px] lg:min-h-[2000px]" style="background-color: var(--promo-bg);">
+      <div class="contact-promo-row__promo-cards mx-auto w-full max-w-[1920px]">
         {% if section.blocks.size > 0 %}
           <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 lg:gap-[30px]">
             {% for block in section.blocks %}
@@ -201,8 +201,38 @@
   </div>
 </section>
 
+{% stylesheet %}
+  @media screen and (min-width: 1024px) {
+    .contact-promo-row__promo-cards {
+      position: sticky;
+      top: var(--contact-promo-cards-sticky-top, 80px);
+    }
+  }
+{% endstylesheet %}
+
 {% javascript %}
   document.addEventListener('DOMContentLoaded', function() {
+    const setContactPromoStickyOffsets = () => {
+      document.querySelectorAll('.contact-promo-row').forEach((section) => {
+        const promoCards = section.querySelector('.contact-promo-row__promo-cards');
+        if (!promoCards) return;
+
+        if (!window.matchMedia('(min-width: 1024px)').matches) {
+          promoCards.style.removeProperty('--contact-promo-cards-sticky-top');
+          return;
+        }
+
+        const topPadding = 80;
+        const bottomOffset = 0;
+        const stickyTop = Math.min(topPadding, window.innerHeight - promoCards.offsetHeight - bottomOffset);
+        promoCards.style.setProperty('--contact-promo-cards-sticky-top', `${stickyTop}px`);
+      });
+    };
+
+    setContactPromoStickyOffsets();
+    window.addEventListener('resize', setContactPromoStickyOffsets);
+    document.addEventListener('shopify:section:load', setContactPromoStickyOffsets);
+
     const forms = document.querySelectorAll('.contact-form');
 
     forms.forEach(form => {

@@ -1875,12 +1875,6 @@
   .text-\[20px\] {
     font-size: 20px;
   }
-  .text-\[21px\] {
-    font-size: 21px;
-  }
-  .text-\[22px\] {
-    font-size: 22px;
-  }
   .text-\[24px\] {
     font-size: 24px;
   }
@@ -1941,10 +1935,6 @@
   .leading-\[1\.6\] {
     --tw-leading: 1.6;
     line-height: 1.6;
-  }
-  .leading-\[1\.15\] {
-    --tw-leading: 1.15;
-    line-height: 1.15;
   }
   .leading-\[1\.35\] {
     --tw-leading: 1.35;
@@ -3115,10 +3105,6 @@
     .sm\:leading-\[1\.5\] {
       --tw-leading: 1.5;
       line-height: 1.5;
-    }
-    .sm\:tracking-\[-0\.6px\] {
-      --tw-tracking: -0.6px;
-      letter-spacing: -0.6px;
     }
     .sm\:tracking-\[-0\.66px\] {
       --tw-tracking: -0.66px;

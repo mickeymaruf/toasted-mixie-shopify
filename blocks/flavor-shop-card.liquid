@@ -18,10 +18,16 @@
       assign default_image = 'card-flavor-blood-orange.png'
   endcase
 
-  assign flavor_name = block.settings.flavor_name | default: block.settings.product.title
+  assign flavor_name_desktop = block.settings.flavor_name
+  assign flavor_name_mobile = block.settings.flavor_name_mobile
+  assign flavor_name_plain = flavor_name_desktop | strip_html | strip
+  if flavor_name_plain == blank
+    assign flavor_name_plain = block.settings.product.title
+  endif
+
   assign button_label = block.settings.button_label
-  if button_label == blank and flavor_name != blank
-    assign button_label = 'products.list.shop_flavor' | t: flavor: flavor_name
+  if button_label == blank and flavor_name_plain != blank
+    assign button_label = 'products.list.shop_flavor' | t: flavor: flavor_name_plain
   endif
 %}
 
@@ -35,7 +41,7 @@
       {{
         block.settings.card_image
         | image_url: width: 320
-        | image_tag: width: 320, height: 189, class: 'h-full w-auto object-contain object-bottom', alt: flavor_name
+        | image_tag: width: 320, height: 189, class: 'h-full w-auto object-contain object-bottom', alt: flavor_name_plain
       }}
     {% else %}
       <img
@@ -44,16 +50,34 @@
         height="189"
         loading="lazy"
         class="h-full w-auto object-contain object-bottom"
-        alt="{{ flavor_name | escape }}"
+        alt="{{ flavor_name_plain | escape }}"
       >
     {% endif %}
   </div>
 
   <div class="flex min-w-0 flex-1 flex-col items-start gap-[10px]">
-    {% if flavor_name != blank %}
-      <p class="text-[21px] leading-[1.15] font-bold tracking-normal text-[#212323] sm:text-[24px] sm:tracking-[-0.6px] lg:text-[20px] xl:text-[24px]">
-        {{ flavor_name }}
-      </p>
+    {% if flavor_name_desktop != blank %}
+      <div class="flavor-shop-card__name flavor-shop-card__name--desktop">
+        {{ flavor_name_desktop }}
+      </div>
+    {% elsif flavor_name_plain != blank %}
+      <div class="flavor-shop-card__name flavor-shop-card__name--desktop">
+        <p>{{ flavor_name_plain }}</p>
+      </div>
+    {% endif %}
+
+    {% if flavor_name_mobile != blank %}
+      <div class="flavor-shop-card__name flavor-shop-card__name--mobile">
+        {{ flavor_name_mobile }}
+      </div>
+    {% elsif flavor_name_desktop != blank %}
+      <div class="flavor-shop-card__name flavor-shop-card__name--mobile">
+        {{ flavor_name_desktop }}
+      </div>
+    {% elsif flavor_name_plain != blank %}
+      <div class="flavor-shop-card__name flavor-shop-card__name--mobile">
+        <p>{{ flavor_name_plain }}</p>
+      </div>
     {% endif %}
 
     {% if button_label != blank %}
@@ -67,6 +91,57 @@
     {% endif %}
   </div>
 </div>
+
+{% stylesheet %}
+  .flavor-shop-card__name {
+    color: #212323;
+    font-size: 1.3125rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.15;
+  }
+
+  .flavor-shop-card__name p {
+    margin: 0;
+  }
+
+  .flavor-shop-card__name--desktop {
+    display: none;
+  }
+
+  .flavor-shop-card__name--mobile {
+    display: block;
+  }
+
+  @media (min-width: 40rem) {
+    .flavor-shop-card__name {
+      font-size: 1.5rem;
+      letter-spacing: -0.0375rem;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .flavor-shop-card__name--desktop {
+      display: block;
+    }
+
+    .flavor-shop-card__name--mobile {
+      display: none;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .flavor-shop-card__name {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .flavor-shop-card__name {
+      font-size: 1.5rem;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -82,10 +157,16 @@
       "label": "t:labels.product"
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "flavor_name",
-      "label": "t:labels.flavor_name",
+      "label": "t:labels.flavor_name_desktop",
       "info": "t:labels.flavor_name_info"
+    },
+    {
+      "type": "richtext",
+      "id": "flavor_name_mobile",
+      "label": "t:labels.flavor_name_mobile",
+      "info": "t:labels.flavor_name_mobile_info"
     },
     {
       "type": "header",

@@ -20,7 +20,7 @@
   {% if block.settings.title != blank or block.settings.subtitle != blank %}
     <div class="flex flex-col gap-[2.638px]">
       {% if block.settings.title != blank %}
-        <p class="text-[22px] leading-normal font-medium whitespace-nowrap sm:text-[20px]">{{ block.settings.title }}</p>
+        <p class="text-[18px] leading-normal font-medium whitespace-nowrap sm:text-[20px]">{{ block.settings.title }}</p>
       {% endif %}
 
       {% if block.settings.subtitle != blank %}
@@ -32,7 +32,7 @@
 
 {% stylesheet %}
   .mood-item__icon {
-    width: 80px;
+    width: 56px;
     aspect-ratio: 1 / 1;
   }
 
