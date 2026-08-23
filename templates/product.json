@@ -22,7 +22,7 @@
               "name": "t:general.product_highlight",
               "settings": {
                 "label": "<p>200mg L-theanine</p>",
-                "icon_style": "thc",
+                "label_mobile": "<p>200mg<br/> L-theanine</p>",
                 "icon": "shopify://shop_images/Group_86.svg"
               },
               "blocks": {}
@@ -32,7 +32,7 @@
               "name": "t:general.product_highlight",
               "settings": {
                 "label": "<p>0.4mg hemp-derived THC</p>",
-                "icon_style": "thc",
+                "label_mobile": "",
                 "icon": "shopify://shop_images/Group_154.svg"
               },
               "blocks": {}
@@ -42,7 +42,7 @@
               "name": "t:general.product_highlight",
               "settings": {
                 "label": "<p>50mg Rhodiola</p>",
-                "icon_style": "thc",
+                "label_mobile": "",
                 "icon": "shopify://shop_images/Group_89_1.svg"
               },
               "blocks": {}
@@ -52,7 +52,7 @@
               "name": "t:general.product_highlight",
               "settings": {
                 "label": "<p>Non-carbonated</p>",
-                "icon_style": "thc",
+                "label_mobile": "",
                 "icon": "shopify://shop_images/Group_155.svg"
               },
               "blocks": {}
@@ -145,6 +145,7 @@
               "name": "t:general.guarantee_badge",
               "settings": {
                 "label": "<p>30-Day Guarantee</p>",
+                "label_mobile": "",
                 "icon_style": "guarantee"
               },
               "blocks": {}
@@ -153,7 +154,8 @@
               "type": "guarantee-badge",
               "name": "t:general.guarantee_badge",
               "settings": {
-                "label": "<p>COA available. 3rd party tested.</p>",
+                "label": "<p>COA available. <br/>3rd party tested.</p>",
+                "label_mobile": "<p>COA available. 3rd party tested.</p>",
                 "icon_style": "lab"
               },
               "blocks": {}
@@ -162,7 +164,8 @@
               "type": "guarantee-badge",
               "name": "t:general.guarantee_badge",
               "settings": {
-                "label": "<p>Adults 21+ only. Use responsibly.</p>",
+                "label": "<p>Adults 21+ only. <br/>Use responsibly.</p>",
+                "label_mobile": "<p>Adults 21+ only. Use responsibly.</p>",
                 "icon_style": "payment"
               },
               "blocks": {}
@@ -224,7 +227,13 @@
         "subscribe_card_background_image": "shopify://shop_images/Label.png",
         "subscribe_pill_background_color": "#551f36",
         "subscribe_pill_text_color": "#f6f1ec",
-        "custom_button_text": ""
+        "custom_button_text": "",
+        "show_sticky_cta": true,
+        "sticky_cta_label": "Try Now",
+        "sticky_cta_background_color": "#212323",
+        "sticky_cta_background_opacity": 10,
+        "sticky_cta_button_background_color": "#212323",
+        "sticky_cta_button_text_color": "#f6f1ec"
       }
     },
     "gruns_gallery_Lypf6w": {
@@ -394,7 +403,7 @@
               "type": "feature-highlight",
               "settings": {
                 "title": "Non-carbonated",
-                "icon": "shopify://shop_images/Group_95_1.png"
+                "icon": "shopify://shop_images/Group_95_c7b7a8f1-fbd6-4afe-b041-4659ea76fb4e.svg"
               },
               "blocks": {}
             },

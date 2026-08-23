@@ -109,7 +109,7 @@
               "type": "trust-badge",
               "settings": {
                 "label": "<p>200mg L-theanine</p>",
-                "label_mobile": "",
+                "label_mobile": "<p>200mg <br/>L-theanine</p>",
                 "description": "",
                 "icon": "shopify://shop_images/Frame_2147236065.png"
               },
@@ -119,7 +119,7 @@
               "type": "trust-badge",
               "settings": {
                 "label": "<p>50mg Rhodiola</p>",
-                "label_mobile": "",
+                "label_mobile": "<p>50mg <br/>Rhodiola</p>",
                 "description": "",
                 "icon": "shopify://shop_images/Frame_2147236064.png"
               },
@@ -129,7 +129,7 @@
               "type": "trust-badge",
               "settings": {
                 "label": "<p>.4mg Hemp THC</p>",
-                "label_mobile": "",
+                "label_mobile": "<p>.4mg <br/>Hemp THC</p>",
                 "description": "",
                 "icon": "shopify://shop_images/Frame_2147236066.png"
               },
@@ -319,8 +319,7 @@
               "settings": {
                 "title": "Supports Clarity",
                 "subtitle": "Smooth, present focus",
-                "icon_style": "clarity",
-                "icon": "shopify://shop_images/Star_2_Stroke_a395db4a-f1ab-4738-8e17-cad3191cf757.svg"
+                "icon": "shopify://shop_images/Star_2_Stroke_1_ff8dca71-7759-475e-841a-f75837c06f72.svg"
               },
               "blocks": {}
             },
@@ -330,8 +329,7 @@
               "settings": {
                 "title": "Balanced Mood",
                 "subtitle": "Light, feel-good lift",
-                "icon_style": "clarity",
-                "icon": "shopify://shop_images/Vector_Stroke_faf6aeb0-9cd9-433f-a3bb-e66dee396aac.svg"
+                "icon": "shopify://shop_images/Vector_Stroke_1_f6d65050-3116-4db9-a940-4ed1cd4ce787.svg"
               },
               "blocks": {}
             },
@@ -341,8 +339,7 @@
               "settings": {
                 "title": "Promotes Calm",
                 "subtitle": "Easy, steady unwind",
-                "icon_style": "clarity",
-                "icon": "shopify://shop_images/Vector_Stroke_Stroke_663a47a5-594c-4b32-a6fa-da7659ab7744.svg"
+                "icon": "shopify://shop_images/Vector_Stroke_Stroke_1_abb725cf-7daf-43f8-a4f4-f2ae4708963e.svg"
               },
               "blocks": {}
             }
@@ -365,7 +362,7 @@
                 "product": "blood-orange",
                 "flavor_name": "",
                 "flavor_style": "blood_orange",
-                "card_image": "shopify://shop_images/Group_124.png",
+                "card_image": "shopify://shop_images/Group_191.png",
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
                 "button_text_color": "#f6f1ec",
@@ -381,7 +378,7 @@
                 "product": "berry-acai",
                 "flavor_name": "",
                 "flavor_style": "blood_orange",
-                "card_image": "shopify://shop_images/Group_124_1.png",
+                "card_image": "shopify://shop_images/Group_188.png",
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
                 "button_text_color": "#f6f1ec",
@@ -397,7 +394,7 @@
                 "product": "ginger-lime",
                 "flavor_name": "",
                 "flavor_style": "blood_orange",
-                "card_image": "shopify://shop_images/Group_126.png",
+                "card_image": "shopify://shop_images/Group_189.png",
                 "button_label": "Add to cart",
                 "button_background_color": "#212323",
                 "button_text_color": "#f6f1ec",
@@ -506,7 +503,7 @@
               "name": "t:general.product_highlight",
               "settings": {
                 "label": "<p>200mg L-theanine</p>",
-                "label_mobile": "",
+                "label_mobile": "<p>200mg <br/>L-theanine</p>",
                 "icon": "shopify://shop_images/Group_86.svg"
               },
               "blocks": {}
@@ -516,7 +513,7 @@
               "name": "t:general.product_highlight",
               "settings": {
                 "label": "<p>0.4mg hemp-derived THC</p>",
-                "label_mobile": "",
+                "label_mobile": "<p>0.4mg hemp-derived THC</p>",
                 "icon": "shopify://shop_images/Group_154.svg"
               },
               "blocks": {}
@@ -630,8 +627,7 @@
               "settings": {
                 "label": "<p>30-Day Guarantee</p>",
                 "label_mobile": "",
-                "icon_style": "guarantee",
-                "icon": "shopify://shop_images/Icon_2.svg"
+                "icon_style": "guarantee"
               },
               "blocks": {}
             },
@@ -639,10 +635,9 @@
               "type": "guarantee-badge",
               "name": "t:general.guarantee_badge",
               "settings": {
-                "label": "<p>COA available. 3rd party tested.</p>",
-                "label_mobile": "",
-                "icon_style": "guarantee",
-                "icon": "shopify://shop_images/Icon_2_1088c0c6-4fbd-4112-944a-42e52c1b20d0.svg"
+                "label": "<p>COA available. <br/>3rd party tested.</p>",
+                "label_mobile": "<p>COA available. 3rd party tested.</p>",
+                "icon_style": "lab"
               },
               "blocks": {}
             },
@@ -650,10 +645,9 @@
               "type": "guarantee-badge",
               "name": "t:general.guarantee_badge",
               "settings": {
-                "label": "<p>Adults 21+ only. Use responsibly.</p>",
-                "label_mobile": "",
-                "icon_style": "guarantee",
-                "icon": "shopify://shop_images/Icon_3.svg"
+                "label": "<p>Adults 21+ only. <br/>Use responsibly.</p>",
+                "label_mobile": "<p>Adults 21+ only. Use responsibly.</p>",
+                "icon_style": "payment"
               },
               "blocks": {}
             }
@@ -688,7 +682,7 @@
             "feature_text_color": "#212323",
             "heading_color": "#f6f1ec",
             "background_image": "shopify://shop_images/Frame_2147235943_1.png",
-            "image": "shopify://shop_images/Frame_2147236126.png"
+            "image": "shopify://shop_images/Frame_2147235944_1_51b3ff82-f459-497f-9c61-0138c19495d0.png"
           },
           "blocks": {}
         }
@@ -1082,6 +1076,7 @@
         "heading": "<p>Drops, Events & Good moments.</p><p><em>@drinktoasted</em></p>",
         "heading_mobile": "<p>Drops, Events & Good moments. <em>@drinktoasted</em></p>",
         "enable_slide_border": false,
+        "enable_autoplay": true,
         "background_color": "#636d90",
         "background_image": "shopify://shop_images/Frame_2147230637_1.png",
         "heading_color": "#f6f1ec",

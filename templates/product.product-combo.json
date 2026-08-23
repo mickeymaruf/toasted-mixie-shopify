@@ -22,7 +22,7 @@
               "name": "t:general.product_highlight",
               "settings": {
                 "label": "<p>200mg L-theanine</p>",
-                "label_mobile": "",
+                "label_mobile": "<p>200mg <br/>L-theanine</p>",
                 "icon": "shopify://shop_images/Group_86.svg"
               },
               "blocks": {}
@@ -154,8 +154,8 @@
               "type": "guarantee-badge",
               "name": "t:general.guarantee_badge",
               "settings": {
-                "label": "<p>COA available. 3rd party tested.</p>",
-                "label_mobile": "",
+                "label": "<p>COA available. <br/>3rd party tested.</p>",
+                "label_mobile": "<p>COA available. 3rd party tested.</p>",
                 "icon_style": "lab"
               },
               "blocks": {}
@@ -164,8 +164,8 @@
               "type": "guarantee-badge",
               "name": "t:general.guarantee_badge",
               "settings": {
-                "label": "<p>Adults 21+ only. Use responsibly.</p>",
-                "label_mobile": "",
+                "label": "<p>Adults 21+ only. <br/>Use responsibly.</p>",
+                "label_mobile": "<p>Adults 21+ only. Use responsibly.</p>",
                 "icon_style": "payment"
               },
               "blocks": {}
@@ -404,7 +404,7 @@
               "type": "feature-highlight",
               "settings": {
                 "title": "Non-carbonated",
-                "icon": "shopify://shop_images/Group_95_1.png"
+                "icon": "shopify://shop_images/Group_95_c7b7a8f1-fbd6-4afe-b041-4659ea76fb4e.svg"
               },
               "blocks": {}
             },

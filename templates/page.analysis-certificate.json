@@ -130,6 +130,7 @@
       "blocks": {
         "coa_card_EGYEjU": {
           "type": "coa-card",
+          "disabled": true,
           "settings": {
             "title": "Naked Liquid Packet 5mg THC per 15mL",
             "manufacturer": "",
@@ -141,6 +142,7 @@
         },
         "coa_card_hJ78gN": {
           "type": "coa-card",
+          "disabled": true,
           "settings": {
             "title": "Lemon Lavender 1mg THC: 15mg CBD per 355mL",
             "manufacturer": "",
@@ -152,6 +154,7 @@
         },
         "coa_card_ChmNgE": {
           "type": "coa-card",
+          "disabled": true,
           "settings": {
             "title": "Ginger Lemongrass 3mg THC: 6mg CBD per 355mL",
             "manufacturer": "",
@@ -163,6 +166,7 @@
         },
         "coa_card_8YqdmD": {
           "type": "coa-card",
+          "disabled": true,
           "settings": {
             "title": "Lemon Lavender 1mg THC: 15mg CBD per 355mL",
             "manufacturer": "",
