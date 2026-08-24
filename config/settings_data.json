@@ -40,10 +40,20 @@
         ],
         "settings": {
           "heading": "Your Toasted bag",
+          "show_free_shipping": false,
           "free_shipping_threshold": 75,
+          "milestone_label": "Free Shipping",
+          "progress_message": "Spend {{ amount }} more to unlock free shipping",
+          "progress_message_unlocked": "Free shipping unlocked!",
           "upgrade_label": "Upgrade to Subscription & Save 20%",
           "upgrade_url": "",
           "recommendations_heading": "Try our best sellers and get free shipping"
+        }
+      },
+      "search-modal": {
+        "type": "search-modal",
+        "settings": {
+          "background_color": "#c2cbd4"
         }
       }
     },

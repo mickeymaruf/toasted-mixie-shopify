@@ -18,8 +18,8 @@
       "type": "hero-banner",
       "name": "t:general.hero_banner",
       "settings": {
-        "heading": "We made Toasted for moments worth remembering.",
-        "subheading": "A functional relaxation beverage made with real fruit.",
+        "heading": "We made Toasted for moments worth remembering",
+        "subheading": "",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_1_2c36f923-1247-452f-a22a-03389584c8ed.png",
         "background_image_mobile": "shopify://shop_images/Frame_2147230792_8.png",
@@ -31,7 +31,7 @@
       "name": "t:general.content_block",
       "settings": {
         "heading": "<p>The <em>Chill</em> Drink.</p>",
-        "subheading": "Present in the moment. Made for moments worth remembering.",
+        "subheading": "A functional relaxation beverage made with real fruit.",
         "background_color": "#9ab2d5",
         "text_color": "#212323"
       }
@@ -86,7 +86,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
-                "body": "<p>Made with real fruit,<br/>L-theanine, Rhodiola, and 0.4mg hemp-derived THC.</p>",
+                "body": "<p>Our founder, Danny T, started his career in Miami’s scene. After years of feeling the effects of alcohol and late nights, he made the move into cannabis. But the high-potency world had its flaws too. What about people who just wanted to relax without checking out?</p>",
                 "background_color": "#551f36",
                 "text_color": "#f6f1ec",
                 "width": "1",
@@ -94,10 +94,10 @@
                 "sticker_position": "bottom_center",
                 "sticker_width": 260,
                 "sticker_translate_x": 15,
-                "sticker_translate_y": 50,
+                "sticker_translate_y": 60,
                 "sticker_position_mobile": "bottom_center",
                 "sticker_width_mobile": 220,
-                "sticker_translate_x_mobile": 15,
+                "sticker_translate_x_mobile": 0,
                 "sticker_translate_y_mobile": 50
               },
               "blocks": {}
@@ -165,7 +165,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
-                "body": "<p>We created a drink to help you relax withoutchecking out. Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society.</p><p><strong>Stay Toasted.</strong></p>",
+                "body": "<p>Toasted was made because Danny knew there were people like him who wanted to be social while staying present. Toasted is that option. We believe the future of socializing doesn't need another amped-up alcohol or energy drink. It needs a Chill option.</p><p><strong>Stay Toasted.</strong></p>",
                 "image": "shopify://shop_images/signature.svg",
                 "background_color": "#c2cbd4",
                 "text_color": "#212323",
@@ -174,7 +174,7 @@
                 "sticker_position": "bottom_right",
                 "sticker_width": 170,
                 "sticker_translate_x": 50,
-                "sticker_translate_y": 50,
+                "sticker_translate_y": 25,
                 "sticker_position_mobile": "bottom_right",
                 "sticker_width_mobile": 150,
                 "sticker_translate_x_mobile": 0,
@@ -418,10 +418,11 @@
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
-        "heading": "<p>People have tried it. You’re up next.</p>",
+        "heading": "<p>People are loving Toasted!</p>",
         "heading_mobile": "",
         "enable_slide_border": true,
         "enable_autoplay": false,
+        "show_navigation": true,
         "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "social_icon_1_link": "",

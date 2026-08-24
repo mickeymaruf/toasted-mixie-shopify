@@ -19,7 +19,7 @@
       "name": "t:general.content_banner",
       "settings": {
         "heading": "Certificate of Analysis",
-        "subheading": "Every Toasted batch is third-party lab tested for potency, purity, and safety.",
+        "subheading": "",
         "heading_color": "#f6f1ec",
         "container_background_color": "#551f36",
         "background_image": "shopify://shop_images/Frame_2147235873.png"

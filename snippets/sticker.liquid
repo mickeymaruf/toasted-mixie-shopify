@@ -16,6 +16,7 @@
   @param {number} [translate_x_mobile] - Mobile horizontal fine-tune offset. Defaults to 0
   @param {number} [translate_y] - Desktop (md+) vertical fine-tune offset as a percentage of the sticker's own height, applied after anchoring. Defaults to 0
   @param {number} [translate_y_mobile] - Mobile vertical fine-tune offset. Defaults to 0
+  @param {number} [source_width] - Image source width requested from Shopify. Defaults to the image's natural width
 
   @example
   {% render 'sticker',
@@ -34,6 +35,7 @@
 {% liquid
   assign position = position | default: 'top_left'
   assign position_mobile = position_mobile | default: 'top_left'
+  assign source_width = source_width | default: image.width
 %}
 
 {% if image %}
@@ -50,8 +52,10 @@
   >
     {{
       image
-      | image_url: width: image.width
+      | image_url: width: source_width
       | image_tag:
+        width: nil,
+        height: nil,
         class: 'sticker__image',
         loading: 'lazy',
         alt: ''

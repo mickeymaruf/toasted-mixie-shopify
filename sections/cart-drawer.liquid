@@ -192,6 +192,12 @@
   </div>
 </cart-drawer>
 
+{% stylesheet %}
+  cart-drawer[data-cart-drawer] {
+    z-index: 80;
+  }
+{% endstylesheet %}
+
 {% javascript %}
   if (!customElements.get('quantity-stepper')) {
     class QuantityStepper extends HTMLElement {

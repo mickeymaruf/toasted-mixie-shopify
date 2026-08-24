@@ -19,11 +19,11 @@
       "name": "t:general.hero_banner",
       "settings": {
         "heading": "Bundle & Save",
-        "subheading": "Pick your flavors. Stock the fridge. Save when you bundle.",
+        "subheading": "Pick your flavors. Stock the fridge.",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_2_d9ea2e03-3fd3-45fb-bec0-189d4d2ac384.png",
         "background_image_mobile": "shopify://shop_images/Frame_2147230792_1_0723ef5c-41fc-4e02-99a9-8b09bccc13dc.png",
-        "background_color": "#F6F1EC"
+        "background_color": "#f6f1ec"
       }
     },
     "bundle_builder_gPVQwm": {
@@ -155,8 +155,8 @@
         "subscribe_label": "Subscribe & Save 20%",
         "add_to_cart_label": "Add to Cart",
         "subscribe_note": "Subscribe & Save is the best value.",
-        "background_color": "#F6F1EC",
-        "panel_background_color": "#F9D5C0",
+        "background_color": "#f6f1ec",
+        "panel_background_color": "#f9d5c0",
         "purchase_selected_color": "#f9d5c0",
         "add_to_cart_background_color": "#212323",
         "add_to_cart_text_color": "#f6f1ec"
@@ -261,10 +261,11 @@
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
-        "heading": "<p>People have tried it. You’re up next.</p>",
+        "heading": "<p>People are loving Toasted!</p>",
         "heading_mobile": "",
         "enable_slide_border": true,
         "enable_autoplay": false,
+        "show_navigation": true,
         "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "social_icon_1_link": "",
@@ -471,6 +472,7 @@
         "review_testimonial_fmmVEK",
         "review_testimonial_7GP49e"
       ],
+      "disabled": true,
       "name": "Reviews",
       "settings": {
         "bg_color": "#f6f1ec",

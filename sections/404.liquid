@@ -17,14 +17,12 @@
   <div class="mx-auto w-full max-w-[1920px] px-5 py-[80px] sm:px-8 md:px-12 md:py-[120px] lg:px-[80px] lg:py-[160px] xl:px-[120px]">
     <div class="mx-auto flex w-full max-w-[479px] flex-col items-center gap-8 text-center sm:gap-10 lg:gap-[50px]">
       <div class="flex flex-col items-center gap-5 sm:gap-6 lg:gap-[30px]">
-        <img
-          src="{{ 'icon-404-not-found.svg' | asset_url }}"
-          alt=""
-          width="325"
-          height="132"
-          class="h-auto w-[220px] sm:w-[260px] md:w-[300px] lg:w-[325px]"
-          loading="lazy"
+        <span
+          class="not-found__icon block h-auto w-[220px] sm:w-[260px] md:w-[300px] lg:w-[325px]"
+          aria-hidden="true"
         >
+          {{ 'icon-404-not-found.svg' | inline_asset_content }}
+        </span>
 
         {% if section.settings.heading != blank %}
           <h1
@@ -57,6 +55,14 @@
     </div>
   </div>
 </section>
+
+{% stylesheet %}
+  .not-found__icon svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

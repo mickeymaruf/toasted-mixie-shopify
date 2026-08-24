@@ -18,7 +18,7 @@
       "type": "hero-banner",
       "name": "t:general.hero_banner",
       "settings": {
-        "heading": "Good questions.",
+        "heading": "Good questions",
         "subheading": "Everything to know before you try Toasted.",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_2.png",
@@ -34,6 +34,38 @@
             "category": "The Drink",
             "question": "What is Toasted?",
             "answer": "Toasted is the chill drink. A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC."
+          }
+        },
+        "faq_item_VXMdKR": {
+          "type": "faq_item",
+          "settings": {
+            "category": "The Drink",
+            "question": "Is Toasted for me?",
+            "answer": "If you want to unwind, relax, and stay present without alcohol, Toasted is for you."
+          }
+        },
+        "faq_item_VWwBBL": {
+          "type": "faq_item",
+          "settings": {
+            "category": "The Drink",
+            "question": "When is the best time for Toasted?",
+            "answer": "Anytime you want to take the edge off without losing yourself. Stay in, go out, or anywhere in between."
+          }
+        },
+        "faq_item_hYhdVp": {
+          "type": "faq_item",
+          "settings": {
+            "category": "The Drink",
+            "question": "Will it make me anxious or paranoid?",
+            "answer": "Toasted is intentionally low-dose and made with calming ingredients for a gentle, approachable experience."
+          }
+        },
+        "faq_item_RPqxgP": {
+          "type": "faq_item",
+          "settings": {
+            "category": "The Drink",
+            "question": "Is it like an edible?",
+            "answer": "Not at all. The experience is lighter, faster, and shorter-lasting—making it a natural fit for social occasions."
           }
         },
         "faq_item_TefLLx": {
@@ -84,28 +116,12 @@
             "answer": "Toasted is for adults 21+ who want a lighter way to enjoy social moments without alcohol."
           }
         },
-        "faq_item_c4WV4y": {
-          "type": "faq_item",
-          "settings": {
-            "category": "About",
-            "question": "What flavors are available?",
-            "answer": "Blood Orange, Berry Acai, and Ginger Lime."
-          }
-        },
         "faq_item_G4Xyz3": {
           "type": "faq_item",
           "settings": {
             "category": "About",
             "question": "Where can I find Toasted?",
             "answer": "Toasted is available online and coming soon to select venues and retailers."
-          }
-        },
-        "faq_item_3UjKne": {
-          "type": "faq_item",
-          "settings": {
-            "category": "About",
-            "question": "Can I buy your products locally?",
-            "answer": "Soon. We are launching with select retail and venue partners. Join the list for updates."
           }
         },
         "faq_item_XfdB3g": {
@@ -199,15 +215,17 @@
       },
       "block_order": [
         "faq_item_jJVi8d",
+        "faq_item_VXMdKR",
+        "faq_item_VWwBBL",
+        "faq_item_hYhdVp",
+        "faq_item_RPqxgP",
         "faq_item_TefLLx",
         "faq_item_99NHF6",
         "faq_item_JQxWpr",
         "faq_item_3BnmW3",
         "faq_item_qm84XH",
         "faq_item_MCnNaq",
-        "faq_item_c4WV4y",
         "faq_item_G4Xyz3",
-        "faq_item_3UjKne",
         "faq_item_XfdB3g",
         "faq_item_CUAACp",
         "faq_item_TQipWM",

@@ -201,7 +201,7 @@
             "feature_text_color": "#212323",
             "heading_color": "#f6f1ec",
             "background_image": "shopify://shop_images/Frame_2147235943_1.png",
-            "image": "shopify://shop_images/Frame_2147236126.png"
+            "image": "shopify://shop_images/Group_203.png"
           },
           "blocks": {}
         }
@@ -335,10 +335,11 @@
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
-        "heading": "<p>People have tried it. You’re up next.</p>",
+        "heading": "<p>People are loving Toasted!</p>",
         "heading_mobile": "",
         "enable_slide_border": true,
         "enable_autoplay": false,
+        "show_navigation": true,
         "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "social_icon_1_link": "",
@@ -677,6 +678,7 @@
         "review_testimonial_ana",
         "review_testimonial_jordan"
       ],
+      "disabled": true,
       "name": "Reviews",
       "settings": {
         "bg_color": "#f6f1ec",

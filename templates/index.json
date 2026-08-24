@@ -148,7 +148,7 @@
       ],
       "name": "t:general.gruns_hero",
       "settings": {
-        "heading": "<p><em>The Chill Drink</em> <br/>For Moments Worth Remembering.</p>",
+        "heading": "<p><em>The Chill Drink</em> <br/>A Functional <br/>Relaxation Beverage</p>",
         "description": "",
         "show_button": true,
         "button_label": "Get My Free Trial Pack",
@@ -360,7 +360,8 @@
               "name": "t:general.flavor_shop_card",
               "settings": {
                 "product": "blood-orange",
-                "flavor_name": "",
+                "flavor_name": "<p>Blood Orange<br/>12 Pack</p>",
+                "flavor_name_mobile": "<p>Blood Orange 12 Pack</p>",
                 "flavor_style": "blood_orange",
                 "card_image": "shopify://shop_images/Group_191.png",
                 "button_label": "Add to cart",
@@ -376,7 +377,8 @@
               "name": "t:general.flavor_shop_card",
               "settings": {
                 "product": "berry-acai",
-                "flavor_name": "",
+                "flavor_name": "<p>Berry Acai<br/>12 Pack</p>",
+                "flavor_name_mobile": "<p>Berry Acai 12 Pack</p>",
                 "flavor_style": "blood_orange",
                 "card_image": "shopify://shop_images/Group_188.png",
                 "button_label": "Add to cart",
@@ -392,7 +394,8 @@
               "name": "t:general.flavor_shop_card",
               "settings": {
                 "product": "ginger-lime",
-                "flavor_name": "",
+                "flavor_name": "<p>Ginger Lime<br/>12 Pack</p>",
+                "flavor_name_mobile": "<p>Ginger Lime 12 Pack</p>",
                 "flavor_style": "blood_orange",
                 "card_image": "shopify://shop_images/Group_189.png",
                 "button_label": "Add to cart",
@@ -413,8 +416,8 @@
       },
       "name": "t:general.drink_better",
       "settings": {
-        "heading": "<p>Feel Present.</p><p>Stay Toasted.</p>",
-        "description": "<p>A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC. Made to help you feel present without overdoing it.</p>",
+        "heading": "<p>Presence is the <br/>new luxury</p>",
+        "description": "<p>A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC. </p>",
         "video": "",
         "image": "shopify://shop_images/Rectangle_102.png",
         "image_alt": "",
@@ -422,7 +425,7 @@
         "bundle_heading": "Build a bundle and Save",
         "bundle_description": "<p>Pick your flavors. Stock the fridge. Stay Toasted.</p>",
         "bundle_link": "shopify://pages/bundle-builder",
-        "bundle_image": "shopify://shop_images/Group_114.png",
+        "bundle_image": "shopify://shop_images/Group_191_1.png",
         "bundle_background_color": "#f9d5c0",
         "bundle_text_color": "#212323",
         "background_image": "shopify://shop_images/f289b62b919ba07994f473b44042a0f53abfc6d5.jpg",
@@ -437,8 +440,8 @@
         "icon_badge_card_3TqXrD": {
           "type": "icon-badge-card",
           "settings": {
-            "label": "Lab Tested",
-            "icon": "shopify://shop_images/Group_89_3.svg",
+            "label": "No pesticides",
+            "icon": "shopify://shop_images/Frame_2147236139.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -447,8 +450,8 @@
         "icon_badge_card_Wj8cBz": {
           "type": "icon-badge-card",
           "settings": {
-            "label": "Low Dose",
-            "icon": "shopify://shop_images/Group_87_2.svg",
+            "label": "No pathogens",
+            "icon": "shopify://shop_images/Frame_2147236136.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -457,8 +460,8 @@
         "icon_badge_card_w6Rkmy": {
           "type": "icon-badge-card",
           "settings": {
-            "label": "Low Calorie",
-            "icon": "shopify://shop_images/Group_94_2.svg",
+            "label": "No heavy metals",
+            "icon": "shopify://shop_images/Frame_2147236138_2.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -467,8 +470,8 @@
         "icon_badge_card_ENxfhb": {
           "type": "icon-badge-card",
           "settings": {
-            "label": "Non-carbonated",
-            "icon": "shopify://shop_images/Group_95_2.png",
+            "label": "Precise dose",
+            "icon": "shopify://shop_images/Frame_2147236137.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -682,7 +685,7 @@
             "feature_text_color": "#212323",
             "heading_color": "#f6f1ec",
             "background_image": "shopify://shop_images/Frame_2147235943_1.png",
-            "image": "shopify://shop_images/Frame_2147235944_1_51b3ff82-f459-497f-9c61-0138c19495d0.png"
+            "image": "shopify://shop_images/Group_203.png"
           },
           "blocks": {}
         }
@@ -977,10 +980,11 @@
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
-        "heading": "<p>People have tried it. You’re up next.</p>",
+        "heading": "<p>People are loving Toasted!</p>",
         "heading_mobile": "",
         "enable_slide_border": true,
         "enable_autoplay": false,
+        "show_navigation": true,
         "background_color": "#f6f1ec",
         "heading_color": "#212323",
         "social_icon_1_link": "",
@@ -1077,6 +1081,7 @@
         "heading_mobile": "<p>Drops, Events & Good moments. <em>@drinktoasted</em></p>",
         "enable_slide_border": false,
         "enable_autoplay": true,
+        "show_navigation": true,
         "background_color": "#636d90",
         "background_image": "shopify://shop_images/Frame_2147230637_1.png",
         "heading_color": "#f6f1ec",

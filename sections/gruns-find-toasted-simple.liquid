@@ -66,11 +66,12 @@
           {% if section.settings.billboard_sticker %}
             {{
               section.settings.billboard_sticker
-              | image_url: width: 400
+              | image_url: width: 1600
               | image_tag:
+                width: nil,
+                height: nil,
                 class: 'find-toasted-billboard__sticker pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.02]',
                 loading: 'lazy',
-                widths: '200, 300, 400',
                 alt: ''
             }}
           {% endif %}
@@ -78,11 +79,12 @@
           {% if section.settings.billboard_badge %}
             {{
               section.settings.billboard_badge
-              | image_url: width: 300
+              | image_url: width: 1600
               | image_tag:
+                width: nil,
+                height: nil,
                 class: 'find-toasted-billboard__badge pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.02]',
                 loading: 'lazy',
-                widths: '150, 220, 300',
                 alt: ''
             }}
           {% endif %}
