@@ -148,8 +148,9 @@
       ],
       "name": "t:general.gruns_hero",
       "settings": {
-        "heading": "<p><em>The Chill Drink</em> <br/>A Functional <br/>Relaxation Beverage</p>",
-        "description": "",
+        "heading": "<p><em>The Chill Drink</em></p>",
+        "description": "<p>A functional relaxation beverage made with real fruit</p>",
+        "description_mobile": "",
         "show_button": true,
         "button_label": "Get My Free Trial Pack",
         "button_link": "shopify://products/freetrial",
@@ -537,7 +538,7 @@
               "settings": {
                 "label": "<p>Non-carbonated</p>",
                 "label_mobile": "",
-                "icon": "shopify://shop_images/Group_155.svg"
+                "icon": "shopify://shop_images/Group_155_ce483531-3149-4455-919b-d79978d8cb20.svg"
               },
               "blocks": {}
             }
@@ -980,7 +981,7 @@
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
-        "heading": "<p>People are loving Toasted!</p>",
+        "heading": "<p>People love Toasted!</p>",
         "heading_mobile": "",
         "enable_slide_border": true,
         "enable_autoplay": false,

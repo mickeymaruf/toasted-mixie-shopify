@@ -53,7 +53,7 @@
               "settings": {
                 "label": "<p>Non-carbonated</p>",
                 "label_mobile": "",
-                "icon": "shopify://shop_images/Group_155.svg"
+                "icon": "shopify://shop_images/Group_155_ce483531-3149-4455-919b-d79978d8cb20.svg"
               },
               "blocks": {}
             }
@@ -335,7 +335,7 @@
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
-        "heading": "<p>People are loving Toasted!</p>",
+        "heading": "<p>People love Toasted!</p>",
         "heading_mobile": "",
         "enable_slide_border": true,
         "enable_autoplay": false,
@@ -404,7 +404,7 @@
               "type": "feature-highlight",
               "settings": {
                 "title": "Non-carbonated",
-                "icon": "shopify://shop_images/Group_95_c7b7a8f1-fbd6-4afe-b041-4659ea76fb4e.svg"
+                "icon": "shopify://shop_images/Group_95.png"
               },
               "blocks": {}
             },

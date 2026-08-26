@@ -77,6 +77,8 @@
       "type": "header",
       "settings": {
         "logo": "shopify://shop_images/toaster-logo.svg",
+        "logo_width": 260,
+        "logo_width_mobile": 116,
         "show_find_toasted_button": true,
         "find_toasted_button_text": "Shop Now",
         "find_toasted_button_link": "shopify://collections/all",

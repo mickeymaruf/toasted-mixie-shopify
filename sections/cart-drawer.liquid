@@ -18,7 +18,7 @@
       assign progress_message = section.settings.progress_message_unlocked
     else
       capture remaining_money
-        render 'format-money', cents: free_shipping_threshold_cents | minus: cart_total
+        render 'format-money', cents: free_shipping_threshold_cents, minus: cart_total
       endcapture
       assign message_template = section.settings.progress_message
       assign progress_message = message_template | replace: '{{ amount }}', remaining_money
@@ -426,3 +426,15 @@
   "presets": [{ "name": "t:general.cart_drawer" }]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "        render 'format-money', cents: free_shipping_threshold_cents | minus:
+    cart_total\r"
+  to: "        render 'format-money', cents: free_shipping_threshold_cents, minus:
+    cart_total"
+  position: 958..1044
+{% endcomment %}

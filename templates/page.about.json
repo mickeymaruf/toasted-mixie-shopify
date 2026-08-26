@@ -30,7 +30,7 @@
       "type": "content-block",
       "name": "t:general.content_block",
       "settings": {
-        "heading": "<p>The <em>Chill</em> Drink.</p>",
+        "heading": "<p>The <em>Chill</em> Drink</p>",
         "subheading": "A functional relaxation beverage made with real fruit.",
         "background_color": "#9ab2d5",
         "text_color": "#212323"
@@ -46,7 +46,7 @@
             "story_tile_text_QF4xmb": {
               "type": "story-tile-text",
               "settings": {
-                "heading": "<p>More open.</p><p>More present.</p><p>More here.</p>",
+                "heading": "<p>Be open</p><p>Be present</p><p>Be here</p>",
                 "body": "",
                 "background_color": "#f9d5c0",
                 "text_color": "#212323",
@@ -136,7 +136,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "<p>Social moments deserve<br/>better options.</p>",
-                "body": "<p>Toasted was made because Danny knew there were people like him who wanted to be social while staying present. Toasted is that option. We believe the future of socializing doesn't need another amped-up alcohol or energy drink. It needs a Chill option.</p>",
+                "body": "",
                 "background_color": "#626c8d",
                 "text_color": "#f6f1ec",
                 "width": "2",
@@ -165,7 +165,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
-                "body": "<p>We created a drink to help you relax withoutchecking out. Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society</p><p><strong>Stay Toasted.</strong></p>",
+                "body": "<p>We created a drink to help you relax withoutchecking out. Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society.</p><p></p><p><strong>Stay Toasted.</strong></p>",
                 "image": "shopify://shop_images/signature.svg",
                 "background_color": "#c2cbd4",
                 "text_color": "#212323",
@@ -418,13 +418,13 @@
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
-        "heading": "<p>People are loving Toasted!</p>",
+        "heading": "<p>People love Toasted!</p>",
         "heading_mobile": "",
         "enable_slide_border": true,
         "enable_autoplay": false,
         "show_navigation": true,
-        "background_color": "#636D90",
-        "heading_color": "#F6F1EC",
+        "background_color": "#636d90",
+        "heading_color": "#f6f1ec",
         "social_icon_1_link": "",
         "social_icon_2_link": "",
         "social_icon_3_link": ""

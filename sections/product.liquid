@@ -335,7 +335,7 @@
 
                   <div class="flex flex-col items-start gap-1 sm:items-end sm:text-right">
                     <p class="text-[14px] sm:text-[16px] font-medium text-[#212323]" data-subscribe-price>
-                      {% render 'format-money', cents: selected_allocation.price | default: current_variant.price %}
+                      {% render 'format-money', cents: selected_allocation.price, default: current_variant.price %}
                     </p>
                     <p class="text-[11px] sm:text-[12px] text-[#212323]">
                       {% if section.settings.save_every_order_text != blank %}
@@ -473,7 +473,7 @@
                 {% endif %}
               >
                 {% if selling_plan %}
-                  {% render 'format-money', cents: selected_allocation.price | default: current_variant.price %}
+                  {% render 'format-money', cents: selected_allocation.price, default: current_variant.price %}
                 {% else %}
                   {% render 'format-money', cents: current_variant.price %}
                 {% endif %}
@@ -982,3 +982,20 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'format-money', cents: selected_allocation.price | default: current_variant.price
+    %}"
+  to: "{% render 'format-money', cents: selected_allocation.price, default: current_variant.price
+    %}"
+  position: 16922..17015
+- from: "{% render 'format-money', cents: selected_allocation.price | default: current_variant.price
+    %}"
+  to: "{% render 'format-money', cents: selected_allocation.price, default: current_variant.price
+    %}"
+  position: 24468..24561
+{% endcomment %}
