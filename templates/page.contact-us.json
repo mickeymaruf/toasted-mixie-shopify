@@ -13,73 +13,9 @@
       "type": "page",
       "disabled": true,
       "settings": {}
-    },
-    "contact_form_EGJVcd": {
-      "type": "contact-form",
-      "blocks": {
-        "field_PfMXBi": {
-          "type": "field",
-          "settings": {
-            "field_label": "Name",
-            "field_name": "name",
-            "field_type": "text",
-            "field_required": true,
-            "column_span": "1"
-          }
-        },
-        "field_t9zEDU": {
-          "type": "field",
-          "settings": {
-            "field_label": "Email",
-            "field_name": "email",
-            "field_type": "email",
-            "field_required": true,
-            "column_span": "1"
-          }
-        },
-        "field_GqTQRV": {
-          "type": "field",
-          "settings": {
-            "field_label": "Subject",
-            "field_name": "subject",
-            "field_type": "text",
-            "field_required": true,
-            "column_span": "2"
-          }
-        },
-        "field_pbVDQi": {
-          "type": "field",
-          "settings": {
-            "field_label": "Message",
-            "field_name": "message",
-            "field_type": "text",
-            "field_required": true,
-            "column_span": "2"
-          }
-        }
-      },
-      "block_order": [
-        "field_PfMXBi",
-        "field_t9zEDU",
-        "field_GqTQRV",
-        "field_pbVDQi"
-      ],
-      "name": "t:sections.contact_form.name",
-      "settings": {
-        "heading": "Need help?",
-        "subheading": "Questions, orders, wholesale, partnerships, or press. Send us a note.",
-        "form_type": "shopify_contact",
-        "form_endpoint": "",
-        "button_text": "Send message",
-        "background_color": "#f6f1ec",
-        "text_color": "#212323",
-        "button_background_color": "#212323",
-        "button_text_color": "#f6f1ec"
-      }
     }
   },
   "order": [
-    "main",
-    "contact_form_EGJVcd"
+    "main"
   ]
 }

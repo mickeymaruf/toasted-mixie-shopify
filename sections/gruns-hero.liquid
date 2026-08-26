@@ -2,13 +2,23 @@
   class="gruns-hero full-width relative z-10 pt-[50px]"
   style="background-color: {{ section.settings.background_color }};"
 >
+  {% liquid
+    assign description_desktop_visibility = ''
+    assign description_mobile_visibility = ''
+
+    if section.settings.description != blank and section.settings.description_mobile != blank
+      assign description_desktop_visibility = 'hidden lg:block '
+      assign description_mobile_visibility = 'lg:hidden '
+    endif
+  %}
+
   <div
     class="mx-auto flex w-full max-w-[1500px] flex-col gap-4 px-5 pb-[45px] sm:gap-12 sm:px-8 sm:pb-[60px] md:px-12 lg:grid lg:grid-cols-[9fr_11fr] lg:items-center lg:gap-x-0 lg:px-[80px] xl:px-[80px] xl:py-[50px]"
   >
     <div class="order-2 flex w-full flex-col items-center text-center lg:order-none lg:col-start-1 lg:items-start lg:text-left">
       {% if section.settings.heading != blank %}
         <div
-          class="font-[family-name:var(--font-heading--family)] font-bold text-[32px] leading-[1.1] text-[color:var(--gruns-hero-heading-color)] sm:text-[36px] md:text-[44px] lg:text-[56px] xl:text-[72px]"
+          class="font-[family-name:var(--font-heading--family)] font-bold text-[42px] leading-[1.1] text-[color:var(--gruns-hero-heading-color)] md:text-[46px] lg:text-[56px] xl:text-[72px]"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.heading }}
@@ -17,10 +27,19 @@
 
       {% if section.settings.description != blank %}
         <div
-          class="mt-2 max-w-[350px] text-[14px] leading-[1.4] text-[color:var(--gruns-hero-heading-color)] sm:mt-4 sm:text-[16px] md:mt-5 md:text-[18px] -space-y-[12px]"
+          class="{{ description_desktop_visibility }}font-[family-name:var(--font-heading--family)] text-[20px] text-[color:var(--gruns-hero-heading-color)] sm:text-[16px] md:text-[42px] -space-y-[12px] font-semibold leading-[1]"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.description_mobile != blank %}
+        <div
+          class="{{ description_mobile_visibility }}font-[family-name:var(--font-heading--family)] text-[20px] text-[color:var(--gruns-hero-heading-color)] lg:text-[42px] -space-y-[12px] font-semibold leading-[1]"
+          style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
+        >
+          {{ section.settings.description_mobile }}
         </div>
       {% endif %}
 
@@ -150,7 +169,13 @@
     {
       "type": "richtext",
       "id": "description",
-      "label": "t:labels.description"
+      "label": "Description desktop"
+    },
+    {
+      "type": "richtext",
+      "id": "description_mobile",
+      "label": "Description mobile",
+      "info": "Optional. If left blank, the desktop description is used on mobile."
     },
     {
       "type": "header",

@@ -51,7 +51,7 @@
                 "background_color": "#f9d5c0",
                 "text_color": "#212323",
                 "width": "1",
-                "sticker_image": "shopify://shop_images/Group_171.png",
+                "sticker_image": "shopify://shop_images/Group_171_1.png",
                 "sticker_position": "top_center",
                 "sticker_width": 200,
                 "sticker_translate_x": 0,
@@ -90,7 +90,7 @@
                 "background_color": "#551f36",
                 "text_color": "#f6f1ec",
                 "width": "1",
-                "sticker_image": "shopify://shop_images/Group_170.svg",
+                "sticker_image": "shopify://shop_images/Group_170_1_0c6aebc1-98f1-42a8-9e94-84093b097306.png",
                 "sticker_position": "bottom_center",
                 "sticker_width": 260,
                 "sticker_translate_x": 15,
@@ -136,7 +136,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "<p>Social moments deserve<br/>better options.</p>",
-                "body": "<p>Toasted was made for people who want a better option for the social moment.</p>",
+                "body": "<p>Toasted was made because Danny knew there were people like him who wanted to be social while staying present. Toasted is that option. We believe the future of socializing doesn't need another amped-up alcohol or energy drink. It needs a Chill option.</p>",
                 "background_color": "#626c8d",
                 "text_color": "#f6f1ec",
                 "width": "2",
@@ -165,12 +165,12 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
-                "body": "<p>Toasted was made because Danny knew there were people like him who wanted to be social while staying present. Toasted is that option. We believe the future of socializing doesn't need another amped-up alcohol or energy drink. It needs a Chill option.</p><p><strong>Stay Toasted.</strong></p>",
+                "body": "<p>We created a drink to help you relax withoutchecking out. Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society</p><p><strong>Stay Toasted.</strong></p>",
                 "image": "shopify://shop_images/signature.svg",
                 "background_color": "#c2cbd4",
                 "text_color": "#212323",
                 "width": "2",
-                "sticker_image": "shopify://shop_images/Group.svg",
+                "sticker_image": "shopify://shop_images/Group.png",
                 "sticker_position": "bottom_right",
                 "sticker_width": 170,
                 "sticker_translate_x": 50,
@@ -303,8 +303,8 @@
         "heading_color": "#f6f1ec",
         "billboard_image": "shopify://shop_images/Render_Mockup_4000_3000_2026-07-31_1_1.png",
         "billboard_image_alt": "",
-        "billboard_sticker": "shopify://shop_images/Layer_1.svg",
-        "billboard_badge": "shopify://shop_images/Group_150.svg"
+        "billboard_sticker": "shopify://shop_images/Group_3.png",
+        "billboard_badge": "shopify://shop_images/Group_150_3.png"
       }
     },
     "built_on_trust_4NiRYR": {
@@ -423,8 +423,8 @@
         "enable_slide_border": true,
         "enable_autoplay": false,
         "show_navigation": true,
-        "background_color": "#f6f1ec",
-        "heading_color": "#212323",
+        "background_color": "#636D90",
+        "heading_color": "#F6F1EC",
         "social_icon_1_link": "",
         "social_icon_2_link": "",
         "social_icon_3_link": ""

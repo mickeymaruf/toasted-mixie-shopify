@@ -419,7 +419,7 @@
         "heading": "<p>Presence is the <br/>new luxury</p>",
         "description": "<p>A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC. </p>",
         "video": "",
-        "image": "shopify://shop_images/Rectangle_102.png",
+        "image": "shopify://shop_images/Rectangle_102_1.png",
         "image_alt": "",
         "show_combo_offer": true,
         "bundle_heading": "Build a bundle and Save",
@@ -471,7 +471,7 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "Precise dose",
-            "icon": "shopify://shop_images/Frame_2147236137.svg",
+            "icon": "shopify://shop_images/Frame_2147236137.png",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },

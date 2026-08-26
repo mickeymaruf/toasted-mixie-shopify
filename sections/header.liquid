@@ -25,6 +25,8 @@
     --navbar-dropdown-heading: {{ section.settings.dropdown_heading_color }};
     --navbar-height: 80px;
     --navbar-height-mobile: 64px;
+    --navbar-logo-width: {{ section.settings.logo_width }}px;
+    --navbar-logo-width-mobile: {{ section.settings.logo_width_mobile }}px;
   "
   data-navbar
 >
@@ -49,7 +51,7 @@
       {% if section.settings.logo %}
         {{
           section.settings.logo
-          | image_url: width: section.settings.logo_width
+          | image_url: width: 800
           | image_tag: loading: 'eager', alt: shop.name
         }}
       {% else %}
@@ -313,13 +315,13 @@
     }
 
     .navbar__dropdown-toggle {
-      width: 1.75rem;
-      height: 1rem;
+      width: 1.5rem;
+      height: 0.875rem;
     }
 
     .navbar__dropdown-toggle-icon--close {
-      width: 1rem;
-      height: 1rem;
+      width: 0.875rem;
+      height: 0.875rem;
     }
 
     .navbar__dropdown {
@@ -343,7 +345,7 @@
   .navbar__logo img,
   .navbar__logo svg {
     display: block;
-    width: 184px;
+    width: var(--navbar-logo-width);
     height: auto;
     max-width: 100%;
   }
@@ -356,14 +358,7 @@
 
     .navbar__logo img,
     .navbar__logo svg {
-      width: 116px;
-    }
-  }
-
-  @media (max-width: 25rem) {
-    .navbar__logo img,
-    .navbar__logo svg {
-      width: 100px;
+      width: var(--navbar-logo-width-mobile);
     }
   }
 
@@ -443,8 +438,8 @@
 
     .navbar__find-button {
       display: inline-flex;
-      padding: 0.625rem 1.125rem;
-      border: 3px solid currentColor;
+      padding: 0.5rem 1rem;
+      border: 2px solid currentColor;
       border-radius: 999px;
       font-size: 0.9375rem;
       line-height: 1;
@@ -837,6 +832,26 @@
       "type": "image_picker",
       "id": "logo",
       "label": "t:labels.logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 100,
+      "max": 320,
+      "step": 4,
+      "unit": "px",
+      "label": "Desktop logo width",
+      "default": 184
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "min": 80,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Mobile logo width",
+      "default": 116
     },
     {
       "type": "checkbox",

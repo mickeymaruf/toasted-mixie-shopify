@@ -136,7 +136,7 @@
               {% if section.settings.about_title != blank %}
                 <p class="text-[28px] leading-[1.2] font-bold">{{ section.settings.about_title }}</p>
               {% endif %}
-              <ul class="flex flex-col items-start gap-[15px] text-[18px] leading-[1.3] lg:items-end">
+              <ul class="flex flex-col items-start gap-[15px] text-[18px] leading-[1.3] w-full">
                 {% for link in section.settings.about_menu.links %}
                   <li>
                     <a href="{{ link.url }}" class="transition-opacity duration-150 hover:opacity-70">{{ link.title }}</a>

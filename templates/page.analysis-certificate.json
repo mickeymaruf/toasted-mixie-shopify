@@ -71,8 +71,8 @@
         "icon_badge_card_xRMbLN": {
           "type": "icon-badge-card",
           "settings": {
-            "label": "Lab Tested",
-            "icon": "shopify://shop_images/Group_89_3.svg",
+            "label": "No pesticides",
+            "icon": "shopify://shop_images/Frame_2147236139.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -81,8 +81,8 @@
         "icon_badge_card_hEPdhi": {
           "type": "icon-badge-card",
           "settings": {
-            "label": "Low Dose",
-            "icon": "shopify://shop_images/Group_87_2.svg",
+            "label": "No pathogens",
+            "icon": "shopify://shop_images/Frame_2147236136.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -91,8 +91,8 @@
         "icon_badge_card_4AFMnE": {
           "type": "icon-badge-card",
           "settings": {
-            "label": "Low Calorie",
-            "icon": "shopify://shop_images/Group_94_2.svg",
+            "label": "No heavy metals",
+            "icon": "shopify://shop_images/Frame_2147236138_2.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -101,8 +101,8 @@
         "icon_badge_card_D7xKEE": {
           "type": "icon-badge-card",
           "settings": {
-            "label": "Non-carbonated",
-            "icon": "shopify://shop_images/Group_95_2.png",
+            "label": "Precise dose",
+            "icon": "shopify://shop_images/Frame_2147236137.png",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -203,29 +203,29 @@
         "row_xnkArz": {
           "type": "row",
           "settings": {
-            "title": "THC / Total THC / Delta-9",
-            "description": "Shows cannabinoid potency and confirms hemp-derived THC compliance."
+            "title": "Pesticide Free",
+            "description": "Absent of 67 prohibited pesticides, herbicides and chemicals."
           }
         },
         "row_m7zqTE": {
           "type": "row",
           "settings": {
-            "title": "Safety Microbials",
-            "description": "Tests for microorganisms, including bacteria, yeast, and mold."
+            "title": "Mold & Toxin Free",
+            "description": "We screen for harmful microbial pathogens and mycotoxins to ensure product safety. "
           }
         },
         "row_ydq4Rb": {
           "type": "row",
           "settings": {
-            "title": "Pesticide Heavy Metals",
-            "description": "Tests for pesticide residue and heavy metals."
+            "title": "Heavy Metals Free",
+            "description": "Including Lead, Arsenic, Cadmium, Mercury and residual solvents."
           }
         },
         "row_TW4aQt": {
           "type": "row",
           "settings": {
-            "title": "Residual Solvents",
-            "description": "Tests for extraction-related solvent residue."
+            "title": "Compliant Potency",
+            "description": "100% naturally sourced cannabinoids at an accurate, certified dosage."
           }
         }
       },
