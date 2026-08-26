@@ -12,6 +12,7 @@
     "main": {
       "type": "404",
       "settings": {
+        "icon_image": "shopify://shop_images/icon-404-not-found.svg",
         "heading": "not found",
         "description": "<p><strong>Looks like you took a wrong turn.</strong><br/>No worries. The good stuff is still this way.</p>",
         "show_button": true,

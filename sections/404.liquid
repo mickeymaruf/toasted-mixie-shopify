@@ -21,7 +21,11 @@
           class="not-found__icon block h-auto w-[220px] sm:w-[260px] md:w-[300px] lg:w-[325px]"
           aria-hidden="true"
         >
-          {{ 'icon-404-not-found.svg' | inline_asset_content }}
+          {% if section.settings.icon_image %}
+            {{ section.settings.icon_image | image_url: width: 650 | image_tag }}
+          {% else %}
+            {{ 'icon-404-not-found.svg' | inline_asset_content }}
+          {% endif %}
         </span>
 
         {% if section.settings.heading != blank %}
@@ -57,7 +61,8 @@
 </section>
 
 {% stylesheet %}
-  .not-found__icon svg {
+  .not-found__icon svg,
+  .not-found__icon img {
     display: block;
     width: 100%;
     height: auto;
@@ -71,6 +76,11 @@
     {
       "type": "header",
       "content": "t:general.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "t:labels.icon"
     },
     {
       "type": "text",

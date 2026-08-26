@@ -2655,6 +2655,9 @@
     .sm\:min-h-\[440px\] {
       min-height: 440px;
     }
+    .sm\:w-1\/2 {
+      width: calc(1 / 2 * 100%);
+    }
     .sm\:w-3 {
       width: calc(var(--spacing) * 3);
     }
@@ -2988,6 +2991,9 @@
     }
     .sm\:pr-4 {
       padding-right: calc(var(--spacing) * 4);
+    }
+    .sm\:pr-8 {
+      padding-right: calc(var(--spacing) * 8);
     }
     .sm\:pr-11 {
       padding-right: calc(var(--spacing) * 11);
