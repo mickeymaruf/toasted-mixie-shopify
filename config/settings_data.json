@@ -55,13 +55,36 @@
         "settings": {
           "background_color": "#c2cbd4"
         }
+      },
+      "age-verification-modal": {
+        "type": "age-verification-modal",
+        "settings": {
+          "heading": "Please confirm your age",
+          "question": "Are you at least 21 Years Old?",
+          "yes_label": "Yes",
+          "no_label": "No",
+          "remember_days": 60,
+          "decline_message": "<p>Sorry, your age does not permit you to enter at this time.</p>",
+          "decline_message_color": "#B3261E",
+          "disclaimer": "<p>By entering this site you are agreeing to the <a href=\"/pages/terms-of-service\">Terms of Service</a> and <a href=\"/pages/privacy-policy\">Privacy Policy</a>.</p>",
+          "background_color": "#F6F1EC",
+          "heading_color": "#212323",
+          "text_color": "#626262",
+          "button_border_color": "#212323",
+          "button_text_color": "#212323",
+          "cans_background_color": "#f9d5c0",
+          "cans_background_image": "shopify://shop_images/Rectangle_61.png",
+          "can_image_1": "shopify://shop_images/berry_30000_1.png",
+          "can_image_2": "shopify://shop_images/lime_20000_1.png",
+          "can_image_3": "shopify://shop_images/orange_010000_3.png"
+        }
       }
     },
     "content_for_index": [],
     "blocks": {
       "3140817623390692025": {
         "type": "shopify://apps/na-age-verification/blocks/agechecker_y1K8NR3dvv/15fad4c9-4ba9-4c27-8e6c-1f214a81924f",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       }
     }

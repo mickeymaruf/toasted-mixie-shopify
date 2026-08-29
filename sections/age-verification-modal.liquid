@@ -1,0 +1,370 @@
+{% comment %}
+  Global age verification modal, rendered once from layout/theme.liquid (not
+  tied to a template). Always renders with the `open` attribute present in
+  the markup; the inline script right below it synchronously hides the
+  modal before paint if localStorage still holds an unexpired "Yes" answer,
+  so it opens on first visit and on every subsequent visit until the
+  merchant-configured remember window (default 60 days) has elapsed.
+  Clicking "No" reveals an inline error message instead of closing the
+  modal and does not persist anything, so it keeps showing until "Yes" is
+  clicked.
+
+  The right-side visual panel statically mirrors the Gruns Hero can cluster
+  (sections/gruns-hero.liquid, rendered via the shared
+  'gruns-hero-can-image' snippet): its background color/image and the three
+  can images default to that section's own asset references in
+  config/settings_data.json, independent of whatever the merchant has set on
+  the live Gruns Hero section instance.
+{% endcomment %}
+
+<age-verification-modal
+  class="fixed inset-0 z-[100]"
+  data-age-verification-modal
+  data-remember-days="{{ section.settings.remember_days }}"
+  open
+>
+  <script>
+    {% comment %} Keep this storage key in sync with AgeVerificationModal.STORAGE_KEY below. {% endcomment %}
+    (function () {
+      try {
+        var until = localStorage.getItem('toasted:age-verified-until');
+        if (until && Number(until) > Date.now()) {
+          document.currentScript.parentElement.removeAttribute('open');
+        }
+      } catch (error) {
+        // localStorage unavailable (private browsing, disabled storage, etc.) - modal shows as normal.
+      }
+    })();
+  </script>
+
+  <div class="absolute inset-0 bg-[#212323]/50" aria-hidden="true"></div>
+
+  <div
+    class="relative flex size-full items-center justify-center p-4 sm:p-6"
+    role="dialog"
+    aria-modal="true"
+    aria-label="{{ section.settings.heading }}"
+  >
+    <div
+      class="flex w-full max-w-[880px] overflow-hidden rounded-[24px] shadow-[0_20px_60px_rgba(33,35,35,0.25)] sm:rounded-[32px]"
+      style="background-color: {{ section.settings.background_color }};"
+    >
+      <div class="flex w-full flex-col items-center gap-6 px-6 py-10 text-center sm:w-1/2 sm:gap-7 sm:px-10 sm:py-12 lg:px-14">
+        <a
+          href="{{ routes.root_url }}"
+          class="block w-[170px] shrink-0 text-[color:var(--age-verification-heading)] sm:w-[210px]"
+          style="--age-verification-heading: {{ section.settings.heading_color }};"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          {% if section.settings.logo %}
+            {{ section.settings.logo | image_url: width: 440 | image_tag: loading: 'eager', alt: shop.name }}
+          {% else %}
+            {{ 'logo-toasted.svg' | inline_asset_content }}
+          {% endif %}
+        </a>
+
+        {% if section.settings.heading != blank %}
+          <p
+            class="font-[family-name:var(--font-heading--family)] text-[22px] leading-[1.2] text-[color:var(--age-verification-heading)] sm:text-[26px]"
+            style="--age-verification-heading: {{ section.settings.heading_color }};"
+          >
+            {{ section.settings.heading }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.question != blank %}
+          <p
+            class="font-[family-name:var(--font-heading--family)] text-[17px] leading-[1.3] text-[color:var(--age-verification-text)] sm:text-[19px]"
+            style="--age-verification-text: {{ section.settings.text_color }};"
+          >
+            {{ section.settings.question }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.decline_message != blank %}
+          <div
+            class="age-verification-decline hidden font-[family-name:var(--font-heading--family)] text-[15px] leading-[1.3] font-medium text-[color:var(--age-verification-decline)] sm:text-[17px]"
+            style="--age-verification-decline: {{ section.settings.decline_message_color }};"
+            data-age-verification-error
+            role="alert"
+          >
+            {{ section.settings.decline_message }}
+          </div>
+        {% endif %}
+
+        <div class="flex w-full max-w-[400px] items-center justify-center gap-4">
+          <button
+            type="button"
+            class="flex-1 cursor-pointer rounded-[8px] border py-3 text-[16px] font-normal text-[color:var(--age-verification-button-text)] transition-colors duration-150 hover:bg-[color:var(--age-verification-heading)] hover:text-[color:var(--age-verification-background)]"
+            style="
+              border-color: {{ section.settings.button_border_color }};
+              --age-verification-button-text: {{ section.settings.button_text_color }};
+              --age-verification-heading: {{ section.settings.heading_color }};
+              --age-verification-background: {{ section.settings.background_color }};
+            "
+            data-age-verification-confirm
+          >
+            {{ section.settings.yes_label }}
+          </button>
+
+          <button
+            type="button"
+            class="flex-1 cursor-pointer rounded-[8px] border py-3 text-[16px] font-normal text-[color:var(--age-verification-button-text)] transition-colors duration-150 hover:bg-[color:var(--age-verification-heading)] hover:text-[color:var(--age-verification-background)]"
+            style="
+              border-color: {{ section.settings.button_border_color }};
+              --age-verification-button-text: {{ section.settings.button_text_color }};
+              --age-verification-heading: {{ section.settings.heading_color }};
+              --age-verification-background: {{ section.settings.background_color }};
+            "
+            data-age-verification-decline
+          >
+            {{ section.settings.no_label }}
+          </button>
+        </div>
+
+        {% if section.settings.disclaimer != blank %}
+          <div
+            class="age-verification-disclaimer max-w-[360px] text-[13px] leading-[1.5] text-[color:var(--age-verification-text)]"
+            style="--age-verification-text: {{ section.settings.text_color }}; --age-verification-link: {{ section.settings.heading_color }};"
+          >
+            {{ section.settings.disclaimer }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div
+        class="relative hidden w-1/2 shrink-0 self-stretch overflow-hidden sm:block"
+        style="background-color: {{ section.settings.cans_background_color }};"
+      >
+        {% if section.settings.cans_background_image %}
+          {{
+            section.settings.cans_background_image
+            | image_url: width: 1200
+            | image_tag: class: 'absolute inset-0 size-full max-w-none object-cover', widths: '600, 900, 1200', loading: 'lazy', alt: ''
+          }}
+        {% endif %}
+
+        <div class="absolute inset-0 flex items-center justify-center p-8">
+          <div class="relative w-full max-w-[380px]" style="aspect-ratio: 624 / 477;">
+            {% render 'gruns-hero-can-image', image: section.settings.can_image_1, alt: '', modifier: 'back-right' %}
+            {% render 'gruns-hero-can-image', image: section.settings.can_image_2, alt: '', modifier: 'back-left' %}
+            {% render 'gruns-hero-can-image', image: section.settings.can_image_3, alt: '', modifier: 'front-center' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</age-verification-modal>
+
+{% stylesheet %}
+  age-verification-modal[data-age-verification-modal] {
+    z-index: 100;
+  }
+
+  age-verification-modal:not([open]) {
+    display: none;
+  }
+
+  .age-verification-disclaimer p,
+  .age-verification-decline p {
+    margin: 0;
+  }
+
+  .age-verification-disclaimer a {
+    color: var(--age-verification-link);
+    text-decoration: underline;
+    transition: opacity 150ms;
+  }
+
+  .age-verification-disclaimer a:hover {
+    opacity: 0.7;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  class AgeVerificationModal extends HTMLElement {
+    static STORAGE_KEY = 'toasted:age-verified-until';
+
+    connectedCallback() {
+      this.confirmButton = this.querySelector('[data-age-verification-confirm]');
+      this.declineButton = this.querySelector('[data-age-verification-decline]');
+      this.errorMessage = this.querySelector('[data-age-verification-error]');
+      this.rememberDays = Number(this.dataset.rememberDays) || 60;
+
+      if (this.hasAttribute('open')) {
+        document.body.style.overflow = 'hidden';
+        this.confirmButton?.focus({ preventScroll: true });
+      }
+
+      this.confirmButton?.addEventListener('click', () => this.confirm());
+      this.declineButton?.addEventListener('click', () => this.decline());
+    }
+
+    confirm() {
+      try {
+        const until = Date.now() + this.rememberDays * 24 * 60 * 60 * 1000;
+        localStorage.setItem(AgeVerificationModal.STORAGE_KEY, String(until));
+      } catch (error) {
+        // localStorage unavailable (private browsing, disabled storage, etc.) - modal will reopen next visit.
+      }
+
+      this.close();
+    }
+
+    decline() {
+      this.errorMessage?.classList.remove('hidden');
+    }
+
+    close() {
+      this.removeAttribute('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  customElements.define('age-verification-modal', AgeVerificationModal);
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.age_verification_modal",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:labels.logo",
+      "info": "Defaults to the theme logo when left blank."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Please confirm your age"
+    },
+    {
+      "type": "text",
+      "id": "question",
+      "label": "Question",
+      "default": "Are you at least 21 Years Old?"
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "text",
+      "id": "yes_label",
+      "label": "Yes button label",
+      "default": "Yes"
+    },
+    {
+      "type": "text",
+      "id": "no_label",
+      "label": "No button label",
+      "default": "No"
+    },
+    {
+      "type": "header",
+      "content": "Behavior"
+    },
+    {
+      "type": "number",
+      "id": "remember_days",
+      "label": "Remember \"Yes\" answer for (days)",
+      "default": 60,
+      "info": "After clicking \"Yes\", the modal won't reappear on this browser until this many days have passed."
+    },
+    {
+      "type": "richtext",
+      "id": "decline_message",
+      "label": "\"No\" error message",
+      "default": "<p>Sorry, your age does not permit you to enter at this time.</p>"
+    },
+    {
+      "type": "color",
+      "id": "decline_message_color",
+      "label": "\"No\" error message color",
+      "default": "#B3261E"
+    },
+    {
+      "type": "header",
+      "content": "Legal text"
+    },
+    {
+      "type": "richtext",
+      "id": "disclaimer",
+      "label": "Disclaimer text",
+      "default": "<p>By entering this site you are agreeing to the <a href=\"/pages/terms-of-service\">Terms of Service</a> and <a href=\"/pages/privacy-policy\">Privacy Policy</a>.</p>",
+      "info": "Link any text to your store's actual policy pages."
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background_color",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Secondary text color",
+      "default": "#626262"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border color",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "Right side image (synced from Gruns Hero)"
+    },
+    {
+      "type": "color",
+      "id": "cans_background_color",
+      "label": "t:labels.background_color",
+      "default": "#F9D5C0"
+    },
+    {
+      "type": "image_picker",
+      "id": "cans_background_image",
+      "label": "t:labels.background_image"
+    },
+    {
+      "type": "image_picker",
+      "id": "can_image_1",
+      "label": "t:labels.can_image_1"
+    },
+    {
+      "type": "image_picker",
+      "id": "can_image_2",
+      "label": "t:labels.can_image_2"
+    },
+    {
+      "type": "image_picker",
+      "id": "can_image_3",
+      "label": "t:labels.can_image_3"
+    }
+  ]
+}
+{% endschema %}
