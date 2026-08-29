@@ -219,6 +219,25 @@
     "gruns_product_list_simple_mgnb4p": {
       "type": "gruns-product-list-simple",
       "blocks": {
+        "product_card_simple_i8tAgt": {
+          "type": "product-card-simple",
+          "settings": {
+            "product": "ginger-lime",
+            "image": "shopify://shop_images/Ginger-Lime-Fruit-_3.png",
+            "alt_text": "",
+            "background_color": "#f0f0f0",
+            "background_image": "shopify://shop_images/front_2.svg",
+            "flavor_sticker": "shopify://shop_images/Group_159.svg",
+            "badge_sticker": "shopify://shop_images/Group_110_1.svg",
+            "title": "Ginger Lime",
+            "description": "Zesty ginger, bright lime, real fruit flavor, and a functional blend for ease, presence, and connection.",
+            "text_color": "#f6f1ec",
+            "button_label": "Add to Cart",
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323"
+          },
+          "blocks": {}
+        },
         "product_card_simple_hCyNMf": {
           "type": "product-card-simple",
           "settings": {
@@ -226,14 +245,15 @@
             "image": "shopify://shop_images/Blood-Orange-Fruit-_3.png",
             "alt_text": "",
             "background_color": "#f0f0f0",
-            "background_image": "shopify://shop_images/Frame_2147236068.svg",
+            "background_image": "shopify://shop_images/front_1.svg",
             "flavor_sticker": "shopify://shop_images/flavour.svg",
             "badge_sticker": "shopify://shop_images/Group_113_2.svg",
             "title": "Blood Orange",
             "description": "Bright blood orange, real fruit flavor, and a functional blend made to help you stay present.",
+            "text_color": "#f6f1ec",
             "button_label": "Add to Cart",
-            "button_background_color": "#212323",
-            "button_text_color": "#f6f1ec"
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323"
           },
           "blocks": {}
         },
@@ -244,40 +264,23 @@
             "image": "shopify://shop_images/Berry-Acai-Fruit-_2.png",
             "alt_text": "",
             "background_color": "#f0f0f0",
-            "background_image": "shopify://shop_images/Frame_2147236070_1.svg",
+            "background_image": "shopify://shop_images/front_3.svg",
             "flavor_sticker": "shopify://shop_images/flavor.svg",
             "badge_sticker": "shopify://shop_images/Group_112_1.svg",
             "title": "Berry Acai",
             "description": "Rich berry, vibrant açaí, real fruit flavor, and a functional blend for good company and good moments.",
+            "text_color": "#f6f1ec",
             "button_label": "Add to Cart",
-            "button_background_color": "#212323",
-            "button_text_color": "#f6f1ec"
-          },
-          "blocks": {}
-        },
-        "product_card_simple_i8tAgt": {
-          "type": "product-card-simple",
-          "settings": {
-            "product": "ginger-lime",
-            "image": "shopify://shop_images/Ginger-Lime-Fruit-_3.png",
-            "alt_text": "",
-            "background_color": "#f0f0f0",
-            "background_image": "shopify://shop_images/Frame_2147236070.svg",
-            "flavor_sticker": "shopify://shop_images/Group_159.svg",
-            "badge_sticker": "shopify://shop_images/Group_110_1.svg",
-            "title": "Ginger Lime",
-            "description": "Zesty ginger, bright lime, real fruit flavor, and a functional blend for ease, presence, and connection.",
-            "button_label": "Add to Cart",
-            "button_background_color": "#212323",
-            "button_text_color": "#f6f1ec"
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323"
           },
           "blocks": {}
         }
       },
       "block_order": [
+        "product_card_simple_i8tAgt",
         "product_card_simple_hCyNMf",
-        "product_card_simple_dJMxJH",
-        "product_card_simple_i8tAgt"
+        "product_card_simple_dJMxJH"
       ],
       "name": "t:general.product_list_simple",
       "settings": {

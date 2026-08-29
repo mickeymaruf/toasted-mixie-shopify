@@ -381,6 +381,7 @@
     "thumbnail_image": "Thumbnail image",
     "tiktok_link": "TikTok link",
     "title": "Title",
+    "title_info": "Not shown on the card. The flavor name is already part of the sticker image",
     "use_lottie_animation": "Use flavor animation",
     "use_lottie_animation_info": "Plays an animated illustration in place of the static image above",
     "video": "Video",
