@@ -1,0 +1,127 @@
+{% doc %}
+  Renders an editable heading and subheading followed by a responsive row of
+  feature-story-card blocks. Add feature-story-card blocks to populate the
+  row.
+{% enddoc %}
+
+<section
+  class="feature-story-grid full-width flex w-full flex-col items-center gap-8 px-5 pt-12 pb-16 text-center sm:px-8 sm:py-16 md:gap-10 md:px-12 lg:gap-[50px] lg:px-[80px] lg:pt-[100px] lg:pb-[150px] xl:px-[120px]"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  {% if section.settings.heading != blank or section.settings.subheading != blank %}
+    <div class="flex w-full flex-col items-center gap-1" style="color: {{ section.settings.heading_color }};">
+      {% if section.settings.heading != blank %}
+        <div
+          class="feature-story-grid__heading text-[40px] leading-[0.95] font-bold sm:text-[56px] md:text-[72px] xl:text-[93px]"
+        >
+          {{ section.settings.heading }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p
+          class="feature-story-grid__subheading w-full text-[18px] leading-[1] font-semibold sm:text-[24px] md:text-[32px] xl:text-[42px]"
+        >
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if section.blocks.size > 0 %}
+    <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-[10px] lg:grid-cols-4">
+      {% content_for 'blocks' %}
+    </div>
+  {% endif %}
+</section>
+
+{% stylesheet %}
+  .feature-story-grid__heading,
+  .feature-story-grid__subheading {
+    font-family: var(--font-heading--family);
+  }
+
+  .feature-story-grid__heading :where(p) {
+    margin: 0;
+  }
+
+  .feature-story-grid__heading em {
+    font-style: italic;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.feature_story_grid",
+  "blocks": [{ "type": "feature-story-card" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "<p>The <em>Chill</em> Drink</p>"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:labels.subheading",
+      "default": "A functional relaxation beverage made with real fruit"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.heading_color",
+      "default": "#212323"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.feature_story_grid",
+      "blocks": [
+        {
+          "type": "feature-story-card",
+          "settings": {
+            "title": "Made to taste real",
+            "text": "We skipped the fake flavors and heavy carbonation for something closer to what we'd make at home."
+          }
+        },
+        {
+          "type": "feature-story-card",
+          "settings": {
+            "title": "The problem with adaptogens",
+            "text": "We love ashwagandha and lion's mane, but their real benefits come with consistent use over time."
+          }
+        },
+        {
+          "type": "feature-story-card",
+          "settings": {
+            "title": "Functional you can feel",
+            "text": "Our active ingredients were chosen for effects you can feel right now, not weeks from now."
+          }
+        },
+        {
+          "type": "feature-story-card",
+          "settings": {
+            "title": "An alcohol alternative that works",
+            "text": "Going out without alcohol shouldn't be hard. Toasted helps you relax, loosen up, and stay present."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

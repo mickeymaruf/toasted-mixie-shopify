@@ -60,12 +60,17 @@
     </a>
 
     <div class="navbar__actions">
-      {% if section.settings.show_find_toasted_button %}
+      {% if section.settings.show_right_side_button %}
         <a
-          href="{{ section.settings.find_toasted_button_link | default: '#' }}"
-          class="navbar__find-button border-[3px] py-2 rounded-full px-8"
+          href="{{ section.settings.right_side_button_link | default: '#' }}"
+          class="navbar__right-button border-[3px] py-2 rounded-full px-8"
+          style="
+            --right-button-background: {{ section.settings.right_side_button_background_color }};
+            --right-button-border: {{ section.settings.right_side_button_border_color }};
+            --right-button-text: {{ section.settings.right_side_button_text_color }};
+          "
         >
-          {{- section.settings.find_toasted_button_text -}}
+          {{- section.settings.right_side_button_text -}}
         </a>
       {% endif %}
 
@@ -378,7 +383,7 @@
       border-radius: 999px;
     }
 
-    .navbar__actions:not(:has(.navbar__find-button)) {
+    .navbar__actions:not(:has(.navbar__right-button)) {
       padding: 10px 24px;
     }
   }
@@ -410,21 +415,19 @@
     flex-shrink: 0;
   }
 
-  .navbar__find-button {
+  .navbar__right-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    color: currentColor;
+    background-color: var(--right-button-background);
+    border-color: var(--right-button-border);
+    color: var(--right-button-text);
     text-decoration: none;
     font-size: clamp(0.9375rem, 0.75rem + 1vw, 1.25rem);
     font-weight: 500;
     white-space: nowrap;
     cursor: pointer;
-  }
-
-  .navbar__find-button:hover {
-    opacity: 0.7;
   }
 
   @media (max-width: 768px) {
@@ -436,10 +439,10 @@
       background-color: var(--navbar-actions-background);
     }
 
-    .navbar__find-button {
+    .navbar__right-button {
       display: inline-flex;
       padding: 0.5rem 1rem;
-      border: 2px solid currentColor;
+      border: 2px solid var(--right-button-border);
       border-radius: 999px;
       font-size: 0.9375rem;
       line-height: 1;
@@ -467,7 +470,7 @@
       padding: 0.375rem 1rem 0.375rem 0.375rem;
     }
 
-    .navbar__find-button {
+    .navbar__right-button {
       padding: 0.5625rem 0.875rem;
       font-size: 0.8125rem;
     }
@@ -854,21 +857,43 @@
       "default": 116
     },
     {
+      "type": "header",
+      "content": "t:general.right_side_button"
+    },
+    {
       "type": "checkbox",
-      "id": "show_find_toasted_button",
-      "label": "t:labels.show_find_toasted_button",
+      "id": "show_right_side_button",
+      "label": "t:labels.show",
       "default": true
     },
     {
       "type": "text",
-      "id": "find_toasted_button_text",
-      "label": "t:labels.find_toasted_button_text",
-      "default": "Find Toasted"
+      "id": "right_side_button_text",
+      "label": "t:labels.text",
+      "default": "Shop Now"
     },
     {
       "type": "url",
-      "id": "find_toasted_button_link",
-      "label": "t:labels.find_toasted_button_link"
+      "id": "right_side_button_link",
+      "label": "t:labels.link"
+    },
+    {
+      "type": "color",
+      "id": "right_side_button_background_color",
+      "label": "t:labels.background_color",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "right_side_button_border_color",
+      "label": "t:labels.border",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "right_side_button_text_color",
+      "label": "t:labels.text_color",
+      "default": "#F6F1EC"
     },
     {
       "type": "checkbox",

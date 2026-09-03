@@ -13,9 +13,30 @@
       "type": "page",
       "disabled": true,
       "settings": {}
+    },
+    "help_contact_cBzK3x": {
+      "type": "help-contact",
+      "name": "t:general.help_contact",
+      "settings": {
+        "heading": "Need help?",
+        "subheading": "Questions, orders, wholesale, partnerships, or press. Send us a note.",
+        "email_address": "admin@drinktoasted.com",
+        "instagram_link": "https://www.instagram.com/drinktoasted",
+        "youtube_link": "",
+        "tiktok_link": "",
+        "button_text": "Send message",
+        "address_heading": "Address",
+        "address_text": "66 W Flagler St, Suite 900, Miami, FL 33130",
+        "address_image": "shopify://shop_images/Frame_2147236161_3.png",
+        "background_color": "#f6f1ec",
+        "text_color": "#212323",
+        "button_background_color": "#212323",
+        "button_text_color": "#f6f1ec"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "help_contact_cBzK3x"
   ]
 }

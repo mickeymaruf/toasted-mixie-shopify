@@ -12,6 +12,18 @@
   if block.settings.width == '2'
     assign is_two_thirds = true
   endif
+
+  assign heading_desktop = block.settings.heading
+  assign heading_mobile = block.settings.heading_mobile
+  if heading_mobile == blank
+    assign heading_mobile = heading_desktop
+  endif
+
+  assign body_desktop = block.settings.body
+  assign body_mobile = block.settings.body_mobile
+  if body_mobile == blank
+    assign body_mobile = body_desktop
+  endif
 %}
 
 <div
@@ -25,21 +37,33 @@
       color: {{ block.settings.text_color }};
     "
   >
-    {% if block.settings.heading != blank %}
-      <div class="story-tile-cell__heading w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[38px] lg:text-[58px] xl:text-[72px] 2xl:text-[92px]">
-        {{ block.settings.heading }}
+    {% if heading_mobile != blank %}
+      <div class="story-tile-cell__heading story-tile-cell__heading--mobile w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[38px] lg:text-[58px] xl:text-[72px] 2xl:text-[92px]">
+        {{ heading_mobile }}
       </div>
     {% endif %}
 
-    {% if block.settings.body != blank %}
-      <div class="story-tile-cell__body w-full text-[20px] leading-[1.5] [&_p]:m-0 [&_p+p]:mt-[1em] sm:text-[16px] lg:text-[20px] xl:text-[24px] 2xl:text-[32px]">
-        {{ block.settings.body }}
+    {% if heading_desktop != blank %}
+      <div class="story-tile-cell__heading story-tile-cell__heading--desktop w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[38px] lg:text-[58px] xl:text-[72px] 2xl:text-[92px]">
+        {{ heading_desktop }}
+      </div>
+    {% endif %}
+
+    {% if body_mobile != blank %}
+      <div class="story-tile-cell__body story-tile-cell__body--mobile w-full text-[20px] leading-[1.5] [&_p]:m-0 [&_p+p]:mt-[1em] sm:text-[16px] lg:text-[20px] xl:text-[24px] 2xl:text-[32px]">
+        {{ body_mobile }}
+      </div>
+    {% endif %}
+
+    {% if body_desktop != blank %}
+      <div class="story-tile-cell__body story-tile-cell__body--desktop w-full text-[20px] leading-[1.5] [&_p]:m-0 [&_p+p]:mt-[1em] sm:text-[16px] lg:text-[20px] xl:text-[24px] 2xl:text-[32px]">
+        {{ body_desktop }}
       </div>
     {% endif %}
 
     {% if block.settings.image != blank %}
-      <div class="story-tile-cell__image mt-[1em] flex w-full max-w-[120px] ml-[20px] justify-center">
-        {{ block.settings.image | image_url: width: 240 | image_tag: class: 'max-w-full h-auto' }}
+      <div class="story-tile-cell__image mt-[1em] flex w-[140px] ml-[20px] justify-center md:w-[240px]">
+        {{ block.settings.image | image_url: width: 480 | image_tag: class: 'max-w-full h-auto' }}
       </div>
     {% endif %}
   </div>
@@ -58,6 +82,30 @@
   %}
 </div>
 
+{% stylesheet %}
+  .story-tile-cell__heading--desktop,
+  .story-tile-cell__body--desktop {
+    display: none;
+  }
+
+  .story-tile-cell__heading--mobile,
+  .story-tile-cell__body--mobile {
+    display: block;
+  }
+
+  @media (min-width: 48rem) {
+    .story-tile-cell__heading--desktop,
+    .story-tile-cell__body--desktop {
+      display: block;
+    }
+
+    .story-tile-cell__heading--mobile,
+    .story-tile-cell__body--mobile {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:general.story_tile_text",
@@ -70,8 +118,20 @@
     },
     {
       "type": "richtext",
+      "id": "heading_mobile",
+      "label": "t:labels.heading_mobile",
+      "info": "t:labels.heading_mobile_info"
+    },
+    {
+      "type": "richtext",
       "id": "body",
       "label": "t:labels.body"
+    },
+    {
+      "type": "richtext",
+      "id": "body_mobile",
+      "label": "t:labels.body_mobile",
+      "info": "t:labels.body_mobile_info"
     },
     {
       "type": "image_picker",

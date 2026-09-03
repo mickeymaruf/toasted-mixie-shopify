@@ -141,6 +141,14 @@
       "success_message": "Thank you! Your inquiry has been received.",
       "error_message": "There was an error submitting the form. Please try again."
     },
+    "help_contact": {
+      "email_label": "Email",
+      "follow_us_label": "Follow us",
+      "name_label": "Name",
+      "subject_label": "Subject",
+      "message_label": "Message",
+      "success_message": "Thank you! Your message has been sent."
+    },
     "social_proof": {
       "stars": "Stars",
       "reviews": "Reviews",

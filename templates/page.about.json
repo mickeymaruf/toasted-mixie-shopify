@@ -26,14 +26,70 @@
         "background_color": "#9ab2d5"
       }
     },
-    "content_block_cb4Hiy": {
-      "type": "content-block",
-      "name": "t:general.content_block",
+    "feature_story_grid_pW6jiq": {
+      "type": "feature-story-grid",
+      "blocks": {
+        "feature_story_card_YpYN99": {
+          "type": "feature-story-card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_105.png",
+            "alt_text": "",
+            "title": "Made to taste real",
+            "text": "We skipped the fake flavors and heavy carbonation for something closer to what we'd make at home.",
+            "background_color": "#636d90",
+            "text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        },
+        "feature_story_card_p9rmcH": {
+          "type": "feature-story-card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_105_1.png",
+            "alt_text": "",
+            "title": "The problem with adaptogens",
+            "text": "We love ashwagandha and lion's mane, but their real benefits come with consistent use over time.",
+            "background_color": "#636d90",
+            "text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        },
+        "feature_story_card_tzbzYy": {
+          "type": "feature-story-card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_105_2.png",
+            "alt_text": "",
+            "title": "Functional you can feel",
+            "text": "Our active ingredients were chosen for effects you can feel right now, not weeks from now.",
+            "background_color": "#636d90",
+            "text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        },
+        "feature_story_card_ABhijX": {
+          "type": "feature-story-card",
+          "settings": {
+            "image": "shopify://shop_images/Rectangle_105_3.png",
+            "alt_text": "",
+            "title": "An alcohol alternative that works",
+            "text": "Going out without alcohol shouldn't be hard. Toasted helps you relax, loosen up, and stay present.",
+            "background_color": "#636d90",
+            "text_color": "#f6f1ec"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "feature_story_card_YpYN99",
+        "feature_story_card_p9rmcH",
+        "feature_story_card_tzbzYy",
+        "feature_story_card_ABhijX"
+      ],
+      "name": "t:general.feature_story_grid",
       "settings": {
         "heading": "<p>The <em>Chill</em> Drink</p>",
-        "subheading": "A functional relaxation beverage made with real fruit.",
+        "subheading": "A functional relaxation beverage made with real fruit",
         "background_color": "#9ab2d5",
-        "text_color": "#212323"
+        "heading_color": "#212323"
       }
     },
     "story_tiles_gg9aqG": {
@@ -47,7 +103,9 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "<p>Be open</p><p>Be present</p><p>Be here</p>",
+                "heading_mobile": "",
                 "body": "",
+                "body_mobile": "",
                 "background_color": "#f9d5c0",
                 "text_color": "#212323",
                 "width": "1",
@@ -86,7 +144,9 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
+                "heading_mobile": "",
                 "body": "<p>Our founder, Danny T, started his career in Miami’s scene. After years of feeling the effects of alcohol and late nights, he made the move into cannabis. But the high-potency world had its flaws too. What about people who just wanted to relax without checking out?</p>",
+                "body_mobile": "",
                 "background_color": "#551f36",
                 "text_color": "#f6f1ec",
                 "width": "1",
@@ -136,7 +196,9 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "<p>Social moments deserve<br/>better options.</p>",
+                "heading_mobile": "<p>Social moments deserve better options.</p>",
                 "body": "",
+                "body_mobile": "",
                 "background_color": "#626c8d",
                 "text_color": "#f6f1ec",
                 "width": "2",
@@ -165,7 +227,9 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
-                "body": "<p>We created a drink to help you relax withoutchecking out. Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society.</p><p></p><p><strong>Stay Toasted.</strong></p>",
+                "heading_mobile": "",
+                "body": "<p>We created a drink to help you relax <strong>without<br/>checking out.</strong> Something light and tasteful to enjoy any time <br/>of the day. Toasted was built for those of us without any <br/>options in today's alcohol-dependent society<br/><br/><strong>Stay Toasted.</strong></p>",
+                "body_mobile": "<p>We created a drink to help you relax <strong>without checking out.</strong> Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society<br/><br/><strong>Stay Toasted.</strong></p>",
                 "image": "shopify://shop_images/signature.svg",
                 "background_color": "#c2cbd4",
                 "text_color": "#212323",
@@ -437,7 +501,7 @@
   "order": [
     "main",
     "hero_banner_AFPte7",
-    "content_block_cb4Hiy",
+    "feature_story_grid_pW6jiq",
     "story_tiles_gg9aqG",
     "gruns_product_list_simple_mgnb4p",
     "gruns_find_toasted_simple_8wjfyP",

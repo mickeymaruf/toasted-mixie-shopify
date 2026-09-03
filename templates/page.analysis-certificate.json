@@ -128,6 +128,17 @@
     "coa_cards_MRUDHC": {
       "type": "coa-cards",
       "blocks": {
+        "coa_card_VBGz4P": {
+          "type": "coa-card",
+          "settings": {
+            "title": "Blood Orange",
+            "manufacturer": "North Florida Bottling Co.",
+            "date": "8/13/26",
+            "batch_number": "BO-260813-NFB-01",
+            "best_by_date": "8/13/27",
+            "url": "https://yourcoa.com/coa/coa-download/MI60826008-002?wl_id=0&mrk=0&is_view=1"
+          }
+        },
         "coa_card_EGYEjU": {
           "type": "coa-card",
           "disabled": true,
@@ -178,6 +189,7 @@
         }
       },
       "block_order": [
+        "coa_card_VBGz4P",
         "coa_card_EGYEjU",
         "coa_card_hJ78gN",
         "coa_card_ChmNgE",

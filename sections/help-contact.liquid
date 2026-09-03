@@ -1,0 +1,359 @@
+{% liquid
+  assign heading = section.settings.heading
+  assign subheading = section.settings.subheading
+  assign email_address = section.settings.email_address
+  assign instagram_link = section.settings.instagram_link
+  assign youtube_link = section.settings.youtube_link
+  assign tiktok_link = section.settings.tiktok_link
+  assign button_text = section.settings.button_text
+  assign address_heading = section.settings.address_heading
+  assign address_text = section.settings.address_text
+%}
+
+<section
+  class="help-contact full-width bg-[var(--help-contact-bg)] text-[var(--help-contact-text)]"
+  style="
+    --help-contact-bg: {{ section.settings.background_color }};
+    --help-contact-text: {{ section.settings.text_color }};
+    --help-contact-button-bg: {{ section.settings.button_background_color }};
+    --help-contact-button-text: {{ section.settings.button_text_color }};
+  "
+>
+  <div class="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-5 py-12 sm:px-8 sm:py-16 md:px-12 lg:gap-[80px] lg:px-[120px] lg:pt-[70px] lg:pb-[100px]">
+    <div class="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-[100px]">
+      <div class="flex min-w-0 flex-col gap-8 lg:flex-1 lg:gap-[30px]">
+        {% if heading != blank or subheading != blank %}
+          <div class="flex flex-col gap-3 lg:gap-[20px]">
+            {% if heading != blank %}
+              <h2 class="font-[family-name:var(--font-heading--family)] text-[40px] leading-[0.95] font-bold tracking-[-1.2px] lg:text-[72px] lg:tracking-[-2.16px]">
+                {{ heading }}
+              </h2>
+            {% endif %}
+
+            {% if subheading != blank %}
+              <p class="text-[16px] leading-[1.5] lg:text-[24px]">
+                {{ subheading | newline_to_br }}
+              </p>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if email_address != blank %}
+          <div class="flex flex-col gap-2 lg:gap-[10px]">
+            <p class="text-[18px] leading-[1.5] font-medium lg:text-[24px]">
+              {{ 'sections.help_contact.email_label' | t }}
+            </p>
+            <a href="mailto:{{ email_address }}" class="w-fit text-[16px] leading-[1.5] transition-opacity hover:opacity-70 lg:text-[24px]">
+              {{ email_address }}
+            </a>
+          </div>
+        {% endif %}
+
+        {% if instagram_link != blank or youtube_link != blank or tiktok_link != blank %}
+          <div class="flex flex-col gap-2 lg:gap-[10px]">
+            <p class="text-[18px] leading-[1.5] font-medium lg:text-[24px]">
+              {{ 'sections.help_contact.follow_us_label' | t }}
+            </p>
+
+            <div class="flex items-center gap-[15px]">
+              {% if instagram_link != blank %}
+                <a
+                  href="{{ instagram_link }}"
+                  class="flex size-[50px] shrink-0 items-center justify-center rounded-full bg-[var(--help-contact-button-bg)] text-[var(--help-contact-button-text)] transition-opacity hover:opacity-85"
+                  aria-label="{{ 'general.accessibility.instagram' | t }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class="block size-[25px]">{{ 'icon-instagram.svg' | inline_asset_content }}</span>
+                </a>
+              {% endif %}
+
+              {% if youtube_link != blank %}
+                <a
+                  href="{{ youtube_link }}"
+                  class="block size-[50px] shrink-0"
+                  aria-label="{{ 'general.accessibility.youtube' | t }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <img
+                    src="{{ 'icon-youtube-social.svg' | asset_url }}"
+                    alt=""
+                    class="size-full"
+                    width="50"
+                    height="50"
+                    loading="lazy"
+                  >
+                </a>
+              {% endif %}
+
+              {% if tiktok_link != blank %}
+                <a
+                  href="{{ tiktok_link }}"
+                  class="flex size-[50px] shrink-0 items-center justify-center rounded-full bg-[var(--help-contact-button-bg)] text-[var(--help-contact-button-text)] transition-opacity hover:opacity-85"
+                  aria-label="{{ 'general.accessibility.tiktok' | t }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class="block size-[22px]">{{ 'icon-tiktok.svg' | inline_asset_content }}</span>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="w-full min-w-0 lg:flex-1">
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+            <p class="text-[18px] leading-[1.5] lg:text-[20px]">
+              {{ 'sections.help_contact.success_message' | t }}
+            </p>
+          {% else %}
+            {% if form.errors %}
+              <div class="mb-6 rounded-[4px] border border-[#fcc] bg-[#fee] px-4 py-3 text-[14px] text-[#c00]">
+                {{ form.errors | default_errors }}
+              </div>
+            {% endif %}
+
+            <div class="flex flex-col">
+              <div class="flex flex-col gap-8 lg:gap-[32px]">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-[20px]">
+                <div class="flex flex-col gap-[4px] sm:gap-[5px]">
+                  <label for="HelpContactName-{{ section.id }}" class="block text-[16px] leading-[1.2] lg:text-[20px]">
+                    {{ 'sections.help_contact.name_label' | t }}
+                  </label>
+                  <input
+                    type="text"
+                    id="HelpContactName-{{ section.id }}"
+                    name="contact[name]"
+                    class="w-full border-0 border-b border-solid bg-transparent font-inherit text-base leading-[1.5] py-2 pl-0 outline-none transition-colors duration-150"
+                    style="border-bottom-color: var(--help-contact-text); color: var(--help-contact-text);"
+                    placeholder=""
+                  >
+                </div>
+
+                <div class="flex flex-col gap-[4px] sm:gap-[5px]">
+                  <label for="HelpContactEmail-{{ section.id }}" class="block text-[16px] leading-[1.2] lg:text-[20px]">
+                    {{ 'sections.help_contact.email_label' | t }}
+                  </label>
+                  <input
+                    type="email"
+                    id="HelpContactEmail-{{ section.id }}"
+                    name="contact[email]"
+                    class="w-full border-0 border-b border-solid bg-transparent font-inherit text-base leading-[1.5] py-2 pl-0 outline-none transition-colors duration-150"
+                    style="border-bottom-color: var(--help-contact-text); color: var(--help-contact-text);"
+                    required
+                    placeholder=""
+                  >
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-[4px] sm:gap-[5px]">
+                <label for="HelpContactSubject-{{ section.id }}" class="block text-[16px] leading-[1.2] lg:text-[20px]">
+                  {{ 'sections.help_contact.subject_label' | t }}
+                </label>
+                <input
+                  type="text"
+                  id="HelpContactSubject-{{ section.id }}"
+                  name="contact[subject]"
+                  class="w-full border-0 border-b border-solid bg-transparent font-inherit text-base leading-[1.5] py-2 pl-0 outline-none transition-colors duration-150"
+                  style="border-bottom-color: var(--help-contact-text); color: var(--help-contact-text);"
+                  placeholder=""
+                >
+              </div>
+
+              <div class="flex flex-col gap-[4px] sm:gap-[5px]">
+                <label for="HelpContactMessage-{{ section.id }}" class="block text-[16px] leading-[1.2] lg:text-[20px]">
+                  {{ 'sections.help_contact.message_label' | t }}
+                </label>
+                <textarea
+                  id="HelpContactMessage-{{ section.id }}"
+                  name="contact[body]"
+                  rows="3"
+                  class="help-contact__textarea min-h-[32px] w-full resize-none border-0 border-b border-solid bg-transparent font-inherit text-base leading-[1.5] py-2 pl-0 outline-none transition-colors duration-150 lg:min-h-[40px]"
+                  style="border-bottom-color: var(--help-contact-text); color: var(--help-contact-text);"
+                  placeholder=""
+                ></textarea>
+              </div>
+              </div>
+
+              <button
+                type="submit"
+                class="mt-[16px] flex h-[58px] w-full items-center justify-center rounded-[30px] bg-[var(--help-contact-button-bg)] px-8 text-center text-[18px] leading-[1.5] font-medium text-[var(--help-contact-button-text)] drop-shadow-[0px_0px_7.5px_rgba(0,0,0,0.1)] transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--help-contact-button-text)] lg:mt-[32px] lg:text-[20px]"
+              >
+                {{ button_text }}
+              </button>
+            </div>
+          {% endif %}
+        {% endform %}
+      </div>
+    </div>
+
+    {% if address_heading != blank or address_text != blank %}
+      <div class="relative aspect-[1200/387] min-h-[240px] w-full overflow-hidden rounded-[24px] lg:rounded-[33px]">
+        {% if section.settings.address_image %}
+          {{
+            section.settings.address_image
+            | image_url: width: 2000
+            | image_tag:
+              class: 'absolute inset-0 size-full grayscale object-cover object-bottom',
+              widths: '750, 1100, 1500, 2000',
+              sizes: '100vw',
+              loading: 'lazy',
+              alt: ''
+          }}
+        {% else %}
+          <img
+            src="{{ 'help-contact-address.jpg' | asset_url }}"
+            alt=""
+            class="absolute inset-0 size-full grayscale object-cover object-bottom"
+            loading="lazy"
+            width="1600"
+            height="817"
+          >
+        {% endif %}
+
+        <div class="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0)] from-[13%] to-[rgba(0,0,0,0.7)]"></div>
+
+        <div class="absolute inset-x-0 bottom-0 flex flex-col gap-2 p-6 text-[#f6f1ec] lg:gap-[10px] lg:p-[40px]">
+          {% if address_heading != blank %}
+            <h3 class="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-[family-name:var(--font-heading--family)] text-[28px] font-bold tracking-[-0.84px] lg:text-[48px] lg:tracking-[-1.44px]">
+              {{ address_heading }}
+            </h3>
+          {% endif %}
+
+          {% if address_text != blank %}
+            <p class="text-[14px] leading-[1.5] lg:text-[24px]">
+              {{ address_text }}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .help-contact__textarea {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .help-contact__textarea::-webkit-scrollbar {
+    display: none;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.help_contact",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Need help?"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "t:labels.subheading",
+      "default": "Questions, orders, wholesale, partnerships, or press.\nSend us a note."
+    },
+    {
+      "type": "text",
+      "id": "email_address",
+      "label": "t:labels.email_address",
+      "default": "admin@drinktoasted.com"
+    },
+    {
+      "type": "header",
+      "content": "t:general.social_icons"
+    },
+    {
+      "type": "url",
+      "id": "instagram_link",
+      "label": "t:labels.instagram_link"
+    },
+    {
+      "type": "url",
+      "id": "youtube_link",
+      "label": "t:labels.youtube_link"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_link",
+      "label": "t:labels.tiktok_link"
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "t:labels.button_text",
+      "default": "Send message"
+    },
+    {
+      "type": "header",
+      "content": "t:general.help_contact_address"
+    },
+    {
+      "type": "text",
+      "id": "address_heading",
+      "label": "t:labels.address_heading",
+      "default": "Address"
+    },
+    {
+      "type": "text",
+      "id": "address_text",
+      "label": "t:labels.address_text",
+      "default": "66 W Flagler St, Suite 900, Miami, FL 33130"
+    },
+    {
+      "type": "image_picker",
+      "id": "address_image",
+      "label": "t:labels.background_image"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.help_contact"
+    }
+  ]
+}
+{% endschema %}

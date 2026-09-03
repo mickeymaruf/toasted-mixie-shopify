@@ -1,0 +1,95 @@
+{% doc %}
+  Renders a rounded card with a photo, a bold title and a short description
+  on a colored background. Intended to be nested inside the Feature Story
+  Grid section.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'feature-story-card' %}
+{% enddoc %}
+
+<div
+  class="flex h-full flex-1 flex-col items-center gap-[18px] rounded-[28px] px-[15px] pt-[15px] pb-[24px] sm:gap-[24px] sm:rounded-[36px] lg:gap-[30px] lg:rounded-[48px] lg:pb-[30px]"
+  style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }};"
+  {{ block.shopify_attributes }}
+>
+  <div class="aspect-[262/204] w-full shrink-0 overflow-hidden rounded-[18px] sm:rounded-[24px] lg:rounded-[33px]">
+    {% if block.settings.image %}
+      {{
+        block.settings.image
+        | image_url: width: 700
+        | image_tag:
+          class: 'size-full object-cover',
+          widths: '262, 350, 525, 700',
+          sizes: '(min-width: 64rem) 25vw, (min-width: 40rem) 50vw, 100vw',
+          alt: block.settings.alt_text | default: block.settings.image.alt
+      }}
+    {% endif %}
+  </div>
+
+  <div class="flex w-full flex-1 flex-col items-center gap-[10px] text-center">
+    {% if block.settings.title != blank %}
+      <p class="feature-story-card__title mb-[10px] text-[22px] leading-[0.8] font-bold capitalize sm:mb-[16px] sm:text-[24px] lg:text-[25px]">
+        {{ block.settings.title }}
+      </p>
+    {% endif %}
+
+    {% if block.settings.text != blank %}
+      <p class="mt-auto text-[15px] leading-[1.3] font-light sm:text-[16px] lg:text-[18px]">
+        {{ block.settings.text }}
+      </p>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .feature-story-card__title {
+    font-family: var(--font-heading--family);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.feature_story_card",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.card_image"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:labels.title",
+      "default": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "t:labels.text",
+      "default": "Description text."
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.card_background",
+      "default": "#636D90"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.text_color",
+      "default": "#F6F1EC"
+    }
+  ],
+  "presets": [{ "name": "t:general.feature_story_card" }]
+}
+{% endschema %}
