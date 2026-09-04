@@ -2,6 +2,7 @@
   assign heading = section.settings.heading
   assign subheading = section.settings.subheading
   assign email_address = section.settings.email_address
+  assign phone_number = section.settings.phone_number
   assign instagram_link = section.settings.instagram_link
   assign youtube_link = section.settings.youtube_link
   assign tiktok_link = section.settings.tiktok_link
@@ -45,6 +46,17 @@
             </p>
             <a href="mailto:{{ email_address }}" class="w-fit text-[16px] leading-[1.5] transition-opacity hover:opacity-70 lg:text-[24px]">
               {{ email_address }}
+            </a>
+          </div>
+        {% endif %}
+
+        {% if phone_number != blank %}
+          <div class="flex flex-col gap-2 lg:gap-[10px]">
+            <p class="text-[18px] leading-[1.5] font-medium lg:text-[24px]">
+              {{ 'sections.help_contact.phone_label' | t }}
+            </p>
+            <a href="tel:{{ phone_number }}" class="w-fit text-[16px] leading-[1.5] transition-opacity hover:opacity-70 lg:text-[24px]">
+              {{ phone_number }}
             </a>
           </div>
         {% endif %}
@@ -270,6 +282,12 @@
       "id": "email_address",
       "label": "t:labels.email_address",
       "default": "admin@drinktoasted.com"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "t:labels.phone_number",
+      "default": "(305) 951 7707"
     },
     {
       "type": "header",

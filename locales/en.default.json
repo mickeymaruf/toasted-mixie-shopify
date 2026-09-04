@@ -143,6 +143,7 @@
     },
     "help_contact": {
       "email_label": "Email",
+      "phone_label": "Phone",
       "follow_us_label": "Follow us",
       "name_label": "Name",
       "subject_label": "Subject",
@@ -158,7 +159,8 @@
   "footer": {
     "email_label": "Email address",
     "newsletter_success": "Thanks for subscribing!",
-    "newsletter_error": "Please enter a valid email address."
+    "newsletter_error": "Please enter a valid email address.",
+    "payment_methods_label": "Payment methods"
   },
   "blog": {
     "article_comments": "Comments",
@@ -274,5 +276,14 @@
     "expand": "Expand your bundle",
     "collapse": "Collapse your bundle",
     "pack_size": "Pack size"
+  },
+  "shopify": {
+    "checkout": {
+      "payment": {
+        "card_security_notice": "All transactions are secure and encrypted. You will be billed as Drinktoasted.com.",
+        "card_security_vault_notice": "We need your details for future payments. All transactions are secure and encrypted. You will be billed as Drinktoasted.com.",
+        "card_information_notice": "All transactions are secure and encrypted. Credit card information is never stored. You will be billed as Drinktoasted.com."
+      }
+    }
   }
 }
