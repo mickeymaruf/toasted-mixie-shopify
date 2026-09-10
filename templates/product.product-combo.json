@@ -130,7 +130,7 @@
           "static": true,
           "settings": {
             "sale_price": "$0",
-            "original_price": "$30",
+            "original_price": "$12",
             "badge_text": "Just Pay Shipping"
           },
           "blocks": {}
