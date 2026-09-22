@@ -131,7 +131,7 @@
           "settings": {
             "sale_price": "$0",
             "original_price": "$30",
-            "badge_text": "Just Pay Shipping"
+            "badge_text": "One-Time. No Subscription."
           },
           "blocks": {}
         },
@@ -229,7 +229,7 @@
         "subscribe_pill_text_color": "#f6f1ec",
         "custom_button_text": "",
         "show_sticky_cta": true,
-        "sticky_cta_label": "Try Now",
+        "sticky_cta_label": "Add To Cart",
         "sticky_cta_background_color": "#212323",
         "sticky_cta_background_opacity": 10,
         "sticky_cta_button_background_color": "#212323",
@@ -556,11 +556,11 @@
             "background_image": "shopify://shop_images/Frame_2147236049.svg",
             "image": "shopify://shop_images/Group_157_1.png",
             "use_lottie_animation": false,
-            "flavor_name": "Free Trial Pack",
+            "flavor_name": "Three Pack Trial",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
-            "price_text": "Just Pay Shipping",
-            "button_label": "Try Now",
+            "price_text": "One-Time. Just Pay Shipping.",
+            "button_label": "Add To Cart",
             "button_background_color": "#212323",
             "button_text_color": "#f6f1ec",
             "show_learn_more": true,

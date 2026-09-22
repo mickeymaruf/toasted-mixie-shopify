@@ -131,7 +131,7 @@
           "settings": {
             "sale_price": "$0",
             "original_price": "$12",
-            "badge_text": "Just Pay Shipping"
+            "badge_text": "One-Time. No Subscription."
           },
           "blocks": {}
         },
@@ -228,9 +228,9 @@
         "subscribe_card_background_image": "shopify://shop_images/Label.png",
         "subscribe_pill_background_color": "#551f36",
         "subscribe_pill_text_color": "#f6f1ec",
-        "custom_button_text": "<p>Claim Your Trial Pack <strong>FREE</strong></p>",
+        "custom_button_text": "<p>Claim Your Trial Pack</p>",
         "show_sticky_cta": true,
-        "sticky_cta_label": "Try Now",
+        "sticky_cta_label": "Add To Cart",
         "sticky_cta_background_color": "#212323",
         "sticky_cta_background_opacity": 10,
         "sticky_cta_button_background_color": "#212323",

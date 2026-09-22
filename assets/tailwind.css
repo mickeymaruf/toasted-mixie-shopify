@@ -701,17 +701,8 @@
   .h-\[14px\] {
     height: 14px;
   }
-  .h-\[19px\] {
-    height: 19px;
-  }
   .h-\[20\.5px\] {
     height: 20.5px;
-  }
-  .h-\[20px\] {
-    height: 20px;
-  }
-  .h-\[21px\] {
-    height: 21px;
   }
   .h-\[27px\] {
     height: 27px;
@@ -841,9 +832,6 @@
   }
   .w-\[17px\] {
     width: 17px;
-  }
-  .w-\[26px\] {
-    width: 26px;
   }
   .w-\[30px\] {
     width: 30px;
@@ -2185,6 +2173,9 @@
   .tracking-normal {
     --tw-tracking: var(--tracking-normal);
     letter-spacing: var(--tracking-normal);
+  }
+  .text-wrap {
+    text-wrap: wrap;
   }
   .break-words {
     overflow-wrap: break-word;

@@ -7,7 +7,7 @@
     "build:css": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --minify",
     "watch:css": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --watch",
     "build": "npm run build:css",
-    "dev": "concurrently -n css,theme -c blue,green \"npm:watch:css\" \"shopify theme dev\""
+    "dev": "concurrently -n css,theme -c blue,green \"npm:watch:css\" \"shopify theme dev --store=07qqjd-tb.myshopify.com\""
   },
   "repository": {
     "type": "git",

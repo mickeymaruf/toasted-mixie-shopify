@@ -16,6 +16,7 @@
       "blocks": {
         "announcement_bar_item_GLiL3A": {
           "type": "announcement-bar-item",
+          "disabled": true,
           "settings": {
             "text": "<p>Free 3-flavor trial pack. Just pay shipping.</p>",
             "show_button": true,
@@ -82,6 +83,9 @@
         "show_right_side_button": true,
         "right_side_button_text": "Shop Now",
         "right_side_button_link": "shopify://collections/all",
+        "right_side_button_background_color": "#212323",
+        "right_side_button_border_color": "#212323",
+        "right_side_button_text_color": "#f6f1ec",
         "show_search_button": false,
         "mega_menu_button_text": "Shop Drinks",
         "mega_menu_button_link": "/collections/shop-all",
