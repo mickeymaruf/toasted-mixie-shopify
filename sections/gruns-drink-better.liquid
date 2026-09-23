@@ -21,7 +21,7 @@
       {{
         section.settings.background_image
         | image_url: width: 1600
-        | image_tag: class: 'absolute size-full object-cover', widths: '800, 1200, 1600', alt: '', style: 'opacity: 0.2; filter: saturate(0);'
+        | image_tag: class: 'absolute size-full object-cover', widths: '800, 1200, 1600', alt: ''
       }}
     {% else %}
       <img
@@ -31,13 +31,8 @@
         height="683"
         loading="lazy"
         class="absolute size-full object-cover"
-        style="opacity: 0.2; filter: saturate(0);"
       >
     {% endif %}
-    <div
-      class="absolute inset-0"
-      style="background: linear-gradient(to bottom, {{ section.settings.gradient_color }} 28.594%, {{ section.settings.gradient_color }}00 66.673%);"
-    ></div>
   </div>
 
   <div class="relative mx-auto flex w-full max-w-[1200px] flex-col gap-16 px-4 py-12 sm:px-6 sm:py-16 md:px-10 lg:gap-[80px] lg:px-[60px] lg:py-[80px] xl:gap-[100px] xl:px-0 xl:pt-[100px] xl:pb-[100px]">
@@ -92,7 +87,7 @@
         {% endif %}
       </div>
 
-      <div class="flex w-full flex-col items-start gap-[30px] lg:max-w-[560px] lg:flex-1" style="color: {{ section.settings.heading_color }};">
+      <div class="flex w-full flex-col items-start gap-[40px] lg:max-w-[560px] lg:flex-1" style="color: {{ section.settings.heading_color }};">
         {% if section.settings.heading != blank or section.settings.description != blank %}
           <div class="flex w-full flex-col items-start gap-5" style="color: {{ section.settings.heading_color }};">
             {% if section.settings.heading != blank %}
@@ -276,12 +271,6 @@
     },
     {
       "type": "color",
-      "id": "gradient_color",
-      "label": "t:labels.gradient_overlay",
-      "default": "#F8F1EA"
-    },
-    {
-      "type": "color",
       "id": "heading_color",
       "label": "t:labels.text_color",
       "default": "#212323"
@@ -294,18 +283,9 @@
         {
           "type": "mood-list",
           "blocks": [
-            {
-              "type": "mood-item",
-              "settings": { "title": "Supports Clarity", "subtitle": "Smooth, present focus" }
-            },
-            {
-              "type": "mood-item",
-              "settings": { "title": "Balanced Mood", "subtitle": "Light, feel-good lift" }
-            },
-            {
-              "type": "mood-item",
-              "settings": { "title": "Promotes Calm", "subtitle": "Easy, steady unwind" }
-            }
+            { "type": "mood-item", "settings": { "label": "200mg L-theanine" } },
+            { "type": "mood-item", "settings": { "label": "50mg Rhodiola" } },
+            { "type": "mood-item", "settings": { "label": ".4mg Hemp THC" } }
           ]
         },
         {

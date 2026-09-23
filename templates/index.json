@@ -149,29 +149,28 @@
       "name": "t:general.gruns_hero",
       "settings": {
         "heading": "<p><em>The Chill Drink</em></p>",
-        "description": "<p>A functional relaxation beverage made with real fruit</p>",
+        "description": "<p>A light, tasteful drink for the moments you want to relax, connect, and stay present.</p>",
         "description_mobile": "",
         "show_button": true,
         "button_label": "Coming Soon",
         "button_link": "/collections/all",
         "button_background_color": "#d4941f",
         "button_text_color": "#f6f1ec",
-        "feature_1_text": "Three real fruit flavors.",
-        "feature_2_text": "One-Time. Just Pay Shipping.",
         "background_color": "#9ab2d5",
         "heading_color": "#212323",
+        "show_skyline_image": true,
+        "skyline_image": "shopify://shop_images/watson-island-twilight-skyline-z27_1_2_1.png",
         "cans_background_color": "#f9d5c0",
-        "cans_background_image": "shopify://shop_images/Rectangle_61.png",
-        "can_image_1": "shopify://shop_images/berry_30000_1.png",
+        "cans_background_image": "shopify://shop_images/Rectangle_104_1.png",
+        "can_image_1": "shopify://shop_images/berry_10000_2.png",
         "can_image_1_alt": "",
-        "can_image_2": "shopify://shop_images/lime_20000_1.png",
+        "can_image_2": "shopify://shop_images/lime_010000_2.png",
         "can_image_2_alt": "",
-        "can_image_3": "shopify://shop_images/orange_010000_3.png",
+        "can_image_3": "shopify://shop_images/orange_010000_2.png",
         "can_image_3_alt": "",
-        "show_badge": false,
-        "badge_text": "Get 20% Off",
-        "badge_background_color": "#f9d5c0",
-        "badge_text_color": "#212323"
+        "show_badge": true,
+        "badge_image": "shopify://shop_images/Group_134.svg",
+        "badge_image_alt": "America's most compliant badge"
       }
     },
     "marquee_QBFjMB": {
@@ -318,9 +317,8 @@
               "type": "mood-item",
               "name": "t:general.mood_item",
               "settings": {
-                "title": "200mg L-theanine",
-                "subtitle": "",
-                "icon": "shopify://shop_images/Frame_2147236065_1.png"
+                "icon": "shopify://shop_images/Frame_2147236198.svg",
+                "label": "200mg L-theanine"
               },
               "blocks": {}
             },
@@ -328,9 +326,8 @@
               "type": "mood-item",
               "name": "t:general.mood_item",
               "settings": {
-                "title": "50mg Rhodiola",
-                "subtitle": "",
-                "icon": "shopify://shop_images/Frame_2147236064_1.png"
+                "icon": "shopify://shop_images/Frame_2147236199.svg",
+                "label": "50mg Rhodiola"
               },
               "blocks": {}
             },
@@ -338,9 +335,8 @@
               "type": "mood-item",
               "name": "t:general.mood_item",
               "settings": {
-                "title": ".4mg Hemp THC",
-                "subtitle": "",
-                "icon": "shopify://shop_images/Frame_2147236066_4eccc5f3-2d26-45d4-adeb-0c6e26e1595a.png"
+                "icon": "shopify://shop_images/Frame_2147236200.svg",
+                "label": ".4mg Hemp THC"
               },
               "blocks": {}
             }
@@ -429,30 +425,19 @@
         "bundle_image": "shopify://shop_images/Group_191_1.png",
         "bundle_background_color": "#f9d5c0",
         "bundle_text_color": "#212323",
-        "background_image": "shopify://shop_images/f289b62b919ba07994f473b44042a0f53abfc6d5.jpg",
-        "background_color": "#551f36",
-        "gradient_color": "#551f36",
+        "background_image": "shopify://shop_images/Frame_2147236096.png",
+        "background_color": "#f8f1ea",
         "heading_color": "#f6f1ec"
       }
     },
     "gruns_quality_badges_FMBPx9": {
       "type": "gruns-quality-badges",
       "blocks": {
-        "icon_badge_card_3TqXrD": {
+        "icon_badge_card_ENxfhb": {
           "type": "icon-badge-card",
           "settings": {
-            "label": "No pesticides",
-            "icon": "shopify://shop_images/Frame_2147236139.svg",
-            "background_color": "#f9d5c0",
-            "text_color": "#636d90"
-          },
-          "blocks": {}
-        },
-        "icon_badge_card_Wj8cBz": {
-          "type": "icon-badge-card",
-          "settings": {
-            "label": "No pathogens",
-            "icon": "shopify://shop_images/Frame_2147236136.svg",
+            "label": "Precise dose",
+            "icon": "shopify://shop_images/Frame_2147236137_1.png",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -468,11 +453,21 @@
           },
           "blocks": {}
         },
-        "icon_badge_card_ENxfhb": {
+        "icon_badge_card_Wj8cBz": {
           "type": "icon-badge-card",
           "settings": {
-            "label": "Precise dose",
-            "icon": "shopify://shop_images/Frame_2147236137_1.png",
+            "label": "No pathogens",
+            "icon": "shopify://shop_images/Frame_2147236136_7c1eb26a-5547-4536-b150-f0c0c9ea4199.svg",
+            "background_color": "#f9d5c0",
+            "text_color": "#636d90"
+          },
+          "blocks": {}
+        },
+        "icon_badge_card_3TqXrD": {
+          "type": "icon-badge-card",
+          "settings": {
+            "label": "No pesticides",
+            "icon": "shopify://shop_images/Frame_2147236139.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
@@ -480,16 +475,16 @@
         }
       },
       "block_order": [
-        "icon_badge_card_3TqXrD",
-        "icon_badge_card_Wj8cBz",
+        "icon_badge_card_ENxfhb",
         "icon_badge_card_w6Rkmy",
-        "icon_badge_card_ENxfhb"
+        "icon_badge_card_Wj8cBz",
+        "icon_badge_card_3TqXrD"
       ],
       "name": "t:general.quality_badges",
       "settings": {
         "heading": "<p>3rd party-tested for potency, purity,<br/> & safety.</p>",
         "description": "",
-        "background_image": "shopify://shop_images/Frame_2147235971.png",
+        "background_image": "shopify://shop_images/Frame_2147236097_1.png",
         "background_color": "#636d90",
         "heading_color": "#f6f1ec"
       }
@@ -685,7 +680,7 @@
             "background_color": "#551f36",
             "feature_text_color": "#212323",
             "heading_color": "#f6f1ec",
-            "background_image": "shopify://shop_images/Frame_2147235943_1.png",
+            "background_image": "shopify://shop_images/Frame_2147235948.png",
             "image": "shopify://shop_images/Group_203.png"
           },
           "blocks": {}
@@ -920,7 +915,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz_7751d6e3-97ab-4a97-8359-dfd7bd46ba8f.png",
+            "image": "shopify://shop_images/picz_20.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -981,7 +976,7 @@
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
-        "heading": "<p>People love Toasted!</p>",
+        "heading": "<p>The People Love Toasted!</p>",
         "heading_mobile": "",
         "enable_slide_border": true,
         "enable_autoplay": false,
@@ -1000,18 +995,19 @@
         "show_rating_section": false,
         "star_count": 5,
         "rating_text": "<p><strong>4.8</strong> Rating <strong>• 100,000</strong> Reviews <strong>• 1,000,000+</strong> Members</p>",
-        "heading": "<p>Try the chill drink.</p>",
-        "description": "<p>A functional relaxation beverage made with real fruit. <br/>Present in the moment.</p>",
+        "heading": "<p>Subscribe<br/>& Save The Most</p>",
+        "heading_mobile": "",
+        "description": "<p>Never run out so you can enjoy anytime you’re<br/>ready to chill</p>",
         "mobile_description": "<p>A functional relaxation beverage made with real fruit. Present in the moment.</p>",
         "show_button": true,
-        "button_label": "Shop Now",
+        "button_label": "Subscribe & Save",
         "button_link": "/collections/shop-all",
         "button_background_color": "#f9d5c0",
         "button_text_color": "#1e2125",
-        "image": "shopify://shop_images/Group_202.png",
+        "image": "shopify://shop_images/Render_Mockup_4000_3000_2026-09-12_1.png",
         "image_alt": "",
         "background_color": "#551f36",
-        "background_image": "shopify://shop_images/Frame_2147235973.png",
+        "background_image": "shopify://shop_images/Frame_2147236099.png",
         "heading_color": "#f6f1ec"
       }
     },
@@ -1084,7 +1080,7 @@
         "enable_autoplay": true,
         "show_navigation": true,
         "background_color": "#636d90",
-        "background_image": "shopify://shop_images/Frame_2147230637_1.png",
+        "background_image": "shopify://shop_images/Frame_2147230637_2_49a83e22-797b-47ec-bf5b-a2b920d36a97.png",
         "heading_color": "#f6f1ec",
         "social_icon_1_image": "shopify://shop_images/Item_a47a4d47-c447-485d-86d0-1f8d8032ce0e.svg",
         "social_icon_1_link": "https://www.instagram.com/drinktoasted/",

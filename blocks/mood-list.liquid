@@ -1,13 +1,13 @@
 {% doc %}
-  Groups mood-item blocks into a single list. Nest inside the Drink Better
-  section's content column; add, remove, and reorder the nested mood-item
-  blocks to control which mood/benefit rows are shown.
+  Groups mood-item blocks into a horizontal row of circular badges. Nest
+  inside the Drink Better section's content column; add, remove, and
+  reorder the nested mood-item blocks to control which badges are shown.
 
   @example
   {% content_for 'block', id: block.id, type: 'mood-list' %}
 {% enddoc %}
 
-<div class="flex w-full flex-col gap-[21px]" {{ block.shopify_attributes }}>
+<div class="flex w-full flex-wrap items-start gap-x-6 gap-y-6 sm:gap-x-[30px]" {{ block.shopify_attributes }}>
   {% content_for 'blocks' %}
 </div>
 
@@ -19,18 +19,9 @@
     {
       "name": "t:general.mood_list",
       "blocks": [
-        {
-          "type": "mood-item",
-          "settings": { "title": "Supports Clarity", "subtitle": "Smooth, present focus" }
-        },
-        {
-          "type": "mood-item",
-          "settings": { "title": "Balanced Mood", "subtitle": "Light, feel-good lift" }
-        },
-        {
-          "type": "mood-item",
-          "settings": { "title": "Promotes Calm", "subtitle": "Easy, steady unwind" }
-        }
+        { "type": "mood-item", "settings": { "label": "200mg L-theanine" } },
+        { "type": "mood-item", "settings": { "label": "50mg Rhodiola" } },
+        { "type": "mood-item", "settings": { "label": ".4mg Hemp THC" } }
       ]
     }
   ]

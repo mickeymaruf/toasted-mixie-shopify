@@ -11,20 +11,18 @@
 >
   {% if section.settings.background_image %}
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div class="absolute inset-0 bg-[color:var(--gruns-social-proof-overlay-color)]" style="--gruns-social-proof-overlay-color: {{ section.settings.background_color }};"></div>
       {{
         section.settings.background_image
         | image_url: width: 1920
-        | image_tag: class: 'absolute inset-0 w-full h-full object-cover object-bottom opacity-10', style: 'filter: saturate(0);'
+        | image_tag: class: 'absolute max-w-none', style: 'left: -10.62%; top: -57.03%; width: 121.25%; height: 214.06%;', alt: ''
       }}
-      <div class="absolute inset-0" style="background: linear-gradient(to right, {{ section.settings.background_color }} 16.827%, transparent 100%);"></div>
     </div>
   {% endif %}
   <div
-    class="relative z-10 mx-auto flex w-full max-w-[1920px] flex-col items-center gap-10 px-5 py-10 sm:px-8 sm:py-12 md:px-12 lg:flex-row lg:items-center lg:justify-center lg:gap-[60px] lg:px-[80px] lg:py-[80px] xl:px-[120px] xl:py-[50px]"
+    class="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-center gap-10 px-4 pt-10 sm:px-6 sm:pt-12 md:px-10 lg:flex-row lg:items-end lg:justify-start lg:gap-[110px] lg:px-[60px] lg:pt-[50px] xl:px-0"
   >
     <div
-      class="flex w-full flex-col items-start gap-5 text-left lg:max-w-[581px] lg:flex-1"
+      class="flex w-full flex-col items-start gap-5 pb-10 text-left sm:pb-12 lg:w-[456px] lg:shrink-0 lg:pb-[51px]"
       style="color: {{ section.settings.heading_color }};"
     >
       {% if section.settings.show_rating_section %}
@@ -53,8 +51,16 @@
       {% endif %}
 
       {% if section.settings.heading != blank %}
-        <div class="section-heading font-[family-name:var(--font-heading--family)]">
+        <div
+          class="font-[family-name:var(--font-heading--family)] text-[40px] leading-[0.95] font-bold sm:text-[48px] md:text-[60px] lg:text-[70px] xl:text-[72px] xl:tracking-[-2.16px] {% if section.settings.heading_mobile != blank %}hidden sm:block{% endif %}"
+        >
           {{ section.settings.heading }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading_mobile != blank %}
+        <div class="block font-[family-name:var(--font-heading--family)] text-[40px] leading-[0.95] font-bold sm:hidden">
+          {{ section.settings.heading_mobile }}
         </div>
       {% endif %}
 
@@ -84,19 +90,16 @@
     </div>
 
     {% if section.settings.image %}
-      <div class="relative mx-auto w-full max-w-[360px] overflow-visible sm:max-w-[460px] lg:mx-0 lg:max-w-[600px] lg:flex-1">
-        <div class="transition-transform duration-500 ease-out hover:scale-[1.03]">
-          {{
-            section.settings.image
-            | image_url: width: 1200
-            | image_tag:
-              class: 'size-full object-contain',
-              widths: '400, 700, 1000, 1200',
-              sizes: '(min-width: 64rem) 46vw, 90vw',
-              alt: section.settings.image_alt
-            | default: section.settings.image.alt
-          }}
-        </div>
+      <div class="relative mx-auto w-full lg:mx-0 lg:w-[629px] lg:shrink-0">
+        {{
+          section.settings.image
+          | image_url: width: 1200
+          | image_tag:
+            class: 'w-full h-auto object-contain',
+            widths: '400, 700, 1000, 1200',
+            alt: section.settings.image_alt
+          | default: section.settings.image.alt
+        }}
       </div>
     {% endif %}
   </div>
@@ -141,6 +144,12 @@
     },
     {
       "type": "richtext",
+      "id": "heading_mobile",
+      "label": "t:labels.heading_mobile",
+      "info": "t:labels.heading_mobile_info"
+    },
+    {
+      "type": "richtext",
       "id": "description",
       "label": "t:labels.description",
       "default": "<p>We regularly test for all 20+ vitamins & minerals to ensure claims are accurate & clear of contaminants including:</p>"
@@ -178,14 +187,14 @@
       "type": "color",
       "id": "button_background_color",
       "label": "t:labels.button_background",
-      "default": "#212323",
+      "default": "#F9D5C0",
       "visible_if": "{{ section.settings.show_button }}"
     },
     {
       "type": "color",
       "id": "button_text_color",
       "label": "t:labels.button_text_color",
-      "default": "#F6F1EC",
+      "default": "#212323",
       "visible_if": "{{ section.settings.show_button }}"
     },
     {

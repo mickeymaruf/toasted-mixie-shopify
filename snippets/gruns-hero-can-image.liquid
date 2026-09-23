@@ -1,19 +1,31 @@
 {% doc %}
-  Renders one animated product can image inside the Gruns Hero right-side
-  visual cluster. Position, size, and the floating loop animation are all
-  driven by the `gruns-hero-can--{modifier}` class below, reproducing the
-  exact per-layer placement and motion from the Figma "Frame 2147235887" node
-  (fileKey mPnZFgOy032whTzJGzGdND). Uploaded images are expected to already
-  be rotated to match the design, so no CSS rotation is applied. DOM order
-  across the three renders controls stacking (back to front), so keep the
-  render order in sections/gruns-hero.liquid unchanged.
+  Renders one animated product can image inside a Gruns Hero right-side
+  visual cluster. Position, size, and (for the `back-right` / `back-left` /
+  `front-center` modifiers) the floating loop animation are all driven by the
+  `gruns-hero-can--{modifier}` class below.
+
+  Two independent layouts are supported:
+  - `back-right` / `back-left` / `front-center`: the original full-height
+    floating cluster, reproducing the Figma "Frame 2147235887" node (fileKey
+    mPnZFgOy032whTzJGzGdND). Statically mirrored (with default assets) in
+    sections/age-verification-modal.liquid, so these three must keep their
+    current positions, sizes and render order.
+  - `compact-back-left` / `compact-back-right` / `compact-front-center`: the
+    smaller, static bottom-right cluster used by the current
+    sections/gruns-hero.liquid, reproducing the Figma "Frame 2147236209" node
+    (fileKey mPnZFgOy032whTzJGzGdND).
+
+  Uploaded images are expected to already be rotated to match the design, so
+  no CSS rotation is applied. DOM order across renders of the same layout
+  controls stacking (back to front).
 
   @param {image} image - The can image to render
   @param {string} [alt] - Alt text for the image
-  @param {string} modifier - Position identifier; must be one of 'back-right', 'back-left', 'front-center'
+  @param {string} modifier - Position identifier; must be one of 'back-right', 'back-left', 'front-center', 'compact-back-left', 'compact-back-right', 'compact-front-center'
 
   @example
   {% render 'gruns-hero-can-image', image: section.settings.can_image_1, alt: section.settings.can_image_1_alt, modifier: 'back-right' %}
+  {% render 'gruns-hero-can-image', image: section.settings.can_image_1, alt: section.settings.can_image_1_alt, modifier: 'compact-front-center' %}
 {% enddoc %}
 
 {% if image %}
@@ -162,5 +174,30 @@
     .gruns-hero-can--front-center {
       animation: none;
     }
+  }
+
+  /* Positions and size below are ported 1:1 from the Figma
+     "Frame 2147236209" node (fileKey mPnZFgOy032whTzJGzGdND), the compact
+     static cluster used by the current sections/gruns-hero.liquid. */
+
+  .gruns-hero-can--compact-back-left {
+    left: 0%;
+    top: 9.138%;
+    width: 32.336%;
+    height: 87.36%;
+  }
+
+  .gruns-hero-can--compact-back-right {
+    left: 67.478%;
+    top: 9.15%;
+    width: 32.517%;
+    height: 87.851%;
+  }
+
+  .gruns-hero-can--compact-front-center {
+    left: 31.354%;
+    top: 0%;
+    width: 36.929%;
+    height: 99.771%;
   }
 {% endstylesheet %}

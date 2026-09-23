@@ -9,8 +9,8 @@
   {% content_for 'block', id: block.id, type: 'trust-badge' %}
 {% enddoc %}
 
-<div class="flex min-w-0 flex-1 flex-col items-center gap-[8px] sm:w-auto sm:flex-none sm:gap-[5px]" {{ block.shopify_attributes }}>
-  <div class="size-[72px] shrink-0 sm:size-[85px] lg:size-[101px]">
+<div class="trust-badge flex min-w-0 flex-1 flex-col items-center gap-[8px] sm:w-auto sm:flex-none sm:gap-[5px]" {{ block.shopify_attributes }}>
+  <div class="trust-badge__icon size-[72px] shrink-0 sm:size-[85px] lg:size-[101px]">
     {% if block.settings.icon %}
       {{
         block.settings.icon

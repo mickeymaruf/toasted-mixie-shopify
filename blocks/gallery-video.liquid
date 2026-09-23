@@ -12,7 +12,7 @@
   {{ block.shopify_attributes }}
 >
   <gallery-video-player
-    class="relative block aspect-[225.6/329.39] w-full overflow-hidden rounded-[22.113px] shadow-[-3px_4px_10px_0px_rgba(0,0,0,0.15)] {% if section.settings.enable_slide_border %}border-[3px] border-[#212323]{% endif %}"
+    class="relative block aspect-[225.6/329.39] w-full overflow-hidden rounded-[22.113px] shadow-[-3px_4px_10px_0px_rgba(0,0,0,0.15)] will-change-transform {% if section.settings.enable_slide_border %}border-[3px] border-[#212323]{% endif %}"
   >
     {% if block.settings.video %}
       <video-player class="contents">

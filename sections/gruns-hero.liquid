@@ -1,5 +1,5 @@
 <section
-  class="gruns-hero full-width relative z-10 pt-[50px]"
+  class="gruns-hero full-width relative z-10 overflow-hidden pt-[50px] pb-[45px] sm:pb-[60px] lg:pb-[100px]"
   style="background-color: {{ section.settings.background_color }};"
 >
   {% liquid
@@ -12,13 +12,34 @@
     endif
   %}
 
+  {% if section.settings.show_skyline_image %}
+    <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden opacity-40" aria-hidden="true">
+      {% if section.settings.skyline_image %}
+        {{
+          section.settings.skyline_image
+          | image_url: width: 1600
+          | image_tag: class: 'size-full max-w-none object-contain object-bottom min-[1700px]:object-cover', widths: '800, 1200, 1600', loading: 'lazy', alt: ''
+        }}
+      {% else %}
+        <img
+          src="{{ 'bg-skyline-gruns-hero.png' | asset_url }}"
+          alt=""
+          class="size-full max-w-none object-contain object-bottom min-[1700px]:object-cover"
+          loading="lazy"
+          width="1472"
+          height="730"
+        >
+      {% endif %}
+    </div>
+  {% endif %}
+
   <div
-    class="mx-auto flex w-full max-w-[1500px] flex-col gap-4 px-5 pb-[45px] sm:gap-12 sm:px-8 sm:pb-[60px] md:px-12 lg:grid lg:grid-cols-[9fr_11fr] lg:items-center lg:gap-x-0 lg:px-[80px] xl:px-[80px] xl:py-[50px]"
+    class="relative z-10 mx-auto flex w-full max-w-[1500px] flex-col gap-4 px-5 sm:gap-12 sm:px-8 md:px-12 lg:grid lg:grid-cols-[43fr_57fr] lg:items-start lg:gap-x-[60px] lg:px-[80px] xl:px-[130px]"
   >
     <div class="order-2 flex w-full flex-col items-center text-center lg:order-none lg:col-start-1 lg:items-start lg:text-left">
       {% if section.settings.heading != blank %}
         <div
-          class="font-[family-name:var(--font-heading--family)] font-bold text-[42px] leading-[1.1] text-[color:var(--gruns-hero-heading-color)] md:text-[46px] lg:text-[56px] xl:text-[72px]"
+          class="font-[family-name:var(--font-heading--family)] font-bold text-[38px] leading-[0.95] text-[color:var(--gruns-hero-heading-color)] md:text-[52px] lg:text-[64px] min-[1410px]:text-[85px]"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.heading }}
@@ -27,7 +48,7 @@
 
       {% if section.settings.description != blank %}
         <div
-          class="{{ description_desktop_visibility }}font-[family-name:var(--font-heading--family)] text-[20px] text-[color:var(--gruns-hero-heading-color)] sm:text-[16px] md:text-[42px] -space-y-[12px] font-semibold leading-[1]"
+          class="{{ description_desktop_visibility }}mt-4 font-[family-name:var(--font-heading--family)] text-[18px] leading-[1.2] font-semibold text-[color:var(--gruns-hero-heading-color)] sm:mt-5 lg:mt-[20px] lg:text-[24px] min-[1410px]:text-[30px]"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.description }}
@@ -36,7 +57,7 @@
 
       {% if section.settings.description_mobile != blank %}
         <div
-          class="{{ description_mobile_visibility }}font-[family-name:var(--font-heading--family)] text-[20px] text-[color:var(--gruns-hero-heading-color)] lg:text-[42px] -space-y-[12px] font-semibold leading-[1]"
+          class="{{ description_mobile_visibility }}mt-4 font-[family-name:var(--font-heading--family)] text-[18px] leading-[1.2] font-semibold text-[color:var(--gruns-hero-heading-color)] sm:mt-5"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.description_mobile }}
@@ -44,53 +65,32 @@
       {% endif %}
 
       {% if section.settings.show_button and section.settings.button_label != blank %}
-        <div class="mt-4 flex w-full max-w-[278px] flex-col items-center gap-[10px] sm:mt-8 lg:mt-[50px]">
+        <div class="mt-6 sm:mt-8 lg:mt-[30px]">
           {% render 'button',
             label: section.settings.button_label,
             url: section.settings.button_link,
             background_color: section.settings.button_background_color,
             text_color: section.settings.button_text_color,
-            class: 'whitespace-nowrap !px-6 !w-full'
+            class: 'whitespace-nowrap !px-[42px] !py-[16px] !text-[20px] drop-shadow-[-2px_3px_2.85px_rgba(0,0,0,0.22)]'
           %}
-
-          {% if section.settings.feature_1_text != blank or section.settings.feature_2_text != blank %}
-            <div
-              class="flex items-center justify-center gap-x-[15px] gap-y-2 text-[color:var(--gruns-hero-heading-color)]"
-              style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
-            >
-              {% if section.settings.feature_1_text != blank %}
-                <div class="flex items-center gap-[5px]">
-                  <span class="block size-[15px] shrink-0">{{ 'icon-package.svg' | inline_asset_content }}</span>
-                  <span class="text-[12px] leading-[1.5] whitespace-nowrap">{{ section.settings.feature_1_text }}</span>
-                </div>
-              {% endif %}
-
-              {% if section.settings.feature_2_text != blank %}
-                <div class="flex items-center gap-[5px]">
-                  <span class="block h-[13px] w-[17px] shrink-0">{{ 'icon-shipping.svg' | inline_asset_content }}</span>
-                  <span class="text-[12px] leading-[1.5] whitespace-nowrap">{{ section.settings.feature_2_text }}</span>
-                </div>
-              {% endif %}
-            </div>
-          {% endif %}
         </div>
       {% endif %}
 
-      <div class="mt-8 sm:mt-8 lg:mt-[50px]">
+      <div class="gruns-hero-benefits mt-8 sm:mt-10 lg:mt-[50px]">
         {% content_for 'blocks' %}
       </div>
     </div>
 
-    {% if section.settings.can_image_1 or section.settings.can_image_2 or section.settings.can_image_3 %}
-      <div class="order-1 w-full mx-auto mb-8 shrink-0 sm:mb-0 sm:max-w-[533px] lg:order-none lg:col-start-2 lg:max-w-none lg:self-stretch">
-        <div class="relative mx-auto w-full" style="aspect-ratio: 624 / 477;">
+    {% if section.settings.can_image_1 or section.settings.can_image_2 or section.settings.can_image_3 or section.settings.cans_background_image %}
+      <div class="order-1 mx-auto mb-8 w-full shrink-0 sm:mb-0 sm:max-w-[533px] lg:order-none lg:col-start-2 lg:max-w-none lg:self-stretch">
+        <div class="relative mx-auto w-full" style="aspect-ratio: 624 / 516;">
           <div
-            class="absolute overflow-hidden rounded-[24px] sm:rounded-[36px]"
+            class="absolute overflow-hidden rounded-[24px] sm:rounded-[32px] lg:rounded-[36px]"
             style="
-              left: 3.49%;
-              top: 7.55%;
-              width: 91.87%;
-              height: 84.9%;
+              left: -0.24%;
+              top: 0%;
+              width: 98.88%;
+              height: 92.44%;
               background-color: {{ section.settings.cans_background_color }};
             "
           >
@@ -99,57 +99,104 @@
                 section.settings.cans_background_image
                 | image_url: width: 1200
                 | image_tag:
-                  class: 'absolute inset-0 size-full max-w-none object-cover object-bottom',
+                  class: 'absolute inset-0 size-full max-w-none object-cover',
                   widths: '600, 900, 1200',
                   loading: 'lazy',
                   alt: ''
               }}
             {% endif %}
+            <div
+              class="pointer-events-none absolute inset-0"
+              style="background-image: linear-gradient(143deg, rgba(0, 0, 0, 0.55) 3%, rgba(0, 0, 0, 0) 34%);"
+            ></div>
           </div>
 
-          {% render 'gruns-hero-can-image',
-            image: section.settings.can_image_1,
-            alt: section.settings.can_image_1_alt,
-            modifier: 'back-right'
-          %}
-          {% render 'gruns-hero-can-image',
-            image: section.settings.can_image_2,
-            alt: section.settings.can_image_2_alt,
-            modifier: 'back-left'
-          %}
-          {% render 'gruns-hero-can-image',
-            image: section.settings.can_image_3,
-            alt: section.settings.can_image_3_alt,
-            modifier: 'front-center'
-          %}
-        </div>
-
-        {% if section.settings.show_badge and section.settings.badge_text != blank %}
-          <div
-            class="absolute bottom-0 -left-[56px] z-10 origin-center -rotate-90 translate-y-1/2 flex items-center justify-center gap-[14px] rounded-[26px] px-[22px] py-[12px] drop-shadow-[0px_0px_2.5px_rgba(0,0,0,0.1)] lg:-left-14 lg:gap-[20px] lg:rounded-[30px] lg:px-[32px] lg:py-[16px]"
-            style="background-color: {{ section.settings.badge_background_color }};"
-          >
-            <p
-              class="text-[16px] leading-[1.5] font-medium whitespace-nowrap lg:text-[20px]"
-              style="color: {{ section.settings.badge_text_color }};"
+          {% if section.settings.show_badge %}
+            <div
+              class="absolute"
+              style="left: 4.53%; top: 5.69%; width: 16.12%;"
             >
-              {{ section.settings.badge_text }}
-            </p>
-            <span class="block size-[14px] shrink-0 lg:size-[16px]">
-              <img
-                src="{{ 'icon-x-bold.svg' | asset_url }}"
-                alt=""
-                width="16"
-                height="16"
-                class="size-full"
-              >
-            </span>
+              {% if section.settings.badge_image %}
+                {{
+                  section.settings.badge_image
+                  | image_url: width: 320
+                  | image_tag: class: 'w-full h-auto object-contain', widths: '160, 240, 320', loading: 'lazy', alt: section.settings.badge_image_alt
+                }}
+              {% else %}
+                <img
+                  src="{{ 'built-on-trust-badge.png' | asset_url }}"
+                  alt="{{ section.settings.badge_image_alt }}"
+                  class="w-full h-auto object-contain"
+                  loading="lazy"
+                  width="266"
+                  height="209"
+                >
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <div class="absolute" style="left: 57.81%; top: 47.48%; width: 42.55%; height: 52.43%;">
+            {% render 'gruns-hero-can-image',
+              image: section.settings.can_image_3,
+              alt: section.settings.can_image_3_alt,
+              modifier: 'compact-back-left'
+            %}
+            {% render 'gruns-hero-can-image',
+              image: section.settings.can_image_2,
+              alt: section.settings.can_image_2_alt,
+              modifier: 'compact-back-right'
+            %}
+            {% render 'gruns-hero-can-image',
+              image: section.settings.can_image_1,
+              alt: section.settings.can_image_1_alt,
+              modifier: 'compact-front-center'
+            %}
           </div>
-        {% endif %}
+        </div>
       </div>
     {% endif %}
   </div>
 </section>
+
+{% stylesheet %}
+  .gruns-hero-benefits .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: none;
+    align-items: flex-end;
+    justify-content: center;
+    column-gap: 21px;
+    row-gap: 16px;
+  }
+
+  .gruns-hero-benefits .trust-badge {
+    flex: none;
+    width: auto;
+  }
+
+  .gruns-hero-benefits .trust-badge__icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  @media (min-width: 40rem) {
+    .gruns-hero-benefits .badge-row {
+      justify-content: flex-start;
+    }
+
+    .gruns-hero-benefits .trust-badge__icon {
+      width: 55px;
+      height: 55px;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .gruns-hero-benefits .trust-badge__icon {
+      width: 63px;
+      height: 63px;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -164,12 +211,13 @@
       "type": "richtext",
       "id": "heading",
       "label": "t:labels.heading",
-      "default": "<p><em>The Chill Drink</em> For Moments Worth Remembering.</p>"
+      "default": "<p><em>The Chill Drink</em></p>"
     },
     {
       "type": "richtext",
       "id": "description",
-      "label": "Description desktop"
+      "label": "Description desktop",
+      "default": "<p>A light, tasteful drink for the moments you want to relax, connect, and stay present.</p>"
     },
     {
       "type": "richtext",
@@ -191,7 +239,7 @@
       "type": "text",
       "id": "button_label",
       "label": "t:labels.button_label",
-      "default": "Get My Trial Pack",
+      "default": "Shop Toasted",
       "visible_if": "{{ section.settings.show_button }}"
     },
     {
@@ -204,7 +252,7 @@
       "type": "color",
       "id": "button_background_color",
       "label": "t:labels.button_background",
-      "default": "#212323",
+      "default": "#D4941F",
       "visible_if": "{{ section.settings.show_button }}"
     },
     {
@@ -215,20 +263,6 @@
       "visible_if": "{{ section.settings.show_button }}"
     },
     {
-      "type": "text",
-      "id": "feature_1_text",
-      "label": "t:labels.feature_1_text",
-      "default": "Free 3-flavor trial pack.",
-      "visible_if": "{{ section.settings.show_button }}"
-    },
-    {
-      "type": "text",
-      "id": "feature_2_text",
-      "label": "t:labels.feature_2_text",
-      "default": "Just Pay Shipping",
-      "visible_if": "{{ section.settings.show_button }}"
-    },
-    {
       "type": "header",
       "content": "t:general.colors"
     },
@@ -236,7 +270,7 @@
       "type": "color",
       "id": "background_color",
       "label": "t:labels.background",
-      "default": "#F6F1EC"
+      "default": "#9AB2D5"
     },
     {
       "type": "color",
@@ -249,6 +283,19 @@
       "content": "t:general.image"
     },
     {
+      "type": "checkbox",
+      "id": "show_skyline_image",
+      "label": "t:labels.show_background_image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "skyline_image",
+      "label": "t:labels.background_image",
+      "info": "t:labels.background_image_info",
+      "visible_if": "{{ section.settings.show_skyline_image }}"
+    },
+    {
       "type": "color",
       "id": "cans_background_color",
       "label": "t:labels.background_color",
@@ -257,13 +304,12 @@
     {
       "type": "image_picker",
       "id": "cans_background_image",
-      "label": "t:labels.background_image",
-      "info": "t:labels.background_image_info"
+      "label": "t:labels.lifestyle_image"
     },
     {
       "type": "image_picker",
       "id": "can_image_1",
-      "label": "t:labels.can_image_1"
+      "label": "Can image 1 (front center)"
     },
     {
       "type": "text",
@@ -273,7 +319,7 @@
     {
       "type": "image_picker",
       "id": "can_image_2",
-      "label": "t:labels.can_image_2"
+      "label": "Can image 2 (back right)"
     },
     {
       "type": "text",
@@ -283,7 +329,7 @@
     {
       "type": "image_picker",
       "id": "can_image_3",
-      "label": "t:labels.can_image_3"
+      "label": "Can image 3 (back left)"
     },
     {
       "type": "text",
@@ -301,24 +347,16 @@
       "default": true
     },
     {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "t:labels.badge_image",
+      "visible_if": "{{ section.settings.show_badge }}"
+    },
+    {
       "type": "text",
-      "id": "badge_text",
-      "label": "t:labels.badge_text",
-      "default": "Get 50% Off",
-      "visible_if": "{{ section.settings.show_badge }}"
-    },
-    {
-      "type": "color",
-      "id": "badge_background_color",
-      "label": "t:labels.badge_background",
-      "default": "#F9D5C0",
-      "visible_if": "{{ section.settings.show_badge }}"
-    },
-    {
-      "type": "color",
-      "id": "badge_text_color",
-      "label": "t:labels.badge_text_color",
-      "default": "#212323",
+      "id": "badge_image_alt",
+      "label": "t:labels.alt_text",
+      "default": "America's most compliant badge",
       "visible_if": "{{ section.settings.show_badge }}"
     }
   ],
@@ -329,9 +367,9 @@
         {
           "type": "badge-row",
           "blocks": [
-            { "type": "trust-badge", "settings": { "label": "<p>0.4mg THC</p>" } },
-            { "type": "trust-badge", "settings": { "label": "<p>Non-Carbonated</p>" } },
-            { "type": "trust-badge", "settings": { "label": "<p>Lab Tested</p>" } }
+            { "type": "trust-badge", "settings": { "label": "<p>Supports Clarity</p>", "description": "Smooth, present focus" } },
+            { "type": "trust-badge", "settings": { "label": "<p>Balanced Mood</p>", "description": "Light, feel-good lift" } },
+            { "type": "trust-badge", "settings": { "label": "<p>Promotes Calm</p>", "description": "Steady unwind" } }
           ]
         }
       ]
