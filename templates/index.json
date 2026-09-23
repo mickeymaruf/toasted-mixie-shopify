@@ -152,7 +152,7 @@
         "description": "<p>A light, tasteful drink for the moments you want to relax, connect, and stay present.</p>",
         "description_mobile": "",
         "show_button": true,
-        "button_label": "Coming Soon",
+        "button_label": "Shop Toasted",
         "button_link": "/collections/all",
         "button_background_color": "#d4941f",
         "button_text_color": "#f6f1ec",
@@ -277,7 +277,7 @@
           "settings": {
             "product": "freetrial",
             "background_image": "shopify://shop_images/Frame_2147236049.svg",
-            "image": "shopify://shop_images/Group_157_1.png",
+            "image": "shopify://shop_images/Group_157_2.png",
             "use_lottie_animation": false,
             "flavor_name": "Three Pack Trial",
             "flavor_name_color": "#215332",
@@ -681,7 +681,7 @@
             "feature_text_color": "#212323",
             "heading_color": "#f6f1ec",
             "background_image": "shopify://shop_images/Frame_2147235948.png",
-            "image": "shopify://shop_images/Group_203.png"
+            "image": "shopify://shop_images/Render_Mockup_4000_3000_2026-09-19_8_1_1_a6c8fbb2-6659-47ca-b3d5-2a0e25937e82.png"
           },
           "blocks": {}
         }

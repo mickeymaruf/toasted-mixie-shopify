@@ -9,8 +9,8 @@
   {% content_for 'block', id: block.id, type: 'trust-badge' %}
 {% enddoc %}
 
-<div class="trust-badge flex min-w-0 flex-1 flex-col items-center gap-[8px] sm:w-auto sm:flex-none sm:gap-[5px]" {{ block.shopify_attributes }}>
-  <div class="trust-badge__icon size-[72px] shrink-0 sm:size-[85px] lg:size-[101px]">
+<div class="trust-badge flex min-w-0 flex-1 flex-col items-center sm:w-auto sm:flex-none" {{ block.shopify_attributes }}>
+  <div class="trust-badge__icon size-[56px] shrink-0 mb-[4px] drop-shadow-[-2px_3px_5.7px_rgba(0,0,0,0.22)] sm:mb-0 sm:size-[78px]">
     {% if block.settings.icon %}
       {{
         block.settings.icon
@@ -21,23 +21,23 @@
   </div>
 
   {% if block.settings.label != blank or block.settings.description != blank %}
-    <div class="flex flex-col items-center gap-[2.64px]">
+    <div class="flex flex-col items-center">
       {% if block.settings.label != blank %}
         <div
-          class="trust-badge__label text-center text-[14px] leading-[1.5] font-medium text-[#212323] sm:text-[13px] sm:whitespace-nowrap lg:text-[14px] {% if block.settings.label_mobile != blank %}hidden sm:block{% endif %}"
+          class="trust-badge__label text-center text-[14px] leading-[normal] font-semibold text-[#212323] sm:text-[13px] sm:whitespace-nowrap lg:text-[14px] {% if block.settings.label_mobile != blank %}hidden sm:block{% endif %}"
         >
           {{ block.settings.label }}
         </div>
       {% endif %}
 
       {% if block.settings.label_mobile != blank %}
-        <div class="trust-badge__label block text-center text-[14px] leading-[1.5] font-medium text-[#212323] sm:hidden">
+        <div class="trust-badge__label block text-center text-[14px] leading-[normal] font-medium text-[#212323] sm:hidden">
           {{ block.settings.label_mobile }}
         </div>
       {% endif %}
 
       {% if block.settings.description != blank %}
-        <p class="text-center text-[13px] leading-[1.5] font-normal text-[#212323] sm:text-[12px] sm:whitespace-nowrap lg:text-[14px]">
+        <p class="text-center text-[13px] leading-[1] font-normal text-[#212323] sm:text-[12px] sm:whitespace-nowrap lg:text-[14px]">
           {{ block.settings.description }}
         </p>
       {% endif %}

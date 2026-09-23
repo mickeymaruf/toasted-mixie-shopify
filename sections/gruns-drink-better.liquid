@@ -115,7 +115,7 @@
             {% if section.settings.bundle_link != blank %}
               href="{{ section.settings.bundle_link }}"
             {% endif %}
-            class="group relative flex w-full flex-col justify-center gap-4 overflow-hidden rounded-[33px] px-6 py-8 sm:px-10 sm:py-10 lg:px-[75px] lg:py-[45px]"
+            class="group relative flex w-full flex-col justify-center gap-4 overflow-hidden rounded-[33px] px-[22px] py-8 sm:px-10 sm:py-10 lg:px-[75px] lg:py-[45px]"
             style="background-color: {{ section.settings.bundle_background_color }}; border-color: {{ section.settings.heading_color }};"
           >
             {% if section.settings.bundle_image %}
@@ -134,7 +134,7 @@
             >
               <div class="flex items-center gap-3 sm:gap-5">
                 {% if section.settings.bundle_heading != blank %}
-                  <p class="text-[26px] leading-[0.95] font-bold tracking-normal sm:text-[36px] sm:tracking-[-1.5px] lg:text-[50px]">
+                  <p class="text-[26px] leading-[0.95] font-bold tracking-[-3%] sm:text-[36px] sm:tracking-[-1.5px] lg:text-[50px]">
                     {{ section.settings.bundle_heading }}
                   </p>
                 {% endif %}

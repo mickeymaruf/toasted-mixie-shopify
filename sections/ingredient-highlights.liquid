@@ -12,7 +12,7 @@
         section.settings.background_image
         | image_url: width: 2000
         | image_tag:
-          class: 'absolute size-full bottom-0 object-cover opacity-10 saturate-0',
+          class: 'absolute size-full bottom-0 object-cover',
           widths: '750, 1100, 1500, 2000',
           sizes: '100vw',
           loading: 'lazy',
@@ -22,16 +22,12 @@
       <img
         src="{{ 'ingredient-highlights-background.png' | asset_url }}"
         alt=""
-        class="absolute size-full bottom-0 object-cover opacity-10 saturate-0"
+        class="absolute size-full bottom-0 object-cover"
         loading="lazy"
         width="1600"
         height="1044"
       >
     {% endif %}
-
-    <div class="absolute inset-0 bg-gradient-to-b from-[#F8F1EA] to-[rgba(248,241,234,0)]"></div>
-
-    <div class="absolute inset-0 bg-[#F6F1EC]/40"></div>
   </div>
 
   <div class="relative mx-auto flex w-full max-w-[1440px] flex-col items-center gap-10 px-5 py-8 sm:py-14 sm:px-8 md:px-12 lg:gap-[60px] lg:px-[80px] lg:pt-[80px] lg:pb-[100px] xl:px-[120px]">
@@ -51,13 +47,13 @@
       </div>
     {% endif %}
 
-    <div class="flex w-full max-w-[600px] flex-row items-center justify-center gap-2 sm:max-w-[700px] sm:gap-6 lg:w-auto lg:max-w-none lg:gap-[70px]">
+    <div class="flex w-full max-w-[600px] flex-row items-center justify-center gap-[6px] sm:max-w-[700px] sm:gap-6 lg:w-auto lg:max-w-none lg:gap-[10px]">
       <div>
         {% content_for 'block', type: 'feature-column', id: 'feature-column-left' %}
       </div>
 
       <div class="flex justify-center">
-        <div class="relative aspect-[484/515] w-[165px] sm:w-[240px] lg:w-[380px] xl:w-[484px]">
+        <div class="relative aspect-[484/515] w-[212px] sm:w-[320px] lg:w-[576px]">
           {% liquid
             assign center_image = section.settings.center_image
             assign center_image_alt = section.settings.center_image_alt | default: center_image.alt
@@ -65,11 +61,11 @@
           {% if center_image %}
             {{
               center_image
-              | image_url: width: 1400
+              | image_url: width: 1728
               | image_tag:
                 class: 'relative size-full object-contain',
-                widths: '165, 240, 380, 484, 680, 960, 1400',
-                sizes: '(min-width: 80rem) 484px, (min-width: 64rem) 380px, (min-width: 40rem) 240px, 165px',
+                widths: '212, 320, 424, 576, 640, 960, 1152, 1728',
+                sizes: '(min-width: 64rem) 576px, (min-width: 40rem) 320px, 212px',
                 loading: 'eager',
                 alt: center_image_alt
             }}

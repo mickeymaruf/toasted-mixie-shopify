@@ -1,5 +1,5 @@
 <section
-  class="gruns-hero full-width relative z-10 overflow-hidden pt-[50px] pb-[45px] sm:pb-[60px] lg:pb-[100px]"
+  class="gruns-hero full-width relative z-10 overflow-hidden pt-[12px] pb-[24px] sm:pt-[50px] sm:pb-[60px] lg:pb-[100px]"
   style="background-color: {{ section.settings.background_color }};"
 >
   {% liquid
@@ -34,12 +34,12 @@
   {% endif %}
 
   <div
-    class="relative z-10 mx-auto flex w-full max-w-[1500px] flex-col gap-4 px-5 sm:gap-12 sm:px-8 md:px-12 lg:grid lg:grid-cols-[43fr_57fr] lg:items-start lg:gap-x-[60px] lg:px-[80px] xl:px-[130px]"
+    class="relative z-10 mx-auto flex w-full max-w-[1500px] flex-col gap-3 px-5 sm:gap-12 sm:px-8 md:px-12 lg:grid lg:grid-cols-[43fr_57fr] lg:items-center lg:gap-x-[60px] lg:px-[80px] xl:px-[130px]"
   >
     <div class="order-2 flex w-full flex-col items-center text-center lg:order-none lg:col-start-1 lg:items-start lg:text-left">
       {% if section.settings.heading != blank %}
         <div
-          class="font-[family-name:var(--font-heading--family)] font-bold text-[38px] leading-[0.95] text-[color:var(--gruns-hero-heading-color)] md:text-[52px] lg:text-[64px] min-[1410px]:text-[85px]"
+          class="font-[family-name:var(--font-heading--family)] font-bold text-[32px] leading-[95%] whitespace-nowrap text-[color:var(--gruns-hero-heading-color)] md:text-[52px] lg:text-[64px] xl:text-[85px]"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.heading }}
@@ -48,7 +48,7 @@
 
       {% if section.settings.description != blank %}
         <div
-          class="{{ description_desktop_visibility }}mt-4 font-[family-name:var(--font-heading--family)] text-[18px] leading-[1.2] font-semibold text-[color:var(--gruns-hero-heading-color)] sm:mt-5 lg:mt-[20px] lg:text-[24px] min-[1410px]:text-[30px]"
+          class="{{ description_desktop_visibility }}mt-[5px] font-[family-name:var(--font-heading--family)] text-[18px] leading-[95%] tracking-[-3%] font-semibold text-[color:var(--gruns-hero-heading-color)] lg:text-[24px] xl:text-[30px]"
           style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
         >
           {{ section.settings.description }}
@@ -65,24 +65,24 @@
       {% endif %}
 
       {% if section.settings.show_button and section.settings.button_label != blank %}
-        <div class="mt-6 sm:mt-8 lg:mt-[30px]">
+        <div class="mt-4 sm:mt-8 lg:mt-[30px]">
           {% render 'button',
             label: section.settings.button_label,
             url: section.settings.button_link,
             background_color: section.settings.button_background_color,
             text_color: section.settings.button_text_color,
-            class: 'whitespace-nowrap !px-[42px] !py-[16px] !text-[20px] drop-shadow-[-2px_3px_2.85px_rgba(0,0,0,0.22)]'
+            class: 'whitespace-nowrap !px-[42px] !py-[16px] !text-[18px] drop-shadow-[-2px_3px_2.85px_rgba(0,0,0,0.22)]'
           %}
         </div>
       {% endif %}
 
-      <div class="gruns-hero-benefits mt-8 sm:mt-10 lg:mt-[50px]">
+      <div class="gruns-hero-benefits mt-5 sm:mt-10 lg:mt-[50px]">
         {% content_for 'blocks' %}
       </div>
     </div>
 
     {% if section.settings.can_image_1 or section.settings.can_image_2 or section.settings.can_image_3 or section.settings.cans_background_image %}
-      <div class="order-1 mx-auto mb-8 w-full shrink-0 sm:mb-0 sm:max-w-[533px] lg:order-none lg:col-start-2 lg:max-w-none lg:self-stretch">
+      <div class="order-1 mx-auto mb-3 w-full shrink-0 sm:mb-0 sm:max-w-[533px] lg:order-none lg:col-start-2 lg:max-w-none">
         <div class="relative mx-auto w-full" style="aspect-ratio: 624 / 516;">
           <div
             class="absolute overflow-hidden rounded-[24px] sm:rounded-[32px] lg:rounded-[36px]"
@@ -161,39 +161,30 @@
 {% stylesheet %}
   .gruns-hero-benefits .badge-row {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     grid-template-columns: none;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: center;
-    column-gap: 21px;
+    column-gap: 8px;
     row-gap: 16px;
   }
 
   .gruns-hero-benefits .trust-badge {
-    flex: none;
+    flex: 1 1 0%;
+    min-width: 0;
     width: auto;
-  }
-
-  .gruns-hero-benefits .trust-badge__icon {
-    width: 48px;
-    height: 48px;
   }
 
   @media (min-width: 40rem) {
     .gruns-hero-benefits .badge-row {
+      flex-wrap: wrap;
+      align-items: flex-end;
       justify-content: flex-start;
+      column-gap: 21px;
     }
 
-    .gruns-hero-benefits .trust-badge__icon {
-      width: 55px;
-      height: 55px;
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .gruns-hero-benefits .trust-badge__icon {
-      width: 63px;
-      height: 63px;
+    .gruns-hero-benefits .trust-badge {
+      flex: none;
     }
   }
 {% endstylesheet %}

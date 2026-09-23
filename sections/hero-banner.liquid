@@ -36,25 +36,45 @@
           }}
         {% endif %}
 
-        <div class="absolute inset-0 bg-gradient-to-b from-black/0 from-[20%] to-black/75"></div>
+        {% if section.settings.show_gradient_overlay %}
+          <div class="absolute inset-0 bg-gradient-to-b from-black/0 from-[20%] to-black/75"></div>
+        {% endif %}
       </div>
 
       <div class="relative z-10 flex flex-col gap-[10px]">
         {% if section.settings.heading != blank %}
           <h2
-            class="mx-auto w-full max-w-[900px] text-[25px] leading-[0.95] font-bold [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)] sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px]"
+            class="mx-auto w-full max-w-[900px] text-[25px] leading-[0.95] font-bold [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)] sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] {% if section.settings.heading_mobile != blank %}hidden sm:block{% endif %}"
             style="color: {{ section.settings.heading_color }};"
           >
             {{ section.settings.heading }}
           </h2>
         {% endif %}
 
+        {% if section.settings.heading_mobile != blank %}
+          <h2
+            class="mx-auto block w-full max-w-[900px] text-[25px] leading-[0.95] font-bold [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)] sm:hidden"
+            style="color: {{ section.settings.heading_color }};"
+          >
+            {{ section.settings.heading_mobile }}
+          </h2>
+        {% endif %}
+
         {% if section.settings.subheading != blank %}
           <p
-            class="mx-auto w-full max-w-[900px] text-[14px] leading-[1.5] [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)] sm:text-[18px] xl:text-[24px]"
+            class="mx-auto w-full max-w-[900px] text-[14px] leading-[1.5] [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)] sm:text-[18px] xl:text-[24px] {% if section.settings.subheading_mobile != blank %}hidden sm:block{% endif %}"
             style="color: {{ section.settings.heading_color }};"
           >
             {{ section.settings.subheading }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.subheading_mobile != blank %}
+          <p
+            class="mx-auto block w-full max-w-[900px] text-[14px] leading-[1.5] [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)] sm:hidden"
+            style="color: {{ section.settings.heading_color }};"
+          >
+            {{ section.settings.subheading_mobile }}
           </p>
         {% endif %}
       </div>
@@ -71,16 +91,28 @@
       "content": "t:general.content"
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "heading",
       "label": "t:labels.heading",
-      "default": "Choose your Flavor."
+      "default": "<p>Choose your Flavor.</p>"
     },
     {
-      "type": "text",
+      "type": "richtext",
+      "id": "heading_mobile",
+      "label": "t:labels.heading_mobile",
+      "info": "t:labels.heading_mobile_info"
+    },
+    {
+      "type": "richtext",
       "id": "subheading",
       "label": "t:labels.subheading",
-      "default": "Three fruit-forward flavors. One light way to relax, connect, and stay present."
+      "default": "<p>Three fruit-forward flavors. One light way to relax, connect, and stay present.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading_mobile",
+      "label": "t:labels.subheading_mobile",
+      "info": "t:labels.subheading_mobile_info"
     },
     {
       "type": "color",
@@ -102,6 +134,12 @@
       "id": "background_image_mobile",
       "label": "t:labels.background_mobile",
       "info": "t:labels.background_mobile_info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gradient_overlay",
+      "label": "t:labels.show_gradient_overlay",
+      "default": true
     },
     {
       "type": "color",
