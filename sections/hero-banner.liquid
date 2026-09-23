@@ -1,5 +1,5 @@
 <section class="hero-banner full-width" style="background-color: {{ section.settings.background_color }};">
-  <div class="mx-auto w-full max-w-[1200px] px-5 sm:px-8 md:px-12 lg:px-0">
+  <div class="mx-auto w-full max-w-[1200px] px-4 sm:px-8 md:px-12 lg:px-[60px] xl:px-0">
     <div
       class="relative flex min-h-[320px] w-full flex-col items-center justify-end gap-[10px] overflow-hidden rounded-2xl px-4 pb-6 text-center sm:min-h-[440px] sm:rounded-[40px] sm:px-10 sm:pb-14 md:min-h-[520px] md:px-16 md:pb-16 lg:min-h-[435px] lg:px-[120px] lg:pb-[70px]"
     >
@@ -61,21 +61,21 @@
         {% endif %}
 
         {% if section.settings.subheading != blank %}
-          <p
+          <div
             class="mx-auto w-full max-w-[900px] text-[14px] leading-[1.5] [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)] sm:text-[18px] xl:text-[24px] {% if section.settings.subheading_mobile != blank %}hidden sm:block{% endif %}"
             style="color: {{ section.settings.heading_color }};"
           >
             {{ section.settings.subheading }}
-          </p>
+          </div>
         {% endif %}
 
         {% if section.settings.subheading_mobile != blank %}
-          <p
+          <div
             class="mx-auto block w-full max-w-[900px] text-[14px] leading-[1.5] [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)] sm:hidden"
             style="color: {{ section.settings.heading_color }};"
           >
             {{ section.settings.subheading_mobile }}
-          </p>
+          </div>
         {% endif %}
       </div>
     </div>
