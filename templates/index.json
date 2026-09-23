@@ -482,7 +482,7 @@
       ],
       "name": "t:general.quality_badges",
       "settings": {
-        "heading": "<p>3rd party-tested for potency, purity,<br/> & safety.</p>",
+        "heading": "<p>3rd party-tested </p><p>for potency, purity,<br/> & safety</p>",
         "description": "",
         "background_image": "shopify://shop_images/Frame_2147236097_1.png",
         "background_color": "#636d90",

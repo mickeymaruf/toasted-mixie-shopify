@@ -261,7 +261,7 @@
       ],
       "name": "t:general.gruns_gallery",
       "settings": {
-        "heading": "<p>People are loving Toasted!</p>",
+        "heading": "<p>The People Love Toasted!</p>",
         "heading_mobile": "",
         "enable_slide_border": true,
         "enable_autoplay": false,
