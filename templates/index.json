@@ -457,7 +457,7 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "No pathogens",
-            "icon": "shopify://shop_images/Frame_2147236136_7c1eb26a-5547-4536-b150-f0c0c9ea4199.svg",
+            "icon": "shopify://shop_images/Frame_2147236136_1.svg",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },
