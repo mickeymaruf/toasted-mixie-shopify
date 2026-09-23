@@ -18,8 +18,8 @@
       "type": "hero-banner",
       "name": "t:general.hero_banner",
       "settings": {
-        "heading": "Good questions",
-        "subheading": "Everything to know before you try Toasted.",
+        "heading": "<p>Good questions</p>",
+        "subheading": "<p>Everything to know before you try Toasted.</p>",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_2.png",
         "background_color": "#9ab2d5"

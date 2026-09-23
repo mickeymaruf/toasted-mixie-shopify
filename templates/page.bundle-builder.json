@@ -18,8 +18,8 @@
       "type": "hero-banner",
       "name": "t:general.hero_banner",
       "settings": {
-        "heading": "Bundle & Save",
-        "subheading": "Pick your flavors. Stock the fridge.",
+        "heading": "<p>Bundle & Save</p>",
+        "subheading": "<p>Pick your flavors. Stock the fridge.</p>",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_2_d9ea2e03-3fd3-45fb-bec0-189d4d2ac384.png",
         "background_image_mobile": "shopify://shop_images/Frame_2147230792_1_0723ef5c-41fc-4e02-99a9-8b09bccc13dc.png",

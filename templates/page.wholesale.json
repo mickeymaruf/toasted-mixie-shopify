@@ -18,8 +18,8 @@
       "type": "hero-banner",
       "name": "t:general.hero_banner",
       "settings": {
-        "heading": "Bring Toasted to your venue.",
-        "subheading": "A premium functional relaxation beverage made for social moments.",
+        "heading": "<p>Bring Toasted to your venue.</p>",
+        "subheading": "<p>A premium functional relaxation beverage made for social moments.</p>",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_2_6dfd51a5-14d2-4982-8cb1-545e14524c16.png",
         "background_color": "#f6f1ec"
