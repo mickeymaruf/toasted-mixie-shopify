@@ -1009,6 +1009,7 @@
         "image_alt": "",
         "background_color": "#551f36",
         "background_image": "shopify://shop_images/Frame_2147236099.svg",
+        "background_image_mobile": "shopify://shop_images/Frame_2147236099_5.svg",
         "heading_color": "#f6f1ec"
       }
     },

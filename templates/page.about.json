@@ -23,9 +23,9 @@
         "subheading": "",
         "subheading_mobile": "",
         "heading_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/Frame_2147230792_1_2c36f923-1247-452f-a22a-03389584c8ed.png",
-        "background_image_mobile": "shopify://shop_images/Frame_2147230792_8.png",
-        "show_gradient_overlay": true,
+        "background_image": "shopify://shop_images/Frame_2147230793_53d0b340-f457-42b7-bdd4-fe647d9a1a54.png",
+        "background_image_mobile": "shopify://shop_images/Frame_2147230793_1.png",
+        "show_gradient_overlay": false,
         "background_color": "#9ab2d5"
       }
     },
@@ -87,6 +87,7 @@
         "feature_story_card_tzbzYy",
         "feature_story_card_ABhijX"
       ],
+      "disabled": true,
       "name": "t:general.feature_story_grid",
       "settings": {
         "heading": "<p>The <em>Chill</em> Drink</p>",
@@ -105,21 +106,25 @@
             "story_tile_text_QF4xmb": {
               "type": "story-tile-text",
               "settings": {
-                "heading": "<p>Be open</p><p>Be present</p><p>Be here</p>",
-                "heading_mobile": "",
+                "heading": "<p>Years of<br/>Experience</p>",
+                "heading_alignment": "center",
+                "heading_mobile": "<p>Years of Experience</p>",
+                "heading_alignment_mobile": "center",
                 "body": "",
                 "body_mobile": "",
                 "background_color": "#f9d5c0",
                 "text_color": "#212323",
                 "width": "1",
-                "sticker_image": "shopify://shop_images/Group_171_1.png",
+                "mobile_order": "0",
+                "sticker_image": "shopify://shop_images/Layer_1_6e52ca0d-3a99-447b-9c48-2db83cedcfda.svg",
                 "sticker_position": "top_center",
-                "sticker_width": 200,
-                "sticker_translate_x": 0,
+                "sticker_width": 210,
+                "sticker_translate_x": -30,
                 "sticker_translate_y": -50,
-                "sticker_position_mobile": "top_center",
-                "sticker_width_mobile": 155,
-                "sticker_translate_x_mobile": 0,
+                "sticker_image_mobile": "shopify://shop_images/Layer_1_2.png",
+                "sticker_position_mobile": "top_left",
+                "sticker_width_mobile": 100,
+                "sticker_translate_x_mobile": 20,
                 "sticker_translate_y_mobile": -50
               },
               "blocks": {}
@@ -127,11 +132,12 @@
             "story_tile_image_rGGD3Q": {
               "type": "story-tile-image",
               "settings": {
-                "image": "shopify://shop_images/Frame_2147235830_67b408be-408e-4223-b1e7-6d9c1f95162c.png",
+                "image": "shopify://shop_images/Frame_2147235830_1.png",
                 "alt_text": "",
                 "show_grain": true,
                 "texture_opacity": 20,
                 "width": "1",
+                "mobile_order": "0",
                 "sticker_position": "top_right",
                 "sticker_width": 0,
                 "sticker_translate_x": 0,
@@ -147,13 +153,15 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
+                "heading_alignment": "center",
                 "heading_mobile": "",
-                "body": "<p>Our founder, Danny T, started his career in Miami’s scene. After years of feeling the effects of alcohol and late nights, he made the move into cannabis. But the high-potency world had its flaws too. What about people who just wanted to relax without checking out?</p>",
-                "body_mobile": "",
+                "heading_alignment_mobile": "center",
+                "body": "<p>Our team brings decades of<br/>experience across cannabis,<br/>nightlife, CPG and brand<br/>building. We’ve been part of<br/>this culture long before drinks<br/>were the next big thing.</p>",
+                "body_mobile": "<p>Our team brings decades of experience across cannabis, nightlife, CPG and brand building. We’ve been part of this culture long before drinks were the next big thing.</p>",
                 "background_color": "#551f36",
                 "text_color": "#f6f1ec",
                 "width": "1",
-                "sticker_image": "shopify://shop_images/Group_170_1_0c6aebc1-98f1-42a8-9e94-84093b097306.png",
+                "mobile_order": "0",
                 "sticker_position": "bottom_center",
                 "sticker_width": 260,
                 "sticker_translate_x": 15,
@@ -179,11 +187,12 @@
             "story_tile_image_8e7reC": {
               "type": "story-tile-image",
               "settings": {
-                "image": "shopify://shop_images/Frame_2147235832_3.png",
+                "image": "shopify://shop_images/Frame_2147235832_2_229fc8ec-57b8-46a8-8d28-f2a9f56e372c.png",
                 "alt_text": "",
                 "show_grain": true,
                 "texture_opacity": 20,
                 "width": "1",
+                "mobile_order": "0",
                 "sticker_position": "top_right",
                 "sticker_width": 0,
                 "sticker_translate_x": 0,
@@ -198,13 +207,16 @@
             "story_tile_text_peDFB3": {
               "type": "story-tile-text",
               "settings": {
-                "heading": "<p>Social moments deserve<br/>better options.</p>",
-                "heading_mobile": "<p>Social moments deserve better options.</p>",
-                "body": "",
-                "body_mobile": "",
+                "heading": "",
+                "heading_alignment": "center",
+                "heading_mobile": "",
+                "heading_alignment_mobile": "center",
+                "body": "<p>Toasted started as a brunch party built around a<br/>simple idea: bringing people together without making<br/>alcohol the center of everything.<br/>Turns out, we weren’t the only ones looking for<br/>something different.</p>",
+                "body_mobile": "<p>Toasted started as a brunch party built around a simple idea: bringing people together without making alcohol the center of everything.<br/>Turns out, we weren’t the only ones looking for something different.</p>",
                 "background_color": "#626c8d",
                 "text_color": "#f6f1ec",
                 "width": "2",
+                "mobile_order": "0",
                 "sticker_position": "top_right",
                 "sticker_width": 0,
                 "sticker_translate_x": 0,
@@ -222,6 +234,118 @@
             "story_tile_text_peDFB3"
           ]
         },
+        "story_tile_row_hg769q": {
+          "type": "story-tile-row",
+          "settings": {},
+          "blocks": {
+            "story_tile_text_pNtNxe": {
+              "type": "story-tile-text",
+              "settings": {
+                "heading": "<p>Social moments deserve<br/>better options</p>",
+                "heading_alignment": "center",
+                "heading_mobile": "<p>Social moments deserve better options</p>",
+                "heading_alignment_mobile": "left",
+                "body": "",
+                "body_mobile": "",
+                "background_color": "#9ab2d5",
+                "text_color": "#212323",
+                "width": "2",
+                "mobile_order": "0",
+                "sticker_image": "shopify://shop_images/Group_2.svg",
+                "sticker_position": "top_right",
+                "sticker_width": 200,
+                "sticker_translate_x": 50,
+                "sticker_translate_y": -50,
+                "sticker_image_mobile": "shopify://shop_images/Group_5_6245704b-34cb-4fec-bfbc-e28733cf34c2.png",
+                "sticker_position_mobile": "top_right",
+                "sticker_width_mobile": 85,
+                "sticker_translate_x_mobile": -20,
+                "sticker_translate_y_mobile": -50
+              },
+              "blocks": {}
+            },
+            "story_tile_image_F8A3z9": {
+              "type": "story-tile-image",
+              "settings": {
+                "image": "shopify://shop_images/Frame_2147235830_2_adf543c8-2648-40ce-9f90-bda1caec8f03.png",
+                "alt_text": "",
+                "show_grain": true,
+                "texture_opacity": 20,
+                "width": "1",
+                "mobile_order": "0",
+                "sticker_position": "top_left",
+                "sticker_width": 0,
+                "sticker_translate_x": 0,
+                "sticker_translate_y": 0,
+                "sticker_position_mobile": "top_right",
+                "sticker_width_mobile": 0,
+                "sticker_translate_x_mobile": 0,
+                "sticker_translate_y_mobile": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "story_tile_text_pNtNxe",
+            "story_tile_image_F8A3z9"
+          ]
+        },
+        "story_tile_row_Yn6WfA": {
+          "type": "story-tile-row",
+          "settings": {},
+          "blocks": {
+            "story_tile_image_DQADVd": {
+              "type": "story-tile-image",
+              "settings": {
+                "image": "shopify://shop_images/Frame_2147235832_5.png",
+                "alt_text": "",
+                "show_grain": true,
+                "texture_opacity": 20,
+                "width": "1",
+                "mobile_order": "2",
+                "sticker_position": "top_right",
+                "sticker_width": 0,
+                "sticker_translate_x": 0,
+                "sticker_translate_y": 0,
+                "sticker_position_mobile": "top_right",
+                "sticker_width_mobile": 0,
+                "sticker_translate_x_mobile": 0,
+                "sticker_translate_y_mobile": 0
+              },
+              "blocks": {}
+            },
+            "story_tile_text_G76ngF": {
+              "type": "story-tile-text",
+              "settings": {
+                "heading": "",
+                "heading_alignment": "center",
+                "heading_mobile": "",
+                "heading_alignment_mobile": "center",
+                "body": "<p>People still want to socialize, relax and have a drink in<br/>their hand. They just don’t always want alcohol or the<br/>traditional cannabis experience.<br/>So we combined functional ingredients with a micro<br/>dose to create a new way to shift gears.</p>",
+                "body_mobile": "<p><br/>People still want to socialize, relax and have a drink in their hand. They just don’t always want alcohol or the traditional cannabis experience.<br/>So we combined functional ingredients with a micro dose to create a new way to shift gears.</p>",
+                "background_color": "#f9d5c0",
+                "text_color": "#212323",
+                "width": "2",
+                "mobile_order": "0",
+                "sticker_image": "shopify://shop_images/Group_170_1_149b9393-74c8-41fd-a712-425b66a4e9ea.svg",
+                "sticker_position": "top_left",
+                "sticker_width": 270,
+                "sticker_translate_x": -50,
+                "sticker_translate_y": -55,
+                "sticker_image_mobile": "shopify://shop_images/Group_170_2.png",
+                "sticker_position_mobile": "top_left",
+                "sticker_width_mobile": 200,
+                "sticker_translate_x_mobile": 15,
+                "sticker_translate_y_mobile": -50
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "story_tile_image_DQADVd",
+            "story_tile_text_G76ngF"
+          ]
+        },
         "story_tile_row_gTwVN8": {
           "type": "story-tile-row",
           "settings": {},
@@ -230,14 +354,16 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
+                "heading_alignment": "center",
                 "heading_mobile": "",
-                "body": "<p>We created a drink to help you relax <strong>without<br/>checking out.</strong> Something light and tasteful to enjoy any time <br/>of the day. Toasted was built for those of us without any <br/>options in today's alcohol-dependent society<br/><br/><strong>Stay Toasted.</strong></p>",
-                "body_mobile": "<p>We created a drink to help you relax <strong>without checking out.</strong> Something light and tasteful to enjoy any time of the day. Toasted was built for those of us without any options in today's alcohol-dependent society<br/><br/><strong>Stay Toasted.</strong></p>",
+                "heading_alignment_mobile": "center",
+                "body": "<p>We created a drink to help you <strong>relax & stay present.</strong><br/>Something light and refreshing to enjoy any time you’re<br/>ready to chill. Cheers to being in the moment.<br/><br/><strong>Stay Toasted.</strong></p>",
+                "body_mobile": "<p>We created a drink to help you <strong>relax & stay present. </strong>Something light and refreshing to enjoy any time you’re ready to chill. Cheers to being in the moment.<br/><br/><strong>Stay Toasted.</strong></p>",
                 "image": "shopify://shop_images/signature.svg",
                 "background_color": "#c2cbd4",
                 "text_color": "#212323",
                 "width": "2",
-                "sticker_image": "shopify://shop_images/Group.png",
+                "mobile_order": "0",
                 "sticker_position": "bottom_right",
                 "sticker_width": 170,
                 "sticker_translate_x": 50,
@@ -252,11 +378,12 @@
             "story_tile_image_Yx6iqP": {
               "type": "story-tile-image",
               "settings": {
-                "image": "shopify://shop_images/Frame_2147235832_1_3025fb72-f611-4c9d-a9af-240f841b63c8.png",
+                "image": "shopify://shop_images/Frame_2147235832_4.png",
                 "alt_text": "",
                 "show_grain": true,
                 "texture_opacity": 20,
                 "width": "1",
+                "mobile_order": "0",
                 "sticker_position": "top_right",
                 "sticker_width": 0,
                 "sticker_translate_x": 0,
@@ -278,10 +405,17 @@
       "block_order": [
         "story_tile_row_yFgqN8",
         "story_tile_row_pzeFBq",
+        "story_tile_row_hg769q",
+        "story_tile_row_Yn6WfA",
         "story_tile_row_gTwVN8"
       ],
       "name": "t:general.story_tiles",
-      "settings": {}
+      "settings": {
+        "heading": "<p>The Toasted Story</p>",
+        "subheading": "",
+        "background_color": "#9ab2d5",
+        "heading_color": "#212323"
+      }
     },
     "gruns_product_list_simple_mgnb4p": {
       "type": "gruns-product-list-simple",
@@ -349,6 +483,7 @@
         "product_card_simple_hCyNMf",
         "product_card_simple_dJMxJH"
       ],
+      "disabled": true,
       "name": "t:general.product_list_simple",
       "settings": {
         "heading": "Three ways to stay present",
@@ -358,6 +493,7 @@
     },
     "gruns_find_toasted_simple_8wjfyP": {
       "type": "gruns-find-toasted-simple",
+      "disabled": true,
       "name": "t:general.gruns_find_toasted_simple",
       "settings": {
         "heading": "Free Trial Pack",
@@ -381,8 +517,8 @@
       "type": "built-on-trust",
       "name": "t:general.built_on_trust",
       "settings": {
-        "heading": "Built on trust.",
-        "badge_image": "shopify://shop_images/Group_133.png",
+        "heading": "Built On Trust",
+        "badge_image": "shopify://shop_images/Group_133_4a0c40cb-2580-4c23-97c4-2099833461fe.png",
         "badge_image_alt": "America's most compliant badge",
         "description": "<p>We believe great brands aren't just remembered for how they look or taste, but for how they're built. Every decision we make is guided by quality, transparency, and compliance, giving our retail partners, venues, and customers the confidence to choose Toasted. Our ambition is to become America's most compliant functional beverage brand by making responsibility part of everything we do.</p>",
         "background_color": "#551f36",

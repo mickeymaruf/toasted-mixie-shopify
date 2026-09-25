@@ -7,10 +7,11 @@
   the `md` breakpoint and up. Intended to be rendered inside a block whose
   wrapper element has `position: relative`.
 
-  @param {image} image - The sticker image to render
+  @param {image} [image] - Desktop (md+) sticker image. Also used on mobile when `image_mobile` is blank
+  @param {image} [image_mobile] - Mobile sticker image. Defaults to `image`
   @param {string} [position] - Desktop (md+) anchor point: top_left, top_center, top_right, middle_left, center, middle_right, bottom_left, bottom_center, bottom_right. Defaults to top_left
   @param {string} [position_mobile] - Mobile anchor point, same options as `position`. Defaults to top_left
-  @param {number} [width] - Desktop (md+) sticker width in pixels. 0 or blank renders the image at its natural width
+  @param {number} [width] - Desktop (md+) sticker width in pixels at a 1440px-wide container; output as cqw so it scales with the nearest size container (the Story Tiles wrapper, capped at 1920px). 0 or blank renders the image at its natural width
   @param {number} [width_mobile] - Mobile sticker width in pixels. 0 or blank renders the image at its natural width
   @param {number} [translate_x] - Desktop (md+) horizontal fine-tune offset as a percentage of the sticker's own width, applied after anchoring. Defaults to 0
   @param {number} [translate_x_mobile] - Mobile horizontal fine-tune offset. Defaults to 0
@@ -21,6 +22,7 @@
   @example
   {% render 'sticker',
     image: block.settings.sticker_image,
+    image_mobile: block.settings.sticker_image_mobile,
     position: block.settings.sticker_position,
     position_mobile: block.settings.sticker_position_mobile,
     width: block.settings.sticker_width,
@@ -35,10 +37,11 @@
 {% liquid
   assign position = position | default: 'top_left'
   assign position_mobile = position_mobile | default: 'top_left'
-  assign source_width = source_width | default: image.width
+  assign any_image = image | default: image_mobile
+  assign source_width = source_width | default: any_image.width
 %}
 
-{% if image %}
+{% if any_image %}
   <div
     class="sticker sticker--{{ position_mobile }} sticker--md-{{ position }}"
     style="
@@ -47,14 +50,29 @@
       --sticker-translate-x-desktop: {{ translate_x | default: 0 }}%;
       --sticker-translate-y-desktop: {{ translate_y | default: 0 }}%;
       {% if width_mobile > 0 %}--sticker-width-mobile: {{ width_mobile }}px;{% endif %}
-      {% if width > 0 %}--sticker-width-desktop: {{ width }}px;{% endif %}
+      {% if width > 0 %}--sticker-width-desktop: {{ width | times: 100.0 | divided_by: 1440 | round: 4 }}cqw;{% endif %}
     "
   >
-    {{
-      image
-      | image_url: width: source_width
-      | image_tag: width: null, height: null, class: 'sticker__image', loading: 'lazy', alt: ''
-    }}
+    {% if image_mobile == blank %}
+      {{
+        image
+        | image_url: width: source_width
+        | image_tag: width: null, height: null, class: 'sticker__image', loading: 'lazy', alt: ''
+      }}
+    {% else %}
+      {% if image %}
+        {{
+          image
+          | image_url: width: source_width
+          | image_tag: width: null, height: null, class: 'sticker__image sticker__image--desktop', loading: 'lazy', alt: ''
+        }}
+      {% endif %}
+      {{
+        image_mobile
+        | image_url: width: source_width
+        | image_tag: width: null, height: null, class: 'sticker__image sticker__image--mobile', loading: 'lazy', alt: ''
+      }}
+    {% endif %}
   </div>
 {% endif %}
 
@@ -84,9 +102,21 @@
     width: var(--sticker-width-mobile, auto);
   }
 
+  .sticker__image--desktop {
+    display: none;
+  }
+
   @media (min-width: 48rem) {
     .sticker__image {
       width: var(--sticker-width-desktop, auto);
+    }
+
+    .sticker__image--desktop {
+      display: block;
+    }
+
+    .sticker__image--mobile {
+      display: none;
     }
   }
 

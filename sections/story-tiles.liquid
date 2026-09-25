@@ -5,15 +5,58 @@
   each row to populate it.
 {% enddoc %}
 
-<section class="story-tiles full-width">
-  {% if section.blocks.size > 0 %}
-    <div class="story-tiles__list mx-auto flex w-full max-w-[1920px] flex-col">
-      {% content_for 'blocks' %}
-    </div>
-  {% endif %}
+<section
+  class="story-tiles full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="story-tiles__inner mx-auto w-full max-w-[1920px]">
+    {% if section.settings.heading != blank or section.settings.subheading != blank %}
+      <div class="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-1 px-5 pt-12 pb-[50px] text-center sm:px-8 sm:pt-16 md:max-w-[83.3333cqw] md:gap-[0.2778cqw] md:px-0 md:pt-[6.9444cqw] md:pb-[6.9444cqw]" style="color: {{ section.settings.heading_color }};">
+        {% if section.settings.heading != blank %}
+          <div
+            class="story-tiles__heading text-[40px] leading-[0.95] font-bold sm:text-[56px] md:text-[6.4583cqw]"
+          >
+            {{ section.settings.heading }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.subheading != blank %}
+          <p
+            class="story-tiles__subheading w-full text-[18px] leading-[1] font-semibold sm:text-[24px] md:text-[2.9167cqw]"
+          >
+            {{ section.settings.subheading }}
+          </p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="story-tiles__list flex w-full flex-col">
+        {% content_for 'blocks' %}
+      </div>
+    {% endif %}
+  </div>
 </section>
 
 {% stylesheet %}
+  /* Size container: cqw units in the section, tiles and stickers scale with this 1920px-capped width */
+  .story-tiles__inner {
+    container-type: inline-size;
+  }
+
+  .story-tiles__heading,
+  .story-tiles__subheading {
+    font-family: var(--font-heading--family);
+  }
+
+  .story-tiles__heading :where(p) {
+    margin: 0;
+  }
+
+  .story-tiles__heading em {
+    font-style: italic;
+  }
+
   .story-tiles__list > .shopify-block {
     display: contents;
   }
@@ -27,6 +70,40 @@
 {
   "name": "t:general.story_tiles",
   "blocks": [{ "type": "story-tile-row" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "<p>The <em>Chill</em> Drink</p>"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:labels.subheading",
+      "default": "A functional relaxation beverage made with real fruit"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.heading_color",
+      "default": "#212323"
+    }
+  ],
   "presets": [
     {
       "name": "t:general.story_tiles",

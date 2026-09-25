@@ -15,8 +15,8 @@
       {% if section.settings.badge_image %}
         {{
           section.settings.badge_image
-          | image_url: width: 532
-          | image_tag: class: 'size-full object-contain', widths: '180, 220, 266, 532', sizes: '(min-width: 1024px) 266px, (min-width: 640px) 220px, 180px', alt: section.settings.badge_image_alt
+          | image_url: width: section.settings.badge_image.width
+          | image_tag: class: 'size-full object-contain', srcset: nil, alt: section.settings.badge_image_alt
         }}
       {% else %}
         <img
@@ -38,7 +38,7 @@
       {% endif %}
 
       {% if section.settings.description != blank %}
-        <div class="text-[16px] leading-[1.5] font-light sm:text-[18px] lg:text-[24px]">
+        <div class="text-[16px] leading-[1.5] font-light tracking-normal sm:text-[18px] lg:text-[32px]">
           {{ section.settings.description }}
         </div>
       {% endif %}

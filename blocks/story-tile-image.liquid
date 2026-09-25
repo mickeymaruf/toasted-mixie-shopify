@@ -17,20 +17,20 @@
 
 <div
   class="story-tile-cell relative w-full aspect-square lg:aspect-auto lg:h-full {% if is_two_thirds %}md:col-span-2 md:aspect-auto md:h-full{% else %}md:col-span-1{% endif %}"
+  {% if block.settings.mobile_order != '0' %}style="--mobile-order: {{ block.settings.mobile_order }};"{% endif %}
   {{ block.shopify_attributes }}
 >
   <div class="story-tile-cell__clip absolute inset-0 overflow-hidden bg-[#F0F0F0]">
     {% if block.settings.image %}
+      {% assign image_alt = block.settings.alt_text | default: block.settings.image.alt %}
       {{
         block.settings.image
-        | image_url: width: 1200
+        | image_url: width: block.settings.image.width
         | image_tag:
           class: 'absolute inset-0 size-full object-cover',
           loading: 'lazy',
-          sizes: '(min-width: 64rem) 33vw, 100vw',
-          widths: '400, 600, 900, 1200',
-          alt: block.settings.alt_text
-        | default: block.settings.image.alt
+          srcset: nil,
+          alt: image_alt
       }}
     {% endif %}
 
@@ -45,6 +45,7 @@
 
   {% render 'sticker',
     image: block.settings.sticker_image,
+    image_mobile: block.settings.sticker_image_mobile,
     position: block.settings.sticker_position,
     position_mobile: block.settings.sticker_position_mobile,
     width: block.settings.sticker_width,
@@ -106,17 +107,26 @@
       "default": "1"
     },
     {
+      "type": "select",
+      "id": "mobile_order",
+      "label": "t:labels.mobile_order",
+      "info": "t:labels.mobile_order_info",
+      "options": [
+        { "value": "0", "label": "t:options.mobile_order.auto" },
+        { "value": "1", "label": "t:options.mobile_order.first" },
+        { "value": "2", "label": "t:options.mobile_order.second" },
+        { "value": "3", "label": "t:options.mobile_order.third" }
+      ],
+      "default": "0"
+    },
+    {
       "type": "header",
-      "content": "t:general.sticker"
+      "content": "t:general.sticker_desktop"
     },
     {
       "type": "image_picker",
       "id": "sticker_image",
       "label": "t:labels.sticker_image"
-    },
-    {
-      "type": "header",
-      "content": "t:general.sticker_desktop"
     },
     {
       "type": "select",
@@ -168,6 +178,12 @@
     {
       "type": "header",
       "content": "t:general.sticker_mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "sticker_image_mobile",
+      "label": "t:labels.sticker_image",
+      "info": "t:labels.sticker_image_mobile_info"
     },
     {
       "type": "select",

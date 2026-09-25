@@ -9,13 +9,33 @@
   class="gruns-social-proof full-width overflow-hidden relative"
   style="background-color: {{ section.settings.background_color }}; border-color: {{ section.settings.heading_color }};"
 >
-  {% if section.settings.background_image %}
+  {% liquid
+    assign background_image = section.settings.background_image
+    assign background_image_mobile = section.settings.background_image_mobile
+  %}
+  {% if background_image or background_image_mobile %}
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      {{
-        section.settings.background_image
-        | image_url: width: section.settings.background_image.width
-        | image_tag: class: 'absolute inset-0 w-full h-full object-cover object-right-bottom', alt: ''
-      }}
+      {% if background_image %}
+        <picture>
+          {% if background_image_mobile %}
+            <source
+              media="(max-width: 39.9375rem)"
+              srcset="{{ background_image_mobile | image_url: width: background_image_mobile.width }}"
+            >
+          {% endif %}
+          {{
+            background_image
+            | image_url: width: background_image.width
+            | image_tag: class: 'absolute inset-0 w-full h-full object-cover object-right-bottom', srcset: nil, alt: ''
+          }}
+        </picture>
+      {% else %}
+        {{
+          background_image_mobile
+          | image_url: width: background_image_mobile.width
+          | image_tag: class: 'absolute inset-0 w-full h-full object-cover object-right-bottom sm:hidden', srcset: nil, alt: ''
+        }}
+      {% endif %}
     </div>
   {% endif %}
   <div
@@ -225,6 +245,12 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "t:labels.background_image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "t:labels.background_image_mobile",
+      "info": "t:labels.background_image_mobile_info"
     },
     {
       "type": "color",

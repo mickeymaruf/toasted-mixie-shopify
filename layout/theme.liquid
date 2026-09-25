@@ -12,7 +12,7 @@
          Degular Display Regular for headings)
       2. Additional variants load on-demand via @font-face
     {% endcomment %}
-    {{ 'NeueHaasDisplayRoman.ttf' | asset_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
+    {{ 'NeueHaasDisplayRoman.woff' | asset_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
     {{ 'DegularDisplay-Regular.otf' | asset_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
 
     {% # Load and preload the critical CSS %}

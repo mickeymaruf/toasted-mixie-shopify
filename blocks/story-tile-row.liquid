@@ -9,7 +9,7 @@
 {% enddoc %}
 
 <div
-  class="story-tile-row flex w-full flex-col border-y-[3px] border-[#212323] md:grid md:grid-cols-3 lg:aspect-[3/1]"
+  class="story-tile-row flex w-full flex-col md:border-y-[0.2083cqw] md:border-[#212323] md:grid md:grid-cols-3 lg:aspect-[3/1]"
   {{ block.shopify_attributes }}
 >
   {% content_for 'blocks' %}
@@ -20,14 +20,15 @@
     display: contents;
   }
 
-  .shopify-block + .shopify-block > .story-tile-cell {
-    border-top: 3px solid #212323;
+  @media (max-width: 47.9375rem) {
+    .story-tile-row .story-tile-cell {
+      order: var(--mobile-order, 0);
+    }
   }
 
   @media (min-width: 48rem) {
     .shopify-block + .shopify-block > .story-tile-cell {
-      border-top: none;
-      border-left: 3px solid #212323;
+      border-left: 0.2083cqw solid #212323;
     }
   }
 {% endstylesheet %}

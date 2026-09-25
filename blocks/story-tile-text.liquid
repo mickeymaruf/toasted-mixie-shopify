@@ -19,6 +19,12 @@
     assign heading_mobile = heading_desktop
   endif
 
+  assign is_dark = false
+  assign background_brightness = block.settings.background_color | color_brightness
+  if background_brightness < 128
+    assign is_dark = true
+  endif
+
   assign body_desktop = block.settings.body
   assign body_mobile = block.settings.body_mobile
   if body_mobile == blank
@@ -27,42 +33,43 @@
 %}
 
 <div
-  class="story-tile-cell relative w-full aspect-square lg:aspect-auto lg:h-full {% if is_two_thirds %}md:col-span-2 md:aspect-auto md:h-full{% else %}md:col-span-1{% endif %}"
+  class="story-tile-cell relative w-full lg:aspect-auto lg:h-full {% if is_two_thirds %}md:col-span-2 md:aspect-auto md:h-full{% else %}md:col-span-1 md:aspect-square{% endif %}"
+  {% if block.settings.mobile_order != '0' %}style="--mobile-order: {{ block.settings.mobile_order }};"{% endif %}
   {{ block.shopify_attributes }}
 >
   <div
-    class="story-tile-cell__clip absolute inset-0 flex flex-col items-center justify-center gap-4 overflow-hidden text-center sm:gap-5 p-10 md:px-5 lg:gap-5"
+    class="story-tile-cell__clip{% if is_dark %} story-tile-cell__clip--dark{% endif %} relative flex md:absolute md:inset-0 flex-col items-center justify-center gap-4 overflow-hidden text-center sm:gap-5 p-10 md:gap-[1.3889cqw] md:px-[1.3889cqw] md:py-[2.7778cqw]"
     style="
       background-color: {{ block.settings.background_color }};
       color: {{ block.settings.text_color }};
     "
   >
     {% if heading_mobile != blank %}
-      <div class="story-tile-cell__heading story-tile-cell__heading--mobile w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[38px] lg:text-[58px] xl:text-[72px] 2xl:text-[92px]">
+      <div class="story-tile-cell__heading story-tile-cell__heading--mobile w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[5cqw]" style="text-align: {{ block.settings.heading_alignment_mobile }};">
         {{ heading_mobile }}
       </div>
     {% endif %}
 
     {% if heading_desktop != blank %}
-      <div class="story-tile-cell__heading story-tile-cell__heading--desktop w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[38px] lg:text-[58px] xl:text-[72px] 2xl:text-[92px]">
+      <div class="story-tile-cell__heading story-tile-cell__heading--desktop w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[5cqw]" style="text-align: {{ block.settings.heading_alignment }};">
         {{ heading_desktop }}
       </div>
     {% endif %}
 
     {% if body_mobile != blank %}
-      <div class="story-tile-cell__body story-tile-cell__body--mobile w-full text-[20px] leading-[1.5] [&_p]:m-0 [&_p+p]:mt-[1em] sm:text-[16px] lg:text-[20px] xl:text-[24px] 2xl:text-[32px]">
+      <div class="story-tile-cell__body story-tile-cell__body--mobile w-full font-[family-name:var(--font-primary--family)] text-left text-[20px] leading-[1.5] [&_p]:m-0 [&_p+p]:mt-[1em] sm:text-[16px] md:text-[2.2222cqw]">
         {{ body_mobile }}
       </div>
     {% endif %}
 
     {% if body_desktop != blank %}
-      <div class="story-tile-cell__body story-tile-cell__body--desktop w-full text-[20px] leading-[1.5] [&_p]:m-0 [&_p+p]:mt-[1em] sm:text-[16px] lg:text-[20px] xl:text-[24px] 2xl:text-[32px]">
+      <div class="story-tile-cell__body story-tile-cell__body--desktop w-full font-[family-name:var(--font-primary--family)] text-[20px] leading-[1.5] [&_p]:m-0 [&_p+p]:mt-[1em] sm:text-[16px] md:text-[2.2222cqw]">
         {{ body_desktop }}
       </div>
     {% endif %}
 
     {% if block.settings.image != blank %}
-      <div class="story-tile-cell__image mt-[1em] flex w-[140px] ml-[20px] justify-center md:w-[240px]">
+      <div class="story-tile-cell__image flex w-[140px] ml-[20px] justify-center md:ml-[1.3889cqw] md:w-[16.6667cqw]">
         {{ block.settings.image | image_url: width: 480 | image_tag: class: 'max-w-full h-auto' }}
       </div>
     {% endif %}
@@ -70,6 +77,7 @@
 
   {% render 'sticker',
     image: block.settings.sticker_image,
+    image_mobile: block.settings.sticker_image_mobile,
     position: block.settings.sticker_position,
     position_mobile: block.settings.sticker_position_mobile,
     width: block.settings.sticker_width,
@@ -83,6 +91,13 @@
 </div>
 
 {% stylesheet %}
+  /* Light-on-dark text renders heavier, so dark tiles use the lighter body weight */
+  .story-tile-cell__clip--dark .story-tile-cell__body {
+    font-weight: 350;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   .story-tile-cell__heading--desktop,
   .story-tile-cell__body--desktop {
     display: none;
@@ -117,10 +132,21 @@
       "default": "<p>More open. More present. More here.</p>"
     },
     {
+      "type": "text_alignment",
+      "id": "heading_alignment",
+      "label": "t:labels.heading_alignment",
+      "default": "center"
+    },
+    {
       "type": "richtext",
       "id": "heading_mobile",
-      "label": "t:labels.heading_mobile",
-      "info": "t:labels.heading_mobile_info"
+      "label": "t:labels.heading_mobile"
+    },
+    {
+      "type": "text_alignment",
+      "id": "heading_alignment_mobile",
+      "label": "t:labels.heading_alignment_mobile",
+      "default": "center"
     },
     {
       "type": "richtext",
@@ -169,17 +195,26 @@
       "default": "1"
     },
     {
+      "type": "select",
+      "id": "mobile_order",
+      "label": "t:labels.mobile_order",
+      "info": "t:labels.mobile_order_info",
+      "options": [
+        { "value": "0", "label": "t:options.mobile_order.auto" },
+        { "value": "1", "label": "t:options.mobile_order.first" },
+        { "value": "2", "label": "t:options.mobile_order.second" },
+        { "value": "3", "label": "t:options.mobile_order.third" }
+      ],
+      "default": "0"
+    },
+    {
       "type": "header",
-      "content": "t:general.sticker"
+      "content": "t:general.sticker_desktop"
     },
     {
       "type": "image_picker",
       "id": "sticker_image",
       "label": "t:labels.sticker_image"
-    },
-    {
-      "type": "header",
-      "content": "t:general.sticker_desktop"
     },
     {
       "type": "select",
@@ -231,6 +266,12 @@
     {
       "type": "header",
       "content": "t:general.sticker_mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "sticker_image_mobile",
+      "label": "t:labels.sticker_image",
+      "info": "t:labels.sticker_image_mobile_info"
     },
     {
       "type": "select",

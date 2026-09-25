@@ -165,6 +165,8 @@
     "show": "Show",
     "bundle_subtitle_info": "Shown only in the mobile bundle drawer when expanded",
     "background_image": "Background image",
+    "background_image_mobile": "Background image (mobile)",
+    "background_image_mobile_info": "Optional. If left blank, the background image above is used on mobile.",
     "show_background_image": "Show background image",
     "show_gradient_overlay": "Show gradient overlay",
     "lifestyle_image": "Lifestyle image",
@@ -262,6 +264,8 @@
     "grid_item_width": "Grid item width",
     "gradient_overlay": "Gradient overlay",
     "heading": "Heading",
+    "heading_alignment": "Heading alignment",
+    "heading_alignment_mobile": "Heading alignment (mobile)",
     "heading_mobile": "Heading (mobile)",
     "heading_mobile_info": "Optional. Overrides the heading on mobile screens only",
     "heading_color": "Heading color",
@@ -301,6 +305,8 @@
     "member_count": "Member count",
     "mobile_description": "Description (mobile)",
     "mobile_description_info": "Optional. Replaces the description on mobile screens only. If left blank, the description above is used on all screen sizes.",
+    "mobile_order": "Order on mobile",
+    "mobile_order_info": "Tiles in a row stack by this number on mobile, lowest first. Tiles set to Auto come first, in editor order. Desktop always uses editor order.",
     "logo_width_mobile": "Logo width (mobile)",
     "mega_menu_link_info": "Enter the exact title of the menu item that should have a mega menu dropdown (e.g., 'Shop')",
     "menu": "Menu",
@@ -383,6 +389,7 @@
     "spend_threshold": "Spend threshold",
     "spend_threshold_info": "The bundle subtotal a shopper must reach to unlock this reward",
     "sticker_image": "Sticker image",
+    "sticker_image_mobile_info": "Optional. If left blank, the desktop sticker image is used on mobile.",
     "sticker_position": "Position",
     "sticker_translate_x": "Horizontal offset",
     "sticker_translate_y": "Vertical offset",
@@ -469,6 +476,12 @@
     "width": {
       "one_third": "One-third (square)",
       "two_thirds": "Two-thirds (wide)"
+    },
+    "mobile_order": {
+      "auto": "Auto",
+      "first": "1st",
+      "second": "2nd",
+      "third": "3rd"
     },
     "button": "Button",
     "arrow_icon": "Arrow icon"
