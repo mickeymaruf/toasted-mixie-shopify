@@ -23,8 +23,8 @@
         "subheading": "",
         "subheading_mobile": "",
         "heading_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/Frame_2147230792_12.png",
-        "background_image_mobile": "shopify://shop_images/Frame_2147230792_12_eba99526-9f4e-40bf-ae67-fb0752b067fa.png",
+        "background_image": "shopify://shop_images/Frame_2147230792.svg",
+        "background_image_mobile": "shopify://shop_images/Frame_2147230792_3bf3a651-3274-4ba8-a272-d492244cce44.svg",
         "show_gradient_overlay": false,
         "background_color": "#9ab2d5"
       }
@@ -45,7 +45,9 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         },
@@ -62,7 +64,9 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         },
@@ -79,7 +83,9 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         },
@@ -96,7 +102,9 @@
             "price_text": "Just Pay Shipping",
             "button_label": "Try Now",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC"
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
           },
           "blocks": {}
         }

@@ -12,7 +12,7 @@
             >
             {{
               section.settings.background_image
-              | image_url: width: 3200
+              | image_url: width: section.settings.background_image.width
               | image_tag:
                 class: 'absolute inset-0 size-full object-cover',
                 loading: 'eager',
@@ -25,7 +25,7 @@
         {% elsif section.settings.background_image %}
           {{
             section.settings.background_image
-            | image_url: width: 3200
+            | image_url: width: section.settings.background_image.width
             | image_tag:
               class: 'absolute inset-0 size-full object-cover',
               loading: 'eager',

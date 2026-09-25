@@ -179,6 +179,8 @@
     "enable_autoplay": "Enable auto-scroll",
     "badge_text": "Badge text",
     "badge_image": "Badge image",
+    "badge_image_mobile": "Badge image (mobile)",
+    "badge_image_mobile_info": "Optional mobile-specific badge image. Defaults to desktop image if not provided.",
     "badge_background": "Badge background",
     "badge_text_color": "Badge text color",
     "body": "Body text",

@@ -10,7 +10,7 @@
 >
   {% if section.settings.background_image %}
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      {{ section.settings.background_image | image_url: width: 1920 | image_tag: class: 'absolute inset-0 w-full h-full object-cover object-bottom', alt: '' }}
+      {{ section.settings.background_image | image_url: width: section.settings.background_image.width | image_tag: class: 'absolute inset-0 w-full h-full object-cover object-bottom', alt: '' }}
     </div>
   {% endif %}
   <div class="relative z-10 mx-auto flex w-full max-w-[1920px] flex-col items-center gap-8 pt-[40px] pb-[60px] sm:py-[60px] lg:gap-[60px] lg:py-[100px] xl:pb-[100px] lg:px-[120px]">

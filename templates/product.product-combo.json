@@ -201,7 +201,7 @@
             "background_color": "#551f36",
             "feature_text_color": "#212323",
             "heading_color": "#f6f1ec",
-            "background_image": "shopify://shop_images/Frame_2147235948.png",
+            "background_image": "shopify://shop_images/Frame_2147235948.svg",
             "image": "shopify://shop_images/Render_Mockup_4000_3000_2026-09-19_8_1_1_a6c8fbb2-6659-47ca-b3d5-2a0e25937e82.png"
           },
           "blocks": {}
@@ -225,7 +225,7 @@
         "benefit_3_text": "Pause, skip, cancel anytime",
         "benefit_3_icon": "shopify://shop_images/Clip_path_group.svg",
         "subscribe_card_background_color": "#c2cbd4",
-        "subscribe_card_background_image": "shopify://shop_images/Label.png",
+        "subscribe_card_background_image": "shopify://shop_images/Label.svg",
         "subscribe_pill_background_color": "#551f36",
         "subscribe_pill_text_color": "#f6f1ec",
         "custom_button_text": "<p>Claim Your Trial Pack</p>",
@@ -275,7 +275,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz_13.png",
+            "image": "shopify://shop_images/picz_20.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -317,7 +317,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz_14.png",
+            "image": "shopify://shop_images/picz_21.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -448,7 +448,7 @@
         "description": "Made with immediately available functional ingredients designed to help you feel relaxed, right now.",
         "center_image": "shopify://shop_images/Group_107.png",
         "center_image_alt": "",
-        "background_image": "shopify://shop_images/ingredient-highlights-background.png"
+        "background_image": "shopify://shop_images/Frame_2147236085.svg"
       }
     },
     "reviews_kbCGcD": {
@@ -575,7 +575,7 @@
         "button_text_color": "#1e2125",
         "background_color": "#f6f1ec",
         "panel_background_color": "#551f36",
-        "panel_background_image": "shopify://shop_images/Group_82.png",
+        "panel_background_image": "shopify://shop_images/Group_82.svg",
         "heading_color": "#f6f1ec",
         "billboard_image": "shopify://shop_images/Cllg5_2_1.png",
         "billboard_image_alt": ""

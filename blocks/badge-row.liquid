@@ -9,11 +9,31 @@
 {% enddoc %}
 
 <div
-  class="badge-row grid w-full grid-cols-3 items-start gap-x-8 gap-y-6 sm:gap-x-6 sm:gap-y-4 lg:gap-x-[30px]"
+  class="badge-row grid w-full grid-cols-3 items-start gap-x-8 gap-y-6 sm:gap-x-6 sm:gap-y-4 lg:gap-x-[2.0833vw]"
   {{ block.shopify_attributes }}
 >
   {% content_for 'blocks' %}
 </div>
+
+{% stylesheet %}
+  @media screen and (min-width: 1440px) {
+    .badge-row {
+      column-gap: calc(27.84px + 0.15vw) !important;
+    }
+  }
+
+  @media screen and (min-width: 1920px) {
+    .badge-row {
+      column-gap: 1.6vw !important;
+    }
+  }
+
+  @media screen and (min-width: 2560px) {
+    .badge-row {
+      column-gap: calc(25px + 0.78125vw) !important;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

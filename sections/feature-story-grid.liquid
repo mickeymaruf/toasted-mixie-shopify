@@ -5,34 +5,36 @@
 {% enddoc %}
 
 <section
-  class="feature-story-grid full-width flex w-full flex-col items-center gap-8 px-5 pt-12 pb-16 text-center sm:px-8 sm:py-16 md:gap-10 md:px-12 lg:gap-[50px] lg:px-[80px] lg:pt-[100px] lg:pb-[150px] xl:px-[120px]"
+  class="feature-story-grid full-width"
   style="background-color: {{ section.settings.background_color }};"
 >
-  {% if section.settings.heading != blank or section.settings.subheading != blank %}
-    <div class="flex w-full flex-col items-center gap-1" style="color: {{ section.settings.heading_color }};">
-      {% if section.settings.heading != blank %}
-        <div
-          class="feature-story-grid__heading text-[40px] leading-[0.95] font-bold sm:text-[56px] md:text-[72px] xl:text-[93px]"
-        >
-          {{ section.settings.heading }}
-        </div>
-      {% endif %}
+  <div class="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-8 px-5 pt-12 pb-16 text-center sm:px-8 sm:py-16 md:gap-10 md:px-12 lg:gap-[50px] lg:px-0 lg:pt-[100px] lg:pb-[150px]">
+    {% if section.settings.heading != blank or section.settings.subheading != blank %}
+      <div class="flex w-full flex-col items-center gap-1" style="color: {{ section.settings.heading_color }};">
+        {% if section.settings.heading != blank %}
+          <div
+            class="feature-story-grid__heading text-[40px] leading-[0.95] font-bold sm:text-[56px] md:text-[72px] xl:text-[93px]"
+          >
+            {{ section.settings.heading }}
+          </div>
+        {% endif %}
 
-      {% if section.settings.subheading != blank %}
-        <p
-          class="feature-story-grid__subheading w-full text-[18px] leading-[1] font-semibold sm:text-[24px] md:text-[32px] xl:text-[42px]"
-        >
-          {{ section.settings.subheading }}
-        </p>
-      {% endif %}
-    </div>
-  {% endif %}
+        {% if section.settings.subheading != blank %}
+          <p
+            class="feature-story-grid__subheading w-full text-[18px] leading-[1] font-semibold sm:text-[24px] md:text-[32px] xl:text-[42px]"
+          >
+            {{ section.settings.subheading }}
+          </p>
+        {% endif %}
+      </div>
+    {% endif %}
 
-  {% if section.blocks.size > 0 %}
-    <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-[10px] lg:grid-cols-4">
-      {% content_for 'blocks' %}
-    </div>
-  {% endif %}
+    {% if section.blocks.size > 0 %}
+      <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-[10px] lg:grid-cols-4">
+        {% content_for 'blocks' %}
+      </div>
+    {% endif %}
+  </div>
 </section>
 
 {% stylesheet %}

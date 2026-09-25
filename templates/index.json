@@ -149,7 +149,7 @@
       "name": "t:general.gruns_hero",
       "settings": {
         "heading": "<p><em>The Chill Drink</em></p>",
-        "description": "<p>A light, tasteful drink for the moments you want to relax, connect, and stay present.</p>",
+        "description": "<p>A light, tasteful drink for the moments you<br/>want to relax, connect, and stay present.</p>",
         "description_mobile": "",
         "show_button": true,
         "button_label": "Shop Toasted",
@@ -159,7 +159,7 @@
         "background_color": "#9ab2d5",
         "heading_color": "#212323",
         "show_skyline_image": true,
-        "skyline_image": "shopify://shop_images/watson-island-twilight-skyline-z27_1_2_1.png",
+        "skyline_image": "shopify://shop_images/Gruns_Hero_1.png",
         "cans_background_color": "#f9d5c0",
         "cans_background_image": "shopify://shop_images/Rectangle_104_1.png",
         "can_image_1": "shopify://shop_images/berry_10000_2.png",
@@ -170,6 +170,7 @@
         "can_image_3_alt": "",
         "show_badge": true,
         "badge_image": "shopify://shop_images/Group_134.svg",
+        "badge_image_mobile": "shopify://shop_images/Group_134_1.png",
         "badge_image_alt": "America's most compliant badge"
       }
     },
@@ -301,7 +302,7 @@
       "name": "t:general.product_list",
       "settings": {
         "heading": "Choose your flavor",
-        "background_color": "#9ab2d5",
+        "background_color": "#f6f1ec",
         "heading_color": "#212323"
       }
     },
@@ -413,8 +414,8 @@
       },
       "name": "t:general.drink_better",
       "settings": {
-        "heading": "<p>Presence is the <br/>new luxury</p>",
-        "description": "<p>A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC. </p>",
+        "heading": "<p>Presence is the&nbsp;<br/>new luxury</p>",
+        "description": "<p>A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC.&nbsp;</p>",
         "video": "",
         "image": "shopify://shop_images/Rectangle_102_1.png",
         "image_alt": "",
@@ -425,8 +426,8 @@
         "bundle_image": "shopify://shop_images/Group_191_1.png",
         "bundle_background_color": "#f9d5c0",
         "bundle_text_color": "#212323",
-        "background_image": "shopify://shop_images/Frame_2147236096.png",
-        "background_color": "#f8f1ea",
+        "background_image": "shopify://shop_images/Frame_2147236096.svg",
+        "background_color": "#551f36",
         "heading_color": "#f6f1ec"
       }
     },
@@ -482,9 +483,9 @@
       ],
       "name": "t:general.quality_badges",
       "settings": {
-        "heading": "<p>3rd party-tested </p><p>for potency, purity,<br/> & safety</p>",
+        "heading": "<p>3rd party-tested&nbsp;</p><p>for potency, purity,<br/>&nbsp;& safety</p>",
         "description": "",
-        "background_image": "shopify://shop_images/Frame_2147236097_1.png",
+        "background_image": "shopify://shop_images/Frame_2147236097.svg",
         "background_color": "#636d90",
         "heading_color": "#f6f1ec"
       }
@@ -680,7 +681,7 @@
             "background_color": "#551f36",
             "feature_text_color": "#212323",
             "heading_color": "#f6f1ec",
-            "background_image": "shopify://shop_images/Frame_2147235948.png",
+            "background_image": "shopify://shop_images/Frame_2147235948.svg",
             "image": "shopify://shop_images/Render_Mockup_4000_3000_2026-09-19_8_1_1_a6c8fbb2-6659-47ca-b3d5-2a0e25937e82.png"
           },
           "blocks": {}
@@ -704,7 +705,7 @@
         "benefit_3_text": "Pause, skip, cancel anytime",
         "benefit_3_icon": "shopify://shop_images/Clip_path_group.svg",
         "subscribe_card_background_color": "#c2cbd4",
-        "subscribe_card_background_image": "shopify://shop_images/Label.png",
+        "subscribe_card_background_image": "shopify://shop_images/Label.svg",
         "subscribe_pill_background_color": "#551f36",
         "subscribe_pill_text_color": "#f6f1ec",
         "custom_button_text": "",
@@ -957,7 +958,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz_14.png",
+            "image": "shopify://shop_images/picz_21.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
@@ -1007,7 +1008,7 @@
         "image": "shopify://shop_images/Render_Mockup_4000_3000_2026-09-12_1.png",
         "image_alt": "",
         "background_color": "#551f36",
-        "background_image": "shopify://shop_images/Frame_2147236099.png",
+        "background_image": "shopify://shop_images/Frame_2147236099.svg",
         "heading_color": "#f6f1ec"
       }
     },
@@ -1080,7 +1081,7 @@
         "enable_autoplay": true,
         "show_navigation": true,
         "background_color": "#636d90",
-        "background_image": "shopify://shop_images/Frame_2147230637_2_49a83e22-797b-47ec-bf5b-a2b920d36a97.png",
+        "background_image": "shopify://shop_images/Frame_2147236101.svg",
         "heading_color": "#f6f1ec",
         "social_icon_1_image": "shopify://shop_images/Item_a47a4d47-c447-485d-86d0-1f8d8032ce0e.svg",
         "social_icon_1_link": "https://www.instagram.com/drinktoasted/",

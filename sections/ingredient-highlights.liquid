@@ -10,7 +10,7 @@
     {% if section.settings.background_image %}
       {{
         section.settings.background_image
-        | image_url: width: 2000
+        | image_url: width: section.settings.background_image.width
         | image_tag:
           class: 'absolute size-full bottom-0 object-cover',
           widths: '750, 1100, 1500, 2000',

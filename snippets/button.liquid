@@ -37,7 +37,7 @@
   {% if url != blank %}
     href="{{ url }}"
   {% endif %}
-  class="button flex w-fit items-center justify-center gap-2 rounded-[30px] bg-[var(--button-background)] px-6 py-3 text-center text-[16px] leading-[1.5] font-medium text-[var(--button-text)] transition-opacity duration-150 hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-text)] sm:px-16 sm:py-4 sm:text-[20px] {{ class }}"
+  class="button flex w-fit items-center justify-center gap-2 rounded-[30px] bg-[var(--button-background)] px-6 py-3 text-center text-[16px] leading-[1.5] font-medium text-[var(--button-text)] transition-opacity duration-150 hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--button-text)] sm:px-16 sm:py-4 sm:text-[20px] lg:rounded-[2.0833vw] {{ class }}"
   style="--button-background: {{ background_color }}; --button-text: {{ text_color }};"
   {% if attributes %}
     {{ attributes }}

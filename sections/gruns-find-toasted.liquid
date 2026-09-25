@@ -18,7 +18,7 @@
           class="pointer-events-none absolute inset-0 overflow-hidden rounded-[40px]"
           aria-hidden="true"
         >
-          {{ section.settings.panel_background_image | image_url: width: 1200 | image_tag: class: 'absolute right-0 top-0 h-full w-auto max-w-none object-cover' }}
+          {{ section.settings.panel_background_image | image_url: width: section.settings.panel_background_image.width | image_tag: class: 'absolute right-0 top-0 h-full w-auto max-w-none object-cover' }}
         </div>
       {% else %}
         <div

@@ -22,7 +22,7 @@
         "subheading": "",
         "heading_color": "#f6f1ec",
         "container_background_color": "#551f36",
-        "background_image": "shopify://shop_images/Frame_2147235873_1_d7bd3be1-0e6f-4d41-aeff-86d5f2421ec7.png"
+        "background_image": "shopify://shop_images/Frame_2147235873.svg"
       }
     },
     "lab_results_HmgaWd": {
@@ -120,7 +120,7 @@
         "heading": "<p>3rd party-tested for potency, purity, & safety.</p>",
         "description": "",
         "page_background_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/Frame_2147235874_1_9d749f8b-f6a7-46fa-95f2-575cbaee310e.png",
+        "background_image": "shopify://shop_images/Frame_2147235874.svg",
         "background_color": "#636d90",
         "heading_color": "#f6f1ec"
       }
