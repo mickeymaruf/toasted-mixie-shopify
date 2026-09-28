@@ -11,12 +11,55 @@
 >
   <div class="story-tiles__inner mx-auto w-full max-w-[1920px]">
     {% if section.settings.heading != blank or section.settings.subheading != blank %}
+      {%- liquid
+        # An uploaded background image or icon always shows. The toggle falls
+        # back to the bundled palms artwork and mark for whichever is missing.
+        assign masthead_art = ''
+        assign masthead_mark = ''
+
+        # Requested at the upload's own width so Shopify serves it unscaled.
+        if section.settings.heading_background_image != blank
+          assign masthead_art_width = section.settings.heading_background_image.width
+          assign masthead_art = section.settings.heading_background_image | image_url: width: masthead_art_width
+        elsif section.settings.show_heading_background
+          assign masthead_art = 'about-heading-bg.png' | asset_url
+        endif
+
+        # Phones fall back to the desktop artwork when no mobile image is set.
+        assign masthead_art_mobile = masthead_art
+        if section.settings.heading_background_image_mobile != blank
+          assign masthead_art_mobile_width = section.settings.heading_background_image_mobile.width
+          assign masthead_art_mobile = section.settings.heading_background_image_mobile | image_url: width: masthead_art_mobile_width
+        endif
+
+        if section.settings.heading_icon != blank
+          assign masthead_mark = section.settings.heading_icon | image_url: width: 200
+        elsif section.settings.show_heading_background
+          assign masthead_mark = 'about-heading-icon.svg' | asset_url
+        endif
+      -%}
+
+      <div
+        class="story-tiles__masthead w-full"
+        {% if masthead_art_mobile != blank %}style="{% if masthead_art != blank %}--masthead-art: url('{{ masthead_art }}'); {% endif %}--masthead-art-mobile: url('{{ masthead_art_mobile }}');"{% endif %}
+      >
       <div class="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-1 px-5 pt-12 pb-[50px] text-center sm:px-8 sm:pt-16 md:max-w-[83.3333cqw] md:gap-[0.2778cqw] md:px-0 md:pt-[6.9444cqw] md:pb-[6.9444cqw]" style="color: {{ section.settings.heading_color }};">
         {% if section.settings.heading != blank %}
-          <div
-            class="story-tiles__heading text-[40px] leading-[0.95] font-bold sm:text-[56px] md:text-[6.4583cqw]"
-          >
-            {{ section.settings.heading }}
+          <div class="story-tiles__heading-row">
+            {% if masthead_mark != blank %}
+              <img
+                class="story-tiles__heading-mark"
+                src="{{ masthead_mark }}"
+                alt=""
+                aria-hidden="true"
+              >
+            {% endif %}
+
+            <div
+              class="story-tiles__heading text-[40px] leading-[0.95] font-bold sm:text-[56px] md:text-[6.4583cqw]"
+            >
+              {{ section.settings.heading }}
+            </div>
           </div>
         {% endif %}
 
@@ -27,6 +70,7 @@
             {{ section.settings.subheading }}
           </p>
         {% endif %}
+      </div>
       </div>
     {% endif %}
 
@@ -42,6 +86,81 @@
   /* Size container: cqw units in the section, tiles and stickers scale with this 1920px-capped width */
   .story-tiles__inner {
     container-type: inline-size;
+  }
+
+  /* About masthead: the palms-and-skyline artwork sits behind the heading,
+     anchored to the bottom so its waterline meets the first tile row. */
+  .story-tiles__masthead {
+    display: flex;
+    align-items: center;
+    /* Band heights taken from the comps: 238px at 402 wide, 303px at 1440. */
+    min-height: 238px;
+    background-image: var(--masthead-art-mobile, none);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    /* Scaled to the band's width, not cover: the band is narrower than the
+       artwork on phones, and cover would crop the palms off both edges. */
+    background-size: 100% auto;
+  }
+
+  .story-tiles__masthead > * {
+    width: 100%;
+  }
+
+  /* Sized here rather than with Tailwind utilities: arbitrary values that don't
+     already appear in the theme's source are never emitted by its build. */
+  .story-tiles__heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+  }
+
+  .story-tiles__heading-mark {
+    height: 46px;
+    width: auto;
+    flex: none;
+  }
+
+  /* The comp puts the masthead heading at 45px on phones. Because this selector
+     outranks the utility class, the larger steps have to be restated below. */
+  .story-tiles__masthead .story-tiles__heading {
+    font-size: 45px;
+  }
+
+  @media (min-width: 40rem) {
+    .story-tiles__heading-row {
+      gap: 16px;
+    }
+
+    .story-tiles__heading-mark {
+      height: 57px;
+    }
+
+    .story-tiles__masthead .story-tiles__heading {
+      font-size: 56px;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .story-tiles__masthead {
+      background-image: var(--masthead-art, none);
+      min-height: 21.042cqw;
+    }
+
+    .story-tiles__heading-row {
+      gap: 1.875cqw;
+    }
+
+    /* Restates the theme's own size, which already lands within 1.3% of the
+       comp's 94px at 1440. */
+    .story-tiles__masthead .story-tiles__heading {
+      font-size: 6.4583cqw;
+    }
+
+    .story-tiles__heading-mark {
+      height: 6.597cqw;
+    }
   }
 
   .story-tiles__heading,
@@ -63,6 +182,14 @@
 
   .story-tiles__list > .shopify-block + .shopify-block > .story-tile-row {
     border-top: 0;
+  }
+
+  /* On mobile the cells draw the strokes (see story-tile-row), which leaves
+     only the bottom edge of the last row to close. */
+  @media (max-width: 47.9375rem) {
+    .story-tiles__list > .shopify-block:last-child > .story-tile-row {
+      border-bottom: 2px solid #212323;
+    }
   }
 {% endstylesheet %}
 
@@ -102,6 +229,32 @@
       "id": "heading_color",
       "label": "t:labels.heading_color",
       "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading_background",
+      "label": "t:labels.show_background_image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "heading_background_image",
+      "label": "t:labels.background_image"
+    },
+    {
+      "type": "image_picker",
+      "id": "heading_background_image_mobile",
+      "label": "t:labels.background_image_mobile",
+      "info": "t:labels.background_image_mobile_info"
+    },
+    {
+      "type": "image_picker",
+      "id": "heading_icon",
+      "label": "t:labels.icon"
     }
   ],
   "presets": [
@@ -178,3 +331,5 @@
   ]
 }
 {% endschema %}
+
+

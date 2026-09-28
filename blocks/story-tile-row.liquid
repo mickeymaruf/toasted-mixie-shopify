@@ -20,9 +20,13 @@
     display: contents;
   }
 
+  /* Stacked on mobile: every cell draws its own top stroke, so the lines land
+     between whichever cells end up adjacent even when --mobile-order reorders
+     them. The first cell of the first row draws the top edge of the stack. */
   @media (max-width: 47.9375rem) {
     .story-tile-row .story-tile-cell {
       order: var(--mobile-order, 0);
+      border-top: 2px solid #212323;
     }
   }
 
@@ -45,3 +49,4 @@
   ]
 }
 {% endschema %}
+

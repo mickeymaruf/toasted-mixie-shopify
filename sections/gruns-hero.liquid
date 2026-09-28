@@ -197,7 +197,7 @@
     grid-template-columns: none;
     align-items: flex-start;
     justify-content: center;
-    column-gap: 8px;
+    column-gap: 18px;
     row-gap: 16px;
   }
 
@@ -205,6 +205,21 @@
     flex: 1 1 0%;
     min-width: 0;
     width: auto;
+  }
+
+  /* Mobile sizes taken from the iPhone 17 export: at 12px / 11.5px every label
+     and description fits its column on one line, which is what keeps the hero
+     from growing past the fold. nowrap guards the fit on narrower handsets. */
+  @media (max-width: 39.9375rem) {
+    .gruns-hero-benefits .trust-badge__label {
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .gruns-hero-benefits .trust-badge > div > p {
+      font-size: 11.5px;
+      white-space: nowrap;
+    }
   }
 
   @media (min-width: 40rem) {
@@ -407,3 +422,4 @@
   ]
 }
 {% endschema %}
+

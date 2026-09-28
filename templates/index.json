@@ -131,7 +131,7 @@
                 "label": "<p>Promotes Calm</p>",
                 "label_mobile": "<p>Promotes Calm</p>",
                 "description": "Steady unwind",
-                "icon": "shopify://shop_images/Vector_1.svg"
+                "icon": "shopify://shop_images/Vector_7ce3e587-ceeb-49b3-98c3-6902dc970fcd.png"
               },
               "blocks": {}
             }
@@ -414,7 +414,7 @@
       },
       "name": "t:general.drink_better",
       "settings": {
-        "heading": "<p>Presence is the&nbsp;<br/>new luxury</p>",
+        "heading": "<p>Relax, Connect &<br/>Stay Present</p>",
         "description": "<p>A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC.&nbsp;</p>",
         "video": "",
         "image": "shopify://shop_images/Rectangle_102_1.png",
