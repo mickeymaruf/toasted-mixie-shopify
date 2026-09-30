@@ -44,8 +44,9 @@
         "help_menu": "footer-help",
         "about_title": "About",
         "about_menu": "footer-about",
-        "copyright_text": "Toasted Mixie Ventures Inc. All Rights Reserved.",
+        "copyright_text": "Toasted Mixie Ventures Inc. All Rights Reserved. These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
         "legal_menu": "footer-legal-menu",
+        "show_payment_icons": true,
         "background_color": "#c2cbd4",
         "text_color": "#212323"
       }

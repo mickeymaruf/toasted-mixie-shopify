@@ -92,7 +92,7 @@
         "product_card_iUCqkK": {
           "type": "product-card",
           "settings": {
-            "product": "freetrial",
+            "product": "three-pack",
             "background_image": "shopify://shop_images/Frame_2147236049.svg",
             "image": "shopify://shop_images/Group_157_2.png",
             "use_lottie_animation": false,

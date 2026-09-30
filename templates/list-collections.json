@@ -40,7 +40,7 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC",
+            "button_text_color": "#f6f1ec",
             "show_learn_more": true,
             "learn_more_label": ""
           },
@@ -57,9 +57,9 @@
             "flavor_name_color": "#5e1a79",
             "description": "Deep. Juicy. Easy to enjoy.",
             "price_text": "$2.67/can",
-            "button_label": "Add To Cart",
+            "button_label": "Coming Soon",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC",
+            "button_text_color": "#f6f1ec",
             "show_learn_more": true,
             "learn_more_label": ""
           },
@@ -78,7 +78,7 @@
             "price_text": "$2.67/can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC",
+            "button_text_color": "#f6f1ec",
             "show_learn_more": true,
             "learn_more_label": ""
           },
@@ -87,17 +87,17 @@
         "product_card_iUCqkK": {
           "type": "product-card",
           "settings": {
-            "product": "freetrial",
+            "product": "three-pack",
             "background_image": "shopify://shop_images/Frame_2147236049.svg",
             "image": "shopify://shop_images/Group_157_2.png",
             "use_lottie_animation": false,
-            "flavor_name": "Trial Pack",
+            "flavor_name": "3 Pack Trial",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
-            "price_text": "Just Pay Shipping",
-            "button_label": "Try Now",
+            "price_text": "$12. One-Time Purchase.",
+            "button_label": "Coming Soon",
             "button_background_color": "#212323",
-            "button_text_color": "#F6F1EC",
+            "button_text_color": "#f6f1ec",
             "show_learn_more": true,
             "learn_more_label": ""
           },

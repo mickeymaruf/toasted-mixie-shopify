@@ -16,7 +16,6 @@
     },
     "hero_banner_AFPte7": {
       "type": "hero-banner",
-      "disabled": true,
       "name": "t:general.hero_banner",
       "settings": {
         "heading": "<p>We made Toasted for moments worth remembering</p>",
@@ -108,9 +107,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "<p>Built From<br/>Experience</p>",
-                "heading_alignment": "center",
                 "heading_mobile": "<p>Built From Experience</p>",
-                "heading_alignment_mobile": "center",
                 "body": "",
                 "body_mobile": "",
                 "background_color": "#f9d5c0",
@@ -154,9 +151,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
-                "heading_alignment": "center",
                 "heading_mobile": "",
-                "heading_alignment_mobile": "center",
                 "body": "<p>Our team brings decades of<br/>experience across cannabis,<br/>nightlife, CPG and brand<br/>building. We’ve been part of<br/>this culture long before drinks<br/>were the next big thing.</p>",
                 "body_mobile": "<p>Our team brings decades of experience across cannabis, nightlife, CPG and brand building. We’ve been part of this culture long before drinks were the next big thing.</p>",
                 "background_color": "#551f36",
@@ -209,9 +204,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
-                "heading_alignment": "center",
                 "heading_mobile": "",
-                "heading_alignment_mobile": "center",
                 "body": "<p>Toasted started as a brunch party built around a simple idea: bringing people together without making alcohol the center of everything.&nbsp;</p><p>Turns out, we weren’t the only ones looking for something different.</p>",
                 "body_mobile": "<p>Toasted started as a brunch party built around a simple idea: bringing people together without making alcohol the center of everything.<br/>Turns out, we weren’t the only ones looking for something different.</p>",
                 "background_color": "#626c8d",
@@ -243,9 +236,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "<p>Social moments deserve<br/>better options</p>",
-                "heading_alignment": "center",
                 "heading_mobile": "<p>Social moments deserve better options</p>",
-                "heading_alignment_mobile": "left",
                 "body": "",
                 "body_mobile": "",
                 "background_color": "#9ab2d5",
@@ -319,9 +310,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
-                "heading_alignment": "center",
                 "heading_mobile": "",
-                "heading_alignment_mobile": "center",
                 "body": "<p>People still wanted to go out, connect, relax and enjoy themselves, but there was no product that truly fit the occasion.</p><p>So we built something new.</p>",
                 "body_mobile": "<p></p><p>People still wanted to go out, connect, relax and enjoy themselves, but there was no product that truly fit the occasion.</p><p>So we built something new.</p>",
                 "background_color": "#f9d5c0",
@@ -355,9 +344,7 @@
               "type": "story-tile-text",
               "settings": {
                 "heading": "",
-                "heading_alignment": "center",
                 "heading_mobile": "",
-                "heading_alignment_mobile": "center",
                 "body": "<p>We created Toasted to help you <strong>relax and stay present.</strong> Something light and refreshing to enjoy anytime you’re ready to chill. Cheers to being in the moment.</p><p>Stay Toasted.</p>",
                 "body_mobile": "<p>We created Toasted to help you <strong>relax and stay present.</strong> Something light and refreshing to enjoy anytime you’re ready to chill. Cheers to being in the moment.<br/><br/><strong>Stay Toasted.</strong></p>",
                 "image": "shopify://shop_images/signature.svg",
@@ -412,13 +399,13 @@
       ],
       "name": "t:general.story_tiles",
       "settings": {
-        "heading": "<p>Toasted Story</p>",
+        "heading": "<p>The Toasted Story</p>",
         "subheading": "",
         "background_color": "#9ab2d5",
         "heading_color": "#212323",
-        "show_heading_background": true,
-        "heading_background_image": "shopify://shop_images/Frame_2147230621.svg",
-        "heading_background_image_mobile": "shopify://shop_images/Frame_2147236027.svg"
+        "show_heading_background": false,
+        "heading_background_image": "",
+        "heading_background_image_mobile": ""
       }
     },
     "gruns_product_list_simple_mgnb4p": {
@@ -504,7 +491,7 @@
         "description": "Get yours, just pay shipping.",
         "show_button": true,
         "button_label": "Get My Free Trial Pack",
-        "button_link": "shopify://products/freetrial",
+        "button_link": "shopify://products/three-pack",
         "button_background_color": "#d4941f",
         "button_text_color": "#f6f1ec",
         "background_color": "#9cb1d1",
@@ -630,6 +617,7 @@
       "settings": {
         "heading": "<p>People love Toasted!</p>",
         "heading_mobile": "",
+        "slide_layout": "auto",
         "enable_slide_border": true,
         "enable_autoplay": false,
         "show_navigation": true,

@@ -110,7 +110,7 @@
               "type": "flavor-swatch",
               "name": "t:general.flavor_swatch",
               "settings": {
-                "product": "freetrial",
+                "product": "three-pack",
                 "flavor_name": "Trial Pack",
                 "swatch_image": "shopify://shop_images/Frame_2147235892_1.png",
                 "color": "#2f7948"
@@ -129,8 +129,8 @@
           "type": "combo-offer",
           "static": true,
           "settings": {
-            "sale_price": "$0",
-            "original_price": "$12",
+            "sale_price": "$12",
+            "original_price": "",
             "badge_text": "One-Time. No Subscription."
           },
           "blocks": {}
@@ -228,9 +228,9 @@
         "subscribe_card_background_image": "shopify://shop_images/Label.svg",
         "subscribe_pill_background_color": "#551f36",
         "subscribe_pill_text_color": "#f6f1ec",
-        "custom_button_text": "<p>Claim Your Trial Pack</p>",
+        "custom_button_text": "<p>Coming Soon</p>",
         "show_sticky_cta": true,
-        "sticky_cta_label": "Add To Cart",
+        "sticky_cta_label": "Coming Soon",
         "sticky_cta_background_color": "#212323",
         "sticky_cta_background_opacity": 10,
         "sticky_cta_button_background_color": "#212323",
@@ -338,6 +338,7 @@
       "settings": {
         "heading": "<p>People love Toasted!</p>",
         "heading_mobile": "",
+        "slide_layout": "auto",
         "enable_slide_border": true,
         "enable_autoplay": false,
         "show_navigation": true,

@@ -109,8 +109,8 @@
               "type": "flavor-swatch",
               "name": "t:general.flavor_swatch",
               "settings": {
-                "product": "freetrial",
-                "flavor_name": "Trial Pack",
+                "product": "three-pack",
+                "flavor_name": "3 Pack Trial",
                 "swatch_image": "shopify://shop_images/Frame_2147235892_1.png",
                 "color": "#2f7948"
               },
@@ -337,6 +337,7 @@
       "settings": {
         "heading": "<p>The People Love Toasted!</p>",
         "heading_mobile": "",
+        "slide_layout": "auto",
         "enable_slide_border": true,
         "enable_autoplay": false,
         "show_navigation": true,
@@ -522,7 +523,7 @@
             "flavor_name_color": "#5e1a79",
             "description": "Deep. Juicy. Easy to enjoy.",
             "price_text": "12 Pack as low as $2.67/can",
-            "button_label": "Add To Cart",
+            "button_label": "Coming Soon",
             "button_background_color": "#212323",
             "button_text_color": "#f6f1ec",
             "show_learn_more": true,
@@ -552,15 +553,15 @@
         "product_card_iUCqkK": {
           "type": "product-card",
           "settings": {
-            "product": "freetrial",
+            "product": "three-pack",
             "background_image": "shopify://shop_images/Frame_2147236049.svg",
             "image": "shopify://shop_images/Group_157_2.png",
             "use_lottie_animation": false,
-            "flavor_name": "Three Pack Trial",
+            "flavor_name": "3 Pack Trial",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
-            "price_text": "One-Time. Just Pay Shipping.",
-            "button_label": "Add To Cart",
+            "price_text": "$12. One-Time Purchase.",
+            "button_label": "Coming Soon",
             "button_background_color": "#212323",
             "button_text_color": "#f6f1ec",
             "show_learn_more": true,

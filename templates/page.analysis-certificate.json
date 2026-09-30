@@ -102,7 +102,7 @@
           "type": "icon-badge-card",
           "settings": {
             "label": "No pesticides",
-            "icon": "shopify://shop_images/Frame_2147236139.svg",
+            "icon": "shopify://shop_images/Frame_2147236139.png",
             "background_color": "#f9d5c0",
             "text_color": "#636d90"
           },

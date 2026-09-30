@@ -45,19 +45,19 @@
     "
   >
     {% if heading_mobile != blank %}
-      <div class="story-tile-cell__heading story-tile-cell__heading--mobile w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[5cqw]" style="text-align: {{ block.settings.heading_alignment_mobile }};">
+      <div class="story-tile-cell__heading story-tile-cell__heading--mobile w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[5cqw] text-center">
         {{ heading_mobile }}
       </div>
     {% endif %}
 
     {% if heading_desktop != blank %}
-      <div class="story-tile-cell__heading story-tile-cell__heading--desktop w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[5cqw]" style="text-align: {{ block.settings.heading_alignment }};">
+      <div class="story-tile-cell__heading story-tile-cell__heading--desktop w-full font-[family-name:var(--font-heading--family)] text-[42px] font-bold leading-[0.95] [&_p]:m-0 sm:text-[52px] md:text-[5cqw] text-center">
         {{ heading_desktop }}
       </div>
     {% endif %}
 
     {% if body_mobile != blank %}
-      <div class="story-tile-cell__body story-tile-cell__body--mobile w-full font-[family-name:var(--font-primary--family)] text-left text-[20px] leading-[1.5] [&_p]:m-0 [&_p+p]:mt-[1em] sm:text-[16px] md:text-[2.2222cqw]">
+      <div class="story-tile-cell__body story-tile-cell__body--mobile w-full font-[family-name:var(--font-primary--family)] text-center text-[20px] leading-[1.5] [&_p]:m-0 [&_p+p]:mt-[1em] sm:text-[16px] md:text-[2.2222cqw]">
         {{ body_mobile }}
       </div>
     {% endif %}
@@ -132,21 +132,9 @@
       "default": "<p>More open. More present. More here.</p>"
     },
     {
-      "type": "text_alignment",
-      "id": "heading_alignment",
-      "label": "t:labels.heading_alignment",
-      "default": "center"
-    },
-    {
       "type": "richtext",
       "id": "heading_mobile",
       "label": "t:labels.heading_mobile"
-    },
-    {
-      "type": "text_alignment",
-      "id": "heading_alignment_mobile",
-      "label": "t:labels.heading_alignment_mobile",
-      "default": "center"
     },
     {
       "type": "richtext",
