@@ -1485,3 +1485,29 @@ Schema locale files, saved with a .schema.json extension, store translation stri
 {% endschema %}
 ```
 
+
+## Tailwind
+
+- Tailwind v4 is compiled from `src/tailwind.css` into `assets/tailwind.css`. Shopify only serves the compiled file.
+- After editing Liquid or `src/tailwind.css`, run `npm run build` so `assets/tailwind.css` is current.
+- On merge conflicts in `assets/tailwind.css`, rerun `npm run build`; never resolve by hand.
+- Never use `sed -i` on theme files (temp files break `shopify theme dev` sync); use Edit or Node.
+- Never commit `*.tmp.*` files.
+
+## Cloud sessions only (`CLAUDE_CODE_REMOTE=true`)
+
+These rules apply ONLY in Claude Code cloud sessions. Locally (variable unset), ignore this section.
+
+- No restrictions on git branches (main, feature branches); the user decides per session.
+- Preview/dev theme = the theme the user names (ID or name; resolve names with `shopify theme list`); otherwise `$PREVIEW_THEME_ID`; if neither is set and a push is needed, ask.
+- Hooks in `.claude/hooks/` enforce the live-push confirmation. If a command is blocked, run the confirmation flow below; never try to work around the hook.
+- After every change: run `npm run build`, then `shopify theme push --theme <preview-id> --nodelete` so the user can preview. Do not wait to be asked and do not ask for confirmation for preview/dev themes.
+- Never push to the live theme automatically. Only do it when the user explicitly asks to push/publish to live, and then ALWAYS follow this confirmation flow:
+  1. Run `shopify theme list` and identify the theme with role `live`. Never trust an ID from memory or from the user's message alone.
+  2. Ask: "Are you sure you want to push to the LIVE theme?" and show the live theme's ID and name.
+  3. Ask the user to type this exact sentence: `PUSH TO LIVE: <theme name> (<theme id>)`, substituting the real name and ID.
+  4. Only if the user's next message matches that sentence exactly (case-sensitive, nothing else) run `npm run build` then `shopify theme push --theme <live-id> --allow-live`. Any other reply, including "yes" or "go ahead", means cancel; do not push.
+  5. The confirmation covers one push only. Repeat the whole flow for every later live push.
+  6. Never publish, delete, or overwrite the live theme any other way (`theme publish`, `theme delete`, `theme pull`, `--live`).
+- Do NOT commit or `git push` unless the user says so. When told, commit (including `assets/tailwind.css`) and push to the branch they name, or the current one.
+- `npm run dev` doesn't work in cloud; use the build + push flow above.
