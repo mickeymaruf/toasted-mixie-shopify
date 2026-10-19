@@ -84,17 +84,6 @@
               },
               "blocks": {}
             },
-            "flavor_swatch_HhRbV9": {
-              "type": "flavor-swatch",
-              "name": "t:general.flavor_swatch",
-              "settings": {
-                "product": "berry-acai",
-                "flavor_name": "",
-                "swatch_image": "shopify://shop_images/Frame_2147235893.png",
-                "color": "#552469"
-              },
-              "blocks": {}
-            },
             "flavor_swatch_ktfVwb": {
               "type": "flavor-swatch",
               "name": "t:general.flavor_swatch",
@@ -120,7 +109,6 @@
           },
           "block_order": [
             "flavor_swatch_ayHRVG",
-            "flavor_swatch_HhRbV9",
             "flavor_swatch_ktfVwb",
             "flavor_swatch_eb3V44"
           ]
@@ -129,7 +117,7 @@
           "type": "combo-offer",
           "static": true,
           "settings": {
-            "sale_price": "$12",
+            "sale_price": "$15",
             "original_price": "",
             "badge_text": "One-Time. No Subscription."
           },
@@ -338,7 +326,6 @@
       "settings": {
         "heading": "<p>People love Toasted!</p>",
         "heading_mobile": "",
-        "slide_layout": "auto",
         "enable_slide_border": true,
         "enable_autoplay": false,
         "show_navigation": true,

@@ -13,16 +13,6 @@
       "cart-drawer": {
         "type": "cart-drawer",
         "blocks": {
-          "recommended_product_wRFTAz": {
-            "type": "recommended-product",
-            "name": "t:general.recommended_product",
-            "settings": {
-              "product": "berry-acai",
-              "rating": 5,
-              "review_count": "555"
-            },
-            "blocks": {}
-          },
           "recommended_product_Wjy4Xa": {
             "type": "recommended-product",
             "name": "t:general.recommended_product",
@@ -35,13 +25,12 @@
           }
         },
         "block_order": [
-          "recommended_product_wRFTAz",
           "recommended_product_Wjy4Xa"
         ],
         "settings": {
           "heading": "Your Toasted bag",
-          "show_free_shipping": false,
-          "free_shipping_threshold": 75,
+          "show_free_shipping": true,
+          "free_shipping_threshold": 150,
           "milestone_label": "Free Shipping",
           "progress_message": "Spend {{ amount }} more to unlock free shipping",
           "progress_message_unlocked": "Free shipping unlocked!",
@@ -74,7 +63,7 @@
           "button_text_color": "#212323",
           "cans_background_color": "#f9d5c0",
           "cans_background_image": "shopify://shop_images/Rectangle_61.png",
-          "can_image_1": "shopify://shop_images/berry_30000_1.png",
+          "can_image_1": "",
           "can_image_2": "shopify://shop_images/lime_20000_1.png",
           "can_image_3": "shopify://shop_images/orange_010000_3.png"
         }

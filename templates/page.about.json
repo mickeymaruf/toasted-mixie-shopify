@@ -448,31 +448,11 @@
             "button_text_color": "#212323"
           },
           "blocks": {}
-        },
-        "product_card_simple_dJMxJH": {
-          "type": "product-card-simple",
-          "settings": {
-            "product": "berry-acai",
-            "image": "shopify://shop_images/Berry-Acai-Fruit-_2.png",
-            "alt_text": "",
-            "background_color": "#f0f0f0",
-            "background_image": "shopify://shop_images/front_3.svg",
-            "flavor_sticker": "shopify://shop_images/flavor.svg",
-            "badge_sticker": "shopify://shop_images/Group_112_1.svg",
-            "title": "Berry Acai",
-            "description": "Rich berry, vibrant açaí, real fruit flavor, and a functional blend for good company and good moments.",
-            "text_color": "#f6f1ec",
-            "button_label": "Add to Cart",
-            "button_background_color": "#f6f1ec",
-            "button_text_color": "#212323"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
         "product_card_simple_i8tAgt",
-        "product_card_simple_hCyNMf",
-        "product_card_simple_dJMxJH"
+        "product_card_simple_hCyNMf"
       ],
       "disabled": true,
       "name": "t:general.product_list_simple",
@@ -617,7 +597,6 @@
       "settings": {
         "heading": "<p>People love Toasted!</p>",
         "heading_mobile": "",
-        "slide_layout": "auto",
         "enable_slide_border": true,
         "enable_autoplay": false,
         "show_navigation": true,

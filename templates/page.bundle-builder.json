@@ -19,13 +19,10 @@
       "name": "t:general.hero_banner",
       "settings": {
         "heading": "<p>Bundle & Save</p>",
-        "heading_mobile": "",
         "subheading": "<p>Pick your flavors. Stock the fridge.</p>",
-        "subheading_mobile": "",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_2_d9ea2e03-3fd3-45fb-bec0-189d4d2ac384.png",
         "background_image_mobile": "shopify://shop_images/Frame_2147230792_1_0723ef5c-41fc-4e02-99a9-8b09bccc13dc.png",
-        "show_gradient_overlay": true,
         "background_color": "#f6f1ec"
       }
     },
@@ -51,21 +48,6 @@
               },
               "blocks": {}
             },
-            "bundle_product_nM9qcq": {
-              "type": "bundle-product",
-              "disabled": true,
-              "settings": {
-                "product": "berry-acai",
-                "background_image": "shopify://shop_images/Frame_2147236044_1_dc0519c7-6c4d-4d51-9b73-89ac0403b2eb.svg",
-                "image": "shopify://shop_images/Group_194.png",
-                "flavor_style": "berry_acai",
-                "flavor_name": "Berry Acai",
-                "pack_label": "12-pack",
-                "card_background_color": "#9cb1d1",
-                "button_label": "Add to Bundle"
-              },
-              "blocks": {}
-            },
             "bundle_product_HAFtWU": {
               "type": "bundle-product",
               "settings": {
@@ -83,7 +65,6 @@
           },
           "block_order": [
             "bundle_product_Cbqde9",
-            "bundle_product_nM9qcq",
             "bundle_product_HAFtWU"
           ]
         },
@@ -92,73 +73,49 @@
           "static": true,
           "settings": {},
           "blocks": {
-            "bundle_milestone_PfJmMB": {
+            "bundle_milestone_pack2": {
               "type": "bundle-milestone",
               "settings": {
-                "threshold": 50,
-                "reward_label": "$5"
+                "metric": "packs",
+                "threshold": 2,
+                "reward_label": "5% off"
               },
               "blocks": {}
             },
-            "bundle_milestone_93Ghex": {
+            "bundle_milestone_pack3": {
               "type": "bundle-milestone",
               "settings": {
-                "threshold": 125,
-                "reward_label": "Free Ship"
+                "metric": "packs",
+                "threshold": 3,
+                "reward_label": "10% off"
               },
               "blocks": {}
             },
-            "bundle_milestone_iYfgPm": {
+            "bundle_milestone_ship150": {
               "type": "bundle-milestone",
               "settings": {
+                "metric": "spend",
                 "threshold": 150,
-                "reward_label": "$15"
-              },
-              "blocks": {}
-            },
-            "bundle_milestone_gCFGUg": {
-              "type": "bundle-milestone",
-              "settings": {
-                "threshold": 200,
-                "reward_label": "$30"
-              },
-              "blocks": {}
-            },
-            "bundle_milestone_GcLtdX": {
-              "type": "bundle-milestone",
-              "settings": {
-                "threshold": 250,
-                "reward_label": "$50"
-              },
-              "blocks": {}
-            },
-            "bundle_milestone_DMTXh8": {
-              "type": "bundle-milestone",
-              "settings": {
-                "threshold": 500,
-                "reward_label": "$125"
+                "reward_label": "Free Ship"
               },
               "blocks": {}
             }
           },
           "block_order": [
-            "bundle_milestone_PfJmMB",
-            "bundle_milestone_93Ghex",
-            "bundle_milestone_iYfgPm",
-            "bundle_milestone_gCFGUg",
-            "bundle_milestone_GcLtdX",
-            "bundle_milestone_DMTXh8"
+            "bundle_milestone_pack2",
+            "bundle_milestone_pack3",
+            "bundle_milestone_ship150"
           ]
         }
       },
       "name": "t:general.bundle_builder",
       "settings": {
         "bundle_heading": "Your bundle",
-        "bundle_subtitle": "Add more products to save",
+        "bundle_subtitle": "Add 2 or more 12 packs to save on one-time orders",
         "one_time_label": "One-Time Order",
         "subscribe_label": "Subscribe & Save 20%",
         "add_to_cart_label": "Add to Cart",
-        "subscribe_note": "Subscribe & Save is the best value.",
+        "subscribe_note": "Subscribe & Save is the best value. Bundle discounts apply to one-time orders.",
         "background_color": "#f6f1ec",
         "panel_background_color": "#f9d5c0",
         "purchase_selected_color": "#f9d5c0",
@@ -267,7 +224,6 @@
       "settings": {
         "heading": "<p>The People Love Toasted!</p>",
         "heading_mobile": "",
-        "slide_layout": "auto",
         "enable_slide_border": true,
         "enable_autoplay": false,
         "show_navigation": true,

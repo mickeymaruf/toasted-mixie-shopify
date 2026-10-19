@@ -153,9 +153,13 @@
                 assign savings_amount = 0
                 assign savings_percent = 0
                 if allocation
-                  assign savings_amount = variant.price | minus: allocation.price
-                  if variant.price > 0
-                    assign savings_percent = savings_amount | times: 100.0 | divided_by: variant.price | round
+                  assign savings_base = variant.price
+                  if variant.compare_at_price > variant.price
+                    assign savings_base = variant.compare_at_price
+                  endif
+                  assign savings_amount = savings_base | minus: allocation.price
+                  if savings_base > 0
+                    assign savings_percent = savings_amount | times: 100.0 | divided_by: savings_base | round
                   endif
                 endif
               %}
@@ -272,9 +276,13 @@
               assign initial_savings = 0
               assign initial_percent = 0
               if selected_allocation
-                assign initial_savings = current_variant.price | minus: selected_allocation.price
-                if current_variant.price > 0
-                  assign initial_percent = initial_savings | times: 100.0 | divided_by: current_variant.price | round
+                assign initial_base = current_variant.price
+                if current_variant.compare_at_price > current_variant.price
+                  assign initial_base = current_variant.compare_at_price
+                endif
+                assign initial_savings = initial_base | minus: selected_allocation.price
+                if initial_base > 0
+                  assign initial_percent = initial_savings | times: 100.0 | divided_by: initial_base | round
                 endif
               endif
             %}

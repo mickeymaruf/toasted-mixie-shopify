@@ -17,14 +17,7 @@
     data-drawer-expand-label="{{ 'bundle_builder.expand' | t | escape }}"
     data-drawer-collapse-label="{{ 'bundle_builder.collapse' | t | escape }}"
     data-placeholder-count="8"
-    data-discounts='[
-      {"threshold": 5000, "discount": 500},
-      {"threshold": 12500, "discount": 0},
-      {"threshold": 15000, "discount": 1500},
-      {"threshold": 20000, "discount": 3000},
-      {"threshold": 25000, "discount": 5000},
-      {"threshold": 50000, "discount": 12500}
-    ]'
+    data-pack-discounts='[{"packs": 2, "percent": 5}, {"packs": 3, "percent": 10}]'
   >
     <template data-bundle-remove-icon>{{ 'icon-close.svg' | inline_asset_content }}</template>
 
@@ -204,7 +197,7 @@
       this.removeIconMarkup = this.querySelector('[data-bundle-remove-icon]')?.innerHTML || '&times;';
       this.removeLabelTemplate = this.dataset.removeLabelTemplate || 'Remove __TITLE__';
       this.placeholderCount = Number(this.dataset.placeholderCount || 6);
-      this.discounts = JSON.parse(this.dataset.discounts || '[]');
+      this.packDiscounts = JSON.parse(this.dataset.packDiscounts || '[]');
 
       this.drawerToggle = this.querySelector('[data-bundle-drawer-toggle]');
       this.drawerExpandLabel = this.dataset.drawerExpandLabel || 'Expand your bundle';
@@ -301,65 +294,78 @@
       if (this.addToCartButton) this.addToCartButton.disabled = this.totalQuantity === 0;
     }
 
+    isTwelvePack(item) {
+      return /\b12\s*pack\b/i.test(item.title || '');
+    }
+
+    get twelvePackCount() {
+      let count = 0;
+      for (const item of this.items.values()) {
+        if (this.isTwelvePack(item)) count += 1;
+      }
+      return count;
+    }
+
+    // Bundle discount: one-time orders only, on 12 packs. 2 = 5% off, 3+ = 10% off.
+    getPackDiscountPercent() {
+      const count = this.twelvePackCount;
+      let percent = 0;
+      for (const tier of this.packDiscounts) {
+        if (count >= tier.packs) percent = tier.percent;
+      }
+      return percent;
+    }
+
+    getOneTimeSubtotal() {
+      let subtotal = 0;
+      for (const item of this.items.values()) subtotal += item.price;
+      return subtotal;
+    }
+
+    getOneTimeDiscount() {
+      const percent = this.getPackDiscountPercent();
+      if (!percent) return 0;
+      let twelveSubtotal = 0;
+      for (const item of this.items.values()) {
+        if (this.isTwelvePack(item)) twelveSubtotal += item.price;
+      }
+      return Math.round((twelveSubtotal * percent) / 100);
+    }
+
+    getSubscribeSubtotal() {
+      let subtotal = 0;
+      for (const item of this.items.values()) subtotal += item.subscribePrice || item.price;
+      return subtotal;
+    }
+
     renderPrices() {
-      let oneTimeSubtotal = 0;
-      for (const item of this.items.values()) {
-        oneTimeSubtotal += item.price;
-      }
-      let subscribeSubtotal = 0;
-      for (const item of this.items.values()) {
-        const price = item.subscribePrice || item.price;
-        subscribeSubtotal += price;
-      }
-
-      const oneTimeDiscount = this.getAppliedDiscount(oneTimeSubtotal);
-      const subscribeDiscount = this.getAppliedDiscount(subscribeSubtotal);
-
-      const oneTimeDiscounted = Math.max(0, oneTimeSubtotal - oneTimeDiscount);
-      const subscribeDiscounted = Math.max(0, subscribeSubtotal - subscribeDiscount);
+      const oneTimeSubtotal = this.getOneTimeSubtotal();
+      const oneTimeDiscounted = Math.max(0, oneTimeSubtotal - this.getOneTimeDiscount());
+      const subscribeDiscounted = this.getSubscribeSubtotal();
+      // Subscriptions save 20% vs. full price. No bundle discount on subscriptions.
+      const subscribeOriginal = oneTimeSubtotal;
 
       if (this.priceOneTimeOriginal) {
-        this.priceOneTimeOriginal.textContent = this.formatPrice(oneTimeSubtotal);
+        this.priceOneTimeOriginal.textContent = oneTimeDiscounted < oneTimeSubtotal ? this.formatPrice(oneTimeSubtotal) : '';
       }
       if (this.priceOneTime) {
         this.priceOneTime.textContent = this.formatPrice(oneTimeDiscounted);
       }
 
       if (this.priceSubscribeOriginal) {
-        this.priceSubscribeOriginal.textContent = this.formatPrice(subscribeSubtotal);
+        this.priceSubscribeOriginal.textContent = subscribeDiscounted < subscribeOriginal ? this.formatPrice(subscribeOriginal) : '';
       }
       if (this.priceSubscribe) {
         this.priceSubscribe.textContent = this.formatPrice(subscribeDiscounted);
       }
     }
 
-    getAppliedDiscount(subtotal) {
-      let applicableDiscount = 0;
-      for (const discount of this.discounts) {
-        if (subtotal >= discount.threshold) {
-          applicableDiscount = discount.discount;
-        }
-      }
-      return applicableDiscount;
-    }
-
     getOneTimeTotal() {
-      let subtotal = 0;
-      for (const item of this.items.values()) {
-        subtotal += item.price;
-      }
-      const discount = this.getAppliedDiscount(subtotal);
-      return Math.max(0, subtotal - discount);
+      return Math.max(0, this.getOneTimeSubtotal() - this.getOneTimeDiscount());
     }
 
     getSubscribeTotal() {
-      let subtotal = 0;
-      for (const item of this.items.values()) {
-        const price = item.subscribePrice || item.price;
-        subtotal += price;
-      }
-      const discount = this.getAppliedDiscount(subtotal);
-      return Math.max(0, subtotal - discount);
+      return this.getSubscribeSubtotal();
     }
 
     formatPrice(cents) {
@@ -402,18 +408,29 @@
       }
     }
 
-    renderMilestones() {
-      const subtotal = this.subtotalCents;
+    getMilestoneValue(el) {
+      if (el.dataset.metric === 'packs') {
+        // Pack discounts apply to one-time orders only.
+        return this.isSubscribing ? 0 : this.twelvePackCount;
+      }
+      return this.isSubscribing ? this.getSubscribeTotal() : this.getOneTimeTotal();
+    }
 
+    isMilestoneAchieved(el) {
+      const value = this.getMilestoneValue(el);
+      return value > 0 && value >= Number(el.dataset.threshold);
+    }
+
+    renderMilestones() {
       if (this.progressFill) {
-        this.progressFill.style.width = `${this.getProgressPercent(subtotal)}%`;
+        this.progressFill.style.width = `${this.getProgressPercent()}%`;
       }
 
       this.milestones.forEach((el) => {
         const pill = el.querySelector('[data-bundle-milestone-pill]');
         if (!pill) return;
 
-        const achieved = Number(el.dataset.threshold) <= subtotal;
+        const achieved = this.isMilestoneAchieved(el);
 
         pill.classList.toggle('bg-[#212323]', achieved);
         pill.classList.toggle('text-[#F6F1EC]', achieved);
@@ -422,30 +439,26 @@
       });
     }
 
-    getProgressPercent(subtotal) {
-      const thresholds = this.milestones
-        .map((el) => Number(el.dataset.threshold))
-        .sort((a, b) => a - b);
+    getProgressPercent() {
+      const count = this.milestones.length;
+      if (count === 0 || this.items.size === 0) return 0;
 
-      const count = thresholds.length;
-      if (count === 0) return 0;
-      if (subtotal <= 0) return 0;
+      const positions = this.milestones.map((_, index) => ((index + 0.75) / count) * 100);
 
-      const positions = thresholds.map((_, index) => ((index + 0.75) / count) * 100);
-
-      if (subtotal >= thresholds[count - 1]) return 100;
-
-      let lowerIndex = -1;
+      let lastIndex = -1;
       for (let i = 0; i < count; i += 1) {
-        if (subtotal >= thresholds[i]) lowerIndex = i;
+        if (this.isMilestoneAchieved(this.milestones[i])) lastIndex = i;
       }
+      if (lastIndex === count - 1) return 100;
 
-      const lowerThreshold = lowerIndex >= 0 ? thresholds[lowerIndex] : 0;
-      const lowerPosition = lowerIndex >= 0 ? positions[lowerIndex] : 0;
-      const upperThreshold = thresholds[lowerIndex + 1];
-      const upperPosition = positions[lowerIndex + 1];
-
-      const ratio = (subtotal - lowerThreshold) / (upperThreshold - lowerThreshold);
+      const next = this.milestones[lastIndex + 1];
+      const prev = lastIndex >= 0 ? this.milestones[lastIndex] : null;
+      const lowerPosition = lastIndex >= 0 ? positions[lastIndex] : 0;
+      const upperPosition = positions[lastIndex + 1];
+      const lowerValue = prev && prev.dataset.metric === next.dataset.metric ? Number(prev.dataset.threshold) : 0;
+      const upperValue = Number(next.dataset.threshold);
+      const value = this.getMilestoneValue(next);
+      const ratio = Math.min(1, Math.max(0, (value - lowerValue) / (upperValue - lowerValue || 1)));
       return lowerPosition + ratio * (upperPosition - lowerPosition);
     }
 
@@ -625,13 +638,10 @@
           "static": true,
           "id": "bundle-milestone-list",
           "blocks": [
-            { "type": "bundle-milestone", "settings": { "threshold": 50, "reward_label": "$5" } },
-            { "type": "bundle-milestone", "settings": { "threshold": 125, "reward_label": "Free Ship" } },
-            { "type": "bundle-milestone", "settings": { "threshold": 150, "reward_label": "$15" } },
-            { "type": "bundle-milestone", "settings": { "threshold": 200, "reward_label": "$30" } },
-            { "type": "bundle-milestone", "settings": { "threshold": 250, "reward_label": "$50" } },
-            { "type": "bundle-milestone", "settings": { "threshold": 500, "reward_label": "$125" } }
-          ]
+            { "type": "bundle-milestone", "settings": { "metric": "packs", "threshold": 2, "reward_label": "5% off" } },
+          { "type": "bundle-milestone", "settings": { "metric": "packs", "threshold": 3, "reward_label": "10% off" } },
+          { "type": "bundle-milestone", "settings": { "metric": "spend", "threshold": 150, "reward_label": "Free Ship" } }
+        ]
         }
       ]
     }

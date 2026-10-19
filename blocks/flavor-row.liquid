@@ -15,6 +15,15 @@
   .flavor-row .shopify-block {
     display: contents;
   }
+
+  /* TEMP: with only two cards, let them fill the row on desktop */
+  @media (min-width: 1024px) {
+    .flavor-row:not(:has(> .shopify-block:nth-child(3))) > .shopify-block > * {
+      flex: 1 1 0%;
+      width: auto;
+      max-width: none;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}

@@ -11,13 +11,19 @@
 {% enddoc %}
 
 {% liquid
-  assign threshold_cents = block.settings.threshold | times: 100
+  assign metric = block.settings.metric | default: 'spend'
+  if metric == 'packs'
+    assign threshold_value = block.settings.threshold
+  else
+    assign threshold_value = block.settings.threshold | times: 100
+  endif
 %}
 
 <div
   class="flex shrink-0 flex-col items-center gap-1"
   data-bundle-milestone
-  data-threshold="{{ threshold_cents }}"
+  data-threshold="{{ threshold_value }}"
+  data-metric="{{ metric }}"
   {{ block.shopify_attributes }}
 >
   <div
@@ -27,7 +33,11 @@
     {{ block.settings.reward_label }}
   </div>
   <p class="text-center text-[10px] leading-[14px] tracking-[0.6px] whitespace-nowrap text-[#212323]">
-    {% render 'format-money', cents: threshold_cents %}
+    {%- if metric == 'packs' -%}
+      {{ block.settings.threshold }} x 12 Packs
+    {%- else -%}
+      {% render 'format-money', cents: threshold_value %}
+    {%- endif -%}
   </p>
 </div>
 
@@ -35,6 +45,16 @@
 {
   "name": "t:general.bundle_milestone",
   "settings": [
+    {
+      "type": "select",
+      "id": "metric",
+      "label": "Milestone type",
+      "options": [
+        { "value": "spend", "label": "Spend amount ($)" },
+        { "value": "packs", "label": "Number of 12 packs" }
+      ],
+      "default": "spend"
+    },
     {
       "type": "number",
       "id": "threshold",

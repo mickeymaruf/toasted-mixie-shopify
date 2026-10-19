@@ -83,18 +83,6 @@
               },
               "blocks": {}
             },
-            "flavor_swatch_HhRbV9": {
-              "type": "flavor-swatch",
-              "name": "t:general.flavor_swatch",
-              "disabled": true,
-              "settings": {
-                "product": "berry-acai",
-                "flavor_name": "",
-                "swatch_image": "shopify://shop_images/Frame_2147235893.png",
-                "color": "#552469"
-              },
-              "blocks": {}
-            },
             "flavor_swatch_ktfVwb": {
               "type": "flavor-swatch",
               "name": "t:general.flavor_swatch",
@@ -120,7 +108,6 @@
           },
           "block_order": [
             "flavor_swatch_ayHRVG",
-            "flavor_swatch_HhRbV9",
             "flavor_swatch_ktfVwb",
             "flavor_swatch_bGjd3J"
           ]
@@ -338,7 +325,6 @@
       "settings": {
         "heading": "<p>The People Love Toasted!</p>",
         "heading_mobile": "",
-        "slide_layout": "auto",
         "enable_slide_border": true,
         "enable_autoplay": false,
         "show_navigation": true,
@@ -504,28 +490,8 @@
             "flavor_name": "Blood Orange",
             "flavor_name_color": "#b70141",
             "description": "Bright. Smooth. Golden-hour ready.",
-            "price_text": "12 Pack as low as $2.67/can",
+            "price_text": "As low as $4.00 per can",
             "button_label": "Add To Cart",
-            "button_background_color": "#212323",
-            "button_text_color": "#f6f1ec",
-            "show_learn_more": true,
-            "learn_more_label": ""
-          },
-          "blocks": {}
-        },
-        "product_card_CEY8Xa": {
-          "type": "product-card",
-          "disabled": true,
-          "settings": {
-            "product": "berry-acai",
-            "background_image": "shopify://shop_images/Frame_2147236002.svg",
-            "image": "shopify://shop_images/Group_5.png",
-            "use_lottie_animation": false,
-            "flavor_name": "Berry Acai",
-            "flavor_name_color": "#5e1a79",
-            "description": "Deep. Juicy. Easy to enjoy.",
-            "price_text": "12 Pack as low as $2.67/can",
-            "button_label": "Coming Soon",
             "button_background_color": "#212323",
             "button_text_color": "#f6f1ec",
             "show_learn_more": true,
@@ -543,7 +509,7 @@
             "flavor_name": "Ginger Lime",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
-            "price_text": "12 Pack as low as $2.67/can",
+            "price_text": "As low as $4.00 per can",
             "button_label": "Add To Cart",
             "button_background_color": "#212323",
             "button_text_color": "#f6f1ec",
@@ -562,7 +528,7 @@
             "flavor_name": "3 Pack Trial",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
-            "price_text": "$12. One-Time Purchase.",
+            "price_text": "$15. One-Time Purchase.",
             "button_label": "Coming Soon",
             "button_background_color": "#212323",
             "button_text_color": "#f6f1ec",
@@ -574,7 +540,6 @@
       },
       "block_order": [
         "product_card_kPnEQx",
-        "product_card_CEY8Xa",
         "product_card_PVhUHH",
         "product_card_iUCqkK"
       ],

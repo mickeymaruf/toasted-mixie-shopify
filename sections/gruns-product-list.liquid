@@ -21,7 +21,7 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <div class="gruns-product-list__grid grid w-full grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-[20px]">
+      <div class="gruns-product-list__grid{% if section.blocks.size == 3 %} gruns-product-list__grid--three{% endif %} grid w-full grid-cols-2 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-[20px]">
         {% content_for 'blocks' %}
       </div>
     {% endif %}
@@ -29,6 +29,24 @@
 </section>
 
 {% stylesheet %}
+  /* TEMP: centered layout when only 3 cards are shown */
+  .gruns-product-list__grid--three > .shopify-block:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 1rem) / 2);
+  }
+  @media (min-width: 640px) {
+    .gruns-product-list__grid--three > .shopify-block:last-child { width: calc((100% - 1.5rem) / 2); }
+  }
+  @media (min-width: 1024px) {
+    .gruns-product-list__grid.gruns-product-list__grid--three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      max-width: calc(75% - 5px);
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .gruns-product-list__grid--three > .shopify-block:last-child { grid-column: auto; width: 100%; }
+  }
   .gruns-product-list__grid {
     align-items: stretch;
   }

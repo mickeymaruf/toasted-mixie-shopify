@@ -34,7 +34,7 @@
         "announcement_bar_item_chndfM": {
           "type": "announcement-bar-item",
           "settings": {
-            "text": "<p>Bundle up and subscribe to save the most.</p>",
+            "text": "<p>Subscribe & save 20%. Free shipping on orders $150+.</p>",
             "show_button": true,
             "button_style": "arrow",
             "button_label": "Claim Your Trial",
@@ -100,6 +100,7 @@
         "card_1_link": "",
         "card_2_product": "",
         "card_2_name": "",
+        "card_2_image": "",
         "card_2_link": "",
         "card_3_product": "ginger-lime",
         "card_3_name": "Ginger Lime",

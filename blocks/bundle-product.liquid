@@ -27,15 +27,8 @@
       assign default_image = 'card-flavor-blood-orange.png'
   endcase
 
-  assign selling_plan = block.settings.product.selling_plan_groups.first.selling_plans.first
-  assign subscribe_price = blank
-  if selling_plan
-    for allocation in variant.selling_plan_allocations
-      if allocation.selling_plan.id == selling_plan.id
-        assign subscribe_price = allocation.price
-      endif
-    endfor
-  endif
+  assign selling_plan = variant.selling_plan_allocations.first.selling_plan
+  assign subscribe_price = variant.selling_plan_allocations.first.price
 
   assign has_pack_options = false
   if block.settings.product.variants.size > 1
@@ -106,20 +99,15 @@
       >
         {% for pack_variant in block.settings.product.variants %}
           {% liquid
-            assign option_subscribe_price = blank
-            if selling_plan
-              for allocation in pack_variant.selling_plan_allocations
-                if allocation.selling_plan.id == selling_plan.id
-                  assign option_subscribe_price = allocation.price
-                endif
-              endfor
-            endif
+            assign option_subscribe_price = pack_variant.selling_plan_allocations.first.price
+            assign option_selling_plan_id = pack_variant.selling_plan_allocations.first.selling_plan.id
             assign option_title = flavor_name | append: ' (' | append: pack_variant.title | append: ')'
           %}
           <option
             value="{{ pack_variant.id }}"
             data-price="{{ pack_variant.price }}"
             data-subscribe-price="{{ option_subscribe_price }}"
+            data-selling-plan-id="{{ option_selling_plan_id }}"
             data-title="{{ option_title | escape }}"
             {% if pack_variant.id == variant.id %}
               selected
@@ -184,6 +172,7 @@
     button.dataset.variantId = option.value;
     button.dataset.price = option.dataset.price;
     button.dataset.subscribePrice = option.dataset.subscribePrice || '';
+    button.dataset.sellingPlanId = option.dataset.sellingPlanId || '';
     button.dataset.title = option.dataset.title;
     button.disabled = option.disabled;
   });
