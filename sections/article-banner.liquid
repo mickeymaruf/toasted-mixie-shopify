@@ -1,0 +1,192 @@
+{%- liquid
+  assign use_article = false
+  if section.settings.content_source == 'article' and article != blank
+    assign use_article = true
+    assign banner_image = article.image
+    assign banner_heading = article.title
+    assign read_minutes = article.content | strip_html | split: ' ' | size | divided_by: 200.0 | ceil | at_least: 1
+    assign banner_read_time = 'blog.min_read' | t: count: read_minutes
+    assign published_date = article.published_at | date: '%b %-d, %Y'
+  elsif section.settings.featured_article != blank
+    assign featured = section.settings.featured_article
+    assign banner_image = featured.image
+    assign banner_heading = featured.title
+    assign read_minutes = featured.content | strip_html | split: ' ' | size | divided_by: 200.0 | ceil | at_least: 1
+    assign banner_read_time = 'blog.min_read' | t: count: read_minutes
+    assign banner_link_url = featured.url
+  else
+    assign banner_image = section.settings.image
+    assign banner_heading = section.settings.heading
+    assign banner_read_time = section.settings.read_time
+  endif
+  if banner_link_url == blank
+    assign banner_link_url = section.settings.link_url
+  endif
+-%}
+
+{%- assign banner_image_width = banner_image.width | append: '' -%}
+
+<section class="article-banner full-width" style="background-color: {{ section.settings.background_color }};">
+  <div class="mx-auto w-full max-w-[1440px] px-5 pt-5 sm:px-8 md:px-12 xl:px-[100px]">
+    <div
+      class="flex flex-col gap-8 rounded-[33px] border-[3px] border-solid p-5 lg:min-h-[487px] lg:flex-row lg:items-center lg:gap-0"
+      style="background-color: {{ section.settings.card_background_color }}; border-color: {{ section.settings.border_color }};"
+    >
+      <div class="h-[280px] w-full shrink-0 overflow-hidden rounded-[23px] sm:h-[360px] lg:h-[447px] lg:w-[41.5%] xl:w-[515px]">
+        {%- if banner_image -%}
+          {{
+            banner_image
+            | image_url: width: banner_image.width
+            | image_tag:
+              class: 'size-full object-cover',
+              loading: 'lazy',
+              widths: banner_image_width,
+              alt: banner_image.alt
+          }}
+        {%- else -%}
+          <img
+            src="{{ 'article-banner-image.jpg' | asset_url }}"
+            alt="{{ 'blog.article_banner_image_alt' | t | escape }}"
+            class="size-full object-cover"
+            width="3483"
+            height="1960"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </div>
+
+      <div class="flex w-full flex-col items-start gap-[30px] px-2 pb-4 lg:ml-[65px] lg:w-[495px] lg:max-w-[calc(58.5%-85px)] lg:p-0 lg:pr-0" style="color: {{ section.settings.text_color }};">
+        <div class="flex w-full flex-col items-start gap-[10px]">
+          {%- if banner_read_time != blank -%}
+            <p class="w-full font-[family-name:var(--font-primary--family)] text-[18px] leading-[1.5] font-medium sm:text-[24px]">
+              {{ banner_read_time }}
+            </p>
+          {%- endif -%}
+
+          {%- if banner_heading != blank -%}
+            <h2 class="w-full font-[family-name:var(--font-heading--family)] text-[36px] leading-[0.95] font-bold sm:text-[44px] xl:text-[52px]">
+              {{ banner_heading }}
+            </h2>
+          {%- endif -%}
+        </div>
+
+        {%- if use_article -%}
+          <p class="font-[family-name:var(--font-primary--family)] text-[20px] leading-[1.5] whitespace-nowrap">
+            {{ 'blog.posted_on' | t: date: published_date }}
+          </p>
+        {%- elsif section.settings.link_label != blank -%}
+          <a
+            {% if banner_link_url != blank %}
+              href="{{ banner_link_url }}"
+            {% endif %}
+            class="flex items-center justify-center gap-[15px] font-[family-name:var(--font-primary--family)] text-[20px] leading-[1.5] whitespace-nowrap"
+          >
+            {{ section.settings.link_label }}
+            <img
+              src="{{ 'icon-article-banner-arrow.svg' | asset_url }}"
+              alt=""
+              width="24"
+              height="18"
+              class="h-[18px] w-[24px] shrink-0"
+              aria-hidden="true"
+            >
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.article_banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "select",
+      "id": "content_source",
+      "label": "t:labels.content_source",
+      "options": [
+        { "value": "custom", "label": "t:options.content_source.custom" },
+        { "value": "article", "label": "t:options.content_source.article" }
+      ],
+      "default": "custom",
+      "info": "t:labels.content_source_info"
+    },
+    {
+      "type": "article",
+      "id": "featured_article",
+      "label": "t:labels.featured_article",
+      "info": "t:labels.featured_article_info"
+    },
+    {
+      "type": "text",
+      "id": "read_time",
+      "label": "t:labels.read_time",
+      "default": "2 min read"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "The Best Functional Beverage Ingredients"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:labels.link_label",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:labels.link"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "header",
+      "content": "t:general.style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background_color",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "t:labels.card_background_color",
+      "default": "#636D90"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "t:labels.border_color",
+      "default": "#212323"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.text_color",
+      "default": "#F6F1EC"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.article_banner"
+    }
+  ]
+}
+{% endschema %}

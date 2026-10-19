@@ -9,12 +9,25 @@
  */
 {
   "sections": {
+    "banner": {
+      "type": "article-banner",
+      "settings": {
+        "background_color": "#9AB2D5",
+        "featured_article": "news/welcome-to-the-toasted-newsletter"
+      }
+    },
     "main": {
       "type": "blog",
-      "settings": {}
+      "settings": {
+        "background_color": "#9AB2D5",
+        "articles_per_page": 2,
+        "blog": "news",
+        "filter_tags": ""
+      }
     }
   },
   "order": [
+    "banner",
     "main"
   ]
 }

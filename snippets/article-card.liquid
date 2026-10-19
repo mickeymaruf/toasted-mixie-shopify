@@ -1,0 +1,62 @@
+{% doc %}
+  Renders a single article card: image, read time, title, excerpt and a "Read more" link.
+  Used by the blog article list and the related articles section.
+
+  @param {article} [article] - The article to render. Omit to render an empty card that scripts can fill
+    in through its `data-slot` elements (used by the blog search).
+
+  @example
+  {% render 'article-card', article: article %}
+{% enddoc %}
+
+{%- assign full_width = article.image.width | append: '' -%}
+{%- assign read_minutes = article.content | strip_html | split: ' ' | size | divided_by: 200.0 | ceil | at_least: 1 -%}
+
+<a
+  href="{{ article.url }}"
+  data-slot="link"
+  class="flex h-full flex-col rounded-[33px] border-[3px] border-solid border-[#212323] text-[#212323]"
+>
+  <div data-slot="image" class="h-[386.67px] w-full shrink-0 overflow-hidden rounded-tl-[30px] rounded-tr-[30px]">
+    {%- if article.image -%}
+      {{
+        article.image
+        | image_url: width: article.image.width
+        | image_tag:
+          class: 'size-full object-cover',
+          loading: 'lazy',
+          widths: full_width,
+          alt: article.image.alt
+      }}
+    {%- else -%}
+      <div class="size-full bg-[#F9D5C0]" aria-hidden="true"></div>
+    {%- endif -%}
+  </div>
+
+  <div class="flex flex-1 sm:min-h-[268px] flex-col items-start justify-between gap-[15px] rounded-br-[30px] rounded-bl-[30px] bg-[#F6F1EC] px-6 py-6">
+    <div class="flex w-full flex-col gap-[15px]">
+      <p data-slot="read-time" class="w-full font-[family-name:var(--font-primary--family)] text-[18px] leading-[1.5] font-medium">
+        {{ 'blog.min_read' | t: count: read_minutes }}
+      </p>
+      <h2 data-slot="title" class="w-full font-[family-name:var(--font-heading--family)] text-[24px] leading-[0.95] font-bold">
+        {{ article.title }}
+      </h2>
+      <p data-slot="excerpt" class="line-clamp-2 w-full font-[family-name:var(--font-primary--family)] text-[16px] leading-[1.5]">
+        {{ article.excerpt_or_content | strip_html | truncate: 110 }}
+      </p>
+    </div>
+    <span class="flex items-center justify-center gap-[10px] font-[family-name:var(--font-primary--family)] text-[16px] leading-[1.5] whitespace-nowrap">
+      {{ 'blog.read_more' | t }}
+      <span class="relative h-[13.5px] w-[18px] shrink-0" aria-hidden="true">
+        <img
+          src="{{ 'icon-article-card-arrow.svg' | asset_url }}"
+          alt=""
+          class="absolute top-[-4.76%] left-[-3.57%] block h-[109.52%] w-[107.14%] max-w-none"
+          width="19.2857"
+          height="14.7857"
+          loading="lazy"
+        >
+      </span>
+    </span>
+  </div>
+</a>

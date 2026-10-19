@@ -1,35 +1,378 @@
 {% comment %}
-  This section is used in the blog template to render the blog page listing all
-  articles within a blog.
+  Renders the blog page: tag filter pills, article search and a grid of article cards.
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/blog
 {% endcomment %}
 
-<h1>{{ blog.title }}</h1>
+{%- liquid
+  assign source_blog = blog
+  if source_blog == blank and template.name != '404'
+    assign source_blog = section.settings.blog
+  endif
+-%}
 
-{% paginate blog.articles by 5 %}
-  {% for article in blog.articles %}
-    <div>
-      {% if article.image %}
-        {{ article.image | image_url: width: 1000 | image_tag }}
-      {% endif %}
-      <h2>
-        {{ article.title | link_to: article.url }}
-      </h2>
-      {% assign date = article.published_at | time_tag: format: 'date' %}
-      <p>{{ 'blog.article_metadata_html' | t: date: date, author: article.author }}</p>
-      <p>{{ article.excerpt }}</p>
+<section class="article-list full-width" data-article-list data-section-id="{{ section.id }}" style="background-color: {{ section.settings.background_color }};">
+  <div class="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[50px] px-5 pt-[50px] pb-[100px] sm:px-8 md:px-12 xl:px-[100px]">
+    <h1 class="sr-only">{{ source_blog.title }}</h1>
+
+    {%- liquid
+      assign filter_tags = source_blog.all_tags
+      if section.settings.filter_tags != blank
+        assign filter_tags = section.settings.filter_tags | split: ','
+      endif
+      assign active_tag = current_tags | first | handleize
+      assign show_filters = false
+      if section.settings.show_filters and filter_tags.size > 0
+        assign show_filters = true
+      endif
+    -%}
+
+    {%- if show_filters or section.settings.show_search -%}
+    <div class="flex w-full flex-col gap-4 lg:flex-row lg:items-start lg:gap-6">
+      {%- if show_filters -%}
+        <nav
+          data-article-filters
+          class="flex min-w-0 flex-1 flex-wrap items-center justify-between gap-x-4 gap-y-2 rounded-[100px] border-[3px] border-solid border-[#212323] bg-[#F9D5C0] px-6 py-4 font-[family-name:var(--font-primary--family)] text-[18px] leading-[1.5] text-[#212323] [&_a]:whitespace-nowrap lg:px-[30px] xl:px-[50px] xl:text-[20px]"
+          aria-label="{{ 'blog.filter_label' | t | escape }}"
+        >
+          {%- if current_tags == blank -%}
+            <a href="{{ source_blog.url }}" data-filter-link class="font-medium" aria-current="page">{{ 'blog.all' | t }}</a>
+          {%- else -%}
+            <a href="{{ source_blog.url }}" data-filter-link>{{ 'blog.all' | t }}</a>
+          {%- endif -%}
+
+          {%- for filter_tag in filter_tags -%}
+            {%- assign tag = filter_tag | strip -%}
+            {%- if tag != blank -%}
+              {%- assign tag_handle = tag | handleize -%}
+              {%- if tag_handle == active_tag -%}
+                <a href="{{ source_blog.url }}/tagged/{{ tag | handleize }}" data-filter-link class="font-medium" aria-current="page">{{ tag }}</a>
+              {%- else -%}
+                <a href="{{ source_blog.url }}/tagged/{{ tag | handleize }}" data-filter-link>{{ tag }}</a>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
+
+      {%- if section.settings.show_search -%}
+      <form action="{{ source_blog.url }}" method="get" role="search" class="w-full min-w-0 lg:w-[341px] lg:shrink-0" data-article-search-form>
+        <label for="article-search-{{ section.id }}" class="sr-only">{{ 'blog.search_placeholder' | t }}</label>
+        <input
+          id="article-search-{{ section.id }}"
+          type="search"
+          name="q"
+          autocomplete="off"
+          data-article-search-input
+          placeholder="{{ 'blog.search_placeholder' | t | escape }}"
+          class="h-[62px] w-full rounded-[100px] border-[3px] border-solid border-[#212323] bg-[#F6F1EC] p-4 font-[family-name:var(--font-primary--family)] text-[20px] text-[#212323] placeholder:text-[#212323] focus:outline-none"
+        >
+      </form>
+      {%- endif -%}
     </div>
-  {% endfor %}
+    {%- endif -%}
 
-  {%- if paginate.pages > 1 -%}
-    {{- paginate | default_pagination -}}
-  {%- endif -%}
-{% endpaginate %}
+    <div
+      class="flex w-full flex-col items-center gap-[50px]"
+      data-article-search-results
+      data-min-read="{{ 'blog.min_read' | t: count: '__COUNT__' | escape }}"
+      data-no-results="{{ 'blog.no_articles' | t | escape }}"
+      data-blog-url="{{ source_blog.url }}"
+      data-search-url="{{ routes.predictive_search_url }}"
+      hidden
+    >
+      <ul class="grid w-full grid-cols-1 justify-items-center gap-5 sm:grid-cols-2 lg:grid-cols-3" data-article-search-list></ul>
+      <p class="font-[family-name:var(--font-primary--family)] text-[20px] text-[#212323]" data-article-search-empty hidden>
+        {{ 'blog.no_articles' | t }}
+      </p>
+    </div>
+
+    <template data-article-card-template>
+      <li class="w-full max-w-[400px]">
+        {% render 'article-card', article: nil %}
+      </li>
+    </template>
+
+    <div class="flex w-full flex-col items-center gap-[50px]" data-article-default>
+    {%- if source_blog == blank -%}
+      <p class="font-[family-name:var(--font-primary--family)] text-[20px] text-[#212323]">
+        {{ 'blog.no_articles' | t }}
+      </p>
+    {%- else -%}
+    {%- paginate source_blog.articles by section.settings.articles_per_page -%}
+      {%- if source_blog.articles.size > 0 -%}
+        <ul class="grid w-full grid-cols-1 justify-items-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {%- for article in source_blog.articles -%}
+            <li class="w-full max-w-[400px]">
+              {% render 'article-card', article: article %}
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        {%- if paginate.next -%}
+          <a
+            href="{{ paginate.next.url }}"
+            data-see-more
+            class="group/more inline-flex h-[58px] w-fit items-center justify-center gap-3 self-center rounded-[30px] bg-[#212323] px-8 py-4 font-[family-name:var(--font-primary--family)] text-[20px] leading-[1.5] font-medium whitespace-nowrap text-[#F6F1EC] drop-shadow-[0_0_7.5px_rgba(0,0,0,0.1)] aria-busy:pointer-events-none"
+          >
+            <span
+              class="hidden size-5 animate-spin rounded-full border-2 border-solid border-[#F6F1EC] border-t-transparent group-aria-busy/more:block"
+              aria-hidden="true"
+            ></span>
+            {{ 'blog.see_more' | t }}
+          </a>
+        {%- endif -%}
+      {%- else -%}
+        <p class="font-[family-name:var(--font-primary--family)] text-[20px] text-[#212323]">
+          {{ 'blog.no_articles' | t }}
+        </p>
+      {%- endif -%}
+    {%- endpaginate -%}
+    {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% javascript %}
+  (function () {
+    var section = document.querySelector('[data-article-list]');
+    if (!section) return;
+
+    var sectionId = section.dataset.sectionId;
+    var root = section.querySelector('[data-article-search-results]');
+    var form = section.querySelector('[data-article-search-form]');
+    var input = form && form.querySelector('[data-article-search-input]');
+    var defaults = section.querySelector('[data-article-default]');
+    var template = section.querySelector('[data-article-card-template]');
+    var timer;
+    var controller;
+
+    /* ---------- Shared helpers ---------- */
+
+    function fetchSection(url, signal) {
+      var separator = url.indexOf('?') === -1 ? '?' : '&';
+      return fetch(url + separator + 'section_id=' + encodeURIComponent(sectionId), { signal: signal })
+        .then(function (response) {
+          return response.text().then(function (html) {
+            var doc = new DOMParser().parseFromString(html, 'text/html');
+            doc.fetchOk = response.ok;
+            return doc;
+          });
+        });
+    }
+
+    function text(html) {
+      var doc = new DOMParser().parseFromString(html || '', 'text/html');
+      return (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function showDefaults() {
+      if (root) root.hidden = true;
+      defaults.hidden = false;
+    }
+
+    /* ---------- Tag filters (in-page) ---------- */
+
+    function loadTag(url) {
+      if (controller) controller.abort();
+      controller = new AbortController();
+      defaults.style.opacity = '0.5';
+
+      fetchSection(url, controller.signal)
+        .then(function (doc) {
+          var nextDefaults = doc.fetchOk && doc.querySelector('[data-article-default]');
+          var nextFilters = doc.fetchOk && doc.querySelector('[data-article-filters]');
+          var filters = section.querySelector('[data-article-filters]');
+
+          if (nextDefaults && nextDefaults.querySelector('ul')) {
+            defaults.innerHTML = nextDefaults.innerHTML;
+            if (filters && nextFilters) filters.innerHTML = nextFilters.innerHTML;
+            history.replaceState(null, '', url);
+          } else {
+            /* A tag no article uses is a 404 on Shopify, so reuse the search "no results" state and keep the URL unchanged. */
+            if (root) showResults([]);
+            section.querySelectorAll('[data-filter-link]').forEach(function (link) {
+              var active = link.href === url;
+              link.classList.toggle('font-medium', active);
+              if (active) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
+            });
+          }
+          if (input) input.value = '';
+          if (nextDefaults && nextDefaults.querySelector('ul')) showDefaults();
+        })
+        .catch(function () {})
+        .then(function () { defaults.style.opacity = ''; });
+    }
+
+    /* ---------- "See more" (in-page) ---------- */
+
+    function loadMore(link) {
+      link.setAttribute('aria-busy', 'true');
+
+      fetchSection(link.href)
+        .then(function (doc) {
+          var nextDefaults = doc.querySelector('[data-article-default]');
+          var list = defaults.querySelector('ul');
+          var nextList = nextDefaults && nextDefaults.querySelector('ul');
+          if (!list || !nextList) return;
+
+          list.append.apply(list, Array.prototype.slice.call(nextList.children));
+          var nextLink = nextDefaults.querySelector('[data-see-more]');
+          if (nextLink) link.href = nextLink.href; else link.remove();
+        })
+        .catch(function () {})
+        .then(function () { link.removeAttribute('aria-busy'); });
+    }
+
+    section.addEventListener('click', function (event) {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey) return;
+
+      var filterLink = event.target.closest('[data-filter-link]');
+      if (filterLink && section.contains(filterLink)) {
+        event.preventDefault();
+        loadTag(filterLink.href);
+        return;
+      }
+
+      var moreLink = event.target.closest('[data-see-more]');
+      if (moreLink && section.contains(moreLink)) {
+        event.preventDefault();
+        loadMore(moreLink);
+      }
+    });
+
+    /* ---------- Search (in-page) ---------- */
+
+    if (!root || !form || !template) return;
+
+    var list = root.querySelector('[data-article-search-list]');
+    var empty = root.querySelector('[data-article-search-empty]');
+
+    function renderCard(article) {
+      var node = template.content.firstElementChild.cloneNode(true);
+      var body = text(article.body || article.summary_html);
+      var words = body ? body.split(' ').length : 0;
+      var minutes = Math.max(1, Math.ceil(words / 200));
+      var excerpt = text(article.summary_html) || body;
+      var image = typeof article.image === 'string' ? article.image : article.image && article.image.url;
+
+      node.querySelector('[data-slot="link"]').setAttribute('href', article.url);
+      node.querySelector('[data-slot="read-time"]').textContent = root.dataset.minRead.replace('__COUNT__', minutes);
+      node.querySelector('[data-slot="title"]').textContent = article.title;
+      node.querySelector('[data-slot="excerpt"]').textContent = excerpt.length > 110 ? excerpt.slice(0, 107).trimEnd() + '...' : excerpt;
+
+      if (image) {
+        var img = document.createElement('img');
+        img.src = image;
+        img.alt = (article.image && article.image.alt) || '';
+        img.loading = 'lazy';
+        img.className = 'size-full object-cover';
+        node.querySelector('[data-slot="image"]').replaceChildren(img);
+      }
+      return node;
+    }
+
+    function showResults(articles) {
+      list.replaceChildren.apply(list, articles.map(renderCard));
+      empty.hidden = articles.length > 0;
+      defaults.hidden = true;
+      root.hidden = false;
+    }
+
+    function search(query) {
+      if (controller) controller.abort();
+      controller = new AbortController();
+
+      var url = root.dataset.searchUrl + '.json?q=' + encodeURIComponent(query) +
+        '&resources[type]=article&resources[limit]=10&resources[limit_scope]=each';
+
+      fetch(url, { signal: controller.signal, headers: { Accept: 'application/json' } })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+          var articles = (data.resources && data.resources.results && data.resources.results.articles) || [];
+          showResults(articles.filter(function (article) {
+            return article.url.indexOf(root.dataset.blogUrl + '/') === 0;
+          }));
+        })
+        .catch(function (error) {
+          if (error.name !== 'AbortError') showResults([]);
+        });
+    }
+
+    /* Clearing the search goes back to "All", not to whichever tag was selected before searching. */
+    function resetSearch() {
+      if (controller) controller.abort();
+      var allLink = section.querySelector('[data-filter-link]');
+      if (allLink && allLink.getAttribute('aria-current') !== 'page') {
+        loadTag(allLink.href);
+      } else {
+        showDefaults();
+      }
+    }
+
+    input.addEventListener('input', function () {
+      clearTimeout(timer);
+      var query = input.value.trim();
+      if (!query) {
+        resetSearch();
+        return;
+      }
+      timer = setTimeout(function () { search(query); }, 300);
+    });
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      clearTimeout(timer);
+      var query = input.value.trim();
+      if (query) search(query); else resetSearch();
+    });
+  })();
+{% endjavascript %}
 
 {% schema %}
 {
   "name": "t:general.blog",
-  "settings": []
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:labels.blog",
+      "info": "t:labels.blog_info"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background_color",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "label": "t:labels.show_filters",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "filter_tags",
+      "label": "t:labels.filter_tags",
+      "info": "t:labels.filter_tags_info",
+      "default": ""
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "t:labels.show_search",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "label": "t:labels.articles_per_page",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 2
+    }
+  ]
 }
 {% endschema %}

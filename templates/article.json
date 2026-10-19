@@ -9,12 +9,102 @@
  */
 {
   "sections": {
+    "banner": {
+      "type": "article-banner",
+      "settings": {
+        "content_source": "article",
+        "card_background_color": "#9AB2D5",
+        "border_color": "#212323",
+        "text_color": "#212323",
+        "background_color": "#F6F1EC"
+      }
+    },
     "main": {
       "type": "article",
+      "settings": {}
+    },
+    "product_list": {
+      "type": "gruns-product-list",
+      "blocks": {
+        "product_card_kPnEQx": {
+          "type": "product-card",
+          "settings": {
+            "product": "blood-orange",
+            "background_image": "shopify://shop_images/Frame_2147236000.svg",
+            "image": "shopify://shop_images/Group_8_1.png",
+            "use_lottie_animation": false,
+            "flavor_name": "Blood Orange",
+            "flavor_name_color": "#b70141",
+            "description": "Bright. Smooth. Golden-hour ready.",
+            "price_text": "As low as $4.00 per can",
+            "button_label": "Add To Cart",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
+          },
+          "blocks": {}
+        },
+        "product_card_PVhUHH": {
+          "type": "product-card",
+          "settings": {
+            "product": "ginger-lime",
+            "background_image": "shopify://shop_images/Frame_2147236003.svg",
+            "image": "shopify://shop_images/Group_7_1.png",
+            "use_lottie_animation": false,
+            "flavor_name": "Ginger Lime",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "As low as $4.00 per can",
+            "button_label": "Add To Cart",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
+          },
+          "blocks": {}
+        },
+        "product_card_iUCqkK": {
+          "type": "product-card",
+          "settings": {
+            "product": "three-pack",
+            "background_image": "shopify://shop_images/Frame_2147236049.svg",
+            "image": "shopify://shop_images/Group_157_2.png",
+            "use_lottie_animation": false,
+            "flavor_name": "3 Pack Trial",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "$15. One-Time Purchase.",
+            "button_label": "Coming Soon",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "product_card_kPnEQx",
+        "product_card_PVhUHH",
+        "product_card_iUCqkK"
+      ],
+      "name": "t:general.product_list",
+      "settings": {
+        "heading": "Choose your flavor",
+        "background_color": "#9ab2d5",
+        "heading_color": "#212323"
+      }
+    },
+    "related": {
+      "type": "related-articles",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "banner",
+    "main",
+    "product_list",
+    "related"
   ]
 }

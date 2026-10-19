@@ -56,6 +56,7 @@
     "background": "Background",
     "column": "Column",
     "content": "Content",
+    "article_banner": "Article banner",
     "content_banner": "Content banner",
     "content_block": "Content block",
     "custom_section": "Custom section",
@@ -152,9 +153,15 @@
     "texture_overlay": "Texture overlay",
     "theme": "Theme",
     "trust_badge": "Trust badge",
-    "typography": "Typography"
+    "typography": "Typography",
+    "related_articles": "Related articles"
   },
   "labels": {
+    "articles_per_page": "Articles per page",
+    "read_time": "Read time",
+    "link_label": "Link label",
+    "card_background_color": "Card background",
+    "border_color": "Border color",
     "alignment": "Alignment",
     "alt_text": "Alt text",
     "answer": "Answer",
@@ -189,7 +196,7 @@
     "body_mobile": "Body text (mobile)",
     "body_mobile_info": "Optional mobile-specific body text. Defaults to the body text above if left blank.",
     "heading_mobile": "Heading (mobile)",
-    "heading_mobile_info": "Optional mobile-specific heading. Defaults to the heading above if left blank.",
+    "heading_mobile_info": "Optional. Overrides the heading on mobile screens only",
     "button_text": "Button text",
     "show_learn_more": "Show \"Learn more\" link",
     "learn_more_label": "\"Learn more\" link text",
@@ -255,7 +262,6 @@
     "flavor_name_info": "Defaults to the selected product's title if left blank",
     "flavor_name_mobile_info": "Optional mobile-specific flavor name. Defaults to the desktop flavor name if left blank",
     "flavor_style": "Flavor style",
-    "border_color": "Border color",
     "faq_item_background": "FAQ item background",
     "faq_item_text_color": "FAQ item text color",
     "panel_background_image": "Panel background image",
@@ -266,8 +272,6 @@
     "heading": "Heading",
     "heading_alignment": "Heading alignment",
     "heading_alignment_mobile": "Heading alignment (mobile)",
-    "heading_mobile": "Heading (mobile)",
-    "heading_mobile_info": "Optional. Overrides the heading on mobile screens only",
     "heading_color": "Heading color",
     "height": "Height",
     "icon_style": "Icon style",
@@ -384,7 +388,7 @@
     "show_grain": "Show grain texture",
     "show_cart": "Show cart icon",
     "show_payment_icons": "Show payment icons",
-    "show_search": "Show search icon",
+    "show_search": "Show search",
     "show_social_icons": "Show social icons",
     "spend_threshold": "Spend threshold",
     "spend_threshold_info": "The bundle subtotal a shopper must reach to unlock this reward",
@@ -413,7 +417,17 @@
     "use_lottie_animation": "Use flavor animation",
     "use_lottie_animation_info": "Plays an animated illustration in place of the static image above",
     "video": "Video",
-    "width": "Width"
+    "width": "Width",
+    "content_source": "Content source",
+    "content_source_info": "Use the current article's title, image, read time and date on article pages",
+    "article_count": "Number of articles",
+    "show_filters": "Show tag filters",
+    "filter_tags": "Filter tags",
+    "filter_tags_info": "Comma-separated article tags shown as filters after \"All\". Leave blank to list every tag used in the blog. Articles must be tagged with these names to appear.",
+    "featured_article": "Featured article",
+    "featured_article_info": "Shows this article's title, image and read time, and links to it. Ignored when the content source is the current article.",
+    "blog": "Blog",
+    "blog_info": "Used when the section is shown outside a blog page"
   },
   "options": {
     "columns": {
@@ -484,7 +498,11 @@
       "third": "3rd"
     },
     "button": "Button",
-    "arrow_icon": "Arrow icon"
+    "arrow_icon": "Arrow icon",
+    "content_source": {
+      "custom": "Custom content",
+      "article": "Current article"
+    }
   },
   "sections": {
     "marquee": {

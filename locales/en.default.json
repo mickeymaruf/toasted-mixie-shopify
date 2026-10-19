@@ -163,13 +163,22 @@
     "payment_methods_label": "Payment methods"
   },
   "blog": {
+    "all": "All",
+    "filter_label": "Filter articles",
+    "search_placeholder": "Search blog",
+    "min_read": "{{ count }} min read",
+    "read_more": "Read more",
+    "see_more": "See more",
+    "no_articles": "No articles found.",
+    "article_banner_image_alt": "Toasted cans on a rooftop table",
     "article_comments": "Comments",
     "article_metadata_html": "{{ date }} by {{ author }}",
     "comment_form_body": "Comment",
     "comment_form_email": "Email",
     "comment_form_name": "Name",
     "comment_form_submit": "Post",
-    "comment_form_title": "Add a comment"
+    "comment_form_title": "Add a comment",
+    "posted_on": "Posted {{ date }}"
   },
   "cart": {
     "checkout": "Checkout",

@@ -1,64 +1,69 @@
 {% comment %}
   This section is used in the article template to render the article page, which
   displays the full content of the blog post and can optionally include a
-  comments section for customers (not shown in this example).
+  comments section for customers.
 
   https://shopify.dev/docs/storefronts/themes/architecture/templates/article
 {% endcomment %}
 
-{% if article.image %}
-  {{ article.image | image_url: width: 1000 | image_tag }}
-{% endif %}
+<section class="article-details full-width bg-[#F6F1EC]">
+  <div class="mx-auto w-full max-w-[1440px] px-5 pt-[50px] pb-[100px] sm:px-8 md:px-12 xl:px-[100px]">
+    <div
+      class="font-[family-name:var(--font-primary--family)] text-[18px] leading-[1.5] text-[#212323] sm:text-[20px] lg:text-[24px] [&_a]:underline [&_h2]:mt-[50px] [&_h2]:mb-[50px] [&_h2]:text-[24px] [&_h2]:leading-[1.5] [&_h2]:font-bold sm:[&_h2]:text-[28px] lg:[&_h2]:text-[32px] [&_h3]:mt-[50px] [&_h3]:mb-[50px] [&_h3]:text-[22px] [&_h3]:leading-[1.5] [&_h3]:font-bold sm:[&_h3]:text-[24px] lg:[&_h3]:text-[28px] [&_img]:my-[50px] [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-[23px] [&_li]:mb-2 [&_ol]:mb-[1.5em] [&_ol]:list-decimal [&_ol]:pl-8 [&_p]:mb-[1.5em] [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_ul]:mb-[1.5em] [&_ul]:list-disc [&_ul]:pl-8"
+    >
+      {{ article.content }}
+    </div>
 
-<h1>{{ article.title }}</h1>
+    {%- if blog.comments_enabled? -%}
+      <div class="mt-[100px] font-[family-name:var(--font-primary--family)] text-[#212323]">
+        <h2 class="mb-8 font-[family-name:var(--font-heading--family)] text-[40px] leading-[0.95] font-bold tracking-[-0.03em]">
+          {{ 'blog.article_comments' | t }}
+        </h2>
 
-{% assign date = article.published_at | time_tag: format: 'date' %}
-<p>{{ 'blog.article_metadata_html' | t: date: date, author: article.author }}</p>
+        <div id="comments" class="flex flex-col gap-6">
+          {%- paginate article.comments by 10 -%}
+            {%- for comment in article.comments -%}
+              <div class="rounded-[23px] border-[3px] border-solid border-[#212323] p-6">
+                <p class="text-[18px] font-medium">{{ comment.author }}</p>
+                <p class="text-[14px]">
+                  {{- comment.created_at | time_tag: format: 'date' -}}
+                </p>
+                <p class="mt-2 text-[16px] leading-[1.5]">{{ comment.content }}</p>
+              </div>
+            {%- endfor -%}
 
-{{ article.content }}
-
-{% if blog.comments_enabled? %}
-  <h2>{{ 'blog.article_comments' | t }}</h2>
-
-  <div id="comments">
-    {% paginate article.comments by 10 %}
-      {% for comment in article.comments %}
-        <div>
-          <p>{{ comment.author }}</p>
-          <p>
-            {{- comment.created_at | time_tag: format: 'date' -}}
-          </p>
-          <p>{{ comment.content }}</p>
+            {{ paginate | default_pagination: anchor: 'comments' }}
+          {%- endpaginate -%}
         </div>
-      {% endfor %}
 
-      {{ paginate | default_pagination: anchor: 'comments' }}
-    {% endpaginate %}
+        {%- form 'new_comment', article, class: 'mt-12 flex max-w-[640px] flex-col gap-4' -%}
+          <h2 class="font-[family-name:var(--font-heading--family)] text-[32px] leading-[0.95] font-bold tracking-[-0.03em]">
+            {{ 'blog.comment_form_title' | t }}
+          </h2>
+
+          {{ form.errors | default_errors }}
+
+          <label for="author" class="flex flex-col gap-1 text-[16px]">
+            {{ 'blog.comment_form_name' | t }}
+            <input type="text" name="comment[author]" id="author" value="{{ form.author }}" required class="rounded-[100px] border-[3px] border-solid border-[#212323] bg-[#F6F1EC] px-4 py-3 text-[18px]">
+          </label>
+
+          <label for="email" class="flex flex-col gap-1 text-[16px]">
+            {{ 'blog.comment_form_email' | t }}
+            <input type="email" name="comment[email]" id="email" value="{{ form.email }}" required class="rounded-[100px] border-[3px] border-solid border-[#212323] bg-[#F6F1EC] px-4 py-3 text-[18px]">
+          </label>
+
+          <label for="body" class="flex flex-col gap-1 text-[16px]">
+            {{ 'blog.comment_form_body' | t }}
+            <textarea name="comment[body]" id="body" required rows="5" class="rounded-[23px] border-[3px] border-solid border-[#212323] bg-[#F6F1EC] px-4 py-3 text-[18px]">{{ form.body }}</textarea>
+          </label>
+
+          <input type="submit" value="{{ 'blog.comment_form_submit' | t }}" class="h-[58px] cursor-pointer self-start rounded-[30px] bg-[#212323] px-8 text-[20px] font-medium text-[#F6F1EC]">
+        {%- endform -%}
+      </div>
+    {%- endif -%}
   </div>
-
-  {% form 'new_comment', article %}
-    <h2>{{ 'blog.comment_form_title' | t }}</h2>
-
-    {{ form.errors | default_errors }}
-
-    <div>
-      <label for="author">{{ 'blog.comment_form_name' | t }}</label>
-      <input type="text" name="comment[author]" id="author" value="{{ form.author }}" required>
-    </div>
-
-    <div>
-      <label for="email">{{ 'blog.comment_form_email' | t }}</label>
-      <input type="email" name="comment[email]" id="email" value="{{ form.email }}" required>
-    </div>
-
-    <div>
-      <label for="body">{{ 'blog.comment_form_body' | t }}</label>
-      <textarea name="comment[body]" id="body" required>{{ form.body }}</textarea>
-    </div>
-
-    <input type="submit" value="{{ 'blog.comment_form_submit' | t }}">
-  {% endform %}
-{% endif %}
+</section>
 
 {% schema %}
 {
