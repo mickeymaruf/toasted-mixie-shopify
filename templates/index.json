@@ -238,6 +238,7 @@
         },
         "product_card_CEY8Xa": {
           "type": "product-card",
+          "disabled": true,
           "settings": {
             "product": "berry-acai",
             "background_image": "shopify://shop_images/Frame_2147236002.svg",
@@ -568,6 +569,7 @@
             "flavor_swatch_FF9eqY": {
               "type": "flavor-swatch",
               "name": "t:general.flavor_swatch",
+              "disabled": true,
               "settings": {
                 "product": "berry-acai",
                 "flavor_name": "",

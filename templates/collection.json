@@ -53,6 +53,7 @@
         },
         "product_card_CEY8Xa": {
           "type": "product-card",
+          "disabled": true,
           "settings": {
             "product": "berry-acai",
             "background_image": "shopify://shop_images/Frame_2147236002.svg",

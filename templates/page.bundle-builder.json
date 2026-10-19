@@ -19,10 +19,13 @@
       "name": "t:general.hero_banner",
       "settings": {
         "heading": "<p>Bundle & Save</p>",
+        "heading_mobile": "",
         "subheading": "<p>Pick your flavors. Stock the fridge.</p>",
+        "subheading_mobile": "",
         "heading_color": "#f6f1ec",
         "background_image": "shopify://shop_images/Frame_2147230792_2_d9ea2e03-3fd3-45fb-bec0-189d4d2ac384.png",
         "background_image_mobile": "shopify://shop_images/Frame_2147230792_1_0723ef5c-41fc-4e02-99a9-8b09bccc13dc.png",
+        "show_gradient_overlay": true,
         "background_color": "#f6f1ec"
       }
     },
@@ -50,6 +53,7 @@
             },
             "bundle_product_nM9qcq": {
               "type": "bundle-product",
+              "disabled": true,
               "settings": {
                 "product": "berry-acai",
                 "background_image": "shopify://shop_images/Frame_2147236044_1_dc0519c7-6c4d-4d51-9b73-89ac0403b2eb.svg",
@@ -263,6 +267,7 @@
       "settings": {
         "heading": "<p>The People Love Toasted!</p>",
         "heading_mobile": "",
+        "slide_layout": "auto",
         "enable_slide_border": true,
         "enable_autoplay": false,
         "show_navigation": true,
