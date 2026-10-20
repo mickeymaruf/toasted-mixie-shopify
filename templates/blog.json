@@ -20,9 +20,10 @@
       "type": "blog",
       "settings": {
         "background_color": "#9AB2D5",
-        "articles_per_page": 2,
+        "articles_per_page": 6,
         "blog": "news",
-        "filter_tags": ""
+        "filter_tags": "",
+        "show_filters": false
       }
     }
   },
