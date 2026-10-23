@@ -5,7 +5,7 @@
 {% endcomment %}
 
 <section
-  class="gruns-product-list full-width"
+  class="gruns-product-list full-width{% if section.settings.overlap_previous_section %} relative z-20 -mt-[var(--corner-radius)] rounded-t-[var(--corner-radius)]{% endif %}"
   style="background-color: {{ section.settings.background_color }};"
 >
   <div
@@ -64,6 +64,16 @@
   "name": "t:general.product_list",
   "blocks": [{ "type": "product-card" }],
   "settings": [
+    {
+      "type": "header",
+      "content": "t:general.layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "overlap_previous_section",
+      "label": "t:labels.overlap_previous_section",
+      "default": false
+    },
     {
       "type": "header",
       "content": "t:general.content"

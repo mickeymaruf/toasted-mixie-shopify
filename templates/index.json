@@ -101,78 +101,221 @@
     "gruns_hero_KLipt8": {
       "type": "gruns-hero",
       "blocks": {
-        "badge_row_kbqFF9": {
-          "type": "badge-row",
-          "settings": {},
+        "gruns_hero_slide_Ch1llD": {
+          "type": "gruns-hero-slide",
+          "settings": {
+            "show_perks": false,
+            "perk_1_icon_style": "box",
+            "perk_1_text": "One Per Customer",
+            "perk_2_icon_style": "truck",
+            "perk_2_text": "No Subscription",
+            "perks_text_color": "#f6f1ec",
+            "heading": "<p><em>The Chill Drink</em></p>",
+            "description": "<p>A light, tasteful drink for the moments you&nbsp;<br/>want to relax, connect, and stay present.</p>",
+            "description_mobile": "",
+            "show_button": true,
+            "button_label": "Shop Toasted",
+            "button_link": "/collections/all",
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323",
+            "background_color": "#9ab2d5",
+            "heading_color": "#f6f1ec",
+            "show_skyline_image": true,
+            "skyline_image": "shopify://shop_images/Frame_2147236227_1.webp",
+            "skyline_image_mobile": "shopify://shop_images/Frame_2147236273.jpg",
+            "overlay_image_opacity": 100,
+            "overlay_blend": "normal",
+            "foreground_image_alt": "",
+            "show_right_side_content": false,
+            "can_image_1_alt": "",
+            "can_image_2_alt": "",
+            "can_image_3_alt": "",
+            "show_badge": true,
+            "badge_image_alt": "America's most compliant badge"
+          },
           "blocks": {
-            "trust_badge_hjpmUU": {
-              "type": "trust-badge",
+            "badge_row_Cl4rty": {
+              "type": "badge-row",
               "settings": {
-                "label": "<p>Supports Clarity</p>",
-                "label_mobile": "<p>Supports Clarity</p>",
-                "description": "Smooth, present focus",
-                "icon": "shopify://shop_images/Group_f7b6c2f7-a0fe-45f8-b396-911e31e1d1ac.png"
+                "text_color": "#f6f1ec"
               },
-              "blocks": {}
-            },
-            "trust_badge_KDBAwP": {
-              "type": "trust-badge",
-              "settings": {
-                "label": "<p>Balanced Mood</p>",
-                "label_mobile": "<p>Balanced Mood</p>",
-                "description": "Light, feel-good lift",
-                "icon": "shopify://shop_images/Vector.png"
+              "blocks": {
+                "trust_badge_Sup0rt": {
+                  "type": "trust-badge",
+                  "settings": {
+                    "label": "<p>Supports Clarity</p>",
+                    "label_mobile": "<p>Supports Clarity</p>",
+                    "description": "Smooth, present focus",
+                    "icon": "shopify://shop_images/Group_f7b6c2f7-a0fe-45f8-b396-911e31e1d1ac.png"
+                  },
+                  "blocks": {}
+                },
+                "trust_badge_Bal4nc": {
+                  "type": "trust-badge",
+                  "settings": {
+                    "label": "<p>Balanced Mood</p>",
+                    "label_mobile": "<p>Balanced Mood</p>",
+                    "description": "Light, feel-good lift",
+                    "icon": "shopify://shop_images/Vector.png"
+                  },
+                  "blocks": {}
+                },
+                "trust_badge_Prom0t": {
+                  "type": "trust-badge",
+                  "settings": {
+                    "label": "<p>Promotes Calm</p>",
+                    "label_mobile": "<p>Promotes Calm</p>",
+                    "description": "Steady unwind",
+                    "icon": "shopify://shop_images/Vector_7ce3e587-ceeb-49b3-98c3-6902dc970fcd.png"
+                  },
+                  "blocks": {}
+                }
               },
-              "blocks": {}
-            },
-            "trust_badge_jJqbNt": {
-              "type": "trust-badge",
-              "settings": {
-                "label": "<p>Promotes Calm</p>",
-                "label_mobile": "<p>Promotes Calm</p>",
-                "description": "Steady unwind",
-                "icon": "shopify://shop_images/Vector_7ce3e587-ceeb-49b3-98c3-6902dc970fcd.png"
-              },
-              "blocks": {}
+              "block_order": [
+                "trust_badge_Sup0rt",
+                "trust_badge_Bal4nc",
+                "trust_badge_Prom0t"
+              ]
             }
           },
           "block_order": [
-            "trust_badge_hjpmUU",
-            "trust_badge_KDBAwP",
-            "trust_badge_jJqbNt"
+            "badge_row_Cl4rty"
           ]
+        },
+        "gruns_hero_slide_Zq4wKm": {
+          "type": "gruns-hero-slide",
+          "settings": {
+            "show_perks": true,
+            "perk_1_icon_style": "box",
+            "perk_1_text": "One Per Customer",
+            "perk_2_icon_style": "truck",
+            "perk_2_text": "No Subscription",
+            "perks_text_color": "#f6f1ec",
+            "heading": "<p>Try all Toasted<br/>flavors <em>FREE!</em></p>",
+            "description": "<p>Blood Orange, Berry Acai, and Ginger Lime.<br/>Just pay shipping.<br/></p>",
+            "description_mobile": "",
+            "show_button": true,
+            "button_label": "Get My Free Trial Pack",
+            "button_link": "/collections/all",
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323",
+            "background_color": "#9ab2d5",
+            "heading_color": "#f6f1ec",
+            "show_skyline_image": true,
+            "skyline_image": "shopify://shop_images/Frame_2147236228.webp",
+            "skyline_image_mobile": "shopify://shop_images/Frame_2147236273_1.png",
+            "overlay_image_opacity": 100,
+            "overlay_blend": "normal",
+            "foreground_image_alt": "",
+            "show_right_side_content": false,
+            "cans_background_image": "shopify://shop_images/Rectangle_104_1.png",
+            "can_image_1": "shopify://shop_images/orange_010000_2.png",
+            "can_image_1_alt": "",
+            "can_image_2": "shopify://shop_images/lime_010000_2.png",
+            "can_image_2_alt": "",
+            "can_image_3_alt": "",
+            "show_badge": true,
+            "badge_image": "shopify://shop_images/Group_134.svg",
+            "badge_image_mobile": "shopify://shop_images/Group_134_1.png",
+            "badge_image_alt": "America's most compliant badge"
+          },
+          "blocks": {
+            "badge_row_kbqFF9": {
+              "type": "badge-row",
+              "disabled": true,
+              "settings": {
+                "text_color": "#f6f1ec"
+              },
+              "blocks": {
+                "trust_badge_hjpmUU": {
+                  "type": "trust-badge",
+                  "settings": {
+                    "label": "<p>Supports Clarity</p>",
+                    "label_mobile": "<p>Supports Clarity</p>",
+                    "description": "Smooth, present focus",
+                    "icon": "shopify://shop_images/Group_f7b6c2f7-a0fe-45f8-b396-911e31e1d1ac.png"
+                  },
+                  "blocks": {}
+                },
+                "trust_badge_KDBAwP": {
+                  "type": "trust-badge",
+                  "settings": {
+                    "label": "<p>Balanced Mood</p>",
+                    "label_mobile": "<p>Balanced Mood</p>",
+                    "description": "Light, feel-good lift",
+                    "icon": "shopify://shop_images/Vector.png"
+                  },
+                  "blocks": {}
+                },
+                "trust_badge_jJqbNt": {
+                  "type": "trust-badge",
+                  "settings": {
+                    "label": "<p>Promotes Calm</p>",
+                    "label_mobile": "<p>Promotes Calm</p>",
+                    "description": "Steady unwind",
+                    "icon": "shopify://shop_images/Vector_7ce3e587-ceeb-49b3-98c3-6902dc970fcd.png"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "trust_badge_hjpmUU",
+                "trust_badge_KDBAwP",
+                "trust_badge_jJqbNt"
+              ]
+            }
+          },
+          "block_order": [
+            "badge_row_kbqFF9"
+          ]
+        },
+        "gruns_hero_slide_Sunst3": {
+          "type": "gruns-hero-slide",
+          "settings": {
+            "show_perks": true,
+            "perk_1_icon_style": "box",
+            "perk_1_text": "One Per Customer",
+            "perk_2_icon_style": "check",
+            "perk_2_text": "30-day guarantee",
+            "perks_text_color": "#f6f1ec",
+            "heading": "<p>Subscribe &&nbsp;<br/>Save up to 20%</p>",
+            "description": "<p>Your favorite flavors, delivered every month.&nbsp;<br/>Pause, skip or cancel anytime.</p>",
+            "description_mobile": "",
+            "show_button": true,
+            "button_label": "Build Your Subscription",
+            "button_link": "shopify://pages/bundle-builder",
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323",
+            "background_color": "#9ab2d5",
+            "heading_color": "#f6f1ec",
+            "show_skyline_image": true,
+            "skyline_image": "shopify://shop_images/hero-slide-3-background-and-product-4x.jpg",
+            "skyline_image_mobile": "shopify://shop_images/hero-slide-3-mobile-background-and-product-4x.png",
+            "overlay_image_opacity": 15,
+            "overlay_blend": "multiply",
+            "foreground_image_alt": "",
+            "show_right_side_content": false,
+            "can_image_1_alt": "",
+            "can_image_2_alt": "",
+            "can_image_3_alt": "",
+            "show_badge": true,
+            "badge_image_alt": "America's most compliant badge"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "badge_row_kbqFF9"
+        "gruns_hero_slide_Ch1llD",
+        "gruns_hero_slide_Zq4wKm",
+        "gruns_hero_slide_Sunst3"
       ],
       "name": "t:general.gruns_hero",
       "settings": {
-        "heading": "<p><em>The Chill Drink</em></p>",
-        "description": "<p>A light, tasteful drink for the moments you<br/>want to relax, connect, and stay present.</p>",
-        "description_mobile": "",
-        "show_button": true,
-        "button_label": "Shop Toasted",
-        "button_link": "/collections/all",
-        "button_background_color": "#d4941f",
-        "button_text_color": "#f6f1ec",
-        "background_color": "#9ab2d5",
-        "heading_color": "#212323",
-        "show_skyline_image": true,
-        "skyline_image": "shopify://shop_images/Gruns_Hero_1.png",
-        "skyline_image_mobile": "shopify://shop_images/iPhone_17_-_1.svg",
-        "cans_background_color": "#f9d5c0",
-        "cans_background_image": "shopify://shop_images/Rectangle_104_1.png",
-        "can_image_1": "shopify://shop_images/orange_010000_2.png",
-        "can_image_1_alt": "",
-        "can_image_2": "shopify://shop_images/lime_010000_2.png",
-        "can_image_2_alt": "",
-        "can_image_3": "",
-        "can_image_3_alt": "",
-        "show_badge": true,
-        "badge_image": "shopify://shop_images/Group_134.svg",
-        "badge_image_mobile": "shopify://shop_images/Group_134_1.png",
-        "badge_image_alt": "America's most compliant badge"
+        "extend_behind_navbar": true,
+        "show_arrows": true,
+        "loop": true,
+        "autoplay": false,
+        "autoplay_delay": 6
       }
     },
     "marquee_QBFjMB": {
@@ -282,6 +425,7 @@
       ],
       "name": "t:general.product_list",
       "settings": {
+        "overlap_previous_section": true,
         "heading": "Choose your flavor",
         "background_color": "#f6f1ec",
         "heading_color": "#212323"
@@ -570,7 +714,9 @@
         "badge-row": {
           "type": "badge-row",
           "static": true,
-          "settings": {},
+          "settings": {
+            "text_color": "#f6f1ec"
+          },
           "blocks": {
             "guarantee_badge_axGJqP": {
               "type": "guarantee-badge",

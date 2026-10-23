@@ -242,7 +242,7 @@
           "static": true,
           "settings": {},
           "blocks": {
-            "feature_highlight_aCFW7E": {
+            "feature_highlight_VwWtE8": {
               "type": "feature-highlight",
               "settings": {
                 "title": "L-Theanine",
@@ -250,7 +250,7 @@
               },
               "blocks": {}
             },
-            "feature_highlight_AjAb3b": {
+            "feature_highlight_7pcgjg": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Rhodiola",
@@ -258,7 +258,7 @@
               },
               "blocks": {}
             },
-            "feature_highlight_cznVHt": {
+            "feature_highlight_4miYN3": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Low Dose THC",
@@ -266,7 +266,7 @@
               },
               "blocks": {}
             },
-            "feature_highlight_yYecDG": {
+            "feature_highlight_UMpEGg": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Real Fruit Juice",
@@ -276,10 +276,10 @@
             }
           },
           "block_order": [
-            "feature_highlight_aCFW7E",
-            "feature_highlight_AjAb3b",
-            "feature_highlight_cznVHt",
-            "feature_highlight_yYecDG"
+            "feature_highlight_VwWtE8",
+            "feature_highlight_7pcgjg",
+            "feature_highlight_4miYN3",
+            "feature_highlight_UMpEGg"
           ]
         },
         "feature-column-right": {
@@ -287,15 +287,15 @@
           "static": true,
           "settings": {},
           "blocks": {
-            "feature_highlight_gamzit": {
+            "feature_highlight_Fg8fxt": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Non-carbonated",
-                "icon": "shopify://shop_images/Group_95_1.png"
+                "icon": "shopify://shop_images/Group_95.png"
               },
               "blocks": {}
             },
-            "feature_highlight_gtgR3A": {
+            "feature_highlight_PyjK8n": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Low Calorie",
@@ -303,7 +303,7 @@
               },
               "blocks": {}
             },
-            "feature_highlight_eLHpmU": {
+            "feature_highlight_8FiN4F": {
               "type": "feature-highlight",
               "settings": {
                 "title": "Lab Tested",
@@ -311,7 +311,7 @@
               },
               "blocks": {}
             },
-            "feature_highlight_TFz93F": {
+            "feature_highlight_gnHG89": {
               "type": "feature-highlight",
               "settings": {
                 "title": "21+ Only",
@@ -321,20 +321,19 @@
             }
           },
           "block_order": [
-            "feature_highlight_gamzit",
-            "feature_highlight_gtgR3A",
-            "feature_highlight_eLHpmU",
-            "feature_highlight_TFz93F"
+            "feature_highlight_Fg8fxt",
+            "feature_highlight_PyjK8n",
+            "feature_highlight_8FiN4F",
+            "feature_highlight_gnHG89"
           ]
         }
       },
       "name": "t:general.ingredient_highlights",
       "settings": {
         "heading": "Functional by Design",
-        "description": "Made with real fruit, 200mg L-theanine, 50mg Rhodiola, and 0.4mg hemp-derived THC.",
+        "description": "<p>Made with immediately available functional ingredients designed to help you feel relaxed, right now.</p>",
         "center_image": "shopify://shop_images/Group_107.png",
-        "center_image_alt": "",
-        "background_image": "shopify://shop_images/Frame_2147236085.svg"
+        "center_image_alt": ""
       }
     },
     "reviews_jrdVGD": {
@@ -550,12 +549,131 @@
         "padding_top_mobile": 48,
         "padding_bottom_mobile": 48
       }
+    },
+    "chill_ingredients_k3Pq9x": {
+      "type": "chill-ingredients",
+      "blocks": {
+        "ingredient_card_1": {
+          "type": "ingredient-card",
+          "settings": {
+            "title": "L-Theanine",
+            "text": "Naturally found in green tea, L-Theanine has been consumed for thousands of years because it promotes feelings of calm.",
+            "background_color": "#f9d5c0"
+          },
+          "blocks": {}
+        },
+        "ingredient_card_2": {
+          "type": "ingredient-card",
+          "settings": {
+            "title": "Rhodiola Rosea",
+            "text": "Rhodiola was traditionally used by Vikings for strength and endurance, and today it's an adaptogen associated with stress resilience.",
+            "background_color": "#f9d5c0"
+          },
+          "blocks": {}
+        },
+        "ingredient_card_3": {
+          "type": "ingredient-card",
+          "settings": {
+            "title": "Low Dose THC",
+            "text": "At just 0.4mg per serving, we use a true micro-dose of THC, just enough to take the edge off.",
+            "background_color": "#f9d5c0"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ingredient_card_1",
+        "ingredient_card_2",
+        "ingredient_card_3"
+      ],
+      "settings": {
+        "heading": "What makes it chill",
+        "image": "shopify://shop_images/Rectangle_105_2597d56e-3b04-433a-8a0b-9059a18d2e8a.png",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323"
+      }
+    },
+    "gruns_product_list_simple_xRbGxz": {
+      "type": "gruns-product-list-simple",
+      "blocks": {
+        "product_card_simple_zziMUU": {
+          "type": "product-card-simple",
+          "settings": {
+            "product": "ginger-lime",
+            "image": "shopify://shop_images/Ginger-Lime-Fruit-_3.png",
+            "alt_text": "",
+            "background_color": "#f0f0f0",
+            "background_image": "shopify://shop_images/front_2.svg",
+            "flavor_sticker": "shopify://shop_images/Group_159.svg",
+            "badge_sticker": "shopify://shop_images/Group_110_1.svg",
+            "title": "Ginger Lime",
+            "description": "Real ginger with a little heat, cooled by\nfresh lime. Zesty, clean and easy to sip.",
+            "text_color": "#f6f1ec",
+            "button_label": "Add to Cart",
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "product_card_simple_hrhbQr": {
+          "type": "product-card-simple",
+          "settings": {
+            "product": "blood-orange",
+            "image": "shopify://shop_images/Blood-Orange-Fruit-_3.png",
+            "alt_text": "",
+            "background_color": "#f0f0f0",
+            "background_image": "shopify://shop_images/front_1.svg",
+            "flavor_sticker": "shopify://shop_images/flavour.svg",
+            "badge_sticker": "shopify://shop_images/Group_113_2.svg",
+            "title": "Blood Orange",
+            "description": "Refreshing, juicy and a little tart.\nBright citrus that tastes like golden hour.",
+            "text_color": "#f6f1ec",
+            "button_label": "Add to Cart",
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "product_card_simple_cdWAHn": {
+          "type": "product-card-simple",
+          "disabled": true,
+          "settings": {
+            "product": "blood-orange",
+            "image": "shopify://shop_images/Blood-Orange-Fruit-_3.png",
+            "alt_text": "",
+            "background_color": "#f0f0f0",
+            "background_image": "shopify://shop_images/front_1.svg",
+            "flavor_sticker": "shopify://shop_images/flavour.svg",
+            "badge_sticker": "shopify://shop_images/Group_113_2.svg",
+            "title": "Blood Orange",
+            "description": "Deep berry profile with a hint of acai.\nLightly sweet, smooth with an easy finish.",
+            "text_color": "#f6f1ec",
+            "button_label": "Add to Cart",
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "product_card_simple_zziMUU",
+        "product_card_simple_hrhbQr",
+        "product_card_simple_cdWAHn"
+      ],
+      "name": "t:general.product_list_simple",
+      "settings": {
+        "heading": "Real Fruit Juice. Really Good Flavor.",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323"
+      }
     }
   },
   "order": [
     "main",
     "hero_banner_AFPte7",
     "bundle_builder_gPVQwm",
+    "chill_ingredients_k3Pq9x",
+    "gruns_product_list_simple_xRbGxz",
     "gruns_gallery_hJaXd3",
     "ingredient_highlights_rqAjmH",
     "reviews_jrdVGD",

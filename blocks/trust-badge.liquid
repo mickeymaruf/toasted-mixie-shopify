@@ -21,23 +21,23 @@
   </div>
 
   {% if block.settings.label != blank or block.settings.description != blank %}
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center drop-shadow-[-1px_1px_1.7px_rgba(0,0,0,0.4)]">
       {% if block.settings.label != blank %}
         <div
-          class="trust-badge__label text-center text-[18px] leading-[normal] font-semibold text-[#212323] sm:text-[13px] sm:whitespace-nowrap lg:text-[0.9722vw] {% if block.settings.label_mobile != blank %}hidden sm:block{% endif %}"
+          class="trust-badge__label text-center text-[18px] leading-[normal] font-semibold text-[color:var(--badge-row-text-color,#212323)] sm:text-[13px] sm:whitespace-nowrap lg:text-[0.9722vw] {% if block.settings.label_mobile != blank %}hidden sm:block{% endif %}"
         >
           {{ block.settings.label }}
         </div>
       {% endif %}
 
       {% if block.settings.label_mobile != blank %}
-        <div class="trust-badge__label block text-center text-[18px] leading-[normal] font-medium text-[#212323] sm:hidden">
+        <div class="trust-badge__label block text-center text-[18px] leading-[normal] font-medium text-[color:var(--badge-row-text-color,#212323)] sm:hidden">
           {{ block.settings.label_mobile }}
         </div>
       {% endif %}
 
       {% if block.settings.description != blank %}
-        <p class="mt-1 text-center text-[14px] leading-[1] font-normal text-[#212323] sm:mt-0 sm:text-[12px] sm:whitespace-nowrap lg:text-[0.9722vw]">
+        <p class="mt-1 text-center text-[14px] leading-[1] font-normal text-[color:var(--badge-row-text-color,#212323)] sm:mt-0 sm:text-[12px] sm:whitespace-nowrap lg:text-[0.9722vw]">
           {{ block.settings.description }}
         </p>
       {% endif %}

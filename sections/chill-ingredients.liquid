@@ -1,0 +1,111 @@
+{% comment %}
+  Renders "What makes it chill" — a heading above a rounded image beside a
+  stack of ingredient-card blocks. Stacks vertically on mobile and tablet.
+{% endcomment %}
+
+<section
+  class="chill-ingredients full-width"
+  style="background-color: {{ section.settings.background_color }};"
+>
+  <div class="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-8 px-4 py-[40px] sm:px-8 sm:py-[60px] md:px-12 lg:gap-[50px] lg:px-0 lg:py-[100px]">
+    {% if section.settings.heading != blank %}
+      <h2
+        class="w-full max-w-[1036px] text-center text-[40px] leading-[0.95] font-bold text-[color:var(--chill-ingredients-heading-color)] capitalize sm:text-[48px] md:text-[60px] lg:text-[72px]"
+        style="--chill-ingredients-heading-color: {{ section.settings.heading_color }};"
+      >
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    <div class="grid w-full grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-[50px] min-[1200px]:grid-cols-[minmax(0,1fr)_649px]">
+      <div class="relative aspect-[4/3] w-full overflow-hidden rounded-[22px] lg:aspect-auto lg:min-h-[400px]">
+        {% if section.settings.image != blank %}
+          {{
+            section.settings.image
+            | image_url: width: 1600
+            | image_tag:
+              class: 'absolute inset-0 size-full object-cover',
+              widths: '600, 900, 1200, 1600',
+              sizes: '(min-width: 1024px) 50vw, 100vw',
+              loading: 'lazy',
+              alt: section.settings.image.alt
+          }}
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'absolute inset-0 size-full object-cover bg-black/5' }}
+        {% endif %}
+      </div>
+
+      <div class="flex w-full flex-col gap-[15px]">
+        {% content_for 'blocks' %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:general.chill_ingredients",
+  "blocks": [{ "type": "ingredient-card" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "What makes it chill"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#F6F1EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.heading_color",
+      "default": "#212323"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:general.chill_ingredients",
+      "blocks": [
+        {
+          "type": "ingredient-card",
+          "settings": {
+            "title": "L-Theanine",
+            "text": "Naturally found in green tea, L-Theanine has been consumed for thousands of years because it promotes feelings of calm."
+          }
+        },
+        {
+          "type": "ingredient-card",
+          "settings": {
+            "title": "Rhodiola Rosea",
+            "text": "Rhodiola was traditionally used by Vikings for strength and endurance, and today it's an adaptogen associated with stress resilience."
+          }
+        },
+        {
+          "type": "ingredient-card",
+          "settings": {
+            "title": "Low Dose THC",
+            "text": "At just 0.4mg per serving, we use a true micro-dose of THC, just enough to take the edge off."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

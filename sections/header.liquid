@@ -216,9 +216,9 @@
 {% stylesheet %}
   .navbar {
     width: 100%;
-    background-color: var(--navbar-background);
     color: var(--navbar-text);
     position: relative;
+    z-index: 30;
   }
 
   .navbar__bar {
@@ -229,6 +229,8 @@
     padding-block: 1.375rem;
     padding-inline: 60px;
     position: relative;
+    background-color: var(--navbar-background);
+    border-radius: 0 0 var(--corner-radius, 30px) var(--corner-radius, 30px);
   }
 
   .navbar__dropdown-toggle {

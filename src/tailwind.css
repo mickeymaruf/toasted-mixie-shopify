@@ -6,6 +6,19 @@
 @source "../snippets/**/*.liquid";
 @source "../templates/**/*.liquid";
 
+@layer base {
+  /* Corner radius shared by the navbar and sections that overlap the one above them. */
+  :root {
+    --corner-radius: 30px;
+  }
+
+  @media (min-width: 64rem) {
+    :root {
+      --corner-radius: 50px;
+    }
+  }
+}
+
 @layer components {
   /*
    * Shared section heading scale, matching sections/gruns-product-list.liquid.
