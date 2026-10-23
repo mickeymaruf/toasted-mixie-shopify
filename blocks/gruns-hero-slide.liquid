@@ -1,0 +1,659 @@
+{% doc %}
+  Renders a single Gruns hero slide: background image with optional overlay
+  image, a foreground product image, heading, description,
+  button, perks row, optional trust-badge rows and an optional right side
+  image block. Nest inside the Gruns hero section, which runs the Swiper
+  slideshow and its arrow navigation.
+
+  @example
+  {% content_for 'block', id: block.id, type: 'gruns-hero-slide' %}
+{% enddoc %}
+
+<div
+  class="gruns-hero-slide relative flex min-h-[670px] w-full flex-col justify-end overflow-hidden pt-[12px] pb-[60px] sm:block sm:min-h-0 sm:pt-[50px] sm:pb-[60px] lg:flex lg:min-h-[52.0833vw] lg:flex-col lg:justify-center lg:py-[14.7222vw]"
+  style="background-color: {{ block.settings.background_color }};"
+  {{ block.shopify_attributes }}
+>
+  {% liquid
+    assign description_desktop_visibility = ''
+    assign description_mobile_visibility = ''
+
+    if block.settings.description != blank and block.settings.description_mobile != blank
+      assign description_desktop_visibility = 'hidden lg:block '
+      assign description_mobile_visibility = 'lg:hidden '
+    endif
+
+    assign badge_desktop_visibility = ''
+    assign badge_mobile_visibility = ''
+
+    if block.settings.badge_image != blank and block.settings.badge_image_mobile != blank
+      assign badge_desktop_visibility = 'hidden lg:block '
+      assign badge_mobile_visibility = 'lg:hidden '
+    endif
+
+    assign image_loading = 'lazy'
+    assign image_priority = 'auto'
+    if section.blocks.first.id == block.id
+      assign image_loading = 'eager'
+      assign image_priority = 'high'
+    endif
+
+    assign overlay_image_class = 'absolute inset-0 size-full max-w-none object-cover'
+    if block.settings.overlay_blend == 'multiply'
+      assign overlay_image_class = overlay_image_class | append: ' mix-blend-multiply'
+    endif
+    assign overlay_opacity = block.settings.overlay_image_opacity | divided_by: 100.0
+    assign overlay_image_style = 'opacity: ' | append: overlay_opacity
+
+    assign badge_desktop_class = badge_desktop_visibility | append: 'w-full h-auto object-contain'
+    assign badge_mobile_class = badge_mobile_visibility | append: 'w-full h-auto object-contain'
+  %}
+
+  {% if block.settings.show_skyline_image %}
+    <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <picture class="block size-full">
+        {% if block.settings.skyline_image_mobile %}
+          {% if block.settings.skyline_image %}
+            <source
+              media="(min-width: 64rem)"
+              srcset="
+                {{ block.settings.skyline_image | image_url: width: 800 }} 800w,
+                {{ block.settings.skyline_image | image_url: width: 1200 }} 1200w,
+                {{ block.settings.skyline_image | image_url: width: 1600 }} 1600w
+              "
+              sizes="100vw"
+            >
+          {% endif %}
+          {{
+            block.settings.skyline_image_mobile
+            | image_url: width: 1200
+            | image_tag: class: 'size-full max-w-none object-cover object-right-bottom', widths: '400, 600, 800, 1200', sizes: '100vw', loading: image_loading, fetchpriority: image_priority, alt: ''
+          }}
+        {% elsif block.settings.skyline_image %}
+          {{
+            block.settings.skyline_image
+            | image_url: width: 1600
+            | image_tag: class: 'size-full max-w-none object-cover object-right-bottom', widths: '800, 1200, 1600', loading: image_loading, fetchpriority: image_priority, alt: ''
+          }}
+        {% endif %}
+      </picture>
+    </div>
+  {% endif %}
+
+  {% if block.settings.overlay_image != blank %}
+    <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      {% if block.settings.overlay_image != blank %}
+        {{
+          block.settings.overlay_image
+          | image_url: width: 1600
+          | image_tag:
+            class: overlay_image_class,
+            style: overlay_image_style,
+            widths: '800, 1200, 1600',
+            sizes: '100vw',
+            loading: image_loading,
+            alt: ''
+        }}
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if section.settings.extend_behind_navbar %}
+    <div class="h-[var(--corner-radius)]" aria-hidden="true"></div>
+  {% endif %}
+
+  {% if block.settings.foreground_image != blank %}
+    <div class="pointer-events-none relative z-[5] mx-auto mb-3 w-full max-w-[480px] sm:max-w-[533px] lg:absolute lg:top-[calc(50%+1.6319vw)] lg:left-[39.2%] lg:mx-0 lg:mb-0 lg:w-[64.6%] lg:max-w-none lg:-translate-y-1/2">
+      {{
+        block.settings.foreground_image
+        | image_url: width: 2000
+        | image_tag:
+          class: 'h-auto w-full',
+          widths: '600, 900, 1200, 1600, 2000',
+          sizes: '(min-width: 1024px) 65vw, 100vw',
+          loading: image_loading,
+          alt: block.settings.foreground_image_alt
+      }}
+    </div>
+  {% endif %}
+
+  <div
+    class="relative z-10 flex w-full flex-col gap-3 px-5 sm:gap-12 sm:px-8 md:px-12 lg:grid lg:grid-cols-[47.3fr_52.7fr] lg:items-center lg:gap-x-[4.1667vw] lg:px-[5.5556vw] xl:px-[9.0278vw]"
+  >
+    <div class="order-2 flex w-full flex-col items-center text-center lg:order-none lg:col-start-1 lg:items-start lg:text-left">
+      {% if block.settings.heading != blank %}
+        <div
+          class="drop-shadow-[-1px_1px_1.7px_rgba(0,0,0,0.4)] font-[family-name:var(--font-heading--family)] font-bold text-[46px] leading-[95%] whitespace-nowrap text-[color:var(--gruns-hero-heading-color)] sm:text-[48px] md:text-[52px] lg:text-[4.4444vw] xl:text-[5.9028vw]"
+          style="--gruns-hero-heading-color: {{ block.settings.heading_color }};"
+        >
+          {{ block.settings.heading }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.description != blank %}
+        <div
+          class="{{ description_desktop_visibility }}drop-shadow-[-1px_1px_1.7px_rgba(0,0,0,0.4)] mt-[5px] font-[family-name:var(--font-heading--family)] text-[20px] leading-[1.2] tracking-normal font-semibold text-[color:var(--gruns-hero-heading-color)] lg:text-[1.6667vw] xl:text-[2.0833vw]"
+          style="--gruns-hero-heading-color: {{ block.settings.heading_color }};"
+        >
+          {{ block.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.description_mobile != blank %}
+        <div
+          class="{{ description_mobile_visibility }}drop-shadow-[-1px_1px_1.7px_rgba(0,0,0,0.4)] mt-4 font-[family-name:var(--font-heading--family)] text-[20px] leading-[1.3] font-semibold text-[color:var(--gruns-hero-heading-color)] sm:mt-5"
+          style="--gruns-hero-heading-color: {{ block.settings.heading_color }};"
+        >
+          {{ block.settings.description_mobile }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_button and block.settings.button_label != blank or block.settings.show_perks %}
+        <div class="mt-4 flex w-fit flex-col items-stretch gap-[10px] sm:mt-8 lg:mt-[2.0833vw]">
+          {% if block.settings.show_button and block.settings.button_label != blank %}
+            {% render 'button',
+              label: block.settings.button_label,
+              url: block.settings.button_link,
+              background_color: block.settings.button_background_color,
+              text_color: block.settings.button_text_color,
+              class: '!w-full whitespace-nowrap !px-[42px] !py-[16px] !text-[18px] lg:!px-[2.9167vw] lg:!py-[1.1111vw] lg:!text-[1.25vw] drop-shadow-[-2px_3px_2.85px_rgba(0,0,0,0.22)]'
+            %}
+          {% endif %}
+
+          {% if block.settings.show_perks %}
+            <div
+              class="flex w-full items-center justify-between gap-[15px] text-[14px] leading-[1.5] text-[color:var(--gruns-hero-perks-color)] drop-shadow-[-1px_1px_1.7px_rgba(0,0,0,0.4)]"
+              style="--gruns-hero-perks-color: {{ block.settings.perks_text_color }};"
+            >
+              {% for index in (1..2) %}
+                {% liquid
+                  assign icon_key = 'perk_' | append: index | append: '_icon'
+                  assign text_key = 'perk_' | append: index | append: '_text'
+                  assign perk_icon = block.settings[icon_key]
+                  assign perk_text = block.settings[text_key]
+                  assign style_key = 'perk_' | append: index | append: '_icon_style'
+                  assign icon_style = block.settings[style_key]
+                  case icon_style
+                    when 'check'
+                      assign default_icon = 'icon-check-guarantee.svg'
+                      assign default_icon_width = 14.625
+                      assign default_icon_height = 11.375
+                    when 'truck'
+                      assign default_icon = 'icon-no-subscription.svg'
+                      assign default_icon_width = 17
+                      assign default_icon_height = 13
+                    else
+                      assign default_icon = 'icon-one-per-customer.svg'
+                      assign default_icon_width = 16.5
+                      assign default_icon_height = 16.5
+                  endcase
+                %}
+                {% if perk_text != blank %}
+                  <div class="flex items-center gap-[5px] whitespace-nowrap">
+                    <span class="flex h-[16.5px] w-[17px] shrink-0 items-center justify-center">
+                    {% if perk_icon %}
+                      {{
+                        perk_icon
+                        | image_url: width: 64
+                        | image_tag: class: 'h-[16.5px] w-[17px] shrink-0 object-contain', width: 17, height: 17, loading: 'lazy', alt: ''
+                      }}
+                    {% else %}
+                      <img
+                        src="{{ default_icon | asset_url }}"
+                        alt=""
+                        class="max-h-full max-w-full shrink-0"
+                        width="{{ default_icon_width }}"
+                        height="{{ default_icon_height }}"
+                        loading="lazy"
+                      >
+                    {% endif %}
+                    </span>
+                    <span>{{ perk_text }}</span>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="gruns-hero-benefits mt-8 sm:mt-10 lg:mt-[3.4722vw]">
+        {% content_for 'blocks' %}
+      </div>
+    </div>
+
+    {% if block.settings.show_right_side_content %}
+    {% if block.settings.can_image_1 or block.settings.can_image_2 or block.settings.can_image_3 or block.settings.cans_background_image %}
+      <div class="order-1 mx-auto mb-3 w-full shrink-0 sm:mb-0 sm:max-w-[533px] lg:order-none lg:col-start-2 lg:max-w-none">
+        <div class="relative mx-auto w-full" style="aspect-ratio: 624 / 516;">
+          <div
+            class="absolute overflow-hidden rounded-[24px] sm:rounded-[32px] lg:rounded-[2.5vw]"
+            style="
+              left: -0.24%;
+              top: 0%;
+              width: 98.88%;
+              height: 92.44%;
+            "
+          >
+            {% if block.settings.cans_background_image %}
+              {{
+                block.settings.cans_background_image
+                | image_url: width: 1200
+                | image_tag:
+                  class: 'absolute inset-0 size-full max-w-none object-cover',
+                  widths: '600, 900, 1200',
+                  loading: 'lazy',
+                  alt: ''
+              }}
+            {% endif %}
+            <div
+              class="pointer-events-none absolute inset-0"
+              style="background-image: linear-gradient(143deg, rgba(0, 0, 0, 0.55) 3%, rgba(0, 0, 0, 0) 34%);"
+            ></div>
+          </div>
+
+          {% if block.settings.show_badge %}
+            <div
+              class="absolute"
+              style="left: 4.53%; top: 5.69%; width: 16.12%;"
+            >
+              {% if block.settings.badge_image %}
+                {{
+                  block.settings.badge_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    class: badge_desktop_class,
+                    widths: '160, 240, 320, 480, 640, 960, 1200',
+                    sizes: '(min-width: 1024px) 12vw, (min-width: 640px) 86px, 16vw',
+                    loading: 'lazy',
+                    alt: block.settings.badge_image_alt
+                }}
+              {% endif %}
+
+              {% if block.settings.badge_image_mobile %}
+                {{
+                  block.settings.badge_image_mobile
+                  | image_url: width: 1200
+                  | image_tag:
+                    class: badge_mobile_class,
+                    widths: '160, 240, 320, 480, 640, 960, 1200',
+                    sizes: '(min-width: 640px) 86px, 16vw',
+                    loading: 'lazy',
+                    alt: block.settings.badge_image_alt
+                }}
+              {% endif %}
+
+              {% if block.settings.badge_image == blank and block.settings.badge_image_mobile == blank %}
+                <img
+                  src="{{ 'built-on-trust-badge.png' | asset_url }}"
+                  alt="{{ block.settings.badge_image_alt }}"
+                  class="w-full h-auto object-contain"
+                  loading="lazy"
+                  width="266"
+                  height="209"
+                >
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <div class="absolute" style="left: 57.81%; top: 47.48%; width: 42.55%; height: 52.43%;">
+            {% render 'gruns-hero-can-image',
+              image: block.settings.can_image_3,
+              alt: block.settings.can_image_3_alt,
+              modifier: 'compact-back-left'
+            %}
+            {% render 'gruns-hero-can-image',
+              image: block.settings.can_image_2,
+              alt: block.settings.can_image_2_alt,
+              modifier: 'compact-back-right'
+            %}
+            {% render 'gruns-hero-can-image',
+              image: block.settings.can_image_1,
+              alt: block.settings.can_image_1_alt,
+              modifier: 'compact-front-center'
+            %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  /* No badge row on this slide: drop the wrapper so its top margin does not add extra bottom space */
+  .gruns-hero-benefits:not(:has(*)) {
+    display: none;
+  }
+
+  .gruns-hero-benefits .badge-row {
+    display: flex;
+    flex-wrap: nowrap;
+    grid-template-columns: none;
+    align-items: flex-start;
+    justify-content: center;
+    column-gap: 18px;
+    row-gap: 16px;
+  }
+
+  .gruns-hero-benefits .trust-badge {
+    flex: 1 1 0%;
+    min-width: 0;
+    width: auto;
+  }
+
+  /* Mobile sizes taken from the iPhone 17 export: at 12px / 11.5px every label
+     and description fits its column on one line, which is what keeps the hero
+     from growing past the fold. nowrap guards the fit on narrower handsets. */
+  @media (max-width: 39.9375rem) {
+    .gruns-hero-benefits .trust-badge__label {
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .gruns-hero-benefits .trust-badge > div > p {
+      font-size: 11.5px;
+      white-space: nowrap;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .gruns-hero-benefits .badge-row {
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: flex-start;
+      column-gap: 21px;
+    }
+
+    .gruns-hero-benefits .trust-badge {
+      flex: none;
+    }
+  }
+{% endstylesheet %}
+
+
+{% schema %}
+{
+  "name": "t:general.gruns_hero_slide",
+  "blocks": [{ "type": "badge-row" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:general.perks"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_perks",
+      "label": "t:labels.show_perks",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "perk_1_icon_style",
+      "label": "t:labels.perk_1_icon_style",
+      "options": [
+        { "value": "box", "label": "t:options.perk_icon.box" },
+        { "value": "truck", "label": "t:options.perk_icon.truck" },
+        { "value": "check", "label": "t:options.perk_icon.check" }
+      ],
+      "default": "box",
+      "visible_if": "{{ block.settings.show_perks }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "perk_1_icon",
+      "label": "t:labels.perk_1_icon",
+      "visible_if": "{{ block.settings.show_perks }}"
+    },
+    {
+      "type": "text",
+      "id": "perk_1_text",
+      "label": "t:labels.perk_1_text",
+      "default": "One Per Customer",
+      "visible_if": "{{ block.settings.show_perks }}"
+    },
+    {
+      "type": "select",
+      "id": "perk_2_icon_style",
+      "label": "t:labels.perk_2_icon_style",
+      "options": [
+        { "value": "box", "label": "t:options.perk_icon.box" },
+        { "value": "truck", "label": "t:options.perk_icon.truck" },
+        { "value": "check", "label": "t:options.perk_icon.check" }
+      ],
+      "default": "truck",
+      "visible_if": "{{ block.settings.show_perks }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "perk_2_icon",
+      "label": "t:labels.perk_2_icon",
+      "visible_if": "{{ block.settings.show_perks }}"
+    },
+    {
+      "type": "text",
+      "id": "perk_2_text",
+      "label": "t:labels.perk_2_text",
+      "default": "No Subscription",
+      "visible_if": "{{ block.settings.show_perks }}"
+    },
+    {
+      "type": "color",
+      "id": "perks_text_color",
+      "label": "t:labels.perks_text_color",
+      "default": "#F6F1EC",
+      "visible_if": "{{ block.settings.show_perks }}"
+    },
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "<p><em>The Chill Drink</em></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description desktop",
+      "default": "<p>A light, tasteful drink for the moments you want to relax, connect, and stay present.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "description_mobile",
+      "label": "Description mobile",
+      "info": "Optional. If left blank, the desktop description is used on mobile."
+    },
+    {
+      "type": "header",
+      "content": "t:general.button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "t:labels.show_button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Shop Toasted",
+      "visible_if": "{{ block.settings.show_button }}"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link",
+      "visible_if": "{{ block.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "t:labels.button_background",
+      "default": "#D4941F",
+      "visible_if": "{{ block.settings.show_button }}"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "t:labels.button_text_color",
+      "default": "#F6F1EC",
+      "visible_if": "{{ block.settings.show_button }}"
+    },
+    {
+      "type": "header",
+      "content": "t:general.colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:labels.background",
+      "default": "#9AB2D5"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "t:labels.text_color",
+      "default": "#212323"
+    },
+    {
+      "type": "header",
+      "content": "t:general.image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_skyline_image",
+      "label": "t:labels.show_background_image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "skyline_image",
+      "label": "t:labels.background_image",
+      "info": "t:labels.background_image_info",
+      "visible_if": "{{ block.settings.show_skyline_image }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "skyline_image_mobile",
+      "label": "t:labels.background_image_mobile",
+      "info": "t:labels.background_image_mobile_info",
+      "visible_if": "{{ block.settings.show_skyline_image }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "overlay_image",
+      "label": "t:labels.overlay_image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_image_opacity",
+      "label": "t:labels.overlay_image_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100,
+      "visible_if": "{{ block.settings.overlay_image != blank }}"
+    },
+    {
+      "type": "select",
+      "id": "overlay_blend",
+      "label": "t:labels.overlay_blend",
+      "options": [
+        { "value": "normal", "label": "t:options.blend.normal" },
+        { "value": "multiply", "label": "t:options.blend.multiply" }
+      ],
+      "default": "normal",
+      "visible_if": "{{ block.settings.overlay_image != blank }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "foreground_image",
+      "label": "t:labels.foreground_image"
+    },
+    {
+      "type": "text",
+      "id": "foreground_image_alt",
+      "label": "t:labels.alt_text",
+      "visible_if": "{{ block.settings.foreground_image != blank }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_right_side_content",
+      "label": "t:labels.show_right_side_content",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "cans_background_image",
+      "label": "t:labels.lifestyle_image"
+    },
+    {
+      "type": "image_picker",
+      "id": "can_image_1",
+      "label": "Can image 1 (front center)"
+    },
+    {
+      "type": "text",
+      "id": "can_image_1_alt",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "image_picker",
+      "id": "can_image_2",
+      "label": "Can image 2 (back right)"
+    },
+    {
+      "type": "text",
+      "id": "can_image_2_alt",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "image_picker",
+      "id": "can_image_3",
+      "label": "Can image 3 (back left)"
+    },
+    {
+      "type": "text",
+      "id": "can_image_3_alt",
+      "label": "t:labels.alt_text"
+    },
+    {
+      "type": "header",
+      "content": "t:general.badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "t:labels.show_badge",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "t:labels.badge_image",
+      "visible_if": "{{ block.settings.show_badge }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image_mobile",
+      "label": "t:labels.badge_image_mobile",
+      "info": "t:labels.badge_image_mobile_info",
+      "visible_if": "{{ block.settings.show_badge }}"
+    },
+    {
+      "type": "text",
+      "id": "badge_image_alt",
+      "label": "t:labels.alt_text",
+      "default": "America's most compliant badge",
+      "visible_if": "{{ block.settings.show_badge }}"
+    }
+  ],
+  "presets": [{ "name": "t:general.gruns_hero_slide" }]
+}
+{% endschema %}
+

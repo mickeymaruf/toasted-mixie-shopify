@@ -78,7 +78,7 @@
       "type": "header",
       "settings": {
         "logo": "shopify://shop_images/toaster-logo.svg",
-        "logo_width": 260,
+        "logo_width": 232,
         "logo_width_mobile": 116,
         "show_right_side_button": true,
         "right_side_button_text": "Shop Now",
@@ -100,7 +100,6 @@
         "card_1_link": "",
         "card_2_product": "",
         "card_2_name": "",
-        "card_2_image": "",
         "card_2_link": "",
         "card_3_product": "ginger-lime",
         "card_3_name": "Ginger Lime",

@@ -65,6 +65,30 @@
   </div>
 </section>
 
+{% stylesheet %}
+  /*
+   * Newsletter callout box in article content (the .section div with the blue-grey
+   * background). The article HTML carries inline styles, so the values that need
+   * to change use !important. Matches the old and new background so it keeps
+   * working if the article HTML is updated.
+   */
+  .article-details .section[style*="C2CCD5" i],
+  .article-details .section[style*="C2CBD4" i] {
+    background-color: #c2cbd4 !important;
+    padding: 46px 50px !important;
+  }
+
+  .article-details .section[style*="C2CCD5" i] > h2,
+  .article-details .section[style*="C2CBD4" i] > h2 {
+    margin-top: 0;
+  }
+
+  .article-details .section[style*="C2CCD5" i] > :last-child,
+  .article-details .section[style*="C2CBD4" i] > :last-child {
+    margin-bottom: 0;
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:general.article",

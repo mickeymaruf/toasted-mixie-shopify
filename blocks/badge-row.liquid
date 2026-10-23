@@ -10,6 +10,7 @@
 
 <div
   class="badge-row grid w-full grid-cols-3 items-start gap-x-8 gap-y-6 sm:gap-x-6 sm:gap-y-4 lg:gap-x-[2.0833vw]"
+  style="--badge-row-text-color: {{ block.settings.text_color }};"
   {{ block.shopify_attributes }}
 >
   {% content_for 'blocks' %}
@@ -39,6 +40,14 @@
 {
   "name": "t:general.badge_row",
   "blocks": [{ "type": "trust-badge" }, { "type": "guarantee-badge" }],
+  "settings": [
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:labels.text_color",
+      "default": "#F6F1EC"
+    }
+  ],
   "presets": [
     {
       "name": "t:general.badge_row",

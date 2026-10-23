@@ -1,453 +1,212 @@
+{% comment %}
+  Renders the Gruns hero as a Swiper slideshow. Each gruns-hero-slide block is
+  one full hero (background, text, button, perks, badge rows); the circular
+  arrows at the bottom right move between slides (hidden on mobile, where
+  slides are swiped).
+{% endcomment %}
+
 <section
-  class="gruns-hero full-width relative z-10 overflow-hidden pt-[12px] pb-[50px] sm:pt-[50px] sm:pb-[60px] lg:pt-[3.4722vw] lg:pb-[6.9444vw]"
-  style="background-color: {{ section.settings.background_color }};"
+  class="gruns-hero full-width relative z-10 overflow-hidden{% if section.settings.extend_behind_navbar %} -mt-[var(--corner-radius)]{% endif %}"
+  {{ section.shopify_attributes }}
 >
-  {% liquid
-    assign description_desktop_visibility = ''
-    assign description_mobile_visibility = ''
-
-    if section.settings.description != blank and section.settings.description_mobile != blank
-      assign description_desktop_visibility = 'hidden lg:block '
-      assign description_mobile_visibility = 'lg:hidden '
-    endif
-
-    assign badge_desktop_visibility = ''
-    assign badge_mobile_visibility = ''
-
-    if section.settings.badge_image != blank and section.settings.badge_image_mobile != blank
-      assign badge_desktop_visibility = 'hidden lg:block '
-      assign badge_mobile_visibility = 'lg:hidden '
-    endif
-
-    assign badge_desktop_class = badge_desktop_visibility | append: 'w-full h-auto object-contain'
-    assign badge_mobile_class = badge_mobile_visibility | append: 'w-full h-auto object-contain'
-  %}
-
-  {% if section.settings.show_skyline_image %}
-    <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-      <picture class="block size-full">
-        {% if section.settings.skyline_image_mobile %}
-          {% if section.settings.skyline_image %}
-            <source
-              media="(min-width: 64rem)"
-              srcset="
-                {{ section.settings.skyline_image | image_url: width: 800 }} 800w,
-                {{ section.settings.skyline_image | image_url: width: 1200 }} 1200w,
-                {{ section.settings.skyline_image | image_url: width: 1600 }} 1600w
-              "
-              sizes="100vw"
-            >
-          {% else %}
-            <source media="(min-width: 64rem)" srcset="{{ 'bg-skyline-gruns-hero.png' | asset_url }}">
-          {% endif %}
-          {{
-            section.settings.skyline_image_mobile
-            | image_url: width: 1200
-            | image_tag: class: 'size-full max-w-none object-cover object-left-bottom', widths: '400, 600, 800, 1200', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: ''
-          }}
-        {% elsif section.settings.skyline_image %}
-          {{
-            section.settings.skyline_image
-            | image_url: width: 1600
-            | image_tag: class: 'size-full max-w-none object-cover object-left-bottom', widths: '800, 1200, 1600', loading: 'eager', fetchpriority: 'high', alt: ''
-          }}
-        {% else %}
-          <img
-            src="{{ 'bg-skyline-gruns-hero.png' | asset_url }}"
-            alt=""
-            class="size-full max-w-none object-cover object-left-bottom"
-            loading="eager"
-            fetchpriority="high"
-            width="1472"
-            height="730"
-          >
-        {% endif %}
-      </picture>
-    </div>
-  {% endif %}
-
-  <div
-    class="relative z-10 flex w-full flex-col gap-3 px-5 sm:gap-12 sm:px-8 md:px-12 lg:grid lg:grid-cols-[43fr_57fr] lg:items-center lg:gap-x-[4.1667vw] lg:px-[5.5556vw] xl:px-[9.0278vw]"
+  <gruns-hero-slider
+    class="relative block"
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="{{ 'general.accessibility.hero_slideshow' | t }}"
+    data-autoplay="{{ section.settings.autoplay }}"
+    data-autoplay-delay="{{ section.settings.autoplay_delay | times: 1000 }}"
+    data-loop="{{ section.settings.loop }}"
   >
-    <div class="order-2 flex w-full flex-col items-center text-center lg:order-none lg:col-start-1 lg:items-start lg:text-left">
-      {% if section.settings.heading != blank %}
-        <div
-          class="font-[family-name:var(--font-heading--family)] font-bold text-[46px] leading-[95%] whitespace-nowrap text-[color:var(--gruns-hero-heading-color)] sm:text-[48px] md:text-[52px] lg:text-[4.4444vw] xl:text-[5.9028vw]"
-          style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
-        >
-          {{ section.settings.heading }}
-        </div>
-      {% endif %}
-
-      {% if section.settings.description != blank %}
-        <div
-          class="{{ description_desktop_visibility }}mt-[5px] font-[family-name:var(--font-heading--family)] text-[20px] leading-[1.2] tracking-normal font-semibold text-[color:var(--gruns-hero-heading-color)] lg:text-[1.6667vw] lg:tracking-[-3%] xl:text-[2.0833vw]"
-          style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
-        >
-          {{ section.settings.description }}
-        </div>
-      {% endif %}
-
-      {% if section.settings.description_mobile != blank %}
-        <div
-          class="{{ description_mobile_visibility }}mt-4 font-[family-name:var(--font-heading--family)] text-[20px] leading-[1.3] font-semibold text-[color:var(--gruns-hero-heading-color)] sm:mt-5"
-          style="--gruns-hero-heading-color: {{ section.settings.heading_color }};"
-        >
-          {{ section.settings.description_mobile }}
-        </div>
-      {% endif %}
-
-      {% if section.settings.show_button and section.settings.button_label != blank %}
-        <div class="mt-4 sm:mt-8 lg:mt-[2.0833vw]">
-          {% render 'button',
-            label: section.settings.button_label,
-            url: section.settings.button_link,
-            background_color: section.settings.button_background_color,
-            text_color: section.settings.button_text_color,
-            class: 'whitespace-nowrap !px-[42px] !py-[16px] !text-[18px] lg:!px-[2.9167vw] lg:!py-[1.1111vw] lg:!text-[1.25vw] drop-shadow-[-2px_3px_2.85px_rgba(0,0,0,0.22)]'
-          %}
-        </div>
-      {% endif %}
-
-      <div class="gruns-hero-benefits mt-8 sm:mt-10 lg:mt-[3.4722vw]">
+    <div class="swiper gruns-hero__swiper">
+      <div class="swiper-wrapper">
         {% content_for 'blocks' %}
       </div>
     </div>
 
-    {% if section.settings.can_image_1 or section.settings.can_image_2 or section.settings.can_image_3 or section.settings.cans_background_image %}
-      <div class="order-1 mx-auto mb-3 w-full shrink-0 sm:mb-0 sm:max-w-[533px] lg:order-none lg:col-start-2 lg:max-w-none">
-        <div class="relative mx-auto w-full" style="aspect-ratio: 624 / 516;">
-          <div
-            class="absolute overflow-hidden rounded-[24px] sm:rounded-[32px] lg:rounded-[2.5vw]"
-            style="
-              left: -0.24%;
-              top: 0%;
-              width: 98.88%;
-              height: 92.44%;
-              background-color: {{ section.settings.cans_background_color }};
-            "
+    {% if section.settings.show_arrows and section.blocks.size > 1 %}
+      <div class="absolute right-4 bottom-[calc(var(--corner-radius)+1rem)] z-20 hidden items-center sm:flex gap-[13px] sm:right-8 sm:bottom-[calc(var(--corner-radius)+2rem)] lg:right-[2.7778vw] lg:bottom-[5.6944vw]">
+        <button
+          type="button"
+          class="gruns-hero__arrow w-[40px] cursor-pointer transition-opacity duration-150 hover:opacity-75 sm:w-[46px] lg:w-[3.7142vw]"
+          aria-label="{{ 'general.accessibility.previous_slide' | t }}"
+          data-hero-prev
+        >
+          <img
+            src="{{ 'icon-hero-arrow-prev.svg' | asset_url }}"
+            alt=""
+            width="53"
+            height="52"
+            class="h-auto w-full rotate-180"
+            loading="lazy"
           >
-            {% if section.settings.cans_background_image %}
-              {{
-                section.settings.cans_background_image
-                | image_url: width: 1200
-                | image_tag:
-                  class: 'absolute inset-0 size-full max-w-none object-cover',
-                  widths: '600, 900, 1200',
-                  loading: 'lazy',
-                  alt: ''
-              }}
-            {% endif %}
-            <div
-              class="pointer-events-none absolute inset-0"
-              style="background-image: linear-gradient(143deg, rgba(0, 0, 0, 0.55) 3%, rgba(0, 0, 0, 0) 34%);"
-            ></div>
-          </div>
-
-          {% if section.settings.show_badge %}
-            <div
-              class="absolute"
-              style="left: 4.53%; top: 5.69%; width: 16.12%;"
-            >
-              {% if section.settings.badge_image %}
-                {{
-                  section.settings.badge_image
-                  | image_url: width: 1200
-                  | image_tag:
-                    class: badge_desktop_class,
-                    widths: '160, 240, 320, 480, 640, 960, 1200',
-                    sizes: '(min-width: 1024px) 12vw, (min-width: 640px) 86px, 16vw',
-                    loading: 'lazy',
-                    alt: section.settings.badge_image_alt
-                }}
-              {% endif %}
-
-              {% if section.settings.badge_image_mobile %}
-                {{
-                  section.settings.badge_image_mobile
-                  | image_url: width: 1200
-                  | image_tag:
-                    class: badge_mobile_class,
-                    widths: '160, 240, 320, 480, 640, 960, 1200',
-                    sizes: '(min-width: 640px) 86px, 16vw',
-                    loading: 'lazy',
-                    alt: section.settings.badge_image_alt
-                }}
-              {% endif %}
-
-              {% if section.settings.badge_image == blank and section.settings.badge_image_mobile == blank %}
-                <img
-                  src="{{ 'built-on-trust-badge.png' | asset_url }}"
-                  alt="{{ section.settings.badge_image_alt }}"
-                  class="w-full h-auto object-contain"
-                  loading="lazy"
-                  width="266"
-                  height="209"
-                >
-              {% endif %}
-            </div>
-          {% endif %}
-
-          <div class="absolute" style="left: 57.81%; top: 47.48%; width: 42.55%; height: 52.43%;">
-            {% render 'gruns-hero-can-image',
-              image: section.settings.can_image_3,
-              alt: section.settings.can_image_3_alt,
-              modifier: 'compact-back-left'
-            %}
-            {% render 'gruns-hero-can-image',
-              image: section.settings.can_image_2,
-              alt: section.settings.can_image_2_alt,
-              modifier: 'compact-back-right'
-            %}
-            {% render 'gruns-hero-can-image',
-              image: section.settings.can_image_1,
-              alt: section.settings.can_image_1_alt,
-              modifier: 'compact-front-center'
-            %}
-          </div>
-        </div>
+        </button>
+        <button
+          type="button"
+          class="gruns-hero__arrow w-[40px] cursor-pointer transition-opacity duration-150 hover:opacity-75 sm:w-[46px] lg:w-[3.7142vw]"
+          aria-label="{{ 'general.accessibility.next_slide' | t }}"
+          data-hero-next
+        >
+          <img
+            src="{{ 'icon-hero-arrow-next.svg' | asset_url }}"
+            alt=""
+            width="53"
+            height="52"
+            class="h-auto w-full"
+            loading="lazy"
+          >
+        </button>
       </div>
     {% endif %}
-  </div>
+  </gruns-hero-slider>
 </section>
 
 {% stylesheet %}
-  .gruns-hero-benefits .badge-row {
+  /* Shopify wraps every theme block in a .shopify-block div, so that wrapper
+     is the Swiper slide; the hero slide inside it stretches to its height. */
+  .gruns-hero__swiper .swiper-wrapper > .shopify-block {
     display: flex;
-    flex-wrap: nowrap;
-    grid-template-columns: none;
-    align-items: flex-start;
-    justify-content: center;
-    column-gap: 18px;
-    row-gap: 16px;
-  }
-
-  .gruns-hero-benefits .trust-badge {
-    flex: 1 1 0%;
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
     min-width: 0;
-    width: auto;
   }
 
-  /* Mobile sizes taken from the iPhone 17 export: at 12px / 11.5px every label
-     and description fits its column on one line, which is what keeps the hero
-     from growing past the fold. nowrap guards the fit on narrower handsets. */
-  @media (max-width: 39.9375rem) {
-    .gruns-hero-benefits .trust-badge__label {
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .gruns-hero-benefits .trust-badge > div > p {
-      font-size: 11.5px;
-      white-space: nowrap;
-    }
-  }
-
-  @media (min-width: 40rem) {
-    .gruns-hero-benefits .badge-row {
-      flex-wrap: wrap;
-      align-items: flex-end;
-      justify-content: flex-start;
-      column-gap: 21px;
-    }
-
-    .gruns-hero-benefits .trust-badge {
-      flex: none;
-    }
+  .gruns-hero__swiper .swiper-wrapper > .shopify-block > .gruns-hero-slide {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 {% endstylesheet %}
+
+{% javascript %}
+  class GrunsHeroSlider extends HTMLElement {
+    connectedCallback() {
+      if (typeof Swiper === 'undefined') {
+        window.addEventListener('load', () => this.init(), { once: true });
+        return;
+      }
+      this.init();
+    }
+
+    disconnectedCallback() {
+      document.removeEventListener('shopify:block:select', this.handleBlockSelect);
+      document.removeEventListener('shopify:block:deselect', this.handleBlockDeselect);
+      if (this.swiper) {
+        this.swiper.destroy(true, true);
+        this.swiper = null;
+      }
+    }
+
+    init() {
+      const container = this.querySelector('.gruns-hero__swiper');
+      if (!container || this.swiper || typeof Swiper === 'undefined') return;
+
+      const wrapper = container.querySelector('.swiper-wrapper');
+      const slideEls = Array.from(wrapper.children);
+      slideEls.forEach((el) => el.classList.add('swiper-slide'));
+      const multiple = slideEls.length > 1;
+      const designMode = Boolean(window.Shopify && window.Shopify.designMode);
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const autoplayEnabled = this.dataset.autoplay === 'true' && multiple && !designMode && !reducedMotion;
+
+      this.swiper = new Swiper(container, {
+        slidesPerView: 1,
+        speed: 600,
+        effect: 'fade',
+        fadeEffect: { crossFade: true },
+        loop: this.dataset.loop === 'true' && multiple,
+        allowTouchMove: multiple,
+        grabCursor: multiple,
+        keyboard: { enabled: true },
+        a11y: { enabled: true },
+        autoplay: autoplayEnabled
+          ? {
+              delay: parseInt(this.dataset.autoplayDelay, 10) || 5000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }
+          : false,
+        navigation: {
+          prevEl: this.querySelector('[data-hero-prev]'),
+          nextEl: this.querySelector('[data-hero-next]'),
+        },
+      });
+
+      this.handleBlockSelect = (event) => {
+        const slide = event.target.closest('.swiper-slide');
+        if (!slide || !this.contains(slide) || !this.swiper) return;
+        const index = Array.from(this.swiper.slides).indexOf(slide);
+        if (index < 0) return;
+        if (this.swiper.params.loop) {
+          this.swiper.slideToLoop(Number(slide.dataset.swiperSlideIndex ?? index), 0);
+        } else {
+          this.swiper.slideTo(index, 0);
+        }
+      };
+
+      document.addEventListener('shopify:block:select', this.handleBlockSelect);
+    }
+  }
+
+  if (!customElements.get('gruns-hero-slider')) {
+    customElements.define('gruns-hero-slider', GrunsHeroSlider);
+  }
+{% endjavascript %}
 
 {% schema %}
 {
   "name": "t:general.gruns_hero",
-  "blocks": [{ "type": "badge-row" }],
+  "blocks": [{ "type": "gruns-hero-slide" }],
   "settings": [
     {
       "type": "header",
-      "content": "t:general.content"
-    },
-    {
-      "type": "richtext",
-      "id": "heading",
-      "label": "t:labels.heading",
-      "default": "<p><em>The Chill Drink</em></p>"
-    },
-    {
-      "type": "richtext",
-      "id": "description",
-      "label": "Description desktop",
-      "default": "<p>A light, tasteful drink for the moments you want to relax, connect, and stay present.</p>"
-    },
-    {
-      "type": "richtext",
-      "id": "description_mobile",
-      "label": "Description mobile",
-      "info": "Optional. If left blank, the desktop description is used on mobile."
-    },
-    {
-      "type": "header",
-      "content": "t:general.button"
+      "content": "t:general.layout"
     },
     {
       "type": "checkbox",
-      "id": "show_button",
-      "label": "t:labels.show_button",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "t:labels.button_label",
-      "default": "Shop Toasted",
-      "visible_if": "{{ section.settings.show_button }}"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "t:labels.button_link",
-      "visible_if": "{{ section.settings.show_button }}"
-    },
-    {
-      "type": "color",
-      "id": "button_background_color",
-      "label": "t:labels.button_background",
-      "default": "#D4941F",
-      "visible_if": "{{ section.settings.show_button }}"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "t:labels.button_text_color",
-      "default": "#F6F1EC",
-      "visible_if": "{{ section.settings.show_button }}"
+      "id": "extend_behind_navbar",
+      "label": "t:labels.extend_behind_navbar",
+      "default": false
     },
     {
       "type": "header",
-      "content": "t:general.colors"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "t:labels.background",
-      "default": "#9AB2D5"
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "t:labels.text_color",
-      "default": "#212323"
-    },
-    {
-      "type": "header",
-      "content": "t:general.image"
+      "content": "t:general.slideshow"
     },
     {
       "type": "checkbox",
-      "id": "show_skyline_image",
-      "label": "t:labels.show_background_image",
+      "id": "show_arrows",
+      "label": "t:labels.show_arrows",
       "default": true
-    },
-    {
-      "type": "image_picker",
-      "id": "skyline_image",
-      "label": "t:labels.background_image",
-      "info": "t:labels.background_image_info",
-      "visible_if": "{{ section.settings.show_skyline_image }}"
-    },
-    {
-      "type": "image_picker",
-      "id": "skyline_image_mobile",
-      "label": "t:labels.background_image_mobile",
-      "info": "t:labels.background_image_mobile_info",
-      "visible_if": "{{ section.settings.show_skyline_image }}"
-    },
-    {
-      "type": "color",
-      "id": "cans_background_color",
-      "label": "t:labels.background_color",
-      "default": "#F9D5C0"
-    },
-    {
-      "type": "image_picker",
-      "id": "cans_background_image",
-      "label": "t:labels.lifestyle_image"
-    },
-    {
-      "type": "image_picker",
-      "id": "can_image_1",
-      "label": "Can image 1 (front center)"
-    },
-    {
-      "type": "text",
-      "id": "can_image_1_alt",
-      "label": "t:labels.alt_text"
-    },
-    {
-      "type": "image_picker",
-      "id": "can_image_2",
-      "label": "Can image 2 (back right)"
-    },
-    {
-      "type": "text",
-      "id": "can_image_2_alt",
-      "label": "t:labels.alt_text"
-    },
-    {
-      "type": "image_picker",
-      "id": "can_image_3",
-      "label": "Can image 3 (back left)"
-    },
-    {
-      "type": "text",
-      "id": "can_image_3_alt",
-      "label": "t:labels.alt_text"
-    },
-    {
-      "type": "header",
-      "content": "t:general.badge"
     },
     {
       "type": "checkbox",
-      "id": "show_badge",
-      "label": "t:labels.show_badge",
+      "id": "loop",
+      "label": "t:labels.loop_slides",
       "default": true
     },
     {
-      "type": "image_picker",
-      "id": "badge_image",
-      "label": "t:labels.badge_image",
-      "visible_if": "{{ section.settings.show_badge }}"
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "t:labels.enable_autoplay",
+      "default": false
     },
     {
-      "type": "image_picker",
-      "id": "badge_image_mobile",
-      "label": "t:labels.badge_image_mobile",
-      "info": "t:labels.badge_image_mobile_info",
-      "visible_if": "{{ section.settings.show_badge }}"
-    },
-    {
-      "type": "text",
-      "id": "badge_image_alt",
-      "label": "t:labels.alt_text",
-      "default": "America's most compliant badge",
-      "visible_if": "{{ section.settings.show_badge }}"
+      "type": "range",
+      "id": "autoplay_delay",
+      "label": "t:labels.autoplay_speed",
+      "min": 2,
+      "max": 15,
+      "step": 1,
+      "unit": "s",
+      "default": 6,
+      "visible_if": "{{ section.settings.autoplay }}"
     }
   ],
   "presets": [
     {
       "name": "t:general.gruns_hero",
-      "blocks": [
-        {
-          "type": "badge-row",
-          "blocks": [
-            { "type": "trust-badge", "settings": { "label": "<p>Supports Clarity</p>", "description": "Smooth, present focus" } },
-            { "type": "trust-badge", "settings": { "label": "<p>Balanced Mood</p>", "description": "Light, feel-good lift" } },
-            { "type": "trust-badge", "settings": { "label": "<p>Promotes Calm</p>", "description": "Steady unwind" } }
-          ]
-        }
-      ]
+      "blocks": [{ "type": "gruns-hero-slide" }]
     }
   ]
 }
 {% endschema %}
-

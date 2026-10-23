@@ -97,6 +97,11 @@
     "feature_highlight": "Feature highlight",
     "feature_column": "Feature column",
     "info_card": "Info card",
+    "perks": "Perks",
+    "gruns_hero_slide": "Hero slide",
+    "slideshow": "Slideshow",
+    "ingredient_card": "Ingredient card",
+    "chill_ingredients": "Chill ingredients",
     "info_grid": "Info grid",
     "learn_more": "Learn more",
     "layout": "Layout",
@@ -307,6 +312,25 @@
     "logo_width": "Logo width",
     "manufacturer": "Manufacturer name",
     "member_count": "Member count",
+    "show_right_side_content": "Show right side content",
+    "show_perks": "Show perks row",
+    "platform": "Platform",
+    "platform_info": "Shows the bundled icon for this platform. Uploading a custom icon below overrides it.",
+    "show_arrows": "Show navigation arrows",
+    "loop_slides": "Loop slides",
+    "overlay_image": "Overlay image",
+    "overlay_image_opacity": "Overlay image opacity",
+    "overlay_blend": "Overlay blend mode",
+    "foreground_image": "Foreground image",
+    "perk_1_icon_style": "Perk 1 bundled icon",
+    "perk_2_icon_style": "Perk 2 bundled icon",
+    "perk_1_icon": "Perk 1 icon",
+    "perk_1_text": "Perk 1 text",
+    "perk_2_icon": "Perk 2 icon",
+    "perk_2_text": "Perk 2 text",
+    "perks_text_color": "Perks text color",
+    "extend_behind_navbar": "Extend behind navbar",
+    "overlap_previous_section": "Overlap previous section",
     "mobile_description": "Description (mobile)",
     "mobile_description_info": "Optional. Replaces the description on mobile screens only. If left blank, the description above is used on all screen sizes.",
     "mobile_order": "Order on mobile",
@@ -430,6 +454,22 @@
     "blog_info": "Used when the section is shown outside a blog page"
   },
   "options": {
+    "perk_icon": {
+      "box": "Box",
+      "truck": "Truck",
+      "check": "Checkmark"
+    },
+    "social_platform": {
+      "custom": "Custom icon",
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "tiktok": "TikTok",
+      "youtube": "YouTube"
+    },
+    "blend": {
+      "normal": "Normal",
+      "multiply": "Multiply"
+    },
     "columns": {
       "two": "2",
       "three": "3"

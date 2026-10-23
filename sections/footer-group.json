@@ -20,13 +20,47 @@
           "settings": {
             "label": "Social link",
             "link": "https://www.instagram.com/drinktoasted",
+            "platform": "custom",
             "icon": "shopify://shop_images/Item.svg"
+          },
+          "blocks": {}
+        },
+        "social_icon_Fb7kQm": {
+          "type": "social-icon",
+          "name": "t:general.social_icon",
+          "settings": {
+            "label": "Facebook",
+            "link": "https://www.facebook.com/drinktoasted",
+            "platform": "facebook"
+          },
+          "blocks": {}
+        },
+        "social_icon_Tk9vXa": {
+          "type": "social-icon",
+          "name": "t:general.social_icon",
+          "settings": {
+            "label": "TikTok",
+            "link": "https://www.tiktok.com/@drinktoasted",
+            "platform": "tiktok"
+          },
+          "blocks": {}
+        },
+        "social_icon_Yt3pLs": {
+          "type": "social-icon",
+          "name": "t:general.social_icon",
+          "settings": {
+            "label": "YouTube",
+            "link": "https://www.youtube.com/@drinktoasted",
+            "platform": "youtube"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "social_icon_BEEGVQ"
+        "social_icon_BEEGVQ",
+        "social_icon_Fb7kQm",
+        "social_icon_Tk9vXa",
+        "social_icon_Yt3pLs"
       ],
       "settings": {
         "heading": "Be first to know",
@@ -37,7 +71,7 @@
         "newsletter_button_background_color": "#212323",
         "newsletter_button_text_color": "#f6f1ec",
         "background_mark": "shopify://shop_images/Balance_1.svg",
-        "logo_width": 280,
+        "logo_width": 232,
         "shop_title": "Shop",
         "shop_menu": "footer-shop",
         "help_title": "Help",

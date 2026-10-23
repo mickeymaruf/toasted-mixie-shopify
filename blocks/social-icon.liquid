@@ -1,21 +1,47 @@
 {% doc %}
-  Renders a social media icon with a user-uploadable custom icon.
+  Renders a social media icon link. Uses the uploaded custom icon when one is
+  set; otherwise falls back to the bundled icon for the selected platform.
 
   @example
   {% content_for 'block', id: block.id, type: 'social-icon' %}
 {% enddoc %}
 
-{% if block.settings.icon %}
+{% liquid
+  assign platform_icon = blank
+  case block.settings.platform
+    when 'facebook'
+      assign platform_icon = 'icon-social-facebook.svg'
+    when 'instagram'
+      assign platform_icon = 'icon-social-instagram.svg'
+    when 'tiktok'
+      assign platform_icon = 'icon-social-tiktok.svg'
+    when 'youtube'
+      assign platform_icon = 'icon-youtube-social.svg'
+  endcase
+%}
+
+{% if block.settings.icon or platform_icon != blank %}
   <a
     href="{{ block.settings.link }}"
     class="shrink-0 transition-opacity duration-150 hover:opacity-85"
     aria-label="{{ block.settings.label | escape }}"
   >
-    {{
-      block.settings.icon
-      | image_url: width: 100
-      | image_tag: class: 'size-[50px] object-contain', alt: block.settings.label
-    }}
+    {% if block.settings.icon %}
+      {{
+        block.settings.icon
+        | image_url: width: 100
+        | image_tag: class: 'size-[50px] object-contain', alt: block.settings.label
+      }}
+    {% else %}
+      <img
+        src="{{ platform_icon | asset_url }}"
+        alt="{{ block.settings.label | escape }}"
+        class="size-[50px] object-contain"
+        width="50"
+        height="50"
+        loading="lazy"
+      >
+    {% endif %}
   </a>
 {% endif %}
 
@@ -35,6 +61,20 @@
       "id": "link",
       "label": "t:labels.link",
       "info": "t:labels.social_link_info"
+    },
+    {
+      "type": "select",
+      "id": "platform",
+      "label": "t:labels.platform",
+      "info": "t:labels.platform_info",
+      "options": [
+        { "value": "custom", "label": "t:options.social_platform.custom" },
+        { "value": "facebook", "label": "t:options.social_platform.facebook" },
+        { "value": "instagram", "label": "t:options.social_platform.instagram" },
+        { "value": "tiktok", "label": "t:options.social_platform.tiktok" },
+        { "value": "youtube", "label": "t:options.social_platform.youtube" }
+      ],
+      "default": "custom"
     },
     {
       "type": "image_picker",
