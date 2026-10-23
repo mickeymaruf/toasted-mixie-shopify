@@ -1,8 +1,8 @@
 {% comment %}
   Renders the Gruns hero as a Swiper slideshow. Each gruns-hero-slide block is
   one full hero (background, text, button, perks, badge rows); the circular
-  arrows at the bottom right move between slides (hidden on mobile, where
-  slides are swiped).
+  arrows move between slides: centered below the content on mobile, bottom
+  right from sm up.
 {% endcomment %}
 
 <section
@@ -25,21 +25,14 @@
     </div>
 
     {% if section.settings.show_arrows and section.blocks.size > 1 %}
-      <div class="absolute right-4 bottom-[calc(var(--corner-radius)+1rem)] z-20 hidden items-center sm:flex gap-[13px] sm:right-8 sm:bottom-[calc(var(--corner-radius)+2rem)] lg:right-[2.7778vw] lg:bottom-[5.6944vw]">
+      <div class="absolute bottom-[calc(var(--corner-radius)+0.75rem)] left-1/2 z-20 flex -translate-x-1/2 items-center gap-[13px] sm:right-8 sm:left-auto sm:translate-x-0 sm:bottom-[calc(var(--corner-radius)+2rem)] lg:right-[2.7778vw] lg:bottom-[5.6944vw]">
         <button
           type="button"
           class="gruns-hero__arrow w-[40px] cursor-pointer transition-opacity duration-150 hover:opacity-75 sm:w-[46px] lg:w-[3.7142vw]"
           aria-label="{{ 'general.accessibility.previous_slide' | t }}"
           data-hero-prev
         >
-          <img
-            src="{{ 'icon-hero-arrow-prev.svg' | asset_url }}"
-            alt=""
-            width="53"
-            height="52"
-            class="h-auto w-full rotate-180"
-            loading="lazy"
-          >
+          {% render 'hero-arrow-icon', direction: 'prev' %}
         </button>
         <button
           type="button"
@@ -47,14 +40,7 @@
           aria-label="{{ 'general.accessibility.next_slide' | t }}"
           data-hero-next
         >
-          <img
-            src="{{ 'icon-hero-arrow-next.svg' | asset_url }}"
-            alt=""
-            width="53"
-            height="52"
-            class="h-auto w-full"
-            loading="lazy"
-          >
+          {% render 'hero-arrow-icon', direction: 'next' %}
         </button>
       </div>
     {% endif %}

@@ -30,7 +30,7 @@
   "
   data-navbar
 >
-  <div class="navbar__bar">
+  <div class="navbar__bar{% if template.name == 'index' %} navbar__bar--rounded{% endif %}">
     <button
       type="button"
       class="navbar__dropdown-toggle navbar__dropdown-toggle--desktop"
@@ -230,6 +230,10 @@
     padding-inline: 60px;
     position: relative;
     background-color: var(--navbar-background);
+  }
+
+  /* Rounded bottom corners are a home page treatment only. */
+  .navbar__bar--rounded {
     border-radius: 0 0 var(--corner-radius, 30px) var(--corner-radius, 30px);
   }
 

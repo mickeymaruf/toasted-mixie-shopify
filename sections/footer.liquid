@@ -1,6 +1,7 @@
 {% comment %}
-  Renders the site footer: Shop/Help link columns, a centered logo and
-  newsletter signup, a social icon row, and a bottom legal bar.
+  Renders the site footer: logo and newsletter signup beside social icons and
+  Shop/Help/About link columns (stacked and centered below xl), plus a bottom
+  legal bar.
 {% endcomment %}
 
 {% liquid
@@ -25,42 +26,45 @@
     </div>
   {% endif %}
 
-  <div class="relative mx-auto flex w-full max-w-[1920px] flex-col gap-10 px-5 py-14 sm:px-8 md:px-12 lg:gap-[60px] lg:px-[80px] lg:pt-[80px] lg:pb-[40px] xl:px-[120px]">
-    <div class="flex w-full flex-col gap-[60px] items-center">
-      <a
-        href="{{ routes.root_url }}"
-        class="block max-w-full xl:!w-[433px]"
-        style="width: clamp(180px, 55vw, {{ section.settings.logo_width }}px);"
-      >
-        {% if section.settings.logo %}
-          {{
-            section.settings.logo
-            | image_url: width: 800
-            | image_tag: loading: 'lazy', widths: '200, 300, 400, 600, 800', alt: shop.name
-          }}
-        {% else %}
-          {{ 'logo-toasted.svg' | inline_asset_content }}
-        {% endif %}
-      </a>
+  <div class="relative mx-auto flex w-full max-w-[1920px] flex-col gap-10 px-5 py-14 sm:px-8 md:px-12 xl:gap-[50px] xl:px-[60px] xl:pt-[80px] xl:pb-[40px] 2xl:px-[100px]">
+    <div class="flex w-full flex-col items-center gap-10 xl:flex-row xl:items-start xl:justify-between xl:gap-8">
+      <div class="flex w-full flex-col items-center gap-[60px] xl:w-auto xl:items-start xl:gap-[50px]">
+        <a
+          href="{{ routes.root_url }}"
+          class="block max-w-full xl:!w-[337px]"
+          style="width: clamp(180px, 55vw, 206px);"
+        >
+          {% if section.settings.logo %}
+            {{
+              section.settings.logo
+              | image_url: width: 800
+              | image_tag: loading: 'lazy', widths: '200, 300, 400, 600, 800', alt: shop.name
+            }}
+          {% else %}
+            {{ 'logo-toasted.svg' | inline_asset_content }}
+          {% endif %}
+        </a>
 
-      <div class="flex w-full flex-col items-center gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
-        <div class="flex w-full flex-col gap-[30px] items-center text-center sm:items-start sm:text-left lg:w-auto lg:items-start xl:w-[433px]">
+        <div class="flex w-full flex-col items-center gap-[30px] xl:w-[337px] xl:items-start xl:gap-[10px]">
           {% if section.settings.heading != blank or section.settings.subheading != blank %}
-            <div class="flex flex-col gap-[10px]">
+            <div class="flex flex-col items-center gap-[10px] text-center xl:hidden">
               {% if section.settings.heading != blank %}
-                <p class="text-[28px] leading-[1.2] font-bold sm:text-[32px]">{{ section.settings.heading }}</p>
+                <p class="text-[28px] leading-[1.2]">{{ section.settings.heading }}</p>
               {% endif %}
               {% if section.settings.subheading != blank %}
-                <p class="text-[16px] leading-[1.5] sm:text-[20px]">{{ section.settings.subheading }}</p>
+                <p class="text-[16px] leading-[1.5]">{{ section.settings.subheading }}</p>
               {% endif %}
             </div>
+          {% endif %}
+          {% if section.settings.desktop_heading != blank %}
+            <p class="hidden text-[24px] leading-[1.2] font-medium xl:block">{{ section.settings.desktop_heading }}</p>
           {% endif %}
 
           {% form 'customer', id: newsletter_form_id, class: 'w-full' %}
             <input type="hidden" name="contact[tags]" value="newsletter">
 
             <div
-              class="flex w-full items-center justify-between gap-2 rounded-full py-[6px] pr-[6px] pl-[24px] sm:pl-[38px]"
+              class="flex w-full items-center justify-between gap-2 rounded-full py-[6px] pr-[6px] pl-[24px]"
               style="
                 --footer-newsletter-bg: {{ section.settings.newsletter_background_color }};
                 --footer-newsletter-button-bg: {{ section.settings.newsletter_button_background_color }};
@@ -76,15 +80,31 @@
                 placeholder="{{ section.settings.email_placeholder }}"
                 autocomplete="email"
                 required
-                class="min-w-0 flex-1 bg-transparent text-[16px] leading-[1.5] placeholder:text-[color:var(--footer-newsletter-button-bg)] focus:outline-none sm:text-[20px]"
+                class="min-w-0 flex-1 bg-transparent text-[16px] leading-[1.5] placeholder:text-[color:var(--footer-newsletter-button-bg)] focus:outline-none xl:text-[20px]"
                 style="color: var(--footer-newsletter-button-bg);"
               >
               <button
                 type="submit"
-                class="inline-flex h-[58px] shrink-0 items-center justify-center rounded-[30px] px-6 text-center text-[16px] leading-[1.5] font-medium whitespace-nowrap transition-opacity duration-150 hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 sm:px-8 sm:text-[20px]"
+                class="inline-flex h-[58px] shrink-0 cursor-pointer items-center justify-center rounded-[30px] px-6 text-center text-[16px] leading-[1.5] whitespace-nowrap transition-opacity duration-150 hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 xl:w-[56px] xl:px-0"
                 style="background-color: var(--footer-newsletter-button-bg); color: var(--footer-newsletter-button-text); outline-color: var(--footer-newsletter-button-text);"
+                aria-label="{{ section.settings.newsletter_button_label | escape }}"
               >
-                {{ section.settings.newsletter_button_label }}
+                <span class="xl:hidden">{{ section.settings.newsletter_button_label }}</span>
+                <svg
+                  class="hidden xl:block"
+                  width="24"
+                  height="18"
+                  viewBox="0 0 24 18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.71429"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M0 9H24M15 18L24 9L15 0" />
+                </svg>
               </button>
             </div>
 
@@ -94,65 +114,56 @@
               <p class="mt-3 text-[14px]" role="alert">{{ 'footer.newsletter_error' | t }}</p>
             {% endif %}
           {% endform %}
+        </div>
+      </div>
 
-          <div class="flex items-center gap-[15px]">
+      <div class="flex w-full flex-col items-center gap-10 xl:w-auto xl:flex-row xl:items-start xl:gap-[50px]">
+        <div class="flex flex-col items-center gap-[30px] xl:items-start">
+          <p class="hidden text-[28px] leading-[1.2] font-medium xl:block">{{ 'footer.follow_us' | t }}</p>
+          <div class="flex items-center gap-[10px] xl:gap-[10px]">
             {% content_for 'blocks' %}
           </div>
         </div>
 
-        <div class="grid grid-cols-2 w-full gap-10 sm:flex sm:flex-row sm:flex-wrap sm:items-start sm:justify-center sm:gap-16 lg:w-auto lg:gap-[60px]">
-          {% if section.settings.shop_menu.links.size > 0 %}
-            <div class="flex flex-col gap-[30px] items-start text-left">
-              {% if section.settings.shop_title != blank %}
-                <p class="text-[28px] leading-[1.2] font-bold">{{ section.settings.shop_title }}</p>
-              {% endif %}
-              <ul class="flex flex-col items-start gap-[15px] text-[18px] leading-[1.3]">
-                {% for link in section.settings.shop_menu.links %}
-                  <li>
-                    <a href="{{ link.url }}" class="transition-opacity duration-150 hover:opacity-70">{{ link.title }}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
-          {% endif %}
-
-          {% if section.settings.help_menu.links.size > 0 %}
-            <div class="flex flex-col gap-[30px] items-start text-left">
-              {% if section.settings.help_title != blank %}
-                <p class="text-[28px] leading-[1.2] font-bold">{{ section.settings.help_title }}</p>
-              {% endif %}
-              <ul class="flex flex-col items-start gap-[15px] text-[18px] leading-[1.3]">
-                {% for link in section.settings.help_menu.links %}
-                  <li>
-                    <a href="{{ link.url }}" class="transition-opacity duration-150 hover:opacity-70">{{ link.title }}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
-          {% endif %}
-
-          {% if section.settings.about_menu.links.size > 0 %}
-            <div class="flex flex-col gap-[30px] items-start text-left lg:items-end lg:text-right">
-              {% if section.settings.about_title != blank %}
-                <p class="text-[28px] leading-[1.2] font-bold">{{ section.settings.about_title }}</p>
-              {% endif %}
-              <ul class="flex flex-col items-start gap-[15px] text-[18px] leading-[1.3] w-full">
-                {% for link in section.settings.about_menu.links %}
-                  <li>
-                    <a href="{{ link.url }}" class="transition-opacity duration-150 hover:opacity-70">{{ link.title }}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
-          {% endif %}
+        <div class="grid w-full max-w-[335px] grid-cols-2 gap-10 md:max-w-none md:grid-cols-3 xl:flex xl:w-auto xl:gap-[50px]">
+          {% assign footer_menus = 'shop,help,about' | split: ',' %}
+          {% for menu_key in footer_menus %}
+            {% liquid
+              assign menu_title_key = menu_key | append: '_title'
+              assign menu_id_key = menu_key | append: '_menu'
+              assign menu_title = section.settings[menu_title_key]
+              assign menu = section.settings[menu_id_key]
+            %}
+            {% if menu.links.size > 0 %}
+              <div class="flex flex-col items-start gap-[30px] text-left {% if menu_key == 'about' %}xl:items-end xl:text-right{% endif %}">
+                {% if menu_title != blank %}
+                  <p class="text-[28px] leading-[1.2] xl:font-medium">{{ menu_title }}</p>
+                {% endif %}
+                <ul class="flex flex-col items-start gap-[15px] text-[18px] leading-[1.3] xl:text-[16px] {% if menu_key == 'about' %}xl:items-end{% endif %}">
+                  {% for link in menu.links %}
+                    <li>
+                      <a href="{{ link.url }}" class="inline-flex items-center gap-1 transition-opacity duration-150 hover:opacity-70">
+                        {{ link.title }}
+                        {% if link.type == 'http_link' and link.url contains '://' %}
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" focusable="false">
+                            <path d="M9.6 9.6V4.09197L1.69197 12H0V10.308L7.90803 2.4H2.4V0H12V9.6H9.6Z" />
+                          </svg>
+                        {% endif %}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+          {% endfor %}
         </div>
       </div>
     </div>
 
     {% if section.settings.copyright_text != blank or section.settings.legal_menu.links.size > 0 or section.settings.show_payment_icons %}
-      <div class="flex flex-col items-center gap-3 text-[14px] leading-[1.3] lg:flex-row lg:items-center lg:justify-between">
+      <div class="flex flex-col items-center gap-3 text-[14px] leading-[1.3] xl:flex-row xl:justify-between">
         {% if section.settings.copyright_text != blank %}
-          <p class="text-center lg:text-left">
+          <p class="text-center xl:max-w-[38%] xl:text-left">
             &copy; {{ 'now' | date: '%Y' }}
             {{ section.settings.copyright_text }}
           </p>
@@ -160,7 +171,7 @@
 
         {% if section.settings.show_payment_icons %}
           <div
-            class="flex flex-wrap items-center justify-center gap-1.5"
+            class="flex flex-wrap items-center justify-center gap-1.5 xl:shrink-0 xl:flex-nowrap"
             aria-label="{{ 'footer.payment_methods_label' | t }}"
           >
             {% assign payment_icons = 'visa,mastercard,amex,discover,dinersclub,applepay,googlepay' | split: ',' %}
@@ -178,7 +189,7 @@
         {% endif %}
 
         {% if section.settings.legal_menu.links.size > 0 %}
-          <ul class="flex flex-wrap items-center justify-center gap-x-[10px] gap-y-1">
+          <ul class="flex flex-wrap items-center justify-center gap-x-[10px] gap-y-1 xl:max-w-[38%] xl:justify-end">
             {% for link in section.settings.legal_menu.links %}
               <li class="flex items-center gap-x-[10px]">
                 <a href="{{ link.url }}" class="transition-opacity duration-150 hover:opacity-70">{{ link.title }}</a>
@@ -214,6 +225,12 @@
       "id": "subheading",
       "label": "t:labels.subheading",
       "default": "Get launch updates, first drops, and new flavor news."
+    },
+    {
+      "type": "text",
+      "id": "desktop_heading",
+      "label": "t:labels.heading_desktop",
+      "default": "Subscribe to our newsletter"
     },
     {
       "type": "header",
@@ -262,16 +279,6 @@
       "type": "image_picker",
       "id": "background_mark",
       "label": "t:labels.background_mark"
-    },
-    {
-      "type": "range",
-      "id": "logo_width",
-      "min": 160,
-      "max": 400,
-      "step": 4,
-      "unit": "px",
-      "label": "t:labels.logo_width",
-      "default": 280
     },
     {
       "type": "header",

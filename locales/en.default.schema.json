@@ -275,6 +275,7 @@
     "grid_item_width": "Grid item width",
     "gradient_overlay": "Gradient overlay",
     "heading": "Heading",
+    "heading_desktop": "Heading (desktop)",
     "heading_alignment": "Heading alignment",
     "heading_alignment_mobile": "Heading alignment (mobile)",
     "heading_color": "Heading color",

@@ -1,0 +1,29 @@
+{% doc %}
+  Renders a circular slider arrow as an inline SVG. Inline (instead of an
+  <img> pointing at an SVG asset) so it paints reliably on iOS Safari.
+
+  @param {string} [direction] - 'prev' points left, anything else points right
+
+  @example
+  {% render 'hero-arrow-icon', direction: 'prev' %}
+{% enddoc %}
+
+<svg
+  class="gruns-hero__arrow-icon block h-auto w-full overflow-visible"
+  viewBox="0 0 53.4857 52.1143"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g{% if direction == 'prev' %} transform="rotate(180 26.74 26.06)"{% endif %} stroke="#F6F1EC" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4.45714" y="1.71429" width="47.3143" height="45.9429" rx="22.9714" stroke-width="2.05714"/>
+    <path d="M17.143 24.6857H39.0859M30.8573 32.9143L39.0859 24.6857L30.8573 16.4571" stroke-width="2.74286"/>
+  </g>
+</svg>
+
+{% stylesheet %}
+  .gruns-hero__arrow-icon {
+    filter: drop-shadow(-1.37px 1.37px 1px rgba(0, 0, 0, 0.2));
+  }
+{% endstylesheet %}
