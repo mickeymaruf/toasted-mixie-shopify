@@ -159,7 +159,8 @@
     "theme": "Theme",
     "trust_badge": "Trust badge",
     "typography": "Typography",
-    "related_articles": "Related articles"
+    "related_articles": "Related articles",
+    "mobile_layout": "Mobile layout"
   },
   "labels": {
     "articles_per_page": "Articles per page",
@@ -337,7 +338,8 @@
     "overlay_image": "Overlay image",
     "overlay_image_opacity": "Overlay image opacity",
     "overlay_blend": "Overlay blend mode",
-    "foreground_image": "Foreground image",
+    "foreground_image": "Product image",
+    "foreground_image_info": "Shown as a separate image on the right of the slide (above the text on mobile). Upload a transparent PNG at least 2400px wide for the sharpest result.",
     "perk_1_icon_style": "Perk 1 bundled icon",
     "perk_2_icon_style": "Perk 2 bundled icon",
     "perk_1_icon": "Perk 1 icon",
@@ -433,6 +435,7 @@
     "spend_threshold": "Spend threshold",
     "spend_threshold_info": "The bundle subtotal a shopper must reach to unlock this reward",
     "sticker_image": "Sticker image",
+    "sticker_image_mobile": "Sticker image (mobile)",
     "sticker_image_mobile_info": "Optional. If left blank, the desktop sticker image is used on mobile.",
     "sticker_position": "Position",
     "sticker_translate_x": "Horizontal offset",
@@ -467,7 +470,9 @@
     "featured_article": "Featured article",
     "featured_article_info": "Shows this article's title, image and read time, and links to it. Ignored when the content source is the current article.",
     "blog": "Blog",
-    "blog_info": "Used when the section is shown outside a blog page"
+    "blog_info": "Used when the section is shown outside a blog page",
+    "mobile_frame": "Mobile Figma layout",
+    "mobile_frame_info": "Phones only. Uses the exact Figma mobile frame for this slide (fixed height, text position, type sizes and the exported background). Choose the slide it matches."
   },
   "options": {
     "perk_icon": {
@@ -558,6 +563,12 @@
     "content_source": {
       "custom": "Custom content",
       "article": "Current article"
+    },
+    "mobile_frame": {
+      "none": "Off",
+      "chill": "Slide 1: The Chill Drink",
+      "trial": "Slide 2: Free trial pack",
+      "subscribe": "Slide 3: Subscribe & save"
     }
   },
   "sections": {

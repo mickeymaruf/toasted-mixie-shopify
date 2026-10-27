@@ -113,15 +113,60 @@
         "dropdown_menu_one": "menu-get-toasted",
         "dropdown_menu_two_title": "The Toasted Side",
         "dropdown_menu_two": "menu-the-toasted-side",
-        "instagram_icon": "shopify://shop_images/Item_3_af037243-0fb6-4424-b854-73c547bbbc94.svg",
-        "instagram_link": "https://www.instagram.com/drinktoasted",
-        "youtube_link": "",
-        "tiktok_link": "",
         "default_background_color": "#9ab2d5",
         "navbar_actions_background": "#c2cbd480",
-        "alternate_pages": "/coa /privacy-policy /contact-us /wholesale /products /bundle-builder /blogs/news/is-higher-thc-weed-better-why-cannabis-chases-the-wrong-number",
+        "alternate_pages": "/coa /privacy-policy /contact-us /wholesale /products /bundle-builder /blogs/news/",
         "alternate_background_color": "#f6f1ec"
-      }
+      },
+      "blocks": {
+        "header_social_icon_Fb7kQm": {
+          "type": "social-icon",
+          "name": "t:general.social_icon",
+          "settings": {
+            "label": "Facebook",
+            "link": "https://www.facebook.com/drinktoasted",
+            "platform": "facebook"
+          },
+          "blocks": {}
+        },
+        "header_social_icon_BEEGVQ": {
+          "type": "social-icon",
+          "name": "t:general.social_icon",
+          "settings": {
+            "label": "Social link",
+            "link": "https://www.instagram.com/drinktoasted",
+            "platform": "custom",
+            "icon": "shopify://shop_images/Item.svg"
+          },
+          "blocks": {}
+        },
+        "header_social_icon_Yt3pLs": {
+          "type": "social-icon",
+          "name": "t:general.social_icon",
+          "settings": {
+            "label": "YouTube",
+            "link": "https://www.youtube.com/@drinktoasted",
+            "platform": "youtube"
+          },
+          "blocks": {}
+        },
+        "header_social_icon_Tk9vXa": {
+          "type": "social-icon",
+          "name": "t:general.social_icon",
+          "settings": {
+            "label": "TikTok",
+            "link": "https://www.tiktok.com/@drinktoasted",
+            "platform": "tiktok"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "header_social_icon_Fb7kQm",
+        "header_social_icon_BEEGVQ",
+        "header_social_icon_Yt3pLs",
+        "header_social_icon_Tk9vXa"
+      ]
     }
   },
   "order": [

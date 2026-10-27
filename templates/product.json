@@ -281,7 +281,9 @@
             "background_color": "#f0f0f0",
             "background_image": "shopify://shop_images/front_2.svg",
             "flavor_sticker": "shopify://shop_images/Group_159.svg",
+            "flavor_sticker_mobile": "shopify://shop_images/Group_159.png",
             "badge_sticker": "shopify://shop_images/Group_110_1.svg",
+            "badge_sticker_mobile": "shopify://shop_images/Group_110.png",
             "title": "Ginger Lime",
             "description": "Real ginger with a little heat, cooled by\nfresh lime. Zesty, clean and easy to sip.",
             "text_color": "#f6f1ec",
@@ -300,7 +302,9 @@
             "background_color": "#f0f0f0",
             "background_image": "shopify://shop_images/front_1.svg",
             "flavor_sticker": "shopify://shop_images/flavour.svg",
+            "flavor_sticker_mobile": "shopify://shop_images/flavour.png",
             "badge_sticker": "shopify://shop_images/Group_113_2.svg",
+            "badge_sticker_mobile": "shopify://shop_images/Group_113.png",
             "title": "Blood Orange",
             "description": "Refreshing, juicy and a little tart.\nBright citrus that tastes like golden hour.",
             "text_color": "#f6f1ec",
@@ -326,7 +330,9 @@
             "text_color": "#f6f1ec",
             "button_label": "Add to Cart",
             "button_background_color": "#f6f1ec",
-            "button_text_color": "#212323"
+            "button_text_color": "#212323",
+            "badge_sticker_mobile": "shopify://shop_images/Group_113.png",
+            "flavor_sticker_mobile": "shopify://shop_images/flavour.png"
           },
           "blocks": {}
         }

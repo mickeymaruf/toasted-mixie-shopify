@@ -112,7 +112,7 @@
             "perks_text_color": "#f6f1ec",
             "heading": "<p><em>The Chill Drink</em></p>",
             "description": "<p>A light, tasteful drink for the moments you&nbsp;<br/>want to relax, connect, and stay present.</p>",
-            "description_mobile": "<p>A light, tasteful drink for the moments you&nbsp;want to relax, connect, and stay present.</p>",
+            "description_mobile": "<p>A light, tasteful drink for the moments you<br/>want to relax, connect, and stay present.</p>",
             "show_button": true,
             "button_label": "Shop Toasted",
             "button_link": "/collections/all",
@@ -135,7 +135,8 @@
             "can_image_2_alt": "",
             "can_image_3_alt": "",
             "show_badge": true,
-            "badge_image_alt": "America's most compliant badge"
+            "badge_image_alt": "America's most compliant badge",
+            "mobile_frame": "chill"
           },
           "blocks": {
             "badge_row_Cl4rty": {
@@ -197,7 +198,7 @@
             "perks_text_color": "#f6f1ec",
             "heading": "<p>Try all Toasted<br/>flavors <em>FREE!</em></p>",
             "description": "<p>Blood Orange, Berry Acai, and Ginger Lime.<br/>Just pay shipping.<br/></p>",
-            "description_mobile": "<p>Blood Orange, Berry Acai, and Ginger Lime. Just pay shipping.</p>",
+            "description_mobile": "<p>Blood Orange, Berry Acai, and Ginger Lime.<br/>Just pay shipping.</p>",
             "show_button": true,
             "button_label": "Get My Free Trial Pack",
             "button_link": "/collections/all",
@@ -225,7 +226,8 @@
             "show_badge": true,
             "badge_image": "shopify://shop_images/Group_134.svg",
             "badge_image_mobile": "shopify://shop_images/Group_134_1.png",
-            "badge_image_alt": "America's most compliant badge"
+            "badge_image_alt": "America's most compliant badge",
+            "mobile_frame": "trial"
           },
           "blocks": {
             "badge_row_kbqFF9": {
@@ -279,7 +281,6 @@
         },
         "gruns_hero_slide_Sunst3": {
           "type": "gruns-hero-slide",
-          "disabled": true,
           "settings": {
             "show_perks": true,
             "perk_1_icon_style": "box",
@@ -289,7 +290,7 @@
             "perks_text_color": "#f6f1ec",
             "heading": "<p>Subscribe &&nbsp;<br/>Save up to 20%</p>",
             "description": "<p>Your favorite flavors, delivered every month.&nbsp;<br/>Pause, skip or cancel anytime.</p>",
-            "description_mobile": "<p>Your favorite flavors, delivered every month. &nbsp;Pause, skip or cancel anytime.</p>",
+            "description_mobile": "<p>Your favorite flavors, delivered every month.<br/>Pause, skip or cancel anytime.</p>",
             "show_button": true,
             "button_label": "Build Your Subscription",
             "button_link": "shopify://pages/bundle-builder",
@@ -298,21 +299,23 @@
             "background_color": "#9ab2d5",
             "heading_color": "#f6f1ec",
             "show_skyline_image": true,
-            "skyline_image": "shopify://shop_images/image-1793028077442.png",
-            "skyline_image_mobile": "shopify://shop_images/image-1793028975340.png",
+            "skyline_image": "shopify://shop_images/hero_33.png",
+            "skyline_image_mobile": "shopify://shop_images/hero_3_46945159-0dcb-4f4a-84bf-98263584ec1b.png",
             "skyline_image_position": "center",
             "skyline_subject_top": 19,
             "skyline_subject_bottom": 54,
             "skyline_image_focus_y": 55,
             "overlay_image_opacity": 15,
             "overlay_blend": "multiply",
+            "foreground_image": "shopify://shop_images/Render_Mockup_4000_3000_2026-10-17_5_2.png",
             "foreground_image_alt": "",
             "show_right_side_content": false,
             "can_image_1_alt": "",
             "can_image_2_alt": "",
             "can_image_3_alt": "",
             "show_badge": true,
-            "badge_image_alt": "America's most compliant badge"
+            "badge_image_alt": "America's most compliant badge",
+            "mobile_frame": "subscribe"
           },
           "blocks": {}
         }

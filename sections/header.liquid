@@ -130,7 +130,7 @@
           background_color: section.settings.mega_menu_button_background,
           text_color: section.settings.mega_menu_button_text_color,
           icon: 'icon-arrow-narrow-right.svg',
-          class: '!px-8 !py-4 !text-[18px] max-md:!w-full max-md:!px-5 max-md:!py-2.5 max-md:!text-[14px] navbar__dropdown-shop-button'
+          class: '!w-full !justify-between !px-8 !py-4 !text-[18px] max-md:!px-5 max-md:!py-3 max-md:!text-[16px] navbar__dropdown-shop-button'
         %}
 
         <div class="navbar__dropdown-products">
@@ -187,27 +187,8 @@
         </div>
       {% endif %}
 
-      {% liquid
-        assign instagram_label = 'general.accessibility.instagram' | t
-        assign youtube_label = 'general.accessibility.youtube' | t
-        assign tiktok_label = 'general.accessibility.tiktok' | t
-      %}
       <div class="navbar__dropdown-social">
-        {% render 'header-social-icon',
-          icon: section.settings.instagram_icon,
-          link: section.settings.instagram_link,
-          label: instagram_label
-        %}
-        {% render 'header-social-icon',
-          icon: section.settings.youtube_icon,
-          link: section.settings.youtube_link,
-          label: youtube_label
-        %}
-        {% render 'header-social-icon',
-          icon: section.settings.tiktok_icon,
-          link: section.settings.tiktok_link,
-          label: tiktok_label
-        %}
+        {% content_for 'blocks' %}
       </div>
     </div>
   </div>
@@ -561,10 +542,12 @@
   }
 
   .navbar__dropdown-panel {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 2rem;
+    align-items: stretch;
+    box-sizing: border-box;
+    gap: 1.875rem;
+    width: min(33rem, calc(100% - 2 * clamp(var(--page-margin), 6vw, 6.25rem)));
     max-width: calc(100% - 2 * clamp(var(--page-margin), 6vw, 6.25rem));
     margin-inline-start: clamp(var(--page-margin), 6vw, 6.25rem);
     margin-block-end: 1.5rem;
@@ -586,9 +569,9 @@
       max-width: calc(100% - 1.5rem);
       margin-inline-start: 0.75rem;
       margin-inline-end: 0.75rem;
-      padding: 1rem;
+      padding: 1.25rem;
       border-radius: 1.25rem;
-      gap: 1.25rem;
+      gap: 1.5rem;
     }
   }
 
@@ -622,27 +605,16 @@
 
   .navbar__dropdown-products {
     display: grid;
-    grid-template-columns: repeat(2, minmax(10.5rem, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.625rem;
     width: 100%;
   }
 
-  @media (max-width: 47.9375rem) {
-    .navbar__dropdown-products {
-      gap: 0.375rem;
-    }
-  }
-
-  @media (max-width: 25rem) {
-    .navbar__dropdown-products {
-      grid-template-columns: 1fr;
-    }
-  }
 
   .navbar__dropdown-links {
     display: flex;
-    flex-wrap: wrap;
-    column-gap: 3.75rem;
+    justify-content: space-between;
+    column-gap: 1.875rem;
     row-gap: 1.875rem;
     width: 100%;
   }
@@ -657,7 +629,7 @@
   .navbar__dropdown-links-heading {
     font-family: var(--font-heading--family);
     color: var(--navbar-dropdown-heading);
-    font-size: 1.75rem;
+    font-size: 2rem;
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.5;
@@ -684,8 +656,14 @@
   .navbar__dropdown-social {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 0.9375rem;
+  }
+
+  .navbar__dropdown-social img {
+    width: 50px;
+    height: 50px;
   }
 
   .navbar__dropdown-social-icon {
@@ -705,26 +683,31 @@
   }
 
   @media (max-width: 47.9375rem) {
-    .navbar__dropdown-links-heading {
-      font-size: 1.125rem;
+    .navbar__dropdown-social {
+      gap: 0.625rem;
+      margin-top: 0.25rem;
     }
 
-    .navbar__dropdown-link {
-      font-size: 0.9375rem;
-    }
-
-    .navbar__dropdown-social-icon-img {
+    .navbar__dropdown-social img {
       width: 36px;
       height: 36px;
     }
 
+    .navbar__dropdown-links-heading {
+      font-size: 1.5rem;
+    }
+
+    .navbar__dropdown-link {
+      font-size: 1.125rem;
+    }
+
     .navbar__dropdown-links {
-      column-gap: 2rem;
-      row-gap: 1rem;
+      column-gap: 1.5rem;
+      row-gap: 1.5rem;
     }
 
     .navbar__dropdown-links-column {
-      gap: 1rem;
+      gap: 1.5rem;
     }
   }
 {% endstylesheet %}
@@ -842,6 +825,7 @@
 {% schema %}
 {
   "name": "t:general.header",
+  "blocks": [{ "type": "social-icon" }],
   "settings": [
     {
       "type": "image_picker",
@@ -1075,40 +1059,6 @@
       "type": "link_list",
       "id": "dropdown_menu_two",
       "label": "t:labels.menu"
-    },
-    {
-      "type": "header",
-      "content": "t:general.social_icons"
-    },
-    {
-      "type": "image_picker",
-      "id": "instagram_icon",
-      "label": "t:labels.instagram_icon"
-    },
-    {
-      "type": "url",
-      "id": "instagram_link",
-      "label": "t:labels.instagram_link"
-    },
-    {
-      "type": "image_picker",
-      "id": "youtube_icon",
-      "label": "t:labels.youtube_icon"
-    },
-    {
-      "type": "url",
-      "id": "youtube_link",
-      "label": "t:labels.youtube_link"
-    },
-    {
-      "type": "image_picker",
-      "id": "tiktok_icon",
-      "label": "t:labels.tiktok_icon"
-    },
-    {
-      "type": "url",
-      "id": "tiktok_link",
-      "label": "t:labels.tiktok_link"
     },
     {
       "type": "header",

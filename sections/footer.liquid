@@ -1,6 +1,6 @@
 {% comment %}
   Renders the site footer: logo and newsletter signup beside social icons and
-  Shop/Help/About link columns (stacked and centered below xl), plus a bottom
+  Shop/Help/About link columns (stacked below xl, with the link groups as accordions), plus a bottom
   legal bar.
 {% endcomment %}
 
@@ -29,7 +29,7 @@
 
   <div class="relative mx-auto flex w-full max-w-[1920px] flex-col gap-10 px-5 py-14 sm:px-8 md:px-12 xl:gap-[50px] xl:px-[60px] xl:pt-[80px] xl:pb-[40px] 2xl:px-[100px]">
     <div class="flex w-full flex-col items-center gap-10 xl:flex-row xl:items-start xl:justify-between xl:gap-8">
-      <div class="flex w-full flex-col items-center gap-[60px] xl:w-auto xl:items-start xl:gap-[50px]">
+      <div class="flex w-full flex-col items-center gap-10 xl:w-auto xl:items-start xl:gap-[50px]">
         <a
           href="{{ routes.root_url }}"
           class="block max-w-full xl:!w-[337px]"
@@ -46,22 +46,12 @@
           {% endif %}
         </a>
 
-        <div class="flex w-full flex-col items-center gap-[30px] xl:w-[337px] xl:items-start xl:gap-[10px]">
-          {% if section.settings.heading != blank or section.settings.subheading != blank %}
-            <div class="flex flex-col items-center gap-[10px] text-center xl:hidden">
-              {% if section.settings.heading != blank %}
-                <p class="text-[28px] leading-[1.2]">{{ section.settings.heading }}</p>
-              {% endif %}
-              {% if section.settings.subheading != blank %}
-                <p class="text-[16px] leading-[1.5]">{{ section.settings.subheading }}</p>
-              {% endif %}
-            </div>
-          {% endif %}
+        <div class="flex w-full flex-col items-center gap-[15px] xl:w-[337px] xl:items-start xl:gap-[10px]">
           {% if section.settings.desktop_heading != blank %}
-            <p class="hidden text-[24px] leading-[1.2] font-medium xl:block">{{ section.settings.desktop_heading }}</p>
+            <p class="text-[24px] leading-[1.2] font-medium">{{ section.settings.desktop_heading }}</p>
           {% endif %}
 
-          {% form 'customer', id: newsletter_form_id, class: 'w-full' %}
+          {% form 'customer', id: newsletter_form_id, class: 'w-full max-w-[287px] xl:max-w-none' %}
             <input type="hidden" name="contact[tags]" value="newsletter">
 
             <div
@@ -86,13 +76,11 @@
               >
               <button
                 type="submit"
-                class="inline-flex h-[58px] shrink-0 cursor-pointer items-center justify-center rounded-[30px] px-6 text-center text-[16px] leading-[1.5] whitespace-nowrap transition-opacity duration-150 hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 xl:w-[56px] xl:px-0"
+                class="inline-flex h-[58px] w-[56px] shrink-0 cursor-pointer items-center justify-center rounded-[30px] transition-opacity duration-150 hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2"
                 style="background-color: var(--footer-newsletter-button-bg); color: var(--footer-newsletter-button-text); outline-color: var(--footer-newsletter-button-text);"
                 aria-label="{{ section.settings.newsletter_button_label | escape }}"
               >
-                <span class="xl:hidden">{{ section.settings.newsletter_button_label }}</span>
                 <svg
-                  class="hidden xl:block"
                   width="24"
                   height="18"
                   viewBox="0 0 24 18"
@@ -118,15 +106,15 @@
         </div>
       </div>
 
-      <div class="flex w-full flex-col items-center gap-10 xl:w-auto xl:flex-row xl:items-start xl:gap-[50px]">
-        <div class="flex flex-col items-center gap-[30px] xl:items-start">
-          <p class="hidden text-[28px] leading-[1.2] font-medium xl:block">{{ 'footer.follow_us' | t }}</p>
-          <div class="flex items-center gap-[10px] xl:gap-[10px]">
+      <div class="flex w-full flex-col items-center gap-7 xl:w-auto xl:flex-row xl:items-start xl:gap-[50px]">
+        <div class="flex flex-col items-center gap-[10px] xl:items-start xl:gap-[30px]">
+          <p class="text-[28px] leading-[1.2] font-medium">{{ 'footer.follow_us' | t }}</p>
+          <div class="flex items-center gap-[10px]">
             {% content_for 'blocks' %}
           </div>
         </div>
 
-        <div class="grid w-full max-w-[335px] grid-cols-2 gap-10 md:max-w-none md:grid-cols-3 xl:flex xl:w-auto xl:gap-[50px]">
+        <div class="w-full xl:flex xl:w-auto xl:gap-[50px]">
           {% assign footer_menus = 'shop,help,about' | split: ',' %}
           {% for menu_key in footer_menus %}
             {% liquid
@@ -134,26 +122,52 @@
               assign menu_id_key = menu_key | append: '_menu'
               assign menu_title = section.settings[menu_title_key]
               assign menu = section.settings[menu_id_key]
+              assign panel_id = 'FooterMenu-' | append: section.id | append: '-' | append: menu_key
             %}
             {% if menu.links.size > 0 %}
-              <div class="flex flex-col items-start gap-[30px] text-left {% if menu_key == 'about' %}xl:items-end xl:text-right{% endif %}">
-                {% if menu_title != blank %}
-                  <p class="text-[28px] leading-[1.2] xl:font-medium">{{ menu_title }}</p>
-                {% endif %}
-                <ul class="flex flex-col items-start gap-[15px] text-[18px] leading-[1.3] xl:text-[16px] {% if menu_key == 'about' %}xl:items-end{% endif %}">
-                  {% for link in menu.links %}
-                    <li>
-                      <a href="{{ link.url }}" class="inline-flex items-center gap-1 transition-opacity duration-150 hover:opacity-70">
-                        {{ link.title }}
-                        {% if link.type == 'http_link' and link.url contains '://' %}
-                          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" focusable="false">
-                            <path d="M9.6 9.6V4.09197L1.69197 12H0V10.308L7.90803 2.4H2.4V0H12V9.6H9.6Z" />
-                          </svg>
-                        {% endif %}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
+              <div class="footer-accordion border-t border-current xl:flex xl:flex-col xl:items-start xl:gap-[30px] xl:border-t-0 {% if menu_key == 'about' %}xl:items-end xl:text-right{% endif %}">
+                <button
+                  type="button"
+                  class="flex w-full cursor-pointer items-center justify-between py-7 text-left text-[28px] leading-[1.2] font-medium xl:pointer-events-none xl:cursor-default xl:p-0"
+                  aria-expanded="false"
+                  aria-controls="{{ panel_id }}"
+                  data-footer-accordion-toggle
+                >
+                  <span>{{ menu_title }}</span>
+                  <svg
+                    class="footer-accordion__chevron shrink-0 xl:hidden"
+                    width="20"
+                    height="9"
+                    viewBox="0 0 20 9"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path d="M1 1L10 8L19 1" />
+                  </svg>
+                </button>
+                <div id="{{ panel_id }}" class="footer-accordion__panel">
+                  <div class="overflow-hidden">
+                    <ul class="flex flex-col items-start gap-[15px] pb-7 text-[18px] leading-[1.3] xl:pb-0 xl:text-[16px] {% if menu_key == 'about' %}xl:items-end{% endif %}">
+                      {% for link in menu.links %}
+                        <li>
+                          <a href="{{ link.url }}" class="inline-flex items-center gap-1 transition-opacity duration-150 hover:opacity-70">
+                            {{ link.title }}
+                            {% if link.type == 'http_link' and link.url contains '://' %}
+                              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true" focusable="false">
+                                <path d="M9.6 9.6V4.09197L1.69197 12H0V10.308L7.90803 2.4H2.4V0H12V9.6H9.6Z" />
+                              </svg>
+                            {% endif %}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
               </div>
             {% endif %}
           {% endfor %}
@@ -206,6 +220,49 @@
   </div>
 </footer>
 
+{% stylesheet %}
+  .footer-accordion__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    transition:
+      grid-template-rows 0.25s ease,
+      visibility 0.25s;
+  }
+  .footer-accordion.is-open .footer-accordion__panel {
+    grid-template-rows: 1fr;
+    visibility: visible;
+  }
+  .footer-accordion.is-open .footer-accordion__chevron {
+    transform: rotate(180deg);
+  }
+  .footer-accordion__chevron {
+    transition: transform 0.25s ease;
+  }
+  @media (min-width: 80rem) {
+    .footer-accordion__panel {
+      grid-template-rows: 1fr;
+      visibility: visible;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .footer-accordion__panel,
+    .footer-accordion__chevron {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  document.addEventListener('click', (event) => {
+    const toggle = event.target.closest('[data-footer-accordion-toggle]');
+    if (!toggle) return;
+    const accordion = toggle.closest('.footer-accordion');
+    const isOpen = accordion.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+{% endjavascript %}
+
 {% schema %}
 {
   "name": "t:general.footer",
@@ -214,18 +271,6 @@
     {
       "type": "header",
       "content": "t:general.content"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "t:labels.heading",
-      "default": "Be first to know."
-    },
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "t:labels.subheading",
-      "default": "Get launch updates, first drops, and new flavor news."
     },
     {
       "type": "text",

@@ -14,7 +14,7 @@
 {% enddoc %}
 
 <div
-  class="group relative mx-auto flex w-full max-w-full flex-row items-stretch gap-4 overflow-hidden rounded-[24px] p-4 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.15)] sm:max-w-[380px] sm:flex-col sm:items-center sm:gap-[40px] sm:rounded-[48px] sm:px-[15px] sm:py-[40px]"
+  class="group relative mx-auto flex w-full max-w-full flex-row items-stretch gap-3 overflow-hidden rounded-[24px] p-3 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.15)] sm:max-w-[380px] sm:flex-col sm:items-center sm:gap-[40px] sm:rounded-[48px] sm:px-[15px] sm:py-[40px]"
   style="background-color: {{ block.settings.background_color }}; --product-card-simple-text-color: {{ block.settings.text_color | default: '#F6F1EC' }};"
   {{ block.shopify_attributes }}
 >
@@ -30,7 +30,7 @@
     }}
   {% endif %}
 
-  <div class="product-card-simple__media relative z-[1] aspect-square w-[42%] shrink-0 self-start sm:aspect-[380/265] sm:w-full sm:self-auto">
+  <div class="product-card-simple__media relative z-[1] aspect-square w-[46%] shrink-0 self-start sm:aspect-[380/265] sm:w-full sm:self-auto">
     {% if block.settings.image %}
       {{
         block.settings.image
@@ -53,26 +53,76 @@
       }}
     {% endif %}
 
-    {% if block.settings.badge_sticker %}
+    {% liquid
+      assign badge_sticker_desktop = block.settings.badge_sticker | default: block.settings.badge_sticker_mobile
+      assign badge_sticker_phone = block.settings.badge_sticker_mobile | default: block.settings.badge_sticker
+      assign badge_sticker_desktop_widths = badge_sticker_desktop.width | append: ''
+      assign badge_sticker_phone_widths = badge_sticker_phone.width | append: ''
+    %}
+    {% if badge_sticker_desktop %}
+      {% if badge_sticker_phone != badge_sticker_desktop %}
+        {{
+          badge_sticker_phone
+          | image_url: width: badge_sticker_phone.width
+          | image_tag:
+            class: 'product-card-simple__badge pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.05] sm:hidden',
+            widths: badge_sticker_phone_widths,
+            sizes: '100vw',
+            loading: 'lazy',
+            decoding: 'async',
+            alt: ''
+        }}
+      {% endif %}
+      {% assign badge_sticker_desktop_class = 'product-card-simple__badge pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.05]' %}
+      {% if badge_sticker_phone != badge_sticker_desktop %}
+        {% assign badge_sticker_desktop_class = badge_sticker_desktop_class | append: ' max-sm:hidden' %}
+      {% endif %}
       {{
-        block.settings.badge_sticker
-        | image_url: width: 400
+        badge_sticker_desktop
+        | image_url: width: badge_sticker_desktop.width
         | image_tag:
-          class: 'product-card-simple__badge pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.05]',
+          class: badge_sticker_desktop_class,
+          widths: badge_sticker_desktop_widths,
+          sizes: '100vw',
           loading: 'lazy',
-          widths: '200, 300, 400',
+          decoding: 'async',
           alt: ''
       }}
     {% endif %}
 
-    {% if block.settings.flavor_sticker %}
+    {% liquid
+      assign flavor_sticker_desktop = block.settings.flavor_sticker | default: block.settings.flavor_sticker_mobile
+      assign flavor_sticker_phone = block.settings.flavor_sticker_mobile | default: block.settings.flavor_sticker
+      assign flavor_sticker_desktop_widths = flavor_sticker_desktop.width | append: ''
+      assign flavor_sticker_phone_widths = flavor_sticker_phone.width | append: ''
+    %}
+    {% if flavor_sticker_desktop %}
+      {% if flavor_sticker_phone != flavor_sticker_desktop %}
+        {{
+          flavor_sticker_phone
+          | image_url: width: flavor_sticker_phone.width
+          | image_tag:
+            class: 'product-card-simple__flavor pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.05] sm:hidden',
+            widths: flavor_sticker_phone_widths,
+            sizes: '100vw',
+            loading: 'lazy',
+            decoding: 'async',
+            alt: ''
+        }}
+      {% endif %}
+      {% assign flavor_sticker_desktop_class = 'product-card-simple__flavor pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.05]' %}
+      {% if flavor_sticker_phone != flavor_sticker_desktop %}
+        {% assign flavor_sticker_desktop_class = flavor_sticker_desktop_class | append: ' max-sm:hidden' %}
+      {% endif %}
       {{
-        block.settings.flavor_sticker
-        | image_url: width: 500
+        flavor_sticker_desktop
+        | image_url: width: flavor_sticker_desktop.width
         | image_tag:
-          class: 'product-card-simple__flavor pointer-events-none absolute h-auto transition-transform duration-500 ease group-hover:scale-[1.05]',
+          class: flavor_sticker_desktop_class,
+          widths: flavor_sticker_desktop_widths,
+          sizes: '100vw',
           loading: 'lazy',
-          widths: '300, 400, 500',
+          decoding: 'async',
           alt: ''
       }}
     {% endif %}
@@ -91,7 +141,7 @@
         url: block.settings.product.url,
         background_color: block.settings.button_background_color,
         text_color: block.settings.button_text_color,
-        class: 'relative z-[1] w-full shadow-[0px_0px_7.5px_0px_rgba(0,0,0,0.1)]'
+        class: 'relative z-[1] w-full shadow-[0px_0px_7.5px_0px_rgba(0,0,0,0.1)] max-sm:whitespace-nowrap max-sm:!px-3'
       %}
     {% endif %}
   </div>
@@ -108,12 +158,6 @@
     width: 63.29%;
   }
 
-  @media screen and (max-width: 639px) {
-    .product-card-simple__fruit {
-      width: 82%;
-    }
-  }
-
   .product-card-simple__badge {
     top: 20.89%;
     left: 62.11%;
@@ -124,6 +168,25 @@
     top: 62.6%;
     left: 8.01%;
     width: 38.63%;
+  }
+
+  /* Mobile: bigger fruit, badge and flavor sticker. Must come after the base rules above so it wins. */
+  @media screen and (max-width: 639px) {
+    .product-card-simple__fruit {
+      width: 92%;
+    }
+
+    .product-card-simple__badge {
+      top: 6%;
+      left: 57%;
+      width: 43.2%;
+    }
+
+    .product-card-simple__flavor {
+      top: 62%;
+      left: -6%;
+      width: 60.8%;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -185,8 +248,20 @@
     },
     {
       "type": "image_picker",
+      "id": "flavor_sticker_mobile",
+      "label": "t:labels.sticker_image_mobile",
+      "info": "t:labels.sticker_image_mobile_info"
+    },
+    {
+      "type": "image_picker",
       "id": "badge_sticker",
       "label": "t:labels.badge_image"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_sticker_mobile",
+      "label": "t:labels.badge_image_mobile",
+      "info": "t:labels.badge_image_mobile_info"
     },
     {
       "type": "header",
