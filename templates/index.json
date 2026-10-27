@@ -120,6 +120,7 @@
             "button_text_color": "#212323",
             "background_color": "#9ab2d5",
             "heading_color": "#f6f1ec",
+            "mobile_frame": "chill",
             "show_skyline_image": true,
             "skyline_image": "shopify://shop_images/hero_11.png",
             "skyline_image_mobile": "shopify://shop_images/Frame_2147236273.jpg",
@@ -135,8 +136,7 @@
             "can_image_2_alt": "",
             "can_image_3_alt": "",
             "show_badge": true,
-            "badge_image_alt": "America's most compliant badge",
-            "mobile_frame": "chill"
+            "badge_image_alt": "America's most compliant badge"
           },
           "blocks": {
             "badge_row_Cl4rty": {
@@ -206,6 +206,7 @@
             "button_text_color": "#212323",
             "background_color": "#9ab2d5",
             "heading_color": "#f6f1ec",
+            "mobile_frame": "trial",
             "show_skyline_image": true,
             "skyline_image": "shopify://shop_images/hero_22.webp",
             "skyline_image_mobile": "shopify://shop_images/Frame_2147236273_1.png",
@@ -226,8 +227,7 @@
             "show_badge": true,
             "badge_image": "shopify://shop_images/Group_134.svg",
             "badge_image_mobile": "shopify://shop_images/Group_134_1.png",
-            "badge_image_alt": "America's most compliant badge",
-            "mobile_frame": "trial"
+            "badge_image_alt": "America's most compliant badge"
           },
           "blocks": {
             "badge_row_kbqFF9": {
@@ -298,6 +298,7 @@
             "button_text_color": "#212323",
             "background_color": "#9ab2d5",
             "heading_color": "#f6f1ec",
+            "mobile_frame": "subscribe",
             "show_skyline_image": true,
             "skyline_image": "shopify://shop_images/hero_33.png",
             "skyline_image_mobile": "shopify://shop_images/hero_3_46945159-0dcb-4f4a-84bf-98263584ec1b.png",
@@ -307,15 +308,14 @@
             "skyline_image_focus_y": 55,
             "overlay_image_opacity": 15,
             "overlay_blend": "multiply",
-            "foreground_image": "shopify://shop_images/Render_Mockup_4000_3000_2026-10-17_5_2.png",
+            "foreground_image": "shopify://shop_images/Render_Mockup_hero-slide-3_HIGHRES.png",
             "foreground_image_alt": "",
             "show_right_side_content": false,
             "can_image_1_alt": "",
             "can_image_2_alt": "",
             "can_image_3_alt": "",
             "show_badge": true,
-            "badge_image_alt": "America's most compliant badge",
-            "mobile_frame": "subscribe"
+            "badge_image_alt": "America's most compliant badge"
           },
           "blocks": {}
         }
