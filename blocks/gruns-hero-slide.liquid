@@ -175,18 +175,17 @@
 
   {% if block.settings.foreground_image != blank %}
     <div class="pointer-events-none relative z-[5]{% if mobile_frame == 'subscribe' %} max-sm:hidden{% endif %} mb-6 w-[77%] max-w-none self-center sm:absolute sm:top-[51.5%] sm:left-[68.6vw] sm:mx-0 sm:mb-0 sm:h-[min(38.3vw,84%)] sm:w-auto sm:max-w-none sm:-translate-x-[46.84%] sm:-translate-y-1/2 sm:self-auto">
-      {{
-        block.settings.foreground_image
-        | image_url: width: 3200
-        | image_tag:
-          class: 'h-auto w-full sm:h-full sm:w-auto sm:max-w-none',
-          widths: '640, 960, 1280, 1600, 1920, 2400, 3200',
-          sizes: '(min-width: 640px) 47vw, 77vw',
-          loading: image_loading,
-          fetchpriority: image_priority,
-          decoding: 'async',
-          alt: block.settings.foreground_image_alt
-      }}
+      {% comment %} Always the original uploaded file (no resized srcset) so the product stays sharp {% endcomment %}
+      <img
+        src="{{ block.settings.foreground_image | image_url }}"
+        class="h-auto w-full sm:h-full sm:w-auto sm:max-w-none"
+        width="{{ block.settings.foreground_image.width }}"
+        height="{{ block.settings.foreground_image.height }}"
+        loading="{{ image_loading }}"
+        fetchpriority="{{ image_priority }}"
+        decoding="async"
+        alt="{{ block.settings.foreground_image_alt | escape }}"
+      >
     </div>
   {% endif %}
 
@@ -322,15 +321,14 @@
             "
           >
             {% if block.settings.cans_background_image %}
-              {{
-                block.settings.cans_background_image
-                | image_url: width: 1200
-                | image_tag:
-                  class: 'absolute inset-0 size-full max-w-none object-cover',
-                  widths: '600, 900, 1200',
-                  loading: 'lazy',
-                  alt: ''
-              }}
+              <img
+                src="{{ block.settings.cans_background_image | image_url }}"
+                class="absolute inset-0 size-full max-w-none object-cover"
+                width="{{ block.settings.cans_background_image.width }}"
+                height="{{ block.settings.cans_background_image.height }}"
+                loading="lazy"
+                alt=""
+              >
             {% endif %}
             <div
               class="pointer-events-none absolute inset-0"
@@ -344,29 +342,25 @@
               style="left: 4.53%; top: 5.69%; width: 16.12%;"
             >
               {% if block.settings.badge_image %}
-                {{
-                  block.settings.badge_image
-                  | image_url: width: 1200
-                  | image_tag:
-                    class: badge_desktop_class,
-                    widths: '160, 240, 320, 480, 640, 960, 1200',
-                    sizes: '(min-width: 1024px) 12vw, (min-width: 640px) 86px, 16vw',
-                    loading: 'lazy',
-                    alt: block.settings.badge_image_alt
-                }}
+                <img
+                  src="{{ block.settings.badge_image | image_url }}"
+                  class="{{ badge_desktop_class }}"
+                  width="{{ block.settings.badge_image.width }}"
+                  height="{{ block.settings.badge_image.height }}"
+                  loading="lazy"
+                  alt="{{ block.settings.badge_image_alt | escape }}"
+                >
               {% endif %}
 
               {% if block.settings.badge_image_mobile %}
-                {{
-                  block.settings.badge_image_mobile
-                  | image_url: width: 1200
-                  | image_tag:
-                    class: badge_mobile_class,
-                    widths: '160, 240, 320, 480, 640, 960, 1200',
-                    sizes: '(min-width: 640px) 86px, 16vw',
-                    loading: 'lazy',
-                    alt: block.settings.badge_image_alt
-                }}
+                <img
+                  src="{{ block.settings.badge_image_mobile | image_url }}"
+                  class="{{ badge_mobile_class }}"
+                  width="{{ block.settings.badge_image_mobile.width }}"
+                  height="{{ block.settings.badge_image_mobile.height }}"
+                  loading="lazy"
+                  alt="{{ block.settings.badge_image_alt | escape }}"
+                >
               {% endif %}
 
               {% if block.settings.badge_image == blank and block.settings.badge_image_mobile == blank %}
