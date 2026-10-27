@@ -10,7 +10,7 @@
 {% enddoc %}
 
 <div
-  class="gruns-hero-slide relative flex min-h-[670px] w-full flex-col justify-end overflow-hidden pt-[12px] pb-[60px] sm:block sm:min-h-0 sm:pt-[50px] sm:pb-[60px] lg:flex lg:min-h-[52.0833vw] lg:flex-col lg:justify-center lg:py-[14.7222vw]"
+  class="gruns-hero-slide relative flex min-h-[var(--hero-min-height,100svh)] w-full flex-col justify-end overflow-hidden pt-[12px] pb-[calc(var(--corner-radius)+1.5rem)] sm:block sm:min-h-[var(--hero-min-height,0px)] sm:pt-[50px] sm:pb-[60px] lg:flex lg:min-h-[var(--hero-min-height,46.875vw)] lg:flex-col lg:justify-center lg:py-[var(--hero-pad-y,11.7vw)]"
   style="background-color: {{ block.settings.background_color }};"
   {{ block.shopify_attributes }}
 >
@@ -45,36 +45,62 @@
     assign overlay_opacity = block.settings.overlay_image_opacity | divided_by: 100.0
     assign overlay_image_style = 'opacity: ' | append: overlay_opacity
 
+    case block.settings.skyline_image_position
+      when 'left'
+        assign skyline_focus_x = '0%'
+      when 'right'
+        assign skyline_focus_x = '100%'
+      else
+        assign skyline_focus_x = '50%'
+    endcase
+
+    assign skyline_focus_y = block.settings.skyline_image_focus_y | default: 100
+    assign skyline_image_class = 'size-full max-w-none object-cover'
+    assign skyline_image_style = 'object-position: ' | append: skyline_focus_x | append: ' ' | append: skyline_focus_y | append: '%'
+
     assign badge_desktop_class = badge_desktop_visibility | append: 'w-full h-auto object-contain'
     assign badge_mobile_class = badge_mobile_visibility | append: 'w-full h-auto object-contain'
   %}
 
   {% if block.settings.show_skyline_image %}
-    <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <div
+      class="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      aria-hidden="true"
+      data-hero-bg
+      data-subject-top="{{ block.settings.skyline_subject_top }}"
+      data-subject-bottom="{{ block.settings.skyline_subject_bottom }}"
+    >
       <picture class="block size-full">
         {% if block.settings.skyline_image_mobile %}
           {% if block.settings.skyline_image %}
             <source
               media="(min-width: 64rem)"
-              srcset="
-                {{ block.settings.skyline_image | image_url: width: 800 }} 800w,
-                {{ block.settings.skyline_image | image_url: width: 1200 }} 1200w,
-                {{ block.settings.skyline_image | image_url: width: 1600 }} 1600w
-              "
-              sizes="100vw"
+              srcset="{{ block.settings.skyline_image | image_url }}"
             >
           {% endif %}
-          {{
-            block.settings.skyline_image_mobile
-            | image_url: width: 1200
-            | image_tag: class: 'size-full max-w-none object-cover object-right-bottom', widths: '400, 600, 800, 1200', sizes: '100vw', loading: image_loading, fetchpriority: image_priority, alt: ''
-          }}
+          <img
+            src="{{ block.settings.skyline_image_mobile | image_url }}"
+            class="{{ skyline_image_class }}"
+            style="{{ skyline_image_style }}"
+            width="{{ block.settings.skyline_image_mobile.width }}"
+            height="{{ block.settings.skyline_image_mobile.height }}"
+            loading="{{ image_loading }}"
+            fetchpriority="{{ image_priority }}"
+            decoding="async"
+            alt=""
+          >
         {% elsif block.settings.skyline_image %}
-          {{
-            block.settings.skyline_image
-            | image_url: width: 1600
-            | image_tag: class: 'size-full max-w-none object-cover object-right-bottom', widths: '800, 1200, 1600', loading: image_loading, fetchpriority: image_priority, alt: ''
-          }}
+          <img
+            src="{{ block.settings.skyline_image | image_url }}"
+            class="{{ skyline_image_class }}"
+            style="{{ skyline_image_style }}"
+            width="{{ block.settings.skyline_image.width }}"
+            height="{{ block.settings.skyline_image.height }}"
+            loading="{{ image_loading }}"
+            fetchpriority="{{ image_priority }}"
+            decoding="async"
+            alt=""
+          >
         {% endif %}
       </picture>
     </div>
@@ -83,23 +109,22 @@
   {% if block.settings.overlay_image != blank %}
     <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
       {% if block.settings.overlay_image != blank %}
-        {{
-          block.settings.overlay_image
-          | image_url: width: 1600
-          | image_tag:
-            class: overlay_image_class,
-            style: overlay_image_style,
-            widths: '800, 1200, 1600',
-            sizes: '100vw',
-            loading: image_loading,
-            alt: ''
-        }}
+        <img
+          src="{{ block.settings.overlay_image | image_url }}"
+          class="{{ overlay_image_class }}"
+          style="{{ overlay_image_style }}"
+          width="{{ block.settings.overlay_image.width }}"
+          height="{{ block.settings.overlay_image.height }}"
+          loading="{{ image_loading }}"
+          decoding="async"
+          alt=""
+        >
       {% endif %}
     </div>
   {% endif %}
 
   {% if section.settings.extend_behind_navbar %}
-    <div class="h-[var(--corner-radius)]" aria-hidden="true"></div>
+    <div class="h-[var(--corner-radius)]" aria-hidden="true" data-hero-spacer></div>
   {% endif %}
 
   {% if block.settings.foreground_image != blank %}
@@ -118,6 +143,7 @@
   {% endif %}
 
   <div
+    data-hero-content
     class="relative z-10 flex w-full flex-col gap-3 px-5 sm:gap-12 sm:px-8 md:px-12 lg:grid lg:grid-cols-[47.3fr_52.7fr] lg:items-center lg:gap-x-[4.1667vw] lg:px-[5.5556vw] xl:px-[9.0278vw]"
   >
     <div class="order-2 flex w-full flex-col items-center text-center lg:order-none lg:col-start-1 lg:items-start lg:text-left">
@@ -326,20 +352,20 @@
     display: none;
   }
 
+  /* Three equal columns so every icon sits at the center of its column (and the middle
+     one at the center of the screen), whatever the width of the labels. */
   .gruns-hero-benefits .badge-row {
-    display: flex;
-    flex-wrap: nowrap;
-    grid-template-columns: none;
-    align-items: flex-start;
-    justify-content: center;
-    column-gap: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    justify-items: center;
+    column-gap: 12px;
     row-gap: 16px;
   }
 
   .gruns-hero-benefits .trust-badge {
-    flex: 1 1 0%;
+    width: 100%;
     min-width: 0;
-    width: auto;
   }
 
   /* Mobile sizes taken from the iPhone 17 export: at 12px / 11.5px every label
@@ -359,6 +385,7 @@
 
   @media (min-width: 40rem) {
     .gruns-hero-benefits .badge-row {
+      display: flex;
       flex-wrap: wrap;
       align-items: flex-end;
       justify-content: flex-start;
@@ -367,6 +394,7 @@
 
     .gruns-hero-benefits .trust-badge {
       flex: none;
+      width: auto;
     }
   }
 {% endstylesheet %}
@@ -541,6 +569,53 @@
       "id": "skyline_image_mobile",
       "label": "t:labels.background_image_mobile",
       "info": "t:labels.background_image_mobile_info",
+      "visible_if": "{{ block.settings.show_skyline_image }}"
+    },
+    {
+      "type": "select",
+      "id": "skyline_image_position",
+      "label": "t:labels.background_image_position",
+      "options": [
+        { "value": "left", "label": "t:options.alignment.left" },
+        { "value": "center", "label": "t:options.alignment.center" },
+        { "value": "right", "label": "t:options.alignment.right" }
+      ],
+      "default": "center",
+      "visible_if": "{{ block.settings.show_skyline_image }}"
+    },
+    {
+      "type": "range",
+      "id": "skyline_subject_top",
+      "label": "t:labels.background_subject_top",
+      "info": "t:labels.background_subject_info",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 0,
+      "visible_if": "{{ block.settings.show_skyline_image }}"
+    },
+    {
+      "type": "range",
+      "id": "skyline_subject_bottom",
+      "label": "t:labels.background_subject_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 0,
+      "visible_if": "{{ block.settings.show_skyline_image }}"
+    },
+    {
+      "type": "range",
+      "id": "skyline_image_focus_y",
+      "label": "t:labels.background_image_focus_y",
+      "info": "t:labels.background_image_focus_y_info",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100,
       "visible_if": "{{ block.settings.show_skyline_image }}"
     },
     {

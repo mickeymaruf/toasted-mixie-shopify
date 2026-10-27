@@ -4,6 +4,8 @@
     assign use_article = true
     assign banner_image = article.image
     assign banner_heading = article.title
+    assign banner_subtitle = article.excerpt | strip_html | strip
+    assign banner_author = article.author | strip
     assign read_minutes = article.content | strip_html | split: ' ' | size | divided_by: 200.0 | ceil | at_least: 1
     assign banner_read_time = 'blog.min_read' | t: count: read_minutes
     assign published_date = article.published_at | date: '%b %-d, %Y'
@@ -11,12 +13,16 @@
     assign featured = section.settings.featured_article
     assign banner_image = featured.image
     assign banner_heading = featured.title
+    assign banner_subtitle = featured.excerpt | strip_html | strip
+    assign banner_author = featured.author | strip
     assign read_minutes = featured.content | strip_html | split: ' ' | size | divided_by: 200.0 | ceil | at_least: 1
     assign banner_read_time = 'blog.min_read' | t: count: read_minutes
     assign banner_link_url = featured.url
   else
     assign banner_image = section.settings.image
     assign banner_heading = section.settings.heading
+    assign banner_subtitle = section.settings.subtitle
+    assign banner_author = section.settings.author | strip
     assign banner_read_time = section.settings.read_time
   endif
   if banner_link_url == blank
@@ -55,18 +61,32 @@
         {%- endif -%}
       </div>
 
-      <div class="flex w-full flex-col items-start gap-[30px] px-2 pb-4 lg:ml-[65px] lg:w-[495px] lg:max-w-[calc(58.5%-85px)] lg:p-0 lg:pr-0" style="color: {{ section.settings.text_color }};">
+      <div class="flex w-full flex-col items-start gap-[30px] px-2 pb-4 lg:ml-[60px] lg:min-w-0 lg:max-w-[604px] lg:flex-1 lg:gap-[50px] lg:p-0 lg:pr-0" style="color: {{ section.settings.text_color }};">
         <div class="flex w-full flex-col items-start gap-[10px]">
-          {%- if banner_read_time != blank -%}
-            <p class="w-full font-[family-name:var(--font-primary--family)] text-[18px] leading-[1.5] font-medium sm:text-[24px]">
-              {{ banner_read_time }}
+          {%- if banner_read_time != blank or banner_author != blank -%}
+            <p class="flex w-full flex-wrap items-center gap-x-[12px] font-[family-name:var(--font-primary--family)] text-[18px] leading-[1.5] font-medium sm:text-[24px]">
+              {%- if banner_read_time != blank -%}
+                <span>{{ banner_read_time }}</span>
+              {%- endif -%}
+              {%- if banner_read_time != blank and banner_author != blank -%}
+                <span aria-hidden="true">&bull;</span>
+              {%- endif -%}
+              {%- if banner_author != blank -%}
+                <span class="font-normal">{{ 'blog.by_author' | t: author: banner_author }}</span>
+              {%- endif -%}
             </p>
           {%- endif -%}
 
           {%- if banner_heading != blank -%}
-            <h2 class="w-full font-[family-name:var(--font-heading--family)] text-[36px] leading-[0.95] font-bold sm:text-[44px] xl:text-[52px]">
+            <h2 class="w-full font-[family-name:var(--font-heading--family)] text-[36px] leading-[0.95] font-bold sm:text-[44px] lg:text-[52px] xl:text-[64px] tracking-normal">
               {{ banner_heading }}
             </h2>
+          {%- endif -%}
+
+          {%- if banner_subtitle != blank -%}
+            <p class="w-full font-[family-name:var(--font-primary--family)] text-[18px] leading-[1.1] sm:text-[24px]">
+              {{ banner_subtitle }}
+            </p>
           {%- endif -%}
         </div>
 
@@ -79,7 +99,7 @@
             {% if banner_link_url != blank %}
               href="{{ banner_link_url }}"
             {% endif %}
-            class="flex items-center justify-center gap-[15px] font-[family-name:var(--font-primary--family)] text-[20px] leading-[1.5] whitespace-nowrap"
+            class="group/link flex w-fit items-center justify-center gap-[15px] font-[family-name:var(--font-primary--family)] text-[20px] leading-[1.5] whitespace-nowrap"
           >
             {{ section.settings.link_label }}
             <img
@@ -87,7 +107,7 @@
               alt=""
               width="24"
               height="18"
-              class="h-[18px] w-[24px] shrink-0"
+              class="h-[18px] w-[24px] shrink-0 transition-transform duration-200 ease-out group-hover/link:translate-x-1 group-focus-visible/link:translate-x-1"
               aria-hidden="true"
             >
           </a>
@@ -133,6 +153,18 @@
       "id": "heading",
       "label": "t:labels.heading",
       "default": "The Best Functional Beverage Ingredients"
+    },
+    {
+      "type": "text",
+      "id": "author",
+      "label": "t:labels.author",
+      "info": "t:labels.banner_author_info"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "t:labels.subtitle",
+      "info": "t:labels.banner_subtitle_info"
     },
     {
       "type": "text",

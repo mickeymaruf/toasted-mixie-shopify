@@ -160,7 +160,8 @@
     "email_label": "Email address",
     "newsletter_success": "Thanks for subscribing!",
     "newsletter_error": "Please enter a valid email address.",
-    "payment_methods_label": "Payment methods"
+    "payment_methods_label": "Payment methods",
+    "follow_us": "Follow us"
   },
   "blog": {
     "all": "All",
@@ -178,7 +179,8 @@
     "comment_form_name": "Name",
     "comment_form_submit": "Post",
     "comment_form_title": "Add a comment",
-    "posted_on": "Posted {{ date }}"
+    "posted_on": "Posted {{ date }}",
+    "by_author": "By {{ author }}"
   },
   "cart": {
     "checkout": "Checkout",

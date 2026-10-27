@@ -9,6 +9,9 @@
   if source_blog == blank and template.name != '404'
     assign source_blog = section.settings.blog
   endif
+
+  # The article featured in the banner above is left out of the list.
+  assign excluded_article = section.settings.hide_article
 -%}
 
 <section class="article-list full-width" data-article-list data-section-id="{{ section.id }}" style="background-color: {{ section.settings.background_color }};">
@@ -76,8 +79,10 @@
       class="flex w-full flex-col items-center gap-[50px]"
       data-article-search-results
       data-min-read="{{ 'blog.min_read' | t: count: '__COUNT__' | escape }}"
+      data-by-author="{{ 'blog.by_author' | t: author: '__AUTHOR__' | escape }}"
       data-no-results="{{ 'blog.no_articles' | t | escape }}"
       data-blog-url="{{ source_blog.url }}"
+      data-exclude-url="{{ excluded_article.url }}"
       data-search-url="{{ routes.predictive_search_url }}"
       hidden
     >
@@ -103,6 +108,9 @@
       {%- if source_blog.articles.size > 0 -%}
         <ul class="grid w-full grid-cols-1 justify-items-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {%- for article in source_blog.articles -%}
+            {%- if excluded_article != blank and article.id == excluded_article.id -%}
+              {%- continue -%}
+            {%- endif -%}
             <li class="w-full max-w-[400px]">
               {% render 'article-card', article: article %}
             </li>
@@ -259,6 +267,11 @@
       node.querySelector('[data-slot="link"]').setAttribute('href', article.url);
       node.querySelector('[data-slot="read-time"]').textContent = root.dataset.minRead.replace('__COUNT__', minutes);
       node.querySelector('[data-slot="title"]').textContent = article.title;
+
+      var author = text(article.author);
+      node.querySelector('[data-slot="author"]').textContent = author ? root.dataset.byAuthor.replace('__AUTHOR__', author) : '';
+      node.querySelector('[data-slot="author"]').hidden = !author;
+      node.querySelector('[data-slot="author-sep"]').hidden = !author;
       node.querySelector('[data-slot="excerpt"]').textContent = excerpt.length > 110 ? excerpt.slice(0, 107).trimEnd() + '...' : excerpt;
 
       if (image) {
@@ -291,7 +304,9 @@
         .then(function (data) {
           var articles = (data.resources && data.resources.results && data.resources.results.articles) || [];
           showResults(articles.filter(function (article) {
-            return article.url.indexOf(root.dataset.blogUrl + '/') === 0;
+            var excluded = root.dataset.excludeUrl;
+            return article.url.indexOf(root.dataset.blogUrl + '/') === 0 &&
+              !(excluded && article.url.split('?')[0] === excluded);
           }));
         })
         .catch(function (error) {
@@ -362,6 +377,12 @@
       "id": "show_search",
       "label": "t:labels.show_search",
       "default": true
+    },
+    {
+      "type": "article",
+      "id": "hide_article",
+      "label": "t:labels.hide_article",
+      "info": "t:labels.hide_article_info"
     },
     {
       "type": "range",

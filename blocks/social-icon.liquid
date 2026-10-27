@@ -30,13 +30,13 @@
       {{
         block.settings.icon
         | image_url: width: 100
-        | image_tag: class: 'size-[50px] object-contain', alt: block.settings.label
+        | image_tag: class: 'size-[50px] xl:size-[40px] object-contain', alt: block.settings.label
       }}
     {% else %}
       <img
         src="{{ platform_icon | asset_url }}"
         alt="{{ block.settings.label | escape }}"
-        class="size-[50px] object-contain"
+        class="size-[50px] xl:size-[40px] object-contain"
         width="50"
         height="50"
         loading="lazy"

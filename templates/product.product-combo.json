@@ -126,7 +126,9 @@
         "badge-row": {
           "type": "badge-row",
           "static": true,
-          "settings": {},
+          "settings": {
+            "text_color": "#f6f1ec"
+          },
           "blocks": {
             "guarantee_badge_Hq6aKN": {
               "type": "guarantee-badge",
@@ -223,6 +225,123 @@
         "sticky_cta_background_opacity": 10,
         "sticky_cta_button_background_color": "#212323",
         "sticky_cta_button_text_color": "#f6f1ec"
+      }
+    },
+    "chill_ingredients_k3Pq9x": {
+      "type": "chill-ingredients",
+      "blocks": {
+        "ingredient_card_1": {
+          "type": "ingredient-card",
+          "settings": {
+            "title": "L-Theanine",
+            "text": "Naturally found in green tea, L-Theanine has been consumed for thousands of years because it promotes feelings of calm.",
+            "background_color": "#f9d5c0"
+          },
+          "blocks": {}
+        },
+        "ingredient_card_2": {
+          "type": "ingredient-card",
+          "settings": {
+            "title": "Rhodiola Rosea",
+            "text": "Rhodiola was traditionally used by Vikings for strength and endurance, and today it's an adaptogen associated with stress resilience.",
+            "background_color": "#f9d5c0"
+          },
+          "blocks": {}
+        },
+        "ingredient_card_3": {
+          "type": "ingredient-card",
+          "settings": {
+            "title": "Low Dose THC",
+            "text": "At just 0.4mg per serving, we use a true micro-dose of THC, just enough to take the edge off.",
+            "background_color": "#f9d5c0"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ingredient_card_1",
+        "ingredient_card_2",
+        "ingredient_card_3"
+      ],
+      "settings": {
+        "heading": "What makes it chill",
+        "image": "shopify://shop_images/Rectangle_105_2597d56e-3b04-433a-8a0b-9059a18d2e8a.png",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323"
+      }
+    },
+    "gruns_product_list_simple_xRbGxz": {
+      "type": "gruns-product-list-simple",
+      "blocks": {
+        "product_card_simple_zziMUU": {
+          "type": "product-card-simple",
+          "settings": {
+            "product": "ginger-lime",
+            "image": "shopify://shop_images/Ginger-Lime-Fruit-_3.png",
+            "alt_text": "",
+            "background_color": "#f0f0f0",
+            "background_image": "shopify://shop_images/front_2.svg",
+            "flavor_sticker": "shopify://shop_images/Group_159.svg",
+            "badge_sticker": "shopify://shop_images/Group_110_1.svg",
+            "title": "Ginger Lime",
+            "description": "Real ginger with a little heat, cooled by\nfresh lime. Zesty, clean and easy to sip.",
+            "text_color": "#f6f1ec",
+            "button_label": "Add to Cart",
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "product_card_simple_hrhbQr": {
+          "type": "product-card-simple",
+          "settings": {
+            "product": "blood-orange",
+            "image": "shopify://shop_images/Blood-Orange-Fruit-_3.png",
+            "alt_text": "",
+            "background_color": "#f0f0f0",
+            "background_image": "shopify://shop_images/front_1.svg",
+            "flavor_sticker": "shopify://shop_images/flavour.svg",
+            "badge_sticker": "shopify://shop_images/Group_113_2.svg",
+            "title": "Blood Orange",
+            "description": "Refreshing, juicy and a little tart.\nBright citrus that tastes like golden hour.",
+            "text_color": "#f6f1ec",
+            "button_label": "Add to Cart",
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323"
+          },
+          "blocks": {}
+        },
+        "product_card_simple_cdWAHn": {
+          "type": "product-card-simple",
+          "disabled": true,
+          "settings": {
+            "product": "blood-orange",
+            "image": "shopify://shop_images/Blood-Orange-Fruit-_3.png",
+            "alt_text": "",
+            "background_color": "#f0f0f0",
+            "background_image": "shopify://shop_images/front_1.svg",
+            "flavor_sticker": "shopify://shop_images/flavour.svg",
+            "badge_sticker": "shopify://shop_images/Group_113_2.svg",
+            "title": "Blood Orange",
+            "description": "Deep berry profile with a hint of acai.\nLightly sweet, smooth with an easy finish.",
+            "text_color": "#f6f1ec",
+            "button_label": "Add to Cart",
+            "button_background_color": "#f6f1ec",
+            "button_text_color": "#212323"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "product_card_simple_zziMUU",
+        "product_card_simple_hrhbQr",
+        "product_card_simple_cdWAHn"
+      ],
+      "name": "t:general.product_list_simple",
+      "settings": {
+        "heading": "Real Fruit Juice. Really Good Flavor.",
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323"
       }
     },
     "gruns_gallery_bgbxEd": {
@@ -372,7 +491,7 @@
               "type": "feature-highlight",
               "settings": {
                 "title": "Real Fruit Juice",
-                "icon": "shopify://shop_images/Group_91.svg"
+                "icon": "shopify://shop_images/Group_91.png"
               },
               "blocks": {}
             }
@@ -417,7 +536,7 @@
               "type": "feature-highlight",
               "settings": {
                 "title": "21+ Only",
-                "icon": "shopify://shop_images/Group_92.svg"
+                "icon": "shopify://shop_images/Group_92.png"
               },
               "blocks": {}
             }
@@ -434,8 +553,83 @@
       "settings": {
         "heading": "Functional by Design",
         "description": "<p>Made with immediately available functional ingredients designed to help you feel relaxed, right now.</p>",
+        "mobile_description": "",
         "center_image": "shopify://shop_images/Group_107.png",
         "center_image_alt": ""
+      }
+    },
+    "gruns_product_list_JQUTVq": {
+      "type": "gruns-product-list",
+      "blocks": {
+        "product_card_6D7zcU": {
+          "type": "product-card",
+          "settings": {
+            "product": "blood-orange",
+            "background_image": "shopify://shop_images/Frame_2147236000.svg",
+            "image": "shopify://shop_images/Group_8_1.png",
+            "use_lottie_animation": false,
+            "flavor_name": "Blood Orange",
+            "flavor_name_color": "#b70141",
+            "description": "Bright. Smooth. Golden-hour ready.",
+            "price_text": "As low as $4.00 per can",
+            "button_label": "Add To Cart",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
+          },
+          "blocks": {}
+        },
+        "product_card_qGkGRx": {
+          "type": "product-card",
+          "settings": {
+            "product": "ginger-lime",
+            "background_image": "shopify://shop_images/Frame_2147236003.svg",
+            "image": "shopify://shop_images/Group_7_1.png",
+            "use_lottie_animation": false,
+            "flavor_name": "Ginger Lime",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "As low as $4.00 per can",
+            "button_label": "Add To Cart",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
+          },
+          "blocks": {}
+        },
+        "product_card_LWjhpg": {
+          "type": "product-card",
+          "settings": {
+            "product": "three-pack",
+            "background_image": "shopify://shop_images/Frame_2147236049.svg",
+            "image": "shopify://shop_images/Group_157_2.png",
+            "use_lottie_animation": false,
+            "flavor_name": "3 Pack Trial",
+            "flavor_name_color": "#215332",
+            "description": "Crisp. Lively. Clean finish.",
+            "price_text": "$15. One-Time Purchase.",
+            "button_label": "Coming Soon",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "product_card_6D7zcU",
+        "product_card_qGkGRx",
+        "product_card_LWjhpg"
+      ],
+      "name": "t:general.product_list",
+      "settings": {
+        "overlap_previous_section": false,
+        "heading": "Choose your flavor.",
+        "background_color": "#9ab2d5",
+        "heading_color": "#212323"
       }
     },
     "reviews_kbCGcD": {
@@ -651,123 +845,6 @@
         "padding_top_mobile": 48,
         "padding_bottom_mobile": 48
       }
-    },
-    "chill_ingredients_k3Pq9x": {
-      "type": "chill-ingredients",
-      "blocks": {
-        "ingredient_card_1": {
-          "type": "ingredient-card",
-          "settings": {
-            "title": "L-Theanine",
-            "text": "Naturally found in green tea, L-Theanine has been consumed for thousands of years because it promotes feelings of calm.",
-            "background_color": "#f9d5c0"
-          },
-          "blocks": {}
-        },
-        "ingredient_card_2": {
-          "type": "ingredient-card",
-          "settings": {
-            "title": "Rhodiola Rosea",
-            "text": "Rhodiola was traditionally used by Vikings for strength and endurance, and today it's an adaptogen associated with stress resilience.",
-            "background_color": "#f9d5c0"
-          },
-          "blocks": {}
-        },
-        "ingredient_card_3": {
-          "type": "ingredient-card",
-          "settings": {
-            "title": "Low Dose THC",
-            "text": "At just 0.4mg per serving, we use a true micro-dose of THC, just enough to take the edge off.",
-            "background_color": "#f9d5c0"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ingredient_card_1",
-        "ingredient_card_2",
-        "ingredient_card_3"
-      ],
-      "settings": {
-        "heading": "What makes it chill",
-        "image": "shopify://shop_images/Rectangle_105_2597d56e-3b04-433a-8a0b-9059a18d2e8a.png",
-        "background_color": "#f6f1ec",
-        "heading_color": "#212323"
-      }
-    },
-    "gruns_product_list_simple_xRbGxz": {
-      "type": "gruns-product-list-simple",
-      "blocks": {
-        "product_card_simple_zziMUU": {
-          "type": "product-card-simple",
-          "settings": {
-            "product": "ginger-lime",
-            "image": "shopify://shop_images/Ginger-Lime-Fruit-_3.png",
-            "alt_text": "",
-            "background_color": "#f0f0f0",
-            "background_image": "shopify://shop_images/front_2.svg",
-            "flavor_sticker": "shopify://shop_images/Group_159.svg",
-            "badge_sticker": "shopify://shop_images/Group_110_1.svg",
-            "title": "Ginger Lime",
-            "description": "Real ginger with a little heat, cooled by\nfresh lime. Zesty, clean and easy to sip.",
-            "text_color": "#f6f1ec",
-            "button_label": "Add to Cart",
-            "button_background_color": "#f6f1ec",
-            "button_text_color": "#212323"
-          },
-          "blocks": {}
-        },
-        "product_card_simple_hrhbQr": {
-          "type": "product-card-simple",
-          "settings": {
-            "product": "blood-orange",
-            "image": "shopify://shop_images/Blood-Orange-Fruit-_3.png",
-            "alt_text": "",
-            "background_color": "#f0f0f0",
-            "background_image": "shopify://shop_images/front_1.svg",
-            "flavor_sticker": "shopify://shop_images/flavour.svg",
-            "badge_sticker": "shopify://shop_images/Group_113_2.svg",
-            "title": "Blood Orange",
-            "description": "Refreshing, juicy and a little tart.\nBright citrus that tastes like golden hour.",
-            "text_color": "#f6f1ec",
-            "button_label": "Add to Cart",
-            "button_background_color": "#f6f1ec",
-            "button_text_color": "#212323"
-          },
-          "blocks": {}
-        },
-        "product_card_simple_cdWAHn": {
-          "type": "product-card-simple",
-          "disabled": true,
-          "settings": {
-            "product": "blood-orange",
-            "image": "shopify://shop_images/Blood-Orange-Fruit-_3.png",
-            "alt_text": "",
-            "background_color": "#f0f0f0",
-            "background_image": "shopify://shop_images/front_1.svg",
-            "flavor_sticker": "shopify://shop_images/flavour.svg",
-            "badge_sticker": "shopify://shop_images/Group_113_2.svg",
-            "title": "Blood Orange",
-            "description": "Deep berry profile with a hint of acai.\nLightly sweet, smooth with an easy finish.",
-            "text_color": "#f6f1ec",
-            "button_label": "Add to Cart",
-            "button_background_color": "#f6f1ec",
-            "button_text_color": "#212323"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "product_card_simple_zziMUU",
-        "product_card_simple_hrhbQr",
-        "product_card_simple_cdWAHn"
-      ],
-      "name": "t:general.product_list_simple",
-      "settings": {
-        "heading": "Real Fruit Juice. Really Good Flavor.",
-        "background_color": "#f6f1ec",
-        "heading_color": "#212323"
-      }
     }
   },
   "order": [
@@ -776,6 +853,7 @@
     "gruns_product_list_simple_xRbGxz",
     "gruns_gallery_bgbxEd",
     "ingredient_highlights_wcTznK",
+    "gruns_product_list_JQUTVq",
     "reviews_kbCGcD",
     "gruns_find_toasted_ddGMA9",
     "faq_pills_grid_xxpMdk"

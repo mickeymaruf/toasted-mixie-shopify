@@ -57,10 +57,10 @@
         }
       },
       "block_order": [
-        "social_icon_BEEGVQ",
         "social_icon_Fb7kQm",
-        "social_icon_Tk9vXa",
-        "social_icon_Yt3pLs"
+        "social_icon_BEEGVQ",
+        "social_icon_Yt3pLs",
+        "social_icon_Tk9vXa"
       ],
       "settings": {
         "heading": "Be first to know",
@@ -70,8 +70,6 @@
         "newsletter_background_color": "#f6f1ec",
         "newsletter_button_background_color": "#212323",
         "newsletter_button_text_color": "#f6f1ec",
-        "background_mark": "shopify://shop_images/Balance_1.svg",
-        "logo_width": 232,
         "shop_title": "Shop",
         "shop_menu": "footer-shop",
         "help_title": "Help",

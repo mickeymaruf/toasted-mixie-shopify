@@ -7,9 +7,9 @@
 {% endcomment %}
 
 <section class="article-details full-width bg-[#F6F1EC]">
-  <div class="mx-auto w-full max-w-[1440px] px-5 pt-[50px] pb-[100px] sm:px-8 md:px-12 xl:px-[100px]">
+  <div class="mx-auto w-full max-w-[1440px] px-5 pt-6 pb-6 sm:px-8 sm:pt-[50px] sm:pb-[50px] md:px-12 xl:px-[100px]">
     <div
-      class="font-[family-name:var(--font-primary--family)] text-[18px] leading-[1.5] text-[#212323] sm:text-[20px] lg:text-[24px] [&_a]:underline [&_h2]:mt-[50px] [&_h2]:mb-[50px] [&_h2]:text-[24px] [&_h2]:leading-[1.5] [&_h2]:font-bold sm:[&_h2]:text-[28px] lg:[&_h2]:text-[32px] [&_h3]:mt-[50px] [&_h3]:mb-[50px] [&_h3]:text-[22px] [&_h3]:leading-[1.5] [&_h3]:font-bold sm:[&_h3]:text-[24px] lg:[&_h3]:text-[28px] [&_img]:my-[50px] [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-[23px] [&_li]:mb-2 [&_ol]:mb-[1.5em] [&_ol]:list-decimal [&_ol]:pl-8 [&_p]:mb-[1.5em] [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_ul]:mb-[1.5em] [&_ul]:list-disc [&_ul]:pl-8"
+      class="font-[family-name:var(--font-primary--family)] text-[18px] leading-[1.5] text-[#212323] sm:text-[20px] lg:text-[24px] [&_a]:underline [&_h2]:mt-8 [&_h2]:mb-4 sm:[&_h2]:mt-[50px] sm:[&_h2]:mb-[50px] [&_h2]:text-[24px] [&_h2]:leading-[1.5] [&_h2]:font-bold sm:[&_h2]:text-[28px] lg:[&_h2]:text-[32px] [&_h1]:mt-8 [&_h1]:mb-4 sm:[&_h1]:mt-[50px] sm:[&_h1]:mb-[50px] [&_h1]:text-[34px] [&_h1]:leading-[1.2] [&_h1]:font-bold sm:[&_h1]:text-[42px] lg:[&_h1]:text-[48px] [&_h3]:mt-8 [&_h3]:mb-4 sm:[&_h3]:mt-[50px] sm:[&_h3]:mb-[50px] [&_h3]:text-[22px] [&_h3]:leading-[1.5] [&_h3]:font-bold sm:[&_h3]:text-[24px] lg:[&_h3]:text-[28px] [&_h4]:mt-8 [&_h4]:mb-4 sm:[&_h4]:mt-[50px] sm:[&_h4]:mb-[50px] [&_h4]:text-[20px] [&_h4]:leading-[1.5] [&_h4]:font-bold sm:[&_h4]:text-[22px] lg:[&_h4]:text-[24px] [&_h5]:mt-8 [&_h5]:mb-4 sm:[&_h5]:mt-[50px] sm:[&_h5]:mb-[50px] [&_h5]:text-[18px] [&_h5]:leading-[1.5] [&_h5]:font-bold sm:[&_h5]:text-[20px] [&_h6]:mt-8 [&_h6]:mb-4 sm:[&_h6]:mt-[50px] sm:[&_h6]:mb-[50px] [&_h6]:text-[16px] [&_h6]:leading-[1.5] [&_h6]:font-bold sm:[&_h6]:text-[18px] [&_img]:my-[50px] [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-[23px] [&_li]:mb-2 [&_ol]:mb-[1.5em] [&_ol]:list-decimal [&_ol]:pl-8 [&_p]:mb-[1.5em] [&>*:first-child]:mt-0 [&>*:last-child]:mb-0 [&_ul]:mb-[1.5em] [&_ul]:list-disc [&_ul]:pl-8"
     >
       {{ article.content }}
     </div>
@@ -66,26 +66,79 @@
 </section>
 
 {% stylesheet %}
+  /* Headings inside the article use the body typeface in bold (Neue Haas Display Bold), as in
+     the Figma, not the display heading font. Needs to live here: the global heading rules are
+     unlayered, so they would win over Tailwind utilities. */
+  .article-details h1,
+  .article-details h2,
+  .article-details h3,
+  .article-details h4,
+  .article-details h5,
+  .article-details h6 {
+    font-family: var(--font-primary--family);
+    font-weight: 700;
+  }
+
   /*
-   * Newsletter callout box in article content (the .section div with the blue-grey
-   * background). The article HTML carries inline styles, so the values that need
-   * to change use !important. Matches the old and new background so it keeps
-   * working if the article HTML is updated.
+   * The article HTML (from Beehiiv) wraps every block in a .section div with inline
+   * margins of its own (10px, 30px...). They stack on top of the theme's heading and
+   * paragraph spacing and make the gaps uneven, so they are reset here: the theme sets
+   * the rhythm (36px between paragraphs, 50px around headings) from the Figma.
    */
-  .article-details .section[style*="C2CCD5" i],
-  .article-details .section[style*="C2CBD4" i] {
+  .article-details .beehiiv__body .section {
+    margin-block: 0 !important;
+  }
+
+  .article-details .beehiiv__body > .section:last-child > :last-child {
+    margin-bottom: 0;
+  }
+
+  /* Only the very first heading sits right under the article banner and needs no top margin
+     (every other heading keeps equal space above and below). */
+  .article-details .beehiiv__body > .section:first-child > h2:first-child {
+    margin-top: 0;
+  }
+
+  /*
+   * Callout box (the .section div with the blue-grey background): full width, 46px /
+   * 56px padding and 50px of space above and below, as in the Figma. Its inline
+   * styles need !important to be overridden; both the old and new background colors
+   * are matched so it keeps working if the article HTML is updated.
+   */
+  .article-details .beehiiv__body .section[style*="C2CCD5" i],
+  .article-details .beehiiv__body .section[style*="C2CBD4" i] {
     background-color: #c2cbd4 !important;
-    padding: 46px 50px !important;
+    padding: 24px 20px !important;
+    margin: 32px 0 !important;
   }
 
   .article-details .section[style*="C2CCD5" i] > h2,
   .article-details .section[style*="C2CBD4" i] > h2 {
     margin-top: 0;
+    font-size: 22px;
   }
 
   .article-details .section[style*="C2CCD5" i] > :last-child,
   .article-details .section[style*="C2CBD4" i] > :last-child {
     margin-bottom: 0;
+  }
+
+  @media (min-width: 40rem) {
+    .article-details .beehiiv__body .section[style*="C2CCD5" i],
+    .article-details .beehiiv__body .section[style*="C2CBD4" i] {
+      padding: 32px 56px 46px !important;
+      margin: 50px 0 !important;
+    }
+
+    .article-details .section[style*="C2CCD5" i] > h2,
+    .article-details .section[style*="C2CBD4" i] > h2 {
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+  }
+
+  .article-details .beehiiv__body > .section:first-child[style*="C2C"] {
+    margin-top: 0 !important;
   }
 {% endstylesheet %}
 

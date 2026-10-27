@@ -2,7 +2,7 @@
   Renders an editable heading followed by a responsive grid of simple
   product-card-simple blocks — each with a single product image, title,
   description and an "Add to Cart" button, laid out three per row on
-  larger screens. Add product-card-simple blocks and select a product on
+  larger screens (a short last row is centered, e.g. when a block is hidden). Add product-card-simple blocks and select a product on
   each to populate the grid.
 {% endcomment %}
 
@@ -23,7 +23,7 @@
     {% endif %}
 
     {% if section.blocks.size > 0 %}
-      <div class="grid w-full grid-cols-1 items-start gap-[30px] sm:grid-cols-2 md:grid-cols-3">
+      <div class="flex w-full flex-wrap items-start justify-center gap-[30px] [&>*]:w-full sm:[&>*]:w-[calc((100%_-_30px)_/_2)] md:[&>*]:w-[calc((100%_-_60px)_/_3)]">
         {% content_for 'blocks' %}
       </div>
     {% endif %}

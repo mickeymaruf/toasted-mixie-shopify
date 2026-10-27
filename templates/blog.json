@@ -21,6 +21,7 @@
       "settings": {
         "background_color": "#9AB2D5",
         "articles_per_page": 6,
+        "hide_article": "news/welcome-to-the-toasted-newsletter",
         "blog": "news",
         "filter_tags": "",
         "show_filters": false

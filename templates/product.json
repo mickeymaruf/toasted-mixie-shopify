@@ -126,7 +126,9 @@
         "badge-row": {
           "type": "badge-row",
           "static": true,
-          "settings": {},
+          "settings": {
+            "text_color": "#f6f1ec"
+          },
           "blocks": {
             "guarantee_badge_Hq6aKN": {
               "type": "guarantee-badge",
@@ -489,7 +491,7 @@
               "type": "feature-highlight",
               "settings": {
                 "title": "Real Fruit Juice",
-                "icon": "shopify://shop_images/Group_91.svg"
+                "icon": "shopify://shop_images/Group_91.png"
               },
               "blocks": {}
             }
@@ -534,7 +536,7 @@
               "type": "feature-highlight",
               "settings": {
                 "title": "21+ Only",
-                "icon": "shopify://shop_images/Group_92.svg"
+                "icon": "shopify://shop_images/Group_92.png"
               },
               "blocks": {}
             }
@@ -551,6 +553,7 @@
       "settings": {
         "heading": "Functional by Design",
         "description": "<p>Made with immediately available functional ingredients designed to help you feel relaxed, right now.</p>",
+        "mobile_description": "",
         "center_image": "shopify://shop_images/Group_107.png",
         "center_image_alt": ""
       }
@@ -662,6 +665,7 @@
       ],
       "name": "t:general.product_list",
       "settings": {
+        "overlap_previous_section": false,
         "heading": "Choose your flavor.",
         "background_color": "#9ab2d5",
         "heading_color": "#212323"

@@ -1,12 +1,13 @@
 {% comment %}
   Renders the Gruns hero as a Swiper slideshow. Each gruns-hero-slide block is
-  one full hero (background, text, button, perks, badge rows); the circular
-  arrows at the bottom right move between slides (hidden on mobile, where
-  slides are swiped).
+  one full hero (background, text, button, perks, badge rows); thin chevron
+  arrows sit at the left and right edges, vertically centered.
 {% endcomment %}
 
 <section
   class="gruns-hero full-width relative z-10 overflow-hidden{% if section.settings.extend_behind_navbar %} -mt-[var(--corner-radius)]{% endif %}"
+  data-fit-viewport="{{ section.settings.fit_viewport }}"
+  style="--hero-peek: {{ section.settings.fold_peek }}px; --hero-peek-mobile: {{ section.settings.fold_peek_mobile }}px;"
   {{ section.shopify_attributes }}
 >
   <gruns-hero-slider
@@ -25,43 +26,69 @@
     </div>
 
     {% if section.settings.show_arrows and section.blocks.size > 1 %}
-      <div class="absolute right-4 bottom-[calc(var(--corner-radius)+1rem)] z-20 hidden items-center sm:flex gap-[13px] sm:right-8 sm:bottom-[calc(var(--corner-radius)+2rem)] lg:right-[2.7778vw] lg:bottom-[5.6944vw]">
-        <button
-          type="button"
-          class="gruns-hero__arrow w-[40px] cursor-pointer transition-opacity duration-150 hover:opacity-75 sm:w-[46px] lg:w-[3.7142vw]"
-          aria-label="{{ 'general.accessibility.previous_slide' | t }}"
-          data-hero-prev
+      <button
+        type="button"
+        class="gruns-hero__arrow absolute top-1/2 left-0 z-20 flex size-8 -translate-y-1/2 cursor-pointer items-center justify-start pl-3 text-white transition-opacity duration-150 hover:opacity-75 md:left-4 md:size-10 md:justify-center md:pl-0"
+        aria-label="{{ 'general.accessibility.previous_slide' | t }}"
+        data-hero-prev
+      >
+        <svg
+          class="gruns-hero__arrow-icon h-[14px] w-[8px]"
+          viewBox="0 0 8 14"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          focusable="false"
         >
-          <img
-            src="{{ 'icon-hero-arrow-prev.svg' | asset_url }}"
-            alt=""
-            width="53"
-            height="52"
-            class="h-auto w-full rotate-180"
-            loading="lazy"
-          >
-        </button>
-        <button
-          type="button"
-          class="gruns-hero__arrow w-[40px] cursor-pointer transition-opacity duration-150 hover:opacity-75 sm:w-[46px] lg:w-[3.7142vw]"
-          aria-label="{{ 'general.accessibility.next_slide' | t }}"
-          data-hero-next
+          <path d="M7 1L1 7l6 6" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="gruns-hero__arrow absolute top-1/2 right-0 z-20 flex size-8 -translate-y-1/2 cursor-pointer items-center justify-end pr-3 text-white transition-opacity duration-150 hover:opacity-75 md:right-4 md:size-10 md:justify-center md:pr-0"
+        aria-label="{{ 'general.accessibility.next_slide' | t }}"
+        data-hero-next
+      >
+        <svg
+          class="gruns-hero__arrow-icon h-[14px] w-[8px]"
+          viewBox="0 0 8 14"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          focusable="false"
         >
-          <img
-            src="{{ 'icon-hero-arrow-next.svg' | asset_url }}"
-            alt=""
-            width="53"
-            height="52"
-            class="h-auto w-full"
-            loading="lazy"
-          >
-        </button>
-      </div>
+          <path d="M1 1l6 6-6 6" />
+        </svg>
+      </button>
     {% endif %}
   </gruns-hero-slider>
 </section>
 
 {% stylesheet %}
+  /* Fit the header, hero and the top of the next section into the first screen:
+     the hero takes whatever viewport height is left after the header (--hero-top,
+     measured in JS) and the visible strip of the next section (--hero-peek). The
+     corner radius is added back because the next section overlaps the hero by it. */
+  .gruns-hero[data-fit-viewport="true"] {
+    --hero-peek-active: var(--hero-peek, 40px);
+    --hero-min-height: calc(100svh - var(--hero-top, 7rem) - var(--hero-peek-active) + var(--corner-radius, 0px));
+    --hero-pad-y: 3vw;
+  }
+
+  /* On phones the next section's padding is smaller, so show less of it: only its
+     top padding, never a clipped heading. */
+  @media (max-width: 39.9375rem) {
+    .gruns-hero[data-fit-viewport="true"] {
+      --hero-peek-active: var(--hero-peek-mobile, 32px);
+    }
+  }
+
   /* Shopify wraps every theme block in a .shopify-block div, so that wrapper
      is the Swiper slide; the hero slide inside it stretches to its height. */
   .gruns-hero__swiper .swiper-wrapper > .shopify-block {
@@ -72,6 +99,10 @@
     min-width: 0;
   }
 
+  .gruns-hero__arrow-icon {
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.55));
+  }
+
   .gruns-hero__swiper .swiper-wrapper > .shopify-block > .gruns-hero-slide {
     flex: 1 1 auto;
     min-width: 0;
@@ -80,7 +111,96 @@
 
 {% javascript %}
   class GrunsHeroSlider extends HTMLElement {
+    fitToViewport() {
+      const section = this.closest('.gruns-hero');
+      if (!section || section.dataset.fitViewport !== 'true') return;
+
+      this.measureHeroTop = () => {
+        const top = section.getBoundingClientRect().top + window.scrollY;
+        section.style.setProperty('--hero-top', `${Math.round(top)}px`);
+      };
+      this.measureHeroTop();
+      window.addEventListener('resize', this.measureHeroTop);
+      window.addEventListener('load', this.measureHeroTop, { once: true });
+    }
+
+    /* On phones, zoom and position each slide's background so the products (the
+       "product area" set on the slide) sit centered in the space above the text,
+       never behind it. Everywhere else the plain cover + focus settings apply. */
+    fitBackgrounds() {
+      const phone = window.matchMedia('(max-width: 39.9375rem)').matches;
+
+      this.querySelectorAll('.gruns-hero-slide').forEach((slide) => {
+        const bg = slide.querySelector('[data-hero-bg]');
+        const img = bg && bg.querySelector('img');
+        if (!img) return;
+
+        if (img.dataset.heroOrigStyle === undefined) {
+          img.dataset.heroOrigStyle = img.getAttribute('style') || '';
+        }
+        const reset = () => {
+          img.setAttribute('style', img.dataset.heroOrigStyle);
+        };
+
+        const subjectTop = parseFloat(bg.dataset.subjectTop);
+        const subjectBottom = parseFloat(bg.dataset.subjectBottom);
+        const content = slide.querySelector('[data-hero-content]');
+        if (!phone || !content || !(subjectBottom > subjectTop)) {
+          reset();
+          return;
+        }
+        if (!img.naturalWidth) {
+          img.addEventListener('load', () => this.fitBackgrounds(), { once: true });
+          return;
+        }
+
+        const slideRect = slide.getBoundingClientRect();
+        const width = slideRect.width;
+        const height = slideRect.height;
+        const spacer = slide.querySelector('[data-hero-spacer]');
+        const freeTop = (spacer ? spacer.offsetHeight : 0) + 16;
+        const freeBottom = content.getBoundingClientRect().top - slideRect.top - 16;
+        const freeHeight = freeBottom - freeTop;
+        if (freeHeight < 70) {
+          reset();
+          return;
+        }
+
+        // Cover the slide (never smaller than its full width and height), zoomed in a little
+        // if that helps, so the products fill the space above the text.
+        const aspect = img.naturalWidth / img.naturalHeight;
+        const coverHeight = Math.max(height, width / aspect);
+        const subjectFraction = (subjectBottom - subjectTop) / 100;
+        const zoom = Math.min(1.08, Math.max(1, (freeHeight * 0.92) / (subjectFraction * coverHeight)));
+        const imgHeight = coverHeight * zoom;
+        const imgWidth = imgHeight * aspect;
+        const subjectCenter = ((subjectTop + subjectBottom) / 200) * imgHeight;
+        const offsetY = Math.min(0, Math.max(height - imgHeight, freeTop + freeHeight / 2 - subjectCenter));
+        const offsetX = (width - imgWidth) / 2;
+
+        img.setAttribute(
+          'style',
+          `${img.dataset.heroOrigStyle};position:absolute;max-width:none;object-fit:fill;width:${imgWidth}px;height:${imgHeight}px;left:${offsetX}px;top:${offsetY}px;`
+        );
+      });
+    }
+
+    watchBackgrounds() {
+      this.fitBackgroundsBound = () => this.fitBackgrounds();
+      window.addEventListener('resize', this.fitBackgroundsBound);
+      window.addEventListener('load', this.fitBackgroundsBound, { once: true });
+      if ('ResizeObserver' in window) {
+        this.backgroundObserver = new ResizeObserver(this.fitBackgroundsBound);
+        this.backgroundObserver.observe(this);
+      }
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(this.fitBackgroundsBound);
+      requestAnimationFrame(this.fitBackgroundsBound);
+    }
+
     connectedCallback() {
+      this.fitToViewport();
+      this.watchBackgrounds();
+
       if (typeof Swiper === 'undefined') {
         window.addEventListener('load', () => this.init(), { once: true });
         return;
@@ -89,6 +209,9 @@
     }
 
     disconnectedCallback() {
+      if (this.fitBackgroundsBound) window.removeEventListener('resize', this.fitBackgroundsBound);
+      if (this.backgroundObserver) this.backgroundObserver.disconnect();
+      if (this.measureHeroTop) window.removeEventListener('resize', this.measureHeroTop);
       document.removeEventListener('shopify:block:select', this.handleBlockSelect);
       document.removeEventListener('shopify:block:deselect', this.handleBlockDeselect);
       if (this.swiper) {
@@ -145,6 +268,7 @@
       };
 
       document.addEventListener('shopify:block:select', this.handleBlockSelect);
+      this.fitBackgrounds();
     }
   }
 
@@ -167,6 +291,35 @@
       "id": "extend_behind_navbar",
       "label": "t:labels.extend_behind_navbar",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "fit_viewport",
+      "label": "t:labels.fit_viewport",
+      "info": "t:labels.fit_viewport_info",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "fold_peek",
+      "label": "t:labels.fold_peek",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 40,
+      "visible_if": "{{ section.settings.fit_viewport }}"
+    },
+    {
+      "type": "range",
+      "id": "fold_peek_mobile",
+      "label": "t:labels.fold_peek_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 32,
+      "visible_if": "{{ section.settings.fit_viewport }}"
     },
     {
       "type": "header",
