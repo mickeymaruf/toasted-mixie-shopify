@@ -74,6 +74,12 @@
 
     assign skyline_focus_y = block.settings.skyline_image_focus_y | default: 100
     assign skyline_image_class = 'size-full max-w-none object-cover'
+    if mobile_frame == 'subscribe'
+      comment
+        Desktop: zoom the background 18% and anchor it to the bottom so the scene sits 18% higher.
+      endcomment
+      assign skyline_image_class = 'absolute bottom-0 left-0 h-[118%] w-full max-w-none object-cover object-bottom'
+    endif
     assign skyline_image_style = 'object-position: ' | append: skyline_focus_x | append: ' ' | append: skyline_focus_y | append: '%'
 
     assign badge_desktop_class = badge_desktop_visibility | append: 'w-full h-auto object-contain'
@@ -174,11 +180,30 @@
   {% endif %}
 
   {% if block.settings.foreground_image != blank %}
+    {% liquid
+      assign fg_subscribe = false
+      if mobile_frame == 'subscribe'
+        assign fg_subscribe = true
+        comment
+          Desktop size and position of the unclipped product image (width as a share of the viewport) so the
+          soft shadow under the product is never cropped.
+        endcomment
+        assign fg_w = 54.78
+        assign fg_left = 43.79
+      endif
+    %}
+    {% if fg_subscribe %}
+      <div
+        class="pointer-events-none relative z-[5] max-sm:hidden sm:absolute sm:top-[51.2%] sm:left-[var(--fg-left)] sm:mx-0 sm:mb-0 sm:w-[var(--fg-width)] sm:max-w-none sm:-translate-y-1/2"
+        style="--fg-left: {{ fg_left }}vw; --fg-width: {{ fg_w }}vw;"
+      >
+    {% else %}
     <div class="pointer-events-none relative z-[5]{% if mobile_frame == 'subscribe' %} max-sm:hidden{% endif %} mb-6 w-[77%] max-w-none self-center sm:absolute sm:top-[51.5%] sm:left-[68.6vw] sm:mx-0 sm:mb-0 sm:h-[min(38.3vw,84%)] sm:w-auto sm:max-w-none sm:-translate-x-[46.84%] sm:-translate-y-1/2 sm:self-auto">
+    {% endif %}
       {% comment %} Always the original uploaded file (no resized srcset) so the product stays sharp {% endcomment %}
       <img
         src="{{ block.settings.foreground_image | image_url }}"
-        class="h-auto w-full sm:h-full sm:w-auto sm:max-w-none"
+        class="h-auto w-full {% unless fg_subscribe %}sm:h-full sm:w-auto sm:max-w-none{% endunless %}{% if block.settings.foreground_image_mobile != blank %} max-sm:hidden{% endif %}"
         width="{{ block.settings.foreground_image.width }}"
         height="{{ block.settings.foreground_image.height }}"
         loading="{{ image_loading }}"
@@ -186,12 +211,23 @@
         decoding="async"
         alt="{{ block.settings.foreground_image_alt | escape }}"
       >
+      {% if block.settings.foreground_image_mobile != blank %}
+        <img
+          src="{{ block.settings.foreground_image_mobile | image_url }}"
+          class="h-auto w-full sm:hidden"
+          width="{{ block.settings.foreground_image_mobile.width }}"
+          height="{{ block.settings.foreground_image_mobile.height }}"
+          loading="{{ image_loading }}"
+          decoding="async"
+          alt="{{ block.settings.foreground_image_alt | escape }}"
+        >
+      {% endif %}
     </div>
   {% endif %}
 
   <div
     data-hero-content
-    class="relative z-10 flex w-full flex-col gap-3 px-5 sm:grid sm:grid-cols-[47.3fr_52.7fr] sm:items-center sm:gap-x-[4.1667vw] sm:px-[5.5556vw] xl:px-[9.0278vw]"
+    class="relative z-10 flex w-full flex-col gap-3 px-5 sm:grid sm:grid-cols-[47.3fr_52.7fr] sm:items-center sm:gap-x-[4.1667vw] sm:px-[6.9444vw]"
   >
     <div class="order-2 flex w-full flex-col items-center text-center sm:order-none sm:col-start-1 sm:items-start sm:text-left">
       {% if block.settings.heading != blank %}
@@ -572,7 +608,7 @@
     }
 
     .gruns-hero-slide--frame .badge-row > :nth-child(2) {
-      left: calc(117.5 * var(--u));
+      left: calc(127.65 * var(--u));
       width: calc(104 * var(--u));
     }
 
@@ -916,6 +952,12 @@
       "id": "foreground_image",
       "label": "t:labels.foreground_image",
       "info": "t:labels.foreground_image_info"
+    },
+    {
+      "type": "image_picker",
+      "id": "foreground_image_mobile",
+      "label": "t:labels.foreground_image_mobile",
+      "info": "t:labels.foreground_image_mobile_info"
     },
     {
       "type": "text",
