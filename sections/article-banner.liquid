@@ -5,7 +5,7 @@
     assign banner_image = article.image
     assign banner_heading = article.title
     assign banner_subtitle = article.excerpt | strip_html | strip
-    assign banner_author = article.author | strip
+    assign banner_author = article.metafields.custom.author.value | default: article.author | strip
     assign read_minutes = article.content | strip_html | split: ' ' | size | divided_by: 200.0 | ceil | at_least: 1
     assign banner_read_time = 'blog.min_read' | t: count: read_minutes
     assign published_date = article.published_at | date: '%b %-d, %Y'
@@ -14,7 +14,7 @@
     assign banner_image = featured.image
     assign banner_heading = featured.title
     assign banner_subtitle = featured.excerpt | strip_html | strip
-    assign banner_author = featured.author | strip
+    assign banner_author = featured.metafields.custom.author.value | default: featured.author | strip
     assign read_minutes = featured.content | strip_html | split: ' ' | size | divided_by: 200.0 | ceil | at_least: 1
     assign banner_read_time = 'blog.min_read' | t: count: read_minutes
     assign banner_link_url = featured.url

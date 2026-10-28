@@ -12,19 +12,30 @@
     "banner": {
       "type": "article-banner",
       "settings": {
-        "background_color": "#9AB2D5",
-        "featured_article": "news/welcome-to-the-toasted-newsletter"
+        "content_source": "custom",
+        "featured_article": "news/are-thc-drinks-legal-hemp-thc-beverage-rules-explained",
+        "read_time": "2 min read",
+        "heading": "The Best Functional Beverage Ingredients",
+        "author": "",
+        "subtitle": "",
+        "link_label": "Read More",
+        "link_url": "",
+        "background_color": "#9ab2d5",
+        "card_background_color": "#636d90",
+        "border_color": "#212323",
+        "text_color": "#f6f1ec"
       }
     },
     "main": {
       "type": "blog",
       "settings": {
-        "background_color": "#9AB2D5",
-        "articles_per_page": 6,
-        "hide_article": "news/welcome-to-the-toasted-newsletter",
         "blog": "news",
+        "background_color": "#9ab2d5",
+        "show_filters": false,
         "filter_tags": "",
-        "show_filters": false
+        "show_search": true,
+        "hide_article": "news/welcome-to-the-toasted-newsletter",
+        "articles_per_page": 6
       }
     }
   },

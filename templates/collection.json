@@ -18,13 +18,13 @@
       "type": "hero-banner",
       "name": "t:general.hero_banner",
       "settings": {
-        "heading": "<p>Fruit-forward flavors.<br/>One functional blend.</p>",
+        "heading": "<p>Three fruit flavors.<br/>One functional blend.</p>",
         "heading_mobile": "",
         "subheading": "",
         "subheading_mobile": "",
         "heading_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/Frame_2147230792.svg",
-        "background_image_mobile": "shopify://shop_images/Frame_2147230792_1.svg",
+        "background_image": "shopify://shop_images/Frame_2147230792_5.png",
+        "background_image_mobile": "shopify://shop_images/mobile_ver_2.png",
         "show_gradient_overlay": false,
         "background_color": "#9ab2d5"
       }
@@ -97,6 +97,7 @@
       ],
       "name": "t:general.product_list",
       "settings": {
+        "overlap_previous_section": false,
         "heading": "",
         "background_color": "#9ab2d5",
         "heading_color": "#212323"

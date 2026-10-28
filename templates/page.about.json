@@ -23,8 +23,8 @@
         "subheading": "",
         "subheading_mobile": "",
         "heading_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/Frame_2147230793_53d0b340-f457-42b7-bdd4-fe647d9a1a54.png",
-        "background_image_mobile": "shopify://shop_images/Frame_2147230793_1.png",
+        "background_image": "shopify://shop_images/Frame_2147230792_6_7ab0757c-5ac3-408d-b660-671adda66617.png",
+        "background_image_mobile": "shopify://shop_images/mobile_ver_3.png",
         "show_gradient_overlay": false,
         "background_color": "#9ab2d5"
       }
@@ -403,9 +403,7 @@
         "subheading": "",
         "background_color": "#9ab2d5",
         "heading_color": "#212323",
-        "show_heading_background": false,
-        "heading_background_image": "",
-        "heading_background_image_mobile": ""
+        "show_heading_background": false
       }
     },
     "gruns_product_list_simple_mgnb4p": {
@@ -420,15 +418,15 @@
             "background_color": "#f0f0f0",
             "background_image": "shopify://shop_images/front_2.svg",
             "flavor_sticker": "shopify://shop_images/Group_159.svg",
+            "flavor_sticker_mobile": "shopify://shop_images/Group_159.png",
             "badge_sticker": "shopify://shop_images/Group_110_1.svg",
+            "badge_sticker_mobile": "shopify://shop_images/Group_110.png",
             "title": "Ginger Lime",
             "description": "Zesty ginger, bright lime, real fruit flavor, and a functional blend for ease, presence, and connection.",
             "text_color": "#f6f1ec",
             "button_label": "Add to Cart",
             "button_background_color": "#f6f1ec",
-            "button_text_color": "#212323",
-            "badge_sticker_mobile": "shopify://shop_images/Group_110.png",
-            "flavor_sticker_mobile": "shopify://shop_images/Group_159.png"
+            "button_text_color": "#212323"
           },
           "blocks": {}
         },
@@ -441,15 +439,15 @@
             "background_color": "#f0f0f0",
             "background_image": "shopify://shop_images/front_1.svg",
             "flavor_sticker": "shopify://shop_images/flavour.svg",
+            "flavor_sticker_mobile": "shopify://shop_images/flavour.png",
             "badge_sticker": "shopify://shop_images/Group_113_2.svg",
+            "badge_sticker_mobile": "shopify://shop_images/Group_113.png",
             "title": "Blood Orange",
             "description": "Bright blood orange, real fruit flavor, and a functional blend made to help you stay present.",
             "text_color": "#f6f1ec",
             "button_label": "Add to Cart",
             "button_background_color": "#f6f1ec",
-            "button_text_color": "#212323",
-            "badge_sticker_mobile": "shopify://shop_images/Group_113.png",
-            "flavor_sticker_mobile": "shopify://shop_images/flavour.png"
+            "button_text_color": "#212323"
           },
           "blocks": {}
         }

@@ -35,7 +35,7 @@
 
   <div class="flex flex-1 sm:min-h-[268px] flex-col items-start justify-between gap-[15px] rounded-br-[30px] rounded-bl-[30px] bg-[#F6F1EC] px-6 py-6">
     <div class="flex w-full flex-col gap-[15px]">
-      {%- assign card_author = article.author | strip -%}
+      {%- assign card_author = article.metafields.custom.author.value | default: article.author | strip -%}
       <p class="flex w-full flex-wrap items-center gap-x-[10px] font-[family-name:var(--font-primary--family)] text-[18px] leading-[1.5] font-medium">
         <span data-slot="read-time">{{ 'blog.min_read' | t: count: read_minutes }}</span>
         <span data-slot="author-sep" aria-hidden="true"{% if card_author == blank %} hidden{% endif %}>&bull;</span>
