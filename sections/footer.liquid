@@ -14,7 +14,7 @@
   style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};"
 >
   <div
-    class="pointer-events-none absolute bottom-[-17.92vw] left-[9.976%] block aspect-square w-[149.69%] opacity-30 lg:top-[2.0778vw] lg:bottom-auto lg:left-[74.6528%] lg:w-[32.9861%]"
+    class="pointer-events-none absolute bottom-[-44.36vw] left-[17.333%] block aspect-square w-[126.667%] opacity-30 lg:top-[2.0778vw] lg:bottom-auto lg:left-[74.6528%] lg:w-[32.9861%]"
     aria-hidden="true"
   >
     <img
@@ -27,13 +27,12 @@
     >
   </div>
 
-  <div class="relative mx-auto flex w-full max-w-[1920px] flex-col gap-10 px-5 py-14 sm:px-8 md:px-12 xl:gap-[50px] xl:px-[60px] xl:pt-[80px] xl:pb-[40px] 2xl:px-[100px]">
-    <div class="flex w-full flex-col items-center gap-10 xl:flex-row xl:items-start xl:justify-between xl:gap-8">
-      <div class="flex w-full flex-col items-center gap-10 xl:w-auto xl:items-start xl:gap-[50px]">
+  <div class="relative mx-auto flex w-full max-w-[1920px] flex-col gap-5 px-5 py-14 sm:px-8 md:px-12 xl:gap-[50px] xl:px-[60px] xl:pt-[80px] xl:pb-[40px] 2xl:px-[100px]">
+    <div class="flex w-full flex-col items-center gap-5 xl:flex-row xl:items-start xl:justify-between xl:gap-8">
+      <div class="flex w-full flex-col items-center gap-5 xl:w-auto xl:items-start xl:gap-[50px]">
         <a
           href="{{ routes.root_url }}"
-          class="block max-w-full xl:!w-[337px]"
-          style="width: clamp(180px, 55vw, 206px);"
+          class="block h-[29.7906px] w-[135px] max-w-full xl:h-auto xl:!w-[337px]"
         >
           {% if section.settings.logo %}
             {{
@@ -48,14 +47,14 @@
 
         <div class="flex w-full flex-col items-center gap-[15px] xl:w-[337px] xl:items-start xl:gap-[10px]">
           {% if section.settings.desktop_heading != blank %}
-            <p class="text-[24px] leading-[1.2] font-medium">{{ section.settings.desktop_heading }}</p>
+            <p class="text-[20px] leading-[1.2] font-medium xl:text-[24px]">{{ section.settings.desktop_heading }}</p>
           {% endif %}
 
-          {% form 'customer', id: newsletter_form_id, class: 'w-full max-w-[287px] xl:max-w-none' %}
+          {% form 'customer', id: newsletter_form_id, class: 'w-[243px] xl:w-full' %}
             <input type="hidden" name="contact[tags]" value="newsletter">
 
             <div
-              class="flex w-full items-center justify-between gap-2 rounded-full py-[6px] pr-[6px] pl-[24px]"
+              class="flex w-full items-center justify-between gap-2 rounded-full py-[6px] pr-[6px] pl-[15px] xl:pl-[24px]"
               style="
                 --footer-newsletter-bg: {{ section.settings.newsletter_background_color }};
                 --footer-newsletter-button-bg: {{ section.settings.newsletter_button_background_color }};
@@ -71,16 +70,17 @@
                 placeholder="{{ section.settings.email_placeholder }}"
                 autocomplete="email"
                 required
-                class="min-w-0 flex-1 bg-transparent text-[16px] leading-[1.5] placeholder:text-[color:var(--footer-newsletter-button-bg)] focus:outline-none xl:text-[20px]"
+                class="h-6 min-w-0 flex-1 bg-transparent text-[16px] leading-[normal] xl:h-auto xl:leading-[1.5] placeholder:text-[color:var(--footer-newsletter-button-bg)] focus:outline-none xl:text-[20px]"
                 style="color: var(--footer-newsletter-button-bg);"
               >
               <button
                 type="submit"
-                class="inline-flex h-[58px] w-[56px] shrink-0 cursor-pointer items-center justify-center rounded-[30px] transition-opacity duration-150 hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2"
+                class="inline-flex h-[37.286px] w-[36px] shrink-0 cursor-pointer items-center justify-center rounded-full transition-opacity xl:h-[58px] xl:w-[56px] xl:rounded-[30px] duration-150 hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2"
                 style="background-color: var(--footer-newsletter-button-bg); color: var(--footer-newsletter-button-text); outline-color: var(--footer-newsletter-button-text);"
                 aria-label="{{ section.settings.newsletter_button_label | escape }}"
               >
                 <svg
+                  class="h-[11.571px] w-[15.429px] xl:h-[18px] xl:w-[24px]"
                   width="24"
                   height="18"
                   viewBox="0 0 24 18"
@@ -106,8 +106,8 @@
         </div>
       </div>
 
-      <div class="flex w-full flex-col items-center gap-7 xl:w-auto xl:flex-row xl:items-start xl:gap-[50px]">
-        <div class="flex flex-col items-center gap-[10px] xl:items-start xl:gap-[30px]">
+      <div class="flex w-full flex-col items-center gap-5 xl:w-auto xl:flex-row xl:items-start xl:gap-[50px]">
+        <div class="flex flex-col items-center gap-[5px] xl:items-start xl:gap-[30px]">
           <p class="text-[20px] xl:text-[28px] leading-[1.2] font-medium">{{ 'footer.follow_us' | t }}</p>
           <div class="flex items-center gap-[10px]">
             {% content_for 'blocks' %}
@@ -125,34 +125,34 @@
               assign panel_id = 'FooterMenu-' | append: section.id | append: '-' | append: menu_key
             %}
             {% if menu.links.size > 0 %}
-              <div class="footer-accordion border-t border-current xl:flex xl:flex-col xl:items-start xl:gap-[30px] xl:border-t-0 {% if menu_key == 'about' %}xl:items-end xl:text-right{% endif %}">
+              <div class="footer-accordion relative pt-[15px] pb-[15px] before:absolute before:inset-x-0 before:-top-px before:h-px before:bg-current last:pb-0 xl:flex xl:flex-col xl:items-start xl:gap-[30px] xl:p-0 xl:before:hidden {% if menu_key == 'about' %}xl:items-end xl:text-right{% endif %}">
                 <button
                   type="button"
-                  class="flex w-full cursor-pointer items-center justify-between py-7 text-left text-[20px] xl:text-[28px] leading-[1.2] font-medium xl:pointer-events-none xl:cursor-default xl:p-0"
+                  class="flex h-6 w-full cursor-pointer items-center justify-between text-left text-[20px] xl:text-[28px] leading-[1.2] font-medium xl:pointer-events-none xl:h-auto xl:cursor-default xl:p-0"
                   aria-expanded="false"
                   aria-controls="{{ panel_id }}"
                   data-footer-accordion-toggle
                 >
                   <span>{{ menu_title }}</span>
                   <svg
-                    class="footer-accordion__chevron shrink-0 xl:hidden"
+                    class="footer-accordion__chevron shrink-0 overflow-visible xl:hidden"
                     width="20"
                     height="9"
-                    viewBox="0 0 20 9"
+                    viewBox="1.5 1.5 20 9"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="1.5"
+                    stroke-width="3"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     aria-hidden="true"
                     focusable="false"
                   >
-                    <path d="M1 1L10 8L19 1" />
+                    <path transform="rotate(180 11.5 6)" d="M1.5 10.5L10.0086 2.1093C10.4 1.7 11 1.5 11.5 1.5C12 1.5 12.6 1.7 12.9918 2.1093L21.5 10.5" />
                   </svg>
                 </button>
                 <div id="{{ panel_id }}" class="footer-accordion__panel">
                   <div class="overflow-hidden">
-                    <ul class="flex flex-col items-start gap-[15px] pb-7 text-[18px] leading-[1.3] xl:pb-0 xl:text-[16px] {% if menu_key == 'about' %}xl:items-end{% endif %}">
+                    <ul class="flex flex-col items-start gap-[15px] pt-[15px] text-[18px] leading-[1.3] xl:pt-0 xl:pb-0 xl:text-[16px] {% if menu_key == 'about' %}xl:items-end{% endif %}">
                       {% for link in menu.links %}
                         <li>
                           <a href="{{ link.url }}" class="inline-flex items-center gap-1 transition-opacity duration-150 hover:opacity-70">
