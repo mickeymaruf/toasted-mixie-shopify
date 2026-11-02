@@ -256,6 +256,18 @@
     var list = root.querySelector('[data-article-search-list]');
     var empty = root.querySelector('[data-article-search-empty]');
 
+  function toOriginalImageUrl(src) {
+    if (!src) return src;
+    try {
+      var url = new URL(src, window.location.href);
+      ['width', 'height', 'crop', 'w', 'h'].forEach(function (key) { url.searchParams.delete(key); });
+      url.pathname = url.pathname.replace(/_(?:pico|icon|thumb|small|compact|medium|large|grande|original|master|\d*x\d*)(?:@\dx)?(\.[a-z0-9]+)$/i, '$1');
+      return url.toString();
+    } catch (error) {
+      return src;
+    }
+  }
+
     function renderCard(article) {
       var node = template.content.firstElementChild.cloneNode(true);
       var body = text(article.body || article.summary_html);
@@ -276,7 +288,8 @@
 
       if (image) {
         var img = document.createElement('img');
-        img.src = image;
+        img.src = toOriginalImageUrl(image);
+        img.decoding = 'async';
         img.alt = (article.image && article.image.alt) || '';
         img.loading = 'lazy';
         img.className = 'size-full object-cover';

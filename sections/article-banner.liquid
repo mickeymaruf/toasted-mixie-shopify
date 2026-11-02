@@ -45,7 +45,8 @@
             | image_url: width: banner_image.width
             | image_tag:
               class: 'size-full object-cover',
-              loading: 'lazy',
+              loading: 'eager',
+              decoding: 'async',
               widths: banner_image_width,
               alt: banner_image.alt
           }}

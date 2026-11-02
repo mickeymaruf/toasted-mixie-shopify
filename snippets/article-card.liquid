@@ -17,7 +17,7 @@
   data-slot="link"
   class="group/link flex h-full flex-col rounded-[33px] border-[3px] border-solid border-[#212323] text-[#212323]"
 >
-  <div data-slot="image" class="h-[386.67px] w-full shrink-0 overflow-hidden rounded-tl-[30px] rounded-tr-[30px]">
+  <div data-slot="image" class="bg-[#636D90] h-[386.67px] w-full shrink-0 overflow-hidden rounded-tl-[30px] rounded-tr-[30px]">
     {%- if article.image -%}
       {{
         article.image
@@ -29,7 +29,7 @@
           alt: article.image.alt
       }}
     {%- else -%}
-      <div class="size-full bg-[#F9D5C0]" aria-hidden="true"></div>
+      <div class="size-full bg-[#636D90]" aria-hidden="true"></div>
     {%- endif -%}
   </div>
 
