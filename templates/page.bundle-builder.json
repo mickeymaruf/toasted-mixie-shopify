@@ -287,7 +287,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz_20.png",
+            "image": "shopify://shop_images/picz_22.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },

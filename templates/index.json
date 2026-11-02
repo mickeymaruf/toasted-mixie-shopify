@@ -1033,7 +1033,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz_1_66ef3f48-9597-4b1d-8108-c736959607a0.png",
+            "image": "shopify://shop_images/picz_22.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },
