@@ -236,7 +236,7 @@
           class="drop-shadow-[-1px_1px_1.7px_rgba(0,0,0,0.4)] font-[family-name:var(--font-heading--family)] font-bold text-[46px] leading-[95%] whitespace-nowrap text-[color:var(--gruns-hero-heading-color)] sm:text-[4.4444vw] xl:text-[5.9028vw]"
           style="--gruns-hero-heading-color: {{ block.settings.heading_color }};"
         >
-          {{ block.settings.heading }}
+          {% if template.name == 'index' and section.blocks.first.id == block.id %}<h1 style="display:contents">{{ block.settings.heading }}</h1>{% else %}{{ block.settings.heading }}{% endif %}
         </div>
       {% endif %}
 

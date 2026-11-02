@@ -108,7 +108,7 @@
 
       <div class="flex w-full flex-col items-center gap-7 xl:w-auto xl:flex-row xl:items-start xl:gap-[50px]">
         <div class="flex flex-col items-center gap-[10px] xl:items-start xl:gap-[30px]">
-          <p class="text-[28px] leading-[1.2] font-medium">{{ 'footer.follow_us' | t }}</p>
+          <p class="text-[20px] xl:text-[28px] leading-[1.2] font-medium">{{ 'footer.follow_us' | t }}</p>
           <div class="flex items-center gap-[10px]">
             {% content_for 'blocks' %}
           </div>
@@ -128,7 +128,7 @@
               <div class="footer-accordion border-t border-current xl:flex xl:flex-col xl:items-start xl:gap-[30px] xl:border-t-0 {% if menu_key == 'about' %}xl:items-end xl:text-right{% endif %}">
                 <button
                   type="button"
-                  class="flex w-full cursor-pointer items-center justify-between py-7 text-left text-[28px] leading-[1.2] font-medium xl:pointer-events-none xl:cursor-default xl:p-0"
+                  class="flex w-full cursor-pointer items-center justify-between py-7 text-left text-[20px] xl:text-[28px] leading-[1.2] font-medium xl:pointer-events-none xl:cursor-default xl:p-0"
                   aria-expanded="false"
                   aria-controls="{{ panel_id }}"
                   data-footer-accordion-toggle

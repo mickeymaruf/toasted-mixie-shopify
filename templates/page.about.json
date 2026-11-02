@@ -23,8 +23,8 @@
         "subheading": "",
         "subheading_mobile": "",
         "heading_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/Frame_2147230792_6_7ab0757c-5ac3-408d-b660-671adda66617.png",
-        "background_image_mobile": "shopify://shop_images/mobile_ver_3.png",
+        "background_image": "shopify://shop_images/desktop_hero_2.png",
+        "background_image_mobile": "shopify://shop_images/mobile_ver_3_18d29789-cd1a-4146-90ff-3656e29486ce.png",
         "show_gradient_overlay": false,
         "background_color": "#9ab2d5"
       }
@@ -536,7 +536,7 @@
           "type": "gallery-image",
           "name": "t:general.gallery_image",
           "settings": {
-            "image": "shopify://shop_images/picz_20.png",
+            "image": "shopify://shop_images/picz_1_66ef3f48-9597-4b1d-8108-c736959607a0.png",
             "alt_text": "",
             "placeholder_text": "Image coming soon"
           },

@@ -324,15 +324,15 @@
             "background_color": "#f0f0f0",
             "background_image": "shopify://shop_images/front_1.svg",
             "flavor_sticker": "shopify://shop_images/flavour.svg",
+            "flavor_sticker_mobile": "shopify://shop_images/flavour.png",
             "badge_sticker": "shopify://shop_images/Group_113_2.svg",
+            "badge_sticker_mobile": "shopify://shop_images/Group_113.png",
             "title": "Blood Orange",
             "description": "Deep berry profile with a hint of acai.\nLightly sweet, smooth with an easy finish.",
             "text_color": "#f6f1ec",
             "button_label": "Add to Cart",
             "button_background_color": "#f6f1ec",
-            "button_text_color": "#212323",
-            "badge_sticker_mobile": "shopify://shop_images/Group_113.png",
-            "flavor_sticker_mobile": "shopify://shop_images/flavour.png"
+            "button_text_color": "#212323"
           },
           "blocks": {}
         }
@@ -677,6 +677,117 @@
         "heading_color": "#212323"
       }
     },
+    "gruns_gallery_Pxy3rJ": {
+      "type": "gruns-gallery",
+      "blocks": {
+        "gallery_video_jC6bVF": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
+          "settings": {
+            "video": "shopify://files/videos/0819.mov",
+            "thumbnail": "shopify://shop_images/picz_10.png",
+            "alt_text": "",
+            "placeholder_text": "Video coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_LTjKmx": {
+          "type": "gallery-image",
+          "settings": {
+            "image": "shopify://shop_images/picz_12.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_video_GK9aUD": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
+          "settings": {
+            "video": "shopify://files/videos/0819(1)d.mov",
+            "thumbnail": "shopify://shop_images/picz_15.png",
+            "alt_text": "",
+            "placeholder_text": "Video coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_PJybm7": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/picz_1_66ef3f48-9597-4b1d-8108-c736959607a0.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_video_xcVaNM": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
+          "settings": {
+            "video": "shopify://files/videos/IMG_7803 (1).MOV",
+            "thumbnail": "shopify://shop_images/picz_18.png",
+            "alt_text": "",
+            "placeholder_text": "Video coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_UrqyxL": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/picz_11.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_video_mCpMwT": {
+          "type": "gallery-video",
+          "name": "t:general.gallery_video",
+          "settings": {
+            "video": "shopify://files/videos/0819 (1).mov",
+            "thumbnail": "shopify://shop_images/picz_19.png",
+            "alt_text": "",
+            "placeholder_text": "Video coming soon"
+          },
+          "blocks": {}
+        },
+        "gallery_image_AteQfV": {
+          "type": "gallery-image",
+          "name": "t:general.gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/picz_21.png",
+            "alt_text": "",
+            "placeholder_text": "Image coming soon"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "gallery_video_jC6bVF",
+        "gallery_image_LTjKmx",
+        "gallery_video_GK9aUD",
+        "gallery_image_PJybm7",
+        "gallery_video_xcVaNM",
+        "gallery_image_UrqyxL",
+        "gallery_video_mCpMwT",
+        "gallery_image_AteQfV"
+      ],
+      "name": "t:general.gruns_gallery",
+      "settings": {
+        "heading": "<p>The People Love Toasted!</p>",
+        "heading_mobile": "",
+        "enable_slide_border": true,
+        "enable_autoplay": false,
+        "show_navigation": true,
+        "background_color": "#f6f1ec",
+        "heading_color": "#212323",
+        "social_icon_1_link": "",
+        "social_icon_2_link": "",
+        "social_icon_3_link": ""
+      }
+    },
     "reviews_Kc4Cw6": {
       "type": "reviews",
       "blocks": {
@@ -900,6 +1011,7 @@
     "ingredient_highlights_wcTznK",
     "how_it_works_hWxXPx",
     "gruns_product_list_LHAh4W",
+    "gruns_gallery_Pxy3rJ",
     "reviews_Kc4Cw6",
     "gruns_find_toasted_EFQ7iF",
     "faq_pills_grid_r7zfPB"

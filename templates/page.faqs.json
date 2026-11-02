@@ -23,8 +23,8 @@
         "subheading": "<p>Everything to know before you try Toasted.</p>",
         "subheading_mobile": "",
         "heading_color": "#f6f1ec",
-        "background_image": "shopify://shop_images/Frame_2147230792_7_901f8435-dc7b-423b-b206-3b777b7c9d1d.png",
-        "background_image_mobile": "shopify://shop_images/mobile_ver_4.png",
+        "background_image": "shopify://shop_images/desktop_hero_1.png",
+        "background_image_mobile": "shopify://shop_images/mobile_ver_4_d2696770-1489-4d5e-892d-22beac22f861.png",
         "show_gradient_overlay": true,
         "background_color": "#9ab2d5"
       }
@@ -37,23 +37,23 @@
           "settings": {
             "category": "The Drink",
             "question": "What is Toasted?",
-            "answer": "Toasted is the chill drink. A functional relaxation beverage made with real fruit, L-theanine, Rhodiola, and 0.4mg hemp-derived THC."
+            "answer": "Toasted is the chill drink. A low-dose hemp THC beverage made with real fruit, L-theanine, and Rhodiola to support feelings of relaxation and calm."
           }
         },
         "faq_item_VXMdKR": {
           "type": "faq_item",
           "settings": {
             "category": "The Drink",
-            "question": "Is Toasted for me?",
-            "answer": "If you want to unwind, relax, and stay present without alcohol, Toasted is for you."
+            "question": "How will a THC drink make me feel?",
+            "answer": "The effects of a THC drink depend on the dose. A low-dose drink like Toasted is made for a light sense of calm and social ease, so you can relax and stay present."
           }
         },
         "faq_item_VWwBBL": {
           "type": "faq_item",
           "settings": {
             "category": "The Drink",
-            "question": "When is the best time for Toasted?",
-            "answer": "Anytime you want to take the edge off without losing yourself. Stay in, go out, or anywhere in between."
+            "question": "What is a good starting dose for THC beverages?",
+            "answer": "If you are new to THC drinks, start low. Each can of Toasted has 0.4mg of hemp-derived THC. Start with one can, sip it slowly, and see how you feel."
           }
         },
         "faq_item_hYhdVp": {

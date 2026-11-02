@@ -112,7 +112,7 @@
   });
 {% endjavascript %}
 
-{% schema %}
+{%- if template.suffix == 'faqs' -%}{%- assign faq_ld_count = 0 -%}<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{%- for block in section.blocks -%}{%- if block.type == 'faq_item' and block.settings.question != blank and block.settings.answer != blank -%}{%- if faq_ld_count > 0 -%},{%- endif -%}{"@type": "Question", "name": {{ block.settings.question | strip_html | strip | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ block.settings.answer | strip_html | strip | json }}}}{%- assign faq_ld_count = faq_ld_count | plus: 1 -%}{%- endif -%}{%- endfor -%}]}</script>{%- endif -%}{% schema %}
 {
   "name": "FAQ Accordion",
   "blocks": [
