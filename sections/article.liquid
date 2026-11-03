@@ -15,6 +15,8 @@
       {{ article.content }}
     </div>
 
+    {% comment %}
+      Comments are disabled for now. Remove this comment wrapper (this line and the matching endcomment) to bring them back.
     {%- if blog.comments_enabled? -%}
       <div class="mt-[100px] font-[family-name:var(--font-primary--family)] text-[#212323]">
         <h2 class="mb-8 font-[family-name:var(--font-heading--family)] text-[40px] leading-[0.95] font-bold tracking-[-0.03em]">
@@ -63,6 +65,7 @@
         {%- endform -%}
       </div>
     {%- endif -%}
+    {% endcomment %}
   </div>
 </section>
 
