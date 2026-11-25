@@ -13,7 +13,7 @@
       "type": "article-banner",
       "settings": {
         "content_source": "custom",
-        "featured_article": "news/are-thc-drinks-legal-hemp-thc-beverage-rules-explained",
+        "featured_article": "news/welcome-to-the-toasted-newsletter",
         "read_time": "2 min read",
         "heading": "The Best Functional Beverage Ingredients",
         "author": "",
@@ -34,7 +34,7 @@
         "show_filters": false,
         "filter_tags": "",
         "show_search": true,
-        "hide_article": "news/are-thc-drinks-legal-hemp-thc-beverage-rules-explained",
+        "hide_article": "news/welcome-to-the-toasted-newsletter",
         "articles_per_page": 6
       }
     }

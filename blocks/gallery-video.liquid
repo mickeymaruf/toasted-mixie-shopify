@@ -20,7 +20,7 @@
           <video
             class="size-full object-cover"
             playsinline
-            preload="metadata"
+            preload="none"
             disablePictureInPicture
             disableRemotePlayback
             {% if block.settings.thumbnail %}
@@ -29,7 +29,7 @@
             data-gallery-video
           >
             {% for source in block.settings.video.sources %}
-              <source src="{{ source.url }}" type="{{ source.mime_type }}">
+              <source data-src="{{ source.url }}" type="{{ source.mime_type }}">
             {% endfor %}
           </video>
         </video-minimal-skin>
@@ -62,9 +62,16 @@
 </div>
 
 {% javascript %}
-  const videoMinimalReady = customElements.get('video-player')
-    ? Promise.resolve()
-    : import('https://cdn.jsdelivr.net/npm/@videojs/html/cdn/video-minimal.js');
+  let videoMinimalReady;
+  function loadVideoSkin() {
+    if (!videoMinimalReady) {
+      videoMinimalReady = customElements.get('video-player')
+        ? Promise.resolve()
+        : import('https://cdn.jsdelivr.net/npm/@videojs/html/cdn/video-minimal.js');
+      videoMinimalReady.catch(() => { videoMinimalReady = undefined; });
+    }
+    return videoMinimalReady;
+  }
 
   // video-minimal-skin renders into an open Shadow DOM with no exposed ::part()
   // hooks, so these can only be hidden by reaching into shadowRoot directly —
@@ -101,6 +108,29 @@
   }
 
   class GalleryVideoPlayer extends HTMLElement {
+    loadSources() {
+      if (this.sourcesLoaded || !this.video) return;
+      const sources = this.video.querySelectorAll('source[data-src]');
+      if (!sources.length) return;
+      sources.forEach((source) => {
+        source.src = source.dataset.src;
+        source.removeAttribute('data-src');
+      });
+      this.sourcesLoaded = true;
+      this.video.load();
+    }
+
+    playVideo() {
+      this.initializeSkin();
+      // Hydrate only on an explicit playback request, never on page load or scroll.
+      this.loadSources();
+      const playback = this.video.play();
+      playback?.catch(() => {
+        // A blocked or interrupted play stays retryable through the same button.
+        if (this.playButton && this.video.paused) this.playButton.hidden = false;
+      });
+    }
+
     async connectedCallback() {
       this.video = this.querySelector('[data-gallery-video]');
       if (!this.video) return;
@@ -118,7 +148,12 @@
       // This button sits outside <video-player>, so clicking it never enters
       // media-container's composed path — no conflict with Video.js's own
       // click gesture (unlike a listener placed directly on the video).
-      this.playButton?.addEventListener('click', () => this.video.play());
+      this.playButton?.addEventListener('click', () => this.playVideo());
+
+      // Preserve the player's keyboard playback path before media has loaded.
+      this.addEventListener('keydown', (event) => {
+        if (event.key === ' ' || event.key === 'Enter') this.loadSources();
+      }, { capture: true });
 
       // Video.js's own Gesture component already handles mouse clicks
       // (togglePaused, region: center) via media-container — adding our own
@@ -132,7 +167,7 @@
       this.video.addEventListener('pointerup', (event) => {
         if (event.pointerType === 'mouse') return;
         if (this.video.paused) {
-          this.video.play();
+          this.playVideo();
         } else {
           this.video.pause();
         }
@@ -161,19 +196,43 @@
       );
       this.visibilityObserver.observe(this);
 
-      await videoMinimalReady;
-      const root = this.querySelector('video-minimal-skin')?.shadowRoot;
-      if (!root) return;
+      this.skinObserver = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          this.initializeSkin();
+          this.skinObserver.disconnect();
+        }
+      }, { rootMargin: '300px' });
+      this.skinObserver.observe(this);
+    }
 
-      HIDDEN_ALWAYS.forEach((selector) => hide(root.querySelector(selector)));
+    async initializeSkin() {
+      if (this.skinInitializing || this.skinInitialized) return;
+      this.skinInitializing = true;
+      try {
+        await loadVideoSkin();
+        const root = this.querySelector('video-minimal-skin')?.shadowRoot;
+        if (!root) return;
 
-      HIDDEN_WHILE_PAUSED.forEach((selector) => hide(root.querySelector(selector)));
-      this.video.addEventListener('play', () => HIDDEN_WHILE_PAUSED.forEach((selector) => show(root.querySelector(selector))));
-      this.video.addEventListener('pause', () => HIDDEN_WHILE_PAUSED.forEach((selector) => hide(root.querySelector(selector))));
+        HIDDEN_ALWAYS.forEach((selector) => hide(root.querySelector(selector)));
+        const syncControls = () => HIDDEN_WHILE_PAUSED.forEach((selector) => {
+          const control = root.querySelector(selector);
+          if (this.video.paused) hide(control); else show(control);
+        });
+        syncControls();
+        this.video.addEventListener('play', syncControls);
+        this.video.addEventListener('pause', syncControls);
+        this.skinInitialized = true;
+      } catch (error) {
+        // Keep native playback controls available if the optional skin cannot load.
+        this.video.controls = true;
+      } finally {
+        this.skinInitializing = false;
+      }
     }
 
     disconnectedCallback() {
       this.visibilityObserver?.disconnect();
+      this.skinObserver?.disconnect();
     }
   }
 

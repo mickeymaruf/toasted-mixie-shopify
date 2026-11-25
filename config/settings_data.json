@@ -63,7 +63,6 @@
           "button_text_color": "#212323",
           "cans_background_color": "#f9d5c0",
           "cans_background_image": "shopify://shop_images/Rectangle_61.png",
-          "can_image_1": "",
           "can_image_2": "shopify://shop_images/lime_20000_1.png",
           "can_image_3": "shopify://shop_images/orange_010000_3.png"
         }
@@ -81,6 +80,11 @@
           "unavailable_text": "Unavailable",
           "use_custom_script": false
         }
+      },
+      "855628211100114053": {
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": false,
+        "settings": {}
       }
     }
   }

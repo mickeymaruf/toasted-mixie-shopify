@@ -28,40 +28,40 @@
     "lab_results_HmgaWd": {
       "type": "lab-results",
       "blocks": {
-        "step_Y3bXP4": {
+        "step_wFi4Dj": {
           "type": "step",
           "settings": {
             "step_number": "01",
-            "title": "Batch/Lot Code",
-            "description": "Find it on the bottom of your can or package."
+            "title": "Find Your Batch Code",
+            "description": "Located on the bottom of your can."
           }
         },
         "step_PFNLFJ": {
           "type": "step",
           "settings": {
             "step_number": "02",
-            "title": "Third-Party Tested",
-            "description": "Tested by independent labs for clarity and consistency."
+            "title": "Enter Your Code",
+            "description": "Use batch code to locate the lab report."
           }
         },
         "step_y4RKcc": {
           "type": "step",
           "settings": {
             "step_number": "03",
-            "title": "Product Safety",
-            "description": "Checked for potency, purity, and safety."
+            "title": "Review Your Results",
+            "description": "Verify potency, purity, and product safety."
           }
         }
       },
       "block_order": [
-        "step_Y3bXP4",
+        "step_wFi4Dj",
         "step_PFNLFJ",
         "step_y4RKcc"
       ],
       "name": "Lab results",
       "settings": {
         "title": "Find your Lab Results",
-        "description": "Enter your batch number or lot code to find your Certificate of Analysis.",
+        "description": "Every Toasted batch is independently tested. Enter the batch code to access its Certificate of Analysis (COA).",
         "background_color": "#f6f1ec"
       }
     },
@@ -227,29 +227,29 @@
         "row_xnkArz": {
           "type": "row",
           "settings": {
-            "title": "Pesticide Free",
-            "description": "Absent of 67 prohibited pesticides, herbicides and chemicals."
+            "title": "Pesticides",
+            "description": "Screened for 67 prohibited pesticides, herbicides and chemicals."
           }
         },
         "row_m7zqTE": {
           "type": "row",
           "settings": {
-            "title": "Mold & Toxin Free",
-            "description": "We screen for harmful microbial pathogens and mycotoxins to ensure product safety. "
+            "title": "Microbials & Mycotoxis",
+            "description": "Test for harmful microbial pathogens, mold, and associated toxins."
           }
         },
         "row_ydq4Rb": {
           "type": "row",
           "settings": {
-            "title": "Heavy Metals Free",
-            "description": "Including Lead, Arsenic, Cadmium, Mercury and residual solvents."
+            "title": "Heavy Metals",
+            "description": "Screened for Lead, Arsenic, Cadmium, and Mercury."
           }
         },
         "row_TW4aQt": {
           "type": "row",
           "settings": {
-            "title": "Compliant Potency",
-            "description": "100% naturally sourced cannabinoids at an accurate, certified dosage."
+            "title": "Potency & Cannabinoids",
+            "description": "Verified cannabinoid content to ensure accurate, consistent dosing."
           }
         }
       },
@@ -261,7 +261,7 @@
       ],
       "name": "t:general.coa_guide",
       "settings": {
-        "heading": "How to Read a COA",
+        "heading": "What's Tested. What's Verified.",
         "background_color": "#f6f1ec"
       }
     }

@@ -7,10 +7,20 @@
   {% content_for 'block', id: block.id, type: 'icon-badge-card' %}
 {% enddoc %}
 
-
+{% liquid
+  assign accessible_text = block.settings.text_color
+  assign text_contrast = accessible_text | color_contrast: block.settings.background_color
+  if text_contrast < 4.5
+    assign accessible_text = accessible_text | color_darken: 10
+    assign text_contrast = accessible_text | color_contrast: block.settings.background_color
+    if text_contrast < 4.5
+      assign accessible_text = '#212323'
+    endif
+  endif
+%}
 <div
   class="flex min-w-0 shrink-0 flex-col items-center justify-center gap-[10px] rounded-[18px] px-[10px] py-[15px] text-center shadow-[-2px_2px_3.5px_rgba(0,0,0,0.1)] sm:gap-[15px] sm:rounded-[33px] sm:py-[20px]"
-  style="background-color: {{ block.settings.background_color }}; color: {{ block.settings.text_color }}; width: var(--icon-badge-card-width, auto); height: var(--icon-badge-card-height, auto); aspect-ratio: var(--icon-badge-card-aspect-ratio, auto);"
+  style="background-color: {{ block.settings.background_color }}; color: {{ accessible_text }}; width: var(--icon-badge-card-width, auto); height: var(--icon-badge-card-height, auto); aspect-ratio: var(--icon-badge-card-aspect-ratio, auto);"
   {{ block.shopify_attributes }}
 >
   {% if block.settings.icon %}

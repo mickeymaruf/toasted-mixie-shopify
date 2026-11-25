@@ -1,0 +1,44 @@
+{%- comment -%}
+  Article identity mirrors the visible article banner. No claims, ratings,
+  local address, offer data or review credentials are inferred.
+{%- endcomment -%}
+{%- liquid
+  assign seo_article_author = article.metafields.custom.author.value | default: article.author | strip
+  assign seo_article_description = article.excerpt | strip_html | strip
+  assign seo_article_author_type = 'Person'
+  if seo_article_author == 'Toasted'
+    assign seo_article_author_type = 'Organization'
+  endif
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": {{ canonical_url | append: '#article' | json }},
+  "url": {{ canonical_url | json }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ canonical_url | json }}
+  },
+  "headline": {{ article.title | json }},
+  "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }},
+  "inLanguage": {{ request.locale.iso_code | json }},
+  "publisher": {
+    "@type": "Organization",
+    "name": "Toasted",
+    "url": {{ shop.url | json }}
+  }
+  {%- if seo_article_description != blank -%},
+  "description": {{ seo_article_description | json }}
+  {%- endif -%}
+  {%- if seo_article_author != blank -%},
+  "author": {
+    "@type": {{ seo_article_author_type | json }},
+    "name": {{ seo_article_author | json }}
+  }
+  {%- endif -%}
+  {%- if article.image -%},
+  "image": {{ article.image | image_url: width: 1600 | prepend: 'https:' | json }}
+  {%- endif %}
+}
+</script>

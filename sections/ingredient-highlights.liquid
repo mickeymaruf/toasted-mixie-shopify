@@ -66,6 +66,9 @@
           {% liquid
             assign center_image = section.settings.center_image
             assign center_image_alt = section.settings.center_image_alt | default: center_image.alt
+            if center_image_alt == blank and center_image.src contains 'Group_107'
+              assign center_image_alt = 'Toasted Blood Orange, Berry Acai and Ginger Lime beverage cans'
+            endif
           %}
           {% if center_image %}
             {{
@@ -75,7 +78,7 @@
                 class: 'relative size-full object-contain',
                 widths: '212, 320, 424, 576, 640, 960, 1152, 1728',
                 sizes: '(min-width: 64rem) 576px, (min-width: 40rem) 320px, 212px',
-                loading: 'eager',
+                loading: 'lazy',
                 alt: center_image_alt
             }}
           {% endif %}

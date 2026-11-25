@@ -43,7 +43,13 @@
 
       <div class="relative z-10 flex flex-col gap-[10px]">
         {% if section.settings.heading != blank %}
-          {%- assign hero_tag = 'h2' -%}{%- if template.suffix == 'faqs' or template.suffix == 'about' -%}{%- assign hero_tag = 'h1' -%}{%- endif -%}<{{ hero_tag }}
+          {%- assign hero_tag = 'h2' -%}
+          {%- if template.suffix == 'faqs' or template.suffix == 'about' or template.suffix == 'wholesale' or template.suffix == 'bundle-builder' -%}
+            {%- assign hero_tag = 'h1' -%}
+          {%- elsif template.name == 'collection' and template.suffix == blank -%}
+            {%- assign hero_tag = 'h1' -%}
+          {%- endif -%}
+          <{{ hero_tag }}
             class="mx-auto w-full max-w-[900px] text-[25px] leading-[0.95] font-bold [text-shadow:4px_4px_6px_rgba(0,0,0,0.4)] sm:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] {% if section.settings.heading_mobile != blank %}hidden sm:block{% endif %}"
             style="color: {{ section.settings.heading_color }};"
           >

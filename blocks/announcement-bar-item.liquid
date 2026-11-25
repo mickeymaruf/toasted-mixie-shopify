@@ -29,7 +29,7 @@
       --announcement-bar-button-background: {{ block.settings.button_background_color }};
       --announcement-bar-button-text: {{ block.settings.button_text_color }};
     "
-    aria-label="{{ block.settings.arrow_label | default: 'View more' }}"
+    aria-label="{{ block.settings.text | strip_html | strip | default: block.settings.arrow_label | default: 'View more' | escape }}"
     {{ block.shopify_attributes }}
   >
     {% if block.settings.text != blank %}

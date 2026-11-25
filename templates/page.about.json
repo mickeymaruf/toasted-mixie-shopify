@@ -469,10 +469,10 @@
       "disabled": true,
       "name": "t:general.gruns_find_toasted_simple",
       "settings": {
-        "heading": "Free Trial Pack",
-        "description": "Get yours, just pay shipping.",
+        "heading": "3 Pack Trial",
+        "description": "$15. Use code FREETHREE for $15 off. You pay shipping. Coming soon.",
         "show_button": true,
-        "button_label": "Get My Free Trial Pack",
+        "button_label": "View 3 Pack Trial",
         "button_link": "shopify://products/three-pack",
         "button_background_color": "#d4941f",
         "button_text_color": "#f6f1ec",

@@ -100,7 +100,7 @@
               "name": "t:general.flavor_swatch",
               "settings": {
                 "product": "three-pack",
-                "flavor_name": "Trial Pack",
+                "flavor_name": "3 Pack Trial",
                 "swatch_image": "shopify://shop_images/Frame_2147235892_1.png",
                 "color": "#2f7948"
               },
@@ -119,7 +119,7 @@
           "settings": {
             "sale_price": "$15",
             "original_price": "",
-            "badge_text": "One-Time. No Subscription."
+            "badge_text": "Use code FREETHREE for $15 off."
           },
           "blocks": {}
         },
@@ -447,7 +447,7 @@
       "name": "t:general.ingredient_highlights",
       "settings": {
         "heading": "Functional by Design",
-        "description": "<p>Made with immediately available functional ingredients designed to help you feel relaxed, right now.</p>",
+        "description": "<p>Toasted is light, tasteful and refreshing. The perfect blend for moments when you want to relax, connect and stay present.</p>",
         "mobile_description": "",
         "center_image": "shopify://shop_images/Group_107.png",
         "center_image_alt": ""
@@ -504,7 +504,7 @@
             "flavor_name": "3 Pack Trial",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
-            "price_text": "$15. One-Time Purchase.",
+            "price_text": "$15. Use code FREETHREE for $15 off.",
             "button_label": "Coming Soon",
             "button_background_color": "#212323",
             "button_text_color": "#f6f1ec",

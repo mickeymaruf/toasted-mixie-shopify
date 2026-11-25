@@ -32,6 +32,7 @@
       <div class="flex w-full flex-col items-center gap-5 xl:w-auto xl:items-start xl:gap-[50px]">
         <a
           href="{{ routes.root_url }}"
+          aria-label="{{ shop.name | escape }}"
           class="block h-[29.7906px] w-[135px] max-w-full xl:h-auto xl:!w-[337px]"
         >
           {% if section.settings.logo %}
@@ -187,6 +188,7 @@
         {% if section.settings.show_payment_icons %}
           <div
             class="flex flex-wrap items-center justify-center gap-1.5 xl:shrink-0 xl:flex-nowrap"
+            role="group"
             aria-label="{{ 'footer.payment_methods_label' | t }}"
           >
             {% assign payment_icons = 'visa,mastercard,amex,discover,dinersclub,applepay,googlepay' | split: ',' %}
@@ -207,7 +209,7 @@
           <ul class="flex flex-wrap items-center justify-center gap-x-[10px] gap-y-1 xl:max-w-[38%] xl:justify-end">
             {% for link in section.settings.legal_menu.links %}
               <li class="flex items-center gap-x-[10px]">
-                <a href="{{ link.url }}" class="transition-opacity duration-150 hover:opacity-70">{{ link.title }}</a>
+                <a href="{{ link.url }}" style="display: inline-flex; align-items: center; min-height: 28px;" class="transition-opacity duration-150 hover:opacity-70">{{ link.title }}</a>
                 {% unless forloop.last %}
                   <span aria-hidden="true">|</span>
                 {% endunless %}

@@ -18,7 +18,7 @@
           "type": "announcement-bar-item",
           "disabled": true,
           "settings": {
-            "text": "<p>Free 3-flavor trial pack. Just pay shipping.</p>",
+            "text": "<p>3-flavor trial pack: $15 plus shipping. Check availability.</p>",
             "show_button": true,
             "button_style": "arrow",
             "button_label": "Claim Your Trial",

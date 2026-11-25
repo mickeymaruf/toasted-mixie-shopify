@@ -34,15 +34,15 @@
           "type": "hero-slide",
           "settings": {
             "heading": "Try all 3 flavors.",
-            "subheading": "Free 3-flavor trial pack. Just pay shipping.",
+            "subheading": "3 Pack Trial: $15. Use code FREETHREE for $15 off. You pay shipping. Coming soon.",
             "heading_color": "#f6f1ec",
             "background_image": "shopify://shop_images/hero_2_e205b98b-7332-4d4b-b885-3958a40dc1f1.png",
             "background_image_mobile": "shopify://shop_images/slider-component_54c94ce4-6b9d-4d29-b668-f6f85da0ea75.png",
             "overlay_color": "#000000",
             "overlay_opacity": 60,
             "show_button": true,
-            "button_label": "Claim Trial Pack",
-            "button_link": "",
+            "button_label": "View 3 Pack Trial",
+            "button_link": "shopify://products/three-pack",
             "button_background_color": "#f9d5c0",
             "button_text_color": "#212323"
           },
@@ -196,12 +196,12 @@
             "perk_2_icon_style": "truck",
             "perk_2_text": "No Subscription",
             "perks_text_color": "#f6f1ec",
-            "heading": "<p>Try all Toasted<br/>flavors <em>FREE!</em></p>",
-            "description": "<p>Blood Orange, Berry Acai, and Ginger Lime.<br/>Just pay shipping.<br/></p>",
-            "description_mobile": "<p>Blood Orange, Berry Acai, and Ginger Lime.<br/>Just pay shipping.</p>",
+            "heading": "<p>Try all three<br/>Toasted flavors</p>",
+            "description": "<p>One can of every Toasted flavor.<br/>$15. Use code FREETHREE for $15 off. You pay shipping. Coming soon.<br/></p>",
+            "description_mobile": "<p>One can of every Toasted flavor.<br/>$15. Use code FREETHREE for $15 off. You pay shipping. Coming soon.</p>",
             "show_button": true,
-            "button_label": "Get My Free Trial Pack",
-            "button_link": "/collections/all",
+            "button_label": "View 3 Pack Trial",
+            "button_link": "shopify://products/three-pack",
             "button_background_color": "#f6f1ec",
             "button_text_color": "#212323",
             "background_color": "#9ab2d5",
@@ -428,7 +428,7 @@
             "flavor_name": "3 Pack Trial",
             "flavor_name_color": "#215332",
             "description": "Crisp. Lively. Clean finish.",
-            "price_text": "$15. One-Time Purchase.",
+            "price_text": "$15. Use code FREETHREE for $15 off.",
             "button_label": "Coming Soon",
             "button_background_color": "#212323",
             "button_text_color": "#f6f1ec",
@@ -1213,8 +1213,8 @@
         "faq_item_wnKYnQ": {
           "type": "faq-item",
           "settings": {
-            "question": "Is Toasted for me?",
-            "answer": "<p>If you want to unwind, relax, and stay present without alcohol, Toasted is for you.</p>",
+            "question": "How long do THC drinks take to kick in?",
+            "answer": "<p>THC drinks typically take effect within 15 to 30 minutes, making them much faster than traditional cannabis edibles. For the best experience, wait at least 45 minutes before opening a second can.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -1222,8 +1222,8 @@
         "faq_item_c4mxh7": {
           "type": "faq-item",
           "settings": {
-            "question": "When is the best time for Toasted?",
-            "answer": "<p>Anytime you want to take the edge off without losing yourself. Stay in, go out, or anywhere in between.</p>",
+            "question": "Do THC drinks contain alcohol, and will they get you high?",
+            "answer": "<p>No, THC drinks don't contain alcohol, but yes, they can get you high, because they contain THC, the active compound in cannabis. How high depends on the dose. A low dose (0.4mg) drink like Toasted is meant for a light, social experience, while drinks in the 5-10mg THC range will get most people high.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -1231,8 +1231,8 @@
         "faq_item_DzVxMw": {
           "type": "faq-item",
           "settings": {
-            "question": "What does it feel like?",
-            "answer": "<p>Light, relaxed, and feel-good. Designed to keep you clear, present, and in control.</p>",
+            "question": "Are THC drinks legal?",
+            "answer": "<p>Yes, hemp THC drinks are federally legal. Toasted is federally legal and compliant with the 0.4mg per container limit. State laws vary, so check your specific state rules. you must be 21 or older to buy.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -1240,8 +1240,8 @@
         "faq_item_nW6RaJ": {
           "type": "faq-item",
           "settings": {
-            "question": "Will it make me anxious or paranoid?",
-            "answer": "<p>Toasted is intentionally low-dose and made with calming ingredients for a gentle, approachable experience.</p>",
+            "question": "What's a good alternative to alcohol?",
+            "answer": "<p>Low dose hemp THC drinks are a great alternative to alcohol. You get something to sip and a light, relaxed experience without alcohol. Toasted pairs 0.4mg of THC with L-theanine and rhodiola.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -1249,8 +1249,8 @@
         "faq_item_NDQepn": {
           "type": "faq-item",
           "settings": {
-            "question": "Is it like an edible?",
-            "answer": "<p>Not at all. The experience is lighter, faster, and shorter-lasting—making it a natural fit for social occasions.</p>",
+            "question": "Is a THC drink like an edible?",
+            "answer": "<p>Sort of. Both are THC you consume, but drinks kick in faster than gummies, don't last as long and are easier to dose. You can sip slowly and see how you feel. With a low dose drink, you can have another if you want more.</p>",
             "initially_open": false
           },
           "blocks": {}
@@ -1258,8 +1258,8 @@
         "faq_item_HcnUJ6": {
           "type": "faq-item",
           "settings": {
-            "question": "Are these drinks legal?",
-            "answer": "<p>Yes. Toasted is formulated to meet federal requirements. Availability varies by state and is limited to adults 21+.</p>",
+            "question": "How many THC drinks should I have?",
+            "answer": "<p>Start with one and see how you feel. Tolerance mostly comes down to your size, gender, and how often you use THC. Low dose drinks like Toasted make it easy to go at your own pace.</p>",
             "initially_open": false
           },
           "blocks": {}

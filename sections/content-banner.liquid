@@ -22,12 +22,16 @@
 
       <div class="relative z-10 flex w-full flex-col items-center justify-center gap-5">
         {%- if section.settings.heading != blank -%}
-          <h2
+          {%- assign content_heading_tag = 'h2' -%}
+          {%- if template.name == 'page' and template.suffix == 'analysis-certificate' -%}
+            {%- assign content_heading_tag = 'h1' -%}
+          {%- endif -%}
+          <{{ content_heading_tag }}
             class="w-full text-[32px] font-bold leading-[0.95] sm:text-[48px] md:text-[56px] lg:text-[72px]"
             style="color: {{ section.settings.heading_color }};"
           >
             {{ section.settings.heading }}
-          </h2>
+          </{{ content_heading_tag }}>
         {%- endif -%}
 
         {%- if section.settings.subheading != blank -%}

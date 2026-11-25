@@ -26,9 +26,13 @@
         {% if heading != blank or subheading != blank %}
           <div class="flex flex-col gap-3 lg:gap-[20px]">
             {% if heading != blank %}
-              <h2 class="font-[family-name:var(--font-heading--family)] text-[40px] leading-[0.95] font-bold tracking-[-1.2px] lg:text-[72px] lg:tracking-[-2.16px]">
+              {%- assign contact_heading_tag = 'h2' -%}
+              {%- if template.name == 'page' and template.suffix == 'contact-us' -%}
+                {%- assign contact_heading_tag = 'h1' -%}
+              {%- endif -%}
+              <{{ contact_heading_tag }} class="font-[family-name:var(--font-heading--family)] text-[40px] leading-[0.95] font-bold tracking-[-1.2px] lg:text-[72px] lg:tracking-[-2.16px]">
                 {{ heading }}
-              </h2>
+              </{{ contact_heading_tag }}>
             {% endif %}
 
             {% if subheading != blank %}

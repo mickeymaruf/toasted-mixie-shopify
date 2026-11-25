@@ -1,5 +1,7 @@
 <announcement-bar-carousel
   class="announcement-bar full-width"
+  role="region"
+  aria-label="Store announcements"
   data-autoplay-interval="{{ section.settings.autoplay_speed | times: 1000 }}"
 >
   {% for block in section.blocks %}

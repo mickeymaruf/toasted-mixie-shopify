@@ -79,9 +79,9 @@
           {%- endif -%}
 
           {%- if banner_heading != blank -%}
-            <h2 class="w-full font-[family-name:var(--font-heading--family)] text-[36px] leading-[0.95] font-bold sm:text-[44px] lg:text-[52px] xl:text-[64px] tracking-normal">
+            {%- assign title_tag = 'h2' -%}{%- if template.name == 'article' -%}{%- assign title_tag = 'h1' -%}{%- endif -%}<{{ title_tag }} class="w-full font-[family-name:var(--font-heading--family)] text-[36px] leading-[0.95] font-bold sm:text-[44px] lg:text-[52px] xl:text-[64px] tracking-normal">
               {{ banner_heading }}
-            </h2>
+            </{{ title_tag }}>
           {%- endif -%}
 
           {%- if banner_subtitle != blank -%}

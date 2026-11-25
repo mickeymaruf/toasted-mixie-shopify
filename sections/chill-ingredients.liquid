@@ -20,6 +20,12 @@
     <div class="grid w-full grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-[50px] min-[1200px]:grid-cols-[minmax(0,1fr)_649px]">
       <div class="relative aspect-[4/3] w-full overflow-hidden rounded-[22px] lg:aspect-auto lg:min-h-[400px]">
         {% if section.settings.image != blank %}
+          {% liquid
+            assign image_alt = section.settings.image.alt | default: ''
+            if image_alt == blank and section.settings.image.src contains 'Rectangle_105_2597d56e-3b04-433a-8a0b-9059a18d2e8a'
+              assign image_alt = 'A woman reads beside the ocean at sunset with a Toasted drink on the table'
+            endif
+          %}
           {{
             section.settings.image
             | image_url: width: 1600
@@ -28,7 +34,7 @@
               widths: '600, 900, 1200, 1600',
               sizes: '(min-width: 1024px) 50vw, 100vw',
               loading: 'lazy',
-              alt: section.settings.image.alt
+              alt: image_alt
           }}
         {% else %}
           {{ 'lifestyle-1' | placeholder_svg_tag: 'absolute inset-0 size-full object-cover bg-black/5' }}

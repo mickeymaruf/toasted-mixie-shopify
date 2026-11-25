@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="{{ request.locale.iso_code }}" class="scroll-smooth">
   <head>
+    {% if template.name == 'index' and content_for_layout contains '<!--toasted-hero-preload-start-->' %}
+      {{ content_for_layout | split: '<!--toasted-hero-preload-start-->' | last | split: '<!--toasted-hero-preload-end-->' | first }}
+    {% endif %}
     <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
 
     {% # Inlined CSS Variables %}
@@ -16,17 +19,21 @@
     {{ 'DegularDisplay-Regular.otf' | asset_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
 
     {% # Load and preload the critical CSS %}
-    {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+    <style>{{ 'critical.css' | inline_asset_content }}</style>
 
     {% # Load the Tailwind CSS build %}
     {{ 'tailwind.css' | asset_url | stylesheet_tag }}
 
     {% # Swiper carousel vendor library, shared by any section/snippet that renders a carousel %}
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     {{ 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' | stylesheet_tag }}
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer="defer"></script>
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
+    {%- if request.page_type == 'article' -%}
+      {% render 'article-structured-data' %}
+    {%- endif -%}
 
     {{ content_for_header }}
   </head>
@@ -36,7 +43,9 @@
 
     {% sections 'header-group' %}
 
-    {{ content_for_layout }}
+    <main id="MainContent" style="display: contents;">
+      {{ content_for_layout }}
+    </main>
 
     {% sections 'footer-group' %}
 

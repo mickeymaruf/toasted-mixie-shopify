@@ -59,7 +59,7 @@
 
 {%- if request.page_type == 'product' -%}
   <script type="application/ld+json">
-    {{ product | structured_data }}
+    {%- capture tmv_sd -%}{{ product | structured_data }}{%- endcapture -%}{%- assign tmv_ret = '"@type":"Offer","hasMerchantReturnPolicy":{"@type":"MerchantReturnPolicy","applicableCountry":"US","returnPolicyCategory":"https://schema.org/MerchantReturnFiniteReturnWindow","merchantReturnDays":30,"returnMethod":"https://schema.org/ReturnByMail","returnFees":"https://schema.org/ReturnFeesCustomerResponsibility"},' -%}{%- assign tmv_sd = tmv_sd | replace: '"@type":"Offer",', tmv_ret -%}{%- unless product.has_only_default_variant -%}{%- assign tmv_desc = product.description | strip_html | strip | json -%}{%- assign tmv_var = '"@type":"Product","description":' | append: tmv_desc | append: ',' -%}{%- assign tmv_sd = tmv_sd | replace: '"@type":"Product",', tmv_var -%}{%- endunless -%}{{ tmv_sd }}
   </script>
 
   <meta

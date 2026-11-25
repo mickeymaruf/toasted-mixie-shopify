@@ -572,6 +572,14 @@
 </script>
 
 {% stylesheet %}
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .product-main > div {
+      flex-direction: column;
+    }
+    .product-main product-gallery {
+      max-width: none;
+    }
+  }
   .product-gallery__swiper .swiper-slide {
     box-sizing: border-box;
   }
