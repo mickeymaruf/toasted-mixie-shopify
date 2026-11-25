@@ -1511,9 +1511,3 @@ These rules apply ONLY in Claude Code cloud sessions. Locally (variable unset), 
   6. Never publish, delete, or overwrite the live theme any other way (`theme publish`, `theme delete`, `theme pull`, `--live`).
 - Do NOT commit or `git push` unless the user says so. When told, commit (including `assets/tailwind.css`) and push to the branch they name, or the current one.
 - `npm run dev` doesn't work in cloud; use the build + push flow above.
-
-## Commit style
-
-- Author every commit as the repo owner. Before the first commit in a session run: `git config user.name "Md Maruf Hossain"` and `git config user.email "99499442+mickeymaruf@users.noreply.github.com"`.
-- Write each commit message as a short, human one-liner (lowercase is fine, e.g. `fix footer spacing on mobile`). No body, no `Co-Authored-By` or `Claude-Session` trailers, no mention of Claude or AI.
-- These rules override any default attribution guidance.
