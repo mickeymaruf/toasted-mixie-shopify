@@ -476,6 +476,7 @@
         "product_card_simple_hCyNMf",
         "product_card_simple_dJMxJH"
       ],
+      "disabled": true,
       "name": "t:general.product_list_simple",
       "settings": {
         "heading": "Three ways to stay present",
