@@ -51,6 +51,25 @@
           },
           "blocks": {}
         },
+        "product_card_CEY8Xa": {
+          "type": "product-card",
+          "settings": {
+            "product": "berry-acai",
+            "background_image": "shopify://shop_images/Frame_2147236002.svg",
+            "image": "shopify://shop_images/Group_5.png",
+            "use_lottie_animation": false,
+            "flavor_name": "Berry Acai",
+            "flavor_name_color": "#5e1a79",
+            "description": "Deep. Juicy. Easy to enjoy.",
+            "price_text": "As low as $4.00 per can",
+            "button_label": "Add To Cart",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
+          },
+          "blocks": {}
+        },
         "product_card_PVhUHH": {
           "type": "product-card",
           "settings": {
@@ -92,6 +111,7 @@
       },
       "block_order": [
         "product_card_kPnEQx",
+        "product_card_CEY8Xa",
         "product_card_PVhUHH",
         "product_card_iUCqkK"
       ],

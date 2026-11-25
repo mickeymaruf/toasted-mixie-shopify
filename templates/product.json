@@ -83,6 +83,17 @@
               },
               "blocks": {}
             },
+            "flavor_swatch_HhRbV9": {
+              "type": "flavor-swatch",
+              "name": "t:general.flavor_swatch",
+              "settings": {
+                "product": "berry-acai",
+                "flavor_name": "",
+                "swatch_image": "shopify://shop_images/Frame_2147235893.png",
+                "color": "#552469"
+              },
+              "blocks": {}
+            },
             "flavor_swatch_ktfVwb": {
               "type": "flavor-swatch",
               "name": "t:general.flavor_swatch",
@@ -108,6 +119,7 @@
           },
           "block_order": [
             "flavor_swatch_ayHRVG",
+            "flavor_swatch_HhRbV9",
             "flavor_swatch_ktfVwb",
             "flavor_swatch_bGjd3J"
           ]
@@ -316,18 +328,15 @@
         },
         "product_card_simple_cdWAHn": {
           "type": "product-card-simple",
-          "disabled": true,
           "settings": {
-            "product": "blood-orange",
-            "image": "shopify://shop_images/Blood-Orange-Fruit-_3.png",
+            "product": "berry-acai",
+            "image": "shopify://shop_images/Berry-Acai-Fruit-_2.png",
             "alt_text": "",
             "background_color": "#f0f0f0",
-            "background_image": "shopify://shop_images/front_1.svg",
-            "flavor_sticker": "shopify://shop_images/flavour.svg",
-            "flavor_sticker_mobile": "shopify://shop_images/flavour.png",
-            "badge_sticker": "shopify://shop_images/Group_113_2.svg",
-            "badge_sticker_mobile": "shopify://shop_images/Group_113.png",
-            "title": "Blood Orange",
+            "background_image": "shopify://shop_images/front_3.svg",
+            "flavor_sticker": "shopify://shop_images/flavor.svg",
+            "badge_sticker": "shopify://shop_images/Group_112_1.svg",
+            "title": "Berry Acai",
             "description": "Deep berry profile with a hint of acai.\nLightly sweet, smooth with an easy finish.",
             "text_color": "#f6f1ec",
             "button_label": "Add to Cart",
@@ -625,6 +634,25 @@
           },
           "blocks": {}
         },
+        "product_card_CEY8Xa": {
+          "type": "product-card",
+          "settings": {
+            "product": "berry-acai",
+            "background_image": "shopify://shop_images/Frame_2147236002.svg",
+            "image": "shopify://shop_images/Group_5.png",
+            "use_lottie_animation": false,
+            "flavor_name": "Berry Acai",
+            "flavor_name_color": "#5e1a79",
+            "description": "Deep. Juicy. Easy to enjoy.",
+            "price_text": "As low as $4.00 per can",
+            "button_label": "Add To Cart",
+            "button_background_color": "#212323",
+            "button_text_color": "#f6f1ec",
+            "show_learn_more": true,
+            "learn_more_label": ""
+          },
+          "blocks": {}
+        },
         "product_card_PVhUHH": {
           "type": "product-card",
           "settings": {
@@ -666,6 +694,7 @@
       },
       "block_order": [
         "product_card_kPnEQx",
+        "product_card_CEY8Xa",
         "product_card_PVhUHH",
         "product_card_iUCqkK"
       ],
